@@ -1,0 +1,26 @@
+﻿Parameter,Value,Units
+In Use?,1,"[1=Yes,0=No]"
+Weight of Sections Removed,15,kg
+Blade Life,50,batches
+Blade Cost,500,/blade
+SiC Slurry Consumption,0,kg/hr
+SiC Slurry Price,0,/kg
+Brick Reject Rate,0.01,
+Scrap Reclamation Rate,0.95,
+Average Downtime,0.1,
+Unskilled Direct Laborers Factor,2,
+Skilled Direct Laborers Factor,0.6,
+Batch Size,1,ingots/batch
+Setup Time,5,minutes/batch
+Saw Rate,20,mm/min
+Capital Investment,4.00E+05,$/station
+Auxiliary Equipment Investment,0.1,
+Installation Cost Factor,0.25,
+Equipment Maintenance Cost Factor,0.03,
+Tooling Investment,0,$/toolset
+Tooling Life,2.00E+08,kgs/tool
+Operating Power Consumption,10,kW
+Floor SQM,25,sq meter
+Clean 10k SQM,0,sq meter
+Clean 1k SQM,0,sq meter
+Clean 100 SQM,0,sq meter

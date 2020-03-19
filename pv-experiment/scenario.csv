@@ -1,0 +1,15 @@
+﻿Scenario Parameter,Value,Description
+Annual Production Volume,5200,metric tons / yr
+Dedicated Equipment Investment,True,"True = Yes, dedicated equipment investment. False = No"
+Length of Production Run,8,years
+Use Harvest Chunk?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use Siemens CVD?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use Etch Filaments?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use Machine Filaments?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use Saw Ingots?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use Crop Ingots?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use Anneal Ingots?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use Grow Ingots?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Use TCS?,True,"True = Include Manufacuring Step, False = Do Not Include Manufacturing Step"
+Region,U.S.,Region for inpt data cost assumptions
+TCS Process,c,Select TCS process type

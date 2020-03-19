@@ -1,0 +1,23 @@
+﻿Parameter,Value,Units
+Consumable Rate,1.5,units/hr
+Consumable Price,2,$/unit
+Material Scrap Rate,0.1,
+Yield Loss,0.01,
+Scrap Reclamation Rate,0.95,
+Average Downtime,0.1,
+Unskilled Direct Laborers Factor,2,
+Skilled Direct Laborers Factor,0.6,
+Filament Batch Size,20,filaments/batch
+Filament Setup Time,0,min/batch
+Filament Cycle Time,50,min/batch
+Capital Investment,3.00E+05,$/station
+Auxiliary Equipment Investment,0.1,
+Installation Cost Factor,0.25,
+Equipment Maintenance Cost Factor,0.03,
+Tooling Investment,3000,$/toolset
+Tooling Life,2.00E+04,kgs/tool
+Operating Power Consumption,500,kW
+Floor SQM,1000,sq meter
+Clean 10k SQM,0,sq meter
+Clean 1k SQM,0,sq meter
+Clean 100 SQM,0,sq meter

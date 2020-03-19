@@ -1,0 +1,27 @@
+﻿Parameter,Value,Units
+Hydrogen Consumption Rate,125,kg/hr-station
+Hydrogen Price,2,$/kg
+Hydrogen Scrap Rate,0.25,
+Material Scrap Rate,0.05,
+Poly Si Reject Rate,0.01,
+Poly Si Scrap Rec Rate,0,
+Average Downtime,0,
+Other Consumable Cost,1.5,$/kg PS
+Unskilled Direct Laborers Factor,1,
+Skilled Direct Laborers Factor,0.3,
+Batch Size,55,rods/batch
+Final Rod Size,130,mm diameter rods
+Projected Annual Production Volume,350,MTPA
+Cycle Time,75,hrs/batch
+"Setup, Harvest, Clean Time",0,hrs/batch
+Capital Investment,3.00E+06,$/station
+Auxiliary Equipment Investment,0,
+Installation Cost Factor,3.3,
+Equipment Maintenance Cost Factor,0.03,
+Tooling Investment,0,$/toolset
+Tooling Life,1.50E+07,kg/tool
+Operating Power Consumption,1500,kW
+Floor SQM,75,sq meter
+Clean 10k SQM,0,sq meter
+Clean 1k SQM,0,sq meter
+Clean 100 SQM,0,sq meter

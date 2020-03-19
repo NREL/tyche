@@ -1,0 +1,8 @@
+Technology	Type	Index	Offset	Description	Notes
+Simple electrolysis	Capital	Catalyst	0	Catalyst	
+Simple electrolysis	Fixed	Rent	0	Rent	
+Simple electrolysis	Input	Water	0	Water	
+Simple electrolysis	Input	Electricity	1	Electricity	
+Simple electrolysis	Output	Oxygen	0	Oxygen	
+Simple electrolysis	Output	Hydrogen	1	Hydrogen	
+Simple electrolysis	Metric	Jobs	0	Jobs	

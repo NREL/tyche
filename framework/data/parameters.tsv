@@ -1,0 +1,6 @@
+Technology	Scenario	Parameter	Offset	Value	Units	Notes
+Simple electrolysis	Base	Oxygen production	0	16.00	g	
+Simple electrolysis	Base	Hydrogen production	1	2.00	g	
+Simple electrolysis	Base	Water consumption	2	18.08	g	
+Simple electrolysis	Base	Electricity consumption	3	237	kJ	
+Simple electrolysis	Base	Jobs	4	1.5e-4	job/mole	

@@ -1,0 +1,38 @@
+﻿Parameter,Value,Units
+In Use?,1,"[1=Yes,0=No]"
+Poly-Si Material Price,15,$/kg
+Poly Si Material Scrap Rate,0.25,
+Si Seed Price,100,$/pc
+Si Seed Life,1,cycles
+Crucible Cost,700,$/charge 
+Crucible Life,1,batches/crucible
+Cooling Water Cons Rate,850,m3/batch
+Water Price,0.2,$/m3
+Argon Consumption Rate,100,SLM
+Argon Price,0.5,$/Standard liter
+Part Reject Rate,0.01,
+Average Downtime,0.1,
+Unskilled Direct Laborers Factor,0.75,ppl/station
+Skilled Direct Laborers Factor,0.225,ppl/station
+Ingot Length,500,cm usable length
+Ingot Weight (tops and tails),0.2,of gross ingot weight
+As Grown Ingot Diameter,153,mm
+Final Ingot Diameter,150,mm
+Setup (Load) Time,5,hours/batch
+Pump Down and Leak Check,5,hours/batch
+Melt/Stabilize,14,hours/batch
+Average Pull Speed,75,mm/hr
+Cool and Unload,12,hours/batch
+Clean,6,hours/batch
+Capital Investment,6.00E+05,$/station
+Auxiliary Equipment Investment,1,
+Installation Cost Factor,0.25,
+Equipment Maintenance Cost Factor,0.03,
+Tooling Investment,0,$/toolset
+Tooling Life,2.00E+04,kgs/tool
+Operating Power Consumption,40,kW
+Full Power Consumption,100,kW
+Floor SQM,30,sq meter
+Clean 10k SQM,0,sq meter
+Clean 1k SQM,0,sq meter
+Clean 100 SQM,0,sq meter

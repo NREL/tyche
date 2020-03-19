@@ -1,0 +1,15 @@
+Technology	Scenario	Variable	Index	Value	Units	Notes
+Simple electrolysis	Base	Input	Water	19.04	g/mole	
+Simple electrolysis	Base	Input Efficiency	water	0.95	1	
+Simple electrolysis	Base	Input	Electricity	279	kJ/mole	
+Simple electrolysis	Base	Input Efficiency	Electricity	0.85	1	
+Simple electrolysis	Base	Output Efficiency	Oxygen	0.90	1	
+Simple electrolysis	Base	Output Efficiency	Hydrogen	0.90	1	
+Simple electrolysis	Base	Capital cost	Catalyst	0.63	USD	Al-Ni catalyst.
+Simple electrolysis	Base	Lifetime	Catalyst	3	yr	Effective lifetime of Al-Ni catalyst.
+Simple electrolysis	Base	Fixed cost	Rent	1000	USD/yr	
+Simple electrolysis	Base	Scale		6650	mole/yr	Rough estimate for a 50W setup.
+Simple electrolysis	Base	Input price	Water	4.8e-3	USD/mole	
+Simple electrolysis	Base	Input price	Electricity	3.33e-5	USD/kJ	
+Simple electrolysis	Base	Output price	Oxygen	3.0e-3	USD/g	
+Simple electrolysis	Base	Output price	Hydrogen	1.0e-2	USD/g

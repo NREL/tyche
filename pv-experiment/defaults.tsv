@@ -1,0 +1,231 @@
+Section	Column	Value
+Harvest Chunk	Argon Usage	99.0
+Harvest Chunk	Argon Price	0.1
+Harvest Chunk	Argon Scrap Rate	0.05
+Harvest Chunk	Poly Si Yield Loss	0.01
+Harvest Chunk	Poly Si Scrap Reclemation Rate	0.95
+Harvest Chunk	Average Downtime	0.1
+Harvest Chunk	Auxiliary Equipment Investment	0.0
+Harvest Chunk	Installation Cost Factor	3.3
+Harvest Chunk	Equipment Maintenance Cost Factor	0.03
+Harvest Chunk	Unskilled Direct Laborers Factor	30.0
+Harvest Chunk	Skilled Direct Laborers Factor	10.0
+Harvest Chunk	Tooling Investment	150000.0
+Harvest Chunk	Tooling Life	150000000.0
+Harvest Chunk	Operating Power Consumption	6000.0
+Harvest Chunk	Floor SQM	0.0
+Harvest Chunk	Clean 10k SQM	500.0
+Harvest Chunk	Clean 1k SQM	0.0
+Harvest Chunk	Clean 100 SQM	0.0
+Harvest Chunk	Capital Investment	1200.0
+Siemens CVD	Hydrogen Consumption Rate	125.0
+Siemens CVD	Hydrogen Price	2.0
+Siemens CVD	Hydrogen Scrap Rate	0.25
+Siemens CVD	Material Scrap Rate	0.05
+Siemens CVD	Poly Si Reject Rate	0.01
+Siemens CVD	Poly Si Scrap Rec Rate	0.0
+Siemens CVD	Average Downtime	0.0
+Siemens CVD	Other Consumable Cost	1.5
+Siemens CVD	Unskilled Direct Laborers Factor	1.0
+Siemens CVD	Skilled Direct Laborers Factor	0.3
+Siemens CVD	Batch Size	55.0
+Siemens CVD	Final Rod Size	130.0
+Siemens CVD	Projected Annual Production Volume	350.0
+Siemens CVD	Cycle Time	75.0
+Siemens CVD	Setup, Harvest, Clean Time	0.0
+Siemens CVD	Capital Investment	3000000.0
+Siemens CVD	Auxiliary Equipment Investment	0.0
+Siemens CVD	Installation Cost Factor	3.3
+Siemens CVD	Equipment Maintenance Cost Factor	0.03
+Siemens CVD	Tooling Investment	0.0
+Siemens CVD	Tooling Life	15000000.0
+Siemens CVD	Operating Power Consumption	1500.0
+Siemens CVD	Floor SQM	75.0
+Siemens CVD	Clean 10k SQM	0.0
+Siemens CVD	Clean 1k SQM	0.0
+Siemens CVD	Clean 100 SQM	0.0
+Etch Filaments	HF Consumption Rate	15.0
+Etch Filaments	HF Price	2.5
+Etch Filaments	Nitric Consumption Rate	15.0
+Etch Filaments	Nitric Acid Price	4.0
+Etch Filaments	Nitrogen Consumption Rate	20.0
+Etch Filaments	Nitrogen Price	2.5
+Etch Filaments	DI Water Consumption Rate	15.0
+Etch Filaments	DI Water Price	3.0
+Etch Filaments	Material Scrap Rate	0.05
+Etch Filaments	Part Reject Rate	0.01
+Etch Filaments	Average Downtime	0.1
+Etch Filaments	Unskilled Direct Laborers Factor	2.0
+Etch Filaments	Skilled Direct Laborers Factor	0.6
+Etch Filaments	Filament Batch Size	30.0
+Etch Filaments	Filament Setup Time	10.0
+Etch Filaments	Filament Cycle Time	30.0
+Etch Filaments	HP Batch Size	10.0
+Etch Filaments	HP Setup Time	7.0
+Etch Filaments	HP Cycle Time	30.0
+Etch Filaments	Capital Investment	300.0
+Etch Filaments	Installation Cost Factor	0.25
+Etch Filaments	Equipment Maintenance Cost Factor	0.03
+Etch Filaments	Tooling Investment	15000.0
+Etch Filaments	Tooling Life	150000000.0
+Etch Filaments	Operating Power Consumption	75.0
+Etch Filaments	Floor SQM	0.0
+Etch Filaments	Clean 10k SQM	750.0
+Etch Filaments	Clean 1k SQM	0.0
+Etch Filaments	Clean 100 SQM	0.0
+Etch Filaments	Fraction Virgin Filament	1.0
+Machine Filaments	Consumable Rate	1.5
+Machine Filaments	Consumable Price	2.0
+Machine Filaments	Material Scrap Rate	0.1
+Machine Filaments	Yield Loss	0.01
+Machine Filaments	Scrap Reclamation Rate	0.95
+Machine Filaments	Average Downtime	0.1
+Machine Filaments	Unskilled Direct Laborers Factor	2.0
+Machine Filaments	Skilled Direct Laborers Factor	0.6
+Machine Filaments	Filament Batch Size	20.0
+Machine Filaments	Filament Setup Time	0.0
+Machine Filaments	Filament Cycle Time	50.0
+Machine Filaments	Capital Investment	300000.0
+Machine Filaments	Auxiliary Equipment Investment	0.1
+Machine Filaments	Installation Cost Factor	0.25
+Machine Filaments	Equipment Maintenance Cost Factor	0.03
+Machine Filaments	Tooling Investment	3000.0
+Machine Filaments	Tooling Life	20000.0
+Machine Filaments	Operating Power Consumption	500.0
+Machine Filaments	Floor SQM	1000.0
+Machine Filaments	Clean 10k SQM	0.0
+Machine Filaments	Clean 1k SQM	0.0
+Machine Filaments	Clean 100 SQM	0.0
+Saw Ingots	In Use?	1.0
+Saw Ingots	Wire Life	1.0
+Saw Ingots	Wire Cost	5000.0
+Saw Ingots	SiC Slurry Consumption	0.0
+Saw Ingots	SiC Slurry Price	0.0
+Saw Ingots	SiC Slurry Scrap Rate	0.1
+Saw Ingots	Kerf Loss	400.0
+Saw Ingots	Sell Kerf Loss Si?	1.0
+Saw Ingots	Kerf Loss Si Price	5.0
+Saw Ingots	Part Reject Rate	0.15
+Saw Ingots	Average Downtime	0.1
+Saw Ingots	Unskilled Direct Laborers Factor	2.0
+Saw Ingots	Skilled Direct Laborers Factor	0.6
+Saw Ingots	Batch Size	1.0
+Saw Ingots	Filament Width	8.0
+Saw Ingots	Setup Time	45.0
+Saw Ingots	Cutting Speed	5.0
+Saw Ingots	Capital Investment	1500000.0
+Saw Ingots	Auxiliary Equipment Investment	0.1
+Saw Ingots	Installation Cost Factor	0.25
+Saw Ingots	Equipment Maintenance Cost Factor	0.03
+Saw Ingots	Tooling Investment	0.0
+Saw Ingots	Tooling Life	2.0
+Saw Ingots	Operating Power Consumption	50.0
+Saw Ingots	Floor SQM	150.0
+Saw Ingots	Clean 10k SQM	0.0
+Saw Ingots	Clean 1k SQM	0.0
+Saw Ingots	Clean 100 SQM	0.0
+Crop Ingots	In Use?	1.0
+Crop Ingots	Weight of Sections Removed	15.0
+Crop Ingots	Blade Life	50.0
+Crop Ingots	Blade Cost	500.0
+Crop Ingots	SiC Slurry Consumption	0.0
+Crop Ingots	SiC Slurry Price	0.0
+Crop Ingots	Brick Reject Rate	0.01
+Crop Ingots	Scrap Reclamation Rate	0.95
+Crop Ingots	Average Downtime	0.1
+Crop Ingots	Unskilled Direct Laborers Factor	2.0
+Crop Ingots	Skilled Direct Laborers Factor	0.6
+Crop Ingots	Batch Size	1.0
+Crop Ingots	Setup Time	5.0
+Crop Ingots	Saw Rate	20.0
+Crop Ingots	Capital Investment	400000.0
+Crop Ingots	Auxiliary Equipment Investment	0.1
+Crop Ingots	Installation Cost Factor	0.25
+Crop Ingots	Equipment Maintenance Cost Factor	0.03
+Crop Ingots	Tooling Investment	0.0
+Crop Ingots	Tooling Life	200000000.0
+Crop Ingots	Operating Power Consumption	10.0
+Crop Ingots	Floor SQM	25.0
+Crop Ingots	Clean 10k SQM	0.0
+Crop Ingots	Clean 1k SQM	0.0
+Crop Ingots	Clean 100 SQM	0.0
+Anneal Ingots	In Use?	1.0
+Anneal Ingots	Argon Gas	0.0
+Anneal Ingots	Argon Price	0.5
+Anneal Ingots	Argon Scrap Rate	0.05
+Anneal Ingots	Poly Si Chunk Yield Loss Rate	0.01
+Anneal Ingots	Poly Si Scrap Reclamation Rate	0.95
+Anneal Ingots	Average Downtime	0.15
+Anneal Ingots	Furnace Capacity	40.0
+Anneal Ingots	Unskilled Direct Laborers Factor	2.0
+Anneal Ingots	Skilled Direct Laborers Factor	0.6
+Anneal Ingots	Capital Investment	400000.0
+Anneal Ingots	Auxiliary Equipment Investment	0.1
+Anneal Ingots	Installation Cost Factor	0.25
+Anneal Ingots	Equipment Maintenance Cost Factor	0.03
+Anneal Ingots	Tooling Investment	150000.0
+Anneal Ingots	Tooling Life	150000000.0
+Anneal Ingots	Operating Power Consumption	5000.0
+Anneal Ingots	Floor SQM	0.0
+Anneal Ingots	Clean 10k SQM	625.0
+Anneal Ingots	Clean 1k SQM	0.0
+Anneal Ingots	Clean 100 SQM	0.0
+Ingot Growth	In Use?	1.0
+Ingot Growth	Poly-Si Material Price	15.0
+Ingot Growth	Poly Si Material Scrap Rate	0.25
+Ingot Growth	Si Seed Price	100.0
+Ingot Growth	Si Seed Life	1.0
+Ingot Growth	Crucible Cost	700.0
+Ingot Growth	Crucible Life	1.0
+Ingot Growth	Cooling Water Cons Rate	850.0
+Ingot Growth	Water Price	0.2
+Ingot Growth	Argon Consumption Rate	100.0
+Ingot Growth	Argon Price	0.5
+Ingot Growth	Part Reject Rate	0.01
+Ingot Growth	Average Downtime	0.1
+Ingot Growth	Unskilled Direct Laborers Factor	0.75
+Ingot Growth	Skilled Direct Laborers Factor	0.225
+Ingot Growth	Ingot Length	500.0
+Ingot Growth	Ingot Weight (tops and tails)	0.2
+Ingot Growth	As Grown Ingot Diameter	153.0
+Ingot Growth	Final Ingot Diameter	150.0
+Ingot Growth	Setup (Load) Time	5.0
+Ingot Growth	Pump Down and Leak Check	5.0
+Ingot Growth	Melt/Stabilize	14.0
+Ingot Growth	Average Pull Speed	75.0
+Ingot Growth	Cool and Unload	12.0
+Ingot Growth	Clean	6.0
+Ingot Growth	Capital Investment	600000.0
+Ingot Growth	Auxiliary Equipment Investment	1.0
+Ingot Growth	Installation Cost Factor	0.25
+Ingot Growth	Equipment Maintenance Cost Factor	0.03
+Ingot Growth	Tooling Investment	0.0
+Ingot Growth	Tooling Life	20000.0
+Ingot Growth	Operating Power Consumption	40.0
+Ingot Growth	Full Power Consumption	100.0
+Ingot Growth	Floor SQM	30.0
+Ingot Growth	Clean 10k SQM	0.0
+Ingot Growth	Clean 1k SQM	0.0
+Ingot Growth	Clean 100 SQM	0.0
+TCS	MG Si Usage Factor	1.2129103540000001
+TCS	MG Si Price	5.0
+TCS	MG Si Scrap Rate	0.3
+TCS	HCl Usage Factor	1.04003648
+TCS	HCl Price	0.1
+TCS	HCl Scrap Rate	0.1
+TCS	Hydrogen Usage Factor	1.0
+TCS	Hydrogen Price	0.001
+TCS	Other Material Scrap Rate	0.0
+TCS	Average Downtime	0.0
+TCS	Unskilled Direct Laborers Factor	10.0
+TCS	Skilled Direct Laborers Factor	5.0
+TCS	Auxiliary Equipment Investment	0.0
+TCS	Installation Cost Factor	3.3
+TCS	Equipment Maintenance Cost Factor	0.03
+TCS	Tooling Investment	0.0
+TCS	Tooling Life	20000000.0
+TCS	Operating Power Consumption	40.0
+TCS	Full Power Consumption	100.0
+TCS	Clean 10k SQM	0.0
+TCS	Clean 1k SQM	0.0
+TCS	Clean 100 SQM	0.0

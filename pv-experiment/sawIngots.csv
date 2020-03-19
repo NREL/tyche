@@ -1,0 +1,29 @@
+﻿Parameter,Value,Units
+In Use?,1,"[1=Yes,0=No]"
+Wire Life,1,batches
+Wire Cost,5000,$/wire
+SiC Slurry Consumption,0,kg/hr
+SiC Slurry Price,0,$/kg
+SiC Slurry Scrap Rate,0.1,
+Kerf Loss,400,microns
+Sell Kerf Loss Si?,1,"[1=Yes,0=No]"
+Kerf Loss Si Price,5,$/kg
+Part Reject Rate,0.15,
+Average Downtime,0.1,
+Unskilled Direct Laborers Factor,2,
+Skilled Direct Laborers Factor,0.6,
+Batch Size,1,ingot/batch
+Filament Width,8,mm per filament
+Setup Time,45,minutes/batch
+Cutting Speed,5,mm/min
+Capital Investment,1.50E+06,$/station
+Auxiliary Equipment Investment,0.1,
+Installation Cost Factor,0.25,
+Equipment Maintenance Cost Factor,0.03,
+Tooling Investment,0,$/toolset
+Tooling Life,2.00E+00,kgs/tool
+Operating Power Consumption,50,kW
+Floor SQM,150,sq meter
+Clean 10k SQM,0,sq meter
+Clean 1k SQM,0,sq meter
+Clean 100 SQM,0,sq meter
