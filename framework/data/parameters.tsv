@@ -4,3 +4,8 @@ Simple electrolysis	Base	Hydrogen production	1	2.00	g
 Simple electrolysis	Base	Water consumption	2	18.08	g	
 Simple electrolysis	Base	Electricity consumption	3	237	kJ	
 Simple electrolysis	Base	Jobs	4	1.5e-4	job/mole	
+Simple electrolysis	Alternative	Oxygen production	0	16.00	g	
+Simple electrolysis	Alternative	Hydrogen production	1	2.00	g	
+Simple electrolysis	Alternative	Water consumption	2	18.08	g	
+Simple electrolysis	Alternative	Electricity consumption	3	237	kJ	
+Simple electrolysis	Alternative	Jobs	4	1.5e-4	job/mole	

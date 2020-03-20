@@ -1,29 +1,31 @@
 # Simple electrolysis.
 
+import numpy as np
+
 
 # Production function.
-def production(capital, fixed, inputs, parameters):
+def production(capital, fixed, input, parameter):
 
-  # Moles of inputs.
-  water       = inputs[0] / parameters[2]
-  electricity = inputs[1] / parameters[3]
+  # Moles of input.
+  water       = np.divide(input[0], parameter[2])
+  electricity = np.divide(input[1], parameter[3])
 
   # Moles of output.
-  output = min(water, electricity)
+  output = np.minimum(water, electricity)
 
   # Grams of output.
-  oxygen   = output * parameters[0]
-  hydrogen = output * parameters[1]
+  oxygen   = np.multiply(output, parameter[0])
+  hydrogen = np.multiply(output, parameter[1])
 
   # Package results.
-  return [oxygen, hydrogen]
+  return np.vstack([oxygen, hydrogen])
 
 
 # Metrics function.
-def metrics(capital, fixed, inputs, outputs, parameters):
+def metrics(capital, fixed, input, outputs, parameter):
 
   # Trivial jobs calculation.
-  jobs = parameters[4]
+  jobs = parameter[4]
 
   # Package results.
-  return [jobs]
+  return np.vstack([jobs])

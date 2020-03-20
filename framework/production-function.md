@@ -221,9 +221,9 @@ The `design` table specifies the values of all of the variables in the mathemati
 
 The `functions` table simply documents which Python module and functions to use for the technology and scenario.
 
-| Technology          | Scenario | Module              | Production | Metric  | Notes |
-|---------------------|----------|---------------------|------------|---------|-------|
-| Simple electrolysis | Base     | simple_electrolysis | production | metrics |       |
+| Technology          | Module              | Production | Metrics | Notes |
+|---------------------|---------------------|------------|---------|-------|
+| Simple electrolysis | simple_electrolysis | production | metrics |       |
 
 
 ### Parameters for functions
@@ -237,6 +237,18 @@ The `parameters` table contains ad-hoc parameters specific to the particular pro
 | Simple electrolysis | Base     | Water consumption       | 2        | 18.08  | g        |       |
 | Simple electrolysis | Base     | Electricity consumption | 3        | 237    | kJ       |       |
 | Simple electrolysis | Base     | Jobs                    | 4        | 1.5e-4 | job/mole |       |
+
+
+### Units for results
+
+The `results` table simply specifies the units for the results.
+
+| Technology          | Variable | Index    | Units  | Notes |
+|---------------------|----------|----------|--------|-------|
+| Simple electrolysis | Cost     | Cost     | USD    |       |
+| Simple electrolysis | Output   | Oxygen   | g/mole |       |
+| Simple electrolysis | Output   | Hydrogen | g/mole |       |
+| Simple electrolysis | Metric   | Jobs     | jobs   |       |
 
 
 ## Python module and functions
