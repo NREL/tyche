@@ -12,7 +12,7 @@ Simple electrolysis	Base	Scale		6650	mole/yr	Rough estimate for a 50W setup.
 Simple electrolysis	Base	Input price	Water	4.8e-3	USD/mole	
 Simple electrolysis	Base	Input price	Electricity	3.33e-5	USD/kJ	
 Simple electrolysis	Base	Output price	Oxygen	3.0e-3	USD/g	
-Simple electrolysis	Base	Output price	Hydrogen	1.0e-2	USD/g
+Simple electrolysis	Base	Output price	Hydrogen	1.0e-2	USD/g	
 Simple electrolysis	Alternative	Input	Water	19.04	g/mole	
 Simple electrolysis	Alternative	Input efficiency	Water	0.975	1	
 Simple electrolysis	Alternative	Input	Electricity	279	kJ/mole	
@@ -26,4 +26,4 @@ Simple electrolysis	Alternative	Scale		6650	mole/yr	Rough estimate for a 50W set
 Simple electrolysis	Alternative	Input price	Water	4.8e-3	USD/mole	
 Simple electrolysis	Alternative	Input price	Electricity	3.33e-5	USD/kJ	
 Simple electrolysis	Alternative	Output price	Oxygen	3.0e-3	USD/g	
-Simple electrolysis	Alternative	Output price	Hydrogen	1.0e-2	USD/g
+Simple electrolysis	Alternative	Output price	Hydrogen	1.0e-2	USD/g	
