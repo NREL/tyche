@@ -163,16 +163,18 @@ $M_\mathrm{jobs} = 1.5 \cdot 10^{-4}~\mathrm{job/mole}$
 
 ### Performance of current design.
 
-$K = 0.20~\mathrm{USD/mole}$ (i.e., not profitable)
+$K = 0.18~\mathrm{USD/mole}$ (i.e., not profitable since it is positive)
 
-$O_\mathrm{oxygen} = 16~\mathrm{g/mole}$
+$O_\mathrm{oxygen} = 14~\mathrm{g/mole}$
 
-$O_\mathrm{hydrogen} = 2.0~\mathrm{g/mole}$
+$O_\mathrm{hydrogen} = 1.8~\mathrm{g/mole}$
 
 $\mu_\mathrm{jobs} = 1.5 \cdot 10^{-4}~\mathrm{job/mole}$
 
 
 # Implementation
+
+See \<<https://github.com/NREL/portfolio/tree/master/production-function/framework/code/tyche/>\> for the `tyche` package that computes cost, production, and metrics from a technology design.
 
 
 ## Database tables
@@ -243,46 +245,50 @@ The `parameters` table contains ad-hoc parameters specific to the particular pro
 
 The `results` table simply specifies the units for the results.
 
-| Technology          | Variable | Index    | Units  | Notes |
-|---------------------|----------|----------|--------|-------|
-| Simple electrolysis | Cost     | Cost     | USD    |       |
-| Simple electrolysis | Output   | Oxygen   | g/mole |       |
-| Simple electrolysis | Output   | Hydrogen | g/mole |       |
-| Simple electrolysis | Metric   | Jobs     | jobs   |       |
+| Technology          | Variable | Index    | Units    | Notes |
+|---------------------|----------|----------|----------|-------|
+| Simple electrolysis | Cost     | Cost     | USD/mole |       |
+| Simple electrolysis | Output   | Oxygen   | g/mole   |       |
+| Simple electrolysis | Output   | Hydrogen | g/mole   |       |
+| Simple electrolysis | Metric   | Jobs     | job/mole |       |
 
 
 ## Python module and functions
 
 Each technology design requires a Python module with a production and metrics function.
 
-```julia
+```python
 # Simple electrolysis.
 
 
-# Production function.
-def production(capital, fixed, inputs, parameters):
+# All of the computations must be vectorized, so use `numpy`.
+import numpy as np
 
-  # Moles of inputs.
-  water       = inputs[0] / parameters[2]
-  electricity = inputs[1] / parameters[3]
+
+# Production function.
+def production(capital, fixed, input, parameter):
+
+  # Moles of input.
+  water       = np.divide(input[0], parameter[2])
+  electricity = np.divide(input[1], parameter[3])
 
   # Moles of output.
-  output = min(water, electricity)
+  output = np.minimum(water, electricity)
 
   # Grams of output.
-  oxygen   = output * parameters[0]
-  hydrogen = output * parameters[1]
+  oxygen   = np.multiply(output, parameter[0])
+  hydrogen = np.multiply(output, parameter[1])
 
   # Package results.
-  return [oxygen, hydrogen]
+  return np.vstack([oxygen, hydrogen])
 
 
 # Metrics function.
-def metrics(capital, fixed, inputs, outputs, parameters):
+def metrics(capital, fixed, input, outputs, parameter):
 
   # Trivial jobs calculation.
-  jobs = parameters[4]
+  jobs = parameter[4]
 
   # Package results.
-  return [jobs]
+  return np.vstack([jobs])
 ```

@@ -1,5 +1,7 @@
 # Simple electrolysis.
 
+
+# All of the computations must be vectorized, so use `numpy`.
 import numpy as np
 
 
