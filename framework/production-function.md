@@ -13,38 +13,44 @@ We separate the financial and conversion-efficiency aspects of the production pr
 
 ## Sets
 
-| Set                 | Description   | Examples                                           |
-|---------------------|---------------|----------------------------------------------------|
-| $c \in \mathcal{C}$ | capital       | equipment                                          |
-| $f \in \mathcal{F}$ | fixed cost    | rent, insurance                                    |
-| $i \in \mathcal{I}$ | input         | feedstock, labor                                   |
-| $o \in \mathcal{O}$ | output        | product, co-product, waste                         |
-| $m \in \mathcal{M}$ | metric        | cost, jobs, carbon footprint, efficiency, lifetime |
-| $t \in \mathcal{T}$ | technical     | temperature, pressure                              |
+| Set                           | Description         | Examples                                           |
+|-------------------------------|---------------------|----------------------------------------------------|
+| $c \in \mathcal{C}$           | capital             | equipment                                          |
+| $f \in \mathcal{F}$           | fixed cost          | rent, insurance                                    |
+| $i \in \mathcal{I}$           | input               | feedstock, labor                                   |
+| $o \in \mathcal{O}$           | output              | product, co-product, waste                         |
+| $m \in \mathcal{M}$           | metric              | cost, jobs, carbon footprint, efficiency, lifetime |
+| $p \in \mathcal{P}$           | technical parameter | temperature, pressure                              |
+| $t \in \mathcal{T}$           | technology type     | electrolysis, PV cell                              |
+| $\theta \in \mathcal{\Theta}$ | scenario            | the result of a particular investment              |
+| $\phi \in \mathcal{\Phi}$     | investment          | a particular investment                            |
 
 
 ## Variables
 
-| Variable   | Type       | Description           | Units         |
-|------------|------------|-----------------------|---------------|
-| $K$        | calculated | unit cost             | USD/unit      |
-| $C_c$      | cost       | capital cost          | USD           |
-| $\tau_c$   | cost       | lifetime of capital   | year          |
-| $S$        | cost       | scale of operation    | unit/year     |
-| $F_f$      | cost       | fixed cost            | USD/year      |
-| $I_i$      | input      | input quantity        | input/unit    |
-| $I^*_i$    | calculated | ideal input quantity  | input/unit    |
-| $\eta_i$   | waste      | input efficiency      | input/input   |
-| $p_i$      | cost       | input price           | USD/input     |
-| $O_o$      | calculated | ideal output quantity | output/unit   |
-| $O^*_o$    | calculated   | output quantity     | output/unit   |
-| $\eta'_o$  | waste      | output efficiency     | output/output |
-| $p'_o$     | cost       | output price (+/-)    | USD/output    |
-| $\mu_m$    | calculated | metric                | metric/unit   |
-| $P_o$      | function   | production function   | output/unit   |
-| $M_m$      | function   | metric function       | metric/unit   |
-| $\alpha_t$ | parameter  | technical parameter   | -             |
-
+| Variable       | Type       | Description           | Units         |
+|--------------  |------------|-----------------------|---------------|
+| $K$            | calculated | unit cost             | USD/unit      |
+| $C_c$          | cost       | capital cost          | USD           |
+| $\tau_c$       | cost       | lifetime of capital   | year          |
+| $S$            | cost       | scale of operation    | unit/year     |
+| $F_f$          | cost       | fixed cost            | USD/year      |
+| $I_i$          | input      | input quantity        | input/unit    |
+| $I^*_i$        | calculated | ideal input quantity  | input/unit    |
+| $\eta_i$       | waste      | input efficiency      | input/input   |
+| $p_i$          | cost       | input price           | USD/input     |
+| $O_o$          | calculated | ideal output quantity | output/unit   |
+| $O^*_o$        | calculated   | output quantity     | output/unit   |
+| $\eta'_o$      | waste      | output efficiency     | output/output |
+| $p'_o$         | cost       | output price (+/-)    | USD/output    |
+| $\mu_m$        | calculated | metric                | metric/unit   |
+| $P_o$          | function   | production function   | output/unit   |
+| $M_m$          | function   | metric function       | metric/unit   |
+| $\alpha_p$     | parameter  | technical parameter   | (mixed)       |
+| $\xi_\theta$   | variable   | scenario inputs       | (mixed)       |
+| $\zeta_\theta$ | variable   | scenario outputs      | (mixed)       |
+| $\psi$         | function   | scenario evaluation   | (mixed)       |
+| $\sigma_\phi$  | function   | scenario probability  | 1             |
 
 ## Cost
 
@@ -65,26 +71,51 @@ The waste relative to the idealized production process is captured by the $\eta$
 
 The production function idealizes production by ignoring waste, but accounting for physical and technical processes (e.g., stoichiometry). This requires a technical model or a tabulation/fit of the results of technical modeling.
 
-$O^*_o = P_o(\mathcal{C}, \mathcal{F}, I^*_i, \alpha_t)$
+$O^*_o = P_o(C_c, F_f, I^*_i, \alpha_p)$
 
 
 ## Metrics
 
 Metrics such as efficiency, lifetime, or carbon footprint are also compute based on the physical and technical characteristics of the process. This requires a technical model or a tabulation/fit of the results of technical modeling.
 
-$\mu_m = M_m(\mathcal{C}, \mathcal{F}, I_i, O_o, \alpha_t)$
+$\mu_m = M_m(C_c, F_f, I_i, O_o, K, \alpha_p)$
 
 
-# Experts
+## Scenarios
 
-Each expert elicitation takes the form of an assessment of the probability and range (10th to 90th percentile) of change in the cost or waste parameters or the production or metric functions.
+A *scenario* represents a state of affairs for a technology. If we denote the scenario as $\theta$, we have the input variables
+
+$\xi_\theta = (C_c, F_f, I_i, \alpha_p) \mid_\theta$
+
+and the output variables
+
+$\zeta_\theta = (K, \mu_m) \mid_\theta$
+
+and their relationship
+
+$\zeta_\theta = \psi_t(\xi_\theta) \mid_{t = t(\theta)}$
+
+where
+
+$\psi_t = (P_o, M_m) \mid_t$
+
+for the technology of the scenario.
 
 
-# Implementation
+## Investments
 
-Database tables (one per set) hold all of the variables and the expert assessments. These tables are augmented by concise code with mathematical representations of the production and metric functions.
+An *investment* $\phi$ assigns a probability distribution to scenarios:
 
-The Monte-Carlo computations are amenable to fast tensor-based implementation in Python.
+$\sigma_\phi(\theta) = P(\theta \mid \phi)$.
+
+such that
+
+$\int d\theta \sigma_\phi(\theta) = 1$ or $\sum_\theta \sigma_\phi(\theta) = 1$.
+
+
+## Experts
+
+Each expert elicitation takes the form of an assessment of the probability and range (e.g., 10th to 90th percentile) of change in the cost or waste parameters or the production or metric functions.
 
 
 # Examples
@@ -173,6 +204,10 @@ $\mu_\mathrm{jobs} = 1.5 \cdot 10^{-4}~\mathrm{job/mole}$
 
 
 # Implementation
+
+Database tables (one per set) hold all of the variables and the expert assessments. These tables are augmented by concise code with mathematical representations of the production and metric functions.
+
+The Monte-Carlo computations are amenable to fast tensor-based implementation in Python.
 
 See \<<https://github.com/NREL/portfolio/tree/master/production-function/framework/code/tyche/>\> for the `tyche` package that computes cost, production, and metrics from a technology design.
 
