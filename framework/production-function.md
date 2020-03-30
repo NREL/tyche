@@ -1,5 +1,5 @@
 % Production-Function Approach
-% DRAFT
+% Version 1.0
 % 4 March 2020
 
 
@@ -13,44 +13,53 @@ We separate the financial and conversion-efficiency aspects of the production pr
 
 ## Sets
 
-| Set                           | Description         | Examples                                           |
-|-------------------------------|---------------------|----------------------------------------------------|
-| $c \in \mathcal{C}$           | capital             | equipment                                          |
-| $f \in \mathcal{F}$           | fixed cost          | rent, insurance                                    |
-| $i \in \mathcal{I}$           | input               | feedstock, labor                                   |
-| $o \in \mathcal{O}$           | output              | product, co-product, waste                         |
-| $m \in \mathcal{M}$           | metric              | cost, jobs, carbon footprint, efficiency, lifetime |
-| $p \in \mathcal{P}$           | technical parameter | temperature, pressure                              |
-| $t \in \mathcal{T}$           | technology type     | electrolysis, PV cell                              |
-| $\theta \in \mathcal{\Theta}$ | scenario            | the result of a particular investment              |
-| $\phi \in \mathcal{\Phi}$     | investment          | a particular investment                            |
+| Set                  | Description         | Examples                                           |
+|----------------------|---------------------|----------------------------------------------------|
+| $c \in \mathcal{C}$  | capital             | equipment                                          |
+| $f \in \mathcal{F}$  | fixed cost          | rent, insurance                                    |
+| $i \in \mathcal{I}$  | input               | feedstock, labor                                   |
+| $o \in \mathcal{O}$  | output              | product, co-product, waste                         |
+| $m \in \mathcal{M}$  | metric              | cost, jobs, carbon footprint, efficiency, lifetime |
+| $p \in \mathcal{P}$  | technical parameter | temperature, pressure                              |
+| $\nu \in N$          | technology type     | electrolysis, PV cell                              |
+| $\theta \in \Theta$  | scenario            | the result of a particular investment              |
+| $\chi \in X$         | investment category | investment alternatives                            |
+| $\phi \in \Phi_\chi$ | investment          | a particular investment                            |
+| $\omega \in \Omega$  | portfolio           | a basket of investments                            |
 
 
 ## Variables
 
-| Variable       | Type       | Description           | Units         |
-|--------------  |------------|-----------------------|---------------|
-| $K$            | calculated | unit cost             | USD/unit      |
-| $C_c$          | cost       | capital cost          | USD           |
-| $\tau_c$       | cost       | lifetime of capital   | year          |
-| $S$            | cost       | scale of operation    | unit/year     |
-| $F_f$          | cost       | fixed cost            | USD/year      |
-| $I_i$          | input      | input quantity        | input/unit    |
-| $I^*_i$        | calculated | ideal input quantity  | input/unit    |
-| $\eta_i$       | waste      | input efficiency      | input/input   |
-| $p_i$          | cost       | input price           | USD/input     |
-| $O_o$          | calculated | ideal output quantity | output/unit   |
-| $O^*_o$        | calculated   | output quantity     | output/unit   |
-| $\eta'_o$      | waste      | output efficiency     | output/output |
-| $p'_o$         | cost       | output price (+/-)    | USD/output    |
-| $\mu_m$        | calculated | metric                | metric/unit   |
-| $P_o$          | function   | production function   | output/unit   |
-| $M_m$          | function   | metric function       | metric/unit   |
-| $\alpha_p$     | parameter  | technical parameter   | (mixed)       |
-| $\xi_\theta$   | variable   | scenario inputs       | (mixed)       |
-| $\zeta_\theta$ | variable   | scenario outputs      | (mixed)       |
-| $\psi$         | function   | scenario evaluation   | (mixed)       |
-| $\sigma_\phi$  | function   | scenario probability  | 1             |
+| Variable              | Type            | Description            | Units         |
+|-----------------------|-----------------|------------------------|---------------|
+| $K$                   | calculated      | unit cost              | USD/unit      |
+| $C_c$                 | cost            | capital cost           | USD           |
+| $\tau_c$              | cost            | lifetime of capital    | year          |
+| $S$                   | cost            | scale of operation     | unit/year     |
+| $F_f$                 | cost            | fixed cost             | USD/year      |
+| $I_i$                 | input           | input quantity         | input/unit    |
+| $I^*_i$               | calculated      | ideal input quantity   | input/unit    |
+| $\eta_i$              | waste           | input efficiency       | input/input   |
+| $p_i$                 | cost            | input price            | USD/input     |
+| $O_o$                 | calculated      | ideal output quantity  | output/unit   |
+| $O^*_o$               | calculated        | output quantity      | output/unit   |
+| $\eta'_o$             | waste           | output efficiency      | output/output |
+| $p'_o$                | cost            | output price (+/-)     | USD/output    |
+| $\mu_m$               | calculated      | metric                 | metric/unit   |
+| $P_o$                 | function        | production function    | output/unit   |
+| $M_m$                 | function        | metric function        | metric/unit   |
+| $\alpha_p$            | parameter       | technical parameter    | (mixed)       |
+| $\xi_\theta$          | variable        | scenario inputs        | (mixed)       |
+| $\zeta_\theta$        | variable        | scenario outputs       | (mixed)       |
+| $\psi$                | function        | scenario evaluation    | (mixed)       |
+| $\sigma_\phi$         | function        | scenario probability   | 1             |
+| $q_\phi$              | variable        | investment cost        | USD           |
+| $\mathbf{\zeta}_\phi$ | random variable | investment outcome     | (mixed)       |
+| $\mathbf{Z}(\omega)$  | random variable | portfolio outcome      | (mixed)       |
+| $Q(\omega)$           | calculated      | portfolio cost         | USD           |
+| $Q^\mathrm{min}$      | parameter       | minimum portfolio cost | USD           |
+| $Q^\mathrm{max}$      | parameter       | maximum portfolio cost | USD           |
+
 
 ## Cost
 
@@ -76,14 +85,14 @@ $O^*_o = P_o(C_c, F_f, I^*_i, \alpha_p)$
 
 ## Metrics
 
-Metrics such as efficiency, lifetime, or carbon footprint are also compute based on the physical and technical characteristics of the process. This requires a technical model or a tabulation/fit of the results of technical modeling.
+Metrics such as efficiency, lifetime, or carbon footprint are also compute based on the physical and technical characteristics of the process. This requires a technical model or a tabulation/fit of the results of technical modeling. We use the convention that higher values are worse and lower values are better.
 
 $\mu_m = M_m(C_c, F_f, I_i, O_o, K, \alpha_p)$
 
 
 ## Scenarios
 
-A *scenario* represents a state of affairs for a technology. If we denote the scenario as $\theta$, we have the input variables
+A *scenario* represents a state of affairs for a technology $\nu$. If we denote the scenario as $\theta$, we have the input variables
 
 $\xi_\theta = (C_c, F_f, I_i, \alpha_p) \mid_\theta$
 
@@ -93,11 +102,11 @@ $\zeta_\theta = (K, \mu_m) \mid_\theta$
 
 and their relationship
 
-$\zeta_\theta = \psi_t(\xi_\theta) \mid_{t = t(\theta)}$
+$\zeta_\theta = \psi_\nu(\xi_\theta) \mid_{\nu = \nu(\theta)}$
 
 where
 
-$\psi_t = (P_o, M_m) \mid_t$
+$\psi_\nu = (P_o, M_m) \mid_\nu$
 
 for the technology of the scenario.
 
@@ -110,12 +119,39 @@ $\sigma_\phi(\theta) = P(\theta \mid \phi)$.
 
 such that
 
-$\int d\theta \sigma_\phi(\theta) = 1$ or $\sum_\theta \sigma_\phi(\theta) = 1$.
+$\int d\theta \sigma_\phi(\theta) = 1$ or $\sum_\theta \sigma_\phi(\theta) = 1$,
+
+depending upon whether one is performing the computations discretely or continuously. Expectations and other measures on probability distributions can be computed from the $\sigma_\phi(\theta)$. We treat the outcome $\mathbf{\zeta}_\phi$ as a random variable for the outcomes $\zeta_\theta$ according to the distribution $\sigma_\phi(\theta)$.
+
+Because investment options may be mutually exclusive, as is the case for investing in the same R&D at different funding levels, we say $\Phi_\chi$ is the set of mutually exclusive investments (i.e., only one can ocurr) in investment category $\chi$: investments in different categories $\chi$ can be combined arbitrarily, but just one investment from each $\Phi_\chi$ may be chosen.
+
+Thus the universe of all portfolios is $\Omega = \prod_\chi \Phi_\chi$, so a particular portfolio $\omega \in \Omega$ has components $\phi = \omega_\chi \in \Phi_\chi$. The overall outcome of a portfolio is a random variable:
+
+$\mathbf{Z}(\omega) = \sum_\chi \mathbf{\zeta}_\phi \mid_{\phi = \omega_\chi}$
+
+The cost of an investment $q_\phi$, so the cost of a porfolio is:
+
+$Q(\omega) = \sum_\chi q_\phi \mid_{\phi = \omega_\chi}$
+
+
+## Decision problem
+
+The multi-objective decision problem is 
+
+$\min_{\omega \in \Omega} \  \mathbb{F} \  \mathbf{Z}(\omega)$
+
+such that
+
+$Q^\mathrm{min} \leq Q(\omega) \leq Q^\mathrm{max}$,
+
+where $\mathbb{F}$ is the expectation operator $\mathbb{E}$, value-at-risk, or another operator on probability spaces. Recall that $\mathbf{Z}$ is a vector with components for cost $K$ and each metric $\mu_m$, so this is a multi-objective problem.
+
+The two-stage decision problem is a special case of the general problem outlined here: Each scenario $\theta$ can be considers as a composite of one or more stages.
 
 
 ## Experts
 
-Each expert elicitation takes the form of an assessment of the probability and range (e.g., 10th to 90th percentile) of change in the cost or waste parameters or the production or metric functions.
+Each expert elicitation takes the form of an assessment of the probability and range (e.g., 10th to 90th percentile) of change in the cost or waste parameters or the production or metric functions. In essence, the expert elicitation defines $\sigma_\phi(\theta)$ for each potential scenario $\theta$ of each investment $\phi$.
 
 
 # Examples
