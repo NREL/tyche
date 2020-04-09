@@ -8,14 +8,11 @@ import numpy as np
 # Production function.
 def production(capital, fixed, input, parameter):
 
-  pass
-
   # Package results.
-  return None
+  return 1.0
 
 
 # Metrics function.
 def metrics(capital, fixed, input, outputs, parameter):
-    pass
 
-    return None
+    return np.vstack([parameter[2]])
