@@ -171,15 +171,16 @@ class Designs:
         
         metric = f_metrics(design.capital_cost, design.fixed_cost, input, output, parameter)
 
-        cost = np.sum(design.capital_cost / design.lifetime + design.fixed_cost, axis=0) / design.scale + \
-            np.sum(design.input_price  * input , axis=0) -                                                \
+        cost = np.sum(design.capital_cost / design.lifetime, axis=0) / design.scale + \
+               np.sum(design.fixed_cost, axis=0) / design.scale + \
+            np.sum(design.input_price  * input , axis=0) - \
             np.sum(design.output_price * output, axis=0)
         
         def organize(df):
             df1 = pd.melt(df.rename_axis(["Scenario"]).reset_index(), id_vars=["Scenario"], value_vars=df.columns, var_name="Index", value_name="Value")
             df1["Technology"] = technology
             return df1.set_index(["Technology", "Scenario", "Index"])
-        
+
         return Results(
             cost   = organize(pd.DataFrame(cost.reshape((cost.shape[0], 1)), index=scenarios, columns=["Cost"]      )),
             output = organize(pd.DataFrame(np.transpose(output)            , index=scenarios, columns=indices.output)),
