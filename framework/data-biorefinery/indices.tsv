@@ -1,0 +1,13 @@
+Technology	Type	Index	Offset	Description	Notes
+Biorefinery	Capital	Preprocessing	0		
+Biorefinery	Capital	Fermentation	1		
+Biorefinery	Capital	Conversion	2		
+Biorefinery	Capital	Separation	3		
+Biorefinery	Fixed	Rent	0		
+Biorefinery	Fixed	Insurance	1		
+Biorefinery	Input	Feedstock	0		
+Biorefinery	Input	Energy	1		
+Biorefinery	Output	Product	0		
+Biorefinery	Technical Parameter	Fermentation	0		
+Biorefinery	Technical Parameter	Conversion	1		
+Biorefinery	Metric	Jobs	0

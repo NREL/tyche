@@ -1,0 +1,7 @@
+Technology	Scenario	Parameter	Offset	Value	Units	Notes
+Biorefinery	Ideal	Fermentation yield	0	0.82
+Biorefinery	Ideal	Conversion yield	1	0.95
+Biorefinery	Ideal	Jobs	2	4.0
+Biorefinery	Actual	Fermentation yield	0	0.7
+Biorefinery	Actual	Conversion yield	1	0.81
+Biorefinery	Actual	Jobs	2	2.0
