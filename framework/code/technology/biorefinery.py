@@ -8,8 +8,14 @@ import numpy as np
 # Production function.
 def production(capital, fixed, input, parameter):
 
-  # Package results.
-  return 1.0
+    # input efficiency (preprocessing efficiency) is accounted for in Designs.py
+    # ditto output efficiency (separation efficiency)
+    # so only fermentation efficiency (parameter[0]) and conversion efficiency
+    # (parameter[1]) is seen in this equation
+    out = input[0] * parameter[0] * parameter[1]
+
+    # Package results.
+    return out
 
 
 # Metrics function.
