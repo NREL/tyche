@@ -117,9 +117,7 @@ class Designs:
     def vectorize_designs(self, technology, n):
 
         extract_designs = lambda variable: self.designs.xs((technology, variable), level=[0, 2])[["Value"]]
-        capital_costs       = extract_designs("Capital cost"     )
         lifetimes           = extract_designs("Lifetime"         )
-        fixed_costs         = extract_designs("Fixed cost"       )
         scales              = extract_designs("Scale"            )
         inputs              = extract_designs("Input"            )
         input_efficiencies  = extract_designs("Input efficiency" )
@@ -131,9 +129,7 @@ class Designs:
     
         join = lambda values, offsets: values.join(offsets).reorder_levels([1, 0]).reset_index().sort_values(by=["Offset", "Scenario"])["Value"].values.reshape((offsets.shape[0], n))
         return Inputs(
-            capital_cost      = join(capital_costs      , all_indices.capital),
             lifetime          = join(lifetimes          , all_indices.capital),
-            fixed_cost        = join(fixed_costs        , all_indices.fixed  ),
             scale             = scales["Value"].values                        ,
             input             = join(inputs             , all_indices.input  ),
             input_efficiency  = join(input_efficiencies , all_indices.input  ),
@@ -151,12 +147,17 @@ class Designs:
         for technology, metadata in self.functions.iterrows():
             m = il.import_module("." + metadata["Module"], package="technology")
             self.compilation[technology] = Functions(
+                style      =             metadata["Style"     ] ,
+                capital    = eval("m." + metadata["Capital"   ]),
+                fixed      = eval("m." + metadata["Fixed"     ]),
                 production = eval("m." + metadata["Production"]),
                 metric     = eval("m." + metadata["Metrics"   ]),
             )
             
     def evaluate(self, technology):
-        
+
+        f_capital    = self.compilation[technology].capital
+        f_fixed      = self.compilation[technology].fixed        
         f_production = self.compilation[technology].production
         f_metrics    = self.compilation[technology].metric
         
@@ -168,14 +169,17 @@ class Designs:
         design    = self.vectorize_designs(   technology, n)
         parameter = self.vectorize_parameters(technology, n)
         
+        capital_cost = f_capital(design.scale, parameter)
+        fixed_cost   = f_fixed  (design.scale, parameter)
+
         input = design.input_efficiency * design.input
         
-        output = design.output_efficiency * f_production(design.capital_cost, design.fixed_cost, input, parameter)
+        output = design.output_efficiency * f_production(capital_cost, fixed_cost, input, parameter)
         
-        metric = f_metrics(design.capital_cost, design.fixed_cost, input, output, parameter)
+        metric = f_metrics(capital_cost, fixed_cost, input, output, parameter)
 
-        cost = np.sum(design.capital_cost / design.lifetime, axis=0) / design.scale + \
-               np.sum(design.fixed_cost, axis=0) / design.scale + \
+        cost = np.sum(capital_cost / design.lifetime, axis=0) / design.scale + \
+               np.sum(fixed_cost, axis=0) / design.scale + \
             np.sum(design.input_price  * input , axis=0) - \
             np.sum(design.output_price * output, axis=0)
         

@@ -17,9 +17,7 @@ Indices = namedtuple("Indices", [
 
 
 Inputs = namedtuple("Inputs", [
-    "capital_cost"     ,
     "lifetime"         ,
-    "fixed_cost"       ,
     "scale"            ,
     "input"            ,
     "input_efficiency" ,

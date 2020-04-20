@@ -9,14 +9,14 @@ import numpy as np
 def capital_cost(scale, parameter):
 
   # Scale the reference values.
-  return np.stack([np.multiply(parameters[6], np.divide(scale, parameters[5]))])
+  return np.stack([np.multiply(parameter[6], np.divide(scale, parameter[5]))])
 
 
 # Fixed-cost function.
 def fixed_cost(scale, parameter):
 
   # Scale the reference values.
-  return np.stack([np.multiply(parameters[7], np.divide(scale, parameters[5]))])
+  return np.stack([np.multiply(parameter[7], np.divide(scale, parameter[5]))])
 
 
 # Production function.
