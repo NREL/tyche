@@ -5,6 +5,20 @@
 import numpy as np
 
 
+# Capital-cost function.
+def capital_cost(scale, parameter):
+
+  # Scale the reference values.
+  return np.stack([np.multiply(parameters[6], np.divide(scale, parameters[5]))])
+
+
+# Fixed-cost function.
+def fixed_cost(scale, parameter):
+
+  # Scale the reference values.
+  return np.stack([np.multiply(parameters[7], np.divide(scale, parameters[5]))])
+
+
 # Production function.
 def production(capital, fixed, input, parameter):
 

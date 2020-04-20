@@ -5,9 +5,7 @@ Simple electrolysis	Base	Input	Electricity	279	kJ/mole
 Simple electrolysis	Base	Input efficiency	Electricity	0.85	1	
 Simple electrolysis	Base	Output efficiency	Oxygen	0.90	1	
 Simple electrolysis	Base	Output efficiency	Hydrogen	0.90	1	
-Simple electrolysis	Base	Capital cost	Catalyst	0.63	USD	Al-Ni catalyst.
 Simple electrolysis	Base	Lifetime	Catalyst	3	yr	Effective lifetime of Al-Ni catalyst.
-Simple electrolysis	Base	Fixed cost	Rent	1000	USD/yr	
 Simple electrolysis	Base	Scale		6650	mole/yr	Rough estimate for a 50W setup.
 Simple electrolysis	Base	Input price	Water	4.8e-3	USD/mole	
 Simple electrolysis	Base	Input price	Electricity	3.33e-5	USD/kJ	
@@ -19,9 +17,7 @@ Simple electrolysis	Alternative	Input	Electricity	279	kJ/mole
 Simple electrolysis	Alternative	Input efficiency	Electricity	0.875	1	
 Simple electrolysis	Alternative	Output efficiency	Oxygen	0.95	1	
 Simple electrolysis	Alternative	Output efficiency	Hydrogen	0.95	1	
-Simple electrolysis	Alternative	Capital cost	Catalyst	0.63	USD	Al-Ni catalyst.
 Simple electrolysis	Alternative	Lifetime	Catalyst	3	yr	Effective lifetime of Al-Ni catalyst.
-Simple electrolysis	Alternative	Fixed cost	Rent	1000	USD/yr	
 Simple electrolysis	Alternative	Scale		6650	mole/yr	Rough estimate for a 50W setup.
 Simple electrolysis	Alternative	Input price	Water	4.8e-3	USD/mole	
 Simple electrolysis	Alternative	Input price	Electricity	3.33e-5	USD/kJ	

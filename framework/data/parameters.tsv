@@ -9,3 +9,9 @@ Simple electrolysis	Alternative	Hydrogen production	1	2.00	g
 Simple electrolysis	Alternative	Water consumption	2	18.08	g	
 Simple electrolysis	Alternative	Electricity consumption	3	237	kJ	
 Simple electrolysis	Alternative	Jobs	4	1.5e-4	job/mole	
+Simple electrolysis	Base	Reference scale	5	6650	mole/yr	
+Simple electrolysis	Base	Reference capital cost for catalyst	6	0.63	USD	
+Simple electrolysis	Base	Reference fixed cost for rent	7	1000	USD/yr	
+Simple electrolysis	Alternative	Reference scale	5	6650	mole/yr	
+Simple electrolysis	Alternative	Reference capital cost for catalyst	6	0.63	USD	
+Simple electrolysis	Alternative	Reference fixed cost for rent	7	1000	USD/yr	

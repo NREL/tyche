@@ -1,6 +1,6 @@
-% Production-Function Approach
-% Version 1.0
-% 4 March 2020
+% Production-Function Approach to Portfolio Evaluation
+% Version 1.2 Draft
+% 20 April 2020
 
 
 # Concept
@@ -33,10 +33,10 @@ We separate the financial and conversion-efficiency aspects of the production pr
 | Variable              | Type            | Description            | Units         |
 |-----------------------|-----------------|------------------------|---------------|
 | $K$                   | calculated      | unit cost              | USD/unit      |
-| $C_c$                 | cost            | capital cost           | USD           |
+| $C_c$                 | function        | capital cost           | USD           |
 | $\tau_c$              | cost            | lifetime of capital    | year          |
 | $S$                   | cost            | scale of operation     | unit/year     |
-| $F_f$                 | cost            | fixed cost             | USD/year      |
+| $F_f$                 | function        | fixed cost             | USD/year      |
 | $I_i$                 | input           | input quantity         | input/unit    |
 | $I^*_i$               | calculated      | ideal input quantity   | input/unit    |
 | $\eta_i$              | waste           | input efficiency       | input/input   |
@@ -62,6 +62,11 @@ We separate the financial and conversion-efficiency aspects of the production pr
 
 
 ## Cost
+
+The cost characterizations (capital and fixed costs) are represented as functions of the scale of operations and of the technical parameters in the design:
+
+*   Capital cost: $C_c(S, \alpha_p)$.
+*   Fixed cost: $F_f(S, \alpha_p)$.
 
 The per-unit cost is computed using a simple levelization formula:
 
@@ -196,11 +201,11 @@ $\eta_\mathrm{hydrogen} = 0.90$ (due to mass transport loss on output)
 
 ### Current costs.
 
-$C_\mathrm{catalyst} = 0.63~\mathrm{USD}$ (Al-Ni catalyst)
+$C_\mathrm{catalyst} = \left( 0.63~\mathrm{USD} \right) \cdot \frac{S}{6650~\mathrm{mole/yr}}$ (cost of Al-Ni catalyst)
 
 $\tau_\mathrm{catalyst} = 3~\mathrm{yr}$ (effective lifetime of Al-Ni catalyst)
 
-$F_\mathrm{rent} = 1000~\mathrm{USD/yr}$
+$F_\mathrm{rent} = \left( 1000~\mathrm{USD/yr} \right) \cdot \frac{S}{6650~\mathrm{mole/yr}}$
 
 $S = 6650~\mathrm{mole/yr}$ (rough estimate for a 50W setup)
 
@@ -280,9 +285,7 @@ The `design` table specifies the values of all of the variables in the mathemati
 | Simple electrolysis | Base     | Input Efficiency  | Electricity | 0.85    | 1        | $\eta_\mathrm{electricity}$ |
 | Simple electrolysis | Base     | Output Efficiency | Oxygen      | 0.90    | 1        | $\eta_\mathrm{oxygen}$      |
 | Simple electrolysis | Base     | Output Efficiency | Hydrogen    | 0.90    | 1        | $\eta_\mathrm{hydrogen}$    |
-| Simple electrolysis | Base     | Capital cost      | Catalyst    | 0.63    | USD      | $C_\mathrm{catalyst}$       |
 | Simple electrolysis | Base     | Lifetime          | Catalyst    | 3       | yr       | $\tau_\mathrm{catalyst}$    |
-| Simple electrolysis | Base     | Fixed cost        | Rent        | 1000    | USD/yr   | $F_\mathrm{rent}$           |
 | Simple electrolysis | Base     | Scale             |             | 6650    | mole/yr  | $S$                         |
 | Simple electrolysis | Base     | Input price       | Water       | 4.8e-3  | USD/mole | $p_\mathrm{water}$          |
 | Simple electrolysis | Base     | Input price       | Electricity | 3.33e-5 | USD/kJ   | $p_\mathrm{electricity}$    |
@@ -294,22 +297,25 @@ The `design` table specifies the values of all of the variables in the mathemati
 
 The `functions` table simply documents which Python module and functions to use for the technology and scenario.
 
-| Technology          | Module              | Production | Metrics | Notes |
-|---------------------|---------------------|------------|---------|-------|
-| Simple electrolysis | simple_electrolysis | production | metrics |       |
+| Technology          | Style | Module              | Capital      | Fixed      | Production | Metrics | Notes |
+|---------------------|-------|---------------------|--------------|------------|------------|---------|-------|
+| Simple electrolysis | numpy | simple_electrolysis | capital_cost | fixed_cost | production | metrics |       |
 
 
 ### Parameters for functions
 
 The `parameters` table contains ad-hoc parameters specific to the particular production and metrics functions. The `Offset` column specifies the memory location in the argument for the production and metric functions.
 
-| Technology          | Scenario | Parameter               | Offset   | Value  | Units    | Notes |
-|---------------------|----------|-------------------------|---------:|-------:|----------|-------|
-| Simple electrolysis | Base     | Oxygen production       | 0        | 16.00  | g        |       |
-| Simple electrolysis | Base     | Hydrogen production     | 1        | 2.00   | g        |       |
-| Simple electrolysis | Base     | Water consumption       | 2        | 18.08  | g        |       |
-| Simple electrolysis | Base     | Electricity consumption | 3        | 237    | kJ       |       |
-| Simple electrolysis | Base     | Jobs                    | 4        | 1.5e-4 | job/mole |       |
+| Technology          | Scenario | Parameter                           | Offset   | Value  | Units                 | Notes |
+|---------------------|----------|-------------------------------------|---------:|-------:|-----------------------|-------|
+| Simple electrolysis | Base     | Oxygen production                   | 0        | 16.00  | g                     |       |
+| Simple electrolysis | Base     | Hydrogen production                 | 1        | 2.00   | g                     |       |
+| Simple electrolysis | Base     | Water consumption                   | 2        | 18.08  | g                     |       |
+| Simple electrolysis | Base     | Electricity consumption             | 3        | 237    | kJ                    |       |
+| Simple electrolysis | Base     | Jobs                                | 4        | 1.5e-4 | job/mole              |       |
+| Simple electrolysis | Base     | Reference scale                     | 5        | 6650   | mole/yr               |       |
+| Simple electrolysis | Base     | Reference capital cost for catalyst | 6        | 0.63   | USD                   |       |
+| Simple electrolysis | Base     | Reference fixed cost for rent       | 7        | 1000   | USD/yr                |       |
 
 
 ### Units for results
@@ -334,6 +340,20 @@ Each technology design requires a Python module with a production and metrics fu
 
 # All of the computations must be vectorized, so use `numpy`.
 import numpy as np
+
+
+# Capital-cost function.
+def capital_cost(scale, parameter):
+
+  # Scale the reference values.
+  return np.stack([np.multiply(parameters[6], np.divide(scale, parameters[5]))])
+
+
+# Fixed-cost function.
+def fixed_cost(scale, parameter):
+
+  # Scale the reference values.
+  return np.stack([np.multiply(parameters[7], np.divide(scale, parameters[5]))])
 
 
 # Production function.

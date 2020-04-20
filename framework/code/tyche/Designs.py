@@ -26,7 +26,10 @@ class Designs:
     }
     _functions_dtypes = {
         "Technology" : np.str_,
+        "Style"      : np.str_,
         "Module"     : np.str_,
+        "Capital"    : np.str_,
+        "Fixed"      : np.str_,
         "Production" : np.str_,
         "Metrics"    : np.str_,
         "Notes"      : np.str_,

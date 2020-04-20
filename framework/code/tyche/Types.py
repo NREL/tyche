@@ -37,6 +37,9 @@ Results = namedtuple("Results", [
 
 
 Functions = namedtuple("Functions", [
+    "style"     ,
+    "capital"   ,
+    "fixed"     ,
     "production",
     "metric"    ,
 ])
