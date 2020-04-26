@@ -37,7 +37,7 @@ Functions = namedtuple("Functions", [
 ])
 
 
-Investments = namedtuple("Investments", [
+Evaluations = namedtuple("Evaluations", [
     "amounts",
     "metrics",
     "summary",

@@ -3,7 +3,7 @@ import numpy     as np
 import os        as os
 import pandas    as pd
 
-from .Types import Functions, Indices, Inputs, Investments, Results
+from .Types import Functions, Indices, Inputs, Results
 
 
 class Designs:
@@ -13,8 +13,6 @@ class Designs:
     designs     = None
     parameters  = None
     results     = None
-    tranches    = None
-    investments = None
     
     compilation = None
     
@@ -61,19 +59,6 @@ class Designs:
         "Units"      : np.str_   ,
         "Notes"      : np.str_   ,
     }
-    _tranches_dtypes = {
-        "Category"   : np.str_   ,
-        "Tranche"    : np.str_   ,
-        "Scenario"   : np.str_   ,
-        "Notes"      : np.str_   ,
-    }
-    _investments_dtypes = {
-        "Investment" : np.str_   ,
-        "Category"   : np.str_   ,
-        "Tranche"    : np.str_   ,
-        "Amount"     : np.float64,
-        "Notes"      : np.str_   ,
-    }
     
     _indices_index     = ["Technology", "Type"    , "Index"             ]
     _functions_index   = ["Technology",                                 ]
@@ -96,8 +81,6 @@ class Designs:
         self.designs     = make(self._designs_dtypes    , self._designs_index    )
         self.parameters  = make(self._parameters_dtypes , self._parameters_index )
         self.results     = make(self._results_dtypes    , self._results_index    )
-        self.tranches    = make(self._tranches_dtypes   , self._tranches_index   )
-        self.investments = make(self._investments_dtypes, self._investments_index)
         
     def _read(self, path):
         read = lambda name, dtypes, index: pd.read_csv(
@@ -110,8 +93,6 @@ class Designs:
         self.designs     = read("designs.tsv"    , self._designs_dtypes    , self._designs_index    )
         self.parameters  = read("parameters.tsv" , self._parameters_dtypes , self._parameters_index )
         self.results     = read("results.tsv"    , self._results_dtypes    , self._results_index    )
-        self.tranches    = read("tranches.tsv"   , self._tranches_dtypes   , self._tranches_index   )
-        self.investments = read("investments.tsv", self._investments_dtypes, self._investments_index)
         
     def vectorize_technologies(self):
         return self.designs.reset_index(
@@ -278,29 +259,3 @@ class Designs:
         ).append(
             organize("Metric", metrics)
         ).sort_index()
-
-    def evaluate_investments(self):
-        amounts = self.investments.sum(
-            level=["Investment"]
-        )
-        metrics = self.investments.drop(
-            columns=["Amount", "Notes"]
-        ).join(
-            self.tranches.drop(columns=["Notes"])
-        ).join(
-            self.evaluate_scenarios().xs("Metric", level="Variable")
-        ).reorder_levels(
-            ["Investment", "Category", "Tranche", "Scenario", "Technology", "Index"]
-        )
-        return Investments(
-            amounts = amounts,
-            metrics = metrics,
-            summary = metrics.set_index(
-                "Units",
-                append=True
-            ).sum(
-                level=["Investment", "Index", "Units"]
-            ).reset_index(
-                "Units"
-            )[["Value", "Units"]],
-        )
