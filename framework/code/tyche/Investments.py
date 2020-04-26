@@ -27,19 +27,24 @@ class Investments:
     _tranches_index    = ["Category"  , "Tranche" , "Scenario" ,        ]
     _investments_index = ["Investment", "Category", "Tranche"  ,        ]
     
-    def __init__(self, path=None):
+    def __init__(
+        self                           ,
+        path        = None             ,
+        tranches    = "tranches.tsv"   ,
+        investments = "investments.tsv",
+    ):
         if path == None:
             self._make()
         else:
-            self._read(path)
+            self._read(path, tranches, investments)
             
     def _make(self):
         self.tranches    = make_table(self._tranches_dtypes   , self._tranches_index   )
         self.investments = make_table(self._investments_dtypes, self._investments_index)
         
-    def _read(self, path):
-        self.tranches    = read_table(path, "tranches.tsv"   , self._tranches_dtypes   , self._tranches_index   )
-        self.investments = read_table(path, "investments.tsv", self._investments_dtypes, self._investments_index)
+    def _read(self, path, tranches, investments):
+        self.tranches    = read_table(path, tranches   , self._tranches_dtypes   , self._tranches_index   )
+        self.investments = read_table(path, investments, self._investments_dtypes, self._investments_index)
         
     def evaluate_investments(self, designs):
         amounts = self.investments.sum(

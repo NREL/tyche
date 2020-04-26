@@ -65,28 +65,34 @@ class Designs:
     _designs_index     = ["Technology", "Scenario", "Variable" , "Index"]
     _parameters_index  = ["Technology", "Scenario", "Parameter"         ]
     _results_index     = ["Technology", "Variable", "Index"             ]
-    _tranches_index    = ["Category"  , "Tranche" , "Scenario" ,        ]
-    _investments_index = ["Investment", "Category", "Tranche"  ,        ]
     
-    def __init__(self, path=None):
+    def __init__(
+        self                         ,
+        path       = None            ,
+        indices    = "indices.tsv"   ,
+        functions  = "functions.tsv" ,
+        designs    = "designs.tsv"   ,
+        parameters = "parameters.tsv",
+        results    = "results.tsv"   ,
+    ):
         if path == None:
             self._make()
         else:
-            self._read(path)
+            self._read(path, indices, functions, designs, parameters, results)
             
     def _make(self):
-        self.indices     = make_table(self._indices_dtypes    , self._indices_index    )
-        self.functions   = make_table(self._functions_dtypes  , self._functions_index  )
-        self.designs     = make_table(self._designs_dtypes    , self._designs_index    )
-        self.parameters  = make_table(self._parameters_dtypes , self._parameters_index )
-        self.results     = make_table(self._results_dtypes    , self._results_index    )
+        self.indices     = make_table(self._indices_dtypes   , self._indices_index    )
+        self.functions   = make_table(self._functions_dtypes , self._functions_index  )
+        self.designs     = make_table(self._designs_dtypes   , self._designs_index    )
+        self.parameters  = make_table(self._parameters_dtypes, self._parameters_index )
+        self.results     = make_table(self._results_dtypes   , self._results_index    )
         
-    def _read(self, path):
-        self.indices     = read_table(path, "indices.tsv"    , self._indices_dtypes    , self._indices_index    )
-        self.functions   = read_table(path, "functions.tsv"  , self._functions_dtypes  , self._functions_index  )
-        self.designs     = read_table(path, "designs.tsv"    , self._designs_dtypes    , self._designs_index    )
-        self.parameters  = read_table(path, "parameters.tsv" , self._parameters_dtypes , self._parameters_index )
-        self.results     = read_table(path, "results.tsv"    , self._results_dtypes    , self._results_index    )
+    def _read(self, path, indices, functions, designs, parameters, results):
+        self.indices     = read_table(path, indices   , self._indices_dtypes    , self._indices_index    )
+        self.functions   = read_table(path, functions , self._functions_dtypes  , self._functions_index  )
+        self.designs     = read_table(path, designs   , self._designs_dtypes    , self._designs_index    )
+        self.parameters  = read_table(path, parameters, self._parameters_dtypes , self._parameters_index )
+        self.results     = read_table(path, results   , self._results_dtypes    , self._results_index    )
         
     def vectorize_technologies(self):
         return self.designs.reset_index(
