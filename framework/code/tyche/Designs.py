@@ -156,7 +156,7 @@ class Designs:
 
         extract_designs = lambda variable: self.designs.xs(
                                                (technology, variable),
-                                               level=[0, 2]
+                                               level=["Technology", "Variable"]
                                            )[["Value"]]
         lifetimes           = extract_designs("Lifetime"         )
         scales              = extract_designs("Scale"            )
@@ -266,7 +266,7 @@ class Designs:
             metrics = metrics.append(result.metric)
         organize = lambda variable, values: self.results.xs(
                                                 variable,
-                                                level=1,
+                                                level="Variable",
                                                 drop_level=False
                                             ).join(
                                                 values
