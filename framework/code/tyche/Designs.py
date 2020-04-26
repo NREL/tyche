@@ -3,7 +3,7 @@ import numpy     as np
 import os        as os
 import pandas    as pd
 
-from .Types import Functions, Indices, Inputs, Results
+from .Types import Functions, Indices, Inputs, Investments, Results
 
 
 class Designs:
@@ -70,7 +70,7 @@ class Designs:
     _investments_dtypes = {
         "Investment" : np.str_   ,
         "Category"   : np.str_   ,
-        "Tranch"     : np.str_   ,
+        "Tranche"    : np.str_   ,
         "Amount"     : np.float64,
         "Notes"      : np.str_   ,
     }
@@ -81,7 +81,7 @@ class Designs:
     _parameters_index  = ["Technology", "Scenario", "Parameter"         ]
     _results_index     = ["Technology", "Variable", "Index"             ]
     _tranches_index    = ["Category"  , "Tranche" , "Scenario" ,        ]
-    _investments_index = ["Investment", "Category",                     ]
+    _investments_index = ["Investment", "Category", "Tranche"  ,        ]
     
     def __init__(self, path=None):
         if path == None:
@@ -100,7 +100,11 @@ class Designs:
         self.investments = make(self._investments_dtypes, self._investments_index)
         
     def _read(self, path):
-        read = lambda name, dtypes, index: pd.read_csv(os.path.join(path, name), sep="\t", index_col=index, converters=dtypes).sort_index()
+        read = lambda name, dtypes, index: pd.read_csv(
+            os.path.join(path, name),
+            sep="\t",
+            index_col=index, converters=dtypes
+        ).sort_index()
         self.indices     = read("indices.tsv"    , self._indices_dtypes    , self._indices_index    )
         self.functions   = read("functions.tsv"  , self._functions_dtypes  , self._functions_index  )
         self.designs     = read("designs.tsv"    , self._designs_dtypes    , self._designs_index    )
@@ -110,13 +114,26 @@ class Designs:
         self.investments = read("investments.tsv", self._investments_dtypes, self._investments_index)
         
     def vectorize_technologies(self):
-        return self.designs.reset_index(["Scenario", "Variable", "Index"]).sort_index().index.drop_duplicates().values
+        return self.designs.reset_index(
+            ["Scenario", "Variable", "Index"]
+        ).sort_index(
+        ).index.drop_duplicates(
+        ).values
     
     def vectorize_scenarios(self, technology):
-        return self.designs.xs(technology).reset_index(["Variable", "Index"]).sort_index().index.drop_duplicates().values
+        return self.designs.xs(technology
+        ).reset_index(
+            ["Variable", "Index"]
+        ).sort_index(
+        ).index.drop_duplicates(
+        ).values
     
     def _vectorize_indices(self, technology):
-        extract_indices = lambda index: self.indices.xs((technology, index)).sort_values(by="Offset")[["Offset"]]
+        extract_indices = lambda index: self.indices.xs(
+                                            (technology, index)
+                                        ).sort_values(
+                                            by="Offset"
+                                        )[["Offset"]]
         return Indices(
             capital = extract_indices("Capital"),
             fixed   = extract_indices("Fixed"  ),
@@ -137,7 +154,10 @@ class Designs:
     
     def vectorize_designs(self, technology, n):
 
-        extract_designs = lambda variable: self.designs.xs((technology, variable), level=[0, 2])[["Value"]]
+        extract_designs = lambda variable: self.designs.xs(
+                                               (technology, variable),
+                                               level=[0, 2]
+                                           )[["Value"]]
         lifetimes           = extract_designs("Lifetime"         )
         scales              = extract_designs("Scale"            )
         inputs              = extract_designs("Input"            )
@@ -148,7 +168,16 @@ class Designs:
     
         all_indices = self._vectorize_indices(technology)
     
-        join = lambda values, offsets: values.join(offsets).reorder_levels([1, 0]).reset_index().sort_values(by=["Offset", "Scenario"])["Value"].values.reshape((offsets.shape[0], n))
+        join = lambda values, offsets: values.join(
+                                           offsets
+                                       ).reorder_levels(
+                                           [1, 0]
+                                       ).reset_index(
+                                       ).sort_values(
+                                           by=["Offset", "Scenario"]
+                                       )["Value"].values.reshape((
+                                           offsets.shape[0], n)
+                                       )
         return Inputs(
             lifetime          = join(lifetimes          , all_indices.capital),
             scale             = scales["Value"].values                        ,
@@ -160,7 +189,12 @@ class Designs:
         )
     
     def vectorize_parameters(self, technology, n):
-        x = self.parameters.xs(technology).reset_index().sort_values(by=["Offset", "Scenario"])["Value"].values
+        x = self.parameters.xs(
+            technology
+        ).reset_index(
+        ).sort_values(
+            by=["Offset", "Scenario"]
+        )["Value"].values
         return x.reshape((int(x.shape[0] / n), n)) 
     
     def compile(self):
@@ -205,7 +239,13 @@ class Designs:
             np.sum(design.output_price * output, axis=0)
         
         def organize(df):
-            df1 = pd.melt(df.rename_axis(["Scenario"]).reset_index(), id_vars=["Scenario"], value_vars=df.columns, var_name="Index", value_name="Value")
+            df1 = pd.melt(
+                df.rename_axis(["Scenario"]).reset_index(),
+                id_vars=["Scenario"],
+                value_vars=df.columns,
+                var_name="Index",
+                value_name="Value"
+            )
             df1["Technology"] = technology
             return df1.set_index(["Technology", "Scenario", "Index"])
 
@@ -224,9 +264,43 @@ class Designs:
             costs   = costs.append(  result.cost  )
             outputs = outputs.append(result.output)
             metrics = metrics.append(result.metric)
-        organize = lambda variable, values: self.results.xs(variable, level=1, drop_level=False).join(values).reorder_levels([0, 3, 2, 1])[["Value", "Units"]]
+        organize = lambda variable, values: self.results.xs(
+                                                variable,
+                                                level=1,
+                                                drop_level=False
+                                            ).join(
+                                                values
+                                            ).reorder_levels(
+                                                ["Technology", "Scenario", "Variable", "Index"]
+                                            )[["Value", "Units"]]
         return organize("Cost", costs).append(
             organize("Output", outputs)
         ).append(
             organize("Metric", metrics)
         ).sort_index()
+
+    def evaluate_investments(self):
+        amounts = self.investments.sum(
+            level=["Investment"]
+        )
+        metrics = self.investments.drop(
+            columns=["Amount", "Notes"]
+        ).join(
+            self.tranches.drop(columns=["Notes"])
+        ).join(
+            self.evaluate_scenarios().xs("Metric", level="Variable")
+        ).reorder_levels(
+            ["Investment", "Category", "Tranche", "Scenario", "Technology", "Index"]
+        )
+        return Investments(
+            amounts = amounts,
+            metrics = metrics,
+            summary = metrics.set_index(
+                "Units",
+                append=True
+            ).sum(
+                level=["Investment", "Index", "Units"]
+            ).reset_index(
+                "Units"
+            )[["Value", "Units"]],
+        )

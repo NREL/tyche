@@ -35,3 +35,10 @@ Functions = namedtuple("Functions", [
     "production",
     "metric"    ,
 ])
+
+
+Investments = namedtuple("Investments", [
+    "amounts",
+    "metrics",
+    "summary",
+])
