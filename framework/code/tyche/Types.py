@@ -1,12 +1,6 @@
 from collections import namedtuple
 
 
-Scenarios = namedtuple("Scenarios", [
-    "technology",
-    "scenario"  ,
-])
-
-
 Indices = namedtuple("Indices", [
     "capital",
     "fixed"  ,

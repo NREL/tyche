@@ -1,17 +1,34 @@
 Technology	Scenario	Parameter	Offset	Value	Units	Notes
-Simple electrolysis	Base	Oxygen production	0	16.00	g	
-Simple electrolysis	Base	Hydrogen production	1	2.00	g	
-Simple electrolysis	Base	Water consumption	2	18.08	g	
-Simple electrolysis	Base	Electricity consumption	3	237	kJ	
-Simple electrolysis	Base	Jobs	4	1.5e-4	job/mole	
-Simple electrolysis	Alternative	Oxygen production	0	16.00	g	
-Simple electrolysis	Alternative	Hydrogen production	1	2.00	g	
-Simple electrolysis	Alternative	Water consumption	2	18.08	g	
-Simple electrolysis	Alternative	Electricity consumption	3	237	kJ	
-Simple electrolysis	Alternative	Jobs	4	1.5e-4	job/mole	
-Simple electrolysis	Base	Reference scale	5	6650	mole/yr	
-Simple electrolysis	Base	Reference capital cost for catalyst	6	0.63	USD	
-Simple electrolysis	Base	Reference fixed cost for rent	7	1000	USD/yr	
-Simple electrolysis	Alternative	Reference scale	5	6650	mole/yr	
-Simple electrolysis	Alternative	Reference capital cost for catalyst	6	0.63	USD	
-Simple electrolysis	Alternative	Reference fixed cost for rent	7	1000	USD/yr	
+Simple electrolysis	Base Electrolysis	Oxygen production	0	16.00	g	
+Simple electrolysis	Base Electrolysis	Hydrogen production	1	2.00	g	
+Simple electrolysis	Base Electrolysis	Water consumption	2	18.08	g	
+Simple electrolysis	Base Electrolysis	Electricity consumption	3	237	kJ	
+Simple electrolysis	Base Electrolysis	Jobs	4	1.5e-4	job/mole	
+Simple electrolysis	Base Electrolysis	Reference scale	5	6650	mole/yr	
+Simple electrolysis	Base Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
+Simple electrolysis	Base Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	
+
+Simple electrolysis	Slow Progress on Electrolysis	Oxygen production	0	16.00	g	
+Simple electrolysis	Slow Progress on Electrolysis	Hydrogen production	1	2.00	g	
+Simple electrolysis	Slow Progress on Electrolysis	Water consumption	2	18.08	g	
+Simple electrolysis	Slow Progress on Electrolysis	Electricity consumption	3	237	kJ	
+Simple electrolysis	Slow Progress on Electrolysis	Jobs	4	1.5e-4	job/mole	
+Simple electrolysis	Slow Progress on Electrolysis	Reference scale	5	6650	mole/yr	
+Simple electrolysis	Slow Progress on Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
+Simple electrolysis	Slow Progress on Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	
+Simple electrolysis	Moderate Progress on Electrolysis	Oxygen production	0	16.00	g	
+Simple electrolysis	Moderate Progress on Electrolysis	Hydrogen production	1	2.00	g	
+Simple electrolysis	Moderate Progress on Electrolysis	Water consumption	2	18.08	g	
+Simple electrolysis	Moderate Progress on Electrolysis	Electricity consumption	3	237	kJ	
+Simple electrolysis	Moderate Progress on Electrolysis	Jobs	4	1.5e-4	job/mole	
+Simple electrolysis	Moderate Progress on Electrolysis	Reference scale	5	6650	mole/yr	
+Simple electrolysis	Moderate Progress on Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
+Simple electrolysis	Moderate Progress on Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	
+Simple electrolysis	Fast Progress on Electrolysis	Oxygen production	0	16.00	g	
+Simple electrolysis	Fast Progress on Electrolysis	Hydrogen production	1	2.00	g	
+Simple electrolysis	Fast Progress on Electrolysis	Water consumption	2	18.08	g	
+Simple electrolysis	Fast Progress on Electrolysis	Electricity consumption	3	237	kJ	
+Simple electrolysis	Fast Progress on Electrolysis	Jobs	4	1.5e-4	job/mole	
+Simple electrolysis	Fast Progress on Electrolysis	Reference scale	5	6650	mole/yr	
+Simple electrolysis	Fast Progress on Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
+Simple electrolysis	Fast Progress on Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	

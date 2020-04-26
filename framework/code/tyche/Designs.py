@@ -3,16 +3,18 @@ import numpy     as np
 import os        as os
 import pandas    as pd
 
-from .Types import Functions, Indices, Inputs, Results, Scenarios
+from .Types import Functions, Indices, Inputs, Results
 
 
 class Designs:
     
-    indices    = None
-    functions  = None
-    designs    = None
-    parameters = None
-    results    = None
+    indices     = None
+    functions   = None
+    designs     = None
+    parameters  = None
+    results     = None
+    tranches    = None
+    investments = None
     
     compilation = None
     
@@ -59,12 +61,27 @@ class Designs:
         "Units"      : np.str_   ,
         "Notes"      : np.str_   ,
     }
+    _tranches_dtypes = {
+        "Category"   : np.str_   ,
+        "Tranche"    : np.str_   ,
+        "Scenario"   : np.str_   ,
+        "Notes"      : np.str_   ,
+    }
+    _investments_dtypes = {
+        "Investment" : np.str_   ,
+        "Category"   : np.str_   ,
+        "Tranch"     : np.str_   ,
+        "Amount"     : np.float64,
+        "Notes"      : np.str_   ,
+    }
     
-    _indices_index    = ["Technology", "Type"    , "Index"             ]
-    _functions_index  = ["Technology",                                 ]
-    _designs_index    = ["Technology", "Scenario", "Variable" , "Index"]
-    _parameters_index = ["Technology", "Scenario", "Parameter"         ]
-    _results_index    = ["Technology", "Variable", "Index"             ]
+    _indices_index     = ["Technology", "Type"    , "Index"             ]
+    _functions_index   = ["Technology",                                 ]
+    _designs_index     = ["Technology", "Scenario", "Variable" , "Index"]
+    _parameters_index  = ["Technology", "Scenario", "Parameter"         ]
+    _results_index     = ["Technology", "Variable", "Index"             ]
+    _tranches_index    = ["Category"  , "Tranche" , "Scenario" ,        ]
+    _investments_index = ["Investment", "Category",                     ]
     
     def __init__(self, path=None):
         if path == None:
@@ -74,19 +91,23 @@ class Designs:
             
     def _make(self):
         make = lambda dtypes, index: pd.DataFrame({k: [v()] for k, v in dtypes.items()}, index=index).iloc[0:0]
-        self.indices    = make(self._indices_dtypes   , self._indices_index   )
-        self.functions  = make(self._functions_dtypes , self._functions_index )
-        self.designs    = make(self._designs_dtypes   , self._designs_index   )
-        self.parameters = make(self._parameters_dtypes, self._parameters_index)
-        self.results    = make(self._results_dtypes   , self._results_index   )
+        self.indices     = make(self._indices_dtypes    , self._indices_index    )
+        self.functions   = make(self._functions_dtypes  , self._functions_index  )
+        self.designs     = make(self._designs_dtypes    , self._designs_index    )
+        self.parameters  = make(self._parameters_dtypes , self._parameters_index )
+        self.results     = make(self._results_dtypes    , self._results_index    )
+        self.tranches    = make(self._tranches_dtypes   , self._tranches_index   )
+        self.investments = make(self._investments_dtypes, self._investments_index)
         
     def _read(self, path):
         read = lambda name, dtypes, index: pd.read_csv(os.path.join(path, name), sep="\t", index_col=index, converters=dtypes).sort_index()
-        self.indices    = read("indices.tsv"   , self._indices_dtypes   , self._indices_index   )
-        self.functions  = read("functions.tsv" , self._functions_dtypes , self._functions_index )
-        self.designs    = read("designs.tsv"   , self._designs_dtypes   , self._designs_index   )
-        self.parameters = read("parameters.tsv", self._parameters_dtypes, self._parameters_index)
-        self.results    = read("results.tsv"   , self._results_dtypes   , self._results_index   )
+        self.indices     = read("indices.tsv"    , self._indices_dtypes    , self._indices_index    )
+        self.functions   = read("functions.tsv"  , self._functions_dtypes  , self._functions_index  )
+        self.designs     = read("designs.tsv"    , self._designs_dtypes    , self._designs_index    )
+        self.parameters  = read("parameters.tsv" , self._parameters_dtypes , self._parameters_index )
+        self.results     = read("results.tsv"    , self._results_dtypes    , self._results_index    )
+        self.tranches    = read("tranches.tsv"   , self._tranches_dtypes   , self._tranches_index   )
+        self.investments = read("investments.tsv", self._investments_dtypes, self._investments_index)
         
     def vectorize_technologies(self):
         return self.designs.reset_index(["Scenario", "Variable", "Index"]).sort_index().index.drop_duplicates().values
@@ -194,7 +215,7 @@ class Designs:
             metric = organize(pd.DataFrame(np.transpose(metric)            , index=scenarios, columns=indices.metric)),
         )
         
-    def evaluate_all(self):
+    def evaluate_scenarios(self):
         costs   = pd.DataFrame()
         outputs = pd.DataFrame()
         metrics = pd.DataFrame()

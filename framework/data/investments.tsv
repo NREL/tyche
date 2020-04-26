@@ -1,0 +1,5 @@
+Investment	Category	Tranche	Amount	Notes
+No R&D Spending	Electrolysis R&D	No Electrolysis R&D	0	
+Low R&D Spending	Electrolysis R&D	Low Electrolysis R&D	1000000
+Medium R&D Spending	Electrolysis R&D	Medium Electrolysis R&D	2500000	
+High R&D Spending	Electrolysis R&D	High Electrolysis R&D	5000000	
