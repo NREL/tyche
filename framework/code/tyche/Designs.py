@@ -1,8 +1,8 @@
 import importlib as il
 import numpy     as np
-import os        as os
 import pandas    as pd
 
+from .IO    import make_table, read_table
 from .Types import Functions, Indices, Inputs, Results
 
 
@@ -75,24 +75,18 @@ class Designs:
             self._read(path)
             
     def _make(self):
-        make = lambda dtypes, index: pd.DataFrame({k: [v()] for k, v in dtypes.items()}, index=index).iloc[0:0]
-        self.indices     = make(self._indices_dtypes    , self._indices_index    )
-        self.functions   = make(self._functions_dtypes  , self._functions_index  )
-        self.designs     = make(self._designs_dtypes    , self._designs_index    )
-        self.parameters  = make(self._parameters_dtypes , self._parameters_index )
-        self.results     = make(self._results_dtypes    , self._results_index    )
+        self.indices     = make_table(self._indices_dtypes    , self._indices_index    )
+        self.functions   = make_table(self._functions_dtypes  , self._functions_index  )
+        self.designs     = make_table(self._designs_dtypes    , self._designs_index    )
+        self.parameters  = make_table(self._parameters_dtypes , self._parameters_index )
+        self.results     = make_table(self._results_dtypes    , self._results_index    )
         
     def _read(self, path):
-        read = lambda name, dtypes, index: pd.read_csv(
-            os.path.join(path, name),
-            sep="\t",
-            index_col=index, converters=dtypes
-        ).sort_index()
-        self.indices     = read("indices.tsv"    , self._indices_dtypes    , self._indices_index    )
-        self.functions   = read("functions.tsv"  , self._functions_dtypes  , self._functions_index  )
-        self.designs     = read("designs.tsv"    , self._designs_dtypes    , self._designs_index    )
-        self.parameters  = read("parameters.tsv" , self._parameters_dtypes , self._parameters_index )
-        self.results     = read("results.tsv"    , self._results_dtypes    , self._results_index    )
+        self.indices     = read_table(path, "indices.tsv"    , self._indices_dtypes    , self._indices_index    )
+        self.functions   = read_table(path, "functions.tsv"  , self._functions_dtypes  , self._functions_index  )
+        self.designs     = read_table(path, "designs.tsv"    , self._designs_dtypes    , self._designs_index    )
+        self.parameters  = read_table(path, "parameters.tsv" , self._parameters_dtypes , self._parameters_index )
+        self.results     = read_table(path, "results.tsv"    , self._results_dtypes    , self._results_index    )
         
     def vectorize_technologies(self):
         return self.designs.reset_index(

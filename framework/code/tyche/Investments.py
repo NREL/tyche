@@ -1,7 +1,7 @@
 import numpy  as np
-import os     as os
 import pandas as pd
 
+from .IO    import make_table, read_table
 from .Types import Evaluations
 
 
@@ -34,18 +34,12 @@ class Investments:
             self._read(path)
             
     def _make(self):
-        make = lambda dtypes, index: pd.DataFrame({k: [v()] for k, v in dtypes.items()}, index=index).iloc[0:0]
-        self.tranches    = make(self._tranches_dtypes   , self._tranches_index   )
-        self.investments = make(self._investments_dtypes, self._investments_index)
+        self.tranches    = make_table(self._tranches_dtypes   , self._tranches_index   )
+        self.investments = make_table(self._investments_dtypes, self._investments_index)
         
     def _read(self, path):
-        read = lambda name, dtypes, index: pd.read_csv(
-            os.path.join(path, name),
-            sep="\t",
-            index_col=index, converters=dtypes
-        ).sort_index()
-        self.tranches    = read("tranches.tsv"   , self._tranches_dtypes   , self._tranches_index   )
-        self.investments = read("investments.tsv", self._investments_dtypes, self._investments_index)
+        self.tranches    = read_table(path, "tranches.tsv"   , self._tranches_dtypes   , self._tranches_index   )
+        self.investments = read_table(path, "investments.tsv", self._investments_dtypes, self._investments_index)
         
     def evaluate_investments(self, designs):
         amounts = self.investments.sum(
