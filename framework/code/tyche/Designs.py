@@ -2,8 +2,9 @@ import importlib as il
 import numpy     as np
 import pandas    as pd
 
-from .IO    import make_table, read_table
-from .Types import Functions, Indices, Inputs, Results
+from .Distributions import parse_distribution
+from .IO            import make_table, read_table
+from .Types         import Functions, Indices, Inputs, Results
 
 
 class Designs:
@@ -14,7 +15,9 @@ class Designs:
     parameters  = None
     results     = None
     
-    compilation = None
+    compiled_functions  = None
+    compiled_designs    = None
+    compiled_parameters = None
     
     _indices_dtypes = {
         "Technology"  : np.str_ ,
@@ -35,22 +38,22 @@ class Designs:
         "Notes"      : np.str_,
     }
     _designs_dtypes = {
-        "Technology" : np.str_   ,
-        "Scenario"   : np.str_   ,
-        "Variable"   : np.str_   ,
-        "Index"      : np.str_   ,
-        "Value"      : np.float64,
-        "Units"      : np.str_   ,
-        "Notes"      : np.str_   ,
+        "Technology" : np.str_,
+        "Scenario"   : np.str_,
+        "Variable"   : np.str_,
+        "Index"      : np.str_,
+        "Value"      : np.str_,
+        "Units"      : np.str_,
+        "Notes"      : np.str_,
     }
     _parameters_dtypes = {
-        "Technology" : np.str_   ,
-        "Scenario"   : np.str_   ,
-        "Parameter"  : np.str_   ,
-        "Offset"     : np.int16  ,
-        "Value"      : np.float64,
-        "Units"      : np.str_   ,
-        "Notes"      : np.str_   ,
+        "Technology" : np.str_ ,
+        "Scenario"   : np.str_ ,
+        "Parameter"  : np.str_ ,
+        "Offset"     : np.int16,
+        "Value"      : np.str_ ,
+        "Units"      : np.str_ ,
+        "Notes"      : np.str_ ,
     }
     _results_dtypes = {
         "Technology" : np.str_   ,
@@ -133,12 +136,24 @@ class Designs:
             metric  = vectors.metric.index.values ,
         )
     
-    def vectorize_designs(self, technology, n):
+    def sampler(self, x, samples):
+        it = np.nditer(
+            [x, None],
+            flags=["refs_ok", "external_loop"],
+            op_flags=[["readonly"], ["writeonly", "allocate"]],
+            op_axes=[list(range(x.ndim)) + [-1], None],
+            itershape=x.shape+(samples,)
+        )
+        for x, y in it:
+            y[...] = x[0].rvs(samples)
+        return it.operands[1]
 
-        extract_designs = lambda variable: self.designs.xs(
+    def vectorize_designs(self, technology, n, samples=1):
+
+        extract_designs = lambda variable: self.compiled_designs.xs(
                                                (technology, variable),
                                                level=["Technology", "Variable"]
-                                           )[["Value"]]
+                                           )[["Distribution"]]
         lifetimes           = extract_designs("Lifetime"         )
         scales              = extract_designs("Scale"            )
         inputs              = extract_designs("Input"            )
@@ -149,61 +164,75 @@ class Designs:
     
         all_indices = self._vectorize_indices(technology)
     
-        join = lambda values, offsets: values.join(
-                                           offsets
-                                       ).reorder_levels(
-                                           [1, 0]
-                                       ).reset_index(
-                                       ).sort_values(
-                                           by=["Offset", "Scenario"]
-                                       )["Value"].values.reshape((
-                                           offsets.shape[0], n)
-                                       )
+        def join(values, offsets):
+            return values.join(
+                offsets
+            ).reorder_levels(
+                [1, 0]
+            ).reset_index(
+            ).sort_values(
+                by=["Offset", "Scenario"]
+            )[
+                "Distribution"
+            ].values.reshape(
+                (offsets.shape[0], n)
+            )
+
         return Inputs(
-            lifetime          = join(lifetimes          , all_indices.capital),
-            scale             = scales["Value"].values                        ,
-            input             = join(inputs             , all_indices.input  ),
-            input_efficiency  = join(input_efficiencies , all_indices.input  ),
-            input_price       = join(input_prices       , all_indices.input  ),
-            output_efficiency = join(output_efficiencies, all_indices.output ),
-            output_price      = join(output_prices      , all_indices.output ),
+            scale             = self.sampler(scales["Distribution"].values                 , samples),
+            lifetime          = self.sampler(join(lifetimes          , all_indices.capital), samples),
+            input             = self.sampler(join(inputs             , all_indices.input  ), samples),
+            input_efficiency  = self.sampler(join(input_efficiencies , all_indices.input  ), samples),
+            input_price       = self.sampler(join(input_prices       , all_indices.input  ), samples),
+            output_efficiency = self.sampler(join(output_efficiencies, all_indices.output ), samples),
+            output_price      = self.sampler(join(output_prices      , all_indices.output ), samples),
         )
     
-    def vectorize_parameters(self, technology, n):
-        x = self.parameters.xs(
+    def vectorize_parameters(self, technology, n, samples=1):
+        x = self.compiled_parameters.xs(
             technology
         ).reset_index(
         ).sort_values(
             by=["Offset", "Scenario"]
-        )["Value"].values
-        return x.reshape((int(x.shape[0] / n), n)) 
+        )["Distribution"].values
+        return self.sampler(
+            x.reshape((int(x.shape[0] / n), n)),
+            samples
+        )
     
     def compile(self):
-        self.compilation = {}
+
+        self.compiled_functions = {}
         for technology, metadata in self.functions.iterrows():
             m = il.import_module("." + metadata["Module"], package="technology")
-            self.compilation[technology] = Functions(
+            self.compiled_functions[technology] = Functions(
                 style      =             metadata["Style"     ] ,
                 capital    = eval("m." + metadata["Capital"   ]),
                 fixed      = eval("m." + metadata["Fixed"     ]),
                 production = eval("m." + metadata["Production"]),
                 metric     = eval("m." + metadata["Metrics"   ]),
             )
-            
-    def evaluate(self, technology):
 
-        f_capital    = self.compilation[technology].capital
-        f_fixed      = self.compilation[technology].fixed        
-        f_production = self.compilation[technology].production
-        f_metrics    = self.compilation[technology].metric
+        self.compiled_designs = self.designs.copy()
+        self.compiled_designs["Distribution"] = self.compiled_designs["Value"].apply(parse_distribution)
+
+        self.compiled_parameters = self.parameters.copy()
+        self.compiled_parameters["Distribution"] = self.compiled_parameters["Value"].apply(parse_distribution)
+            
+    def evaluate(self, technology, samples=1):
+
+        f_capital    = self.compiled_functions[technology].capital
+        f_fixed      = self.compiled_functions[technology].fixed        
+        f_production = self.compiled_functions[technology].production
+        f_metrics    = self.compiled_functions[technology].metric
         
         indices = self.vectorize_indices(technology)
         
         scenarios = self.vectorize_scenarios(technology)
         n = scenarios.shape[0]
         
-        design    = self.vectorize_designs(   technology, n)
-        parameter = self.vectorize_parameters(technology, n)
+        design    = self.vectorize_designs(   technology, n, samples)
+        parameter = self.vectorize_parameters(technology, n, samples)
         
         capital_cost = f_capital(design.scale, parameter)
         fixed_cost   = f_fixed  (design.scale, parameter)
@@ -215,9 +244,9 @@ class Designs:
         metric = f_metrics(capital_cost, fixed_cost, input, output, parameter)
 
         cost = np.sum(capital_cost / design.lifetime, axis=0) / design.scale + \
-               np.sum(fixed_cost, axis=0) / design.scale + \
-            np.sum(design.input_price  * input , axis=0) - \
-            np.sum(design.output_price * output, axis=0)
+               np.sum(fixed_cost, axis=0) / design.scale +                     \
+               np.sum(design.input_price  * input , axis=0) -                  \
+               np.sum(design.output_price * output, axis=0)
         
         def organize(df):
             df1 = pd.melt(
@@ -236,7 +265,7 @@ class Designs:
             metric = organize(pd.DataFrame(np.transpose(metric)            , index=scenarios, columns=indices.metric)),
         )
         
-    def evaluate_scenarios(self):
+    def evaluate_scenarios(self, samples=1):
         costs   = pd.DataFrame()
         outputs = pd.DataFrame()
         metrics = pd.DataFrame()

@@ -42,3 +42,8 @@ Evaluations = namedtuple("Evaluations", [
     "metrics",
     "summary",
 ])
+
+
+FakeDistribution = namedtuple("FakeDistribution", [
+    "rvs",
+])

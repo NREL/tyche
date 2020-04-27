@@ -12,11 +12,11 @@ Simple electrolysis	Base Electrolysis	Input price	Electricity	3.33e-5	USD/kJ
 Simple electrolysis	Base Electrolysis	Output price	Oxygen	3.0e-3	USD/g	
 Simple electrolysis	Base Electrolysis	Output price	Hydrogen	1.0e-2	USD/g	
 Simple electrolysis	Slow Progress on Electrolysis	Input	Water	19.04	g/mole	
-Simple electrolysis	Slow Progress on Electrolysis	Input efficiency	Water	0.975	1	
+Simple electrolysis	Slow Progress on Electrolysis	Input efficiency	Water	st.truncnorm(-1, 4, loc=0.96, scale=0.01)	1	
 Simple electrolysis	Slow Progress on Electrolysis	Input	Electricity	279	kJ/mole	
-Simple electrolysis	Slow Progress on Electrolysis	Input efficiency	Electricity	0.875	1	
-Simple electrolysis	Slow Progress on Electrolysis	Output efficiency	Oxygen	0.95	1	
-Simple electrolysis	Slow Progress on Electrolysis	Output efficiency	Hydrogen	0.95	1	
+Simple electrolysis	Slow Progress on Electrolysis	Input efficiency	Electricity	st.truncnorm(-1, 2.75, loc=0.89, scale=0.04)	1	
+Simple electrolysis	Slow Progress on Electrolysis	Output efficiency	Oxygen	st.beta(1, 2, loc=0.90, scale=0.06)	1	
+Simple electrolysis	Slow Progress on Electrolysis	Output efficiency	Hydrogen	st.beta(1, 2, loc=0.90, scale=0.03)	1	
 Simple electrolysis	Slow Progress on Electrolysis	Lifetime	Catalyst	3	yr	Effective lifetime of Al-Ni catalyst.
 Simple electrolysis	Slow Progress on Electrolysis	Scale		6650	mole/yr	Rough estimate for a 50W setup.
 Simple electrolysis	Slow Progress on Electrolysis	Input price	Water	4.8e-3	USD/mole	
@@ -24,11 +24,11 @@ Simple electrolysis	Slow Progress on Electrolysis	Input price	Electricity	3.33e-
 Simple electrolysis	Slow Progress on Electrolysis	Output price	Oxygen	3.0e-3	USD/g	
 Simple electrolysis	Slow Progress on Electrolysis	Output price	Hydrogen	1.0e-2	USD/g	
 Simple electrolysis	Moderate Progress on Electrolysis	Input	Water	19.04	g/mole	
-Simple electrolysis	Moderate Progress on Electrolysis	Input efficiency	Water	0.975	1	
+Simple electrolysis	Moderate Progress on Electrolysis	Input efficiency	Water	st.truncnorm(-2, 3, loc=0.97, scale=0.01)	1	
 Simple electrolysis	Moderate Progress on Electrolysis	Input	Electricity	279	kJ/mole	
-Simple electrolysis	Moderate Progress on Electrolysis	Input efficiency	Electricity	0.875	1	
-Simple electrolysis	Moderate Progress on Electrolysis	Output efficiency	Oxygen	0.95	1	
-Simple electrolysis	Moderate Progress on Electrolysis	Output efficiency	Hydrogen	0.95	1	
+Simple electrolysis	Moderate Progress on Electrolysis	Input efficiency	Electricity	st.truncnorm(-2, 1.75, loc=0.93, scale=0.04)	1	
+Simple electrolysis	Moderate Progress on Electrolysis	Output efficiency	Oxygen	st.beta(2, 2, loc=0.90, scale=0.06)	1	
+Simple electrolysis	Moderate Progress on Electrolysis	Output efficiency	Hydrogen	st.beta(2, 2, loc=0.90, scale=0.03)	1	
 Simple electrolysis	Moderate Progress on Electrolysis	Lifetime	Catalyst	3	yr	Effective lifetime of Al-Ni catalyst.
 Simple electrolysis	Moderate Progress on Electrolysis	Scale		6650	mole/yr	Rough estimate for a 50W setup.
 Simple electrolysis	Moderate Progress on Electrolysis	Input price	Water	4.8e-3	USD/mole	
@@ -36,11 +36,11 @@ Simple electrolysis	Moderate Progress on Electrolysis	Input price	Electricity	3.
 Simple electrolysis	Moderate Progress on Electrolysis	Output price	Oxygen	3.0e-3	USD/g	
 Simple electrolysis	Moderate Progress on Electrolysis	Output price	Hydrogen	1.0e-2	USD/g	
 Simple electrolysis	Fast Progress on Electrolysis	Input	Water	19.04	g/mole	
-Simple electrolysis	Fast Progress on Electrolysis	Input efficiency	Water	0.975	1	
+Simple electrolysis	Fast Progress on Electrolysis	Input efficiency	Water	st.truncnorm(-3, 2, loc=0.97, scale=0.01)	1	
 Simple electrolysis	Fast Progress on Electrolysis	Input	Electricity	279	kJ/mole	
-Simple electrolysis	Fast Progress on Electrolysis	Input efficiency	Electricity	0.875	1	
-Simple electrolysis	Fast Progress on Electrolysis	Output efficiency	Oxygen	0.95	1	
-Simple electrolysis	Fast Progress on Electrolysis	Output efficiency	Hydrogen	0.95	1	
+Simple electrolysis	Fast Progress on Electrolysis	Input efficiency	Electricity	st.truncnorm(-3, 0.75, loc=0.97, scale=0.04)	1	
+Simple electrolysis	Fast Progress on Electrolysis	Output efficiency	Oxygen	st.beta(3, 2, loc=0.90, scale=0.06)	1	
+Simple electrolysis	Fast Progress on Electrolysis	Output efficiency	Hydrogen	st.beta(3, 2, loc=0.90, scale=0.03)	1	
 Simple electrolysis	Fast Progress on Electrolysis	Lifetime	Catalyst	3	yr	Effective lifetime of Al-Ni catalyst.
 Simple electrolysis	Fast Progress on Electrolysis	Scale		6650	mole/yr	Rough estimate for a 50W setup.
 Simple electrolysis	Fast Progress on Electrolysis	Input price	Water	4.8e-3	USD/mole	
