@@ -34,7 +34,7 @@ def production(capital, fixed, input, parameter):
   hydrogen = np.multiply(output, parameter[1])
 
   # Package results.
-  return np.vstack([oxygen, hydrogen])
+  return np.stack([oxygen, hydrogen])
 
 
 # Metrics function.
@@ -44,4 +44,4 @@ def metrics(capital, fixed, input, outputs, parameter):
   jobs = parameter[4]
 
   # Package results.
-  return np.vstack([jobs])
+  return np.stack([jobs])

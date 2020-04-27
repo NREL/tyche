@@ -46,7 +46,7 @@ class Investments:
         self.tranches    = read_table(path, tranches   , self._tranches_dtypes   , self._tranches_index   )
         self.investments = read_table(path, investments, self._investments_dtypes, self._investments_index)
         
-    def evaluate_investments(self, designs):
+    def evaluate_investments(self, designs, sample_count=1):
         amounts = self.investments.sum(
             level=["Investment"]
         )
@@ -55,9 +55,9 @@ class Investments:
         ).join(
             self.tranches.drop(columns=["Notes"])
         ).join(
-            designs.evaluate_scenarios().xs("Metric", level="Variable")
+            designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
         ).reorder_levels(
-            ["Investment", "Category", "Tranche", "Scenario", "Technology", "Index"]
+            ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
         )
         return Evaluations(
             amounts = amounts,
@@ -66,7 +66,7 @@ class Investments:
                 "Units",
                 append=True
             ).sum(
-                level=["Investment", "Index", "Units"]
+                level=["Investment", "Sample", "Index", "Units"]
             ).reset_index(
                 "Units"
             )[["Value", "Units"]],
