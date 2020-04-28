@@ -5,4 +5,6 @@ Simple electrolysis	Input	Water	0	Water
 Simple electrolysis	Input	Electricity	1	Electricity	
 Simple electrolysis	Output	Oxygen	0	Oxygen	
 Simple electrolysis	Output	Hydrogen	1	Hydrogen	
-Simple electrolysis	Metric	Jobs	0	Jobs	
+Simple electrolysis	Metric	Cost	0	Jobs	
+Simple electrolysis	Metric	Jobs	1	Jobs	
+Simple electrolysis	Metric	GHG	2	Greenhouse gas emissions

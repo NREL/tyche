@@ -7,7 +7,8 @@ Simple electrolysis	Base Electrolysis	Jobs	4	1.5e-4	job/mole
 Simple electrolysis	Base Electrolysis	Reference scale	5	6650	mole/yr	
 Simple electrolysis	Base Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
 Simple electrolysis	Base Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	
-
+Simple electrolysis	Base Electrolysis	GHG factor for water	8	0.00108	gCO2e/g	based on 244,956 gallons = 1 Mg CO2e
+Simple electrolysis	Base Electrolysis	GHG factor for electricity	9	0.138	gCO2e/kJ	based on 1 kWh = 0.5 kg CO2e
 Simple electrolysis	Slow Progress on Electrolysis	Oxygen production	0	16.00	g	
 Simple electrolysis	Slow Progress on Electrolysis	Hydrogen production	1	2.00	g	
 Simple electrolysis	Slow Progress on Electrolysis	Water consumption	2	18.08	g	
@@ -16,6 +17,8 @@ Simple electrolysis	Slow Progress on Electrolysis	Jobs	4	1.5e-4	job/mole
 Simple electrolysis	Slow Progress on Electrolysis	Reference scale	5	6650	mole/yr	
 Simple electrolysis	Slow Progress on Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
 Simple electrolysis	Slow Progress on Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	
+Simple electrolysis	Slow Progress on Electrolysis	GHG factor for water	8	0.00108	gCO2e/g	based on 244,956 gallons = 1 Mg CO2e
+Simple electrolysis	Slow Progress on Electrolysis	GHG factor for electricity	9	0.138	gCO2e/kJ	based on 1 kWh = 0.5 kg CO2e
 Simple electrolysis	Moderate Progress on Electrolysis	Oxygen production	0	16.00	g	
 Simple electrolysis	Moderate Progress on Electrolysis	Hydrogen production	1	2.00	g	
 Simple electrolysis	Moderate Progress on Electrolysis	Water consumption	2	18.08	g	
@@ -24,6 +27,8 @@ Simple electrolysis	Moderate Progress on Electrolysis	Jobs	4	1.5e-4	job/mole
 Simple electrolysis	Moderate Progress on Electrolysis	Reference scale	5	6650	mole/yr	
 Simple electrolysis	Moderate Progress on Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
 Simple electrolysis	Moderate Progress on Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	
+Simple electrolysis	Moderate Progress on Electrolysis	GHG factor for water	8	0.00108	gCO2e/g	based on 244,956 gallons = 1 Mg CO2e
+Simple electrolysis	Moderate Progress on Electrolysis	GHG factor for electricity	9	0.138	gCO2e/kJ	based on 1 kWh = 0.5 kg CO2e
 Simple electrolysis	Fast Progress on Electrolysis	Oxygen production	0	16.00	g	
 Simple electrolysis	Fast Progress on Electrolysis	Hydrogen production	1	2.00	g	
 Simple electrolysis	Fast Progress on Electrolysis	Water consumption	2	18.08	g	
@@ -32,3 +37,5 @@ Simple electrolysis	Fast Progress on Electrolysis	Jobs	4	1.5e-4	job/mole
 Simple electrolysis	Fast Progress on Electrolysis	Reference scale	5	6650	mole/yr	
 Simple electrolysis	Fast Progress on Electrolysis	Reference capital cost for catalyst	6	0.63	USD	
 Simple electrolysis	Fast Progress on Electrolysis	Reference fixed cost for rent	7	1000	USD/yr	
+Simple electrolysis	Fast Progress on Electrolysis	GHG factor for water	8	0.00108	gCO2e/g	based on 244,956 gallons = 1 Mg CO2e
+Simple electrolysis	Fast Progress on Electrolysis	GHG factor for electricity	9	0.138	gCO2e/kJ	based on 1 kWh = 0.5 kg CO2e

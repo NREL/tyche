@@ -38,10 +38,21 @@ def production(capital, fixed, input, parameter):
 
 
 # Metrics function.
-def metrics(capital, fixed, input, outputs, cost, parameter):
+def metrics(capital, fixed, input_raw, input, output_raw, output, cost, parameter):
 
-  # Trivial jobs calculation.
-  jobs = np.divide(parameter[4], cost)
+  # Hydrogen output.
+  hydrogen = output[1]
+
+  # Cost of hydrogen.
+  cost1 = np.divide(cost, hydrogen)
+
+  # Jobs normalized to hydrogen.
+  jobs = np.divide(parameter[4], hydrogen)
+
+  # GHGs associated with water and electricity.
+  water       = np.multiply(input_raw[0], parameter[8])
+  electricity = np.multiply(input_raw[1], parameter[9])
+  co2e = np.divide(np.add(water, electricity), hydrogen)
 
   # Package results.
-  return np.stack([jobs])
+  return np.stack([cost1, jobs, co2e])
