@@ -38,10 +38,10 @@ def production(capital, fixed, input, parameter):
 
 
 # Metrics function.
-def metrics(capital, fixed, input, outputs, parameter):
+def metrics(capital, fixed, input, outputs, cost, parameter):
 
   # Trivial jobs calculation.
-  jobs = parameter[4]
+  jobs = np.divide(parameter[4], cost)
 
   # Package results.
   return np.stack([jobs])

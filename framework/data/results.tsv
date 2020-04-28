@@ -2,4 +2,4 @@ Technology	Variable	Index	Units	Notes
 Simple electrolysis	Cost	Cost	USD/mole	
 Simple electrolysis	Output	Oxygen	g/mole	
 Simple electrolysis	Output	Hydrogen	g/mole	
-Simple electrolysis	Metric	Jobs	job/mole	
+Simple electrolysis	Metric	Jobs	job/USD	

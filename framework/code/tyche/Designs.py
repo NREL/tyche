@@ -255,13 +255,13 @@ class Designs:
         input = design.input_efficiency * design.input
         
         output = design.output_efficiency * f_production(capital_cost, fixed_cost, input, parameter)
-        
-        metric = f_metrics(capital_cost, fixed_cost, input, output, parameter)
 
         cost = np.sum(capital_cost / design.lifetime, axis=0) / design.scale + \
                np.sum(fixed_cost, axis=0) / design.scale +                     \
                np.sum(design.input_price  * input , axis=0) -                  \
                np.sum(design.output_price * output, axis=0)
+        
+        metric = f_metrics(capital_cost, fixed_cost, input, output, cost, parameter)
         
         def organize(df, ix):
             ix1 = pd.MultiIndex.from_product(
