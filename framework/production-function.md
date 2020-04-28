@@ -1,6 +1,6 @@
 % Production-Function Approach to Portfolio Evaluation
-% Version 1.2 Draft
-% 20 April 2020
+% Version 1.3 Draft
+% 27 April 2020
 
 
 # Concept
@@ -92,7 +92,7 @@ $O^*_o = P_o(C_c, F_f, I^*_i, \alpha_p)$
 
 Metrics such as efficiency, lifetime, or carbon footprint are also compute based on the physical and technical characteristics of the process. This requires a technical model or a tabulation/fit of the results of technical modeling. We use the convention that higher values are worse and lower values are better.
 
-$\mu_m = M_m(C_c, F_f, I_i, O_o, K, \alpha_p)$
+$\mu_m = M_m(C_c, F_f, I_i, I^*_i, O^*_o, O_o, K, \alpha_p)$
 
 
 ## Scenarios
@@ -230,7 +230,11 @@ $P_\mathrm{hydrogen} = \left( 2.00~\mathrm{g} \right) \cdot \min \left\{ \frac{I
 
 ### Metric function.
 
-$M_\mathrm{jobs} = 1.5 \cdot 10^{-4}~\mathrm{job/mole}$
+$M_\mathrm{cost} = K / O_\mathrm{hydrogen}$
+
+$M_\mathrm{GHG} = \left( \left( 0.00108~\mathrm{gCO2e/gH20} \right) I_\mathrm{water} + \left( 0.138~\mathrm{gCO2e/kJ} \right) I_\mathrm{electricity} \right) / O_\mathrm{hydrogen}$
+
+$M_\mathrm{jobs} = \left( 0.00015~\mathrm{job/mole} \right) / O_\mathrm{hydrogen}$
 
 
 ### Performance of current design.
@@ -241,7 +245,11 @@ $O_\mathrm{oxygen} = 14~\mathrm{g/mole}$
 
 $O_\mathrm{hydrogen} = 1.8~\mathrm{g/mole}$
 
-$\mu_\mathrm{jobs} = 1.5 \cdot 10^{-4}~\mathrm{job/mole}$
+$\mu_\mathrm{cost} = 0.102~\mathrm{USD/gH2}$
+
+$\mu_\mathrm{GHG} = 21.4~\mathrm{gCO2e/gH2}$
+
+$\mu_\mathrm{jobs} = 0.000083~\mathrm{job/gH2}$
 
 
 # Implementation
@@ -270,7 +278,9 @@ The `indices` table simply describes the various indices available for the varia
 | Simple electrolysis | Input   | Electricity | 1        | Electricity |       |
 | Simple electrolysis | Output  | Oxygen      | 0        | Oxygen      |       |
 | Simple electrolysis | Output  | Hydrogen    | 1        | Hydrogen    |       |
-| Simple electrolysis | Metric  | Jobs        | 0        | Jobs        |       |
+| Simple electrolysis | Metric  | Cost        | 0        | Cost        |       |
+| Simple electrolysis | Metric  | Jobs        | 1        | Jobs        |       |
+| Simple electrolysis | Metric  | GHG         | 2        | GHGs        |       |
 
 
 ### Design variables
@@ -292,6 +302,8 @@ The `design` table specifies the values of all of the variables in the mathemati
 | Simple electrolysis | Base     | Output price      | Oxygen      | 3.0e-3  | USD/g    | $p_\mathrm{oxygen}$         |
 | Simple electrolysis | Base     | Output price      | Hydrogen    | 1.0e-2  | USD/g    | $p_\mathrm{hydrogen}$       |
 
+Note that the `Value` column can either contain numeric literals or Python expressions specifying probability distribution functions. For example, a normal distribution with mean of five and standard deviation of two would be written `st.norm(5, 2)`. All of the [Scipy probability distribution functions](https://docs.scipy.org/doc/scipy-1.4.1/reference/tutorial/stats/continuous.html#continuous-distributions-in-scipy-stats) are available for use, as are two special functions, `constant` and `mixture`. The `constant` distribution is just a single constant value; the `mixture` distribution is the mixture of a list of distributions, with specified relative weights. The `mixture` function is particularly important because it allows one to specify a first distribution in the case of an R&D breakthrough, but a second distribution if no breakthrough occurs.
+
 
 ### Metadata for functions
 
@@ -301,33 +313,63 @@ The `functions` table simply documents which Python module and functions to use 
 |---------------------|-------|---------------------|--------------|------------|------------|---------|-------|
 | Simple electrolysis | numpy | simple_electrolysis | capital_cost | fixed_cost | production | metrics |       |
 
+Currently only the `numpy` style of function is supported, but later `plain` Python functions and `tensorflow` functions will be allowed.
+
 
 ### Parameters for functions
 
 The `parameters` table contains ad-hoc parameters specific to the particular production and metrics functions. The `Offset` column specifies the memory location in the argument for the production and metric functions.
 
-| Technology          | Scenario | Parameter                           | Offset   | Value  | Units                 | Notes |
-|---------------------|----------|-------------------------------------|---------:|-------:|-----------------------|-------|
-| Simple electrolysis | Base     | Oxygen production                   | 0        | 16.00  | g                     |       |
-| Simple electrolysis | Base     | Hydrogen production                 | 1        | 2.00   | g                     |       |
-| Simple electrolysis | Base     | Water consumption                   | 2        | 18.08  | g                     |       |
-| Simple electrolysis | Base     | Electricity consumption             | 3        | 237    | kJ                    |       |
-| Simple electrolysis | Base     | Jobs                                | 4        | 1.5e-4 | job/mole              |       |
-| Simple electrolysis | Base     | Reference scale                     | 5        | 6650   | mole/yr               |       |
-| Simple electrolysis | Base     | Reference capital cost for catalyst | 6        | 0.63   | USD                   |       |
-| Simple electrolysis | Base     | Reference fixed cost for rent       | 7        | 1000   | USD/yr                |       |
+| Technology          | Scenario | Parameter                           | Offset   | Value   | Units                 | Notes                                |
+|---------------------|----------|-------------------------------------|---------:|--------:|-----------------------|--------------------------------------|
+| Simple electrolysis | Base     | Oxygen production                   | 0        | 16.00   | g                     |                                      |
+| Simple electrolysis | Base     | Hydrogen production                 | 1        | 2.00    | g                     |                                      |
+| Simple electrolysis | Base     | Water consumption                   | 2        | 18.08   | g                     |                                      |
+| Simple electrolysis | Base     | Electricity consumption             | 3        | 237     | kJ                    |                                      |
+| Simple electrolysis | Base     | Jobs                                | 4        | 1.5e-4  | job/mole              |                                      |
+| Simple electrolysis | Base     | Reference scale                     | 5        | 6650    | mole/yr               |                                      |
+| Simple electrolysis | Base     | Reference capital cost for catalyst | 6        | 0.63    | USD                   |                                      |
+| Simple electrolysis | Base     | Reference fixed cost for rent       | 7        | 1000    | USD/yr                |                                      |
+| Simple electrolysis | Base     | GHG factor for water                | 8        | 0.00108 | gCO2e/g               | based on 244,956 gallons = 1 Mg CO2e |
+| Simple electrolysis | Base     | GHG factor for electricity          | 9        | 0.138   | gCO2e/kJ              | based on 1 kWh = 0.5 kg CO2e         |
 
 
 ### Units for results
 
 The `results` table simply specifies the units for the results.
 
-| Technology          | Variable | Index    | Units    | Notes |
-|---------------------|----------|----------|----------|-------|
-| Simple electrolysis | Cost     | Cost     | USD/mole |       |
-| Simple electrolysis | Output   | Oxygen   | g/mole   |       |
-| Simple electrolysis | Output   | Hydrogen | g/mole   |       |
-| Simple electrolysis | Metric   | Jobs     | job/mole |       |
+| Technology          | Variable | Index    | Units     | Notes |
+|---------------------|----------|----------|-----------|-------|
+| Simple electrolysis | Cost     | Cost     | USD/mole  |       |
+| Simple electrolysis | Output   | Oxygen   | g/mole    |       |
+| Simple electrolysis | Output   | Hydrogen | g/mole    |       |
+| Simple electrolysis | Metric   | Cost     | job/gH2   |       |
+| Simple electrolysis | Metric   | Jobs     | job/gH2   |       |
+| Simple electrolysis | Metric   | GHG      | gCO2e/gH2 |       |
+
+
+### Tranches of investments.
+
+In the `tranches` table, each *category* of investment contains a set of mutually exclusive *tranches* that may be associated with one or more *scenarios* defined in the `designs` table. Typically, a category is associated with a technology area and each tranche corresponds to an investment strategy within that category.
+
+| Category         | Tranche                 | Scenario                          | Notes |
+|------------------|-------------------------|-----------------------------------|-------|
+| Electrolysis R&D | No Electrolysis R&D     | Base Electrolysis                 |       |
+| Electrolysis R&D | Low Electrolysis R&D    | Slow Progress on Electrolysis     |       |
+| Electrolysis R&D | Medium Electrolysis R&D | Moderate Progress on Electrolysis |       |
+| Electrolysis R&D | High Electrolysis R&D   | Fast Progress on Electrolysis     |       |
+
+
+### Investments
+
+In the `investments` table, each *investment* is associated with a single *tranche* in one or more *categories*. An investment typically combines tranches from several different investment categories.
+
+| Investment          | Category         | Tranche                 | Amount  | Notes |
+|---------------------|------------------|-------------------------|--------:|-------|
+| No R&D Spending     | Electrolysis R&D | No Electrolysis R&D     | 0       |       |
+| Low R&D Spending    | Electrolysis R&D | Low Electrolysis R&D    | 1000000 |       |
+| Medium R&D Spending | Electrolysis R&D | Medium Electrolysis R&D | 2500000 |       |
+| High R&D Spending   | Electrolysis R&D | High Electrolysis R&D   | 5000000 |       |
 
 
 ## Python module and functions
@@ -371,15 +413,26 @@ def production(capital, fixed, input, parameter):
   hydrogen = np.multiply(output, parameter[1])
 
   # Package results.
-  return np.vstack([oxygen, hydrogen])
+  return np.stack([oxygen, hydrogen])
 
 
 # Metrics function.
-def metrics(capital, fixed, input, outputs, parameter):
+def metrics(capital, fixed, input_raw, input, output_raw, output, cost, parameter):
 
-  # Trivial jobs calculation.
-  jobs = parameter[4]
+  # Hydrogen output.
+  hydrogen = output[1]
+
+  # Cost of hydrogen.
+  cost1 = np.divide(cost, hydrogen)
+
+  # Jobs normalized to hydrogen.
+  jobs = np.divide(parameter[4], hydrogen)
+
+  # GHGs associated with water and electricity.
+  water       = np.multiply(input_raw[0], parameter[8])
+  electricity = np.multiply(input_raw[1], parameter[9])
+  co2e = np.divide(np.add(water, electricity), hydrogen)
 
   # Package results.
-  return np.vstack([jobs])
+  return np.stack([cost1, jobs, co2e])
 ```
