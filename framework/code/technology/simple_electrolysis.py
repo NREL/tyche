@@ -20,7 +20,7 @@ def fixed_cost(scale, parameter):
 
 
 # Production function.
-def production(capital, fixed, input, parameter):
+def production(scale, capital, lifetime, fixed, input, parameter):
 
   # Moles of input.
   water       = np.divide(input[0], parameter[2])
@@ -38,7 +38,7 @@ def production(capital, fixed, input, parameter):
 
 
 # Metrics function.
-def metrics(capital, fixed, input_raw, input, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
 
   # Hydrogen output.
   hydrogen = output[1]

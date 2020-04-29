@@ -1,6 +1,6 @@
 % Production-Function Approach to Portfolio Evaluation
-% Version 1.3 Draft
-% 27 April 2020
+% Version 1.4 Draft
+% 28 April 2020
 
 
 # Concept
@@ -85,14 +85,14 @@ The waste relative to the idealized production process is captured by the $\eta$
 
 The production function idealizes production by ignoring waste, but accounting for physical and technical processes (e.g., stoichiometry). This requires a technical model or a tabulation/fit of the results of technical modeling.
 
-$O^*_o = P_o(C_c, F_f, I^*_i, \alpha_p)$
+$O^*_o = P_o(S, C_c, \tau_c, F_f, I^*_i, \alpha_p)$
 
 
 ## Metrics
 
 Metrics such as efficiency, lifetime, or carbon footprint are also compute based on the physical and technical characteristics of the process. This requires a technical model or a tabulation/fit of the results of technical modeling. We use the convention that higher values are worse and lower values are better.
 
-$\mu_m = M_m(C_c, F_f, I_i, I^*_i, O^*_o, O_o, K, \alpha_p)$
+$\mu_m = M_m(S, C_c, \tau_c, F_f, I_i, I^*_i, O^*_o, O_o, K, \alpha_p)$
 
 
 ## Scenarios
