@@ -1,0 +1,57 @@
+Technology	Scenario	Parameter	Offset	Value	Units	Notes
+Simple pv	Base PV	Cells per module	0	72	cell/module	From Kavlak et al. (2018)
+Simple pv	Base PV	Wafer area	1	243	cm2	From Kavlak et al. (2018)
+Simple pv	Base PV	Wafer thickness	2	180	um	From Kavlak et al. (2018)
+Simple pv	Base PV	Wafer density	3	2.33	g/cm3	From Kavlak et al. (2018)
+Simple pv	Base PV	Polysilicon price	4	26	$/kg	2015$. From Kavlak et al. (2018)
+Simple pv	Base PV	Silicon utilization	5	0.45	unitless	From Kavlak et al. (2018)
+Simple pv	Base PV	Non-silicon materials cost	6	0.6791	$/cm2	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Base PV	Reference plant cost	7	1.5513	$/cell	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Base PV	Plant size	8	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Base PV	Reference plant size	9	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Base PV	Scaling factor	10	0.27	unitless	From Kavlak et al. (2018)
+Simple pv	Base PV	Production yield	11	0.95	unitless	Production waste parameter. Include as an output efficiency? From Kavlak et al. (2018)
+Simple pv	Base PV	Module area utilization	12	0.9	unitless	From Kavlak et al. (2018)
+Simple pv	Base PV	GHG factor for electricity	13	400	gCO2e/kWh	Rough approximation for US Grid
+Simple pv	Slow Progress on PV	Cells per module	0	72	cell/module	From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Wafer area	1	243	cm2	From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Wafer thickness	2	180	um	From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Wafer density	3	2.33	g/cm3	From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Polysilicon price	4	26	$/kg	2015$. From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Silicon utilization	5	0.45	unitless	From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Non-silicon materials cost	6	0.6791	$/cm2	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Reference plant cost	7	1.5513	$/cell	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Plant size	8	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Slow Progress on PV	Reference plant size	9	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Slow Progress on PV	Scaling factor	10	0.27	unitless	From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Production yield	11	0.95	unitless	Production waste parameter. Include as an output efficiency? From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	Module area utilization	12	0.9	unitless	From Kavlak et al. (2018)
+Simple pv	Slow Progress on PV	GHG factor for electricity	13	400	gCO2e/kWh	Rough approximation for US Grid
+Simple pv	Moderate Progress on PV	Cells per module	0	72	cell/module	From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Wafer area	1	243	cm2	From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Wafer thickness	2	180	um	From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Wafer density	3	2.33	g/cm3	From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Polysilicon price	4	26	$/kg	2015$. From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Silicon utilization	5	0.45	unitless	From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Non-silicon materials cost	6	0.6791	$/cm2	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Reference plant cost	7	1.5513	$/cell	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Plant size	8	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Moderate Progress on PV	Reference plant size	9	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Moderate Progress on PV	Scaling factor	10	0.27	unitless	From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Production yield	11	0.95	unitless	Production waste parameter. Include as an output efficiency? From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	Module area utilization	12	0.9	unitless	From Kavlak et al. (2018)
+Simple pv	Moderate Progress on PV	GHG factor for electricity	13	400	gCO2e/kWh	Rough approximation for US Grid
+Simple pv	Fast Progress on PV	Cells per module	0	72	cell/module	From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Wafer area	1	243	cm2	From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Wafer thickness	2	180	um	From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Wafer density	3	2.33	g/cm3	From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Polysilicon price	4	26	$/kg	2015$. From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Silicon utilization	5	0.45	unitless	From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Non-silicon materials cost	6	0.6791	$/cm2	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Reference plant cost	7	1.5513	$/cell	Calculated based on data from Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Plant size	8	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Fast Progress on PV	Reference plant size	9	1000	MW/yr	From Kavlak et al. (2018). Equivalent to 3.35E6 module/yr
+Simple pv	Fast Progress on PV	Scaling factor	10	0.27	unitless	From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Production yield	11	0.95	unitless	Production waste parameter. Include as an output efficiency? From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	Module area utilization	12	0.9	unitless	From Kavlak et al. (2018)
+Simple pv	Fast Progress on PV	GHG factor for electricity	13	400	gCO2e/kWh	Rough approximation for US Grid

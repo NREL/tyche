@@ -1,0 +1,5 @@
+Technology	Variable	Index	Units	Notes
+Simple pv	Cost	Cost	USD/module	
+Simple pv	Output	Electricity	kWh/module	
+Simple pv	Metric	Cost	USD/kWh	
+Simple pv	Metric	GHG	gCO2e/module	
