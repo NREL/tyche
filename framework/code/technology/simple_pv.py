@@ -10,8 +10,23 @@ import numpy as np
 def capital_cost(scale, parameter):
     """Function to calculate the capital cost of the PV module"""
 
+    # Unit conversions.
+    um_to_cm = 0.0001
+    kg_to_g = 1000
+
     # Si materials cost.
-    si_costs = np.divide(np.prod(parameter[0:4]), parameter[5])
+    si_costs = np.divide(np.prod(
+                            [
+                                parameter[0],
+                                parameter[1],
+                                parameter[2],
+                                parameter[3],
+                                parameter[4]
+                            ]
+                        ),
+                        parameter[5]
+                    )
+    si_costs = np.divide(np.multiply(um_to_cm, si_costs), kg_to_g)
 
     # Non-Si materials cost.
     non_si_costs = np.prod([parameter[0], parameter[1], parameter[6]])
@@ -28,7 +43,7 @@ def capital_cost(scale, parameter):
 
     # Sum component costs.
     out = np.sum([si_costs, non_si_costs, plant_costs])
-    
+
     # Package results.
     return np.stack([out])
 
