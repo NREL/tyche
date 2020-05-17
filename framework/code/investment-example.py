@@ -38,13 +38,13 @@ from copy import deepcopy
 # In[2]:
 
 
-designs = ty.Designs("../data")
+designs = ty.Designs("../data/simple_electrolysis")
 
 
 # In[3]:
 
 
-investments = ty.Investments("../data")
+investments = ty.Investments("../data/simple_electrolysis")
 
 
 # ### Compile the production and metric functions for each technology in the dataset.
@@ -134,7 +134,7 @@ scenario_results.xs(1, level="Sample", drop_level=False)
 # In[14]:
 
 
-scenario_results.to_csv("example-scenario.csv")
+scenario_results.to_csv("../output/simple_electrolysis/example-scenario.csv")
 
 
 # ### Plot GHG metric.
@@ -226,13 +226,13 @@ investment_results.summary.xs(1, level="Sample", drop_level=False)
 # In[22]:
 
 
-investment_results.amounts.to_csv("example-investment-amounts.csv")
+investment_results.amounts.to_csv("../output/simple_electrolysis/example-investment-amounts.csv")
 
 
 # In[23]:
 
 
-investment_results.metrics.to_csv("example-investment-metrics.csv")
+investment_results.metrics.to_csv("../output/simple_electrolysis/example-investment-metrics.csv")
 
 
 # ### Plot GHG metric.
