@@ -1,0 +1,4 @@
+Technology	Variable	Index	Units	Notes
+Residential PV	Cost	Cost	$/system	
+Residential PV	Output	Electricity	kWh	
+Residential PV	Metric	LCOE	$/kWh	
