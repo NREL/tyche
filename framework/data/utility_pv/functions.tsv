@@ -1,2 +1,2 @@
 Technology	Style	Module	Capital	Fixed	Production	Metrics	Notes
-Simple pv	numpy	simple_pv	capital_cost	fixed_cost	production	metrics	
+Simple pv	numpy	utility_pv	capital_cost	fixed_cost	production	metrics	

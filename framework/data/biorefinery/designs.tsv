@@ -4,16 +4,10 @@ Biorefinery	Ideal	Input efficiency	Feedstock	0.9	1
 Biorefinery	Ideal	Input	Energy	5000	MJ/biorefinery	
 Biorefinery	Ideal	Input efficiency	Energy	0.85	1	
 Biorefinery	Ideal	Output efficiency	Product	0.89	1	
-Biorefinery	Ideal	Capital cost	Preprocessing	1000	USD	
-Biorefinery	Ideal	Capital cost	Fermentation	1500	USD	
-Biorefinery	Ideal	Capital cost	Conversion	750	USD	
-Biorefinery	Ideal	Capital cost	Separation	1250	USD	
 Biorefinery	Ideal	Lifetime	Preprocessing	25	year	
 Biorefinery	Ideal	Lifetime	Fermentation	25	year	
 Biorefinery	Ideal	Lifetime	Conversion	25	year	
 Biorefinery	Ideal	Lifetime	Separation	25	year	
-Biorefinery	Ideal	Fixed cost	Rent	5000	USD/year	
-Biorefinery	Ideal	Fixed cost	Insurance	2000	USD/year	
 Biorefinery	Ideal	Scale		1	biorefinery/year	
 Biorefinery	Ideal	Input price	Feedstock	45	USD/ton feedstock	
 Biorefinery	Ideal	Input price	Energy	0.5	USD/MJ	
@@ -23,16 +17,10 @@ Biorefinery	Actual	Input efficiency	Feedstock	0.82	1
 Biorefinery	Actual	Input	Energy	5000	MJ/biorefinery	
 Biorefinery	Actual	Input efficiency	Energy	0.71	1	
 Biorefinery	Actual	Output efficiency	Product	0.8	1	
-Biorefinery	Actual	Capital cost	Preprocessing	1000	USD	
-Biorefinery	Actual	Capital cost	Fermentation	1500	USD	
-Biorefinery	Actual	Capital cost	Conversion	750	USD	
-Biorefinery	Actual	Capital cost	Separation	1250	USD	
 Biorefinery	Actual	Lifetime	Preprocessing	25	year	
 Biorefinery	Actual	Lifetime	Fermentation	25	year	
 Biorefinery	Actual	Lifetime	Conversion	25	year	
 Biorefinery	Actual	Lifetime	Separation	25	year	
-Biorefinery	Actual	Fixed cost	Rent	5000	USD/year	
-Biorefinery	Actual	Fixed cost	Insurance	2000	USD/year	
 Biorefinery	Actual	Scale		1	biorefinery/year	
 Biorefinery	Actual	Input price	Feedstock	45	USD/ton feedstock	
 Biorefinery	Actual	Input price	Energy	0.5	USD/MJ	

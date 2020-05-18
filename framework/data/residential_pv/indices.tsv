@@ -3,6 +3,6 @@ Residential PV	Capital	Module	0	system module
 Residential PV	Capital	Inverter	1	system inverters	
 Residential PV	Capital	BoS	2	balance of system	
 Residential PV	Fixed	System	0	whole system	
-Residential PV	Input	N/A	0	no inputs
+Residential PV	Input	N/A	0	no inputs	
 Residential PV	Output	Electricity	0	electricity generated	
 Residential PV	Metric	LCOE	0	levelized cost of energy	

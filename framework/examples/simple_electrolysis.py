@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Tyche Example
+# # Tyche Example for Simple Electrolysis
 
 # ## Set up.
 
@@ -10,12 +10,20 @@
 # In[ ]:
 
 
-get_ipython().system("pip install 'numpy>=1.17.2' 'pandas>=0.25.1'")
+#!pip install 'numpy>=1.17.2' 'pandas>=0.25.1'
 
 
 # ### Import packages.
 
 # In[1]:
+
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath("../src"))
+
+
+# In[2]:
 
 
 import numpy             as np
@@ -25,7 +33,7 @@ import re                as re
 import scipy.stats       as st
 import seaborn           as sb
 
-# The `tyche` package is located at <https://github.com/NREL/portfolio/tree/master/production-function/framework/code/tyche/>.
+# The `tyche` package is located at <https://github.com/NREL/portfolio/tree/master/production-function/framework/src/tyche/>.
 import tyche             as ty
 
 from copy import deepcopy
@@ -35,13 +43,13 @@ from copy import deepcopy
 
 # ### The data are stored in a set of tab-separated value files in a folder.
 
-# In[2]:
+# In[3]:
 
 
 designs = ty.Designs("../data/simple_electrolysis")
 
 
-# In[3]:
+# In[4]:
 
 
 investments = ty.Investments("../data/simple_electrolysis")
@@ -49,7 +57,7 @@ investments = ty.Investments("../data/simple_electrolysis")
 
 # ### Compile the production and metric functions for each technology in the dataset.
 
-# In[4]:
+# In[5]:
 
 
 designs.compile()
@@ -59,7 +67,7 @@ designs.compile()
 
 # ### The `functions` table specifies where the Python code for each technology resides.
 
-# In[5]:
+# In[6]:
 
 
 designs.functions
@@ -69,7 +77,7 @@ designs.functions
 
 # ### The `indices` table defines the subscripts for variables.
 
-# In[6]:
+# In[7]:
 
 
 designs.indices
@@ -77,7 +85,7 @@ designs.indices
 
 # ### The `designs` table contains the cost, input, efficiency, and price data for a scenario.
 
-# In[7]:
+# In[8]:
 
 
 designs.designs
@@ -85,7 +93,7 @@ designs.designs
 
 # ### The `parameters` table contains additional techno-economic parameters for each technology.
 
-# In[8]:
+# In[9]:
 
 
 designs.parameters
@@ -93,7 +101,7 @@ designs.parameters
 
 # ### The `results` table specifies the units of measure for results of computations.
 
-# In[9]:
+# In[10]:
 
 
 designs.results
@@ -101,7 +109,7 @@ designs.results
 
 # ### The `tranches` table specifies multually exclusive possibilities for investments: only one `Tranch` may be selected for each `Cateogry`.
 
-# In[10]:
+# In[11]:
 
 
 investments.tranches
@@ -109,7 +117,7 @@ investments.tranches
 
 # ### The `investments` table bundles a consistent set of tranches (one per category) into an overall investment.
 
-# In[11]:
+# In[12]:
 
 
 investments.investments
@@ -117,13 +125,13 @@ investments.investments
 
 # ## Evaluate the scenarios in the dataset.
 
-# In[12]:
+# In[13]:
 
 
 scenario_results = designs.evaluate_scenarios(sample_count=50)
 
 
-# In[13]:
+# In[14]:
 
 
 scenario_results.xs(1, level="Sample", drop_level=False)
@@ -131,15 +139,15 @@ scenario_results.xs(1, level="Sample", drop_level=False)
 
 # ### Save results.
 
-# In[14]:
+# In[15]:
 
 
-scenario_results.to_csv("../output/simple_electrolysis/example-scenario.csv")
+scenario_results.to_csv("output/simple_electrolysis/example-scenario.csv")
 
 
 # ### Plot GHG metric.
 
-# In[15]:
+# In[16]:
 
 
 g = sb.boxplot(
@@ -157,7 +165,7 @@ g.set_xticklabels(g.get_xticklabels(), rotation=15);
 
 # ### Plot cost metric.
 
-# In[16]:
+# In[17]:
 
 
 g = sb.boxplot(
@@ -175,7 +183,7 @@ g.set_xticklabels(g.get_xticklabels(), rotation=15);
 
 # ### Plot employment metric.
 
-# In[17]:
+# In[18]:
 
 
 g = sb.boxplot(
@@ -193,7 +201,7 @@ g.set_xticklabels(g.get_xticklabels(), rotation=15);
 
 # ## Evaluate the investments in the dataset.
 
-# In[18]:
+# In[19]:
 
 
 investment_results = investments.evaluate_investments(designs, sample_count=50)
@@ -201,7 +209,7 @@ investment_results = investments.evaluate_investments(designs, sample_count=50)
 
 # ### Costs of investments.
 
-# In[19]:
+# In[20]:
 
 
 investment_results.amounts
@@ -209,13 +217,13 @@ investment_results.amounts
 
 # ### Benefits of investments.
 
-# In[20]:
+# In[21]:
 
 
 investment_results.metrics.xs(1, level="Sample", drop_level=False)
 
 
-# In[21]:
+# In[22]:
 
 
 investment_results.summary.xs(1, level="Sample", drop_level=False)
@@ -223,21 +231,21 @@ investment_results.summary.xs(1, level="Sample", drop_level=False)
 
 # ### Save results.
 
-# In[22]:
-
-
-investment_results.amounts.to_csv("../output/simple_electrolysis/example-investment-amounts.csv")
-
-
 # In[23]:
 
 
-investment_results.metrics.to_csv("../output/simple_electrolysis/example-investment-metrics.csv")
+investment_results.amounts.to_csv("output/simple_electrolysis/example-investment-amounts.csv")
+
+
+# In[24]:
+
+
+investment_results.metrics.to_csv("output/simple_electrolysis/example-investment-metrics.csv")
 
 
 # ### Plot GHG metric.
 
-# In[24]:
+# In[25]:
 
 
 g = sb.boxplot(
@@ -255,7 +263,7 @@ g.set_xticklabels(g.get_xticklabels(), rotation=15);
 
 # ### Plot cost metric.
 
-# In[25]:
+# In[26]:
 
 
 g = sb.boxplot(
@@ -273,7 +281,7 @@ g.set_xticklabels(g.get_xticklabels(), rotation=15);
 
 # ### Plot employment metric.
 
-# In[26]:
+# In[27]:
 
 
 g = sb.boxplot(
@@ -293,7 +301,7 @@ g.set_xticklabels(g.get_xticklabels(), rotation=15);
 
 # ### Vary the four efficiencies in the design.
 
-# In[27]:
+# In[28]:
 
 
 # Four variables are involved.
@@ -305,7 +313,7 @@ variables = [
 ]
 
 
-# In[28]:
+# In[29]:
 
 
 # Let efficiencies range from 0.75 to 0.975.
@@ -315,14 +323,14 @@ efficiencies
 
 # ### Start from the base case.
 
-# In[29]:
+# In[30]:
 
 
 base_design = designs.designs.xs("Base Electrolysis", level=1, drop_level=False)
 base_design
 
 
-# In[30]:
+# In[31]:
 
 
 base_parameters = designs.parameters.xs("Base Electrolysis", level=1, drop_level=False)
@@ -331,7 +339,7 @@ base_parameters
 
 # ### Generate the new scenarios and append them to the previous ones.
 
-# In[31]:
+# In[32]:
 
 
 sensitivities = deepcopy(designs)
@@ -339,7 +347,7 @@ sensitivities.designs = sensitivities.designs[0:0]
 sensitivities.parameters = sensitivities.parameters[0:0]
 
 
-# In[32]:
+# In[33]:
 
 
 # Iterate over variables and efficiencies.
@@ -363,7 +371,7 @@ for variable, index in variables:
 
 # #### Remember to compile the design, since we've added scenarios.
 
-# In[33]:
+# In[34]:
 
 
 sensitivities.compile()
@@ -371,19 +379,19 @@ sensitivities.compile()
 
 # #### See how many rows there are in the tables now.
 
-# In[34]:
+# In[35]:
 
 
 sensitivities.designs.shape
 
 
-# In[35]:
+# In[36]:
 
 
 sensitivities.parameters.shape
 
 
-# In[36]:
+# In[37]:
 
 
 sensitivities.designs
@@ -391,7 +399,7 @@ sensitivities.designs
 
 # ### Compute the results.
 
-# In[37]:
+# In[38]:
 
 
 results = sensitivities.evaluate_scenarios(1)
@@ -400,19 +408,19 @@ results
 
 # ### Plot the cost results.
 
-# In[38]:
+# In[39]:
 
 
 cost_results = results.xs("Cost", level="Variable").reset_index()[["Scenario", "Value"]]
 
 
-# In[39]:
+# In[40]:
 
 
 cost_results[0:10]
 
 
-# In[40]:
+# In[41]:
 
 
 cost_results["Variable"  ] = cost_results["Scenario"].apply(lambda x: re.sub(r'^Let (.*) @ (.*) =.*$', '\\1[\\2]', x))
@@ -420,14 +428,14 @@ cost_results["Efficiency"] = cost_results["Scenario"].apply(lambda x: float(re.s
 cost_results["Cost [USD/mole]"] = cost_results["Value"]
 
 
-# In[41]:
+# In[42]:
 
 
 cost_results = cost_results[["Variable", "Efficiency", "Cost [USD/mole]"]]
 cost_results[0:10]
 
 
-# In[42]:
+# In[43]:
 
 
 # Here is a really simple plot.

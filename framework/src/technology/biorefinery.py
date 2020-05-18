@@ -5,8 +5,26 @@
 import numpy as np
 
 
+# Capital-cost function.
+def capital_cost(scale, parameter):
+    return np.stack([
+        parameter[3],
+        parameter[4],
+        parameter[5],
+        parameter[6],
+    ])
+
+
+# Fixed-cost function.
+def fixed_cost(scale, parameter):
+    return np.stack([
+        parameter[7],
+        parameter[8],
+    ])
+
+
 # Production function.
-def production(capital, fixed, input, parameter):
+def production(scale, capital, lifetime, fixed, input, parameter):
 
     # input efficiency (preprocessing efficiency) is accounted for in Designs.py
     # ditto output efficiency (separation efficiency)
@@ -19,6 +37,6 @@ def production(capital, fixed, input, parameter):
 
 
 # Metrics function.
-def metrics(capital, fixed, input, outputs, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
 
     return np.vstack([parameter[2]])

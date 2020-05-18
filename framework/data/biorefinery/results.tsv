@@ -1,4 +1,4 @@
 Technology	Variable	Index	Units	Notes
 Biorefinery	Cost	Cost	USD/biorefinery	
 Biorefinery	Output	Product	tons product/biorefinery	
-Biorefinery	Metric	Jobs	jobs/biorefinery
+Biorefinery	Metric	Jobs	jobs/biorefinery	
