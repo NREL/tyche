@@ -23,7 +23,7 @@
 # Potential topics
 
 
-## 1. Crystaline silicon Wafer design
+## 1. Crystaline silicon wafer design
 
 *   Wafer area
 *   Wafer thickness
@@ -32,13 +32,18 @@
 *   Production yield
 
 
-### 2. Tandem thin-films
+## 2. Tandem thin-films
 
 *   Design parameters
 *   Architectures
 
 
-## 2. Modules design
+## 3. Polysilicon module
+
+*   (many parameters)
+
+
+## 4. Module design
 
 *   Module Capital
 *   Module Lifetime
@@ -49,7 +54,7 @@
 *   Module Soiling Loss
 
 
-## 3. Inverter design
+## 5. Inverter design
 
 *   Inverter Capital
 *   Inverter Lifetime
@@ -57,7 +62,7 @@
 *   Inverter Efficiency
 
 
-## 4. Balance-of-system design
+## 6. Balance-of-system design
 
 *   Hardware Capital
 *   Direct Labor
