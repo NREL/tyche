@@ -1,0 +1,10 @@
+Category	Tranche	Scenario	Amount	Notes
+Module R&D	Module Low R&D	Module Slow Progress	1500000	
+Module R&D	Module Medium R&D	Module Moderate Progress	3000000	
+Module R&D	Module High R&D	Module Fast Progress	4500000	
+Inverter R&D	Inverter Low R&D	Inverter Slow Progress	1000000	
+Inverter R&D	Inverter Medium R&D	Inverter Moderate Progress	2000000	
+Inverter R&D	Inverter High R&D	Inverter Fast Progress	3000000	
+BoS R&D	BoS Low R&D	BoS Slow Progress	300000	
+BoS R&D	BoS Medium R&D	Bos Moderate Progress	600000	
+BoS R&D	BoS High R&D	Bos Fast Progress	900000	
