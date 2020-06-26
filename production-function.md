@@ -1,6 +1,6 @@
 % Production-Function Approach to Portfolio Evaluation
-% Version 1.4 Draft
-% 28 April 2020
+% Version 1.5 Draft
+% 26 June 2020
 
 
 # Concept
@@ -352,24 +352,24 @@ The `results` table simply specifies the units for the results.
 
 In the `tranches` table, each *category* of investment contains a set of mutually exclusive *tranches* that may be associated with one or more *scenarios* defined in the `designs` table. Typically, a category is associated with a technology area and each tranche corresponds to an investment strategy within that category.
 
-| Category         | Tranche                 | Scenario                          | Notes |
-|------------------|-------------------------|-----------------------------------|-------|
-| Electrolysis R&D | No Electrolysis R&D     | Base Electrolysis                 |       |
-| Electrolysis R&D | Low Electrolysis R&D    | Slow Progress on Electrolysis     |       |
-| Electrolysis R&D | Medium Electrolysis R&D | Moderate Progress on Electrolysis |       |
-| Electrolysis R&D | High Electrolysis R&D   | Fast Progress on Electrolysis     |       |
+| Category         | Tranche                 | Scenario                          | Amount  | Notes |
+|------------------|-------------------------|-----------------------------------|--------:|-------|
+| Electrolysis R&D | No Electrolysis R&D     | Base Electrolysis                 | 0       |       |
+| Electrolysis R&D | Low Electrolysis R&D    | Slow Progress on Electrolysis     | 1000000 |       |
+| Electrolysis R&D | Medium Electrolysis R&D | Moderate Progress on Electrolysis | 2500000 |       |
+| Electrolysis R&D | High Electrolysis R&D   | Fast Progress on Electrolysis     | 5000000 |       |
 
 
 ### Investments
 
 In the `investments` table, each *investment* is associated with a single *tranche* in one or more *categories*. An investment typically combines tranches from several different investment categories.
 
-| Investment          | Category         | Tranche                 | Amount  | Notes |
-|---------------------|------------------|-------------------------|--------:|-------|
-| No R&D Spending     | Electrolysis R&D | No Electrolysis R&D     | 0       |       |
-| Low R&D Spending    | Electrolysis R&D | Low Electrolysis R&D    | 1000000 |       |
-| Medium R&D Spending | Electrolysis R&D | Medium Electrolysis R&D | 2500000 |       |
-| High R&D Spending   | Electrolysis R&D | High Electrolysis R&D   | 5000000 |       |
+| Investment          | Category         | Tranche                 | Notes |
+|---------------------|------------------|-------------------------|-------|
+| No R&D Spending     | Electrolysis R&D | No Electrolysis R&D     |       |
+| Low R&D Spending    | Electrolysis R&D | Low Electrolysis R&D    |       |
+| Medium R&D Spending | Electrolysis R&D | Medium Electrolysis R&D |       |
+| High R&D Spending   | Electrolysis R&D | High Electrolysis R&D   |       |
 
 
 ## Python module and functions
