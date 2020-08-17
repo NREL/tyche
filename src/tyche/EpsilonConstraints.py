@@ -10,7 +10,7 @@ class EpsilonConstraintMinimizer:
   def __init__(self, evaluator, scale = 1e6):
     self.evaluator = evaluator
     self.scale = scale
-    self._max_metrics = None
+    self._max_metrics = {}
 
   def _f(self, statistic):
     return lambda x: - self.evaluator.evaluate_statistic(
@@ -63,7 +63,12 @@ class EpsilonConstraintMinimizer:
     return x, y
 
   def max_metrics(self, max_amount = None, total_amount = None, statistic = np.mean):
-    return {
+    self._max_metrics = {
       metric : self.maximize(metric, max_amount, total_amount, None, statistic)
       for metric in self.evaluator.metrics
     }
+    return pd.Series(
+      [v[1][k] for k, v in self._max_metrics.items()],
+      name  = "Value"                                ,
+      index = self._max_metrics.keys()               ,
+    )

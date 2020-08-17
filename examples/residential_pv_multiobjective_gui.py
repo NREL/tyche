@@ -7,17 +7,17 @@ import pandas as pd
 import tyche  as ty
 
 
+investments = ty.Investments("../data/residential_pv_multiobjective")
 designs     = ty.Designs("../data/residential_pv_multiobjective")
 designs.compile()
-investments = ty.Investments("../data/residential_pv_multiobjective")
 
 tranche_results = investments.evaluate_tranches(designs, sample_count = 25)
 
-e = ty.Evaluator(investments.tranches, tranche_results.summary)
+evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 
-ecm = ty.EpsilonConstraintMinimizer(e)
+minimizer = ty.EpsilonConstraintMinimizer(evaluator)
 
-q = ecm.max_metrics()
+q = minimizer.max_metrics()
 q
 
 
