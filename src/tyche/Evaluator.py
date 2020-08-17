@@ -1,5 +1,6 @@
 
-import numpy as np
+import numpy  as np
+import pandas as pd
 
 from scipy.interpolate import interp1d
 
@@ -7,7 +8,7 @@ from scipy.interpolate import interp1d
 class Evaluator:
 
   def __init__(self, tranches, summary):
-    self.amounts    = tranches.groupby(["Category", "Tranche"]).sum() / 1000
+    self.amounts    = tranches.groupby(["Category", "Tranche"]).sum()
     self.categories = summary.reset_index()["Category"].unique()
     self.metrics    = summary.reset_index()["Index"   ].unique()
     self.units      = summary[["Units"]].groupby("Index").max()
@@ -37,4 +38,16 @@ class Evaluator:
       lambda row: row["Interpolator"](row["Amount"]), axis = 1
     ).rename(
       "Value"
+    )
+
+  def evaluate_statistic(self, amounts, statistic = np.mean):
+    return self.evaluate(
+      pd.DataFrame(amounts)
+    ).groupby(
+      ["Index", "Sample"]
+    ).sum(
+    ).groupby(
+      "Index"
+    ).aggregate(
+      statistic
     )

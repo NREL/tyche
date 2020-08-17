@@ -35,7 +35,7 @@ class DecisionWindow:
         column = j,
       )
       tk.Scale(
-        self.root                                                                ,
+        self.root                                                                 ,
         variable   = self.amounts[self.evaluator.categories[j]]                   ,
         label      = "Investment [k$]"                                            ,
         from_      = 0                                                            ,
@@ -58,12 +58,12 @@ class DecisionWindow:
       )
     self.sliders["Aggregate"] = tk.DoubleVar(self.root)
     tk.Scale(
-      self.root                           ,
-      variable = self.sliders["Aggregate"],
-      label    = "Investment [k$]"        ,
-      from_    = 0                        ,
-      to       = self.evaluator.max_amount.sum()[0] ,
-      orient = tk.HORIZONTAL              ,
+      self.root                                    ,
+      variable = self.sliders["Aggregate"]         ,
+      label    = "Investment [k$]"                 ,
+      from_    = 0                                 ,
+      to       = self.evaluator.max_amount.sum()[0],
+      orient = tk.HORIZONTAL                       ,
     ).grid(
       row    = n_metrics + 3   ,
       column = n_categories + 2,
