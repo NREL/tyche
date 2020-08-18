@@ -37,7 +37,7 @@ class DecisionWindow:
       tk.Scale(
         self.root                                                                 ,
         variable   = self.amounts[self.evaluator.categories[j]]                   ,
-        label      = "Investment [k$]"                                            ,
+        label      = "Investment [$]"                                             ,
         from_      = 0                                                            ,
         to         = self.evaluator.max_amount.xs(self.evaluator.categories[j])[0],
         resolution = 50                                                           ,
@@ -47,28 +47,30 @@ class DecisionWindow:
         column = j            ,
         sticky = tk.W + tk.E  ,
       )
-      self.fixeds[self.evaluator.categories[j]] = tk.BooleanVar(self.root)
-      tk.Checkbutton(
-        self.root                                            ,
-        variable  = self.fixeds[self.evaluator.categories[j]],
-        text      = "Fixed?"                                 ,
-      ).grid(
-        row    = n_metrics + 4,
-        column = j            ,
-      )
+#     self.fixeds[self.evaluator.categories[j]] = tk.BooleanVar(self.root)
+#     tk.Checkbutton(
+#       self.root                                            ,
+#       variable  = self.fixeds[self.evaluator.categories[j]],
+#       text      = "Fixed?"                                 ,
+#     ).grid(
+#       row    = n_metrics + 4,
+#       column = j            ,
+#     )
     self.sliders["Aggregate"] = tk.DoubleVar(self.root)
-    tk.Scale(
+    aggregate = tk.Scale(
       self.root                                    ,
       variable = self.sliders["Aggregate"]         ,
-      label    = "Investment [k$]"                 ,
+      label    = "Investment [$]"                  ,
       from_    = 0                                 ,
       to       = self.evaluator.max_amount.sum()[0],
       orient = tk.HORIZONTAL                       ,
-    ).grid(
+    )
+    aggregate.grid(
       row    = n_metrics + 3   ,
       column = n_categories + 2,
       sticky = tk.W + tk.E     ,
     )
+    aggregate.configure(state='disabled')
     for i in range(n_metrics):
       tk.Label(
         self.root                                                                                   ,
@@ -77,39 +79,39 @@ class DecisionWindow:
         row    = 3 + i       ,
         column = n_categories,
       )
-    self.priority = tk.StringVar(self.root)
-    self.priority.set(self.evaluator.metrics[0])
-    tk.Label(self.root, text = "Priority Metric:").grid(row = 7, column = 3, sticky = tk.E)
-    tk.OptionMenu(
-      self.root              ,
-      self.priority          ,
-      *self.evaluator.metrics,
-    ).grid(
-      row    = n_metrics + 4   ,
-      column = n_categories + 2,
-      sticky = tk.W + tk.E     ,
-    )
-    self.percentile = tk.DoubleVar(self.root)
-    self.percentile.set(50)
-    tk.Label(
-      self.root                        ,
-      text      = "Minimum Percentile:",
-    ).grid(
-      row    = n_metrics + 5,
-      column = n_categories ,
-      sticky = tk.E + tk.S  ,
-    )
-    tk.Scale(
-      self.root                  ,
-      variable  = self.percentile,
-      from_     = 0              ,
-      to        = 100            ,
-      orient    = tk.HORIZONTAL  ,
-    ).grid(
-      row    = n_metrics + 5     ,
-      column = n_categories + 2  ,
-      sticky = tk.W + tk.E + tk.N,
-    )
+#   self.priority = tk.StringVar(self.root)
+#   self.priority.set(self.evaluator.metrics[0])
+#   tk.Label(self.root, text = "Priority Metric:").grid(row = 7, column = 3, sticky = tk.E)
+#   tk.OptionMenu(
+#     self.root              ,
+#     self.priority          ,
+#     *self.evaluator.metrics,
+#   ).grid(
+#     row    = n_metrics + 4   ,
+#     column = n_categories + 2,
+#     sticky = tk.W + tk.E     ,
+#   )
+#   self.percentile = tk.DoubleVar(self.root)
+#   self.percentile.set(50)
+#   tk.Label(
+#     self.root                        ,
+#     text      = "Minimum Percentile:",
+#   ).grid(
+#     row    = n_metrics + 5,
+#     column = n_categories ,
+#     sticky = tk.E + tk.S  ,
+#   )
+#   tk.Scale(
+#     self.root                  ,
+#     variable  = self.percentile,
+#     from_     = 0              ,
+#     to        = 100            ,
+#     orient    = tk.HORIZONTAL  ,
+#   ).grid(
+#     row    = n_metrics + 5     ,
+#     column = n_categories + 2  ,
+#     sticky = tk.W + tk.E + tk.N,
+#   )
     self.job = None
     self.reevaluate_immediate()
     self.canvases = {}
@@ -140,6 +142,7 @@ class DecisionWindow:
   def reevaluate_immediate(self, next = lambda: None):
     self.job = None
     amounts = self.amounts.apply(lambda v: float(v.get())).to_frame()
+    self.sliders["Aggregate"].set(amounts.values.sum())
     self.evaluation = self.evaluator.evaluate(amounts)
     next()
 

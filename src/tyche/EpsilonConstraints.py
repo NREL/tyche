@@ -2,7 +2,14 @@
 import numpy  as np
 import pandas as pd
 
-from scipy.optimize import fmin_slsqp, minimize
+from collections    import namedtuple
+from scipy.optimize import fmin_slsqp
+
+
+Optimum = namedtuple(
+  "Optimum",
+  ["exit_code", "exit_message", "amounts", "metrics"]
+)
 
 
 class EpsilonConstraintOptimizer:
@@ -70,7 +77,12 @@ class EpsilonConstraintOptimizer:
     )
     x = pd.Series(self.scale * result[0], name = "Amount", index = self.evaluator.max_amount.index)
     y = self.evaluator.evaluate_statistic(x, statistic)
-    return result[3], result[4], x, y
+    return Optimum(
+      exit_code    = result[3],
+      exit_message = result[4],
+      amounts      = x        ,
+      metrics      = y        ,
+    )
 
   def max_metrics(
     self                  ,
@@ -86,7 +98,7 @@ class EpsilonConstraintOptimizer:
       for metric in self.evaluator.metrics
     }
     return pd.Series(
-      [v[3][k] if v[0] == 0 else np.nan for k, v in self._max_metrics.items()],
-      name  = "Value"                                                         ,
-      index = self._max_metrics.keys()                                        ,
+      [v.metrics[k] if v.exit_code == 0 else np.nan for k, v in self._max_metrics.items()],
+      name  = "Value"                                                                     ,
+      index = self._max_metrics.keys()                                                    ,
     )
