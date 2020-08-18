@@ -2,7 +2,7 @@
 import numpy  as np
 import pandas as pd
 
-from scipy.optimize import minimize
+from scipy.optimize import fmin_slsqp, minimize
 
 
 class EpsilonConstraintOptimizer:
@@ -32,50 +32,53 @@ class EpsilonConstraintOptimizer:
     min_metric   = None   ,
     statistic    = np.mean,
     initial      = None   ,
-    tol          = 1e-10  ,
-    maxiter      = 25     ,
+    tol          = 1e-8   ,
+    maxiter      = 50     ,
     verbose      = 0      ,
   ):
     i = np.where(self.evaluator.metrics == metric)[0][0]
     if max_amount is None:
       max_amount = self.evaluator.max_amount.Amount
     bounds = [(0, x) for x in max_amount / self.scale]
-    constraints = []
-    if total_amount is not None:
-      constraints += [
-        {"type" : "ineq", "fun" : lambda x: total_amount / self.scale - sum(x)}
-      ]
-    if min_metric is not None:
-      constraints += [
-        {"type" : "ineq", "fun" : lambda x: x[np.where(self.evaluator.metrics == index)[0][0]] - value}
-        for index, value in min_metric.iteritems()
-      ]    
+    def g(x):
+      constraints = [1]
+      if total_amount is not None:
+        limit = total_amount / self.scale
+        value = sum(x)
+        if verbose >= 3:
+          print(x, limit, value, value <= limit)
+        constraints = [limit - value]
+      if min_metric is not None:
+        for index, limit in min_metric.iteritems():
+          j = np.where(self.evaluator.metrics == index)[0][0]
+          value = - self._f(statistic, verbose)(x)[j]
+          if verbose >= 3:
+            print(x, limit, value, value >= limit)
+          constraints += [value - limit]
+      return constraints
     if initial is None:
-      initial = max_amount.values / 2
-    result = minimize(
-      self._fi(i, statistic, verbose)    ,
-      initial / self.scale               ,
-      method      = "SLSQP"              ,
-      bounds      = bounds               ,
-      constraints = constraints          ,
-      tol         = tol                  ,
-      options = {
-        "maxiter" : maxiter                ,
-        "disp"    : verbose >= 1           ,
-        "iprint"  : 0 if verbose < 2 else 3,
-      }
+      initial = max_amount.values / 10
+    result = fmin_slsqp(
+      self._fi(i, statistic, verbose),
+      initial / self.scale ,
+      f_ieqcons   = g      ,
+      bounds      = bounds ,
+      iter        = maxiter,
+      acc         = tol    ,
+      iprint      = verbose,
+      full_output = True   ,
     )
-    x = pd.Series(self.scale * result.x, name = "Amount", index = self.evaluator.max_amount.index)
+    x = pd.Series(self.scale * result[0], name = "Amount", index = self.evaluator.max_amount.index)
     y = self.evaluator.evaluate_statistic(x, statistic)
-    return result.message, x, y
+    return result[3], result[4], x, y
 
   def max_metrics(
     self                  ,
     max_amount   = None   ,
     total_amount = None   ,
     statistic    = np.mean,
-    tol          = 1e-10  ,
-    maxiter      = 25     ,
+    tol          = 1e-8   ,
+    maxiter      = 50     ,
     verbose      = 0      ,
   ):
     self._max_metrics = {
@@ -83,7 +86,7 @@ class EpsilonConstraintOptimizer:
       for metric in self.evaluator.metrics
     }
     return pd.Series(
-      [v[2][k] for k, v in self._max_metrics.items()],
-      name  = "Value"                                ,
-      index = self._max_metrics.keys()               ,
+      [v[3][k] if v[0] == 0 else np.nan for k, v in self._max_metrics.items()],
+      name  = "Value"                                                         ,
+      index = self._max_metrics.keys()                                        ,
     )

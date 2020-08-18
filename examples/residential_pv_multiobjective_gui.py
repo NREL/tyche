@@ -20,22 +20,16 @@ optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 q = optimizer.max_metrics(verbose = 0)
 q
 
-
-xt = 2e6
-x = (optimizer._max_metrics["GHG"][1].values + optimizer._max_metrics["GHG"][1].values) / 2
-x = xt * x / sum(x)
-sum(x)
-
-
 optimizer.maximize(
   "LCOE"                                                       ,
-  total_amount = xt                                            ,
+  total_amount = 3e6                                           ,
   min_metric   = pd.Series([40], name="Value", index = ["GHG"]),
-  initial      = x                                             ,
-# maxiter      = 100                                           ,
-  verbose      = 3                                             ,
+  verbose      = 0                                             ,
 )
 
 
 w = ty.DecisionWindow(e)
 w.mainloop()
+
+
+
