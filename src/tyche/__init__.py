@@ -1,3 +1,7 @@
+"""
+Tyche: a Python package for R&D pathways analysis and evaluation.
+"""
+
 from .Types              import Evaluations, Functions, Indices, Inputs, Results
 from .DecisionGUI        import DecisionWindow
 from .Designs            import Designs

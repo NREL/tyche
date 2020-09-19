@@ -1,3 +1,6 @@
+"""
+Interactive exploration of a technology.
+"""
 
 import seaborn as sb
 import tkinter as tk
@@ -7,8 +10,18 @@ from matplotlib.figure                 import Figure
 
 
 class DecisionWindow:
+  """
+  Class for displaying an interactive interface to explore cost-benefit tradeoffs for a technology.
+  """
 
   def __init__(self, evaluator):
+    """
+      Parameters
+      ----------
+      evaluator : tyche.Evaluator
+        The evaluation object for the technology.
+    """
+
     self.root = tk.Tk()
     self.root.winfo_toplevel().title("R&D Portfolio Evaluation")
     self.evaluator = evaluator
@@ -135,11 +148,31 @@ class DecisionWindow:
     self.amounts.apply(lambda v: v.trace_add("write", lambda arg0, arg1, arg2: self.refresh()))
 
   def reevaluate(self, next = lambda: None, delay = 200):
+    """
+    Recalculate the results after a delay.
+
+    Parameters
+    ----------
+    next : function
+      The operation to perform after completing the recalculation.
+    delay : int
+      The number of milliseconds to delay before the recalculation.
+    """
+    
     if self.job:
       self.root.after_cancel(self.job)
     self.job = self.root.after(delay, lambda: self.reevaluate_immediate(next = next))
 
   def reevaluate_immediate(self, next = lambda: None):
+    """
+    Recalculate the results immediately.
+
+    Parameters
+    ----------
+    next : function
+      The operation to perform after completing the recalculation.
+    """
+
     self.job = None
     amounts = self.amounts.apply(lambda v: float(v.get())).to_frame()
     self.sliders["Aggregate"].set(amounts.values.sum())
@@ -147,9 +180,17 @@ class DecisionWindow:
     next()
 
   def refresh(self):
+    """
+    Refresh the graphics after a delay.
+    """
+
     self.reevaluate(next = lambda: self.refresh_immediate())
 
   def refresh_immediate(self):
+    """
+    Refresh the graphics immediately.
+    """
+
     for i in range(len(self.evaluator.metrics)):
       for j in range(len(self.evaluator.categories)):
         canvas = self.canvases[(i, j)]
@@ -188,4 +229,8 @@ class DecisionWindow:
     return figure
 
   def mainloop(self):
+    """
+    Run the interactive interface.
+    """
+
     tk.mainloop()

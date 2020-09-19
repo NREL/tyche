@@ -1,3 +1,6 @@
+"""
+Epsilon-constraint optimization.
+"""
 
 import numpy  as np
 import pandas as pd
@@ -10,11 +13,33 @@ Optimum = namedtuple(
   "Optimum",
   ["exit_code", "exit_message", "amounts", "metrics"]
 )
+"""
+Named tuple type for optimization results.
+"""
 
 
 class EpsilonConstraintOptimizer:
+  """
+  An epsilon-constration multi-objective optimizer.
+
+  Attributes
+  ----------
+  evaluator : tyche.Evaluator
+    The technology evaluator.
+  scale : float
+    The scaling factor for output.
+  """
 
   def __init__(self, evaluator, scale = 1e6):
+    """
+    Parameters
+    ----------
+    evaluator : tyche.Evaluator
+      The technology evaluator.
+    scale : float
+      The scaling factor for output.
+    """
+    
     self.evaluator = evaluator
     self.scale = scale
     self._max_metrics = {}
@@ -43,6 +68,31 @@ class EpsilonConstraintOptimizer:
     maxiter      = 50     ,
     verbose      = 0      ,
   ):
+    """
+    Maximize the objective function.
+
+    Parameters
+    ----------
+    metric : str
+      The metric to maximize.
+    max_amount : DataFrame
+      The maximum amounts that can be invested in each category.
+    total_amount : float
+      The maximum amount that can be invested *in toto*.
+    min_metric : DataFrame
+      The minimum constraint for each metric.
+    statistic : function
+      The statistic used on the sample evaluations.
+    initial : array of float
+      The initial value for the search.
+    tol : float
+      The search tolerance.
+    maxiter : int
+      The maximum iterations for the search.
+    verbosee : int
+      Verbosity level.
+    """
+
     i = np.where(self.evaluator.metrics == metric)[0][0]
     if max_amount is None:
       max_amount = self.evaluator.max_amount.Amount
@@ -93,6 +143,29 @@ class EpsilonConstraintOptimizer:
     maxiter      = 50     ,
     verbose      = 0      ,
   ):
+    """
+    Maximum value of metrics.
+
+    Parameters
+    ----------
+    max_amount : DataFrame
+      The maximum amounts that can be invested in each category.
+    total_amount : float
+      The maximum amount that can be invested *in toto*.
+    min_metric : DataFrame
+      The minimum constraint for each metric.
+    statistic : function
+      The statistic used on the sample evaluations.
+    initial : array of float
+      The initial value for the search.
+    tol : float
+      The search tolerance.
+    maxiter : int
+      The maximum iterations for the search.
+    verbosee : int
+      Verbosity level.
+    """
+
     self._max_metrics = {
       metric : self.maximize(metric, max_amount, total_amount, None, statistic, None, tol, maxiter, verbose)
       for metric in self.evaluator.metrics
