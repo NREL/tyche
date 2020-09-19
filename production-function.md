@@ -1,6 +1,14 @@
-% Production-Function Approach to Portfolio Evaluation
-% Version 1.5 Draft
-% 26 June 2020
+---
+title: Production-Function Approach to Portfolio Evaluation
+subtitle: Version 1.5 Draft
+date: 19 September 2020
+figPrefix:
+- "Figure"
+- "Figures"
+tblPrefix:
+- "Table"
+- "Tables"
+---
 
 
 # Concept
@@ -10,8 +18,6 @@ We separate the financial and conversion-efficiency aspects of the production pr
 
 # Formulation
 
-
-## Sets
 
 | Set                  | Description         | Examples                                           |
 |----------------------|---------------------|----------------------------------------------------|
@@ -27,38 +33,46 @@ We separate the financial and conversion-efficiency aspects of the production pr
 | $\phi \in \Phi_\chi$ | investment          | a particular investment                            |
 | $\omega \in \Omega$  | portfolio           | a basket of investments                            |
 
+: Definitions for set indices used for variable subscripts. {#tbl:sets}
 
-## Variables
+See the sets in @tbl:sets.
 
-| Variable              | Type            | Description            | Units         |
-|-----------------------|-----------------|------------------------|---------------|
-| $K$                   | calculated      | unit cost              | USD/unit      |
-| $C_c$                 | function        | capital cost           | USD           |
-| $\tau_c$              | cost            | lifetime of capital    | year          |
-| $S$                   | cost            | scale of operation     | unit/year     |
-| $F_f$                 | function        | fixed cost             | USD/year      |
-| $I_i$                 | input           | input quantity         | input/unit    |
-| $I^*_i$               | calculated      | ideal input quantity   | input/unit    |
-| $\eta_i$              | waste           | input efficiency       | input/input   |
-| $p_i$                 | cost            | input price            | USD/input     |
-| $O_o$                 | calculated      | ideal output quantity  | output/unit   |
-| $O^*_o$               | calculated        | output quantity      | output/unit   |
-| $\eta'_o$             | waste           | output efficiency      | output/output |
-| $p'_o$                | cost            | output price (+/-)     | USD/output    |
-| $\mu_m$               | calculated      | metric                 | metric/unit   |
-| $P_o$                 | function        | production function    | output/unit   |
-| $M_m$                 | function        | metric function        | metric/unit   |
-| $\alpha_p$            | parameter       | technical parameter    | (mixed)       |
-| $\xi_\theta$          | variable        | scenario inputs        | (mixed)       |
-| $\zeta_\theta$        | variable        | scenario outputs       | (mixed)       |
-| $\psi$                | function        | scenario evaluation    | (mixed)       |
-| $\sigma_\phi$         | function        | scenario probability   | 1             |
-| $q_\phi$              | variable        | investment cost        | USD           |
-| $\mathbf{\zeta}_\phi$ | random variable | investment outcome     | (mixed)       |
-| $\mathbf{Z}(\omega)$  | random variable | portfolio outcome      | (mixed)       |
-| $Q(\omega)$           | calculated      | portfolio cost         | USD           |
-| $Q^\mathrm{min}$      | parameter       | minimum portfolio cost | USD           |
-| $Q^\mathrm{max}$      | parameter       | maximum portfolio cost | USD           |
+| Variable                   | Type            | Description            | Units         |
+|----------------------------|-----------------|------------------------|---------------|
+| $K$                        | calculated      | unit cost              | USD/unit      |
+| $C_c$                      | function        | capital cost           | USD           |
+| $\tau_c$                   | cost            | lifetime of capital    | year          |
+| $S$                        | cost            | scale of operation     | unit/year     |
+| $F_f$                      | function        | fixed cost             | USD/year      |
+| $I_i$                      | input           | input quantity         | input/unit    |
+| $I^*_i$                    | calculated      | ideal input quantity   | input/unit    |
+| $\eta_i$                   | waste           | input efficiency       | input/input   |
+| $p_i$                      | cost            | input price            | USD/input     |
+| $O_o$                      | calculated      | output quantity        | output/unit   |
+| $O^*_o$                    | calculated      | ideal output quantity  | output/unit   |
+| $\eta^\prime_o$            | waste           | output efficiency      | output/output |
+| $p^\prime_o$               | cost            | output price (+/-)     | USD/output    |
+| $\mu_m$                    | calculated      | metric                 | metric/unit   |
+| $P_o$                      | function        | production function    | output/unit   |
+| $M_m$                      | function        | metric function        | metric/unit   |
+| $\alpha_p$                 | parameter       | technical parameter    | (mixed)       |
+| $\xi_\theta$               | variable        | scenario inputs        | (mixed)       |
+| $\zeta_\theta$             | variable        | scenario outputs       | (mixed)       |
+| $\psi$                     | function        | scenario evaluation    | (mixed)       |
+| $\sigma_\phi$              | function        | scenario probability   | 1             |
+| $q_\phi$                   | variable        | investment cost        | USD           |
+| $\mathbf{\zeta}_\phi$      | random variable | investment outcome     | (mixed)       |
+| $\mathbf{Z}(\omega)$       | random variable | portfolio outcome      | (mixed)       |
+| $Q(\omega)$                | calculated      | portfolio cost         | USD           |
+| $Q^\mathrm{min}$           | parameter       | minimum portfolio cost | USD           |
+| $Q^\mathrm{max}$           | parameter       | maximum portfolio cost | USD           |
+| $q^\mathrm{min}_\phi$      | parameter       | minimum category cost  | USD           |
+| $q^\mathrm{max}_\phi$      | parameter       | maximum category cost  | USD           |
+| $Z^\mathrm{min}$           | parameter       | minimum output/metric  | (mixed)       |
+| $Z^\mathrm{max}$           | parameter       | maximum output/metric  | (mixed)       |
+| $\mathbb{F}$, $\mathbb{G}$ | operator        | evaluate probabilities | (mixed)       |
+
+: Definitions for variables. {#tbl:variables}
 
 
 ## Cost
@@ -70,7 +84,7 @@ The cost characterizations (capital and fixed costs) are represented as function
 
 The per-unit cost is computed using a simple levelization formula:
 
-$K = \left( \sum_c C_c / \tau_c + \sum_f F_f \right) / S + \sum_i p_i \cdot I_i - \sum_o p'_o \cdot O_o$
+$K = \left( \sum_c C_c / \tau_c + \sum_f F_f \right) / S + \sum_i p_i \cdot I_i - \sum_o p^\prime_o \cdot O_o$
 
 
 ## Waste
@@ -78,7 +92,7 @@ $K = \left( \sum_c C_c / \tau_c + \sum_f F_f \right) / S + \sum_i p_i \cdot I_i 
 The waste relative to the idealized production process is captured by the $\eta$ parameters. Expert elicitation might estimate how the $\eta$s would change in response to R&D investment.
 
 *   Waste of input: $I^*_i = \eta_i I_i$.
-*   Waste of output: $O_o = \eta'_o O^*_o$.
+*   Waste of output: $O_o = \eta^\prime_o O^*_o$.
 
 
 ## Production
@@ -97,21 +111,21 @@ $\mu_m = M_m(S, C_c, \tau_c, F_f, I_i, I^*_i, O^*_o, O_o, K, \alpha_p)$
 
 ## Scenarios
 
-A *scenario* represents a state of affairs for a technology $\nu$. If we denote the scenario as $\theta$, we have the input variables
+A *scenario* represents a state of affairs for a technology $\nu$. If we denote the scenario as $\theta$, we have the tuple of input variables
 
-$\xi_\theta = (C_c, F_f, I_i, \alpha_p) \mid_\theta$
+$\xi_\theta = \left(S, C_c, \tau_c, F_f, I_i, \eta_i, \eta^\prime_o, \alpha_p, p_i, p^\prime_o\middle) \right|_\theta$
 
-and the output variables
+and the tuple of output variables
 
-$\zeta_\theta = (K, \mu_m) \mid_\theta$
+$\zeta_\theta = \left(K, I^*_i, O^*_o, O_o, \mu_m\middle) \right|_\theta$
 
 and their relationship
 
-$\zeta_\theta = \psi_\nu(\xi_\theta) \mid_{\nu = \nu(\theta)}$
+$\zeta_\theta = \psi_\nu\left(\xi_\theta\middle) \right|_{\nu = \nu(\theta)}$
 
-where
+given the tuple of functions
 
-$\psi_\nu = (P_o, M_m) \mid_\nu$
+$\psi_\nu = \left(P_o, M_m\middle) \right|_\nu$
 
 for the technology of the scenario.
 
@@ -120,7 +134,7 @@ for the technology of the scenario.
 
 An *investment* $\phi$ assigns a probability distribution to scenarios:
 
-$\sigma_\phi(\theta) = P(\theta \mid \phi)$.
+$\sigma_\phi(\theta) = P\left(\theta \middle| \phi\right)$.
 
 such that
 
@@ -128,13 +142,13 @@ $\int d\theta \sigma_\phi(\theta) = 1$ or $\sum_\theta \sigma_\phi(\theta) = 1$,
 
 depending upon whether one is performing the computations discretely or continuously. Expectations and other measures on probability distributions can be computed from the $\sigma_\phi(\theta)$. We treat the outcome $\mathbf{\zeta}_\phi$ as a random variable for the outcomes $\zeta_\theta$ according to the distribution $\sigma_\phi(\theta)$.
 
-Because investment options may be mutually exclusive, as is the case for investing in the same R&D at different funding levels, we say $\Phi_\chi$ is the set of mutually exclusive investments (i.e., only one can ocurr) in investment category $\chi$: investments in different categories $\chi$ can be combined arbitrarily, but just one investment from each $\Phi_\chi$ may be chosen.
+Because investment options may be mutually exclusive, as is the case for investing in the same R&D at different funding levels, we say $\Phi_\chi$ is the set of mutually exclusive investments (i.e., only one can occur simultaneously) in investment category $\chi$: investments in different categories $\chi$ can be combined arbitrarily, but just one investment from each $\Phi_\chi$ may be chosen.
 
 Thus the universe of all portfolios is $\Omega = \prod_\chi \Phi_\chi$, so a particular portfolio $\omega \in \Omega$ has components $\phi = \omega_\chi \in \Phi_\chi$. The overall outcome of a portfolio is a random variable:
 
 $\mathbf{Z}(\omega) = \sum_\chi \mathbf{\zeta}_\phi \mid_{\phi = \omega_\chi}$
 
-The cost of an investment $q_\phi$, so the cost of a porfolio is:
+The cost of an investment in one of the constituents $\phi$ is $q_\phi$, so the cost of a porfolio is:
 
 $Q(\omega) = \sum_\chi q_\phi \mid_{\phi = \omega_\chi}$
 
@@ -147,9 +161,13 @@ $\min_{\omega \in \Omega} \  \mathbb{F} \  \mathbf{Z}(\omega)$
 
 such that
 
-$Q^\mathrm{min} \leq Q(\omega) \leq Q^\mathrm{max}$,
+$Q^\mathrm{min} \leq Q(\omega) \leq Q^\mathrm{max}$ ,
 
-where $\mathbb{F}$ is the expectation operator $\mathbb{E}$, value-at-risk, or another operator on probability spaces. Recall that $\mathbf{Z}$ is a vector with components for cost $K$ and each metric $\mu_m$, so this is a multi-objective problem.
+$q^\mathrm{min}_\phi \leq q_{\phi=\omega_\chi} \leq q^\mathrm{max}_\phi$ ,
+
+$Z^\mathrm{min} \leq \mathbb{G} \  \mathbf{Z}(\omega) \leq Z^\mathrm{max}$ ,
+
+where $\mathbb{F}$ and $\mathbb{G}$ are the expectation operator $\mathbb{E}$, the value-at-risk, or another operator on probability spaces. Recall that $\mathbf{Z}$ is a vector with components for cost $K$ and each metric $\mu_m$, so this is a multi-objective problem.
 
 The two-stage decision problem is a special case of the general problem outlined here: Each scenario $\theta$ can be considers as a composite of one or more stages.
 
