@@ -89,7 +89,7 @@ class EpsilonConstraintOptimizer:
       The search tolerance.
     maxiter : int
       The maximum iterations for the search.
-    verbosee : int
+    verbose : int
       Verbosity level.
     """
 
@@ -162,7 +162,7 @@ class EpsilonConstraintOptimizer:
       The search tolerance.
     maxiter : int
       The maximum iterations for the search.
-    verbosee : int
+    verbose : int
       Verbosity level.
     """
 

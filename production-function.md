@@ -485,6 +485,7 @@ def metrics(capital, fixed, input_raw, input, img/output_raw, output, cost, para
 ## Python API for module `tyche`
 
 The `tyche` module is a Python package for R\&D pathways analysis and evaluation. It contains five Python classes for R\&D pathway decision support.
+
 *   `Designs` for specifying and evaluating technology decisions in the presence of uncertainty.
 *   `Investments` for specifying and evaluating R\&D portfolios consisting of multiple technology-investment options.
 *   `Evaluator` for rapidly evaluating the costs and benefits for sets of portfolios.
@@ -756,7 +757,7 @@ tol : float
 maxiter : int
  ~ The maximum iterations for the search.
 
-verbosee : int
+verbose : int
  ~ Verbosity level.
 
 #### max\_metrics
@@ -790,7 +791,7 @@ tol : float
 maxiter : int
  ~ The maximum iterations for the search.
 
-verbosee : int
+verbose : int
  ~ Verbosity level.
 
 ### Evaluator Objects
@@ -939,7 +940,6 @@ import tyche             as ty
 
 from copy            import deepcopy
 from IPython.display import Image 
-from tabulate        import tabulate
 ```
 
 Load data.
@@ -1293,9 +1293,9 @@ g = sb.boxplot(
         level="Index"
     ).reset_index()[["Investment", "Value"]],
     order=[
-        "Low R\&D"   ,
-        "Medium R\&D",
-        "High R\&D"  ,
+        "Low R&D"   ,
+        "Medium R&D",
+        "High R&D"  ,
     ]
 )
 g.set(ylabel="GHG Reduction [gCO2e / system]")
@@ -1315,9 +1315,9 @@ g = sb.boxplot(
         level="Index"
     ).reset_index()[["Investment", "Value"]],
     order=[
-        "Low R\&D"   ,
-        "Medium R\&D",
-        "High R\&D"  ,
+        "Low R&D"   ,
+        "Medium R&D",
+        "High R&D"  ,
     ]
 )
 g.set(ylabel="LCOE Reduction [USD / kWh]")
@@ -1337,9 +1337,9 @@ g = sb.boxplot(
         level="Index"
     ).reset_index()[["Investment", "Value"]],
     order=[
-        "Low R\&D"   ,
-        "Medium R\&D",
-        "High R\&D"  ,
+        "Low R&D"   ,
+        "Medium R&D",
+        "High R&D"  ,
     ]
 )
 g.set(ylabel="Labor Increase [USD / system]")
@@ -1417,7 +1417,7 @@ evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 Here are the categories of investment and the maximum amount that could be invested in each:
 
 ```python
-print(tabulate(evaluator.max_amount, tablefmt="pipe", headers="keys"))
+evaluator.max_amount
 ```
 
 | Category     |       Amount |
@@ -1429,7 +1429,7 @@ print(tabulate(evaluator.max_amount, tablefmt="pipe", headers="keys"))
 Here are the metrics and their units of measure:
 
 ```python
-print(tabulate(evaluator.units, tablefmt="pipe", headers="keys"))
+evaluator.units
 ```
 
 | Index   | Units         |
@@ -1455,7 +1455,7 @@ example_investments
 
 
 ```python
-example_investments).xs(1, level="Sample", drop_level=False)
+evaluator.evaluate(example_investments).xs(1, level="Sample", drop_level=False)
 ```
 
 | Category     | Index   |   Sample |         Value |
@@ -1565,9 +1565,9 @@ np.round(optimum.amounts)
 ```
 
     Category
-    BoS R\&D               0.0
-    Inverter R\&D          0.0
-    Module R\&D      3000000.0
+    BoS R&D               0.0
+    Inverter R&D          0.0
+    Module R&D      3000000.0
     Name: Amount, dtype: float64
 
 Here are the three metrics at that optimum:
@@ -1617,9 +1617,9 @@ np.round(optimum.amounts)
 ```
 
     Category
-    BoS R\&D               0.0
-    Inverter R\&D          0.0
-    Module R\&D      3000000.0
+    BoS R&D               0.0
+    Inverter R&D          0.0
+    Module R&D      3000000.0
     Name: Amount, dtype: float64
 
 ```python
@@ -1643,15 +1643,15 @@ for investment_max in np.arange(1e6, 9e6, 0.5e6):
     pareto_amounts = pd.DataFrame(
         [metrics.values]                                         ,
         columns = metrics.index.values                           ,
-        index   = pd.Index([investment_max / 1e6], name = "Investment [M\$]"),
+        index   = pd.Index([investment_max / 1e6], name = "Investment [M$]"),
     ).append(pareto_amounts)
 sb.relplot(
-    x         = "Investment [M\$]",
+    x         = "Investment [M$]",
     y         = "Value"          ,
     col       = "Metric"         ,
     kind      = "line"           ,
     facet_kws = {'sharey': False},
-    data      = pareto_amounts.reset_index().melt(id_vars = "Investment [M\$]", var_name = "Metric", value_name = "Value")
+    data      = pareto_amounts.reset_index().melt(id_vars = "Investment [M$]", var_name = "Metric", value_name = "Value")
 )
 ```
 
@@ -1667,15 +1667,15 @@ pareto_ghg_lcoe = None
 for lcoe_min in 0.95 * np.arange(0.5, 0.9, 0.05) * pareto_amounts.loc[investment_max, "LCOE"]:
     optimum = optimizer.maximize(
         "GHG",
-        max_amount   = pd.Series([0.9e6, 3.0e6, 1.0e6], name = "Amount", index = ["BoS R\&D", "Inverter R\&D", "Module R\&D"]),
+        max_amount   = pd.Series([0.9e6, 3.0e6, 1.0e6], name = "Amount", index = ["BoS R&D", "Inverter R&D", "Module R&D"]),
         total_amount = investment_max * 1e6                                 ,
         min_metric   = pd.Series([lcoe_min], name = "Value", index = ["LCOE"]),
     )
     pareto_ghg_lcoe = pd.DataFrame(
         [[investment_max, lcoe_min, optimum.metrics["LCOE"], optimum.metrics["GHG"], optimum.exit_message]],
-        columns = ["Investment [M\$]", "LCOE (min)", "LCOE", "GHG", "Result"]                               ,
+        columns = ["Investment [M$]", "LCOE (min)", "LCOE", "GHG", "Result"]                               ,
     ).append(pareto_ghg_lcoe)
-pareto_ghg_lcoe = pareto_ghg_lcoe.set_index(["Investment [M\$]", "LCOE (min)"])
+pareto_ghg_lcoe = pareto_ghg_lcoe.set_index(["Investment [M$]", "LCOE (min)"])
 sb.relplot(
     x = "LCOE",
     y = "GHG",
