@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="view.css" type="text/css" rel="stylesheet">
+  <script src="controller.js" type="application/javascript"> </script>
+  <title>R&amp;D Portfolio Evaluation</title>
+</head>
+<body onload="setup()">
+  <h1>R&amp;D Portfolio Evaluation</h1>
+  <table>
+     <thead>
+       <tr>
+         {% for category in categories %}
+         <th>{{ category }}</th>
+         {% endfor %}
+         <th/>
+         <th>Portfolio Total</th>
+       </tr>
+     </thead>
+     <tbody>
+       {% for metric in metrics %}
+       {% set row = loop.index - 1 -%}
+       <tr>
+         {% for category in categories %}
+         {% set col = loop.index - 1 -%}
+         <td><img id="img_{{row}}_{{col}}" class="plot"/></td>
+         {% endfor %}
+         <td class="mlabel">{{ metric }}<br/>[{{ units.loc[metric].values[0] }}]</td>
+         <td><img id="img_{{row}}_x" class="plot"/></td>
+       </tr>
+       {% endfor %}
+     </tbody>
+     <tfoot>
+       <tr>
+         {% for category in categories %}
+         {% set col = loop.index - 1 -%}
+         <td class="slider">
+           <label id="int_{{ col }}" for="inv_{{ col }}">${{ amounts.xs(category)[0] / 2 }}</label>
+           <br/>
+           <input id="inv_{{ col }}" class="slide" type="range" min="0" max="{{ amounts.xs(category)[0] }}" onchange="updateInvestment(event.target)"/>
+         </td>
+         {% endfor %}
+         <td class="blabel">Investment</td>
+         <td class="slider">
+           <label id="int_x" for="inv_x">${{ amounts.sum()[0] / 2}}</label>
+           <br/>
+           <input id="inv_x" class="slidex" type="range" min="0" max="{{ amounts.sum()[0] }}" disabled/>
+         </td>
+       </tr>
+     </tfoot>
+  </table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+
+.slider {
+  align-items: center
+}
+
+.slide, .slidex {
+  width: 90%
+}
+
+.mlabel {
+  width     : 1px
+; text-align: center
+/*
+; transform : rotate(-90deg)
+*/
+}
+
+.blabel {
+  width     : 1px
+; text-align: center
+}
+
+table {
+  width : 100%
+; height: calc(100% - 3em)
+}
+
+h1 {
+  margin   : 0
+; font-size: 2em
+}
+
+body {
+  height: 100vh
+; margin: 0px
+}
