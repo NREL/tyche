@@ -67,7 +67,7 @@ async def plot():
   form = await qt.request.form
   i = evaluator.metrics[int(form["row"])]
   j = None if form["col"] == "x" else evaluator.categories[int(form["col"])]
-  figure = Figure(figsize=(int(form["width"]) / 100, int(form["height"]) / 100))
+  figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
   ax = figure.subplots()
   summary = evaluation.xs(i, level = "Index")
   if j is None:
