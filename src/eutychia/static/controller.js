@@ -22,11 +22,29 @@ function fetchPlot(plot) {
 }
 
 
+function postInvestment(col, value) {
+  let xhttp = new XMLHttpRequest()
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200)
+      Array.from(document.getElementsByClassName("plot")).forEach(function(plot) {
+        const id = plot.id.split("_")
+        const col1 = id[2]
+        if (col1 == col || col1 == "x")
+          fetchPlot(plot)
+      })
+  };
+  xhttp.open("POST", "/invest", true)
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+  xhttp.send( "col=" + col + "&value=" + value)
+}
+
+
 function updateInvestment(slider) {
   let value = slider.value
   let label = slider.id.replace("v", "t")
   document.getElementById(label).innerText = "$" + value
   updateTotal()
+  postInvestment(label.split("_")[1], value)
 }
 
 

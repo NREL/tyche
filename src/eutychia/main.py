@@ -2,37 +2,15 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(".."))
 
+import json    as json
 import quart   as qt
-import numpy   as np
-import pandas  as pd
 import seaborn as sb
 import tyche   as ty
+import uuid    as uuid
 
 from base64            import b64encode
 from io                import BytesIO
 from matplotlib.figure import Figure
-
-
-investments = ty.Investments("../../data/residential_pv_multiobjective")
-
-designs = ty.Designs("../../data/residential_pv_multiobjective")
-designs.compile()
-
-tranche_results = investments.evaluate_tranches(designs, sample_count = 25)
-
-evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
-
-
-self_amounts = evaluator.amounts.groupby(
-  "Category"
-).max(
-).apply(
-  lambda x: x[0] / 2, axis = 1
-).rename(
-  "Amount"
-)
-amounts = self_amounts.to_frame()
-evaluation = evaluator.evaluate(amounts)
 
 
 app = qt.Quart(
@@ -41,9 +19,38 @@ app = qt.Quart(
   static_folder   = "static",
 )
 
+app.config.from_file("demo.json", json.load)
+
+
+investments = ty.Investments(app.config["INVESTMENTS"])
+
+designs = ty.Designs(app.config["DESIGNS"])
+designs.compile()
+
+tranche_results = investments.evaluate_tranches(designs, sample_count = 25)
+
+evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
+
+
+session_amounts = {}
+session_evaluation = {}
+
 
 @app.route("/")
 async def explorer():
+  ident = uuid.uuid4()
+  qt.session["ID"] = ident
+  amounts = evaluator.amounts.groupby(
+    "Category"
+  ).max(
+  ).apply(
+    lambda x: x[0] / 2, axis = 1
+  ).rename(
+    "Amount"
+  ).to_frame(
+  )
+  session_amounts[ident] = amounts
+  session_evaluation[ident] = evaluator.evaluate(amounts)
   return await qt.render_template(
     "model.html"                     ,
     categories = evaluator.categories,
@@ -55,6 +62,8 @@ async def explorer():
 
 @app.route("/plot", methods = ["POST"])
 async def plot():
+  ident = qt.session["ID"]
+  evaluation = session_evaluation[ident]
   form = await qt.request.form
   i = evaluator.metrics[int(form["row"])]
   j = None if form["col"] == "x" else evaluator.categories[int(form["col"])]
@@ -80,3 +89,14 @@ async def plot():
   img.seek(0)
   x = b64encode(img.getvalue())
   return "data:image/png;base64,{}".format(x.decode("utf-8"))
+
+
+@app.route("/invest", methods = ["POST"])
+async def invest():
+  ident = qt.session["ID"]
+  form = await qt.request.form
+  j = int(form["col"])
+  v = float(form["value"])
+  session_amounts[ident].loc[evaluator.categories[j]] = v
+  session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])
+  return ""

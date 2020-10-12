@@ -26,8 +26,9 @@ table {
 }
 
 h1 {
-  margin   : 0
-; font-size: 2em
+  margin    : 0
+; font-size : 2em
+; text-align: center
 }
 
 body {
