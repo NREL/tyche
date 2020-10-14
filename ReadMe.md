@@ -8,7 +8,7 @@
 *   Python packages:
     *   evaluation and optimization: [src/tyche/](src/tyche/)
     *   web-based user interface: [src/eutychia/](src/eutychia/)
-        *   [instructions](src/eutachia/ReadMe.md)
+        *   [instructions](src/eutychia/ReadMe.md)
         *   [example Python script](src/eutychia/example.py)
         *   [example Jupyter notebook](src/eutychia/example.ipynb)
 *   example code using the tyche package:
