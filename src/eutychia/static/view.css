@@ -1,28 +1,24 @@
 
-.slider {
+.metric {
+  width     : 1px
+; text-align: center
+}
+
+.metric meter, .metric input {
+  width: 100%
+}
+
+.invest {
   align-items: center
 }
 
-.slide, .slidex {
+.invest meter, .invest input {
   width: 90%
-}
-
-.mlabel {
-  width     : 1px
-; text-align: center
-/*
-; transform : rotate(-90deg)
-*/
-}
-
-.blabel {
-  width     : 1px
-; text-align: center
 }
 
 table {
   width : 100%
-; height: calc(100% - 3em)
+; height: calc(100% - 4em)
 }
 
 h1 {

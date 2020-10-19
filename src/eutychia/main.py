@@ -3,6 +3,7 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 
 import json    as json
+import numpy   as np
 import quart   as qt
 import seaborn as sb
 import tyche   as ty
@@ -31,6 +32,18 @@ tranche_results = investments.evaluate_tranches(designs, sample_count = 25)
 
 evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 
+optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+
+metric_range = evaluator.min_metric.apply(
+  lambda x: np.minimum(0, x)
+).join(
+  evaluator.max_metric.apply(
+    lambda x: np.maximum(0, x)
+  ),
+  lsuffix = " Min",
+  rsuffix = " Max",
+)
+
 
 session_amounts = {}
 session_evaluation = {}
@@ -53,10 +66,9 @@ async def explorer():
   session_evaluation[ident] = evaluator.evaluate(amounts)
   return await qt.render_template(
     "model.html"                     ,
-    categories = evaluator.categories,
-    metrics    = evaluator.metrics   ,
-    units      = evaluator.units     ,
-    amounts    = evaluator.max_amount,
+    categories = evaluator.max_amount["Amount"],
+    metrics    = metric_range                  ,
+    units      = evaluator.units["Units"]      ,
   )
 
 
@@ -75,8 +87,8 @@ async def plot():
   else:
     values = summary.xs(j, level = "Category")
   sb.boxplot(y = values, ax = ax)
-  y0 = min(0, evaluator.min_metric.loc[i][0])
-  y1 = max(0, evaluator.max_metric.loc[i][0])
+  y0 = min(0, metric_range.loc[i, "Value Min"])
+  y1 = max(0, metric_range.loc[i, "Value Max"])
   dy = (y1 - y0) / 20
   ax.set(
     xlabel = ""              ,
@@ -89,6 +101,25 @@ async def plot():
   img.seek(0)
   x = b64encode(img.getvalue())
   return "data:image/png;base64,{}".format(x.decode("utf-8"))
+
+
+@app.route("/metric", methods = ["POST"])
+async def metric():
+  ident = qt.session["ID"]
+  evaluation = session_evaluation[ident]
+  form = await qt.request.form
+  i = evaluator.metrics[int(form["row"])]
+  return str(
+    np.mean(
+      evaluation.xs(
+        i, level = "Index"
+      ).groupby(
+        "Sample"
+      ).aggregate(
+        np.sum
+      )
+    )
+  )
 
 
 @app.route("/invest", methods = ["POST"])
