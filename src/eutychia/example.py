@@ -192,7 +192,7 @@ metric_min
 # In[21]:
 
 
-optimum = optimizer.maximize(
+optimum = optimizer.maximize_slsqp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,
@@ -224,7 +224,7 @@ optimum.metrics
 # In[24]:
 
 
-optimum = optimizer.maximize(
+optimum = optimizer.maximize_slsqp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,
@@ -238,7 +238,7 @@ optimum.exit_message
 # In[25]:
 
 
-optimum = optimizer.maximize(
+optimum = optimizer.maximize_slsqp(
     "LCOE"                                                         ,
     total_amount = investment_max                                  ,
     min_metric   = pd.Series([30], name = "Value", index = ["GHG"]),
