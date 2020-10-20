@@ -1,4 +1,5 @@
 
+
 .modal_background {
   display         : none
 ; position        : fixed
@@ -25,6 +26,10 @@
   font-style: italic
 }
 
+#optimize_button, #optimize_metric {
+  width: 7em
+}
+
 
 .metric {
   width     : 1px
@@ -43,11 +48,6 @@
 
 .invest meter, .invest input {
   width: 90%
-}
-
-
-#optimize_button, #optimize_metric {
-  width: 7em
 }
 
 

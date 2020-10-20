@@ -1,3 +1,6 @@
+
+# Import modules and functions.
+
 import os
 import sys
 sys.path.insert(0, os.path.abspath(".."))
@@ -15,6 +18,8 @@ from io                import BytesIO
 from matplotlib.figure import Figure
 
 
+# Create and configure application.
+
 app = qt.Quart(
   __name__                  ,
   static_url_path = ""      ,
@@ -23,6 +28,8 @@ app = qt.Quart(
 
 app.config.from_file("demo.json", json.load)
 
+
+# Compute investments.
 
 investments = ty.Investments(app.config["INVESTMENTS"])
 
@@ -46,9 +53,13 @@ metric_range = evaluator.min_metric.apply(
 )
 
 
+# Session-level storage.
+
 session_amounts = {}
 session_evaluation = {}
 
+
+# Main page.
 
 @app.route("/")
 async def explorer():
@@ -72,6 +83,8 @@ async def explorer():
     units      = evaluator.units["Units"]      ,
   )
 
+
+# Generate plots.
 
 @app.route("/plot", methods = ["POST"])
 async def plot():
@@ -114,6 +127,8 @@ async def plot():
   return "data:image/png;base64,{}".format(x.decode("utf-8"))
 
 
+# Comptue metrics.
+
 @app.route("/metric", methods = ["POST"])
 async def metric():
   ident = qt.session["ID"]
@@ -133,6 +148,8 @@ async def metric():
   )
 
 
+# Update investment and recompute.
+
 @app.route("/invest", methods = ["POST"])
 async def invest():
   ident = qt.session["ID"]
@@ -143,6 +160,8 @@ async def invest():
   session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])
   return ""
 
+
+# Optimize investments.
 
 @app.route("/optimize", methods = ["POST"])
 async def optimize():
@@ -179,3 +198,4 @@ async def optimize():
     for i in range(len(optimum.amounts))
   }
   return json.dumps(result)
+
