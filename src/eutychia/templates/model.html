@@ -60,15 +60,16 @@
            </td>
            {% endfor %}
            <td>
-             <input id="explore_mode" type="checkbox" checked> </input>
+             <input id="explore_mode" type="checkbox" onclick="updateMode()"  checked> </input>
              <label>explore</label>
              <br/>
-             <button id="opt" onclick="optimize()" disabled>optimize</button>
              <br/>
-             <select disabled>
-               {% for category in categories %}
-               {% set col = loop.index - 1 -%}
-               <option value="{{col}}">{{ categories.index[col] }}</option>
+             <button id="optimize_button" onclick="optimize()" disabled>optimize</button>
+             <br/>
+             <select id="optimize_metric" disabled>
+               {% for metric in metrics.index %}
+               {% set row = loop.index - 1 -%}
+               <option value="{{row}}">{{ metrics.index[row] }}</option>
                {% endfor %}
              </select>
            </td>
@@ -84,5 +85,11 @@
          </tr>
        </tfoot>
     </table>
+    <div id="optimizing" class="modal_background">
+      <div class="modal_content">
+        <p><span id="optimizing_status">Optimizing . . .</span><span id="optimizing_result"></span></p>
+        <button id="optimizing_close" onclick="closeOptimizing()" disabled>close</button>
+      </div>
+    </div>
   </body>
 </html>

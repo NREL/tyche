@@ -4,7 +4,7 @@ function formatDollars(value) {
 }
 
 function formatMetric(value) {
-  return Number(value).toPrecision(4)
+  return Number(value).toPrecision(3)
 }
 
 
@@ -124,24 +124,54 @@ function optimize() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const result = JSON.parse(this.responseText)
+      optimizing_status.innerText = "Result: "
+      optimizing_result.innerText = result.message
       for (const [key, value] of Object.entries(result.amount)) {
         const target = document.getElementById(key)
         target.value = value
         updateInvest(target)
-        Array.from(document.getElementsByClassName("plot")).forEach(plot => fetchPlot(plot))
-        Array.from(document.getElementsByClassName("metoptwid")).forEach(fetchMetric)
-        Array.from(document.getElementsByClassName("metoptlab")).forEach(updateMetricLabel)
-        Array.from(document.getElementsByClassName("invoptlab")).forEach(updateInvestLabel)
-        updateTotal(false)
-        document.body.style.cursor = "default"
       }
+      Array.from(document.getElementsByClassName("plot")).forEach(plot => fetchPlot(plot))
+      Array.from(document.getElementsByClassName("metoptwid")).forEach(fetchMetric)
+      Array.from(document.getElementsByClassName("metoptlab")).forEach(updateMetricLabel)
+      Array.from(document.getElementsByClassName("invoptlab")).forEach(updateInvestLabel)
+      updateTotal(false)
+      optimizing.style.cursor = "default"
+      optimizing_close.disabled = false
     }
   }
   xhttp.open("POST", "/optimize", true)
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-  xhttp.send("constraints=" + JSON.stringify(constraints))
-  document.body.style.cursor = "wait"
+  xhttp.send("target=" +  optimize_metric.value + "&constraints=" + JSON.stringify(constraints))
+  optimizing.style.display = "block"
 }
+
+function closeOptimizing() {
+  optimizing.style.display = "none"
+  optimizing_status.innerText = "Optimizing . . ."
+  optimizing_result.innerText = ""
+  optimizing_close.disabled = true
+}
+
+
+function updateMode() {
+  const explorable = explore_mode.checked
+  optimize_button.disabled = explorable
+  optimize_metric.disabled = explorable
+  invlimwid_x.disabled = explorable
+  Array.from(document.getElementsByClassName("metlimwid")).forEach(target => target.disabled = explorable)
+  if (explorable) {
+    Array.from(document.getElementsByClassName("invlimwid")).forEach(function(target) {
+      const value = target.value
+      const target1 = document.getElementById(target.id.replace("lim", "opt"))
+      target1.value = target.value
+      const label1 = target1.id.replace("wid", "lab")
+      updateInvestLabel(document.getElementById(label1))
+    })
+    updateTotal(true)
+  }
+}
+
 
 function setup() {
   Array.from(document.getElementsByClassName("plot")).forEach(plot => fetchPlot(plot))

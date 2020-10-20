@@ -149,6 +149,8 @@ async def optimize():
   ident = qt.session["ID"]
   evaluation = session_evaluation[ident]
   form = await qt.request.form
+  target_metric = evaluator.metrics[int(form["target"])]
+  print(target_metric)
   constraints = json.loads(form["constraints"])
   min_metric = pd.Series(
     [constraints["metric"]["metlimwid_" + str(i)] for i in range(len(evaluator.metrics))]
@@ -160,7 +162,7 @@ async def optimize():
   )
   total_amount = constraints["invest"]["invlimwid_x"]
   optimum = optimizer.maximize(
-    metric       = evaluator.metrics[0]
+    metric       = target_metric
   , min_metric   = min_metric
   , max_amount   = max_amount
   , total_amount = total_amount
