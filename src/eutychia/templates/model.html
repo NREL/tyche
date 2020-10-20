@@ -1,54 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link href="view.css" type="text/css" rel="stylesheet">
-  <script src="controller.js" type="application/javascript"> </script>
-  <title>R&amp;D Portfolio Evaluation</title>
-</head>
-<body onload="setup()">
-  <h1>R&amp;D Portfolio Evaluation</h1>
-  <table>
-     <thead>
-       <tr>
-         {% for category in categories %}
-         <th>{{ category }}</th>
+  <head>
+    <meta charset="UTF-8">
+    <link href="view.css" type="text/css" rel="stylesheet">
+    <script src="controller.js" type="application/javascript"> </script>
+    <title>R&amp;D Portfolio Evaluation</title>
+  </head>
+  <body onload="setup()">
+    <h1>R&amp;D Portfolio Evaluation</h1>
+    <table>
+       <thead>
+         <tr>
+           {% for category in categories %}
+           {% set col = loop.index - 1 -%}
+           <th>{{ categories.index[col] }}</th>
+           {% endfor %}
+           <th/>
+           <th>Portfolio Total</th>
+         </tr>
+       </thead>
+       <tbody>
+         {% for metric in metrics.index %}
+         {% set row = loop.index - 1 -%}
+         <tr>
+           {% for category in categories %}
+           {% set col = loop.index - 1 -%}
+           <td><img id="img_{{row}}_{{col}}" class="plot"/></td>
+           {% endfor %}
+           <td class="metric">
+             <span>{{ metrics.index[row] }}</span>
+             <br/>
+             <span>[{{ units.values[row] }}]</span>
+             <br/>
+             <br/>
+             <meter id="metoptwid_{{row}}" class="metoptwid" min="{{ metrics.iloc[row]['Value Min'] }}" max="{{ metrics.iloc[row]['Value Max'] }}"> </meter>
+             <br/>
+             <label id="metoptlab_{{row}}" class="metoptlab" for="metoptwid_{{row}}">Mean: 0</label>
+             <br/>
+             <input id="metlimwid_{{row}}" class="metlimwid" type="range" min="{{ - metrics.iloc[row]['Value Max'] }}" max="{{ - metrics.iloc[row]['Value Min'] }}" step="{{ (metrics.iloc[row]['Value Max'] - metrics.iloc[row]['Value Min']) / 100 }}" value="{{ - metrics.iloc[row]['Value Min'] }}" onchange="updateMetric(event.target)" disabled/>
+             <br/>
+             <label id="metlimlab_{{row}}" class="metlimlab" for="metlimwid_{{row}}">Required: 0</label>
+           </td>
+           <td><img id="img_{{row}}_x" class="plot"/></td>
+         </tr>
          {% endfor %}
-         <th/>
-         <th>Portfolio Total</th>
-       </tr>
-     </thead>
-     <tbody>
-       {% for metric in metrics %}
-       {% set row = loop.index - 1 -%}
-       <tr>
-         {% for category in categories %}
-         {% set col = loop.index - 1 -%}
-         <td><img id="img_{{row}}_{{col}}" class="plot"/></td>
-         {% endfor %}
-         <td class="mlabel">{{ metric }}<br/>[{{ units.loc[metric].values[0] }}]</td>
-         <td><img id="img_{{row}}_x" class="plot"/></td>
-       </tr>
-       {% endfor %}
-     </tbody>
-     <tfoot>
-       <tr>
-         {% for category in categories %}
-         {% set col = loop.index - 1 -%}
-         <td class="slider">
-           <label id="int_{{ col }}" for="inv_{{ col }}">${{ amounts.xs(category)[0] / 2 }}</label>
-           <br/>
-           <input id="inv_{{ col }}" class="slide" type="range" min="0" max="{{ amounts.xs(category)[0] }}" onchange="updateInvestment(event.target)"/>
-         </td>
-         {% endfor %}
-         <td class="blabel">Investment</td>
-         <td class="slider">
-           <label id="int_x" for="inv_x">${{ amounts.sum()[0] / 2}}</label>
-           <br/>
-           <input id="inv_x" class="slidex" type="range" min="0" max="{{ amounts.sum()[0] }}" disabled/>
-         </td>
-       </tr>
-     </tfoot>
-  </table>
-</body>
+       </tbody>
+       <tfoot>
+         <tr>
+           {% for category in categories %}
+           {% set col = loop.index - 1 -%}
+           <td class="invest">
+             <meter id="invoptwid_{{col}}" class="invoptwid invpart" min="0" max="{{ categories.values[col] }}" value="{{ categories.values[col] / 2 }}"> </meter>
+             <br/>
+             <label id="invoptlab_{{col}}" class="invoptlab" for="invoptwid_{{col}}">Current: $0</label>
+             <br/>
+             <input id="invlimwid_{{col}}" class="invlimwid" type="range" min="0" max="{{ categories.values[col] }}" step="1000" onchange="updateInvest(event.target)"/>
+             <br/>
+             <label id="invlimlab_{{col}}" class="invlimlab" for="invlimwid_{{col}}">Allowed: $0</label>
+           </td>
+           {% endfor %}
+           <td>
+             <input id="explore_mode" type="checkbox" onclick="updateMode()"  checked> </input>
+             <label>explore</label>
+             <br/>
+             <br/>
+             <button id="optimize_button" onclick="optimize()" disabled>optimize</button>
+             <br/>
+             <select id="optimize_metric" disabled>
+               {% for metric in metrics.index %}
+               {% set row = loop.index - 1 -%}
+               <option value="{{row}}">{{ metrics.index[row] }}</option>
+               {% endfor %}
+             </select>
+           </td>
+           <td class="invest">
+             <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
+             <br/>
+             <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
+             <br/>
+             <input id="invlimwid_x" class="invlimwid" type="range" min="0" max="{{ categories.values.sum() }}" step="1000" onchange="updateInvest(event.target)" disabled/>
+             <br/>
+             <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
+           </td>
+         </tr>
+       </tfoot>
+    </table>
+    <div id="optimizing" class="modal_background">
+      <div class="modal_content">
+        <p><span id="optimizing_status">Optimizing . . .</span><span id="optimizing_result"></span></p>
+        <button id="optimizing_close" onclick="closeOptimizing()" disabled>close</button>
+      </div>
+    </div>
+  </body>
 </html>
