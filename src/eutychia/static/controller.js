@@ -70,6 +70,10 @@ function updateInvest(target) {
   updateInvestLabel(document.getElementById(label))
   if (explore_mode.checked) {
     const value = target.value
+    const target1 = document.getElementById(target.id.replace("lim", "opt"))
+    target1.value = target.value
+    const label1 = target1.id.replace("wid", "lab")
+    updateInvestLabel(document.getElementById(label1))
     updateTotal(true)
     postInvestment(label.split("_")[1], value)
   }
