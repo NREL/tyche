@@ -37,7 +37,7 @@
              <br/>
              <label id="metoptlab_{{row}}" class="metoptlab" for="metoptwid_{{row}}">Mean: 0</label>
              <br/>
-             <input id="metlimwid_{{row}}" type="range" min="{{ metrics.iloc[row]['Value Min'] }}" max="{{ metrics.iloc[row]['Value Max'] }}" step="{{ (metrics.iloc[row]['Value Max'] - metrics.iloc[row]['Value Min']) / 100 }}" value="{{ metrics.iloc[row]['Value Min'] }}"/>
+             <input id="metlimwid_{{row}}" class="metlimwid" type="range" min="{{ - metrics.iloc[row]['Value Max'] }}" max="{{ - metrics.iloc[row]['Value Min'] }}" step="{{ (metrics.iloc[row]['Value Max'] - metrics.iloc[row]['Value Min']) / 100 }}" value="{{ - metrics.iloc[row]['Value Min'] }}" onchange="updateMetric(event.target)" disabled/>
              <br/>
              <label id="metlimlab_{{row}}" class="metlimlab" for="metlimwid_{{row}}">Required: 0</label>
            </td>
@@ -50,22 +50,34 @@
            {% for category in categories %}
            {% set col = loop.index - 1 -%}
            <td class="invest">
-             <meter id="invoptwid_{{col}}" min="0" max="{{ categories.values[col] }}" value="{{ categories.values[col] / 2 }}"> </meter>
+             <meter id="invoptwid_{{col}}" class="invoptwid invpart" min="0" max="{{ categories.values[col] }}" value="{{ categories.values[col] / 2 }}"> </meter>
              <br/>
              <label id="invoptlab_{{col}}" class="invoptlab" for="invoptwid_{{col}}">Current: $0</label>
              <br/>
-             <input id="invlimwid_{{col}}" class="islider" type="range" min="0" max="{{ categories.values[col] }}" step="1000" onchange="updateInvestment(event.target)"/>
+             <input id="invlimwid_{{col}}" class="invlimwid" type="range" min="0" max="{{ categories.values[col] }}" step="1000" onchange="updateInvest(event.target)"/>
              <br/>
-             <label id="invlimlab_{{col}}" class="invlimlab" for="invoptwid_{{col}}">Allowed: $0</label>
+             <label id="invlimlab_{{col}}" class="invlimlab" for="invlimwid_{{col}}">Allowed: $0</label>
            </td>
            {% endfor %}
-           <td><button>optimize</button></td>
+           <td>
+             <input id="explore_mode" type="checkbox" checked> </input>
+             <label>explore</label>
+             <br/>
+             <button id="opt" onclick="optimize()" disabled>optimize</button>
+             <br/>
+             <select disabled>
+               {% for category in categories %}
+               {% set col = loop.index - 1 -%}
+               <option value="{{col}}">{{ categories.index[col] }}</option>
+               {% endfor %}
+             </select>
+           </td>
            <td class="invest">
              <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
              <br/>
              <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
              <br/>
-             <input id="invlimwid_x" type="range" min="0" max="{{ categories.values.sum() }}" step="1000" onchange="updateInvestment(event.target)"/>
+             <input id="invlimwid_x" class="invlimwid" type="range" min="0" max="{{ categories.values.sum() }}" step="1000" onchange="updateInvest(event.target)" disabled/>
              <br/>
              <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
            </td>
