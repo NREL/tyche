@@ -117,8 +117,8 @@ async def plot():
   else:
     sb.distplot(values, hist = False, ax = ax)
     ax.set(
-      xlabel      = str(c)                ,
-      ylabel      = str(m)                ,
+      xlabel      = str(m)                ,
+      ylabel      = str(c)                ,
       yticks      = []                ,
       yticklabels = []                ,
       xlim        = (y0 - dy, y1 + dy),
