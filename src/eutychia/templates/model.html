@@ -30,15 +30,7 @@
          <tr>
 
 
-          <td class="invest">
-            <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
-            <br/>
-            <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
-            <br/>
-            <input id="invlimwid_x" class="invlimwid" type="range" min="0" max="{{ categories.values.sum() }}" step="1000" onchange="updateInvest(event.target)" disabled/>
-            <br/>
-            <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
-          </td>
+          <td/>
 
           {% for metric in metrics.index %} <!---->
           {% set met = loop.index - 1 -%}
@@ -98,10 +90,34 @@
           {% endfor %}
          </tr>
          {% endfor %}
+
+
+         <tr>
+
+          <td class="invest">
+            <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
+            <br/>
+            <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
+            <br/>
+            <input id="invlimwid_x" class="invlimwid" type="range" min="0" max="{{ categories.values.sum() }}" step="1000" onchange="updateInvest(event.target)" disabled/>
+            <br/>
+            <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
+          </td>
+
+
+          {% for metric in metrics.index %} <!---->
+          {% set met = loop.index - 1 -%}
+          <td><img id="img_{{met}}_x" class="plot"/></td>
+          {% endfor %}
+
+
+         </tr>
+
+
        </tbody>
        <tfoot>
          <tr>
-           {% for category in categories %}
+           <!-- {% for category in categories %}
            {% set cat = loop.index - 1 -%}
            <td class="invest">
              <meter id="invoptwid_{{cat}}" class="invoptwid invpart" min="0" max="{{ categories.values[cat] }}" value="{{ categories.values[cat] / 2 }}"> </meter>
@@ -112,7 +128,7 @@
              <br/>
              <label id="invlimlab_{{cat}}" class="invlimlab" for="invlimwid_{{cat}}">Allowed: $0</label>
            </td>
-           {% endfor %}
+           {% endfor %} -->
            <td>
              <input id="explore_mode" type="checkbox" onclick="updateMode()"  checked> </input>
              <label>explore</label>
