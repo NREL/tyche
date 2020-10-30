@@ -33,7 +33,7 @@ function reduceByClassName(clazz, action, initial) {
 
 // Extracting indices.
 
-function rowcol(target) {
+function metcat(target) {
   const result = target.id.split("_")
   result.shift()
   return result
@@ -71,7 +71,7 @@ let plotWidth = null
 let plotHeight = null
 
 function fetchPlot(target) {
-  const [row, col] = rowcol(target)
+  const [met, cat] = metcat(target)
   if (plotWidth == null) {
     const bounds = target.parentElement.getBoundingClientRect()
     plotWidth  = bounds.width  - 5
@@ -79,7 +79,7 @@ function fetchPlot(target) {
   }
   postRequest(
     "/plot"
-  , "row=" + row + "&col=" + col + "&width=" + plotWidth + "&height=" + plotHeight
+  , "row=" + met + "&row=" + cat + "&width=" + plotWidth + "&height=" + plotHeight
   , function(responseText) {
       target.src = responseText
     }
@@ -99,10 +99,10 @@ function updateMetric(target) {
 }
 
 function fetchMetric(target) {
-  const [row] = rowcol(target)
+  const [met] = metcat(target)
   postRequest(
     "/metric"
-  , "row=" + row
+  , "row=" + met
   , function(responseText) {
       target.value = responseText
       updateMetricLabel(wid2lab(target))
@@ -142,19 +142,19 @@ function updateInvest(target) {
   if (explore_mode.checked) {
     syncInvest(target)
     updateTotal(true)
-    postInvestment(rowcol(target)[0], target.value)
+    postInvestment(metcat(target)[0], target.value)
   }
 }
 
-function postInvestment(col, value) {
+function postInvestment(cat, value) {
   postRequest(
     "/invest"
-  , "col=" + col + "&value=" + value
+  , "col=" + cat + "&value=" + value
   , function(responseText) {
       forEachByClassName("metoptwid", fetchMetric)
       forEachByClassName("plot", function(plot) {
-        const [row1, col1] = rowcol(plot)
-        if (col1 == col || col1 == "x")
+        const [met1, cat1] = metcat(plot)
+        if (cat1 == cat || cat1 == "x")
           fetchPlot(plot)
       })
     }

@@ -12,35 +12,35 @@
        <thead>
          <tr>
           {% for metric in metrics.index %} <!---->
-          {% set row = loop.index - 1 -%}
-           <th>{{ metrics.index[row] }}</th>
+          {% set met = loop.index - 1 -%}
+           <th>{{ metrics.index[met] }}</th>
            {% endfor %}
            <th/>
            <th>Portfolio Total</th>
          </tr>
        </thead>
        <tbody>
-         {% for category in categories %}   <!-- row iteration -->
-         {% set col = loop.index - 1 -%}
+         {% for category in categories %}
+         {% set cat = loop.index - 1 -%}
          <tr>
           {% for metric in metrics.index %} <!---->
-          {% set row = loop.index - 1 -%}
-           <td><img id="img_{{row}}_{{col}}" class="plot"/></td>
+          {% set met = loop.index - 1 -%}
+           <td><img id="img_{{met}}_{{cat}}" class="plot"/></td>
            <td class="metric">
-             <span>{{ metrics.index[row] }}</span>
+             <span>{{ metrics.index[met] }}</span>
              <br/>
-             <span>[{{ units.values[row] }}]</span>
+             <span>[{{ units.values[met] }}]</span>
              <br/>
              <br/>
-             <meter id="metoptwid_{{row}}" class="metoptwid" min="{{ metrics.iloc[row]['Value Min'] }}" max="{{ metrics.iloc[row]['Value Max'] }}"> </meter>
+             <meter id="metoptwid_{{met}}" class="metoptwid" min="{{ metrics.iloc[met]['Value Min'] }}" max="{{ metrics.iloc[met]['Value Max'] }}"> </meter>
              <br/>
-             <label id="metoptlab_{{row}}" class="metoptlab" for="metoptwid_{{row}}">Mean: 0</label>
+             <label id="metoptlab_{{met}}" class="metoptlab" for="metoptwid_{{met}}">Mean: 0</label>
              <br/>
-             <input id="metlimwid_{{row}}" class="metlimwid" type="range" min="{{ - metrics.iloc[row]['Value Max'] }}" max="{{ - metrics.iloc[row]['Value Min'] }}" step="{{ (metrics.iloc[row]['Value Max'] - metrics.iloc[row]['Value Min']) / 100 }}" value="{{ - metrics.iloc[row]['Value Min'] }}" onchange="updateMetric(event.target)" disabled/>
+             <input id="metlimwid_{{met}}" class="metlimwid" type="range" min="{{ - metrics.iloc[met]['Value Max'] }}" max="{{ - metrics.iloc[met]['Value Min'] }}" step="{{ (metrics.iloc[met]['Value Max'] - metrics.iloc[met]['Value Min']) / 100 }}" value="{{ - metrics.iloc[met]['Value Min'] }}" onchange="updateMetric(event.target)" disabled/>
              <br/>
-             <label id="metlimlab_{{row}}" class="metlimlab" for="metlimwid_{{row}}">Required: 0</label>
+             <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">Required: 0</label>
             </td>
-            <td><img id="img_{{row}}_x" class="plot"/></td>
+            <td><img id="img_{{met}}_x" class="plot"/></td>
         {% endfor %}
          </tr>
          {% endfor %}
@@ -48,15 +48,15 @@
        <tfoot>
          <tr>
            {% for category in categories %}
-           {% set col = loop.index - 1 -%}
+           {% set cat = loop.index - 1 -%}
            <td class="invest">
-             <meter id="invoptwid_{{col}}" class="invoptwid invpart" min="0" max="{{ categories.values[col] }}" value="{{ categories.values[col] / 2 }}"> </meter>
+             <meter id="invoptwid_{{cat}}" class="invoptwid invpart" min="0" max="{{ categories.values[cat] }}" value="{{ categories.values[cat] / 2 }}"> </meter>
              <br/>
-             <label id="invoptlab_{{col}}" class="invoptlab" for="invoptwid_{{col}}">Current: $0</label>
+             <label id="invoptlab_{{cat}}" class="invoptlab" for="invoptwid_{{cat}}">Current: $0</label>
              <br/>
-             <input id="invlimwid_{{col}}" class="invlimwid" type="range" min="0" max="{{ categories.values[col] }}" step="1000" onchange="updateInvest(event.target)"/>
+             <input id="invlimwid_{{cat}}" class="invlimwid" type="range" min="0" max="{{ categories.values[cat] }}" step="1000" onchange="updateInvest(event.target)"/>
              <br/>
-             <label id="invlimlab_{{col}}" class="invlimlab" for="invlimwid_{{col}}">Allowed: $0</label>
+             <label id="invlimlab_{{cat}}" class="invlimlab" for="invlimwid_{{cat}}">Allowed: $0</label>
            </td>
            {% endfor %}
            <td>
@@ -68,8 +68,8 @@
              <br/>
              <select id="optimize_metric" disabled>
                {% for metric in metrics.index %}
-               {% set row = loop.index - 1 -%}
-               <option value="{{row}}">{{ metrics.index[row] }}</option>
+               {% set met = loop.index - 1 -%}
+               <option value="{{met}}">{{ metrics.index[met] }}</option>
                {% endfor %}
              </select>
            </td>

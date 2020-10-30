@@ -91,31 +91,34 @@ async def plot():
   ident = qt.session["ID"]
   evaluation = session_evaluation[ident]
   form = await qt.request.form
-  i = evaluator.metrics[int(form["row"])]
-  j = None if form["col"] == "x" else evaluator.categories[int(form["col"])]
+
+  # print(form["row"],"\t",form["col"])
+
+  m = evaluator.metrics[int(form["row"])]
+  c = None if form["col"] == "x" else evaluator.categories[int(form["col"])]
   figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
   ax = figure.subplots()
-  summary = evaluation.xs(i, level = "Index")
-  if j is None:
+  summary = evaluation.xs(m, level = "Index")
+  if c is None:
     values = summary.groupby("Sample").sum()
   else:
-    values = summary.xs(j, level = "Category")
-  y0 = min(0, metric_range.loc[i, "Value Min"])
-  y1 = max(0, metric_range.loc[i, "Value Max"])
+    values = summary.xs(c, level = "Category")
+  y0 = min(0, metric_range.loc[m, "Value Min"])
+  y1 = max(0, metric_range.loc[m, "Value Max"])
   dy = (y1 - y0) / 20
   if False:
     sb.boxplot(y = values, ax = ax)
     sb.stripplot(y = values, ax = ax)
     ax.set(
-      xlabel = str(j)              ,
-      ylabel = str(i)              ,
+      xlabel = str(c)              ,
+      ylabel = str(m)              ,
       ylim = (y0 - dy, y1 + dy),
     )
   else:
     sb.distplot(values, hist = False, ax = ax)
     ax.set(
-      xlabel      = str(j)                ,
-      ylabel      = str(i)                ,
+      xlabel      = str(c)                ,
+      ylabel      = str(m)                ,
       yticks      = []                ,
       yticklabels = []                ,
       xlim        = (y0 - dy, y1 + dy),
@@ -141,11 +144,11 @@ async def metric():
   ident = qt.session["ID"]
   evaluation = session_evaluation[ident]
   form = await qt.request.form
-  i = evaluator.metrics[int(form["row"])]
+  m = evaluator.metrics[int(form["row"])]
   return str(
     np.mean(
       evaluation.xs(
-        i, level = "Index"
+        m, level = "Index"
       ).groupby(
         "Sample"
       ).aggregate(
@@ -161,9 +164,9 @@ async def metric():
 async def invest():
   ident = qt.session["ID"]
   form = await qt.request.form
-  j = int(form["col"])
+  c = int(form["col"])
   v = float(form["value"])
-  session_amounts[ident].loc[evaluator.categories[j]] = v
+  session_amounts[ident].loc[evaluator.categories[c]] = v
   session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])
   return ""
 
@@ -179,11 +182,11 @@ async def optimize():
   print(target_metric)
   constraints = json.loads(form["constraints"])
   min_metric = pd.Series(
-    [constraints["metric"]["metlimwid_" + str(i)] for i in range(len(evaluator.metrics))]
+    [constraints["metric"]["metlimwid_" + str(m)] for m in range(len(evaluator.metrics))]
   , index = evaluator.metrics
   )
   max_amount = pd.Series(
-    [constraints["invest"]["invlimwid_" + str(i)] for i in range(len(evaluator.categories))]
+    [constraints["invest"]["invlimwid_" + str(m)] for m in range(len(evaluator.categories))]
   , index = evaluator.categories
   )
   total_amount = constraints["invest"]["invlimwid_x"]
@@ -201,8 +204,8 @@ async def optimize():
   result = {}
   result["message"] = optimum.exit_message
   result["amount"] = {
-    "invoptwid_" + str(i) : optimum.amounts[i]
-    for i in range(len(optimum.amounts))
+    "invoptwid_" + str(m) : optimum.amounts[m]
+    for m in range(len(optimum.amounts))
   }
   return json.dumps(result)
 
