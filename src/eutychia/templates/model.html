@@ -11,18 +11,13 @@
     <table>
        <thead>
          <tr>
-          {% for metric in metrics.index %} <!---->
-          {% set met = loop.index - 1 -%}
-           <th>{{ metrics.index[met] }}</th>
-           {% endfor %}
            <th/>
-           <th>Portfolio Total</th>
-         </tr>
-
-         <tr>
           {% for metric in metrics.index %} <!---->
           {% set met = loop.index - 1 -%}
-           <th>{{ metrics.index[met] }}</th>
+           <!-- <th>{{ metrics.index[met] }}</th> -->
+           <th><span>{{ metrics.index[met] }}</span>
+            <br/>
+            <span>[{{ units.values[met] }}]</span></th>
            {% endfor %}
            <th/>
            <th>Portfolio Total</th>
@@ -31,7 +26,20 @@
 
        </thead>
        <tbody>
+         <!-- Row of metric sliders -->
          <tr>
+
+
+          <td class="invest">
+            <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
+            <br/>
+            <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
+            <br/>
+            <input id="invlimwid_x" class="invlimwid" type="range" min="0" max="{{ categories.values.sum() }}" step="1000" onchange="updateInvest(event.target)" disabled/>
+            <br/>
+            <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
+          </td>
+
           {% for metric in metrics.index %} <!---->
           {% set met = loop.index - 1 -%}
           <td class="metric">
@@ -52,14 +60,22 @@
            <td/>
            <td/>
          </tr>
-      
-
-
-
-
+         <!-- Show information for each category in its own row -->
          {% for category in categories %}
          {% set cat = loop.index - 1 -%}
          <tr>
+           <!-- Sliders to set bounds on investments -->
+          <td class="invest">
+            <meter id="invoptwid_{{cat}}" class="invoptwid invpart" min="0" max="{{ categories.values[cat] }}" value="{{ categories.values[cat] / 2 }}"> </meter>
+            <br/>
+            <label id="invoptlab_{{cat}}" class="invoptlab" for="invoptwid_{{cat}}">Current: $0</label>
+            <br/>
+            <input id="invlimwid_{{cat}}" class="invlimwid" type="range" min="0" max="{{ categories.values[cat] }}" step="1000" onchange="updateInvest(event.target)"/>
+            <br/>
+            <label id="invlimlab_{{cat}}" class="invlimlab" for="invlimwid_{{cat}}">Allowed: $0</label>
+          </td>
+
+          <!-- Plot metrics -->
           {% for metric in metrics.index %} <!---->
           {% set met = loop.index - 1 -%}
            <td><img id="img_{{met}}_{{cat}}" class="plot"/></td>
@@ -111,7 +127,7 @@
                {% endfor %}
              </select>
            </td>
-           <td class="invest">
+           <!-- <td class="invest">
              <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
              <br/>
              <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
@@ -119,7 +135,7 @@
              <input id="invlimwid_x" class="invlimwid" type="range" min="0" max="{{ categories.values.sum() }}" step="1000" onchange="updateInvest(event.target)" disabled/>
              <br/>
              <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
-           </td>
+           </td> -->
          </tr>
        </tfoot>
     </table>
