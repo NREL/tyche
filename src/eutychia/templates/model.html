@@ -18,15 +18,52 @@
            <th/>
            <th>Portfolio Total</th>
          </tr>
+
+         <tr>
+          {% for metric in metrics.index %} <!---->
+          {% set met = loop.index - 1 -%}
+           <th>{{ metrics.index[met] }}</th>
+           {% endfor %}
+           <th/>
+           <th>Portfolio Total</th>
+         </tr>
+
+
        </thead>
        <tbody>
+         <tr>
+          {% for metric in metrics.index %} <!---->
+          {% set met = loop.index - 1 -%}
+          <td class="metric">
+            <span>{{ metrics.index[met] }}</span>
+            <br/>
+            <span>[{{ units.values[met] }}]</span>
+            <br/>
+            <br/>
+            <meter id="metoptwid_{{met}}" class="metoptwid" min="{{ metrics.iloc[met]['Value Min'] }}" max="{{ metrics.iloc[met]['Value Max'] }}"> </meter>
+            <br/>
+            <label id="metoptlab_{{met}}" class="metoptlab" for="metoptwid_{{met}}">Mean: 0</label>
+            <br/>
+            <input id="metlimwid_{{met}}" class="metlimwid" type="range" min="{{ - metrics.iloc[met]['Value Max'] }}" max="{{ - metrics.iloc[met]['Value Min'] }}" step="{{ (metrics.iloc[met]['Value Max'] - metrics.iloc[met]['Value Min']) / 100 }}" value="{{ - metrics.iloc[met]['Value Min'] }}" onchange="updateMetric(event.target)" disabled/>
+            <br/>
+            <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">Required: 0</label>
+           </td>
+           {% endfor %}
+           <td/>
+           <td/>
+         </tr>
+      
+
+
+
+
          {% for category in categories %}
          {% set cat = loop.index - 1 -%}
          <tr>
           {% for metric in metrics.index %} <!---->
           {% set met = loop.index - 1 -%}
            <td><img id="img_{{met}}_{{cat}}" class="plot"/></td>
-           <td class="metric">
+           <!-- <td class="metric">
              <span>{{ metrics.index[met] }}</span>
              <br/>
              <span>[{{ units.values[met] }}]</span>
@@ -39,9 +76,10 @@
              <input id="metlimwid_{{met}}" class="metlimwid" type="range" min="{{ - metrics.iloc[met]['Value Max'] }}" max="{{ - metrics.iloc[met]['Value Min'] }}" step="{{ (metrics.iloc[met]['Value Max'] - metrics.iloc[met]['Value Min']) / 100 }}" value="{{ - metrics.iloc[met]['Value Min'] }}" onchange="updateMetric(event.target)" disabled/>
              <br/>
              <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">Required: 0</label>
-            </td>
-            <td><img id="img_{{met}}_x" class="plot"/></td>
-        {% endfor %}
+            </td> -->
+            <!-- <td><img id="img_{{met}}_x" class="plot"/> -->
+          <!-- </td> -->
+          {% endfor %}
          </tr>
          {% endfor %}
        </tbody>
