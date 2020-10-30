@@ -105,20 +105,27 @@ async def plot():
   dy = (y1 - y0) / 20
   if False:
     sb.boxplot(y = values, ax = ax)
+    sb.stripplot(y = values, ax = ax)
     ax.set(
-      xlabel = ""              ,
-      ylabel = ""              ,
+      xlabel = str(j)              ,
+      ylabel = str(i)              ,
       ylim = (y0 - dy, y1 + dy),
     )
   else:
     sb.distplot(values, hist = False, ax = ax)
     ax.set(
-      xlabel      = ""                ,
-      ylabel      = ""                ,
+      xlabel      = str(j)                ,
+      ylabel      = str(i)                ,
       yticks      = []                ,
       yticklabels = []                ,
       xlim        = (y0 - dy, y1 + dy),
     )
+#   sb.stripplot(y = values, ax = ax, alpha=.5)
+#   ax.set(
+#     xlabel = ""              ,
+#     ylabel = ""              ,
+#     ylim = (y0 - dy, y1 + dy),
+#   )
   figure.set_tight_layout(True)
   img = BytesIO()
   figure.savefig(img, format="png")
