@@ -11,22 +11,21 @@
     <table>
        <thead>
          <tr>
-           {% for category in categories %}
-           {% set col = loop.index - 1 -%}
-           <th>{{ categories.index[col] }}</th>
+          {% for metric in metrics.index %} <!---->
+          {% set row = loop.index - 1 -%}
+           <th>{{ metrics.index[row] }}</th>
            {% endfor %}
            <th/>
            <th>Portfolio Total</th>
          </tr>
        </thead>
        <tbody>
-         {% for metric in metrics.index %}
-         {% set row = loop.index - 1 -%}
+         {% for category in categories %}   <!-- row iteration -->
+         {% set col = loop.index - 1 -%}
          <tr>
-           {% for category in categories %}
-           {% set col = loop.index - 1 -%}
+          {% for metric in metrics.index %} <!---->
+          {% set row = loop.index - 1 -%}
            <td><img id="img_{{row}}_{{col}}" class="plot"/></td>
-           {% endfor %}
            <td class="metric">
              <span>{{ metrics.index[row] }}</span>
              <br/>
@@ -40,8 +39,9 @@
              <input id="metlimwid_{{row}}" class="metlimwid" type="range" min="{{ - metrics.iloc[row]['Value Max'] }}" max="{{ - metrics.iloc[row]['Value Min'] }}" step="{{ (metrics.iloc[row]['Value Max'] - metrics.iloc[row]['Value Min']) / 100 }}" value="{{ - metrics.iloc[row]['Value Min'] }}" onchange="updateMetric(event.target)" disabled/>
              <br/>
              <label id="metlimlab_{{row}}" class="metlimlab" for="metlimwid_{{row}}">Required: 0</label>
-           </td>
-           <td><img id="img_{{row}}_x" class="plot"/></td>
+            </td>
+            <td><img id="img_{{row}}_x" class="plot"/></td>
+        {% endfor %}
          </tr>
          {% endfor %}
        </tbody>
