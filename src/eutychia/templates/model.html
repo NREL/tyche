@@ -12,6 +12,7 @@
        <thead>
          <tr>
            <th/>
+           <th/ class="invest">
           {% for metric in metrics.index %} <!---->
           {% set met = loop.index - 1 -%}
            <!-- <th>{{ metrics.index[met] }}</th> -->
@@ -19,8 +20,8 @@
             <br/>
             <span>[{{ units.values[met] }}]</span></th>
            {% endfor %}
-           <th/>
-           <th>Portfolio Total</th>
+           <!-- <th/>
+           <th>Portfolio Total</th> -->
          </tr>
 
 
@@ -31,15 +32,29 @@
 
 
           <td/>
+          <td>
+            <input id="explore_mode" type="checkbox" onclick="updateMode()"  checked> </input>
+            <label>explore</label>
+            <br/>
+            <br/>
+            <button id="optimize_button" onclick="optimize()" disabled>optimize</button>
+            <br/>
+            <select id="optimize_metric" disabled>
+              {% for metric in metrics.index %}
+              {% set met = loop.index - 1 -%}
+              <option value="{{met}}">{{ metrics.index[met] }}</option>
+              {% endfor %}
+            </select>
+          </td>
 
           {% for metric in metrics.index %} <!---->
           {% set met = loop.index - 1 -%}
           <td class="metric">
-            <span>{{ metrics.index[met] }}</span>
+            <!-- <span>{{ metrics.index[met] }}</span>
             <br/>
             <span>[{{ units.values[met] }}]</span>
             <br/>
-            <br/>
+            <br/> -->
             <meter id="metoptwid_{{met}}" class="metoptwid" min="{{ metrics.iloc[met]['Value Min'] }}" max="{{ metrics.iloc[met]['Value Max'] }}"> </meter>
             <br/>
             <label id="metoptlab_{{met}}" class="metoptlab" for="metoptwid_{{met}}">Mean: 0</label>
@@ -56,6 +71,9 @@
          {% for category in categories %}
          {% set cat = loop.index - 1 -%}
          <tr>
+
+          <td>{{ categories.index[cat] }}</td>
+
            <!-- Sliders to set bounds on investments -->
           <td class="invest">
             <meter id="invoptwid_{{cat}}" class="invoptwid invpart" min="0" max="{{ categories.values[cat] }}" value="{{ categories.values[cat] / 2 }}"> </meter>
@@ -93,7 +111,7 @@
 
 
          <tr>
-
+           <td/>
           <td class="invest">
             <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
             <br/>
@@ -129,7 +147,7 @@
              <label id="invlimlab_{{cat}}" class="invlimlab" for="invlimwid_{{cat}}">Allowed: $0</label>
            </td>
            {% endfor %} -->
-           <td>
+           <!-- <td>
              <input id="explore_mode" type="checkbox" onclick="updateMode()"  checked> </input>
              <label>explore</label>
              <br/>
@@ -142,7 +160,7 @@
                <option value="{{met}}">{{ metrics.index[met] }}</option>
                {% endfor %}
              </select>
-           </td>
+           </td> -->
            <!-- <td class="invest">
              <meter id="invoptwid_x" min="0" max="{{ categories.values.sum() }}" value="{{ categories.values.sum() / 2}}"> </meter>
              <br/>
