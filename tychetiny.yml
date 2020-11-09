@@ -1,0 +1,15 @@
+name: tychetiny
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - seaborn
+  - importlib
+  - qt
+  - qtconsole
+  - qtpy

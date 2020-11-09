@@ -148,7 +148,7 @@ class EpsilonConstraintOptimizer:
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          # @todo what on earth is this doing
+          # @note unclear what this is doing apart from applying a negative
           value = - self._f(statistic, verbose)(x)[j]
 
           # if the verbose parameter is defined and is greater than 3,
@@ -249,15 +249,14 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    bounds = Bounds(0, max_amount / self.scale)
+    var_bounds = Bounds(0, max_amount / self.scale)
 
     # define a function that will construct the investment constraint for the
     # optimizer, in the correct format
-    # @todo update to use NonlinearConstraint class
     def g(x):
 
       # create container for the constraints with a dummy value
-      constraints = [1]
+      constraint_values = [1]
 
       # if the upper limit on total investments has been defined,
       if total_amount is not None:
@@ -278,7 +277,7 @@ class EpsilonConstraintOptimizer:
 
         # update the constraint container with the LHS value of the
         # investment constraint as a <= 0 inequality constraint
-        constraints = [limit - value]
+        constraint_values = [limit - value]
 
       # exit the total_amount IF statement
 
@@ -291,7 +290,7 @@ class EpsilonConstraintOptimizer:
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          # @todo what on earth is this doing
+          # @todo unclear what this is doing apart from applying a negative
           value = - self._f(statistic, verbose)(x)[j]
 
           # if the verbose parameter is defined and is greater than 3,
@@ -305,35 +304,44 @@ class EpsilonConstraintOptimizer:
           # current metric constraint
           # as the loop executes, one constraint per metric will be added to the
           # container
-          constraints += [value - limit]
+          constraint_values += value
+        # EXIT loop through all available metrics
 
-      return constraints
+      return constraint_values
+
+    # per the NonlinearConstraint documentation, this use of np.inf is correct
+    # to specify a one-sided constraints
+    constraints_lower = - np.inf
+
+    # all constraints are formulated to keep upper bounds at 0.0
+    constraints_upper = 0.0
+
+    nlconstraints = NonlinearConstraint(g, constraints_lower, constraints_upper)
 
     # run the optimizer
     result = differential_evolution(
       self._fi(i, statistic, verbose), # callable function that returns the scalar objective function value
-      bounds=bounds,  # upper and lower bounds on decision variables
+      bounds=var_bounds,  # upper and lower bounds on decision variables
       strategy='best1bin', # defines differential evolution strategy to use, currently set at default
       maxiter=1000, # default maximum iterations to execute
       tol=0.01, # default tolerance on returned optimum
       seed=None, # specify a random seed for reproducible optimizations
       init='latinhypercube', # type of population initialization, currently set to default
-      # @todo add in constraints
-    )
-
-    # @todo results are returned as an OptimizeResult object - connect to the
-    # rest of the code past this point
+      constraints=(nlconstraints)) # @note ignore this warning for now
 
     # calculate the scaled decision variable values that optimize the objective function
-    x = pd.Series(self.scale * result[0], name="Amount",
+    x = pd.Series(self.scale * result.x, name="Amount",
                   index=self.evaluator.max_amount.index)
 
     # evaluate the chosen statistic for the scaled decision variable values
     y = self.evaluator.evaluate_statistic(x, statistic)
 
+    # differential_evolution doesn't return exit_code or exit_message, only
+    # decision variable values, objective function value, and number of
+    # iterations ("nit")
     return Optimum(
-      exit_code=result[3],
-      exit_message=result[4],
+      exit_code=None,
+      exit_message=None,
       amounts=x,
       metrics=y,
     )
@@ -345,7 +353,7 @@ class EpsilonConstraintOptimizer:
           total_amount=None,
           min_metric=None,
           statistic=np.mean,
-          initial=None,
+          #initial=None,
           #tol=1e-8,
           #maxiter=50,
           verbose=0,
@@ -394,8 +402,8 @@ class EpsilonConstraintOptimizer:
     def g(x):
 
       # create container for the constraints with a dummy value
-      constraints = [1]
-
+      constraints = {'type':'ineq', 'fun':12}
+      
       # if the upper limit on total investments has been defined,
       if total_amount is not None:
 
@@ -428,7 +436,7 @@ class EpsilonConstraintOptimizer:
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          # @todo what on earth is this doing
+          # @todo unclear what this is doing apart from applying a negative
           value = - self._f(statistic, verbose)(x)[j]
 
           # if the verbose parameter is defined and is greater than 3,
