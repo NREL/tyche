@@ -26,30 +26,39 @@
     <tbody>
       <!-- row: metric sliders -->
       <tr>
-        <!-- optimization information -->
         <td>
-          <!-- mode -->
-          <input id="explore_mode"
-            type="checkbox"
-            onclick="updateMode()"
-            checked> </input>
-          <label>explore</label>
-          <br />
-          <br />
-          <!-- button: optimize! -->
-          <button id="optimize_button"
-            onclick="optimize()"
-            disabled>optimize</button>
-          <br />
-          <!-- drop-down: select optimization metric -->
-          <select id="optimize_metric" disabled>
-            {% for metric in metrics.index %}
-            {% set met = loop.index - 1 -%}
-            <option value="{{met}}">{{ metrics.index[met] }}</option>
+        <!-- drop-down: select plot type -->
+          <select id="plot_type"
+            onchange="updateAllPlots()">
+            {% for typ in plot_types %}
+            <option value="{{typ}}">{{ typ }}</option>
             {% endfor %}
           </select>
         </td>
-        <td />  <!-- column: investment sliders -->
+        <!-- optimization information -->
+        <td>
+            <!-- mode -->
+            <input id="explore_mode"
+            type="checkbox"
+            onclick="updateMode()"
+            checked> </input>
+            <label>explore</label>
+            <br />
+            <br />
+            <!-- button: optimize! -->
+            <button id="optimize_button"
+            onclick="optimize()"
+            disabled>optimize</button>
+            <br />
+            <!-- drop-down: select optimization metric -->
+            <select id="optimize_metric" disabled>
+                {% for metric in metrics.index %}
+                {% set met = loop.index - 1 -%}
+                <option value="{{met}}">{{ metrics.index[met] }}</option>
+                {% endfor %}
+            </select>
+        </td>
+        <!-- <td />  column: investment sliders -->
         <!-- metric sliders -->
         {% for metric in metrics.index %}
         {% set met = loop.index - 1 -%}

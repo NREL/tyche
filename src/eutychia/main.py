@@ -81,6 +81,7 @@ async def explorer():
     categories = evaluator.max_amount["Amount"],
     metrics    = metric_range                  ,
     units      = evaluator.units["Units"]      ,
+    plot_types = ["box plot", "distribution"]  ,
   )
 
 
@@ -92,7 +93,7 @@ async def plot():
   evaluation = session_evaluation[ident]
   form = await qt.request.form
 
-  print(form)
+  typ = str(form["plottype"])
 
   m = evaluator.metrics[int(form["met"])]
   c = None if form["cat"] == "x" else evaluator.categories[int(form["cat"])]
@@ -106,7 +107,8 @@ async def plot():
   y0 = min(0, metric_range.loc[m, "Value Min"])
   y1 = max(0, metric_range.loc[m, "Value Max"])
   dy = (y1 - y0) / 20
-  if False:
+#   if False:
+  if typ == "box plot":
     sb.boxplot(y = values, ax = ax)
     sb.stripplot(y = values, ax = ax)
     ax.set(
@@ -114,7 +116,7 @@ async def plot():
       ylabel = str(m)              ,
       ylim = (y0 - dy, y1 + dy),
     )
-  else:
+  elif typ == "distribution":
     sb.distplot(values, hist = False, ax = ax)
     ax.set(
       xlabel      = str(m)                ,
@@ -208,4 +210,3 @@ async def optimize():
     for m in range(len(optimum.amounts))
   }
   return json.dumps(result)
-
