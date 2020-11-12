@@ -79,7 +79,7 @@ function fetchPlot(target) {
   }
   postRequest(
     "/plot"
-  , "row=" + met + "&row=" + cat + "&width=" + plotWidth + "&height=" + plotHeight
+  , "met=" + met + "&cat=" + cat + "&width=" + plotWidth + "&height=" + plotHeight
   , function(responseText) {
       target.src = responseText
     }
@@ -102,7 +102,7 @@ function fetchMetric(target) {
   const [met] = metcat(target)
   postRequest(
     "/metric"
-  , "row=" + met
+  , "met=" + met
   , function(responseText) {
       target.value = responseText
       updateMetricLabel(wid2lab(target))
@@ -149,7 +149,7 @@ function updateInvest(target) {
 function postInvestment(cat, value) {
   postRequest(
     "/invest"
-  , "col=" + cat + "&value=" + value
+  , "cat=" + cat + "&value=" + value
   , function(responseText) {
       forEachByClassName("metoptwid", fetchMetric)
       forEachByClassName("plot", function(plot) {

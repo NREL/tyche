@@ -92,10 +92,10 @@ async def plot():
   evaluation = session_evaluation[ident]
   form = await qt.request.form
 
-  # print(form["row"],"\t",form["col"])
+  print(form)
 
-  m = evaluator.metrics[int(form["row"])]
-  c = None if form["col"] == "x" else evaluator.categories[int(form["col"])]
+  m = evaluator.metrics[int(form["met"])]
+  c = None if form["cat"] == "x" else evaluator.categories[int(form["cat"])]
   figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
   ax = figure.subplots()
   summary = evaluation.xs(m, level = "Index")
@@ -144,7 +144,7 @@ async def metric():
   ident = qt.session["ID"]
   evaluation = session_evaluation[ident]
   form = await qt.request.form
-  m = evaluator.metrics[int(form["row"])]
+  m = evaluator.metrics[int(form["met"])]
   return str(
     np.mean(
       evaluation.xs(
@@ -164,7 +164,7 @@ async def metric():
 async def invest():
   ident = qt.session["ID"]
   form = await qt.request.form
-  c = int(form["col"])
+  c = int(form["cat"])
   v = float(form["value"])
   session_amounts[ident].loc[evaluator.categories[c]] = v
   session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])

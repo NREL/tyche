@@ -27,17 +27,17 @@
 }
 
 #optimize_button, #optimize_metric {
-  width: 7em
+  /* width: 7em */
 }
 
 
 .metric {
-  width     : 1px
+  /* width     : 1px */
 ; text-align: center
 }
 
 .metric meter, .metric input {
-  width: 100%
+  /* width: 100% */
 ; transform: rotate(-180deg)
 }
 
@@ -47,12 +47,12 @@
 }
 
 .invest meter, .invest input {
-  width: 90%
+  /* width: 90% */
 }
 
 
 table {
-  width : 100%
+  /* width : 100% */
 ; height: calc(100% - 4em)
 }
 
