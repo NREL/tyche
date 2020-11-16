@@ -106,17 +106,16 @@ async def plot():
     values = summary.xs(c, level = "Category")
   y0 = min(0, metric_range.loc[m, "Value Min"])
   y1 = max(0, metric_range.loc[m, "Value Max"])
-  dy = (y1 - y0) / 20
-#   if False:
+  dy = (y1 - y0) / 50
   if typ == "box plot":
-    sb.boxplot(y = values, ax = ax)
-    sb.stripplot(y = values, ax = ax)
+    sb.boxplot(x = values, ax = ax)
+    # sb.stripplot(y = values, ax = ax)
     ax.set(
-    #   xlabel = str(c)              ,
-    #   ylabel = str(m)              ,
+    #   xlabel = str(m)              ,
+    #   ylabel = str(c)              ,
     xlabel = "",
     ylabel = "",
-    ylim = (y0 - dy, y1 + dy),
+    xlim = (y0 - dy, y1 + dy),
   )
   elif typ == "distribution":
     sb.distplot(values, hist = False, ax = ax)
