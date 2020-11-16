@@ -106,28 +106,30 @@ async def plot():
     values = summary.xs(c, level = "Category")
   y0 = min(0, metric_range.loc[m, "Value Min"])
   y1 = max(0, metric_range.loc[m, "Value Max"])
-  dy = (y1 - y0) / 50
+  dy = (y1 - y0) / 20
   if typ == "box plot":
     sb.boxplot(x = values, ax = ax)
     # sb.stripplot(y = values, ax = ax)
     ax.set(
-    #   xlabel = str(m)              ,
-    #   ylabel = str(c)              ,
-    xlabel = "",
-    ylabel = "",
-    xlim = (y0 - dy, y1 + dy),
-  )
+      # xlabel = str(m)              ,
+      # ylabel = str(c)              ,
+      xlabel = "",
+      ylabel = "",
+      xlim = (y0 - dy, y1 + dy),
+    )
+    localdir = "box"
   elif typ == "distribution":
     sb.distplot(values, hist = False, ax = ax)
     ax.set(
-    #   xlabel      = str(m)            ,
-    #   ylabel      = str(c)            ,
-    xlabel = "",
-    ylabel = "",
-    yticks      = []                ,
-    yticklabels = []                ,
-    xlim        = (y0 - dy, y1 + dy),
-  )
+      # xlabel      = str(m)            ,
+      # ylabel      = str(c)            ,
+      xlabel = "",
+      ylabel = "",
+      yticks      = []                ,
+      yticklabels = []                ,
+      xlim        = (y0 - dy, y1 + dy),
+    )
+    localdir = "dist"
 #   sb.stripplot(y = values, ax = ax, alpha=.5)
 #   ax.set(
 #     xlabel = ""              ,
@@ -135,6 +137,10 @@ async def plot():
 #     ylim = (y0 - dy, y1 + dy),
 #   )
   figure.set_tight_layout(True)
+  # Save locally -- for prototyping.
+  localpath = os.path.join("assets","plots",localdir,(str(m) + "_" + str(c).split()[0] + ".png").lower())
+  figure.savefig(localpath)
+  # Save for server.
   img = BytesIO()
   figure.savefig(img, format="png")
   img.seek(0)
