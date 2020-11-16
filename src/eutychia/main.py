@@ -112,19 +112,23 @@ async def plot():
     sb.boxplot(y = values, ax = ax)
     sb.stripplot(y = values, ax = ax)
     ax.set(
-      xlabel = str(c)              ,
-      ylabel = str(m)              ,
-      ylim = (y0 - dy, y1 + dy),
-    )
+    #   xlabel = str(c)              ,
+    #   ylabel = str(m)              ,
+    xlabel = "",
+    ylabel = "",
+    ylim = (y0 - dy, y1 + dy),
+  )
   elif typ == "distribution":
     sb.distplot(values, hist = False, ax = ax)
     ax.set(
-      xlabel      = str(m)                ,
-      ylabel      = str(c)                ,
-      yticks      = []                ,
-      yticklabels = []                ,
-      xlim        = (y0 - dy, y1 + dy),
-    )
+    #   xlabel      = str(m)            ,
+    #   ylabel      = str(c)            ,
+    xlabel = "",
+    ylabel = "",
+    yticks      = []                ,
+    yticklabels = []                ,
+    xlim        = (y0 - dy, y1 + dy),
+  )
 #   sb.stripplot(y = values, ax = ax, alpha=.5)
 #   ax.set(
 #     xlabel = ""              ,
@@ -137,7 +141,6 @@ async def plot():
   img.seek(0)
   x = b64encode(img.getvalue())
   return "data:image/png;base64,{}".format(x.decode("utf-8"))
-
 
 # Comptue metrics.
 

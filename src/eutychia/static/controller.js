@@ -65,15 +65,11 @@ function x2y(target, x, y) {
   }
   
   
-  // Fetch and update plots.
+  // Fetching plots.
   
-  function updateAllPlots() {
-      forEachByClassName("plot", plot => fetchPlot(plot))
-    }
-    
   let plotWidth = null
   let plotHeight = null
-
+  
   function fetchPlot(target) {
     const [met, cat] = metcat(target)
     if (plotWidth == null) {
@@ -116,6 +112,7 @@ function x2y(target, x, y) {
   }
   
 
+  
   // Explore investments.
   
   function updateTotal(all) {
@@ -165,10 +162,16 @@ function x2y(target, x, y) {
       }
     )
   }
+  
+  
+  function updateAllPlots() {
+    forEachByClassName("plot", plot => fetchPlot(plot))
+  }
 
 
   // Optimize investments.
   
+
 
   function updateResults(all) {
     updateAllPlots()
@@ -235,3 +238,4 @@ function x2y(target, x, y) {
     forEachByClassName("invlimlab", updateInvestLabel)
     updateResults(true)
   }
+  
