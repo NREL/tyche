@@ -34,12 +34,12 @@ NREL will perform quality assurance and periodically update the production versi
 
 ### DOE Server
 
-The DOE server for Tyche resides within the DOE intranet. It fetches software updates from the GitHub Software Repository and fetches data updates from the NREL Data Lake. (Because data volumes are small, it could perform these automatically on a daily or weekly basis during off hours.) It runs a [Quart HTTP server](https://pgjones.gitlab.io/quart/) within an [Anaconda](https://www.anaconda.com/) environment. Requirements for this server are as follows:
+The DOE server for Tyche resides within the DOE intranet. It fetches software updates from the GitHub Software Repository and fetches data updates from the NREL Data Lake. (Because data volumes are small, it could perform these automatically on a daily or weekly basis during off hours.) It runs a [Quart HTTP server](https://pgjones.gitlab.io/quart/) within a [Conda](https://docs.conda.io/en/latest/miniconda.html) environment. Requirements for this server are as follows:
 
 1.  Linux (preferred) or Windows.
 2.  Four to 16 CPU cores and at least 32 GB of memory.
-3.  An up-to-date installation of the [Anaconda](https://www.anaconda.com/) software package manager.
-4.  Installation of the Tyche Conda environment within Anaconda. (This will install the correct version of Python and the other required software, so those need not be installed individually.) See the attachment [conda-environment.yml](conda-environment.yml).
+3.  An up-to-date installation (version 4.8.3 or later) of the [Conda](https://docs.conda.io/en/latest/miniconda.html) software package manager.
+4.  Installation of the Tyche environment within Conda. (This will install the correct version of Python and the other required software, so those need not be installed individually.) See the attachment [conda-environment.yml](conda-environment.yml).
 5.  Running a shell script for the Quart HTTP server.
 6.  Open outgoing HTTPS ports for `GET` requests to the NREL Data Lake and GitHub.com.
 7.  An open HTTP incoming port from client web browsers withing the DOE intranet.
