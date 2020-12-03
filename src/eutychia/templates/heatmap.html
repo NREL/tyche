@@ -124,8 +124,10 @@
         <!-- plot metrics -->
         {% for metric in [metrics.index[0]] %}
         {% set met = loop.index - 1 -%}
+        {% if cat == 0 %}
         <td rowspan="{{ categories.size }}" colspan="{{ metrics["Value Min"].size }}">
             <img id="img_{{met}}_{{cat}}" class="plot" /></td>
+        {% endif %}
         {% endfor %}
       </tr>
       {% endfor %}
