@@ -10,6 +10,16 @@ Before running the example or the server, create and activate the conda environm
 	conda env create --file ../../conda-environment.yml
 	conda activate tyche
 
+Install and update a package version:
+
+    conda activate tyche
+    conda install seaborn=0.11.0
+    conda env export --name tyche > ../../conda-environment.yml
+
+Update the conda environment:
+
+    conda env update --prefix ./env --file ../../conda-environment.yml  --prune
+
 
 Running the Server
 ------------------
