@@ -72,6 +72,9 @@ function x2y(target, x, y) {
   
   function fetchPlot(target) {
     const [met, cat] = metcat(target)
+
+    vscale = cat=="x" ? 0.33 : 1
+
     if (plotWidth == null) {
       const bounds = target.parentElement.getBoundingClientRect()
       plotWidth  = bounds.width  - 5
@@ -80,7 +83,7 @@ function x2y(target, x, y) {
     plotType = plot_type.value
     postRequest(
       "/plot"
-    , "met=" + met + "&cat=" + cat + "&width=" + plotWidth + "&height=" + plotHeight + "&plottype=" + plotType
+    , "met=" + met + "&cat=" + cat + "&width=" + plotWidth + "&height=" + (vscale*plotHeight) + "&plottype=" + plotType
     , function(responseText) {
         target.src = responseText
       }

@@ -70,7 +70,9 @@ async def explorer():
 
     plot_layout = "grid.html"
     if plot_layout == "grid.html":
-        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+        plot_types = ["box plot", "distribution", "violin"]
+    elif plot_layout == "column.html":
+        plot_types = ["box plot", "distribution", "violin"]
     elif plot_layout == "heatmap.html":
         plot_types = ["heatmap", "annotated"]
 
@@ -86,9 +88,9 @@ async def explorer():
 
 def setup_template(plot_layout):
     if plot_layout == "grid":
-        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+        plot_types = ["box plot", "distribution", "violin"]
     elif plot_layout == "column":
-        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+        plot_types = ["box plot", "distribution", "violin"]
     elif plot_layout == "heatmap":
         plot_types = ["heatmap", "annotated"]
 
@@ -104,12 +106,11 @@ def setup_template(plot_layout):
 @app.route("/layout/<name>")
 async def layout(name):
     plot_layout = name
-    # print(plot_layout)
 
     if plot_layout == "grid":
-        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+        plot_types = ["box plot", "distribution", "violin"]
     elif plot_layout == "column":
-        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+        plot_types = ["box plot", "distribution", "violin"]
     elif plot_layout == "heatmap":
         plot_types = ["heatmap", "annotated"]
 
@@ -135,17 +136,19 @@ async def plot():
 
     typ = str(form["plottype"])
 
-    m = evaluator.metrics[int(form["met"])]
-
-    c = None if form["cat"] == "x" else evaluator.categories[int(form["cat"])]
+    # m = evaluator.metrics[int(form["met"])]
+    # c = None if form["cat"] in ["x","all"] else evaluator.categories[int(form["cat"])]
+    m = evaluator.metrics[int(form["met"])]    if form["met"].isdigit() else str(form["met"])
+    c = evaluator.categories[int(form["cat"])] if form["cat"].isdigit() else str(form["cat"])
+    
     figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
     ax = figure.subplots()
 
     summary = evaluation.xs(m, level="Index").astype('float64')
-    if c is None:
-        values = summary.groupby("Sample").sum().reset_index()
-    else:
-        values = summary.xs(c, level="Category").reset_index()
+
+    if c == "x":     values = summary.groupby("Sample").sum().reset_index()
+    elif c == "all": values = summary.reset_index()
+    else:            values = summary.xs(c, level="Category").reset_index()
     
     y0 = min(0, metric_range.loc[m, "Value Min"])
     y1 = max(0, metric_range.loc[m, "Value Max"])
@@ -153,9 +156,15 @@ async def plot():
 
     # ----- GRID ---------------------------------------------------------------------------
     if typ in ["box plot", "distribution", "violin"]:
-        if typ == "box plot":       sb.boxplot(data=values, x='Value', ax=ax)
-        elif typ == "violin":       sb.violinplot(data=values, x='Value', ax=ax)
-        elif typ == "distribution": sb.kdeplot(data=values, x='Value', ax=ax)
+        if typ == "box plot":
+            if c == "all":  sb.boxplot(ax=ax, data=values, x='Value', y='Category')
+            else:           sb.boxplot(ax=ax, data=values, x='Value')
+        elif typ == "violin":
+            if c == "all":  sb.violinplot(ax=ax, data=values, x='Value', y='Category')
+            else:           sb.violinplot(ax=ax, data=values, x='Value')
+        elif typ == "distribution":
+            if c == "all":  sb.kdeplot(ax=ax, data=values, x='Value', hue='Category', multiple='stack')
+            else:           sb.kdeplot(ax=ax, data=values, x='Value')
 
         ax.set(
             xlabel="", ylabel="",

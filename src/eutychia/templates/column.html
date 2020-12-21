@@ -10,7 +10,7 @@
     
     <body onload="setup()">
     
-    <div id="plot_layout">Jump to <a href="/grid">grid</a>, <a href="/heatmap">column</a>, . . . </div>
+    <div id="plot_layout">Jump to <a href="/layout/grid">grid</a>, <a href="/layout/heatmap">heatmap</a>, . . . </div>
     
     <h1>R&amp;D Portfolio Evaluation</h1>
   <!-- selector to navigate between views. If you select the one you're not on, 
@@ -124,7 +124,10 @@
         <!-- plot metrics -->
         {% for metric in metrics.index %}
         {% set met = loop.index - 1 -%}
-        <td><img id="img_{{met}}_{{cat}}" class="plot" /></td>
+        {% if cat == 0 %}
+        <td rowspan="{{ categories.size }}">
+            <img id="img_{{met}}_all" class="plot" /></td>
+        {% endif %}
         {% endfor %}
       </tr>
       {% endfor %}
