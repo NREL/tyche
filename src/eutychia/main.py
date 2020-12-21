@@ -83,6 +83,22 @@ async def explorer():
     )
 
 
+
+def setup_template(plot_layout):
+    if plot_layout == "grid":
+        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+    elif plot_layout == "heatmap":
+        plot_types = ["heatmap", "annotated"]
+
+    return qt.render_template(
+        plot_layout + ".html",
+        categories=evaluator.max_amount["Amount"],
+        metrics=metric_range,
+        units=evaluator.units["Units"],
+        plot_types=plot_types,
+    )
+
+
 @app.route("/layout/<name>")
 async def layout(name):
     plot_layout = name
@@ -116,91 +132,57 @@ async def plot():
     typ = str(form["plottype"])
 
     m = evaluator.metrics[int(form["met"])]
+
     c = None if form["cat"] == "x" else evaluator.categories[int(form["cat"])]
     figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
     ax = figure.subplots()
-    summary = evaluation.xs(m, level="Index")
+
+    summary = evaluation.xs(m, level="Index").astype('float64')
     if c is None:
-        values = summary.groupby("Sample").sum()
+        values = summary.groupby("Sample").sum().reset_index()
     else:
-        values = summary.xs(c, level="Category")
-
-    # value_mean = np.mean(values)
-    # print(c)
-
+        values = summary.xs(c, level="Category").reset_index()
+    
     y0 = min(0, metric_range.loc[m, "Value Min"])
     y1 = max(0, metric_range.loc[m, "Value Max"])
     dy = (y1 - y0) / 20
-    if typ == "box plot":
-        sb.boxplot(x=values, ax=ax)
-        # sb.stripplot(y = values, ax = ax)
-        ax.set(
-            # xlabel = str(m)              ,
-            # ylabel = str(c)              ,
-            xlabel="",
-            ylabel="",
-            xlim=(y0 - dy, y1 + dy),
-        )
-        localdir = "box"
 
-    elif typ == "distribution":
-        sb.distplot(values, hist=False, ax=ax)
+    # ----- GRID ---------------------------------------------------------------------------
+    if typ in ["box plot", "distribution", "violin"]:
+        if typ == "box plot":       sb.boxplot(data=values, x='Value', ax=ax)
+        elif typ == "violin":       sb.violinplot(data=values, x='Value', ax=ax)
+        elif typ == "distribution": sb.kdeplot(data=values, x='Value', ax=ax)
+
         ax.set(
-            # xlabel      = str(m)            ,
-            # ylabel      = str(c)            ,
-            xlabel="",
-            ylabel="",
+            xlabel="", ylabel="",
             yticks=[],
             yticklabels=[],
-            xlim=(y0 - dy, y1 + dy),
+            xlim=(y0-dy, y1+dy),
         )
-        localdir = "dist"
-    # --- VIOLIN PLOT ---
-    elif typ == "violin":
-        sb.violinplot(x=values.astype("float64"), ax=ax)
-        ax.set(
-            # xlabel = str(m)              ,
-            # ylabel = str(c)              ,
-            xlabel="",
-            ylabel="",
-            xlim=(y0 - dy, y1 + dy),
-        )
-        localdir = "violin"
 
-    elif typ == "heatmap":
-        # print("heatmap")
+    # ----- HEATMAP ------------------------------------------------------------------------
+    if typ in ["heatmap", "annotated"]:
         ser_norm = normalize_to_max_sample(evaluation)
         ser_norm = ser_norm.unstack(level="Index")
 
-        sb.heatmap(
-            ser_norm, linewidths=0.5, vmax=1.0, vmin=-1.0, cmap="coolwarm_r", ax=ax
-        )
-
+        if typ == "heatmap":
+            sb.heatmap(
+                ser_norm, linewidths=0.5, vmax=1.0, vmin=-1.0, cmap="coolwarm_r", ax=ax,
+            )
+            
+        elif typ == "annotated":
+            ser_mean = aggregate_over(evaluation, ["Sample"])
+            ser_mean = ser_mean.unstack(level="Index")
+            sb.heatmap(
+                ser_norm, linewidths=0.5, vmax=1.0, vmin=-1.0, cmap="coolwarm_r", ax=ax,
+                annot=ser_mean,
+                fmt=".4g",
+            )
+        
         ax.set(
-            xlabel="", ylabel="", yticks=[], yticklabels=[], xticks=[], xticklabels=[],
-        )
-
-    elif typ == "annotated":
-        # print("heatmap")
-        ser_norm = normalize_to_max_sample(evaluation)
-        ser_norm = ser_norm.unstack(level="Index")
-
-        ser_mean = aggregate_over(evaluation, ["Sample"])
-        ser_mean = ser_mean.unstack(level="Index")
-
-        sb.heatmap(
-            ser_norm,
-            linewidths=0.5,
-            vmax=1.0,
-            vmin=-1.0,
-            annot=ser_mean,
-            fmt=".4g",
-            cmap="coolwarm_r",
-            ax=ax,
-        )
-
-        ax.set(
-            xlabel="", ylabel="", yticks=[], yticklabels=[], xticks=[], xticklabels=[],
+            xlabel="", ylabel="",
+            xticks=[], yticks=[],
+            xticklabels=[], yticklabels=[],
         )
 
     figure.set_tight_layout(True)
