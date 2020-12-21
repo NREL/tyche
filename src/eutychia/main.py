@@ -87,6 +87,8 @@ async def explorer():
 def setup_template(plot_layout):
     if plot_layout == "grid":
         plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+    elif plot_layout == "column":
+        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
     elif plot_layout == "heatmap":
         plot_types = ["heatmap", "annotated"]
 
@@ -102,9 +104,11 @@ def setup_template(plot_layout):
 @app.route("/layout/<name>")
 async def layout(name):
     plot_layout = name
-    print(plot_layout)
+    # print(plot_layout)
 
     if plot_layout == "grid":
+        plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
+    elif plot_layout == "column":
         plot_types = ["heatmap", "annotated", "box plot", "distribution", "violin"]
     elif plot_layout == "heatmap":
         plot_types = ["heatmap", "annotated"]
