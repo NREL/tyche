@@ -143,12 +143,12 @@ async def plot():
     
     figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
     ax = figure.subplots()
-
+    
     summary = evaluation.xs(m, level="Index").astype('float64')
 
-    if c == "x":     values = summary.groupby("Sample").sum().reset_index()
-    elif c == "all": values = summary.reset_index()
-    else:            values = summary.xs(c, level="Category").reset_index()
+    if c in ["x","xall"]: values = summary.groupby("Sample").sum().reset_index()
+    elif c == "all":      values = summary.reset_index()
+    else:                 values = summary.xs(c, level="Category").reset_index()
     
     y0 = min(0, metric_range.loc[m, "Value Min"])
     y1 = max(0, metric_range.loc[m, "Value Max"])
@@ -158,7 +158,7 @@ async def plot():
     if typ in ["box plot", "distribution", "violin"]:
         if typ == "box plot":
             if c == "all":  sb.boxplot(ax=ax, data=values, x='Value', y='Category')
-            else:           sb.boxplot(ax=ax, data=values, x='Value')
+            else:           sb.boxplot(ax=ax, data=values, x='Value', linewidth=0.5)
         elif typ == "violin":
             if c == "all":  sb.violinplot(ax=ax, data=values, x='Value', y='Category')
             else:           sb.violinplot(ax=ax, data=values, x='Value')

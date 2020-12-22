@@ -73,7 +73,7 @@ function x2y(target, x, y) {
   function fetchPlot(target) {
     const [met, cat] = metcat(target)
 
-    vscale = cat=="x" ? 0.33 : 1
+    vscale = cat=="xall" ? 0.33 : 1
 
     if (plotWidth == null) {
       const bounds = target.parentElement.getBoundingClientRect()
