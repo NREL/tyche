@@ -73,6 +73,7 @@ function x2y(target, x, y) {
   function fetchPlot(target) {
     const [met, cat] = metcat(target)
 
+    // [to-do] 1/# of rows. It will absolutely be greater than three.
     vscale = cat=="xall" ? 0.33 : 1
 
     if (plotWidth == null) {

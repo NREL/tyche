@@ -67,6 +67,7 @@
         </td>
         <!-- <td />  column: investment sliders -->
         <!-- metric sliders -->
+        <!-- [to-do] round very small values to zero -->
         {% for metric in metrics.index %}
         {% set met = loop.index - 1 -%}
         <td class="metric">
@@ -99,6 +100,7 @@
         <!-- label investment category -->
         <td>{{ categories.index[cat] }}</td>
         <!-- investment sliders -->
+        <!-- [to-do] in thousands of dollars -->
         <td class="invest">
           <!-- investment value (visual) -->
           <meter id="invoptwid_{{cat}}" class="invoptwid invpart"
