@@ -211,8 +211,9 @@ class EpsilonConstraintOptimizer:
           min_metric=None, # lower metric limits
           statistic=np.mean, # how to quantify the metrics
           strategy='best1bin',
-          tol=1e-8,
-          maxiter=50,
+          seed=2, # random seed
+          tol=0.01, #looser tolerance means greater chance of convergence
+          maxiter=75, #this algorithm tends to require more iterations
           init='latinhypercube',
           verbose=0, # how much to report back during execution
   ):
@@ -236,6 +237,10 @@ class EpsilonConstraintOptimizer:
     strategy : str
       Which differential evolution strategy to use. 'best1bin' is the default.
       See algorithm docs for full list.
+    seed : int
+      Sets the random seed for optimization by creating a new `RandomState`
+      instance. Defaults to 1. Not setting this parameter means the solutions
+      will not be reproducible.
     init : str or array-like
       Type of population initialization. Default is Latin hypercube;
       alternatives are 'random' or specifying every member of the initial
@@ -328,7 +333,7 @@ class EpsilonConstraintOptimizer:
       strategy=strategy, # defines differential evolution strategy to use
       maxiter=maxiter, # default maximum iterations to execute
       tol=tol, # default tolerance on returned optimum
-      seed=None, # specify a random seed for reproducible optimizations
+      seed=seed, # specify a random seed for reproducible optimizations
       init=init, # type of population initialization
       constraints=NonlinearConstraint(g, 0.0, np.inf)) # @note ignore this warning for now
 
@@ -343,8 +348,8 @@ class EpsilonConstraintOptimizer:
     # decision variable values, objective function value, and number of
     # iterations ("nit")
     return Optimum(
-      exit_code=None,
-      exit_message=None,
+      exit_code=result.success,
+      exit_message=result.message,
       amounts=x,
       metrics=y,
     )
@@ -356,7 +361,7 @@ class EpsilonConstraintOptimizer:
           total_amount=None,
           min_metric=None,
           statistic=np.mean,
-          f_tol=1e-8,
+          tol=1e-8,
           maxiter=50,
           sampling_method='simplicial',
           verbose=0,
@@ -378,7 +383,7 @@ class EpsilonConstraintOptimizer:
     statistic : function
       Summary metric_statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
-    f_tol : float
+    tol : float
       Objective function tolerance in stopping criterion.
     maxiter : int
       Upper metric_limit on iterations that can be performed
@@ -466,17 +471,13 @@ class EpsilonConstraintOptimizer:
         g_metric = make_g_metric(statistic, index, limit)
         constraints += [{'type': 'ineq', 'fun': g_metric}]
 
-    min_kwarg_dict = {'method': 'slsqp'}
-    opt_dict = {'minimize_every_iter': False,
-                'local_iter': True,
-                'f_tol': f_tol,
+    opt_dict = {'f_tol': tol,
                 'maxiter': maxiter}
 
     result = shgo(
       self._fi(i, statistic, verbose), # callable function that returns the scalar objective function value
       bounds=bounds,  # upper and lower bounds on decision variables
       constraints=constraints,
-      minimizer_kwargs=min_kwarg_dict,
       options=opt_dict, # dictionary of options including max iters
       sampling_method=sampling_method #sampling method (sobol or simplicial)
     )
