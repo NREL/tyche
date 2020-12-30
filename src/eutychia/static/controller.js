@@ -78,8 +78,8 @@ function x2y(target, x, y) {
 
     if (plotWidth == null) {
       const bounds = target.parentElement.getBoundingClientRect()
-      plotWidth  = bounds.width  - 5
-      plotHeight = bounds.height - 5
+      plotWidth  = bounds.width  - 0
+      plotHeight = bounds.height - 0
     }
     plotType = plot_type.value
     postRequest(
