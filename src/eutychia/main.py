@@ -174,21 +174,26 @@ async def plot():
         )
 
     # ----- HEATMAP ------------------------------------------------------------------------
+    isgrid=True
+
     if typ in ["heatmap", "annotated"]:
-        ser_norm = normalize_to_max_sample(evaluation)
-        ser_norm = ser_norm.unstack(level="Index")
+        summary_norm = normalize_to_metric(evaluation)
+        value_norm = summary_norm.unstack(level='Index') if isgrid else pd.DataFrame(
+            aggregate_over(summary_norm, ['Category'], np.sum)).transpose()
 
         if typ == "heatmap":
             sb.heatmap(
-                ser_norm, linewidths=0.5, vmax=1.0, vmin=-1.0, cmap="coolwarm_r", ax=ax,
+                value_norm, linewidths=0.5, vmax=1.0, vmin=-1.0, cmap="coolwarm_r", ax=ax, cbar=False,
             )
             
         elif typ == "annotated":
-            ser_mean = aggregate_over(evaluation, ["Sample"])
-            ser_mean = ser_mean.unstack(level="Index")
+            summary = aggregate_over(evaluation, ['Sample'])
+            value = summary.unstack(level='Index') if isgrid else pd.DataFrame(
+                aggregate_over(summary, ['Category'], np.sum)).transpose()
+
             sb.heatmap(
-                ser_norm, linewidths=0.5, vmax=1.0, vmin=-1.0, cmap="coolwarm_r", ax=ax,
-                annot=ser_mean,
+                value_norm, linewidths=0.5, vmax=1.0, vmin=-1.0, cmap="coolwarm_r", ax=ax, cbar=False,
+                annot=value,
                 fmt=".4g",
             )
         
@@ -291,13 +296,7 @@ def aggregate_over(ser, idx, statistic=np.mean):
     return ser.groupby(idx_res).aggregate(statistic)
 
 
-def normalize_to_max_sample(x):
-    x_mean = aggregate_over(x, ["Sample"])
-    x_max = aggregate_over(abs(x), ["Sample", "Category"], np.max)
-    return x_mean / x_max
-
-
-def normalize_to_max_mean(x):
-    x_mean = aggregate_over(x, ["Sample"])
-    x_max = aggregate_over(abs(x_mean), ["Category"], np.max)
-    return x_mean / x_max
+def normalize_to_metric(x):
+    x_mean = aggregate_over(x, ['Sample'])
+    met_diff = (metric_range['Value Max'] - metric_range['Value Min'])
+    return x_mean / met_diff
