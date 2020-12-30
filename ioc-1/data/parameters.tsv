@@ -21,5 +21,197 @@ PV Generic	Reference	Customer Acquisition	18	2000	$/system	BCA
 PV Generic	Reference	Installer Overhead & Profit	19	0.35	1	BOH
 PV Generic	Reference	Hazardous Waste Content	20	1830	g/m^2	
 PV Generic	Reference	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
-PV Generic	Reference	Benchmark LCOC	22	2772.842094	$/Wdc	
+PV Generic	Reference	Benchmark LCOC	22	2.51977	$/Wdc	
 PV Generic	Reference	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	Power Electronics 1	Discount Rate	0	0.07	1/year	DR
+PV Generic	Power Electronics 1	Insolation	1	1000	W/m^2	INS
+PV Generic	Power Electronics 1	System Size	2	36	m^2	SSZ
+PV Generic	Power Electronics 1	Module Capital	3	st.triang(0.5, loc=110, scale=0.11)	$/m^2	MCC
+PV Generic	Power Electronics 1	Module Lifetime	4	st.triang(0.5, loc=25, scale=0.0025)	yr	MLT
+PV Generic	Power Electronics 1	Module Efficiency	5	st.triang(0.5, loc=0.208, scale=0.05)	%/100	MEF
+PV Generic	Power Electronics 1	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	Power Electronics 1	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	Power Electronics 1	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	Power Electronics 1	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	Power Electronics 1	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	Power Electronics 1	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	Power Electronics 1	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	Power Electronics 1	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	Power Electronics 1	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	Power Electronics 1	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	Power Electronics 1	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	Power Electronics 1	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	Power Electronics 1	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	Power Electronics 1	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	Power Electronics 1	Hazardous Waste Content	20	st.triang(0.5, loc=1830, scale=10)	g/m^2	
+PV Generic	Power Electronics 1	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	Power Electronics 1	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	Power Electronics 1	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	Soft Costs 1	Discount Rate	0	0.07	1/year	DR
+PV Generic	Soft Costs 1	Insolation	1	1000	W/m^2	INS
+PV Generic	Soft Costs 1	System Size	2	36	m^2	SSZ
+PV Generic	Soft Costs 1	Module Capital	3	st.triang(0.5, loc=110, scale=0.11)	$/m^2	MCC
+PV Generic	Soft Costs 1	Module Lifetime	4	st.triang(0.5, loc=25, scale=0.0025)	yr	MLT
+PV Generic	Soft Costs 1	Module Efficiency	5	st.triang(0.5, loc=0.208, scale=0.05)	%/100	MEF
+PV Generic	Soft Costs 1	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	Soft Costs 1	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	Soft Costs 1	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	Soft Costs 1	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	Soft Costs 1	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	Soft Costs 1	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	Soft Costs 1	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	Soft Costs 1	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	Soft Costs 1	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	Soft Costs 1	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	Soft Costs 1	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	Soft Costs 1	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	Soft Costs 1	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	Soft Costs 1	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	Soft Costs 1	Hazardous Waste Content	20	st.triang(0.5, loc=1830, scale=10)	g/m^2	
+PV Generic	Soft Costs 1	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	Soft Costs 1	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	Soft Costs 1	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	Polysilicon 0	Discount Rate	0	0.07	1/year	DR
+PV Generic	Polysilicon 0	Insolation	1	1000	W/m^2	INS
+PV Generic	Polysilicon 0	System Size	2	36	m^2	SSZ
+PV Generic	Polysilicon 0	Module Capital	3	st.triang(0.5, loc=110, scale=0.11)	$/m^2	MCC
+PV Generic	Polysilicon 0	Module Lifetime	4	st.triang(0.5, loc=25, scale=0.0025)	yr	MLT
+PV Generic	Polysilicon 0	Module Efficiency	5	st.triang(0.5, loc=0.208, scale=0.05)	%/100	MEF
+PV Generic	Polysilicon 0	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	Polysilicon 0	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	Polysilicon 0	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	Polysilicon 0	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	Polysilicon 0	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	Polysilicon 0	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	Polysilicon 0	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	Polysilicon 0	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	Polysilicon 0	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	Polysilicon 0	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	Polysilicon 0	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	Polysilicon 0	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	Polysilicon 0	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	Polysilicon 0	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	Polysilicon 0	Hazardous Waste Content	20	st.triang(0.5, loc=1830, scale=10)	g/m^2	
+PV Generic	Polysilicon 0	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	Polysilicon 0	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	Polysilicon 0	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	CIGS 0	Discount Rate	0	0.07	1/year	DR
+PV Generic	CIGS 0	Insolation	1	1000	W/m^2	INS
+PV Generic	CIGS 0	System Size	2	36	m^2	SSZ
+PV Generic	CIGS 0	Module Capital	3	st.triang(0.5, loc=250, scale=75)	$/m^2	MCC
+PV Generic	CIGS 0	Module Lifetime	4	st.triang(0.5, loc=25, scale=0.0025)	yr	MLT
+PV Generic	CIGS 0	Module Efficiency	5	st.triang(0.5, loc=0.210, scale=0.05)	%/100	MEF
+PV Generic	CIGS 0	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	CIGS 0	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	CIGS 0	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	CIGS 0	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	CIGS 0	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	CIGS 0	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	CIGS 0	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	CIGS 0	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	CIGS 0	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	CIGS 0	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	CIGS 0	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	CIGS 0	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	CIGS 0	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	CIGS 0	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	CIGS 0	Hazardous Waste Content	20	st.triang(0.5, loc=305, scale=10)	g/m^2	
+PV Generic	CIGS 0	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	CIGS 0	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	CIGS 0	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	CdTe 0	Discount Rate	0	0.07	1/year	DR
+PV Generic	CdTe 0	Insolation	1	1000	W/m^2	INS
+PV Generic	CdTe 0	System Size	2	36	m^2	SSZ
+PV Generic	CdTe 0	Module Capital	3	st.triang(0.5, loc=200, scale=50)	$/m^2	MCC
+PV Generic	CdTe 0	Module Lifetime	4	st.triang(0.5, loc=25, scale=0.0025)	yr	MLT
+PV Generic	CdTe 0	Module Efficiency	5	st.triang(0.5, loc=0.210, scale=0.05)	%/100	MEF
+PV Generic	CdTe 0	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	CdTe 0	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	CdTe 0	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	CdTe 0	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	CdTe 0	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	CdTe 0	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	CdTe 0	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	CdTe 0	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	CdTe 0	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	CdTe 0	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	CdTe 0	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	CdTe 0	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	CdTe 0	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	CdTe 0	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	CdTe 0	Hazardous Waste Content	20	st.triang(0.5, loc=400, scale=10)	g/m^2	
+PV Generic	CdTe 0	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	CdTe 0	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	CdTe 0	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	GaAs 0	Discount Rate	0	0.07	1/year	DR
+PV Generic	GaAs 0	Insolation	1	1000	W/m^2	INS
+PV Generic	GaAs 0	System Size	2	36	m^2	SSZ
+PV Generic	GaAs 0	Module Capital	3	st.triang(0.5, loc=300, scale=50)	$/m^2	MCC
+PV Generic	GaAs 0	Module Lifetime	4	st.triang(0.5, loc=25, scale=0.0025)	yr	MLT
+PV Generic	GaAs 0	Module Efficiency	5	st.triang(0.5, loc=0.288, scale=0.05)	%/100	MEF
+PV Generic	GaAs 0	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	GaAs 0	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	GaAs 0	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	GaAs 0	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	GaAs 0	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	GaAs 0	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	GaAs 0	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	GaAs 0	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	GaAs 0	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	GaAs 0	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	GaAs 0	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	GaAs 0	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	GaAs 0	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	GaAs 0	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	GaAs 0	Hazardous Waste Content	20	st.triang(0.5, loc=750, scale=10)	g/m^2	
+PV Generic	GaAs 0	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	GaAs 0	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	GaAs 0	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	Perovskite 0	Discount Rate	0	0.07	1/year	DR
+PV Generic	Perovskite 0	Insolation	1	1000	W/m^2	INS
+PV Generic	Perovskite 0	System Size	2	36	m^2	SSZ
+PV Generic	Perovskite 0	Module Capital	3	st.triang(0.5, loc=200, scale=50)	$/m^2	MCC
+PV Generic	Perovskite 0	Module Lifetime	4	st.triang(0.5, loc=15, scale=5)	yr	MLT
+PV Generic	Perovskite 0	Module Efficiency	5	st.triang(0.5, loc=0.156, scale=0.05)	%/100	MEF
+PV Generic	Perovskite 0	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	Perovskite 0	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	Perovskite 0	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	Perovskite 0	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	Perovskite 0	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	Perovskite 0	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	Perovskite 0	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	Perovskite 0	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	Perovskite 0	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	Perovskite 0	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	Perovskite 0	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	Perovskite 0	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	Perovskite 0	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	Perovskite 0	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	Perovskite 0	Hazardous Waste Content	20	st.triang(0.5, loc=100, scale=10)	g/m^2	
+PV Generic	Perovskite 0	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	Perovskite 0	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	Perovskite 0	Benchmark LCOE	23	0.086773	$/kWh	
+PV Generic	InGaP 0	Discount Rate	0	0.07	1/year	DR
+PV Generic	InGaP 0	Insolation	1	1000	W/m^2	INS
+PV Generic	InGaP 0	System Size	2	36	m^2	SSZ
+PV Generic	InGaP 0	Module Capital	3	st.triang(0.5, loc=275, scale=50)	$/m^2	MCC
+PV Generic	InGaP 0	Module Lifetime	4	st.triang(0.5, loc=20, scale=1)	yr	MLT
+PV Generic	InGaP 0	Module Efficiency	5	st.triang(0.5, loc=0.379, scale=0.05)	%/100	MEF
+PV Generic	InGaP 0	Module Aperture	6	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	MAP
+PV Generic	InGaP 0	Module O&M Fixed	7	st.triang(0.5, loc=20, scale=0.002)	$/kW/yr	MOM
+PV Generic	InGaP 0	Module Degradation	8	st.triang(0.5, loc=0.0075, scale=7.5e-7)	1/yr	MDR
+PV Generic	InGaP 0	Location Capacity Factor	9	st.triang(0.5, loc=0.2, scale=2e-5)	%/100	MCF
+PV Generic	InGaP 0	Module Soiling Loss	10	st.triang(0.5, loc=0.05, scale=5e-6)	%/100	MSL
+PV Generic	InGaP 0	Inverter Capital	11	st.triang(0.5, loc=0.3, scale=3e-5)	$/W	ICC
+PV Generic	InGaP 0	Inverter Lifetime	12	st.triang(0.5, loc=16, scale=0.0016)	yr	ILT
+PV Generic	InGaP 0	Inverter Replacement	13	st.triang(0.5, loc=0.5, scale=5e-5)	%/100	IRC
+PV Generic	InGaP 0	Inverter Efficiency	14	st.triang(0.5, loc=0.9, scale=9e-5)	%/100	IEF
+PV Generic	InGaP 0	Hardware Capital	15	st.triang(0.5, loc=80, scale=0.008)	$/m^2	BCC
+PV Generic	InGaP 0	Direct Labor	16	st.triang(0.5, loc=2000, scale=0.2)	$/system	BLR
+PV Generic	InGaP 0	Permitting	17	st.triang(0.5, loc=600, scale=0.06)	$/system	BPR
+PV Generic	InGaP 0	Customer Acquisition	18	st.triang(0.5, loc=2000, scale=0.2)	$/system	BCA
+PV Generic	InGaP 0	Installer Overhead & Profit	19	st.triang(0.5, loc=0.35, scale=3.5e-5)	1	BOH
+PV Generic	InGaP 0	Hazardous Waste Content	20	st.triang(0.5, loc=250, scale=10)	g/m^2	
+PV Generic	InGaP 0	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	InGaP 0	Benchmark LCOC	22	2.51977	$/Wdc	
+PV Generic	InGaP 0	Benchmark LCOE	23	0.086773	$/kWh	

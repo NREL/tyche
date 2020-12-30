@@ -12,3 +12,107 @@ PV Generic	Reference	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
 PV Generic	Reference	Lifetime	Module	1	system-lifetime	per-lifetime computations
 PV Generic	Reference	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
 PV Generic	Reference	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	Power Electronics 1	Input	Strategic	0	g/system	zero by default
+PV Generic	Power Electronics 1	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	Power Electronics 1	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	Power Electronics 1	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	Power Electronics 1	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	Power Electronics 1	Scale		1	system/system	no scaling
+PV Generic	Power Electronics 1	Input price	Stategic	0	$/g	zero by default
+PV Generic	Power Electronics 1	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	Power Electronics 1	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	Power Electronics 1	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	Power Electronics 1	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	Power Electronics 1	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	Power Electronics 1	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	Soft Costs 1	Input	Strategic	0	g/system	zero by default
+PV Generic	Soft Costs 1	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	Soft Costs 1	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	Soft Costs 1	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	Soft Costs 1	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	Soft Costs 1	Scale		1	system/system	no scaling
+PV Generic	Soft Costs 1	Input price	Stategic	0	$/g	zero by default
+PV Generic	Soft Costs 1	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	Soft Costs 1	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	Soft Costs 1	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	Soft Costs 1	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	Soft Costs 1	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	Soft Costs 1	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	Polysilicon 0	Input	Strategic	0	g/system	zero by default
+PV Generic	Polysilicon 0	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	Polysilicon 0	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	Polysilicon 0	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	Polysilicon 0	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	Polysilicon 0	Scale		1	system/system	no scaling
+PV Generic	Polysilicon 0	Input price	Stategic	0	$/g	zero by default
+PV Generic	Polysilicon 0	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	Polysilicon 0	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	Polysilicon 0	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	Polysilicon 0	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	Polysilicon 0	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	Polysilicon 0	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	CIGS 0	Input	Strategic	st.triang(0.5, loc=2520, scale=500)	g/system	zero by default
+PV Generic	CIGS 0	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	CIGS 0	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	CIGS 0	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	CIGS 0	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	CIGS 0	Scale		1	system/system	no scaling
+PV Generic	CIGS 0	Input price	Stategic	0	$/g	zero by default
+PV Generic	CIGS 0	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	CIGS 0	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	CIGS 0	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	CIGS 0	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	CIGS 0	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	CIGS 0	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	CdTe 0	Input	Strategic	st.triang(0.5, loc=8280, scale=500)	g/system	zero by default
+PV Generic	CdTe 0	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	CdTe 0	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	CdTe 0	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	CdTe 0	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	CdTe 0	Scale		1	system/system	no scaling
+PV Generic	CdTe 0	Input price	Stategic	0	$/g	zero by default
+PV Generic	CdTe 0	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	CdTe 0	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	CdTe 0	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	CdTe 0	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	CdTe 0	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	CdTe 0	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	GaAs 0	Input	Strategic	st.triang(0.5, loc=2376, scale=500)	g/system	zero by default
+PV Generic	GaAs 0	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	GaAs 0	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	GaAs 0	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	GaAs 0	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	GaAs 0	Scale		1	system/system	no scaling
+PV Generic	GaAs 0	Input price	Stategic	0	$/g	zero by default
+PV Generic	GaAs 0	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	GaAs 0	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	GaAs 0	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	GaAs 0	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	GaAs 0	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	GaAs 0	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	Perovskite 0	Input	Strategic	st.triang(0.5, loc=900, scale=500)	g/system	zero by default
+PV Generic	Perovskite 0	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	Perovskite 0	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	Perovskite 0	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	Perovskite 0	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	Perovskite 0	Scale		1	system/system	no scaling
+PV Generic	Perovskite 0	Input price	Stategic	0	$/g	zero by default
+PV Generic	Perovskite 0	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	Perovskite 0	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	Perovskite 0	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	Perovskite 0	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	Perovskite 0	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	Perovskite 0	Lifetime	BoS	1	system-lifetime	per-lifetime computations
+PV Generic	InGaP 0	Input	Strategic	st.triang(0.5, loc=954, scale=500)	g/system	zero by default
+PV Generic	InGaP 0	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	InGaP 0	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	InGaP 0	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	InGaP 0	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	InGaP 0	Scale		1	system/system	no scaling
+PV Generic	InGaP 0	Input price	Stategic	0	$/g	zero by default
+PV Generic	InGaP 0	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	InGaP 0	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	InGaP 0	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	InGaP 0	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	InGaP 0	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	InGaP 0	Lifetime	BoS	1	system-lifetime	per-lifetime computations

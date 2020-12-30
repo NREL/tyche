@@ -7,7 +7,7 @@ PV Generic	Input	Strategic	0	strategic materials
 PV Generic	Output	Electricity	0	electricity generated	
 PV Generic	Output	Hazardous	1	hazardous waste produced	
 PV Generic	Output	GHG	2	greenhouse gas offset	
-PV Generic	Metric	LCOC	0	levelized cost of capacity
+PV Generic	Metric	Capital	0	capital cost
 PV Generic	Metric	LCOE	1	levelized cost of energy	
 PV Generic	Metric	GHG	2	greenouse gas offset
 PV Generic	Metric	Strategic	3	strategic metal used

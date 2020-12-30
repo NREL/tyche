@@ -23,7 +23,7 @@
 
 #  METRICS
 #
-#  levelizedCapacityCost = metric[0] # $/Wdc
+#  systemCost            = metric[0] # $/Wdc
 #  levelizedEnergyCost   = metric[1] # $/kWh
 #  greenhouseGas         = metric[2] # gCO2e/kWh
 #  strategicMetal        = metric[3] # g/kWh
@@ -230,12 +230,12 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
 
   # All metrics.
   return np.stack([
-    benchmarkLCOC - cost / module_power(parameter) , # levelized cost of capacity
-    benchmarkLCOE - cost / lifetimeEnergy          , # levelized cost of energy
-    - greenhouseGas / lifetimeEnergy               , # greenhouse gas
-    strategicMetal / lifetimeEnergy                , # strategic metal
-    hazardousWaste / lifetimeEnergy                , # hazardous waste
-    specific_yield(parameter)                      , # specific yield
-    moduleEfficiency                               , # module efficiency
-    moduleLifetime                                 , # module lifetime
+    benchmarkLCOC - sum(capital) / module_power(parameter) / 1000, # system cost
+    benchmarkLCOE - cost / lifetimeEnergy                        , # levelized cost of energy
+    - greenhouseGas / lifetimeEnergy                             , # greenhouse gas
+    strategicMetal / lifetimeEnergy                              , # strategic metal
+    hazardousWaste / lifetimeEnergy                              , # hazardous waste
+    specific_yield(parameter)                                    , # specific yield
+    moduleEfficiency                                             , # module efficiency
+    moduleLifetime                                               , # module lifetime
   ])

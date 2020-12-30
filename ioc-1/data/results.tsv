@@ -3,7 +3,7 @@ PV Generic	Cost	Cost	$/system
 PV Generic	Output	Electricity	kWh/system	
 PV Generic	Output	Hazardous	g/system	
 PV Generic	Output	GHG	ΔgCO2e/system	
-PV Generic	Metric	LCOC	Δ$/Wdc	
+PV Generic	Metric	Capital	Δ$/Wdc	
 PV Generic	Metric	LCOE	Δ$/kWh	
 PV Generic	Metric	GHG	ΔgCO2e/system	
 PV Generic	Metric	Strategic	g/kWh	
