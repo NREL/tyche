@@ -232,7 +232,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   return np.stack([
     benchmarkLCOC - cost / module_power(parameter) , # levelized cost of capacity
     benchmarkLCOE - cost / lifetimeEnergy          , # levelized cost of energy
-    greenhouseGas / lifetimeEnergy                 , # greenhouse gas
+    - greenhouseGas / lifetimeEnergy               , # greenhouse gas
     strategicMetal / lifetimeEnergy                , # strategic metal
     hazardousWaste / lifetimeEnergy                , # hazardous waste
     specific_yield(parameter)                      , # specific yield

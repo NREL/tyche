@@ -4,7 +4,7 @@ PV Generic	Reference	Insolation	1	1000	W/m^2	INS
 PV Generic	Reference	System Size	2	36	m^2	SSZ
 PV Generic	Reference	Module Capital	3	110	$/m^2	MCC
 PV Generic	Reference	Module Lifetime	4	25	yr	MLT
-PV Generic	Reference	Module Efficiency	5	0.16	%/100	MEF
+PV Generic	Reference	Module Efficiency	5	0.208	%/100	MEF
 PV Generic	Reference	Module Aperture	6	0.9	%/100	MAP
 PV Generic	Reference	Module O&M Fixed	7	20	$/kW/yr	MOM
 PV Generic	Reference	Module Degradation	8	0.0075	1/yr	MDR
@@ -20,6 +20,6 @@ PV Generic	Reference	Permitting	17	600	$/system	BPR
 PV Generic	Reference	Customer Acquisition	18	2000	$/system	BCA
 PV Generic	Reference	Installer Overhead & Profit	19	0.35	1	BOH
 PV Generic	Reference	Hazardous Waste Content	20	1830	g/m^2	
-PV Generic	Reference	Greenhouse Gas Offset	21	-0.4490564e-3	gCO2e/kWh	
-PV Generic	Reference	Benchmark LCOC	22	3391.592094	$/Wdc	
-PV Generic	Reference	Benchmark LCOE	23	0.106136	$/kWh	
+PV Generic	Reference	Greenhouse Gas Offset	21	0.4490564e-3	gCO2e/kWh	
+PV Generic	Reference	Benchmark LCOC	22	2772.842094	$/Wdc	
+PV Generic	Reference	Benchmark LCOE	23	0.086773	$/kWh	
