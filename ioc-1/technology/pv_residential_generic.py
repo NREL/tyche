@@ -56,7 +56,8 @@
 #  installerOverheadCost   = parameter[19] # %/100
 #  hazardousWasteContent   = parameter[20] # g/m^2
 #  greenhouseGasOffset     = parameter[21] # gCO2e/kWh
-
+#  benchmarkLCOC           = parameter[22] # $/Wdc
+#  benchmarkLCOE           = parameter[23] # $/kWh
 
 # All of the computations must be vectorized, so use `numpy`.
 import numpy as np
@@ -218,21 +219,23 @@ def production(scale, capital, lifetime, fixed, input, parameter):
 def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
 
   # For readability, copy the parameter vectors to named variables.
-  moduleLifetime   = parameter[4] # yr
-  moduleEfficiency = parameter[5] # %/100
-  strategicMetal   = input_raw[0] # g/system
-  lifetimeEnergy   = output[0]    # kWh/system
-  hazardousWaste   = output[1]    # g/system
-  greenhouseGas    = output[2]    # gCO2e/system
+  moduleLifetime   = parameter[ 4] # yr
+  moduleEfficiency = parameter[ 5] # %/100
+  benchmarkLCOC    = parameter[22] # $/Wdc	
+  benchmarkLCOE    = parameter[23] # $/kWh	
+  strategicMetal   = input_raw[0]  # g/system
+  lifetimeEnergy   = output[0]     # kWh/system
+  hazardousWaste   = output[1]     # g/system
+  greenhouseGas    = output[2]     # gCO2e/system
 
   # All metrics.
   return np.stack([
-    cost / module_power(parameter) , # levelized cost of capacity
-    cost / lifetimeEnergy          , # levelized cost of energy
-    greenhouseGas / lifetimeEnergy , # greenhouse gas
-    strategicMetal / lifetimeEnergy, # strategic metal
-    hazardousWaste / lifetimeEnergy, # hazardous waste
-    specific_yield(parameter)      , # specific yield
-    moduleEfficiency               , # module efficiency
-    moduleLifetime                 , # module lifetime
+    benchmarkLCOC - cost / module_power(parameter) , # levelized cost of capacity
+    benchmarkLCOE - cost / lifetimeEnergy          , # levelized cost of energy
+    greenhouseGas / lifetimeEnergy                 , # greenhouse gas
+    strategicMetal / lifetimeEnergy                , # strategic metal
+    hazardousWaste / lifetimeEnergy                , # hazardous waste
+    specific_yield(parameter)                      , # specific yield
+    moduleEfficiency                               , # module efficiency
+    moduleLifetime                                 , # module lifetime
   ])
