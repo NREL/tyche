@@ -1,0 +1,13 @@
+Technology	Variable	Index	Units	Notes
+PV Generic	Cost	Cost	$/system	
+PV Generic	Output	Electricity	kWh/system	
+PV Generic	Output	Hazardous	g/system	
+PV Generic	Output	GHG	ΔgCO2e/system	
+PV Generic	Metric	LCap	$/Wdc	
+PV Generic	Metric	LCOE	$/kWh	
+PV Generic	Metric	GHG	ΔgCO2e/system	
+PV Generic	Metric	Strategic	g/system	
+PV Generic	Metric	Hazardous	g/system	
+PV Generic	Metric	Yield	hr/yr	
+PV Generic	Metric	Efficiency	%/100	
+PV Generic	Metric	Lifetime	yr	

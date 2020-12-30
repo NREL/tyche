@@ -1,0 +1,14 @@
+Technology	Scenario	Variable	Index	Value	Units	Notes
+PV Generic	Reference	Input	Strategic	0	g/system	zero by default
+PV Generic	Reference	Input efficiency	Strategic	1	%/100	no scaling
+PV Generic	Reference	Output efficiency	Electricity	1	%/100	see parameter table for individual efficiencies
+PV Generic	Reference	Output efficiency	Hazardous	1	%/100	see parameter table for individual efficiencies
+PV Generic	Reference	Output efficiency	GHG	1	%/100	see parameter table for individual efficiencies
+PV Generic	Reference	Scale		1	system/system	no scaling
+PV Generic	Reference	Input price	Stategic	0	$/g	zero by default
+PV Generic	Reference	Output price	Electricity	0	$/kWh	not tracking electricity price
+PV Generic	Reference	Output price	Hazardous	0	$/g	not tracking hazardous waste
+PV Generic	Reference	Output price	GHG	0	$/gCO2e	not tracking hazardous waste
+PV Generic	Reference	Lifetime	Module	1	system-lifetime	per-lifetime computations
+PV Generic	Reference	Lifetime	Inverter	1	system-lifetime	per-lifetime computations
+PV Generic	Reference	Lifetime	BoS	1	system-lifetime	per-lifetime computations
