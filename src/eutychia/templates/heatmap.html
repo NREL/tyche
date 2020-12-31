@@ -3,12 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <link href="view.css" type="text/css" rel="stylesheet">
-  <script src="controller.js" type="application/javascript"> </script>
+  <link href="/view.css" type="text/css" rel="stylesheet">
+  <script src="/controller.js" type="application/javascript"> </script>
   <title>R&amp;D Portfolio Evaluation</title>
 </head>
 
 <body onload="setup()">
+
+  <div id="plot_layout">Jump to <a href="/layout/grid">grid</a>, <a href="/layout/column">column</a>, . . . </div>
+
   <h1>R&amp;D Portfolio Evaluation</h1>
   <!-- selector to navigate between views. If you select the one you're not on, 
     it'll move you to that page. Anchor:
@@ -119,9 +122,12 @@
             Allowed: $0</label>
         </td>
         <!-- plot metrics -->
-        {% for metric in metrics.index %}
+        {% for metric in [metrics.index[0]] %}
         {% set met = loop.index - 1 -%}
-        <td><img id="img_{{met}}_{{cat}}" class="plot" /></td>
+        {% if cat == 0 %}
+        <td rowspan="{{ categories.size }}" colspan="{{ metrics["Value Min"].size }}">
+            <img id="img_{{met}}_{{cat}}" class="plot" /></td>
+        {% endif %}
         {% endfor %}
       </tr>
       {% endfor %}
@@ -151,10 +157,10 @@
           <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
         </td>
         <!-- plot metric totals -->
-        {% for metric in metrics.index %}
+        <!-- {% for metric in [metrics.index[0]] %}
         {% set met = loop.index - 1 -%}
-        <td><img id="img_{{met}}_x" class="plot" /></td>
-        {% endfor %}
+        <td><img id="img_{{met}}_xall" class="plot" /></td>
+        {% endfor %} -->
       </tr>
     </tbody>
     <!-- <tfoot> -->

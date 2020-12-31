@@ -15,8 +15,8 @@ dependencies:
   - bleach=3.2.1=pyh9f0ad1d_0
   - blinker=1.4=py_1
   - bzip2=1.0.8=haf1e3a3_3
-  - ca-certificates=2020.6.20=hecda079_0
-  - certifi=2020.6.20=py37h2987424_2
+  - ca-certificates=2020.10.14=0
+  - certifi=2020.11.8=py37hecd8cb5_0
   - cffi=1.14.3=py37h446cb54_1
   - click=7.1.2=pyh9f0ad1d_0
   - cycler=0.10.0=py_2
@@ -120,7 +120,7 @@ dependencies:
   - readline=7.0=hcfe32e1_1001
   - scikit-learn=0.23.2=py37hb7e9fed_0
   - scipy=1.5.2=py37h2702c91_1
-  - seaborn=0.10.0=py_1
+  - seaborn=0.11.0=py_0
   - seaborn-base=0.11.0=py_0
   - send2trash=1.5.0=py_0
   - setuptools=49.6.0=py37h2987424_2
@@ -151,4 +151,4 @@ dependencies:
   - zipp=3.3.0=py_0
   - zlib=1.2.11=h7795811_1010
   - zstd=1.4.5=h289c70a_2
-
+prefix: /Users/chughes/anaconda3/envs/tyche
