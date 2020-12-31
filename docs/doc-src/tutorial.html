@@ -1,0 +1,2512 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tutorial &#8212; Tyche 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mock FOA" href="mock-foa.html" />
+    <link rel="prev" title="User Interface" href="eutychia.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>Multiple Objectives for Residential PV.</p>
+<div class="section" id="import-packages">
+<h2>Import packages.<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../src&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>             <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">pandas</span>            <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>           <span class="k">as</span> <span class="nn">sb</span>
+
+<span class="c1"># The `tyche` package is located at &lt;https://github.com/NREL/portfolio/tree/master/production-function/src/tyche/&gt;.</span>
+<span class="kn">import</span> <span class="nn">tyche</span>             <span class="k">as</span> <span class="nn">ty</span>
+
+<span class="kn">from</span> <span class="nn">copy</span>            <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-data">
+<h2>Load data.<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
+<p>The data are stored in a set of tab-separated value files in a folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">Designs</span><span class="p">(</span><span class="s2">&quot;../data/residential_pv_multiobjective&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investments</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">Investments</span><span class="p">(</span><span class="s2">&quot;../data/residential_pv_multiobjective&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Compile the production and metric functions for each technology in the dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examine-the-data">
+<h2>Examine the data.<a class="headerlink" href="#examine-the-data" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">functions</span></code> table specifies where the Python code for each technology resides.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">functions</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Style</th>
+      <th>Module</th>
+      <th>Capital</th>
+      <th>Fixed</th>
+      <th>Production</th>
+      <th>Metrics</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Residential PV</td>
+      <td>numpy</td>
+      <td>residential_pv_multiobjective</td>
+      <td>capital_cost</td>
+      <td>fixed_cost</td>
+      <td>production</td>
+      <td>metrics</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Right now, only the style <code class="docutils literal notranslate"><span class="pre">numpy</span></code> is supported.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">indices</span></code> table defines the subscripts for variables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">indices</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Offset</th>
+      <th>Description</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <th>Type</th>
+      <th>Index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="9" valign="top">Residential PV</td>
+      <td rowspan="3" valign="top">Capital</td>
+      <td>BoS</td>
+      <td>2</td>
+      <td>balance of system</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Inverter</td>
+      <td>1</td>
+      <td>system inverters</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Module</td>
+      <td>0</td>
+      <td>system module</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Fixed</td>
+      <td>System</td>
+      <td>0</td>
+      <td>whole system</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Input</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>no inputs</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>2</td>
+      <td>reduction in GHGs</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0</td>
+      <td>reduction in levelized cost of energy</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>1</td>
+      <td>increase in spending on wages</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>0</td>
+      <td>electricity generated</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div><p>The <code class="docutils literal notranslate"><span class="pre">designs</span></code> table contains the cost, input, efficiency, and price data for a scenario.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">designs</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Value</th>
+      <th>Units</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <th>Scenario</th>
+      <th>Variable</th>
+      <th>Index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="11" valign="top">Residential PV</td>
+      <td rowspan="5" valign="top">2015 Actual</td>
+      <td>Input</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>no inputs</td>
+    </tr>
+    <tr>
+      <td>Input efficiency</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>no inputs</td>
+    </tr>
+    <tr>
+      <td>Input price</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>no inputs</td>
+    </tr>
+    <tr>
+      <td rowspan="2" valign="top">Lifetime</td>
+      <td>BoS</td>
+      <td>1</td>
+      <td>system-lifetime</td>
+      <td>per-lifetime computations</td>
+    </tr>
+    <tr>
+      <td>Inverter</td>
+      <td>1</td>
+      <td>system-lifetime</td>
+      <td>per-lifetime computations</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Module Slow Progress</td>
+      <td rowspan="2" valign="top">Lifetime</td>
+      <td>Inverter</td>
+      <td>1</td>
+      <td>system-lifetime</td>
+      <td>per-lifetime computations</td>
+    </tr>
+    <tr>
+      <td>Module</td>
+      <td>1</td>
+      <td>system-lifetime</td>
+      <td>per-lifetime computations</td>
+    </tr>
+    <tr>
+      <td>Output efficiency</td>
+      <td>Electricity</td>
+      <td>1</td>
+      <td>W/W</td>
+      <td>see parameter table for individual efficiencies</td>
+    </tr>
+    <tr>
+      <td>Output price</td>
+      <td>Electricity</td>
+      <td>0</td>
+      <td>$/kWh</td>
+      <td>not tracking electricity price</td>
+    </tr>
+    <tr>
+      <td>Scale</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>system/system</td>
+      <td>no scaling</td>
+    </tr>
+  </tbody>
+</table>
+<p>90 rows × 3 columns</p>
+</div><p>The <code class="docutils literal notranslate"><span class="pre">parameters</span></code> table contains additional techno-economic parameters for each technology.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">parameters</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Offset</th>
+      <th>Value</th>
+      <th>Units</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <th>Scenario</th>
+      <th>Parameter</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="11" valign="top">Residential PV</td>
+      <td rowspan="5" valign="top">2015 Actual</td>
+      <td>Customer Acquisition</td>
+      <td>19</td>
+      <td>st.triang(0.5, loc=2000, scale=0.2)</td>
+      <td>$/system</td>
+      <td>BCA</td>
+    </tr>
+    <tr>
+      <td>DC-to-AC Ratio</td>
+      <td>15</td>
+      <td>st.triang(0.5, loc=1.4, scale=0.00014)</td>
+      <td>1</td>
+      <td>IDC</td>
+    </tr>
+    <tr>
+      <td>Direct Labor</td>
+      <td>17</td>
+      <td>st.triang(0.5, loc=2000, scale=0.2)</td>
+      <td>$/system</td>
+      <td>BLR</td>
+    </tr>
+    <tr>
+      <td>Discount Rate</td>
+      <td>0</td>
+      <td>0.07</td>
+      <td>1/year</td>
+      <td>DR</td>
+    </tr>
+    <tr>
+      <td>Hardware Capital</td>
+      <td>16</td>
+      <td>st.triang(0.5, loc=80, scale=0.008)</td>
+      <td>$/m^2</td>
+      <td>BCC</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Module Slow Progress</td>
+      <td>Module Lifetime</td>
+      <td>4</td>
+      <td>st.triang(0.5, loc=26, scale=1)</td>
+      <td>yr</td>
+      <td>MLT</td>
+    </tr>
+    <tr>
+      <td>Module O&amp;M Fixed</td>
+      <td>7</td>
+      <td>st.triang(0.5, loc=19, scale=0.5)</td>
+      <td>$/kWyr</td>
+      <td>MOM</td>
+    </tr>
+    <tr>
+      <td>Module Soiling Loss</td>
+      <td>10</td>
+      <td>st.triang(0.5, loc=0.05, scale=10E-06)</td>
+      <td>1</td>
+      <td>MSL</td>
+    </tr>
+    <tr>
+      <td>Permitting</td>
+      <td>18</td>
+      <td>st.triang(0.5, loc=600, scale=0.06)</td>
+      <td>$/system</td>
+      <td>BPR</td>
+    </tr>
+    <tr>
+      <td>System Size</td>
+      <td>2</td>
+      <td>36</td>
+      <td>m^2</td>
+      <td>SSZ</td>
+    </tr>
+  </tbody>
+</table>
+<p>210 rows × 4 columns</p>
+</div><p>The <code class="docutils literal notranslate"><span class="pre">results</span></code> table specifies the units of measure for results of computations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">results</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Units</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <th>Variable</th>
+      <th>Index</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5" valign="top">Residential PV</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>$/system</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>ΔgCO2e/system</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>Δ$/kWh</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>Δ$/system</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>kWh</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div><p>The <code class="docutils literal notranslate"><span class="pre">tranches</span></code> table specifies multually exclusive possibilities for investments: only one <code class="docutils literal notranslate"><span class="pre">Tranch</span></code> may be selected for each <code class="docutils literal notranslate"><span class="pre">Category</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investments</span><span class="o">.</span><span class="n">tranches</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Amount</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <th>Tranche</th>
+      <th>Scenario</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3" valign="top">BoS R&amp;D</td>
+      <td>BoS High R&amp;D</td>
+      <td>BoS Fast Progress</td>
+      <td>900000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BoS Low R&amp;D</td>
+      <td>BoS Slow Progress</td>
+      <td>300000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>BoS Medium R&amp;D</td>
+      <td>BoS Moderate Progress</td>
+      <td>600000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Inverter R&amp;D</td>
+      <td>Inverter High R&amp;D</td>
+      <td>Inverter Fast Progress</td>
+      <td>3000000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Inverter Low R&amp;D</td>
+      <td>Inverter Slow Progress</td>
+      <td>1000000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Inverter Medium R&amp;D</td>
+      <td>Inverter Moderate Progress</td>
+      <td>2000000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Module R&amp;D</td>
+      <td>Module High R&amp;D</td>
+      <td>Module Fast Progress</td>
+      <td>4500000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Module Low R&amp;D</td>
+      <td>Module Slow Progress</td>
+      <td>1500000.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Module Medium R&amp;D</td>
+      <td>Module Moderate Progress</td>
+      <td>3000000.0</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div><p>The <code class="docutils literal notranslate"><span class="pre">investments</span></code> table bundles a consistent set of tranches (one per category) into an overall investment.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investments</span><span class="o">.</span><span class="n">investments</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <th>Investment</th>
+      <th>Category</th>
+      <th>Tranche</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3" valign="top">High R&amp;D</td>
+      <td>BoS R&amp;D</td>
+      <td>BoS High R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Inverter R&amp;D</td>
+      <td>Inverter High R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Module R&amp;D</td>
+      <td>Module High R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Low R&amp;D</td>
+      <td>BoS R&amp;D</td>
+      <td>BoS Low R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Inverter R&amp;D</td>
+      <td>Inverter Low R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Module R&amp;D</td>
+      <td>Module Low R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Medium R&amp;D</td>
+      <td>BoS R&amp;D</td>
+      <td>BoS Medium R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Inverter R&amp;D</td>
+      <td>Inverter Medium R&amp;D</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Module R&amp;D</td>
+      <td>Module Medium R&amp;D</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="evaluate-the-scenarios-in-the-dataset">
+<h2>Evaluate the scenarios in the dataset.<a class="headerlink" href="#evaluate-the-scenarios-in-the-dataset" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span> <span class="o">=</span> <span class="n">designs</span><span class="o">.</span><span class="n">evaluate_scenarios</span><span class="p">(</span><span class="n">sample_count</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span> <span class="n">drop_level</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Value</th>
+      <th>Units</th>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <th>Scenario</th>
+      <th>Sample</th>
+      <th>Variable</th>
+      <th>Index</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="50" valign="top">Residential PV</td>
+      <td rowspan="5" valign="top">2015 Actual</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>19541.835826</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>-0.001761</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>-0.000019</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-0.001281</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>184107.032791</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">BoS Fast Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>17524.525245</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>-0.004254</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.010936</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-545.200985</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>184101.481909</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">BoS Moderate Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>17960.467902</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>-0.001253</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.008571</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-331.852654</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>184108.162865</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">BoS Slow Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>19022.884313</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>0.000327</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.002802</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-148.230849</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>184111.682213</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Inverter Fast Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>18059.997438</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>2.601021</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.011024</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-0.031111</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>189903.145647</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Inverter Moderate Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>18713.047656</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>2.537671</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.007512</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-0.034240</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>189762.072909</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Inverter Slow Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>19224.862899</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>2.435100</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.004693</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.056486</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>189533.659025</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Module Fast Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>18935.973204</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>51.490235</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.042746</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.013583</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>298774.134685</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Module Moderate Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>18952.058689</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>41.216046</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.037432</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.029792</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>275894.626758</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Module Slow Progress</td>
+      <td rowspan="5" valign="top">1</td>
+      <td>Cost</td>
+      <td>Cost</td>
+      <td>19656.198525</td>
+      <td>$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Metric</td>
+      <td>GHG</td>
+      <td>14.794693</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.015567</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-0.007250</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td>Output</td>
+      <td>Electricity</td>
+      <td>217057.134731</td>
+      <td>kWh</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="section" id="save-results">
+<h3>Save results.<a class="headerlink" href="#save-results" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/residential_pv_multiobjective/example-scenario.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-ghg-metric">
+<h3>Plot GHG metric.<a class="headerlink" href="#plot-ghg-metric" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">scenario_results</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;GHG&quot;</span><span class="p">],</span>
+        <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">]],</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;2015 Actual&quot;</span>              <span class="p">,</span>
+        <span class="s2">&quot;Module Slow Progress&quot;</span>      <span class="p">,</span>
+        <span class="s2">&quot;Module Moderate Progress&quot;</span>  <span class="p">,</span>
+        <span class="s2">&quot;Module Fast Progress&quot;</span>      <span class="p">,</span>
+        <span class="s2">&quot;Inverter Slow Progress&quot;</span>    <span class="p">,</span>
+        <span class="s2">&quot;Inverter Moderate Progress&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Inverter Fast Progress&quot;</span>    <span class="p">,</span>
+        <span class="s2">&quot;BoS Slow Progress&quot;</span>         <span class="p">,</span>
+        <span class="s2">&quot;BoS Moderate Progress&quot;</span>     <span class="p">,</span>
+        <span class="s2">&quot;BoS Fast Progress&quot;</span>         <span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;GHG Reduction [gCO2e / system]&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/output_35_0.png" src="../_images/output_35_0.png" />
+</div>
+<div class="section" id="plot-lcoe-metric">
+<h3>Plot LCOE metric.<a class="headerlink" href="#plot-lcoe-metric" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">scenario_results</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;LCOE&quot;</span><span class="p">],</span>
+        <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">]],</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;2015 Actual&quot;</span>              <span class="p">,</span>
+        <span class="s2">&quot;Module Slow Progress&quot;</span>      <span class="p">,</span>
+        <span class="s2">&quot;Module Moderate Progress&quot;</span>  <span class="p">,</span>
+        <span class="s2">&quot;Module Fast Progress&quot;</span>      <span class="p">,</span>
+        <span class="s2">&quot;Inverter Slow Progress&quot;</span>    <span class="p">,</span>
+        <span class="s2">&quot;Inverter Moderate Progress&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Inverter Fast Progress&quot;</span>    <span class="p">,</span>
+        <span class="s2">&quot;BoS Slow Progress&quot;</span>         <span class="p">,</span>
+        <span class="s2">&quot;BoS Moderate Progress&quot;</span>     <span class="p">,</span>
+        <span class="s2">&quot;BoS Fast Progress&quot;</span>         <span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;LCOE Reduction [USD / kWh]&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/output_37_0.png" src="../_images/output_37_0.png" />
+</div>
+<div class="section" id="plot-labor-metric">
+<h3>Plot labor metric.<a class="headerlink" href="#plot-labor-metric" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">scenario_results</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="s2">&quot;Labor&quot;</span><span class="p">],</span>
+        <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">]],</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;2015 Actual&quot;</span>              <span class="p">,</span>
+        <span class="s2">&quot;Module Slow Progress&quot;</span>      <span class="p">,</span>
+        <span class="s2">&quot;Module Moderate Progress&quot;</span>  <span class="p">,</span>
+        <span class="s2">&quot;Module Fast Progress&quot;</span>      <span class="p">,</span>
+        <span class="s2">&quot;Inverter Slow Progress&quot;</span>    <span class="p">,</span>
+        <span class="s2">&quot;Inverter Moderate Progress&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Inverter Fast Progress&quot;</span>    <span class="p">,</span>
+        <span class="s2">&quot;BoS Slow Progress&quot;</span>         <span class="p">,</span>
+        <span class="s2">&quot;BoS Moderate Progress&quot;</span>     <span class="p">,</span>
+        <span class="s2">&quot;BoS Fast Progress&quot;</span>         <span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Labor Increase [USD / system]&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/output_39_0.png" src="../_images/output_39_0.png" />
+</div>
+</div>
+<div class="section" id="evaluate-the-investments-in-the-dataset">
+<h2>Evaluate the investments in the dataset.<a class="headerlink" href="#evaluate-the-investments-in-the-dataset" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span> <span class="o">=</span> <span class="n">investments</span><span class="o">.</span><span class="n">evaluate_investments</span><span class="p">(</span><span class="n">designs</span><span class="p">,</span> <span class="n">sample_count</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="costs-of-investments">
+<h3>Costs of investments.<a class="headerlink" href="#costs-of-investments" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">amounts</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <th>Investment</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>High R&amp;D</td>
+      <td>8400000.0</td>
+    </tr>
+    <tr>
+      <td>Low R&amp;D</td>
+      <td>2800000.0</td>
+    </tr>
+    <tr>
+      <td>Medium R&amp;D</td>
+      <td>5600000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="benefits-of-investments">
+<h3>Benefits of investments.<a class="headerlink" href="#benefits-of-investments" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span> <span class="n">drop_level</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Value</th>
+      <th>Units</th>
+    </tr>
+    <tr>
+      <th>Investment</th>
+      <th>Category</th>
+      <th>Tranche</th>
+      <th>Scenario</th>
+      <th>Sample</th>
+      <th>Technology</th>
+      <th>Index</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3" valign="top">High R&amp;D</td>
+      <td rowspan="3" valign="top">BoS R&amp;D</td>
+      <td rowspan="3" valign="top">BoS High R&amp;D</td>
+      <td rowspan="3" valign="top">BoS Fast Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>0.001646</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.009871</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-484.675917</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Medium R&amp;D</td>
+      <td rowspan="3" valign="top">BoS R&amp;D</td>
+      <td rowspan="3" valign="top">BoS Medium R&amp;D</td>
+      <td rowspan="3" valign="top">BoS Moderate Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>-0.005431</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.009181</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-350.111301</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Low R&amp;D</td>
+      <td rowspan="3" valign="top">BoS R&amp;D</td>
+      <td rowspan="3" valign="top">BoS Low R&amp;D</td>
+      <td rowspan="3" valign="top">BoS Slow Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>-0.000623</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.002863</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-165.967402</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">High R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter High R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter Fast Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>2.366737</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.011084</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.034014</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Medium R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter Medium R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter Moderate Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>2.385654</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.007551</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.016533</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Low R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter Low R&amp;D</td>
+      <td rowspan="3" valign="top">Inverter Slow Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>2.562178</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.004598</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.081408</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">High R&amp;D</td>
+      <td rowspan="3" valign="top">Module R&amp;D</td>
+      <td rowspan="3" valign="top">Module High R&amp;D</td>
+      <td rowspan="3" valign="top">Module Fast Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>50.680545</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.043544</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-0.014162</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Medium R&amp;D</td>
+      <td rowspan="3" valign="top">Module R&amp;D</td>
+      <td rowspan="3" valign="top">Module Medium R&amp;D</td>
+      <td rowspan="3" valign="top">Module Moderate Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>41.065128</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.037053</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-0.010921</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Low R&amp;D</td>
+      <td rowspan="3" valign="top">Module R&amp;D</td>
+      <td rowspan="3" valign="top">Module Low R&amp;D</td>
+      <td rowspan="3" valign="top">Module Slow Progress</td>
+      <td rowspan="3" valign="top">1</td>
+      <td rowspan="3" valign="top">Residential PV</td>
+      <td>GHG</td>
+      <td>12.916316</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.013848</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.057653</td>
+      <td>Δ$/system</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Sample&quot;</span><span class="p">,</span> <span class="n">drop_level</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Value</th>
+      <th>Units</th>
+    </tr>
+    <tr>
+      <th>Investment</th>
+      <th>Sample</th>
+      <th>Index</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3" valign="top">High R&amp;D</td>
+      <td rowspan="3" valign="top">1</td>
+      <td>GHG</td>
+      <td>53.048928</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.064500</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-484.656066</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Medium R&amp;D</td>
+      <td rowspan="3" valign="top">1</td>
+      <td>GHG</td>
+      <td>43.445350</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.053785</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-350.105690</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Low R&amp;D</td>
+      <td rowspan="3" valign="top">1</td>
+      <td>GHG</td>
+      <td>15.477872</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.021309</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-165.828341</td>
+      <td>Δ$/system</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="id1">
+<h3>Save results.<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">amounts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/residential_pv_multiobjective/example-investment-amounts.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/residential_pv_multiobjective/example-investment-metrics.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Plot GHG metric.<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">investment_results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
+        <span class="s2">&quot;GHG&quot;</span><span class="p">,</span>
+        <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Index&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">]],</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;Low R&amp;D&quot;</span>   <span class="p">,</span>
+        <span class="s2">&quot;Medium R&amp;D&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;High R&amp;D&quot;</span>  <span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;GHG Reduction [gCO2e / system]&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/output_51_0.png" src="../_images/output_51_0.png" />
+</div>
+<div class="section" id="id3">
+<h3>Plot LCOE metric.<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">investment_results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
+        <span class="s2">&quot;LCOE&quot;</span><span class="p">,</span>
+        <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Index&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">]],</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;Low R&amp;D&quot;</span>   <span class="p">,</span>
+        <span class="s2">&quot;Medium R&amp;D&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;High R&amp;D&quot;</span>  <span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;LCOE Reduction [USD / kWh]&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/output_53_0.png" src="../_images/output_53_0.png" />
+</div>
+<div class="section" id="id4">
+<h3>Plot labor metric.<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">investment_results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
+        <span class="s2">&quot;Labor&quot;</span><span class="p">,</span>
+        <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Index&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">]],</span>
+    <span class="n">order</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;Low R&amp;D&quot;</span>   <span class="p">,</span>
+        <span class="s2">&quot;Medium R&amp;D&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;High R&amp;D&quot;</span>  <span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Labor Increase [USD / system]&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/output_55_0.png" src="../_images/output_55_0.png" />
+</div>
+</div>
+<div class="section" id="multi-objective-decision-analysis">
+<h2>Multi-objective decision analysis.<a class="headerlink" href="#multi-objective-decision-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="compute-costs-and-metrics-for-tranches">
+<h3>Compute costs and metrics for tranches.<a class="headerlink" href="#compute-costs-and-metrics-for-tranches" title="Permalink to this headline">¶</a></h3>
+<p>Tranches are atomic units for building investment portfolios. Evaluate
+all of the tranches, so we can assemble them into investments
+(portfolios).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tranche_results</span> <span class="o">=</span> <span class="n">investments</span><span class="o">.</span><span class="n">evaluate_tranches</span><span class="p">(</span><span class="n">designs</span><span class="p">,</span> <span class="n">sample_count</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Display the cost of each tranche.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tranche_results</span><span class="o">.</span><span class="n">amounts</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <th>Tranche</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3" valign="top">BoS R&amp;D</td>
+      <td>BoS High R&amp;D</td>
+      <td>900000.0</td>
+    </tr>
+    <tr>
+      <td>BoS Low R&amp;D</td>
+      <td>300000.0</td>
+    </tr>
+    <tr>
+      <td>BoS Medium R&amp;D</td>
+      <td>600000.0</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Inverter R&amp;D</td>
+      <td>Inverter High R&amp;D</td>
+      <td>3000000.0</td>
+    </tr>
+    <tr>
+      <td>Inverter Low R&amp;D</td>
+      <td>1000000.0</td>
+    </tr>
+    <tr>
+      <td>Inverter Medium R&amp;D</td>
+      <td>2000000.0</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">Module R&amp;D</td>
+      <td>Module High R&amp;D</td>
+      <td>4500000.0</td>
+    </tr>
+    <tr>
+      <td>Module Low R&amp;D</td>
+      <td>1500000.0</td>
+    </tr>
+    <tr>
+      <td>Module Medium R&amp;D</td>
+      <td>3000000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Display the metrics for each tranche.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tranche_results</span><span class="o">.</span><span class="n">summary</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Value</th>
+      <th>Units</th>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <th>Tranche</th>
+      <th>Sample</th>
+      <th>Index</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5" valign="top">BoS R&amp;D</td>
+      <td rowspan="5" valign="top">BoS High R&amp;D</td>
+      <td rowspan="3" valign="top">1</td>
+      <td>GHG</td>
+      <td>-0.004062</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.009967</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-490.859314</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="2" valign="top">2</td>
+      <td>GHG</td>
+      <td>0.001960</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.010154</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td rowspan="5" valign="top">Module R&amp;D</td>
+      <td rowspan="5" valign="top">Module Low R&amp;D</td>
+      <td rowspan="2" valign="top">49</td>
+      <td>LCOE</td>
+      <td>0.016198</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>0.039788</td>
+      <td>Δ$/system</td>
+    </tr>
+    <tr>
+      <td rowspan="3" valign="top">50</td>
+      <td>GHG</td>
+      <td>13.654483</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>0.014910</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>-0.015539</td>
+      <td>Δ$/system</td>
+    </tr>
+  </tbody>
+</table>
+<p>1350 rows × 2 columns</p>
+</div><p>Save the results.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tranche_results</span><span class="o">.</span><span class="n">amounts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/residential_pv_multiobjective/example-tranche-amounts.csv&quot;</span><span class="p">)</span>
+<span class="n">tranche_results</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/residential_pv_multiobjective/example-tranche-summary.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fit-a-response-surface-to-the-results">
+<h3>Fit a response surface to the results.<a class="headerlink" href="#fit-a-response-surface-to-the-results" title="Permalink to this headline">¶</a></h3>
+<p>The response surface interpolates between the discrete set of cases
+provided in the expert elicitation. This allows us to study funding
+levels intermediate between those scenarios.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">Evaluator</span><span class="p">(</span><span class="n">investments</span><span class="o">.</span><span class="n">tranches</span><span class="p">,</span> <span class="n">tranche_results</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here are the categories of investment and the maximum amount that could
+be invested in each:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span><span class="o">.</span><span class="n">max_amount</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BoS R&amp;D</td>
+      <td>900000.0</td>
+    </tr>
+    <tr>
+      <td>Inverter R&amp;D</td>
+      <td>3000000.0</td>
+    </tr>
+    <tr>
+      <td>Module R&amp;D</td>
+      <td>4500000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Here are the metrics and their units of measure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span><span class="o">.</span><span class="n">units</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Units</th>
+    </tr>
+    <tr>
+      <th>Index</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GHG</td>
+      <td>ΔgCO2e/system</td>
+    </tr>
+    <tr>
+      <td>LCOE</td>
+      <td>Δ$/kWh</td>
+    </tr>
+    <tr>
+      <td>Labor</td>
+      <td>Δ$/system</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="section" id="example-interpolation">
+<h4>Example interpolation.<a class="headerlink" href="#example-interpolation" title="Permalink to this headline">¶</a></h4>
+<p>Let’s evaluate the case where each category is invested in at half of
+its maximum amount.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">example_investments</span> <span class="o">=</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">max_amount</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">example_investments</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BoS R&amp;D</td>
+      <td>450000.0</td>
+    </tr>
+    <tr>
+      <td>Inverter R&amp;D</td>
+      <td>1500000.0</td>
+    </tr>
+    <tr>
+      <td>Module R&amp;D</td>
+      <td>2250000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">example_investments</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Category</span>    <span class="n">Index</span>  <span class="n">Sample</span>
+<span class="n">BoS</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>     <span class="n">GHG</span>    <span class="mi">1</span>         <span class="o">-</span><span class="mf">0.0010586097518157094</span>
+                   <span class="mi">2</span>          <span class="mf">7.493162517135921e-05</span>
+                   <span class="mi">3</span>           <span class="mf">0.001253893601450784</span>
+                   <span class="mi">4</span>           <span class="o">-</span><span class="mf">0.00398626797827717</span>
+                   <span class="mi">5</span>          <span class="o">-</span><span class="mf">0.005572343870333896</span>
+                                      <span class="o">...</span>
+<span class="n">Module</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>  <span class="n">Labor</span>  <span class="mi">46</span>          <span class="mf">0.014371009324918305</span>
+                   <span class="mi">47</span>          <span class="mf">0.011128728287076228</span>
+                   <span class="mi">48</span>         <span class="mf">0.0039832773605894545</span>
+                   <span class="mi">49</span>          <span class="mf">0.006026680267950724</span>
+                   <span class="mi">50</span>          <span class="mf">0.028844695933457842</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Length</span><span class="p">:</span> <span class="mi">450</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+</pre></div>
+</div>
+<p>Let’s evaluate the mean instead of outputing the whole distribution.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate_statistic</span><span class="p">(</span><span class="n">example_investments</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span>
+<span class="n">GHG</span>       <span class="mf">30.156830</span>
+<span class="n">LCOE</span>       <span class="mf">0.038160</span>
+<span class="n">Labor</span>   <span class="o">-</span><span class="mf">246.843027</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>Here is the standard deviation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate_statistic</span><span class="p">(</span><span class="n">example_investments</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span>
+<span class="n">GHG</span>       <span class="mf">1.410956</span>
+<span class="n">LCOE</span>      <span class="mf">0.000850</span>
+<span class="n">Labor</span>    <span class="mf">16.070395</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>A risk-averse decision maker might be interested in the 10% percentile:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate_statistic</span><span class="p">(</span><span class="n">example_investments</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span>
+<span class="n">GHG</span>       <span class="mf">28.573627</span>
+<span class="n">LCOE</span>       <span class="mf">0.037140</span>
+<span class="n">Labor</span>   <span class="o">-</span><span class="mf">268.059699</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="constraint-multiobjective-optimization">
+<h3>ε-Constraint multiobjective optimization<a class="headerlink" href="#constraint-multiobjective-optimization" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">EpsilonConstraintOptimizer</span><span class="p">(</span><span class="n">evaluator</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to meaningfully map the decision space, we need to know the
+maximum values for each of the metrics.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metric_max</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max_metrics</span><span class="p">()</span>
+<span class="n">metric_max</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GHG</span>      <span class="mf">49.429976</span>
+<span class="n">LCOE</span>      <span class="mf">0.062818</span>
+<span class="n">Labor</span>     <span class="mf">0.049555</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<div class="section" id="example-optimization">
+<h4>Example optimization.<a class="headerlink" href="#example-optimization" title="Permalink to this headline">¶</a></h4>
+<p>Limit spending to $3M.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_max</span> <span class="o">=</span> <span class="mf">3e6</span>
+</pre></div>
+</div>
+<p>Require that the GHG reduction be at least 40 gCO2e/system and that the
+Labor wages not decrease.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metric_min</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">40</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;GHG&quot;</span><span class="p">,</span> <span class="s2">&quot;Labor&quot;</span><span class="p">])</span>
+<span class="n">metric_min</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GHG</span>      <span class="mi">40</span>
+<span class="n">Labor</span>     <span class="mi">0</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+</div>
+<p>Compute the ε-constrained maximum for the LCOE.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span>
+    <span class="s2">&quot;LCOE&quot;</span>                       <span class="p">,</span>
+    <span class="n">total_amount</span> <span class="o">=</span> <span class="n">investment_max</span><span class="p">,</span>
+    <span class="n">min_metric</span>   <span class="o">=</span> <span class="n">metric_min</span>    <span class="p">,</span>
+    <span class="n">statistic</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span>       <span class="p">,</span>
+<span class="p">)</span>
+<span class="n">optimum</span><span class="o">.</span><span class="n">exit_message</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Optimization terminated successfully.&#39;</span>
+</pre></div>
+</div>
+<p>Here are the optimal spending levels:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">optimum</span><span class="o">.</span><span class="n">amounts</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Category</span>
+<span class="n">BoS</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>               <span class="mf">0.0</span>
+<span class="n">Inverter</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>          <span class="mf">0.0</span>
+<span class="n">Module</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>      <span class="mf">3000000.0</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Amount</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>Here are the three metrics at that optimum:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span><span class="o">.</span><span class="n">metrics</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span>
+<span class="n">GHG</span>      <span class="mf">41.627691</span>
+<span class="n">LCOE</span>      <span class="mf">0.037566</span>
+<span class="n">Labor</span>     <span class="mf">0.028691</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p><em>Thus, by putting all of the investment into Module R&amp;D, we can expected
+to achieve a mean 3.75 ¢/kWh reduction in LCOE under the GHG and Labor
+constraints.</em></p>
+<p>It turns out that there is no solution for these constraints if we
+evaluate the 10th percentile of the metrics, for a risk-averse decision
+maker.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span>
+    <span class="s2">&quot;LCOE&quot;</span>                       <span class="p">,</span>
+    <span class="n">total_amount</span> <span class="o">=</span> <span class="n">investment_max</span><span class="p">,</span>
+    <span class="n">min_metric</span>   <span class="o">=</span> <span class="n">metric_min</span>    <span class="p">,</span>
+    <span class="n">statistic</span>    <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">optimum</span><span class="o">.</span><span class="n">exit_message</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Iteration limit exceeded&#39;</span>
+</pre></div>
+</div>
+<p>Let’s try again, but with a less stringent set of constraints, only
+constraining GHG somewhat but not Labor at all.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span>
+    <span class="s2">&quot;LCOE&quot;</span>                                                         <span class="p">,</span>
+    <span class="n">total_amount</span> <span class="o">=</span> <span class="n">investment_max</span>                                  <span class="p">,</span>
+    <span class="n">min_metric</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">30</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;GHG&quot;</span><span class="p">]),</span>
+    <span class="n">statistic</span>    <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>                   <span class="p">,</span>
+<span class="p">)</span>
+<span class="n">optimum</span><span class="o">.</span><span class="n">exit_message</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Optimization terminated successfully.&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">optimum</span><span class="o">.</span><span class="n">amounts</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Category</span>
+<span class="n">BoS</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>               <span class="mf">0.0</span>
+<span class="n">Inverter</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>          <span class="mf">0.0</span>
+<span class="n">Module</span> <span class="n">R</span><span class="o">&amp;</span><span class="n">D</span>      <span class="mf">3000000.0</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Amount</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span><span class="o">.</span><span class="n">metrics</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span>
+<span class="n">GHG</span>      <span class="mf">39.046988</span>
+<span class="n">LCOE</span>      <span class="mf">0.036463</span>
+<span class="n">Labor</span>    <span class="o">-</span><span class="mf">0.019725</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Value</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pareto-surfaces">
+<h3>Pareto surfaces.<a class="headerlink" href="#pareto-surfaces" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="metrics-constrained-by-total-investment">
+<h4>Metrics constrained by total investment.<a class="headerlink" href="#metrics-constrained-by-total-investment" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pareto_amounts</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">for</span> <span class="n">investment_max</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">9e6</span><span class="p">,</span> <span class="mf">0.5e6</span><span class="p">):</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">max_metrics</span><span class="p">(</span><span class="n">total_amount</span> <span class="o">=</span> <span class="n">investment_max</span><span class="p">)</span>
+    <span class="n">pareto_amounts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">metrics</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>                                         <span class="p">,</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>                           <span class="p">,</span>
+        <span class="n">index</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="n">investment_max</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Investment [M$]&quot;</span><span class="p">),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pareto_amounts</span><span class="p">)</span>
+<span class="n">pareto_amounts</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GHG</th>
+      <th>LCOE</th>
+      <th>Labor</th>
+    </tr>
+    <tr>
+      <th>Investment [M$]</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>8.5</td>
+      <td>49.429976</td>
+      <td>0.062818</td>
+      <td>0.049555</td>
+    </tr>
+    <tr>
+      <td>8.0</td>
+      <td>49.429976</td>
+      <td>0.061848</td>
+      <td>0.049555</td>
+    </tr>
+    <tr>
+      <td>7.5</td>
+      <td>49.429976</td>
+      <td>0.060635</td>
+      <td>0.049555</td>
+    </tr>
+    <tr>
+      <td>7.0</td>
+      <td>49.429976</td>
+      <td>0.059423</td>
+      <td>0.049555</td>
+    </tr>
+    <tr>
+      <td>6.5</td>
+      <td>49.429976</td>
+      <td>0.057592</td>
+      <td>0.049560</td>
+    </tr>
+    <tr>
+      <td>6.0</td>
+      <td>49.426992</td>
+      <td>0.055608</td>
+      <td>0.049545</td>
+    </tr>
+    <tr>
+      <td>5.5</td>
+      <td>49.424007</td>
+      <td>0.053976</td>
+      <td>0.049104</td>
+    </tr>
+    <tr>
+      <td>5.0</td>
+      <td>48.278589</td>
+      <td>0.052171</td>
+      <td>0.048930</td>
+    </tr>
+    <tr>
+      <td>4.5</td>
+      <td>47.133172</td>
+      <td>0.050431</td>
+      <td>0.047878</td>
+    </tr>
+    <tr>
+      <td>4.0</td>
+      <td>45.298011</td>
+      <td>0.048243</td>
+      <td>0.046810</td>
+    </tr>
+    <tr>
+      <td>3.5</td>
+      <td>43.462851</td>
+      <td>0.045006</td>
+      <td>0.042130</td>
+    </tr>
+    <tr>
+      <td>3.0</td>
+      <td>41.627691</td>
+      <td>0.037569</td>
+      <td>0.037450</td>
+    </tr>
+    <tr>
+      <td>2.5</td>
+      <td>32.453455</td>
+      <td>0.030129</td>
+      <td>0.032769</td>
+    </tr>
+    <tr>
+      <td>2.0</td>
+      <td>23.279219</td>
+      <td>0.023166</td>
+      <td>0.027886</td>
+    </tr>
+    <tr>
+      <td>1.5</td>
+      <td>14.104983</td>
+      <td>0.018081</td>
+      <td>0.023003</td>
+    </tr>
+    <tr>
+      <td>1.0</td>
+      <td>9.403322</td>
+      <td>0.010170</td>
+      <td>0.018119</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span>         <span class="o">=</span> <span class="s2">&quot;Investment [M$]&quot;</span><span class="p">,</span>
+    <span class="n">y</span>         <span class="o">=</span> <span class="s2">&quot;Value&quot;</span>          <span class="p">,</span>
+    <span class="n">col</span>       <span class="o">=</span> <span class="s2">&quot;Metric&quot;</span>         <span class="p">,</span>
+    <span class="n">kind</span>      <span class="o">=</span> <span class="s2">&quot;line&quot;</span>           <span class="p">,</span>
+    <span class="n">facet_kws</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sharey&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="n">data</span>      <span class="o">=</span> <span class="n">pareto_amounts</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span> <span class="o">=</span> <span class="s2">&quot;Investment [M$]&quot;</span><span class="p">,</span> <span class="n">var_name</span> <span class="o">=</span> <span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="n">value_name</span> <span class="o">=</span> <span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">seaborn</span><span class="o">.</span><span class="n">axisgrid</span><span class="o">.</span><span class="n">FacetGrid</span> <span class="n">at</span> <span class="mh">0x7f9da11752b0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../_images/output_108_1.png" src="../_images/output_108_1.png" />
+<p><em>We see that the LCOE metric saturates more slowly than the GHG and
+Labor ones.</em></p>
+</div>
+<div class="section" id="ghg-vs-lcoe-constrained-by-total-investment">
+<h4>GHG vs LCOE, constrained by total investment.<a class="headerlink" href="#ghg-vs-lcoe-constrained-by-total-investment" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">investment_max</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">pareto_ghg_lcoe</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">for</span> <span class="n">lcoe_min</span> <span class="ow">in</span> <span class="mf">0.95</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">*</span> <span class="n">pareto_amounts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">investment_max</span><span class="p">,</span> <span class="s2">&quot;LCOE&quot;</span><span class="p">]:</span>
+    <span class="n">optimum</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span>
+        <span class="s2">&quot;GHG&quot;</span><span class="p">,</span>
+        <span class="n">max_amount</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.9e6</span><span class="p">,</span> <span class="mf">3.0e6</span><span class="p">,</span> <span class="mf">1.0e6</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BoS R&amp;D&quot;</span><span class="p">,</span> <span class="s2">&quot;Inverter R&amp;D&quot;</span><span class="p">,</span> <span class="s2">&quot;Module R&amp;D&quot;</span><span class="p">]),</span>
+        <span class="n">total_amount</span> <span class="o">=</span> <span class="n">investment_max</span> <span class="o">*</span> <span class="mf">1e6</span>                                 <span class="p">,</span>
+        <span class="n">min_metric</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">lcoe_min</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;LCOE&quot;</span><span class="p">]),</span>
+    <span class="p">)</span>
+    <span class="n">pareto_ghg_lcoe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">[[</span><span class="n">investment_max</span><span class="p">,</span> <span class="n">lcoe_min</span><span class="p">,</span> <span class="n">optimum</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;LCOE&quot;</span><span class="p">],</span> <span class="n">optimum</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;GHG&quot;</span><span class="p">],</span> <span class="n">optimum</span><span class="o">.</span><span class="n">exit_message</span><span class="p">]],</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Investment [M$]&quot;</span><span class="p">,</span> <span class="s2">&quot;LCOE (min)&quot;</span><span class="p">,</span> <span class="s2">&quot;LCOE&quot;</span><span class="p">,</span> <span class="s2">&quot;GHG&quot;</span><span class="p">,</span> <span class="s2">&quot;Result&quot;</span><span class="p">]</span>                               <span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pareto_ghg_lcoe</span><span class="p">)</span>
+<span class="n">pareto_ghg_lcoe</span> <span class="o">=</span> <span class="n">pareto_ghg_lcoe</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;Investment [M$]&quot;</span><span class="p">,</span> <span class="s2">&quot;LCOE (min)&quot;</span><span class="p">])</span>
+<span class="n">pareto_ghg_lcoe</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>LCOE</th>
+      <th>GHG</th>
+      <th>Result</th>
+    </tr>
+    <tr>
+      <th>Investment [M$]</th>
+      <th>LCOE (min)</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="8" valign="top">3</td>
+      <td>0.030337</td>
+      <td>0.025037</td>
+      <td>11.691901</td>
+      <td>Positive directional derivative for linesearch</td>
+    </tr>
+    <tr>
+      <td>0.028553</td>
+      <td>0.025037</td>
+      <td>11.691901</td>
+      <td>Positive directional derivative for linesearch</td>
+    </tr>
+    <tr>
+      <td>0.026768</td>
+      <td>0.025037</td>
+      <td>11.691901</td>
+      <td>Positive directional derivative for linesearch</td>
+    </tr>
+    <tr>
+      <td>0.024983</td>
+      <td>0.024983</td>
+      <td>11.692188</td>
+      <td>Optimization terminated successfully.</td>
+    </tr>
+    <tr>
+      <td>0.023199</td>
+      <td>0.023199</td>
+      <td>11.693916</td>
+      <td>Optimization terminated successfully.</td>
+    </tr>
+    <tr>
+      <td>0.021414</td>
+      <td>0.021414</td>
+      <td>11.694230</td>
+      <td>Optimization terminated successfully.</td>
+    </tr>
+    <tr>
+      <td>0.019630</td>
+      <td>0.019630</td>
+      <td>11.694544</td>
+      <td>Optimization terminated successfully.</td>
+    </tr>
+    <tr>
+      <td>0.017845</td>
+      <td>0.017845</td>
+      <td>11.699478</td>
+      <td>Optimization terminated successfully.</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sb</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;LCOE&quot;</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;GHG&quot;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span><span class="p">,</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pareto_ghg_lcoe</span><span class="c1">#[pareto_ghg_lcoe.Result == &quot;Optimization terminated successfully.&quot;]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">seaborn</span><span class="o">.</span><span class="n">axisgrid</span><span class="o">.</span><span class="n">FacetGrid</span> <span class="n">at</span> <span class="mh">0x7f9da13ae630</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../_images/output_112_1.png" src="../_images/output_112_1.png" />
+<p><em>The three types of investment are too decoupled to make an interesting
+pareto frontier, and we also need a better solver if we want to push to
+lower right.</em></p>
+</div>
+</div>
+</div>
+<div class="section" id="run-the-interactive-explorer-for-the-decision-space">
+<h2>Run the interactive explorer for the decision space.<a class="headerlink" href="#run-the-interactive-explorer-for-the-decision-space" title="Permalink to this headline">¶</a></h2>
+<p>Make sure the the <code class="docutils literal notranslate"><span class="pre">tk</span></code> package is installed on your machine. Here is
+the Anaconda link: <a class="reference external" href="https://anaconda.org/anaconda/tk">https://anaconda.org/anaconda/tk</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">DecisionWindow</span><span class="p">(</span><span class="n">evaluator</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A new window should open that looks like the image below. Moving the
+sliders will cause a recomputation of the boxplots.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;residential_pv_multiobjective_gui.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/output_118_0.png" src="../_images/output_118_0.png" />
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Tyche</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="approach.html">Approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulation.html">Mathematical Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-electrolysis.html">Electrolysis Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eutychia.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#import-packages">Import packages.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-data">Load data.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examine-the-data">Examine the data.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-the-scenarios-in-the-dataset">Evaluate the scenarios in the dataset.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-the-investments-in-the-dataset">Evaluate the investments in the dataset.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-objective-decision-analysis">Multi-objective decision analysis.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-interactive-explorer-for-the-decision-space">Run the interactive explorer for the decision space.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="eutychia.html" title="previous chapter">User Interface</a></li>
+      <li>Next: <a href="mock-foa.html" title="next chapter">Mock FOA</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, National Renewable Energy Laboratory.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/doc-src/tutorial.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
