@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>tyche package &#8212; Tyche 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Python API" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tyche-package">
+<h1>tyche package<a class="headerlink" href="#tyche-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-tyche.DecisionGUI">
+<span id="tyche-decisiongui-module"></span><h2>tyche.DecisionGUI module<a class="headerlink" href="#module-tyche.DecisionGUI" title="Permalink to this headline">¶</a></h2>
+<p>Interactive exploration of a technology.</p>
+<dl class="class">
+<dt id="tyche.DecisionGUI.DecisionWindow">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.DecisionGUI.</code><code class="sig-name descname">DecisionWindow</code><span class="sig-paren">(</span><em class="sig-param">evaluator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/DecisionGUI.html#DecisionWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.DecisionGUI.DecisionWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for displaying an interactive interface to explore cost-benefit tradeoffs for a technology.</p>
+<dl class="method">
+<dt id="tyche.DecisionGUI.DecisionWindow.create_figure">
+<code class="sig-name descname">create_figure</code><span class="sig-paren">(</span><em class="sig-param">i</em>, <em class="sig-param">j</em><span class="sig-paren">)</span> &#x2192; matplotlib.figure.Figure<a class="reference internal" href="_modules/tyche/DecisionGUI.html#DecisionWindow.create_figure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.DecisionGUI.DecisionWindow.create_figure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tyche.DecisionGUI.DecisionWindow.mainloop">
+<code class="sig-name descname">mainloop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/DecisionGUI.html#DecisionWindow.mainloop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.DecisionGUI.DecisionWindow.mainloop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the interactive interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.DecisionGUI.DecisionWindow.reevaluate">
+<code class="sig-name descname">reevaluate</code><span class="sig-paren">(</span><em class="sig-param">next=&lt;function DecisionWindow.&lt;lambda&gt;&gt;</em>, <em class="sig-param">delay=200</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/DecisionGUI.html#DecisionWindow.reevaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.DecisionGUI.DecisionWindow.reevaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recalculate the results after a delay.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>next</strong> (<em>function</em>) – The operation to perform after completing the recalculation.</p></li>
+<li><p><strong>delay</strong> (<em>int</em>) – The number of milliseconds to delay before the recalculation.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.DecisionGUI.DecisionWindow.reevaluate_immediate">
+<code class="sig-name descname">reevaluate_immediate</code><span class="sig-paren">(</span><em class="sig-param">next=&lt;function DecisionWindow.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/DecisionGUI.html#DecisionWindow.reevaluate_immediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.DecisionGUI.DecisionWindow.reevaluate_immediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recalculate the results immediately.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>next</strong> (<em>function</em>) – The operation to perform after completing the recalculation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.DecisionGUI.DecisionWindow.refresh">
+<code class="sig-name descname">refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/DecisionGUI.html#DecisionWindow.refresh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.DecisionGUI.DecisionWindow.refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refresh the graphics after a delay.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.DecisionGUI.DecisionWindow.refresh_immediate">
+<code class="sig-name descname">refresh_immediate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/DecisionGUI.html#DecisionWindow.refresh_immediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.DecisionGUI.DecisionWindow.refresh_immediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refresh the graphics immediately.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche.Designs">
+<span id="tyche-designs-module"></span><h2>tyche.Designs module<a class="headerlink" href="#module-tyche.Designs" title="Permalink to this headline">¶</a></h2>
+<p>Designs for technologies.</p>
+<dl class="class">
+<dt id="tyche.Designs.Designs">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Designs.</code><code class="sig-name descname">Designs</code><span class="sig-paren">(</span><em class="sig-param">path=None</em>, <em class="sig-param">indices='indices.tsv'</em>, <em class="sig-param">functions='functions.tsv'</em>, <em class="sig-param">designs='designs.tsv'</em>, <em class="sig-param">parameters='parameters.tsv'</em>, <em class="sig-param">results='results.tsv'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Designs for a technology.</p>
+<dl class="attribute">
+<dt id="tyche.Designs.Designs.indices">
+<code class="sig-name descname">indices</code><a class="headerlink" href="#tyche.Designs.Designs.indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>indices</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Designs.Designs.functions">
+<code class="sig-name descname">functions</code><a class="headerlink" href="#tyche.Designs.Designs.functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>functions</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Designs.Designs.designs">
+<code class="sig-name descname">designs</code><a class="headerlink" href="#tyche.Designs.Designs.designs" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>designs</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Designs.Designs.parameters">
+<code class="sig-name descname">parameters</code><a class="headerlink" href="#tyche.Designs.Designs.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>parameters</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Designs.Designs.results">
+<code class="sig-name descname">results</code><a class="headerlink" href="#tyche.Designs.Designs.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>results</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.compile">
+<code class="sig-name descname">compile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.compile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.compile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compile the production and metrics functions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">technology</em>, <em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the performance of a technology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>technology</strong> (<em>str</em>) – The name of the technology.</p></li>
+<li><p><strong>sample_count</strong> (<em>int</em>) – The number of random samples.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.evaluate_scenarios">
+<code class="sig-name descname">evaluate_scenarios</code><span class="sig-paren">(</span><em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.evaluate_scenarios"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.evaluate_scenarios" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate scenarios.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample_count</strong> (<em>int</em>) – The number of random samples.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.vectorize_designs">
+<code class="sig-name descname">vectorize_designs</code><span class="sig-paren">(</span><em class="sig-param">technology</em>, <em class="sig-param">scenario_count</em>, <em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.vectorize_designs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.vectorize_designs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an array of designs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.vectorize_indices">
+<code class="sig-name descname">vectorize_indices</code><span class="sig-paren">(</span><em class="sig-param">technology</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.vectorize_indices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.vectorize_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an array of indices.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.vectorize_parameters">
+<code class="sig-name descname">vectorize_parameters</code><span class="sig-paren">(</span><em class="sig-param">technology</em>, <em class="sig-param">scenario_count</em>, <em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.vectorize_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.vectorize_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an array of parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.vectorize_scenarios">
+<code class="sig-name descname">vectorize_scenarios</code><span class="sig-paren">(</span><em class="sig-param">technology</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.vectorize_scenarios"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.vectorize_scenarios" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an array of scenarios.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Designs.Designs.vectorize_technologies">
+<code class="sig-name descname">vectorize_technologies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#Designs.vectorize_technologies"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.Designs.vectorize_technologies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an array of technologies.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="tyche.Designs.sampler">
+<code class="sig-prename descclassname">tyche.Designs.</code><code class="sig-name descname">sampler</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">sample_count</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Designs.html#sampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Designs.sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample from an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array</em>) – The array.</p></li>
+<li><p><strong>sample_count</strong> (<em>int</em>) – The sample size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche.Distributions">
+<span id="tyche-distributions-module"></span><h2>tyche.Distributions module<a class="headerlink" href="#module-tyche.Distributions" title="Permalink to this headline">¶</a></h2>
+<p>Utilities for probability distributions.</p>
+<dl class="function">
+<dt id="tyche.Distributions.choice">
+<code class="sig-prename descclassname">tyche.Distributions.</code><code class="sig-name descname">choice</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">size=None</em>, <em class="sig-param">replace=True</em>, <em class="sig-param">p=None</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.Distributions.choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a random sample from a given 1-D array</p>
+<blockquote>
+<div><div class="versionadded">
+<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New code should use the <code class="docutils literal notranslate"><span class="pre">choice</span></code> method of a <code class="docutils literal notranslate"><span class="pre">default_rng()</span></code>
+instance instead; see <cite>random-quick-start</cite>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>1-D array-like</em><em> or </em><em>int</em>) – If an ndarray, a random sample is generated from its elements.
+If an int, the random sample is generated as if a were np.arange(a)</p></li>
+<li><p><strong>size</strong> (<em>int</em><em> or </em><em>tuple of ints</em><em>, </em><em>optional</em>) – Output shape.  If the given shape is, e.g., <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n,</span> <span class="pre">k)</span></code>, then
+<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">n</span> <span class="pre">*</span> <span class="pre">k</span></code> samples are drawn.  Default is None, in which case a
+single value is returned.</p></li>
+<li><p><strong>replace</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Whether the sample is with or without replacement</p></li>
+<li><p><strong>p</strong> (<em>1-D array-like</em><em>, </em><em>optional</em>) – The probabilities associated with each entry in a.
+If not given the sample assumes a uniform distribution over all
+entries in a.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>samples</strong> – The generated random samples</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>single item or ndarray</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If a is an int and less than zero, if a or p are not 1-dimensional,
+    if a is an array-like of size 0, if p is not a vector of
+    probabilities, if a and p have different lengths, or if
+    replace=False and the sample size is greater than the population
+    size</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">randint()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">shuffle()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">permutation()</span></code></p>
+<dl class="simple">
+<dt><code class="xref py py-func docutils literal notranslate"><span class="pre">Generator.choice()</span></code></dt><dd><p>which should be used in new code</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>Generate a uniform random sample from np.arange(5) of size 3:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">array([0, 3, 4]) # random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#This is equivalent to np.random.randint(0,5,3)</span>
+</pre></div>
+</div>
+<p>Generate a non-uniform random sample from np.arange(5) of size 3:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">array([3, 3, 0]) # random</span>
+</pre></div>
+</div>
+<p>Generate a uniform random sample from np.arange(5) of size 3 without
+replacement:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">array([3,1,0]) # random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#This is equivalent to np.random.permutation(np.arange(5))[:3]</span>
+</pre></div>
+</div>
+<p>Generate a non-uniform random sample from np.arange(5) of size
+3 without replacement:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">array([2, 3, 0]) # random</span>
+</pre></div>
+</div>
+<p>Any of the above can be repeated with an arbitrary array-like
+instead of just integers. For instance:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aa_milne_arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pooh&#39;</span><span class="p">,</span> <span class="s1">&#39;rabbit&#39;</span><span class="p">,</span> <span class="s1">&#39;piglet&#39;</span><span class="p">,</span> <span class="s1">&#39;Christopher&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">aa_milne_arr</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="go">array([&#39;pooh&#39;, &#39;pooh&#39;, &#39;pooh&#39;, &#39;Christopher&#39;, &#39;piglet&#39;], # random</span>
+<span class="go">      dtype=&#39;&lt;U11&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="tyche.Distributions.constant">
+<code class="sig-prename descclassname">tyche.Distributions.</code><code class="sig-name descname">constant</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Distributions.html#constant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Distributions.constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>The constant distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – The constant value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="tyche.Distributions.mixture">
+<code class="sig-prename descclassname">tyche.Distributions.</code><code class="sig-name descname">mixture</code><span class="sig-paren">(</span><em class="sig-param">weights</em>, <em class="sig-param">distributions</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Distributions.html#mixture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Distributions.mixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mixture of two distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weights</strong> (<em>array of float</em>) – The weights of the distributions to be mixed.</p></li>
+<li><p><strong>distributions</strong> (<em>array of distributions</em>) – The distributions to be mixed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="tyche.Distributions.parse_distribution">
+<code class="sig-prename descclassname">tyche.Distributions.</code><code class="sig-name descname">parse_distribution</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Distributions.html#parse_distribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Distributions.parse_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make the Python object for the distribution, if any is specified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – The Python expression for the distribution, or plain text.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche.EpsilonConstraints">
+<span id="tyche-epsilonconstraints-module"></span><h2>tyche.EpsilonConstraints module<a class="headerlink" href="#module-tyche.EpsilonConstraints" title="Permalink to this headline">¶</a></h2>
+<p>Epsilon-constraint optimization.</p>
+<dl class="class">
+<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.EpsilonConstraints.</code><code class="sig-name descname">EpsilonConstraintOptimizer</code><span class="sig-paren">(</span><em class="sig-param">evaluator</em>, <em class="sig-param">scale=1000000.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An epsilon-constration multi-objective optimizer.</p>
+<dl class="attribute">
+<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.evaluator">
+<code class="sig-name descname">evaluator</code><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.evaluator" title="Permalink to this definition">¶</a></dt>
+<dd><p>The technology evaluator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tyche.Evaluator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.scale">
+<code class="sig-name descname">scale</code><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>The scaling factor for output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.max_metrics">
+<code class="sig-name descname">max_metrics</code><span class="sig-paren">(</span><em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">tol=1e-08</em>, <em class="sig-param">maxiter=50</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.max_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.max_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum value of metrics.
+&#64;todo update to include additional algorithms
+:param max_amount: The maximum amounts that can be invested in each category.
+:type max_amount: DataFrame
+:param total_amount: The maximum amount that can be invested <em>in toto</em>.
+:type total_amount: float
+:param min_metric: The minimum constraint for each metric.
+:type min_metric: DataFrame
+:param statistic: The statistic used on the sample evaluations.
+:type statistic: function
+:param initial: The initial value for the search.
+:type initial: array of float
+:param tol: The search tolerance.
+:type tol: float
+:param maxiter: The maximum iterations for the search.
+:type maxiter: int
+:param verbose: Verbosity level.
+:type verbose: int</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_diffev">
+<code class="sig-name descname">maximize_diffev</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">min_metric=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">strategy='best1bin'</em>, <em class="sig-param">seed=2</em>, <em class="sig-param">tol=0.01</em>, <em class="sig-param">maxiter=75</em>, <em class="sig-param">init='latinhypercube'</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.maximize_diffev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_diffev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximize the objective function using the differential_evoluation algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric</strong> (<em>str</em>) – Name of metric to maximize.</p></li>
+<li><p><strong>max_amount</strong> (<em>DataFrame</em>) – Maximum investment amounts by R&amp;D category (defined in investments data)
+and maximum metric values</p></li>
+<li><p><strong>total_amount</strong> (<em>float</em>) – Upper limit on total investments summed across all R&amp;D categories.</p></li>
+<li><p><strong>min_metric</strong> (<em>DataFrame</em>) – Lower limits on all metrics.</p></li>
+<li><p><strong>statistic</strong> (<em>function</em>) – Summary statistic used on the sample evaluations; the metric measure that
+is fed to the optimizer.</p></li>
+<li><p><strong>strategy</strong> (<em>str</em>) – Which differential evolution strategy to use. ‘best1bin’ is the default.
+See algorithm docs for full list.</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – Sets the random seed for optimization by creating a new <cite>RandomState</cite>
+instance. Defaults to 1. Not setting this parameter means the solutions
+will not be reproducible.</p></li>
+<li><p><strong>init</strong> (<em>str</em><em> or </em><em>array-like</em>) – Type of population initialization. Default is Latin hypercube;
+alternatives are ‘random’ or specifying every member of the initial
+population in an array of shape (popsize, len(variables)).</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Relative tolerance for convergence</p></li>
+<li><p><strong>maxiter</strong> (<em>int</em>) – Upper limit on generations of evolution (analogous to algorithm
+iterations)</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level returned by this outer function.
+differential_evolution has no verbosity parameter</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_shgo">
+<code class="sig-name descname">maximize_shgo</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">min_metric=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">tol=1e-08</em>, <em class="sig-param">maxiter=50</em>, <em class="sig-param">sampling_method='simplicial'</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.maximize_shgo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_shgo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximize the objective function using the shgo global optimization algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric</strong> (<em>str</em>) – Name of metric to maximize.</p></li>
+<li><p><strong>max_amount</strong> (<em>DataFrame</em>) – Maximum investment amounts by R&amp;D category (defined in investments data)
+and maximum metric values</p></li>
+<li><p><strong>total_amount</strong> (<em>float</em>) – Upper metric_limit on total investments summed across all R&amp;D categories.</p></li>
+<li><p><strong>min_metric</strong> (<em>DataFrame</em>) – Lower limits on all metrics.</p></li>
+<li><p><strong>statistic</strong> (<em>function</em>) – Summary metric_statistic used on the sample evaluations; the metric measure that
+is fed to the optimizer.</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Objective function tolerance in stopping criterion.</p></li>
+<li><p><strong>maxiter</strong> (<em>int</em>) – Upper metric_limit on iterations that can be performed</p></li>
+<li><p><strong>sampling_method</strong> (<em>str</em>) – Allowable values are ‘sobol and ‘simplicial’. Simplicial is default, uses
+less memory, and guarantees convergence (theoretically). Sobol is faster,
+uses more memory and does not guarantee convergence. Per documentation,
+Sobol is better for “easier” problems.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level returned by this outer function.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_slsqp">
+<code class="sig-name descname">maximize_slsqp</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">min_metric=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">tol=1e-08</em>, <em class="sig-param">maxiter=50</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.maximize_slsqp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_slsqp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximize the objective function using the fmin_slsqp algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric</strong> (<em>str</em>) – Name of metric to maximize.</p></li>
+<li><p><strong>max_amount</strong> (<em>DataFrame</em>) – Maximum investment amounts by R&amp;D category (defined in investments data)
+and maximum metric values</p></li>
+<li><p><strong>total_amount</strong> (<em>float</em>) – Upper limit on total investments summed across all R&amp;D categories.</p></li>
+<li><p><strong>min_metric</strong> (<em>DataFrame</em>) – Lower limits on all metrics.</p></li>
+<li><p><strong>statistic</strong> (<em>function</em>) – Summary statistic used on the sample evaluations; the metric measure that
+is fed to the optimizer.</p></li>
+<li><p><strong>initial</strong> (<em>array of float</em>) – Initial value of decision variable(s) fed to the optimizer.</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – Search tolerance fed to the optimizer.</p></li>
+<li><p><strong>maxiter</strong> (<em>int</em>) – Maximum number of iterations the optimizer is permitted to execute.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level returned by the optimizer and this outer function.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tyche.EpsilonConstraints.Optimum">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.EpsilonConstraints.</code><code class="sig-name descname">Optimum</code><span class="sig-paren">(</span><em class="sig-param">exit_code</em>, <em class="sig-param">exit_message</em>, <em class="sig-param">amounts</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Named tuple type for optimization results.</p>
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.Optimum.amounts">
+<em class="property">property </em><code class="sig-name descname">amounts</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.amounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.Optimum.exit_code">
+<em class="property">property </em><code class="sig-name descname">exit_code</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.exit_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.Optimum.exit_message">
+<em class="property">property </em><code class="sig-name descname">exit_message</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.exit_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.EpsilonConstraints.Optimum.metrics">
+<em class="property">property </em><code class="sig-name descname">metrics</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche.Evaluator">
+<span id="tyche-evaluator-module"></span><h2>tyche.Evaluator module<a class="headerlink" href="#module-tyche.Evaluator" title="Permalink to this headline">¶</a></h2>
+<p>Fast evaluation of technology investments.</p>
+<dl class="class">
+<dt id="tyche.Evaluator.Evaluator">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Evaluator.</code><code class="sig-name descname">Evaluator</code><span class="sig-paren">(</span><em class="sig-param">tranches</em>, <em class="sig-param">summary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Evaluator.html#Evaluator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Evalutate technology investments using a response surface.</p>
+<dl class="attribute">
+<dt id="tyche.Evaluator.Evaluator.amounts">
+<code class="sig-name descname">amounts</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.amounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cost of tranches.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Evaluator.Evaluator.categories">
+<code class="sig-name descname">categories</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.categories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Categories of investment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Evaluator.Evaluator.metrics">
+<code class="sig-name descname">metrics</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metrics for technologies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Evaluator.Evaluator.units">
+<code class="sig-name descname">units</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Units of measure for metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Evaluator.Evaluator.interpolators">
+<code class="sig-name descname">interpolators</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.interpolators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolation functions for technology metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Evaluator.Evaluator.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">amounts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Evaluator.html#Evaluator.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample the distribution for an investment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>amounts</strong> (<em>DataFrame</em>) – The investment levels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Evaluator.Evaluator.evaluate_statistic">
+<code class="sig-name descname">evaluate_statistic</code><span class="sig-paren">(</span><em class="sig-param">amounts</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Evaluator.html#Evaluator.evaluate_statistic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.evaluate_statistic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate a statistic for an investment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amounts</strong> (<em>DataFrame</em>) – The investment levels.</p></li>
+<li><p><strong>statistics</strong> (<em>DataFrame</em>) – The statistic to evaluate.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche.IO">
+<span id="tyche-io-module"></span><h2>tyche.IO module<a class="headerlink" href="#module-tyche.IO" title="Permalink to this headline">¶</a></h2>
+<p>I/O utilities for Tyche.</p>
+<dl class="function">
+<dt id="tyche.IO.make_table">
+<code class="sig-prename descclassname">tyche.IO.</code><code class="sig-name descname">make_table</code><span class="sig-paren">(</span><em class="sig-param">dtypes</em>, <em class="sig-param">index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/IO.html#make_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.IO.make_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a data frame from column types and an index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dtypes</strong> (<em>array</em>) – The column types.</p></li>
+<li><p><strong>index</strong> (<em>array</em>) – The index.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="tyche.IO.read_table">
+<code class="sig-prename descclassname">tyche.IO.</code><code class="sig-name descname">read_table</code><span class="sig-paren">(</span><em class="sig-param">path</em>, <em class="sig-param">name</em>, <em class="sig-param">dtypes</em>, <em class="sig-param">index</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/IO.html#read_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.IO.read_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a data table from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – The path to the folder.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The filename for the table.</p></li>
+<li><p><strong>dtypes</strong> (<em>array</em>) – The column types.</p></li>
+<li><p><strong>index</strong> (<em>array</em>) – The index.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche.Investments">
+<span id="tyche-investments-module"></span><h2>tyche.Investments module<a class="headerlink" href="#module-tyche.Investments" title="Permalink to this headline">¶</a></h2>
+<p>Investments in technologies.</p>
+<dl class="class">
+<dt id="tyche.Investments.Investments">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Investments.</code><code class="sig-name descname">Investments</code><span class="sig-paren">(</span><em class="sig-param">path=None</em>, <em class="sig-param">tranches='tranches.tsv'</em>, <em class="sig-param">investments='investments.tsv'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Investments.html#Investments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Investments.Investments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Investments in a technology.</p>
+<dl class="attribute">
+<dt id="tyche.Investments.Investments.tranches">
+<code class="sig-name descname">tranches</code><a class="headerlink" href="#tyche.Investments.Investments.tranches" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>tranches</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="tyche.Investments.Investments.investments">
+<code class="sig-name descname">investments</code><a class="headerlink" href="#tyche.Investments.Investments.investments" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <em>investments</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Investments.Investments.evaluate_investments">
+<code class="sig-name descname">evaluate_investments</code><span class="sig-paren">(</span><em class="sig-param">designs</em>, <em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Investments.html#Investments.evaluate_investments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Investments.Investments.evaluate_investments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the investments for a design.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>designs</strong> (<em>tyche.Designs</em>) – The designs.</p></li>
+<li><p><strong>sample_count</strong> (<em>int</em>) – The number of random samples.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Investments.Investments.evaluate_tranches">
+<code class="sig-name descname">evaluate_tranches</code><span class="sig-paren">(</span><em class="sig-param">designs</em>, <em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tyche/Investments.html#Investments.evaluate_tranches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Investments.Investments.evaluate_tranches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the tranches of investment for a design.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>designs</strong> (<em>tyche.Designs</em>) – The designs.</p></li>
+<li><p><strong>sample_count</strong> (<em>int</em>) – The number of random samples.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche.Types">
+<span id="tyche-types-module"></span><h2>tyche.Types module<a class="headerlink" href="#module-tyche.Types" title="Permalink to this headline">¶</a></h2>
+<p>Data types for Tyche.</p>
+<dl class="class">
+<dt id="tyche.Types.Evaluations">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Types.</code><code class="sig-name descname">Evaluations</code><span class="sig-paren">(</span><em class="sig-param">amounts</em>, <em class="sig-param">metrics</em>, <em class="sig-param">summary</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.Types.Evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Named tuple type for rows in the <em>evaluations</em> table.</p>
+<dl class="method">
+<dt id="tyche.Types.Evaluations.amounts">
+<em class="property">property </em><code class="sig-name descname">amounts</code><a class="headerlink" href="#tyche.Types.Evaluations.amounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Evaluations.metrics">
+<em class="property">property </em><code class="sig-name descname">metrics</code><a class="headerlink" href="#tyche.Types.Evaluations.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Evaluations.summary">
+<em class="property">property </em><code class="sig-name descname">summary</code><a class="headerlink" href="#tyche.Types.Evaluations.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tyche.Types.FakeDistribution">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Types.</code><code class="sig-name descname">FakeDistribution</code><span class="sig-paren">(</span><em class="sig-param">rvs</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.Types.FakeDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Named tuple type for a fake distribution.</p>
+<dl class="method">
+<dt id="tyche.Types.FakeDistribution.rvs">
+<em class="property">property </em><code class="sig-name descname">rvs</code><a class="headerlink" href="#tyche.Types.FakeDistribution.rvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tyche.Types.Functions">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Types.</code><code class="sig-name descname">Functions</code><span class="sig-paren">(</span><em class="sig-param">style</em>, <em class="sig-param">capital</em>, <em class="sig-param">fixed</em>, <em class="sig-param">production</em>, <em class="sig-param">metric</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.Types.Functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Name tuple type for rows in the <em>functions</em> table.</p>
+<dl class="method">
+<dt id="tyche.Types.Functions.capital">
+<em class="property">property </em><code class="sig-name descname">capital</code><a class="headerlink" href="#tyche.Types.Functions.capital" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Functions.fixed">
+<em class="property">property </em><code class="sig-name descname">fixed</code><a class="headerlink" href="#tyche.Types.Functions.fixed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Functions.metric">
+<em class="property">property </em><code class="sig-name descname">metric</code><a class="headerlink" href="#tyche.Types.Functions.metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Functions.production">
+<em class="property">property </em><code class="sig-name descname">production</code><a class="headerlink" href="#tyche.Types.Functions.production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Functions.style">
+<em class="property">property </em><code class="sig-name descname">style</code><a class="headerlink" href="#tyche.Types.Functions.style" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tyche.Types.Indices">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Types.</code><code class="sig-name descname">Indices</code><span class="sig-paren">(</span><em class="sig-param">capital</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input</em>, <em class="sig-param">output</em>, <em class="sig-param">metric</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.Types.Indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Name tuple type for rows in the <em>indices</em> table.</p>
+<dl class="method">
+<dt id="tyche.Types.Indices.capital">
+<em class="property">property </em><code class="sig-name descname">capital</code><a class="headerlink" href="#tyche.Types.Indices.capital" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Indices.fixed">
+<em class="property">property </em><code class="sig-name descname">fixed</code><a class="headerlink" href="#tyche.Types.Indices.fixed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Indices.input">
+<em class="property">property </em><code class="sig-name descname">input</code><a class="headerlink" href="#tyche.Types.Indices.input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Indices.metric">
+<em class="property">property </em><code class="sig-name descname">metric</code><a class="headerlink" href="#tyche.Types.Indices.metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Indices.output">
+<em class="property">property </em><code class="sig-name descname">output</code><a class="headerlink" href="#tyche.Types.Indices.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tyche.Types.Inputs">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Types.</code><code class="sig-name descname">Inputs</code><span class="sig-paren">(</span><em class="sig-param">lifetime</em>, <em class="sig-param">scale</em>, <em class="sig-param">input</em>, <em class="sig-param">input_efficiency</em>, <em class="sig-param">input_price</em>, <em class="sig-param">output_efficiency</em>, <em class="sig-param">output_price</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.Types.Inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Named tuple type for rows in the <em>inputs</em> table.</p>
+<dl class="method">
+<dt id="tyche.Types.Inputs.input">
+<em class="property">property </em><code class="sig-name descname">input</code><a class="headerlink" href="#tyche.Types.Inputs.input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Inputs.input_efficiency">
+<em class="property">property </em><code class="sig-name descname">input_efficiency</code><a class="headerlink" href="#tyche.Types.Inputs.input_efficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Inputs.input_price">
+<em class="property">property </em><code class="sig-name descname">input_price</code><a class="headerlink" href="#tyche.Types.Inputs.input_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Inputs.lifetime">
+<em class="property">property </em><code class="sig-name descname">lifetime</code><a class="headerlink" href="#tyche.Types.Inputs.lifetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Inputs.output_efficiency">
+<em class="property">property </em><code class="sig-name descname">output_efficiency</code><a class="headerlink" href="#tyche.Types.Inputs.output_efficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Inputs.output_price">
+<em class="property">property </em><code class="sig-name descname">output_price</code><a class="headerlink" href="#tyche.Types.Inputs.output_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Inputs.scale">
+<em class="property">property </em><code class="sig-name descname">scale</code><a class="headerlink" href="#tyche.Types.Inputs.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tyche.Types.Results">
+<em class="property">class </em><code class="sig-prename descclassname">tyche.Types.</code><code class="sig-name descname">Results</code><span class="sig-paren">(</span><em class="sig-param">cost</em>, <em class="sig-param">output</em>, <em class="sig-param">metric</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.Types.Results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Named tuple type for rows in the <em>results</em> table.</p>
+<dl class="method">
+<dt id="tyche.Types.Results.cost">
+<em class="property">property </em><code class="sig-name descname">cost</code><a class="headerlink" href="#tyche.Types.Results.cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Results.metric">
+<em class="property">property </em><code class="sig-name descname">metric</code><a class="headerlink" href="#tyche.Types.Results.metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Types.Results.output">
+<em class="property">property </em><code class="sig-name descname">output</code><a class="headerlink" href="#tyche.Types.Results.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tyche">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tyche" title="Permalink to this headline">¶</a></h2>
+<p>Tyche: a Python package for R&amp;D pathways analysis and evaluation.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Tyche</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="docs/approach.html">Approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/formulation.html">Mathematical Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/example-electrolysis.html">Electrolysis Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/database.html">Database Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/optimizers.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/eutychia.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/mock-foa.html">Mock FOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/deployment.html">Deployment Plan</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tyche package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Python API</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">Python API</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, National Renewable Energy Laboratory.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/tyche.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

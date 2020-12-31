@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>tyche.Investments &#8212; Tyche 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for tyche.Investments</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Investments in technologies.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>  <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">.IO</span>    <span class="kn">import</span> <span class="n">make_table</span><span class="p">,</span> <span class="n">read_table</span>
+<span class="kn">from</span> <span class="nn">.Types</span> <span class="kn">import</span> <span class="n">Evaluations</span>
+
+
+<div class="viewcode-block" id="Investments"><a class="viewcode-back" href="../../tyche.html#tyche.Investments.Investments">[docs]</a><span class="k">class</span> <span class="nc">Investments</span><span class="p">:</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Investments in a technology.</span>
+
+<span class="sd">  Attributes</span>
+<span class="sd">  ----------</span>
+<span class="sd">  tranches : DataFrame</span>
+<span class="sd">    The *tranches* table.</span>
+<span class="sd">  investments: DataFrame</span>
+<span class="sd">    The *investments* table.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  
+  <span class="n">_tranches_dtypes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Category&quot;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+    <span class="s2">&quot;Tranche&quot;</span>    <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+    <span class="s2">&quot;Scenario&quot;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+    <span class="s2">&quot;Amount&quot;</span>     <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+    <span class="s2">&quot;Notes&quot;</span>      <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+  <span class="p">}</span>
+  <span class="n">_investments_dtypes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Investment&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+    <span class="s2">&quot;Category&quot;</span>   <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+    <span class="s2">&quot;Tranche&quot;</span>    <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+    <span class="s2">&quot;Notes&quot;</span>      <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span>   <span class="p">,</span>
+  <span class="p">}</span>
+  
+  <span class="n">_tranches_index</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Category&quot;</span>  <span class="p">,</span> <span class="s2">&quot;Tranche&quot;</span> <span class="p">,</span> <span class="s2">&quot;Scenario&quot;</span> <span class="p">,</span>        <span class="p">]</span>
+  <span class="n">_investments_index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span> <span class="s2">&quot;Tranche&quot;</span>  <span class="p">,</span>        <span class="p">]</span>
+  
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span>                           <span class="p">,</span>
+    <span class="n">path</span>        <span class="o">=</span> <span class="kc">None</span>             <span class="p">,</span>
+    <span class="n">tranches</span>    <span class="o">=</span> <span class="s2">&quot;tranches.tsv&quot;</span>   <span class="p">,</span>
+    <span class="n">investments</span> <span class="o">=</span> <span class="s2">&quot;investments.tsv&quot;</span><span class="p">,</span>
+  <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tranches : str</span>
+<span class="sd">      Filename for the *tranches* table.</span>
+<span class="sd">    investments: str</span>
+<span class="sd">      Filename for the *investments* table.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_make</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_read</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">tranches</span><span class="p">,</span> <span class="n">investments</span><span class="p">)</span>
+          
+  <span class="k">def</span> <span class="nf">_make</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tranches</span>    <span class="o">=</span> <span class="n">make_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tranches_dtypes</span>   <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tranches_index</span>   <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">investments</span> <span class="o">=</span> <span class="n">make_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_investments_dtypes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_investments_index</span><span class="p">)</span>
+      
+  <span class="k">def</span> <span class="nf">_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">tranches</span><span class="p">,</span> <span class="n">investments</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tranches</span>    <span class="o">=</span> <span class="n">read_table</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">tranches</span>   <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tranches_dtypes</span>   <span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tranches_index</span>   <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">investments</span> <span class="o">=</span> <span class="n">read_table</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">investments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_investments_dtypes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_investments_index</span><span class="p">)</span>
+      
+<div class="viewcode-block" id="Investments.evaluate_tranches"><a class="viewcode-back" href="../../tyche.html#tyche.Investments.Investments.evaluate_tranches">[docs]</a>  <span class="k">def</span> <span class="nf">evaluate_tranches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">designs</span><span class="p">,</span> <span class="n">sample_count</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate the tranches of investment for a design.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    designs : tyche.Designs</span>
+<span class="sd">      The designs.</span>
+<span class="sd">    sample_count : int</span>
+<span class="sd">      The number of random samples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">amounts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tranches</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Notes&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+      <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Category&quot;</span><span class="p">,</span> <span class="s2">&quot;Tranche&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tranches</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="s2">&quot;Notes&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+      <span class="n">designs</span><span class="o">.</span><span class="n">evaluate_scenarios</span><span class="p">(</span><span class="n">sample_count</span><span class="p">)</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Variable&quot;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reorder_levels</span><span class="p">(</span>
+      <span class="p">[</span><span class="s2">&quot;Category&quot;</span><span class="p">,</span> <span class="s2">&quot;Tranche&quot;</span><span class="p">,</span> <span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="s2">&quot;Sample&quot;</span><span class="p">,</span> <span class="s2">&quot;Technology&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">Evaluations</span><span class="p">(</span>
+      <span class="n">amounts</span> <span class="o">=</span> <span class="n">amounts</span><span class="p">,</span>
+      <span class="n">metrics</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">,</span>
+      <span class="n">summary</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
+        <span class="s2">&quot;Units&quot;</span><span class="p">,</span>
+        <span class="n">append</span><span class="o">=</span><span class="kc">True</span>
+      <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Category&quot;</span><span class="p">,</span> <span class="s2">&quot;Tranche&quot;</span><span class="p">,</span> <span class="s2">&quot;Sample&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="s2">&quot;Units&quot;</span><span class="p">]</span>
+      <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span>
+        <span class="s2">&quot;Units&quot;</span>
+      <span class="p">)[[</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Units&quot;</span><span class="p">]],</span>
+    <span class="p">)</span></div>
+      
+<div class="viewcode-block" id="Investments.evaluate_investments"><a class="viewcode-back" href="../../tyche.html#tyche.Investments.Investments.evaluate_investments">[docs]</a>  <span class="k">def</span> <span class="nf">evaluate_investments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">designs</span><span class="p">,</span> <span class="n">sample_count</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate the investments for a design.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    designs : tyche.Designs</span>
+<span class="sd">      The designs.</span>
+<span class="sd">    sample_count : int</span>
+<span class="sd">      The number of random samples.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">amounts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">investments</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Notes&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">tranches</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Notes&quot;</span><span class="p">])</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+      <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Investment&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">investments</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Notes&quot;</span><span class="p">]</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">tranches</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="s2">&quot;Notes&quot;</span><span class="p">])</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+      <span class="n">designs</span><span class="o">.</span><span class="n">evaluate_scenarios</span><span class="p">(</span><span class="n">sample_count</span><span class="p">)</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Variable&quot;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reorder_levels</span><span class="p">(</span>
+      <span class="p">[</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span> <span class="s2">&quot;Tranche&quot;</span><span class="p">,</span> <span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="s2">&quot;Sample&quot;</span><span class="p">,</span> <span class="s2">&quot;Technology&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">Evaluations</span><span class="p">(</span>
+      <span class="n">amounts</span> <span class="o">=</span> <span class="n">amounts</span><span class="p">,</span>
+      <span class="n">metrics</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">,</span>
+      <span class="n">summary</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
+        <span class="s2">&quot;Units&quot;</span><span class="p">,</span>
+        <span class="n">append</span><span class="o">=</span><span class="kc">True</span>
+      <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span> <span class="s2">&quot;Sample&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="s2">&quot;Units&quot;</span><span class="p">]</span>
+      <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span>
+        <span class="s2">&quot;Units&quot;</span>
+      <span class="p">)[[</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span> <span class="s2">&quot;Units&quot;</span><span class="p">]],</span>
+    <span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Tyche</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/approach.html">Approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/formulation.html">Mathematical Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/example-electrolysis.html">Electrolysis Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/database.html">Database Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/optimizers.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/eutychia.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/mock-foa.html">Mock FOA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/deployment.html">Deployment Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, National Renewable Energy Laboratory.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
