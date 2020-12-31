@@ -20,6 +20,7 @@ This documentation summarizes work in progress on R&D Portfolio Analysis and Eva
    doc-src/tutorial
    doc-src/mock-foa
    doc-src/deployment
+   doc-src/getting-started
 
    doc-src/modules
 
