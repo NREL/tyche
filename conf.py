@@ -49,7 +49,8 @@ exclude_patterns = [
   'literature',
   'tmp'       ,
   'ReadMe.md' ,
-  'ioc-1/ReadMe.md',
+  'ioc-0'     ,
+  'ioc-1'     ,
 ]
 
 
