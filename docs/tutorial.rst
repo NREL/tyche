@@ -2432,7 +2432,7 @@ Pareto surfaces.
 ~~~~~~~~~~~~~~~~
 
 Metrics constrained by total investment.
-''''''''''''''''''''''''''''''''''''''''
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -2611,7 +2611,7 @@ Metrics constrained by total investment.
 Labor ones.*
 
 GHG vs LCOE, constrained by total investment.
-'''''''''''''''''''''''''''''''''''''''''''''
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
 

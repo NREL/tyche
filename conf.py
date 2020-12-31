@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('./src'))
 # -- Project information -----------------------------------------------------
 
 project = 'Tyche'
-copyright = '2020, National Renewable Energy Laboratory'
+copyright = '2021, National Renewable Energy Laboratory'
 author = 'National Renewable Energy Laboratory'
 
 # The full version, including alpha/beta/rc tags
@@ -51,6 +51,8 @@ exclude_patterns = [
   'literature',
   'tmp'       ,
   'ReadMe.md' ,
+  'src/eutychia/ReadMe.md',
+  'ioc-1/ReadMe.md',
 ]
 
 
