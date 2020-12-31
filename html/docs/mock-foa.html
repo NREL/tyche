@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mock FOA &#8212; Tyche 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deployment Plan" href="deployment.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="mock-foa">
+<h1>Mock FOA<a class="headerlink" href="#mock-foa" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Understanding the FOA process is essential to designing an effective
+tool to make to make technically and analytically-based decisions. The
+“Mock FOA” process takes a service design approach to understanding the
+FOA-writing process as it stands. The Mock FOA began with interviews
+with five previous DOE detailees and seven senior DOE staff who have led
+multiple FOA development efforts. A major theme emerged: effective
+communication of analysis logic and results poses one of the largest
+challenges during the FOA process.</p>
+<p>A decision-support tool could assist in the communication necessary to
+percolate this technical information up the chain. Interview findings
+were formalized in collaboration with the NREL service design team to
+understand where such a tool could make the greatest impact. The team
+considered the steps taken to issue a FOA, resources referenced, and
+decision-makers involved.</p>
+<div class="section" id="phases">
+<h3>Phases<a class="headerlink" href="#phases" title="Permalink to this headline">¶</a></h3>
+<p>Interviews revealed that, while all FOA processes are unique and highly
+non-linear, specific actions must occur. These characterize phases of
+the FOA journey:</p>
+<ol class="arabic simple">
+<li><p><strong>Launch</strong>. Decide to issue a FOA.</p></li>
+<li><p><strong>Frame</strong>. Formulate a plan to collect the information necessary to write the FOA</p></li>
+<li><p><strong>Scope</strong>. Investigate topic options.</p></li>
+<li><p><strong>Draft</strong>. Compile information into draft FOA.</p></li>
+<li><p><strong>Refine</strong>. Prepare FOA for distribution.</p></li>
+</ol>
+<p>The specific needs of each phase inform the tool <strong>content</strong>.</p>
+</div>
+<div class="section" id="roles">
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
+<p>The team considered that different staff members will interact with this
+information differently and prefer different methods of data
+communication. These roles were characterized by “personae” defined by
+level of involvement in the FOA-writing process.</p>
+<ul class="simple">
+<li><p>Technical analyst</p></li>
+<li><p>Technical lead</p></li>
+<li><p>FOA lead</p></li>
+<li><p>Approver</p></li>
+</ul>
+<p>Decision makers in each of these roles will interact with tool output.
+The tool users determine how the tool will be used and how its content
+will be displayed, informing <strong>interactions and data visualization</strong>.
+For example, a user who will view the tool output in a presentation will
+need a static representation of the tool output.</p>
+</div>
+</div>
+<div class="section" id="potential-topics">
+<h2>Potential topics<a class="headerlink" href="#potential-topics" title="Permalink to this headline">¶</a></h2>
+<p>Prototyping a tool requires content. The team referenced two previous
+FOAs to understand the break-down of topic areas. We then extracted FOA
+topic/subtopic areas and metrics from 2016 budget request, combining
+hard/soft cost-focused FOAs to examine how to compete the two and avoid
+directly analyzing a specific past FOA. Following this process further
+informed the team’s understanding of how decision-makers might decide
+what to input into the tool.</p>
+<p>Topics under consideration might be assessed by the following metrics:</p>
+<ul class="simple">
+<li><p>$/W<sub>DC</sub></p></li>
+<li><p>$/kWh</p></li>
+<li><p>Strategic metal content (lifetime)</p></li>
+<li><p>Hazardous waste content (lifetime)</p></li>
+<li><p>Lifetime</p></li>
+<li><p>Reliability</p></li>
+<li><p>Emissions</p></li>
+<li><p>Labor</p></li>
+</ul>
+<p>The following text details topic areas considered for Tyche tool
+development.</p>
+<div class="section" id="crystaline-silicon-wafer-design">
+<h3>1. Crystaline silicon wafer design<a class="headerlink" href="#crystaline-silicon-wafer-design" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Wafer area</p></li>
+<li><p>Wafer thickness</p></li>
+<li><p>Wafer density</p></li>
+<li><p>Silicon utilization</p></li>
+<li><p>Production yield</p></li>
+</ul>
+</div>
+<div class="section" id="tandem-thin-films">
+<h3>2. Tandem thin-films<a class="headerlink" href="#tandem-thin-films" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Design parameters</p></li>
+<li><p>Architectures</p></li>
+</ul>
+</div>
+<div class="section" id="polysilicon-module">
+<h3>3. Polysilicon module<a class="headerlink" href="#polysilicon-module" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>(many parameters)</p></li>
+</ul>
+</div>
+<div class="section" id="module-design">
+<h3>4. Module design<a class="headerlink" href="#module-design" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Module Capital</p></li>
+<li><p>Module Lifetime</p></li>
+<li><p>Module Efficiency</p></li>
+<li><p>Module Aperture</p></li>
+<li><p>Module O&amp;M Fixed</p></li>
+<li><p>Module Degradation</p></li>
+<li><p>Module Soiling Loss</p></li>
+</ul>
+</div>
+<div class="section" id="inverter-design">
+<h3>5. Inverter design<a class="headerlink" href="#inverter-design" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Inverter Capital</p></li>
+<li><p>Inverter Lifetime</p></li>
+<li><p>Inverter Replacement</p></li>
+<li><p>Inverter Efficiency</p></li>
+</ul>
+</div>
+<div class="section" id="balance-of-system-design">
+<h3>6. Balance-of-system design<a class="headerlink" href="#balance-of-system-design" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Hardware Capital</p></li>
+<li><p>Direct Labor</p></li>
+<li><p>Permitting</p></li>
+<li><p>Customer Acquisition</p></li>
+<li><p>Installer Overhead &amp; Profit</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Tyche</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="approach.html">Approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulation.html">Mathematical Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-electrolysis.html">Electrolysis Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eutychia.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mock FOA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#potential-topics">Potential topics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tutorial.html" title="previous chapter">Tutorial</a></li>
+      <li>Next: <a href="deployment.html" title="next chapter">Deployment Plan</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, National Renewable Energy Laboratory.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/docs/mock-foa.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
