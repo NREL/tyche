@@ -1547,7 +1547,7 @@ metric_min
 Compute the ε-constrained maximum for the LCOE.
 
 ```python
-optimum = optimizer.maximize(
+optimum = optimizer.maximize_slsqp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,
@@ -1587,7 +1587,7 @@ optimum.metrics
 It turns out that there is no solution for these constraints if we evaluate the 10th percentile of the metrics, for a risk-averse decision maker.
 
 ```python
-optimum = optimizer.maximize(
+optimum = optimizer.maximize_slsqp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,
@@ -1601,7 +1601,7 @@ optimum.exit_message
 Let's try again, but with a less stringent set of constraints, only constraining GHG somewhat  but not Labor at all.
 
 ```python
-optimum = optimizer.maximize(
+optimum = optimizer.maximize_slsqp(
     "LCOE"                                                         ,
     total_amount = investment_max                                  ,
     min_metric   = pd.Series([30], name = "Value", index = ["GHG"]),
@@ -1665,7 +1665,7 @@ sb.relplot(
 investment_max = 3
 pareto_ghg_lcoe = None
 for lcoe_min in 0.95 * np.arange(0.5, 0.9, 0.05) * pareto_amounts.loc[investment_max, "LCOE"]:
-    optimum = optimizer.maximize(
+    optimum = optimizer.maximize_slsqp(
         "GHG",
         max_amount   = pd.Series([0.9e6, 3.0e6, 1.0e6], name = "Amount", index = ["BoS R&D", "Inverter R&D", "Module R&D"]),
         total_amount = investment_max * 1e6                                 ,
