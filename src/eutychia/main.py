@@ -270,7 +270,7 @@ async def optimize():
         index=evaluator.categories,
     )
     total_amount = constraints["invest"]["invlimwid_x"]
-    optimum = optimizer.maximize(
+    optimum = optimizer.maximize_slsqp(
         metric=target_metric,
         min_metric=min_metric,
         max_amount=max_amount,
