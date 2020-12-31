@@ -15,6 +15,7 @@ Welcome to Tyche's documentation!
    docs/example-electrolysis
    docs/database
    docs/technology
+   docs/optimizers
    docs/tutorial
    docs/deployment
 
