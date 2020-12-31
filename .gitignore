@@ -5,3 +5,4 @@ tmp/
 *.sw?
 .~lock.*#
 .idea/
+doctrees/
