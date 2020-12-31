@@ -14,7 +14,7 @@ Interviews revealed that, while all FOA processes are unique and highly non-line
 3. **Scope**. Investigate topic options.
 4. **Draft**. Compile information into draft FOA.
 5. **Refine**. Prepare FOA for distribution.
-The specific needs of each phase inform the tool **content**.
+The specific needs of each phase inform the tool **content**.
 
 ## Roles
 The team considered that different staff members will interact with this information differently and prefer different methods of data communication. These roles were characterized by "personae" defined by level of involvement in the FOA-writing process.
