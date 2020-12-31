@@ -16,6 +16,7 @@ Welcome to Tyche's documentation!
    docs/database
    docs/technology
    docs/optimizers
+   docs/eutychia
    docs/tutorial
    docs/deployment
 
