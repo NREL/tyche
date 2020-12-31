@@ -18,6 +18,7 @@ Welcome to Tyche's documentation!
    docs/optimizers
    docs/eutychia
    docs/tutorial
+   docs/mock-foa
    docs/deployment
 
    modules
