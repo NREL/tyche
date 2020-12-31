@@ -7,18 +7,17 @@ Conda Environment
 
 Before running the example or the server, create and activate the conda environment:
 
-	conda env create --file ../../conda-environment.yml
+	conda env create --file ..\..\conda-environment-win.yml
 	conda activate tyche
 
-Install and update a package version:
+on Windows, or on Mac
 
-    conda activate tyche
-    conda install seaborn=0.11.0
-    conda env export --name tyche > ../../conda-environment.yml
+	conda env create --file ../../conda-environment-mac.yml
+	conda activate tyche
 
-Update the conda environment:
+Note that the conda environment was created with the command:
 
-    conda env update --prefix ./env --file ../../conda-environment.yml  --prune
+	conda create -n tyche -c conda-forge python=3.7 numpy scipy scikit-learn seaborn=0.10 matplotlib=3.3 quart hypercorn jupyter
 
 
 Running the Server
@@ -26,9 +25,17 @@ Running the Server
 
 Start the server in debug mode
 
+	debug.cmd
+
+on Windows, or on Mac
+
 	./debug.sh
 
 or in production mode
+
+	run.cmd
+
+on Windows, or on Mac
 
 	./run.sh
 
