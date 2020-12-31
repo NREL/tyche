@@ -49,7 +49,6 @@ exclude_patterns = [
   'literature',
   'tmp'       ,
   'ReadMe.md' ,
-  'src/eutychia/ReadMe.md',
   'ioc-1/ReadMe.md',
 ]
 
@@ -69,3 +68,5 @@ html_static_path = ['_static']
 
 
 numfig = True
+
+latex_engine = 'xelatex'
