@@ -1,17 +1,15 @@
-# Production-Function Approach
+*Tyche:* *T*echnolog*y* *Ch*aracterization and *E*valuation
+===========================================================
 
 *   documentation:
-    *   [Word](production-function.docx)
-    *   [PDF](production-function.pdf)
-    *   [Markdown](production-function.md)
-*   Conda environment: [conda-environment.yml]
+    *   [web](https://nrel.github.com/tyche/)
+    *   [PDF](docs/tyche.pdf)
+    *   [Markdown](index.rst)
+*   Conda environments: [conda/](conda/)
 *   Python packages:
     *   evaluation and optimization: [src/tyche/](src/tyche/)
     *   web-based user interface: [src/eutychia/](src/eutychia/)
-        *   [instructions](src/eutychia/ReadMe.md)
-        *   [example Python script](src/eutychia/example.py)
-        *   [example Jupyter notebook](src/eutychia/example.ipynb)
-*   example code using the tyche package:
-    *   Notebooks: [examples/](examples/)
-    *   Technologies: [src/technology/](src/technology/)
-*   example data files: [data/](data/)
+    *   technology models: [src/technology/](src/technology/)
+*   Interim operational capabilities:
+    *   [IOC-0](ioc-0/ReadMe.md): Proof-of-principle examples.
+    *   [IOC-1](ioc-1/ReadMe.md): PV components, technologies, and materials/waste for Mock FOA.
