@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>technology.pv_residential_generic &#8212; Tyche 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for technology.pv_residential_generic</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Generic model for residential PV.</span>
+
+
+<span class="sd">.. table:: Elements of ``capital`` arrays.</span>
+
+<span class="sd">   ===== ===================== ========</span>
+<span class="sd">   Index Description           Units</span>
+<span class="sd">   ===== ===================== ========</span>
+<span class="sd">   0     module capital cost   $/system</span>
+<span class="sd">   1     inverter capital cost $/system</span>
+<span class="sd">   2     balance capital cost  $/system</span>
+<span class="sd">   ===== ===================== ========</span>
+
+
+<span class="sd">.. table:: Elements of ``fixed`` arrays.</span>
+
+<span class="sd">   ===== =========== ========</span>
+<span class="sd">   Index Description Units</span>
+<span class="sd">   ===== =========== ========</span>
+<span class="sd">   0     fixed cost  $/system</span>
+<span class="sd">   ===== =========== ========</span>
+
+
+<span class="sd">.. table:: Elements of ``input`` arrays.</span>
+
+<span class="sd">   ===== ================ ========</span>
+<span class="sd">   Index Description       Units</span>
+<span class="sd">   ===== ================ ========</span>
+<span class="sd">   0     strategic metals g/system</span>
+<span class="sd">   ===== ================ ========</span>
+
+
+<span class="sd">.. table:: Elements of ``output`` arrays.</span>
+
+<span class="sd">   ===== ================================== ============</span>
+<span class="sd">   Index Description                        Units</span>
+<span class="sd">   ===== ================================== ============</span>
+<span class="sd">   0     lifetime energy production         kWh/system</span>
+<span class="sd">   1     lifecycle hazardous waste          g/system</span>
+<span class="sd">   2     lifetime greenhouse gas production gCO2e/system</span>
+<span class="sd">   ===== ================================== ============</span>
+
+
+<span class="sd">.. table:: Elements of ``metric`` arrays.</span>
+
+<span class="sd">   ===== ===================== =========</span>
+<span class="sd">   Index Description           Units</span>
+<span class="sd">   ===== ===================== =========</span>
+<span class="sd">   0     system cost           $/Wdc</span>
+<span class="sd">   1     levelized energy cost $/kWh</span>
+<span class="sd">   2     greenhouse gas        gCO2e/kWh</span>
+<span class="sd">   3     strategic metal       g/kWh</span>
+<span class="sd">   4     hazardous waste       g/kWh</span>
+<span class="sd">   5     specific yield        hr/yr</span>
+<span class="sd">   6     module efficiency     %/100</span>
+<span class="sd">   7     module lifetime       yr</span>
+<span class="sd">   ===== ===================== =========</span>
+
+
+<span class="sd">.. table:: Elements of ``parameter`` arrays.</span>
+
+<span class="sd">   ===== ========================= =========</span>
+<span class="sd">   Index Description               Units</span>
+<span class="sd">   ===== ========================= =========</span>
+<span class="sd">   0     discount rate             1/yr</span>
+<span class="sd">   1     insolation                W/m^2</span>
+<span class="sd">   2     system size               m^2</span>
+<span class="sd">   3     module capital cost       $/m^2</span>
+<span class="sd">   4     module lifetime           yr</span>
+<span class="sd">   5     module efficiency         %/100</span>
+<span class="sd">   6     module aperture           %/100</span>
+<span class="sd">   7     module fixed cost         $/kW/yr</span>
+<span class="sd">   8     module degradation rate   1/yr</span>
+<span class="sd">   9     location capacity factor  %/100</span>
+<span class="sd">   10    module soiling loss       %/100</span>
+<span class="sd">   11    inverter capital cost     $/W</span>
+<span class="sd">   12    inverter lifetime         yr</span>
+<span class="sd">   13    inverter replacement cost %/100</span>
+<span class="sd">   14    inverter efficiency       %/100</span>
+<span class="sd">   15    hardware capital cost     $/m^2</span>
+<span class="sd">   16    installation labor cost   $/system</span>
+<span class="sd">   17    permitting cost           $/system</span>
+<span class="sd">   18    customer acquisition cost $/system</span>
+<span class="sd">   19    installer overhead cost   %/100</span>
+<span class="sd">   20    hazardous waste content   g/m^2</span>
+<span class="sd">   21    greenhouse gas offset     gCO2e/kWh</span>
+<span class="sd">   22    benchmark LCOC            $/Wdc</span>
+<span class="sd">   23    benchmark LCOE            $/kWh</span>
+<span class="sd">   ===== ========================= =========</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="c1"># All of the computations must be vectorized, so use `numpy`.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="discount"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.discount">[docs]</a><span class="k">def</span> <span class="nf">discount</span><span class="p">(</span><span class="n">rate</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Discount factor over a time period.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  rate : float</span>
+<span class="sd">    The discount rate per time period.</span>
+<span class="sd">  time : int</span>
+<span class="sd">    The number of time periods.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rate</span><span class="p">)</span><span class="o">**</span><span class="n">time</span></div>
+
+
+<div class="viewcode-block" id="npv"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.npv">[docs]</a><span class="k">def</span> <span class="nf">npv</span><span class="p">(</span><span class="n">rate</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Net present value of constant cash flow.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  rate : float</span>
+<span class="sd">    The discount rate per time period.</span>
+<span class="sd">  time : int</span>
+<span class="sd">    The number of time periods.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rate</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">rate</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="module_power"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.module_power">[docs]</a><span class="k">def</span> <span class="nf">module_power</span><span class="p">(</span><span class="n">parameter</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Nominal module energy production.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  parameter : array</span>
+<span class="sd">    The technological parameterization.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">insolation</span>       <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># W/m^2</span>
+  <span class="n">systemSize</span>       <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># m^2</span>
+  <span class="n">moduleEfficiency</span> <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">5</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">insolation</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">*</span> <span class="n">systemSize</span> <span class="o">*</span> <span class="n">moduleEfficiency</span></div>
+
+
+<div class="viewcode-block" id="performance_ratio"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.performance_ratio">[docs]</a><span class="k">def</span> <span class="nf">performance_ratio</span><span class="p">(</span><span class="n">parameter</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Performance ratio for the system.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  parameter : array</span>
+<span class="sd">    The technological parameterization.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">moduleLifetime</span>         <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">4</span><span class="p">]</span> <span class="c1"># yr</span>
+  <span class="n">moduleAperture</span>         <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">6</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="n">moduleDegradationRate</span>  <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">8</span><span class="p">]</span> <span class="c1"># 1/yr</span>
+  <span class="n">moduleSoilingLoss</span>      <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="n">inverterEfficiency</span>     <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="n">moduleAperture</span>
+    <span class="o">*</span> <span class="n">inverterEfficiency</span>
+    <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">moduleSoilingLoss</span><span class="p">)</span>
+    <span class="o">*</span> <span class="n">npv</span><span class="p">(</span><span class="n">moduleDegradationRate</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">moduleDegradationRate</span><span class="p">),</span> <span class="n">moduleLifetime</span><span class="p">)</span>
+    <span class="o">/</span> <span class="n">moduleLifetime</span>
+  <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="specific_yield"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.specific_yield">[docs]</a><span class="k">def</span> <span class="nf">specific_yield</span><span class="p">(</span><span class="n">parameter</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Specific yield for the system.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  parameter : array</span>
+<span class="sd">    The technological parameterization.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">locationCapacityFactor</span> <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">9</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="k">return</span> <span class="mi">8760</span> <span class="o">*</span> <span class="n">locationCapacityFactor</span> <span class="o">*</span> <span class="n">performance_ratio</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="capital_cost"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.capital_cost">[docs]</a><span class="k">def</span> <span class="nf">capital_cost</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Capital cost function.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  scale : float</span>
+<span class="sd">    The scale of operation.</span>
+<span class="sd">  parameter : array</span>
+<span class="sd">    The technological parameterization.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># For readability, copy the parameter vectors to named variables.</span>
+  <span class="n">discountRate</span>            <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># 1/yr</span>
+  <span class="n">insolation</span>              <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># W/m^2</span>
+  <span class="n">systemSize</span>              <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># m^2</span>
+  <span class="n">moduleCapitalCost</span>       <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">3</span><span class="p">]</span> <span class="c1"># $/m^2</span>
+  <span class="n">moduleLifetime</span>          <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">4</span><span class="p">]</span> <span class="c1"># yr</span>
+  <span class="n">moduleEfficiency</span>        <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">5</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="n">inverterCapitalCost</span>     <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="c1"># $/W</span>
+  <span class="n">inverterLifetime</span>        <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="c1"># yr</span>
+  <span class="n">inverterReplacementCost</span> <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="n">hardwareCapitalCost</span>     <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="c1"># $/m^2</span>
+  <span class="n">installationLaborCost</span>   <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span> <span class="c1"># $/system</span>
+  <span class="n">permittingCost</span>          <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span> <span class="c1"># $/system</span>
+  <span class="n">customerAcquisitionCost</span> <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">18</span><span class="p">]</span> <span class="c1"># $/system</span>
+  <span class="n">installerOverheadCost</span>   <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span> <span class="c1"># %/100</span>
+
+  <span class="c1"># System module capital cost. </span>
+  <span class="n">systemModuleCapital</span> <span class="o">=</span> <span class="n">systemSize</span> <span class="o">*</span> <span class="n">moduleCapitalCost</span> 
+
+  <span class="c1"># System inverter capital cost.</span>
+  <span class="n">systemInverterCapital</span> <span class="o">=</span> <span class="n">insolation</span> <span class="o">*</span> <span class="n">systemSize</span> <span class="o">*</span> <span class="n">moduleEfficiency</span> <span class="o">*</span> <span class="n">inverterCapitalCost</span>
+
+  <span class="c1"># One inverter replacement.</span>
+  <span class="n">inverterReplacement1</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">moduleLifetime</span> <span class="o">&gt;</span> <span class="n">inverterLifetime</span><span class="p">)</span>
+    <span class="o">*</span> <span class="p">(</span><span class="n">moduleLifetime</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">inverterLifetime</span><span class="p">)</span>
+    <span class="o">*</span> <span class="p">(</span>
+      <span class="n">discount</span><span class="p">(</span><span class="n">discountRate</span><span class="p">,</span> <span class="n">inverterLifetime</span><span class="p">)</span> <span class="o">-</span>
+      <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">inverterLifetime</span> <span class="o">-</span> <span class="n">moduleLifetime</span><span class="p">)</span>
+      <span class="o">/</span> <span class="n">inverterLifetime</span>
+      <span class="o">*</span> <span class="n">discount</span><span class="p">(</span><span class="n">discountRate</span><span class="p">,</span> <span class="n">moduleLifetime</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
+
+  <span class="c1"># Two inverter replacements.</span>
+  <span class="n">inverterReplacement2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">moduleLifetime</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">inverterLifetime</span><span class="p">)</span>
+    <span class="o">*</span> <span class="p">(</span><span class="n">moduleLifetime</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">inverterLifetime</span><span class="p">)</span>
+    <span class="o">*</span> <span class="p">(</span>
+      <span class="n">discount</span><span class="p">(</span><span class="n">discountRate</span><span class="p">,</span> <span class="n">inverterLifetime</span><span class="p">)</span>
+      <span class="o">+</span> <span class="n">discount</span><span class="p">(</span><span class="n">discountRate</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">inverterLifetime</span><span class="p">)</span>
+      <span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">inverterLifetime</span> <span class="o">-</span> <span class="n">moduleLifetime</span><span class="p">)</span>
+      <span class="o">/</span> <span class="n">inverterLifetime</span>
+      <span class="o">*</span> <span class="n">discount</span><span class="p">(</span><span class="n">discountRate</span><span class="p">,</span> <span class="n">moduleLifetime</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
+
+  <span class="c1"># Capital cost of all inverters.</span>
+  <span class="c1"># FIXME: Generalize to an arbitrary number of inverter replacements.</span>
+  <span class="n">systemInverterCapital</span> <span class="o">=</span> <span class="n">systemInverterCapital</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">inverterReplacementCost</span> <span class="o">*</span> <span class="p">(</span>
+    <span class="n">inverterReplacement1</span> <span class="o">+</span> <span class="n">inverterReplacement2</span>
+  <span class="p">))</span>
+
+  <span class="c1"># System BOS hardware cost.</span>
+  <span class="n">systemHardwareCapital</span> <span class="o">=</span> <span class="n">hardwareCapitalCost</span> <span class="o">*</span> <span class="n">systemSize</span>
+
+  <span class="c1"># System BOS soft costs for labor, permitting, and customers.</span>
+  <span class="n">systemSoftCosts</span> <span class="o">=</span> <span class="n">installationLaborCost</span> <span class="o">+</span> <span class="n">permittingCost</span> <span class="o">+</span> <span class="n">customerAcquisitionCost</span>
+
+  <span class="c1"># System overhead costs.</span>
+  <span class="n">systemOverheadCost</span> <span class="o">=</span> <span class="n">installerOverheadCost</span> <span class="o">*</span> <span class="p">(</span>
+    <span class="n">systemModuleCapital</span>
+    <span class="o">+</span> <span class="n">systemInverterCapital</span>
+    <span class="o">+</span> <span class="n">systemHardwareCapital</span>
+    <span class="o">+</span> <span class="n">systemSoftCosts</span>
+  <span class="p">)</span>
+
+  <span class="c1"># All capital costs.</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+    <span class="n">systemModuleCapital</span>                                         <span class="p">,</span> <span class="c1"># module</span>
+    <span class="n">systemInverterCapital</span>                                       <span class="p">,</span> <span class="c1"># inverters</span>
+    <span class="n">systemHardwareCapital</span> <span class="o">+</span> <span class="n">systemSoftCosts</span> <span class="o">+</span> <span class="n">systemOverheadCost</span><span class="p">,</span> <span class="c1"># balance of system</span>
+  <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="fixed_cost"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.fixed_cost">[docs]</a><span class="k">def</span> <span class="nf">fixed_cost</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Fixed cost function.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  scale : float</span>
+<span class="sd">    The scale of operation.</span>
+<span class="sd">  parameter : array</span>
+<span class="sd">    The technological parameterization.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># For readability, copy the parameter vectors to named variables.</span>
+  <span class="n">discountRate</span>     <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># 1/yr</span>
+  <span class="n">moduleLifetime</span>   <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">4</span><span class="p">]</span> <span class="c1"># yr</span>
+  <span class="n">moduleFixedCost</span>  <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">7</span><span class="p">]</span> <span class="c1"># $/kW/yr</span>
+
+  <span class="c1"># System lifetime fixed costs.</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+    <span class="n">moduleFixedCost</span> <span class="o">*</span> <span class="n">module_power</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span> <span class="o">*</span> <span class="n">npv</span><span class="p">(</span><span class="n">discountRate</span><span class="p">,</span> <span class="n">moduleLifetime</span><span class="p">)</span>
+  <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="production"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.production">[docs]</a><span class="k">def</span> <span class="nf">production</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">capital</span><span class="p">,</span> <span class="n">lifetime</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Production function.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  scale : float</span>
+<span class="sd">    The scale of operation.</span>
+<span class="sd">  capital : array</span>
+<span class="sd">    Capital costs.</span>
+<span class="sd">  lifetime : float</span>
+<span class="sd">    Technology lifetime.</span>
+<span class="sd">  fixed : array</span>
+<span class="sd">    Fixed costs.</span>
+<span class="sd">  input : array</span>
+<span class="sd">    Input quantities. </span>
+<span class="sd">  parameter : array</span>
+<span class="sd">    The technological parameterization.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># For readability, copy the parameter vectors to named variables.</span>
+  <span class="n">systemSize</span>             <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># m^2</span>
+  <span class="n">moduleLifetime</span>         <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">4</span><span class="p">]</span> <span class="c1"># yr</span>
+  <span class="n">hazardousWasteContent</span>  <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="c1"># g/m^2</span>
+  <span class="n">greenhouseGasOffset</span>    <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">21</span><span class="p">]</span> <span class="c1"># gCO2e/kWh</span>
+
+  <span class="c1"># Lifetime energy production.</span>
+  <span class="n">lifetimeEnergy</span> <span class="o">=</span> <span class="n">module_power</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span> <span class="o">*</span> <span class="n">specific_yield</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span> <span class="o">*</span> <span class="n">moduleLifetime</span>
+
+  <span class="c1"># All outputs.</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+    <span class="n">lifetimeEnergy</span>                      <span class="p">,</span> <span class="c1"># lifetime energy</span>
+    <span class="n">hazardousWasteContent</span> <span class="o">*</span> <span class="n">systemSize</span>  <span class="p">,</span> <span class="c1"># hazardous waste</span>
+    <span class="n">greenhouseGasOffset</span> <span class="o">*</span> <span class="n">lifetimeEnergy</span><span class="p">,</span> <span class="c1"># greenhouse gas</span>
+  <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="metrics"><a class="viewcode-back" href="../../doc-src/technology.html#technology.pv_residential_generic.metrics">[docs]</a><span class="k">def</span> <span class="nf">metrics</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">capital</span><span class="p">,</span> <span class="n">lifetime</span><span class="p">,</span> <span class="n">fixed</span><span class="p">,</span> <span class="n">input_raw</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output_raw</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Metrics function.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  scale : float</span>
+<span class="sd">    The scale of operation.</span>
+<span class="sd">  capital : array</span>
+<span class="sd">    Capital costs.</span>
+<span class="sd">  lifetime : float</span>
+<span class="sd">    Technology lifetime.</span>
+<span class="sd">  fixed : array</span>
+<span class="sd">    Fixed costs.</span>
+<span class="sd">  input_raw : array</span>
+<span class="sd">    Raw input quantities (before losses).</span>
+<span class="sd">  input : array</span>
+<span class="sd">    Input quantities. </span>
+<span class="sd">  output_raw : array</span>
+<span class="sd">    Raw output quantities (before losses).</span>
+<span class="sd">  output : array</span>
+<span class="sd">    Output quantities. </span>
+<span class="sd">  cost : array</span>
+<span class="sd">    Costs.</span>
+<span class="sd">  parameter : array</span>
+<span class="sd">    The technological parameterization.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># For readability, copy the parameter vectors to named variables.</span>
+  <span class="n">moduleLifetime</span>   <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">4</span><span class="p">]</span> <span class="c1"># yr</span>
+  <span class="n">moduleEfficiency</span> <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span> <span class="mi">5</span><span class="p">]</span> <span class="c1"># %/100</span>
+  <span class="n">benchmarkLCOC</span>    <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="c1"># $/Wdc	</span>
+  <span class="n">benchmarkLCOE</span>    <span class="o">=</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span> <span class="c1"># $/kWh	</span>
+  <span class="n">strategicMetal</span>   <span class="o">=</span> <span class="n">input_raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># g/system</span>
+  <span class="n">lifetimeEnergy</span>   <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># kWh/system</span>
+  <span class="n">hazardousWaste</span>   <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>     <span class="c1"># g/system</span>
+  <span class="n">greenhouseGas</span>    <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># gCO2e/system</span>
+
+  <span class="c1"># All metrics.</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+    <span class="n">benchmarkLCOC</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">capital</span><span class="p">)</span> <span class="o">/</span> <span class="n">module_power</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span> <span class="c1"># system cost</span>
+    <span class="n">benchmarkLCOE</span> <span class="o">-</span> <span class="n">cost</span> <span class="o">/</span> <span class="n">lifetimeEnergy</span>                        <span class="p">,</span> <span class="c1"># levelized cost of energy</span>
+    <span class="o">-</span> <span class="n">greenhouseGas</span> <span class="o">/</span> <span class="n">lifetimeEnergy</span>                             <span class="p">,</span> <span class="c1"># greenhouse gas</span>
+    <span class="n">strategicMetal</span> <span class="o">/</span> <span class="n">lifetimeEnergy</span>                              <span class="p">,</span> <span class="c1"># strategic metal</span>
+    <span class="n">hazardousWaste</span> <span class="o">/</span> <span class="n">lifetimeEnergy</span>                              <span class="p">,</span> <span class="c1"># hazardous waste</span>
+    <span class="n">specific_yield</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>                                    <span class="p">,</span> <span class="c1"># specific yield</span>
+    <span class="n">moduleEfficiency</span>                                             <span class="p">,</span> <span class="c1"># module efficiency</span>
+    <span class="n">moduleLifetime</span>                                               <span class="p">,</span> <span class="c1"># module lifetime</span>
+  <span class="p">])</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Tyche</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/approach.html">Approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/formulation.html">Mathematical Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/example-electrolysis.html">Electrolysis Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/database.html">Database Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/example-technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/optimizers.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/eutychia.html">eutychia package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/mock-foa.html">Mock FOA Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/ioc-1.html">Mock FOA Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/deployment.html">Deployment Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc-src/modules.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, National Renewable Energy Laboratory.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

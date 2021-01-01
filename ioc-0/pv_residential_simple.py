@@ -7,8 +7,8 @@ import pandas as pd
 import tyche  as ty
 
 
-investments = ty.Investments("../data/residential_pv_multiobjective")
-designs     = ty.Designs("../data/residential_pv_multiobjective")
+investments = ty.Investments("data/pv_residential_simple")
+designs     = ty.Designs("data/pv_residential_simple")
 designs.compile()
 
 tranche_results = investments.evaluate_tranches(designs, sample_count = 25)

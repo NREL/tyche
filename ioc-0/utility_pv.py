@@ -46,13 +46,13 @@ from copy import deepcopy
 # In[3]:
 
 
-designs = ty.Designs("../data/utility_pv")
+designs = ty.Designs("data/utility_pv")
 
 
 # In[4]:
 
 
-investments = ty.Investments("../data/utility_pv")
+investments = ty.Investments("data/utility_pv")
 
 
 # ### Compile the production and metric functions for each technology in the dataset.

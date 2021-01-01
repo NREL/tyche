@@ -20,18 +20,10 @@ technology.pv\_residential\_generic module
    :undoc-members:
    :show-inheritance:
 
-technology.residential\_pv module
----------------------------------
+technology.pv\_residential\_simple module
+-----------------------------------------
 
-.. automodule:: technology.residential_pv
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-technology.residential\_pv\_multiobjective module
--------------------------------------------------
-
-.. automodule:: technology.residential_pv_multiobjective
+.. automodule:: technology.pv_residential_simple
    :members:
    :undoc-members:
    :show-inheritance:

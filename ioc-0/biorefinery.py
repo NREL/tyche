@@ -45,7 +45,7 @@ import tyche             as ty
 # In[3]:
 
 
-scenarios = ty.Designs("../data/biorefinery")
+scenarios = ty.Designs("data/biorefinery")
 
 
 # ### Compile the production and metric functions for each technology in the dataset.

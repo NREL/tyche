@@ -1,3 +1,3 @@
 """
-Technology Definitions for Tyche.
+Technology definitions for tyche.
 """

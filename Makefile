@@ -13,7 +13,13 @@ SOURCE_DATE_EPOCH = $(shell git log -1 --format=%ct)
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile
+.PHONY: help Makefile pdf api
+
+pdf: latexpdf
+	cp "$(BUILDDIR)/latex/tyche.pdf" docs/
+
+api:
+	sphinx-apidoc -f -o doc-src src
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

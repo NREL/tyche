@@ -1,88 +1,152 @@
-# Residential PV
+"""
+Generic model for residential PV.
 
 
-#  CAPITAL
-#
-#  systemModuleCapital   = capital[0[ # $/system
-#  systemInverterCapital = capital[1] # $/system
-#  systemBalanceCapital  = capital[2] # $/system
+.. table:: Elements of ``capital`` arrays.
 
-#  FIXED
-#
-#  systemFixed = fixed[0] # $/system
+   ===== ===================== ========
+   Index Description           Units
+   ===== ===================== ========
+   0     module capital cost   $/system
+   1     inverter capital cost $/system
+   2     balance capital cost  $/system
+   ===== ===================== ========
 
-#  INPUTS
-#
-#  strategicMetals = input[0] # g/system
 
-#  OUTPUTS
-#
-#  lifetimeEnergy = output[0] # kWh/system
-#  hazardousWaste = output[1] # g/system
-#  greenhouseGas  = output[2] # gCO2e/system
+.. table:: Elements of ``fixed`` arrays.
 
-#  METRICS
-#
-#  systemCost            = metric[0] # $/Wdc
-#  levelizedEnergyCost   = metric[1] # $/kWh
-#  greenhouseGas         = metric[2] # gCO2e/kWh
-#  strategicMetal        = metric[3] # g/kWh
-#  hazardousWaste        = metric[4] # g/kWh
-#  specificYield         = metric[5] # hr/yr
-#  moduleEfficiency      = metric[6] # %/100
-#  moduleLifetime        = metric[7] # yr
+   ===== =========== ========
+   Index Description Units
+   ===== =========== ========
+   0     fixed cost  $/system
+   ===== =========== ========
 
-#  PARAMETERS
-#
-#  discountRate            = parameter[ 0] # 1/yr
-#  insolation              = parameter[ 1] # W/m^2
-#  systemSize              = parameter[ 2] # m^2
-#  moduleCapitalCost       = parameter[ 3] # $/m^2
-#  moduleLifetime          = parameter[ 4] # yr
-#  moduleEfficiency        = parameter[ 5] # %/100
-#  moduleAperture          = parameter[ 6] # %/100
-#  moduleFixedCost         = parameter[ 7] # $/kW/yr
-#  moduleDegradationRate   = parameter[ 8] # 1/yr
-#  locationCapacityFactor  = parameter[ 9] # %/100
-#  moduleSoilingLoss       = parameter[10] # %/100
-#  inverterCapitalCost     = parameter[11] # $/W
-#  inverterLifetime        = parameter[12] # yr
-#  inverterReplacementCost = parameter[13] # %/100
-#  inverterEfficiency      = parameter[14] # %/100
-#  hardwareCapitalCost     = parameter[15] # $/m^2
-#  installationLaborCost   = parameter[16] # $/system
-#  permittingCost          = parameter[17] # $/system
-#  customerAcquisitionCost = parameter[18] # $/system
-#  installerOverheadCost   = parameter[19] # %/100
-#  hazardousWasteContent   = parameter[20] # g/m^2
-#  greenhouseGasOffset     = parameter[21] # gCO2e/kWh
-#  benchmarkLCOC           = parameter[22] # $/Wdc
-#  benchmarkLCOE           = parameter[23] # $/kWh
+
+.. table:: Elements of ``input`` arrays.
+
+   ===== ================ ========
+   Index Description       Units
+   ===== ================ ========
+   0     strategic metals g/system
+   ===== ================ ========
+
+
+.. table:: Elements of ``output`` arrays.
+
+   ===== ================================== ============
+   Index Description                        Units
+   ===== ================================== ============
+   0     lifetime energy production         kWh/system
+   1     lifecycle hazardous waste          g/system
+   2     lifetime greenhouse gas production gCO2e/system
+   ===== ================================== ============
+
+
+.. table:: Elements of ``metric`` arrays.
+
+   ===== ===================== =========
+   Index Description           Units
+   ===== ===================== =========
+   0     system cost           $/Wdc
+   1     levelized energy cost $/kWh
+   2     greenhouse gas        gCO2e/kWh
+   3     strategic metal       g/kWh
+   4     hazardous waste       g/kWh
+   5     specific yield        hr/yr
+   6     module efficiency     %/100
+   7     module lifetime       yr
+   ===== ===================== =========
+
+
+.. table:: Elements of ``parameter`` arrays.
+
+   ===== ========================= =========
+   Index Description               Units
+   ===== ========================= =========
+   0     discount rate             1/yr
+   1     insolation                W/m^2
+   2     system size               m^2
+   3     module capital cost       $/m^2
+   4     module lifetime           yr
+   5     module efficiency         %/100
+   6     module aperture           %/100
+   7     module fixed cost         $/kW/yr
+   8     module degradation rate   1/yr
+   9     location capacity factor  %/100
+   10    module soiling loss       %/100
+   11    inverter capital cost     $/W
+   12    inverter lifetime         yr
+   13    inverter replacement cost %/100
+   14    inverter efficiency       %/100
+   15    hardware capital cost     $/m^2
+   16    installation labor cost   $/system
+   17    permitting cost           $/system
+   18    customer acquisition cost $/system
+   19    installer overhead cost   %/100
+   20    hazardous waste content   g/m^2
+   21    greenhouse gas offset     gCO2e/kWh
+   22    benchmark LCOC            $/Wdc
+   23    benchmark LCOE            $/kWh
+   ===== ========================= =========
+"""
+
 
 # All of the computations must be vectorized, so use `numpy`.
 import numpy as np
 
 
-# Discount at a rate for a time.
 def discount(rate, time):
+  """
+  Discount factor over a time period.
+
+  Parameters
+  ----------
+  rate : float
+    The discount rate per time period.
+  time : int
+    The number of time periods.
+  """
   return 1 / (1 + rate)**time
 
 
-# Net present value of constant cash flow.
 def npv(rate, time):
+  """
+  Net present value of constant cash flow.
+
+  Parameters
+  ----------
+  rate : float
+    The discount rate per time period.
+  time : int
+    The number of time periods.
+  """
   return (1 - 1 / (1 + rate)**(time + 1)) / (1 - 1 / (1 + rate))
 
 
-# Nominal module energy production.
 def module_power(parameter):
+  """
+  Nominal module energy production.
+
+  Parameters
+  ----------
+  parameter : array
+    The technological parameterization.
+  """
   insolation       = parameter[ 1] # W/m^2
   systemSize       = parameter[ 2] # m^2
   moduleEfficiency = parameter[ 5] # %/100
   return (insolation / 1000) * systemSize * moduleEfficiency
 
 
-# Performance ratio for the system.
 def performance_ratio(parameter):
+  """
+  Performance ratio for the system.
+
+  Parameters
+  ----------
+  parameter : array
+    The technological parameterization.
+  """
   moduleLifetime         = parameter[ 4] # yr
   moduleAperture         = parameter[ 6] # %/100
   moduleDegradationRate  = parameter[ 8] # 1/yr
@@ -97,14 +161,30 @@ def performance_ratio(parameter):
   )
 
 
-# Specific yield for the system.
 def specific_yield(parameter):
+  """
+  Specific yield for the system.
+
+  Parameters
+  ----------
+  parameter : array
+    The technological parameterization.
+  """
   locationCapacityFactor = parameter[ 9] # %/100
   return 8760 * locationCapacityFactor * performance_ratio(parameter)
 
 
-# Capital-cost function.
 def capital_cost(scale, parameter):
+  """
+  Capital cost function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   discountRate            = parameter[ 0] # 1/yr
@@ -181,8 +261,17 @@ def capital_cost(scale, parameter):
   ])
 
 
-# Fixed-cost function.
 def fixed_cost(scale, parameter):
+  """
+  Fixed cost function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   discountRate     = parameter[ 0] # 1/yr
@@ -195,8 +284,25 @@ def fixed_cost(scale, parameter):
   ])
 
 
-# Production function.
 def production(scale, capital, lifetime, fixed, input, parameter):
+  """
+  Production function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  capital : array
+    Capital costs.
+  lifetime : float
+    Technology lifetime.
+  fixed : array
+    Fixed costs.
+  input : array
+    Input quantities. 
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   systemSize             = parameter[ 2] # m^2
@@ -215,8 +321,33 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   ])
 
 
-# Metrics function.
 def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
+  """
+  Metrics function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  capital : array
+    Capital costs.
+  lifetime : float
+    Technology lifetime.
+  fixed : array
+    Fixed costs.
+  input_raw : array
+    Raw input quantities (before losses).
+  input : array
+    Input quantities. 
+  output_raw : array
+    Raw output quantities (before losses).
+  output : array
+    Output quantities. 
+  cost : array
+    Costs.
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   moduleLifetime   = parameter[ 4] # yr

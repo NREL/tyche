@@ -1,14 +1,23 @@
-# Simple pv module example.
-# Inspired by Kavlak et al. Energy Policy 123 (2018) 700–710
+"""
+Simple pv utility-scale module example.  Inspired by Kavlak et al. Energy Policy 123 (2018) 700–710.
+"""
 
 
 # All of the computations must be vectorized, so use `numpy`.
 import numpy as np
 
 
-# Capital-cost function.
 def capital_cost(scale, parameter):
-    """Function to calculate the capital cost of the PV module"""
+    """
+    Capital cost function.
+
+    Parameters
+    ----------
+    scale : float
+      The scale of operation.
+    parameter : array
+      The technological parameterization.
+    """
 
     # Unit conversions.
     um_to_cm = 0.0001
@@ -48,17 +57,41 @@ def capital_cost(scale, parameter):
     return np.stack([out])
 
 
-# Fixed-cost function.
 def fixed_cost(scale, parameter):
-    """Function to calculate fixed costs of the PV module"""
+    """
+    Fixed cost function.
+
+    Parameters
+    ----------
+    scale : float
+      The scale of operation.
+    parameter : array
+      The technological parameterization.
+    """
 
     # Currently, no fixed costs in the model.
     return np.stack([0])
 
 
-# Production function.
 def production(scale, capital, lifetime, fixed, input, parameter):
-    """Function to compute the electricity output from the module"""
+    """
+    Production function.
+
+    Parameters
+    ----------
+    scale : float
+      The scale of operation.
+    capital : array
+      Capital costs.
+    lifetime : float
+      Technology lifetime.
+    fixed : array
+      Fixed costs.
+    input : array
+      Input quantities. 
+    parameter : array
+      The technological parameterization.
+    """
 
     # Module electricity (kWh) production.
     cm2_per_m2 = 10000
@@ -81,9 +114,33 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     return np.stack([kwh_per_module])
 
 
-# Metrics function.
 def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
-    """Function to calculate metrics for the PV module"""
+    """
+    Metrics function.
+
+    Parameters
+    ----------
+    scale : float
+      The scale of operation.
+    capital : array
+      Capital costs.
+    lifetime : float
+      Technology lifetime.
+    fixed : array
+      Fixed costs.
+    input_raw : array
+      Raw input quantities (before losses).
+    input : array
+      Input quantities. 
+    output_raw : array
+      Raw output quantities (before losses).
+    output : array
+      Output quantities. 
+    cost : array
+      Costs.
+    parameter : array
+      The technological parameterization.
+    """
 
     # kWh output over lifetime.
     kwh = output[0]

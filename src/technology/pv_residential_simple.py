@@ -1,21 +1,51 @@
-# Residential PV
+"""
+Simple residential PV.
+"""
+
 
 # All of the computations must be vectorized, so use `numpy`.
 import numpy as np
 
 
-# Discount at a rate for a time.
 def discount(rate, time):
+  """
+  Discount factor over a time period.
+
+  Parameters
+  ----------
+  rate : float
+    The discount rate per time period.
+  time : int
+    The number of time periods.
+  """
   return 1 / (1 + rate)**time
 
 
-# Net present value of constant cash flow.
 def npv(rate, time):
+  """
+  Net present value of constant cash flow.
+
+  Parameters
+  ----------
+  rate : float
+    The discount rate per time period.
+  time : int
+    The number of time periods.
+  """
   return (1 - 1 / (1 + rate)**(time + 1)) / (1 - 1 / (1 + rate))
 
 
-# Capital-cost function.
 def capital_cost(scale, parameter):
+  """
+  Capital cost function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   dr  = parameter[ 0]
@@ -68,8 +98,17 @@ def capital_cost(scale, parameter):
   ])
 
 
-# Fixed-cost function.
 def fixed_cost(scale, parameter):
+  """
+  Fixed cost function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   dr  = parameter[ 0]
@@ -85,8 +124,25 @@ def fixed_cost(scale, parameter):
   ])
 
 
-# Production function.
 def production(scale, capital, lifetime, fixed, input, parameter):
+  """
+  Production function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  capital : array
+    Capital costs.
+  lifetime : float
+    Technology lifetime.
+  fixed : array
+    Fixed costs.
+  input : array
+    Input quantities. 
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   ins = parameter[ 1]
@@ -105,8 +161,33 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   ])
 
 
-# Metrics function.
 def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
+  """
+  Metrics function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  capital : array
+    Capital costs.
+  lifetime : float
+    Technology lifetime.
+  fixed : array
+    Fixed costs.
+  input_raw : array
+    Raw input quantities (before losses).
+  input : array
+    Input quantities. 
+  output_raw : array
+    Raw output quantities (before losses).
+  output : array
+    Output quantities. 
+  cost : array
+    Costs.
+  parameter : array
+    The technological parameterization.
+  """
 
   # For readability, copy the parameter vectors to named variables.
   blr = parameter[17]

@@ -19,8 +19,6 @@ Import packages.
     import matplotlib.pyplot as pl
     import pandas            as pd
     import seaborn           as sb
-    
-    # The `tyche` package is located at <https://github.com/NREL/portfolio/tree/master/production-function/src/tyche/>.
     import tyche             as ty
     
     from copy            import deepcopy
@@ -34,11 +32,11 @@ The data are stored in a set of tab-separated value files in a folder.
 
 .. code:: python
 
-    designs = ty.Designs("../data/residential_pv_multiobjective")
+    designs = ty.Designs("data/pv_residential_simple")
 
 .. code:: python
 
-    investments = ty.Investments("../data/residential_pv_multiobjective")
+    investments = ty.Investments("data/pv_residential_simple")
 
 Compile the production and metric functions for each technology in the dataset.
 
@@ -103,7 +101,7 @@ The ``functions`` table specifies where the Python code for each technology resi
         <tr>
           <td>Residential PV</td>
           <td>numpy</td>
-          <td>residential_pv_multiobjective</td>
+          <td>pv_residential_simple</td>
           <td>capital_cost</td>
           <td>fixed_cost</td>
           <td>production</td>
@@ -1146,7 +1144,7 @@ Save results.
 
 .. code:: python
 
-    scenario_results.to_csv("output/residential_pv_multiobjective/example-scenario.csv")
+    scenario_results.to_csv("output/pv_residential_simple/example-scenario.csv")
 
 Plot GHG metric.
 ~~~~~~~~~~~~~~~~
@@ -1660,11 +1658,11 @@ Save results.
 
 .. code:: python
 
-    investment_results.amounts.to_csv("output/residential_pv_multiobjective/example-investment-amounts.csv")
+    investment_results.amounts.to_csv("output/pv_residential_simple/example-investment-amounts.csv")
 
 .. code:: python
 
-    investment_results.metrics.to_csv("output/residential_pv_multiobjective/example-investment-metrics.csv")
+    investment_results.metrics.to_csv("output/pv_residential_simple/example-investment-metrics.csv")
 
 Plot GHG metric.
 ~~~~~~~~~~~~~~~~
@@ -1964,8 +1962,8 @@ Save the results.
 
 .. code:: python
 
-    tranche_results.amounts.to_csv("output/residential_pv_multiobjective/example-tranche-amounts.csv")
-    tranche_results.summary.to_csv("output/residential_pv_multiobjective/example-tranche-summary.csv")
+    tranche_results.amounts.to_csv("output/pv_residential_simple/example-tranche-amounts.csv")
+    tranche_results.summary.to_csv("output/pv_residential_simple/example-tranche-summary.csv")
 
 Fit a response surface to the results.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2765,7 +2763,7 @@ sliders will cause a recomputation of the boxplots.
 
 .. code:: python
 
-    Image("residential_pv_multiobjective_gui.png")
+    Image("pv_residential_simple_gui.png")
 
 
 
