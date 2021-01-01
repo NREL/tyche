@@ -9,3 +9,4 @@ _build/
 _static/
 _templates/
 __pycache__/
+.ipynb_checkpoints/
