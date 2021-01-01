@@ -35,21 +35,10 @@
             
   <div class="section" id="python-api">
 <h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">tyche</span></code> module is a Python package for R&amp;D pathways analysis and
-evaluation. It contains five Python classes for R&amp;D pathway decision
-support.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Designs</span></code> for specifying and evaluating technology decisions in the
-presence of uncertainty.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Investments</span></code> for specifying and evaluating R&amp;D portfolios
-consisting of multiple technology-investment options.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Evaluator</span></code> for rapidly evaluating the costs and benefits for sets
-of portfolios.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">EpsilonConstraints</span></code> for multi-objective optimization using a
-generalization of the epsilon-constraint technique.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DecisionGUI</span></code> for interactively exploring the costs and benefits of
-R&amp;D portfolios.</p></li>
-</ul>
+<p>The module <a class="reference internal" href="tyche.html#module-tyche" title="tyche"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tyche</span></code></a> contains defines and solves multi-objective R&amp;D
+optimization problems, which the module <a class="reference internal" href="eutychia.html#module-eutychia" title="eutychia"><code class="xref py py-mod docutils literal notranslate"><span class="pre">eutychia</span></code></a> provides a server
+of a web-based user interface. The module <a class="reference internal" href="technology.html#module-technology" title="technology"><code class="xref py py-mod docutils literal notranslate"><span class="pre">technology</span></code></a> definites
+individual R&amp;D technologies.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tyche.html">tyche package</a><ul>
@@ -63,6 +52,23 @@ R&amp;D portfolios.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche.Investments">tyche.Investments module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche.Types">tyche.Types module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#module-eutychia.example">eutychia.example module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#module-eutychia.main">eutychia.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#module-eutychia">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">technology package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.biorefinery">technology.biorefinery module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.pv_residential_generic">technology.pv_residential_generic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.pv_residential_simple">technology.pv_residential_simple module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.simple_electrolysis">technology.simple_electrolysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.utility_pv">technology.utility_pv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -92,15 +98,17 @@ R&amp;D portfolios.</p></li>
 <li class="toctree-l1"><a class="reference internal" href="formulation.html">Mathematical Formulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example-electrolysis.html">Electrolysis Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eutychia.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tyche.html">tyche package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html">technology package</a></li>
 </ul>
 </li>
 </ul>
@@ -137,7 +145,7 @@ R&amp;D portfolios.</p></li>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, National Renewable Energy Laboratory.
+      &copy;2021, National Renewable Energy Laboratory.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>

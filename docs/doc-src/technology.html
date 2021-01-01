@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Defining Technologies &#8212; Tyche 0.1.0 documentation</title>
+    <title>technology package &#8212; Tyche 0.1.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -15,8 +15,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Optimization" href="optimizers.html" />
-    <link rel="prev" title="Database Schema" href="database.html" />
+    <link rel="prev" title="tyche package" href="tyche.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,98 +32,719 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="defining-technologies">
-<h1>Defining Technologies<a class="headerlink" href="#defining-technologies" title="Permalink to this headline">¶</a></h1>
-<p>Each technology design requires a Python module with a capital cost, a
-fixed cost, a production, and a metrics function. <a class="reference internal" href="#lst-electrolysis"><span class="std std-numref">Listing 1</span></a>
-shows these functions for the simple electrolysis example.</p>
-<div class="literal-block-wrapper docutils container" id="lst-electrolysis">
-<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Example technology-defining functions.</span><a class="headerlink" href="#lst-electrolysis" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple electrolysis.</span>
-
-
-<span class="c1"># All of the computations must be vectorized, so use `numpy`.</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<span class="c1"># Capital-cost function.</span>
-<span class="k">def</span> <span class="nf">capital_cost</span><span class="p">(</span>
-  <span class="n">scale</span><span class="p">,</span>
-  <span class="n">parameter</span>
-<span class="p">):</span>
-
-  <span class="c1"># Scale the reference values.</span>
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
-    <span class="n">parameter</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-  <span class="p">)])</span>
-
-
-<span class="c1"># Fixed-cost function.</span>
-<span class="k">def</span> <span class="nf">fixed_cost</span><span class="p">(</span>
-  <span class="n">scale</span><span class="p">,</span>
-  <span class="n">parameter</span>
-<span class="p">):</span>
-
-  <span class="c1"># Scale the reference values.</span>
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
-    <span class="n">parameter</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-  <span class="p">)])</span>
-
-
-<span class="c1"># Production function.</span>
-<span class="k">def</span> <span class="nf">production</span><span class="p">(</span>
-  <span class="n">capital</span><span class="p">,</span>
-  <span class="n">fixed</span><span class="p">,</span>
-  <span class="nb">input</span><span class="p">,</span>
-  <span class="n">parameter</span>
-<span class="p">):</span>
-
-  <span class="c1"># Moles of input.</span>
-  <span class="n">water</span>       <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-  <span class="n">electricity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-
-  <span class="c1"># Moles of output.</span>
-  <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">water</span><span class="p">,</span> <span class="n">electricity</span><span class="p">)</span>
-
-  <span class="c1"># Grams of output.</span>
-  <span class="n">oxygen</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-  <span class="n">hydrogen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-  <span class="c1"># Package results.</span>
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">hydrogen</span><span class="p">])</span>
-
-
-<span class="c1"># Metrics function.</span>
-<span class="k">def</span> <span class="nf">metrics</span><span class="p">(</span>
-  <span class="n">capital</span><span class="p">,</span>
-  <span class="n">fixed</span><span class="p">,</span>
-  <span class="n">input_raw</span><span class="p">,</span>
-  <span class="nb">input</span><span class="p">,</span>
-  <span class="n">img</span><span class="o">/</span><span class="n">output_raw</span><span class="p">,</span>
-  <span class="n">output</span><span class="p">,</span>
-  <span class="n">cost</span><span class="p">,</span>
-  <span class="n">parameter</span>
-<span class="p">):</span>
-
-  <span class="c1"># Hydrogen output.</span>
-  <span class="n">hydrogen</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-  <span class="c1"># Cost of hydrogen.</span>
-  <span class="n">cost1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">hydrogen</span><span class="p">)</span>
-
-  <span class="c1"># Jobs normalized to hydrogen.</span>
-  <span class="n">jobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">parameter</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">hydrogen</span><span class="p">)</span>
-
-  <span class="c1"># GHGs associated with water and electricity.</span>
-  <span class="n">water</span>       <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">input_raw</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
-  <span class="n">electricity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">input_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
-  <span class="n">co2e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">water</span><span class="p">,</span> <span class="n">electricity</span><span class="p">),</span> <span class="n">hydrogen</span><span class="p">)</span>
-
-  <span class="c1"># Package results.</span>
-  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">cost1</span><span class="p">,</span> <span class="n">jobs</span><span class="p">,</span> <span class="n">co2e</span><span class="p">])</span>
-</pre></div>
+  <div class="section" id="technology-package">
+<h1>technology package<a class="headerlink" href="#technology-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-technology.biorefinery">
+<span id="technology-biorefinery-module"></span><h2>technology.biorefinery module<a class="headerlink" href="#module-technology.biorefinery" title="Permalink to this headline">¶</a></h2>
+<p>Biorefinery model with four processing steps.</p>
+<dl class="function">
+<dt id="technology.biorefinery.capital_cost">
+<code class="sig-prename descclassname">technology.biorefinery.</code><code class="sig-name descname">capital_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/biorefinery.html#capital_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.biorefinery.capital_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Capital cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.biorefinery.fixed_cost">
+<code class="sig-prename descclassname">technology.biorefinery.</code><code class="sig-name descname">fixed_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/biorefinery.html#fixed_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.biorefinery.fixed_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fixed cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.biorefinery.metrics">
+<code class="sig-prename descclassname">technology.biorefinery.</code><code class="sig-name descname">metrics</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input_raw</em>, <em class="sig-param">input</em>, <em class="sig-param">output_raw</em>, <em class="sig-param">output</em>, <em class="sig-param">cost</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/biorefinery.html#metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.biorefinery.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metrics function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input_raw</strong> (<em>array</em>) – Raw input quantities (before losses).</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>output_raw</strong> (<em>array</em>) – Raw output quantities (before losses).</p></li>
+<li><p><strong>output</strong> (<em>array</em>) – Output quantities.</p></li>
+<li><p><strong>cost</strong> (<em>array</em>) – Costs.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.biorefinery.production">
+<code class="sig-prename descclassname">technology.biorefinery.</code><code class="sig-name descname">production</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/biorefinery.html#production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.biorefinery.production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Production function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-technology.pv_residential_generic">
+<span id="technology-pv-residential-generic-module"></span><h2>technology.pv_residential_generic module<a class="headerlink" href="#module-technology.pv_residential_generic" title="Permalink to this headline">¶</a></h2>
+<p>Generic model for residential PV.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Elements of <code class="docutils literal notranslate"><span class="pre">capital</span></code> arrays.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 62%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>module capital cost</p></td>
+<td><p>$/system</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>inverter capital cost</p></td>
+<td><p>$/system</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>balance capital cost</p></td>
+<td><p>$/system</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Elements of <code class="docutils literal notranslate"><span class="pre">fixed</span></code> arrays.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 46%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>fixed cost</p></td>
+<td><p>$/system</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">Elements of <code class="docutils literal notranslate"><span class="pre">input</span></code> arrays.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 55%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>strategic metals</p></td>
+<td><p>g/system</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 13 </span><span class="caption-text">Elements of <code class="docutils literal notranslate"><span class="pre">output</span></code> arrays.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 67%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>lifetime energy production</p></td>
+<td><p>kWh/system</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>lifecycle hazardous waste</p></td>
+<td><p>g/system</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>lifetime greenhouse gas production</p></td>
+<td><p>gCO2e/system</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 14 </span><span class="caption-text">Elements of <code class="docutils literal notranslate"><span class="pre">metric</span></code> arrays.</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 60%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>system cost</p></td>
+<td><p>$/Wdc</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>levelized energy cost</p></td>
+<td><p>$/kWh</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>greenhouse gas</p></td>
+<td><p>gCO2e/kWh</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>strategic metal</p></td>
+<td><p>g/kWh</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>hazardous waste</p></td>
+<td><p>g/kWh</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>specific yield</p></td>
+<td><p>hr/yr</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>module efficiency</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>module lifetime</p></td>
+<td><p>yr</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-number">Table 15 </span><span class="caption-text">Elements of <code class="docutils literal notranslate"><span class="pre">parameter</span></code> arrays.</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 64%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>discount rate</p></td>
+<td><p>1/yr</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>insolation</p></td>
+<td><p>W/m^2</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>system size</p></td>
+<td><p>m^2</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>module capital cost</p></td>
+<td><p>$/m^2</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>module lifetime</p></td>
+<td><p>yr</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>module efficiency</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>module aperture</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>module fixed cost</p></td>
+<td><p>$/kW/yr</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>module degradation rate</p></td>
+<td><p>1/yr</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>location capacity factor</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>module soiling loss</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>inverter capital cost</p></td>
+<td><p>$/W</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>inverter lifetime</p></td>
+<td><p>yr</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>inverter replacement cost</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>inverter efficiency</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>hardware capital cost</p></td>
+<td><p>$/m^2</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>installation labor cost</p></td>
+<td><p>$/system</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>permitting cost</p></td>
+<td><p>$/system</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>customer acquisition cost</p></td>
+<td><p>$/system</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>installer overhead cost</p></td>
+<td><p>%/100</p></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>hazardous waste content</p></td>
+<td><p>g/m^2</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>greenhouse gas offset</p></td>
+<td><p>gCO2e/kWh</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>benchmark LCOC</p></td>
+<td><p>$/Wdc</p></td>
+</tr>
+<tr class="row-odd"><td><p>23</p></td>
+<td><p>benchmark LCOE</p></td>
+<td><p>$/kWh</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="technology.pv_residential_generic.capital_cost">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">capital_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#capital_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.capital_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Capital cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.discount">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">discount</code><span class="sig-paren">(</span><em class="sig-param">rate</em>, <em class="sig-param">time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#discount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.discount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discount factor over a time period.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>float</em>) – The discount rate per time period.</p></li>
+<li><p><strong>time</strong> (<em>int</em>) – The number of time periods.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.fixed_cost">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">fixed_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#fixed_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.fixed_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fixed cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.metrics">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">metrics</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input_raw</em>, <em class="sig-param">input</em>, <em class="sig-param">output_raw</em>, <em class="sig-param">output</em>, <em class="sig-param">cost</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metrics function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input_raw</strong> (<em>array</em>) – Raw input quantities (before losses).</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>output_raw</strong> (<em>array</em>) – Raw output quantities (before losses).</p></li>
+<li><p><strong>output</strong> (<em>array</em>) – Output quantities.</p></li>
+<li><p><strong>cost</strong> (<em>array</em>) – Costs.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.module_power">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">module_power</code><span class="sig-paren">(</span><em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#module_power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.module_power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nominal module energy production.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.npv">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">npv</code><span class="sig-paren">(</span><em class="sig-param">rate</em>, <em class="sig-param">time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#npv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.npv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net present value of constant cash flow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>float</em>) – The discount rate per time period.</p></li>
+<li><p><strong>time</strong> (<em>int</em>) – The number of time periods.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.performance_ratio">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">performance_ratio</code><span class="sig-paren">(</span><em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#performance_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.performance_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performance ratio for the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.production">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">production</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Production function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_generic.specific_yield">
+<code class="sig-prename descclassname">technology.pv_residential_generic.</code><code class="sig-name descname">specific_yield</code><span class="sig-paren">(</span><em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_generic.html#specific_yield"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_generic.specific_yield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific yield for the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-technology.pv_residential_simple">
+<span id="technology-pv-residential-simple-module"></span><h2>technology.pv_residential_simple module<a class="headerlink" href="#module-technology.pv_residential_simple" title="Permalink to this headline">¶</a></h2>
+<p>Simple residential PV.</p>
+<dl class="function">
+<dt id="technology.pv_residential_simple.capital_cost">
+<code class="sig-prename descclassname">technology.pv_residential_simple.</code><code class="sig-name descname">capital_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_simple.html#capital_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_simple.capital_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Capital cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_simple.discount">
+<code class="sig-prename descclassname">technology.pv_residential_simple.</code><code class="sig-name descname">discount</code><span class="sig-paren">(</span><em class="sig-param">rate</em>, <em class="sig-param">time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_simple.html#discount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_simple.discount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discount factor over a time period.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>float</em>) – The discount rate per time period.</p></li>
+<li><p><strong>time</strong> (<em>int</em>) – The number of time periods.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_simple.fixed_cost">
+<code class="sig-prename descclassname">technology.pv_residential_simple.</code><code class="sig-name descname">fixed_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_simple.html#fixed_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_simple.fixed_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fixed cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_simple.metrics">
+<code class="sig-prename descclassname">technology.pv_residential_simple.</code><code class="sig-name descname">metrics</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input_raw</em>, <em class="sig-param">input</em>, <em class="sig-param">output_raw</em>, <em class="sig-param">output</em>, <em class="sig-param">cost</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_simple.html#metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_simple.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metrics function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input_raw</strong> (<em>array</em>) – Raw input quantities (before losses).</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>output_raw</strong> (<em>array</em>) – Raw output quantities (before losses).</p></li>
+<li><p><strong>output</strong> (<em>array</em>) – Output quantities.</p></li>
+<li><p><strong>cost</strong> (<em>array</em>) – Costs.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_simple.npv">
+<code class="sig-prename descclassname">technology.pv_residential_simple.</code><code class="sig-name descname">npv</code><span class="sig-paren">(</span><em class="sig-param">rate</em>, <em class="sig-param">time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_simple.html#npv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_simple.npv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Net present value of constant cash flow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>float</em>) – The discount rate per time period.</p></li>
+<li><p><strong>time</strong> (<em>int</em>) – The number of time periods.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.pv_residential_simple.production">
+<code class="sig-prename descclassname">technology.pv_residential_simple.</code><code class="sig-name descname">production</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/pv_residential_simple.html#production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.pv_residential_simple.production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Production function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-technology.simple_electrolysis">
+<span id="technology-simple-electrolysis-module"></span><h2>technology.simple_electrolysis module<a class="headerlink" href="#module-technology.simple_electrolysis" title="Permalink to this headline">¶</a></h2>
+<p>Simple electrolysis.</p>
+<dl class="function">
+<dt id="technology.simple_electrolysis.capital_cost">
+<code class="sig-prename descclassname">technology.simple_electrolysis.</code><code class="sig-name descname">capital_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/simple_electrolysis.html#capital_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.simple_electrolysis.capital_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Capital cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.simple_electrolysis.fixed_cost">
+<code class="sig-prename descclassname">technology.simple_electrolysis.</code><code class="sig-name descname">fixed_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/simple_electrolysis.html#fixed_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.simple_electrolysis.fixed_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fixed cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.simple_electrolysis.metrics">
+<code class="sig-prename descclassname">technology.simple_electrolysis.</code><code class="sig-name descname">metrics</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input_raw</em>, <em class="sig-param">input</em>, <em class="sig-param">output_raw</em>, <em class="sig-param">output</em>, <em class="sig-param">cost</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/simple_electrolysis.html#metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.simple_electrolysis.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metrics function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input_raw</strong> (<em>array</em>) – Raw input quantities (before losses).</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>output_raw</strong> (<em>array</em>) – Raw output quantities (before losses).</p></li>
+<li><p><strong>output</strong> (<em>array</em>) – Output quantities.</p></li>
+<li><p><strong>cost</strong> (<em>array</em>) – Costs.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.simple_electrolysis.production">
+<code class="sig-prename descclassname">technology.simple_electrolysis.</code><code class="sig-name descname">production</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/simple_electrolysis.html#production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.simple_electrolysis.production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Production function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-technology.utility_pv">
+<span id="technology-utility-pv-module"></span><h2>technology.utility_pv module<a class="headerlink" href="#module-technology.utility_pv" title="Permalink to this headline">¶</a></h2>
+<p>Simple pv utility-scale module example.  Inspired by Kavlak et al. Energy Policy 123 (2018) 700–710.</p>
+<dl class="function">
+<dt id="technology.utility_pv.capital_cost">
+<code class="sig-prename descclassname">technology.utility_pv.</code><code class="sig-name descname">capital_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/utility_pv.html#capital_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.utility_pv.capital_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Capital cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.utility_pv.fixed_cost">
+<code class="sig-prename descclassname">technology.utility_pv.</code><code class="sig-name descname">fixed_cost</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/utility_pv.html#fixed_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.utility_pv.fixed_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fixed cost function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.utility_pv.metrics">
+<code class="sig-prename descclassname">technology.utility_pv.</code><code class="sig-name descname">metrics</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input_raw</em>, <em class="sig-param">input</em>, <em class="sig-param">output_raw</em>, <em class="sig-param">output</em>, <em class="sig-param">cost</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/utility_pv.html#metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.utility_pv.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metrics function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input_raw</strong> (<em>array</em>) – Raw input quantities (before losses).</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>output_raw</strong> (<em>array</em>) – Raw output quantities (before losses).</p></li>
+<li><p><strong>output</strong> (<em>array</em>) – Output quantities.</p></li>
+<li><p><strong>cost</strong> (<em>array</em>) – Costs.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="technology.utility_pv.production">
+<code class="sig-prename descclassname">technology.utility_pv.</code><code class="sig-name descname">production</code><span class="sig-paren">(</span><em class="sig-param">scale</em>, <em class="sig-param">capital</em>, <em class="sig-param">lifetime</em>, <em class="sig-param">fixed</em>, <em class="sig-param">input</em>, <em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/technology/utility_pv.html#production"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#technology.utility_pv.production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Production function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> (<em>float</em>) – The scale of operation.</p></li>
+<li><p><strong>capital</strong> (<em>array</em>) – Capital costs.</p></li>
+<li><p><strong>lifetime</strong> (<em>float</em>) – Technology lifetime.</p></li>
+<li><p><strong>fixed</strong> (<em>array</em>) – Fixed costs.</p></li>
+<li><p><strong>input</strong> (<em>array</em>) – Input quantities.</p></li>
+<li><p><strong>parameter</strong> (<em>array</em>) – The technological parameterization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-technology">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-technology" title="Permalink to this headline">¶</a></h2>
+<p>Technology definitions for tyche.</p>
 </div>
 </div>
 
@@ -151,22 +771,28 @@ shows these functions for the simple electrolysis example.</p>
 <li class="toctree-l1"><a class="reference internal" href="formulation.html">Mathematical Formulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example-electrolysis.html">Electrolysis Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eutychia.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Python API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Python API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tyche.html">tyche package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">technology package</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="database.html" title="previous chapter">Database Schema</a></li>
-      <li>Next: <a href="optimizers.html" title="next chapter">Optimization</a></li>
+  <li><a href="modules.html">Python API</a><ul>
+      <li>Previous: <a href="tyche.html" title="previous chapter">tyche package</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -193,7 +819,7 @@ shows these functions for the simple electrolysis example.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, National Renewable Energy Laboratory.
+      &copy;2021, National Renewable Energy Laboratory.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>

@@ -5,7 +5,7 @@ Risk and uncertainty are core characteristics of research and development (R&D) 
 
 This documentation summarizes work in progress on R&D Portfolio Analysis and Evaluation. It discusses a mock FOA approach for designing a decision-support process for R&D portfolios, the portfolio-optimization methodology, and the underlying software framework. The end goal of this process is to inform decision-making across R&D projects and programs through identifying and evaluating, quantifying, and monitoring, managing, documenting, and communicating energy technology R&D pathway and portfolio risks and benefits.
 
-This documentation is also available `as a PDF file <https://nrel.github.io/tyche/tyche.pdf>`_.
+This documentation is also available as a `PDF file <https://nrel.github.io/tyche/tyche.pdf>`_.
 
 
 .. toctree::
@@ -16,11 +16,12 @@ This documentation is also available `as a PDF file <https://nrel.github.io/tych
    doc-src/formulation
    doc-src/example-electrolysis
    doc-src/database
-   doc-src/technology
+   doc-src/example-technology
    doc-src/optimizers
    doc-src/eutychia
    doc-src/tutorial
    doc-src/mock-foa
+   doc-src/ioc-1
    doc-src/deployment
    doc-src/getting-started
 

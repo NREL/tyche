@@ -16,11 +16,12 @@ This documentation is also available as a `PDF file <https://nrel.github.io/tych
    doc-src/formulation
    doc-src/example-electrolysis
    doc-src/database
-   doc-src/technology
+   doc-src/example-technology
    doc-src/optimizers
    doc-src/eutychia
    doc-src/tutorial
    doc-src/mock-foa
+   doc-src/ioc-1
    doc-src/deployment
    doc-src/getting-started
 

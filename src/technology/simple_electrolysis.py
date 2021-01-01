@@ -1,26 +1,63 @@
-# Simple electrolysis.
+"""
+Simple electrolysis.
+"""
 
 
 # All of the computations must be vectorized, so use `numpy`.
 import numpy as np
 
 
-# Capital-cost function.
 def capital_cost(scale, parameter):
+  """
+  Capital cost function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  parameter : array
+    The technological parameterization.
+  """
 
   # Scale the reference values.
   return np.stack([np.multiply(parameter[6], np.divide(scale, parameter[5]))])
 
 
-# Fixed-cost function.
 def fixed_cost(scale, parameter):
+  """
+  Fixed cost function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  parameter : array
+    The technological parameterization.
+  """
 
   # Scale the reference values.
   return np.stack([np.multiply(parameter[7], np.divide(scale, parameter[5]))])
 
 
-# Production function.
 def production(scale, capital, lifetime, fixed, input, parameter):
+  """
+  Production function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  capital : array
+    Capital costs.
+  lifetime : float
+    Technology lifetime.
+  fixed : array
+    Fixed costs.
+  input : array
+    Input quantities. 
+  parameter : array
+    The technological parameterization.
+  """
 
   # Moles of input.
   water       = np.divide(input[0], parameter[2])
@@ -37,8 +74,33 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   return np.stack([oxygen, hydrogen])
 
 
-# Metrics function.
 def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
+  """
+  Metrics function.
+
+  Parameters
+  ----------
+  scale : float
+    The scale of operation.
+  capital : array
+    Capital costs.
+  lifetime : float
+    Technology lifetime.
+  fixed : array
+    Fixed costs.
+  input_raw : array
+    Raw input quantities (before losses).
+  input : array
+    Input quantities. 
+  output_raw : array
+    Raw output quantities (before losses).
+  output : array
+    Output quantities. 
+  cost : array
+    Costs.
+  parameter : array
+    The technological parameterization.
+  """
 
   # Hydrogen output.
   hydrogen = output[1]
