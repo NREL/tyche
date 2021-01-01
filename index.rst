@@ -18,7 +18,7 @@ This documentation is also available as a `PDF file <https://nrel.github.io/tych
    doc-src/database
    doc-src/example-technology
    doc-src/optimizers
-   doc-src/eutychia
+   doc-src/user-interface
    doc-src/tutorial
    doc-src/mock-foa
    doc-src/ioc-1
