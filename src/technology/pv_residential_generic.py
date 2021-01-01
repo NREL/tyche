@@ -1,6 +1,8 @@
 """
 Generic model for residential PV.
 
+This PV model tracks components, technologies, critical materials, and hazardous waste.
+
 
 .. table:: Elements of ``capital`` arrays.
 
