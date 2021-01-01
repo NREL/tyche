@@ -9,6 +9,7 @@
 *   Python packages:
     *   evaluation and optimization: [src/tyche/](src/tyche/)
     *   web-based user interface: [src/eutychia/](src/eutychia/)
+    *   technology models: [src/technology/](src/technology/)
 *   Interim operational capabilities:
-    *   [IOC-0](ioc-0/): Proof-of-principle examples.
-    *   [IOC-1](ioc-1/): PV components, technologies, and materials/waste for Mock FOA.
+    *   [IOC-0](ioc-0/ReadMe.md): Proof-of-principle examples.
+    *   [IOC-1](ioc-1/ReadMe.md): PV components, technologies, and materials/waste for Mock FOA.
