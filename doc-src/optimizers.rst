@@ -187,9 +187,12 @@ convergence to the global minimum.
    involves many function evaluations as each solution in the population
    evolves. Defaults to 75.
 ``verbose`` : int
-   Amount of information provided by the wrapper as the optimization is
-   performed. Defaults to 0.\ ``differential_evolution`` has no
-   analogous verbosity parameter
+    Verbosity level returned by this outer function and the differential_evolution algorithm. Defaults to 0.
+    * verbose = 0 : No messages.
+    * verbose = 1 : Objective function value at every algorithm iteration.
+    * verbose = 2 : Investment constraint status, metric constraint status, and objective function value.
+    * verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and objective function value.
+    * verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and objective function value.
 
 **Returns**
 
