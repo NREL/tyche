@@ -262,8 +262,17 @@ class EpsilonConstraintOptimizer:
       Upper limit on generations of evolution (analogous to algorithm
       iterations)
     verbose : int
-      Verbosity level returned by this outer function.
-      differential_evolution has no verbosity parameter
+      Verbosity level returned by this outer function and the
+       differential_evolution algorithm.
+      verbose = 0     No messages
+      verbose = 1     Objective function value at every algorithm iteration
+      verbose = 2     Investment constraint status, metric constraint status,
+                      and objective function value
+      verbose = 3     Decision variable values, investment constraint status,
+                      metric constraint status, and objective function value
+      verbose > 3     All metric values, decision variable values, investment
+                      constraint status, metric constraint status, and
+                      objective function value
     """
 
     # get location index of metric
@@ -295,13 +304,15 @@ class EpsilonConstraintOptimizer:
         # this function
         value = sum(x)
 
-        # if the verbose parameter is defined as greater than three
-        if verbose >= 3:
-
-          # print the investment amounts, the RHS of the investment constraint,
-          # the LHS of the investment constraint, and a Boolean indicating
-          # whether the investment constraint is met
-          print(x, limit, value, value <= limit)
+        if verbose == 2:
+          print('Investment limit: ', np.round(limit, 3),
+                ' Investment value: ', np.round(value, 3),
+                ' Constraint met: ', value <= limit)
+        elif verbose > 2:
+          print('Decision variable values: ', np.round(x, 3),
+                ' Investment limit: ', np.round(limit, 3),
+                ' Investment value: ', np.round(value, 3),
+                ' Constraint met: ', value <= limit)
 
         # update the constraint container with the LHS value of the
         # investment constraint as a >= 0 inequality constraint
@@ -321,13 +332,15 @@ class EpsilonConstraintOptimizer:
           # calculate the summary statistic on the current metric
           value = - self._f(statistic, verbose)(x)[j]
 
-          # if the verbose parameter is defined and is greater than 3,
-          if verbose >= 3:
-
-            # print the decision variable values, the constraint RHS, the
-            # constraint LHS, and a Boolean indicating whether the constraint
-            # is met
-            print(x, limit, value, value >= limit)
+          if verbose == 2:
+            print('Metric limit:     ', np.round(limit, 3),
+                  '  Metric value:     ', np.round(value, 3),
+                  ' Constraint met: ', value <= limit)
+          elif verbose > 2:
+            print('Decision variable values: ', np.round(x, 3),
+                  ' Metric limit:     ', np.round(limit, 3),
+                  '  Metric value:      ', np.round(value, 3),
+                  ' Constraint met: ', value <= limit)
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
@@ -346,6 +359,7 @@ class EpsilonConstraintOptimizer:
       maxiter=maxiter, # default maximum iterations to execute
       tol=tol, # default tolerance on returned optimum
       seed=seed, # specify a random seed for reproducible optimizations
+      disp=verbose>=1, # print objective function at every iteration
       init=init, # type of population initialization
       # @note ignore this warning for now
       constraints=NonlinearConstraint(g, 0.0, np.inf))
