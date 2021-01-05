@@ -377,23 +377,23 @@ class EpsilonConstraintOptimizer:
       # @note ignore this warning for now
       constraints=NonlinearConstraint(g, 0.0, np.inf))
 
-    # calculate the scaled decision variable values that optimize the
-    # objective function
-    x = pd.Series(self.scale * result.x, name="Amount",
-                  index=self.evaluator.max_amount.index)
+    if result.success:
+      # calculate the scaled decision variable values that optimize the
+      # objective function
+      x = pd.Series(self.scale * result.x, name="Amount",
+                    index=self.evaluator.max_amount.index)
 
-    # evaluate the chosen statistic for the scaled decision variable values
-    y = self.evaluator.evaluate_statistic(x, statistic)
+      # evaluate the chosen statistic for the scaled decision variable values
+      y = self.evaluator.evaluate_statistic(x, statistic)
 
-    # differential_evolution doesn't return exit_code or exit_message, only
-    # decision variable values, objective function value, and number of
-    # iterations ("nit")
-    return Optimum(
-      exit_code=result.success,
-      exit_message=result.message,
-      amounts=x,
-      metrics=y,
-    )
+      return Optimum(
+        exit_code=result.success,
+        exit_message=result.message,
+        amounts=x,
+        metrics=y,
+      )
+    else:
+      return result
 
   def maximize_shgo(
           self,
