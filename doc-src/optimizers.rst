@@ -24,7 +24,7 @@ following criteria.
 -  Ability to work on a variety of potentially non-convex and otherwise
    complex problems
 
-Solutions to ``residential_pv_multiobjective``
+Solutions to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The solve times listed are in addition to the time required to set up
@@ -110,7 +110,7 @@ simultaneously. Both equality and inequality constraints can be defined,
 although they must be as separate functions and are provided to the
 ``fmin_slsqp`` algorithm under separate arguments.
 
-SLSQP Solution to ``residential_pv_multiobjective``
+SLSQP Solution to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Solve time: 1.5 s
@@ -219,7 +219,7 @@ Constraints for ``differential_evolution`` are defined by passing the
 same multi-valued function defined in ``maximize_slsqp`` to the
 ``NonLinearConstraint`` method. [7]
 
-Differential Evolution Solutions to ``residential_pv_multiobjective``
+Differential Evolution Solutions to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Solution 1**
