@@ -84,6 +84,11 @@ Maximize the objective function using the ``fmin_slsqp`` algorithm.
 ``verbose`` : int
    Amount of information provided by the wrapper as the optimization is
    performed. Defaults to 0.
+   * verbose = 0 : No messages.
+   * verbose = 1 : Summary message when fmin_slsqp completes.
+   * verbose = 2 : Status of each algorithm iteration and summary message.
+   * verbose = 3 : Investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.
+   * verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.
 
 **Return**
 
