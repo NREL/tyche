@@ -47,13 +47,13 @@ class EpsilonConstraintOptimizer:
 
   def _f(self, statistic, verbose = 0):
     def f(x):
-      xx = pd.Series(self.scale * x, name = "Amount", index = self.evaluator.max_amount.index)
+      xx = pd.Series(self.scale * x, name = "Amount",
+                     index = self.evaluator.max_amount.index)
       yy = self.evaluator.evaluate_statistic(xx, statistic)
-      if verbose > 2:
-        print ('scaled decision variables: ', xx.values, '\n')
-        print('metric statistics: ', yy.values, '\n')
-        # return the negative s.t. this function can be called as-is to maximize
-        # the objective function
+      if verbose > 3:
+        print('All technology metrics: ', np.round(yy.values, 3))
+        # return the negative s.t. this function can be called as-is to
+        # maximize the objective function
         # (all algorithms minimize, minimizing the negative is maximizing)
       return - yy
     return f
@@ -164,8 +164,8 @@ class EpsilonConstraintOptimizer:
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
-          # as the loop executes, one constraint per metric will be added to the
-          # container
+          # as the loop executes, one constraint per metric will be added to
+          # the container
           constraints += [value - limit]
 
       return constraints
@@ -179,18 +179,28 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = fmin_slsqp(
-      self._fi(i, statistic, verbose), # callable function that returns the scalar objective function value
-      initial / self.scale , # scaled initial guess values for decision variables (investment amounts, metrics)
-      f_ieqcons   = g      , # list of functions that return inequality constraints in the form const >= 0
-      bounds      = bounds , # upper and lower bounds on decision variables
-      iter        = maxiter, # number of times fmin_slsqp is permitted to iterate
-      acc         = tol    , # requested accuracy of optimal solution
-      iprint      = verbose, # how much information fmin_slsqp returns
-      full_output = True   , # return final objective function value and summary information
+      # callable function that returns the scalar objective function value
+      self._fi(i, statistic, verbose),
+      # scaled initial guess values for decision variables
+      initial / self.scale ,
+      # list of functions that return inequality constraints as const >= 0
+      f_ieqcons   = g      ,
+      # upper and lower bounds on decision variables
+      bounds      = bounds ,
+      # number of times fmin_slsqp is permitted to iterate
+      iter        = maxiter,
+      # requested accuracy of optimal solution
+      acc         = tol    ,
+      # how much information fmin_slsqp returns
+      iprint      = verbose,
+      # return final objective function value and summary information
+      full_output = True   ,
     )
 
-    # calculate the scaled decision variable values that optimize the objective function
-    x = pd.Series(self.scale * result[0], name = "Amount", index = self.evaluator.max_amount.index)
+    # calculate the scaled decision variable values that optimize the
+    # objective function
+    x = pd.Series(self.scale * result[0], name = "Amount",
+                  index = self.evaluator.max_amount.index)
 
     # evaluate the chosen statistic for the scaled decision variable values
     y = self.evaluator.evaluate_statistic(x, statistic)
@@ -218,7 +228,8 @@ class EpsilonConstraintOptimizer:
           verbose=0, # how much to report back during execution
   ):
     """
-    Maximize the objective function using the differential_evoluation algorithm.
+    Maximize the objective function using the differential_evoluation
+     algorithm.
 
     Parameters
     ----------
@@ -320,24 +331,27 @@ class EpsilonConstraintOptimizer:
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
-          # as the loop executes, one constraint per metric will be added to the
-          # container
+          # as the loop executes, one constraint per metric will be added to
+          # the container
           constraints += [value - limit]
 
       return np.array(constraints)
 
     # run the optimizer
     result = differential_evolution(
-      self._fi(i, statistic, verbose), # callable function that returns the scalar objective function value
+      # callable function that returns the scalar objective function value
+      self._fi(i, statistic, verbose),
       bounds=var_bounds,  # upper and lower bounds on decision variables
       strategy=strategy, # defines differential evolution strategy to use
       maxiter=maxiter, # default maximum iterations to execute
       tol=tol, # default tolerance on returned optimum
       seed=seed, # specify a random seed for reproducible optimizations
       init=init, # type of population initialization
-      constraints=NonlinearConstraint(g, 0.0, np.inf)) # @note ignore this warning for now
+      # @note ignore this warning for now
+      constraints=NonlinearConstraint(g, 0.0, np.inf))
 
-    # calculate the scaled decision variable values that optimize the objective function
+    # calculate the scaled decision variable values that optimize the
+    # objective function
     x = pd.Series(self.scale * result.x, name="Amount",
                   index=self.evaluator.max_amount.index)
 
@@ -367,7 +381,8 @@ class EpsilonConstraintOptimizer:
           verbose=0,
   ):
     """
-    Maximize the objective function using the shgo global optimization algorithm.
+    Maximize the objective function using the shgo global optimization
+    algorithm.
 
     Parameters
     ----------
@@ -381,8 +396,8 @@ class EpsilonConstraintOptimizer:
     min_metric : DataFrame
       Lower limits on all metrics.
     statistic : function
-      Summary metric_statistic used on the sample evaluations; the metric measure that
-      is fed to the optimizer.
+      Summary metric_statistic used on the sample evaluations; the metric
+      measure that is fed to the optimizer.
     tol : float
       Objective function tolerance in stopping criterion.
     maxiter : int
@@ -393,7 +408,16 @@ class EpsilonConstraintOptimizer:
       uses more memory and does not guarantee convergence. Per documentation,
       Sobol is better for "easier" problems.
     verbose : int
-      Verbosity level returned by this outer function.
+      Verbosity level returned by this outer function and the SHGO algorithm.
+      verbose = 0     No messages
+      verbose = 1     Convergence messages from SHGO algorithm
+      verbose = 2     Investment constraint status, metric constraint status,
+                      and convergence messages
+      verbose = 3     Decision variable values, investment constraint status,
+                      metric constraint status, and convergence messages
+      verbose > 3     All metric values, decision variable values, investment
+                      constraint status, metric constraint status, and
+                      convergence messages
     """
 
     # get location metric_index of metric
@@ -426,12 +450,20 @@ class EpsilonConstraintOptimizer:
         # this function
         inv_value = sum(x)
 
-        # if the verbose parameter is defined as greater than three
-        if verbose >= 3:
-          # print the investment amounts, the RHS of the investment constraint,
-          # the LHS of the investment constraint, and a Boolean indicating
-          # whether the investment constraint is met
-          print('g_inv: ', x, inv_limit, inv_value, inv_value <= inv_limit, '\n')
+        if verbose == 2:
+          # print the investment limit (RHS of constraint), the investment
+          # amount (LHS of constraint), and a Boolean indicating whether the
+          # investment constraint is met
+          print('Investment limit: ', np.round(inv_limit, 3),
+                ' Investment value: ', np.round(inv_value, 3),
+                ' Constraint met: ', inv_value <= inv_limit)
+        # if verbose is greater than or equal to three
+        elif verbose > 2:
+          # also print the decision variable values
+          print('Decision variable values: ', np.round(x, 3),
+                ' Investment limit: ', np.round(inv_limit, 3),
+                ' Investment value:  ', np.round(inv_value, 3),
+                '  Constraint met: ', inv_value <= inv_limit)
 
         return inv_limit - inv_value
 
@@ -448,12 +480,15 @@ class EpsilonConstraintOptimizer:
       def g_metric_fn(x):
         met_value = - self._f(metric_statistic, verbose)(x)[j]
 
-        # if the verbose parameter is defined and is greater than 3,
-        if verbose >= 3:
-          # print the decision variable values, the constraint RHS, the
-          # constraint LHS, and a Boolean indicating whether the constraint
-          # is met
-          print('g_metric: ', x, metric_limit, met_value, met_value >= metric_limit, '\n')
+        if verbose == 2:
+          print('Metric limit:     ', np.round(metric_limit, 3),
+                '  Metric value:     ', np.round(met_value, 3),
+                ' Constraint met: ', met_value >= metric_limit)
+        elif verbose > 2:
+          print('Decision variable values: ', np.round(x, 3),
+                ' Metric limit:     ', np.round(metric_limit, 3),
+                '  Metric value:      ', np.round(met_value, 3),
+                ' Constraint met: ', met_value >= metric_limit)
 
         return met_value - metric_limit
 
@@ -472,10 +507,12 @@ class EpsilonConstraintOptimizer:
         constraints += [{'type': 'ineq', 'fun': g_metric}]
 
     opt_dict = {'f_tol': tol,
-                'maxiter': maxiter}
+                'maxiter': maxiter,
+                'disp': verbose >= 1}
 
     result = shgo(
-      self._fi(i, statistic, verbose), # callable function that returns the scalar objective function value
+      # callable function that returns the scalar objective function value
+      self._fi(i, statistic, verbose),
       bounds=bounds,  # upper and lower bounds on decision variables
       constraints=constraints,
       options=opt_dict, # dictionary of options including max iters
@@ -483,10 +520,13 @@ class EpsilonConstraintOptimizer:
     )
 
     if result.success:
-      # calculate the scaled decision variable values that optimize the objective function
-      x = pd.Series(self.scale * result.x, name="Amount", index=self.evaluator.max_amount.index)
+      # calculate the scaled decision variable values that optimize the
+      # objective function
+      x = pd.Series(self.scale * result.x, name="Amount",
+                    index=self.evaluator.max_amount.index)
 
-      # evaluate the chosen metric_statistic for the scaled decision variable values
+      # evaluate the chosen metric_statistic for the scaled decision
+      # variable values
       y = self.evaluator.evaluate_statistic(x, statistic)
 
       return Optimum(
@@ -532,11 +572,14 @@ class EpsilonConstraintOptimizer:
     """
 
     self._max_metrics = {
-      metric : self.maximize_slsqp(metric, max_amount, total_amount, None, statistic, None, tol, maxiter, verbose)
+      metric : self.maximize_slsqp(metric, max_amount, total_amount,
+                                   None, statistic, None,
+                                   tol, maxiter, verbose)
       for metric in self.evaluator.metrics
     }
     return pd.Series(
-      [v.metrics[k] if v.exit_code == 0 else np.nan for k, v in self._max_metrics.items()],
-      name  = "Value"                                                                     ,
-      index = self._max_metrics.keys()                                                    ,
+      [v.metrics[k] if v.exit_code == 0
+       else np.nan for k, v in self._max_metrics.items()],
+      name  = "Value",
+      index = self._max_metrics.keys(),
     )
