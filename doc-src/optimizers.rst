@@ -297,9 +297,12 @@ algorithm.
    documentation, Sobol is better for “easier” problems. Defaults to
    ‘simplicial’.
 ``verbose`` : int
-   Verbosity level returned by this wrapper function. No analogous
-   parameters are available for ``shgo``. Defaults to 0 (no messages
-   returned during execution).
+    Verbosity level returned by this outer function and the SHGO algorithm. Defaults to 0.
+    *  verbose = 0 : No messages.
+    *  verbose = 1 : Convergence messages from SHGO algorithm.
+    *  verbose = 2 : Investment constraint status, metric constraint status, and convergence messages.
+    *  verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and convergence messages.
+    *  verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and convergence messages .
 
 **Returns**
 
