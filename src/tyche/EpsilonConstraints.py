@@ -98,6 +98,15 @@ class EpsilonConstraintOptimizer:
       Maximum number of iterations the optimizer is permitted to execute.
     verbose : int
       Verbosity level returned by the optimizer and this outer function.
+      Defaults to 0.
+      verbose = 0     No messages
+      verbose = 1     Summary message when fmin_slsqp completes
+      verbose = 2     Status of each algorithm iteration and summary message
+      verbose = 3     Investment constraint status, metric constraint status,
+                      status of each algorithm iteration, and summary message
+      verbose > 3     All metric values, decision variable values, investment
+                      constraint status, metric constraint status, status of
+                      each algorithm iteration, and summary message
     """
 
     # get location index of metric
@@ -129,13 +138,15 @@ class EpsilonConstraintOptimizer:
         # this function
         value = sum(x)
 
-        # if the verbose parameter is defined as greater than three
-        if verbose >= 3:
-
-          # print the investment amounts, the RHS of the investment constraint,
-          # the LHS of the investment constraint, and a Boolean indicating
-          # whether the investment constraint is met
-          print(x, limit, value, value <= limit)
+        if verbose == 3:
+          print('Investment limit: ', np.round(limit, 3),
+                ' Investment value: ', np.round(value, 3),
+                ' Constraint met: ', value <= limit)
+        elif verbose > 3:
+          print('Decision variable values: ', np.round(x, 3),
+                ' Investment limit: ', np.round(limit, 3),
+                ' Investment value:  ', np.round(value, 3),
+                '  Constraint met: ', value <= limit)
 
         # update the constraint container with the LHS value of the
         # investment constraint as a >= 0 inequality constraint
@@ -154,13 +165,15 @@ class EpsilonConstraintOptimizer:
 
           value = - self._f(statistic, verbose)(x)[j]
 
-          # if the verbose parameter is defined and is greater than 3,
-          if verbose >= 3:
-
-            # print the decision variable values, the constraint RHS, the
-            # constraint LHS, and a Boolean indicating whether the constraint
-            # is met
-            print(x, limit, value, value >= limit)
+          if verbose == 3:
+            print('Metric limit:     ', np.round(limit, 3),
+                  '  Metric value:     ', np.round(value, 3),
+                  ' Constraint met: ', value >= limit)
+          elif verbose > 3:
+            print('Decision variable values: ', np.round(x, 3),
+                  ' Metric limit:     ', np.round(limit, 3),
+                  '  Metric value:      ', np.round(value, 3),
+                  ' Constraint met: ', value >= limit)
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
