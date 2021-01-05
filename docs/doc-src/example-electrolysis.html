@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Electrolysis Example &#8212; Tyche 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Database Schema" href="database.html" />
+    <link rel="prev" title="Mathematical Formulation" href="formulation.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="electrolysis-example">
+<h1>Electrolysis Example<a class="headerlink" href="#electrolysis-example" title="Permalink to this headline">¶</a></h1>
+<p>Here is a very simple model for electrolysis of water. We just have
+water, electricity, a catalyst, and some lab space. We choose the
+fundamental unit of operation to be moles of H<sub>2</sub>:</p>
+<p>     H<sub>2</sub>O → H<sub>2</sub> + ½ O<sub>2</sub></p>
+<p>Experts could assess how much R&amp;D to increase the various efficiencies
+<span class="math notranslate nohighlight">\(\eta\)</span> would cost. They could also suggest different catalysts,
+adding alkali, or replacing the process with PEM.</p>
+<div class="section" id="tracked-quantities">
+<h2>Tracked quantities.<a class="headerlink" href="#tracked-quantities" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\mathcal{C} = \{ \mathrm{catalyst} \}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathcal{F} = \{ \mathrm{rent} \}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathcal{I} = \{ \mathrm{water}, \mathrm{electricity} \}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathcal{O} = \{ \mathrm{oxygen}, \mathrm{hydrogen} \}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mathcal{M} = \{ \mathrm{jobs} \}\)</span></p>
+</div>
+<div class="section" id="current-design">
+<h2>Current design.<a class="headerlink" href="#current-design" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(I_\mathrm{water} = 19.04~\mathrm{g/mole}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\eta_\mathrm{water} = 0.95\)</span> (due to mass transport loss on input)</p>
+<p><span class="math notranslate nohighlight">\(I_\mathrm{electricity} = 279~\mathrm{kJ/mole}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\eta_\mathrm{electricity} = 0.85\)</span> (due to ohmic losses on input)</p>
+<p><span class="math notranslate nohighlight">\(\eta_\mathrm{oxygen} = 0.90\)</span> (due to mass transport loss on
+output)</p>
+<p><span class="math notranslate nohighlight">\(\eta_\mathrm{hydrogen} = 0.90\)</span> (due to mass transport loss on
+output)</p>
+</div>
+<div class="section" id="current-costs">
+<h2>Current costs.<a class="headerlink" href="#current-costs" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(C_\mathrm{catalyst} = \left( 0.63~\mathrm{USD} \right) \cdot \frac{S}{6650~\mathrm{mole/yr}}\)</span>
+(cost of Al-Ni catalyst)</p>
+<p><span class="math notranslate nohighlight">\(\tau_\mathrm{catalyst} = 3~\mathrm{yr}\)</span> (effective lifetime of
+Al-Ni catalyst)</p>
+<p><span class="math notranslate nohighlight">\(F_\mathrm{rent} = \left( 1000~\mathrm{USD/yr} \right) \cdot \frac{S}{6650~\mathrm{mole/yr}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(S = 6650~\mathrm{mole/yr}\)</span> (rough estimate for a 50W setup)</p>
+</div>
+<div class="section" id="current-prices">
+<h2>Current prices.<a class="headerlink" href="#current-prices" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(p_\mathrm{water} = 4.8 \cdot 10^{-3}~\mathrm{USD/mole}\)</span></p>
+<p><span class="math notranslate nohighlight">\(p_\mathrm{electricity} = 3.33 \cdot 10^{-5}~\mathrm{USD/kJ}\)</span></p>
+<p><span class="math notranslate nohighlight">\(p_\mathrm{oxygen} = 3.0 \cdot 10^{-3}~\mathrm{USD/g}\)</span></p>
+<p><span class="math notranslate nohighlight">\(p_\mathrm{hydrogen} = 1.0 \cdot 10^{-2}~\mathrm{USD/g}\)</span></p>
+</div>
+<div class="section" id="production-function-a-la-leontief">
+<h2>Production function (à la Leontief)<a class="headerlink" href="#production-function-a-la-leontief" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(P_\mathrm{oxygen} = \left( 16.00~\mathrm{g} \right) \cdot \min \left\{ \frac{I^*_\mathrm{water}}{18.08~\mathrm{g}}, \frac{I^*_\mathrm{electricity}}{237~\mathrm{kJ}} \right\}\)</span></p>
+<p><span class="math notranslate nohighlight">\(P_\mathrm{hydrogen} = \left( 2.00~\mathrm{g} \right) \cdot \min \left\{ \frac{I^*_\mathrm{water}}{18.08~\mathrm{g}}, \frac{I^*_\mathrm{electricity}}{237~\mathrm{kJ}} \right\}\)</span></p>
+</div>
+<div class="section" id="metric-function">
+<h2>Metric function.<a class="headerlink" href="#metric-function" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(M_\mathrm{cost} = K / O_\mathrm{hydrogen}\)</span></p>
+<p><span class="math notranslate nohighlight">\(M_\mathrm{GHG} = \left( \left( 0.00108~\mathrm{gCO2e/gH20} \right) I_\mathrm{water} + \left( 0.138~\mathrm{gCO2e/kJ} \right) I_\mathrm{electricity} \right) / O_\mathrm{hydrogen}\)</span></p>
+<p><span class="math notranslate nohighlight">\(M_\mathrm{jobs} = \left( 0.00015~\mathrm{job/mole} \right) / O_\mathrm{hydrogen}\)</span></p>
+</div>
+<div class="section" id="performance-of-current-design">
+<h2>Performance of current design.<a class="headerlink" href="#performance-of-current-design" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(K = 0.18~\mathrm{USD/mole}\)</span> (i.e., not profitable since it is
+positive)</p>
+<p><span class="math notranslate nohighlight">\(O_\mathrm{oxygen} = 14~\mathrm{g/mole}\)</span></p>
+<p><span class="math notranslate nohighlight">\(O_\mathrm{hydrogen} = 1.8~\mathrm{g/mole}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mu_\mathrm{cost} = 0.102~\mathrm{USD/gH2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mu_\mathrm{GHG} = 21.4~\mathrm{gCO2e/gH2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\mu_\mathrm{jobs} = 0.000083~\mathrm{job/gH2}\)</span></p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Tyche</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="approach.html">Approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulation.html">Mathematical Formulation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Electrolysis Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tracked-quantities">Tracked quantities.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-design">Current design.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-costs">Current costs.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-prices">Current prices.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#production-function-a-la-leontief">Production function (à la Leontief)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metric-function">Metric function.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-of-current-design">Performance of current design.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ioc-1.html">Mock FOA Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Python API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="formulation.html" title="previous chapter">Mathematical Formulation</a></li>
+      <li>Next: <a href="database.html" title="next chapter">Database Schema</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, National Renewable Energy Laboratory.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/doc-src/example-electrolysis.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
