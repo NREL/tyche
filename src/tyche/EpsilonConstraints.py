@@ -4,6 +4,7 @@ Epsilon-constraint optimization.
 
 import numpy  as np
 import pandas as pd
+import time
 
 from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
@@ -12,7 +13,7 @@ from scipy.optimize import NonlinearConstraint
 
 Optimum = namedtuple(
   "Optimum",
-  ["exit_code", "exit_message", "amounts", "metrics"]
+  ["exit_code", "exit_message", "amounts", "metrics", "solve_time"]
 )
 """
 Named tuple type for optimization results.
@@ -190,6 +191,9 @@ class EpsilonConstraintOptimizer:
       # variable values
       initial = max_amount.values / 10
 
+    # note time when algorithm started
+    start = time.time()
+
     # run the optimizer
     result = fmin_slsqp(
       # callable function that returns the scalar objective function value
@@ -210,6 +214,8 @@ class EpsilonConstraintOptimizer:
       full_output = True   ,
     )
 
+    elapsed = time.time() - start
+
     # calculate the scaled decision variable values that optimize the
     # objective function
     x = pd.Series(self.scale * result[0], name = "Amount",
@@ -223,6 +229,7 @@ class EpsilonConstraintOptimizer:
       exit_message = result[4],
       amounts      = x        ,
       metrics      = y        ,
+      solve_time   = elapsed
     )
 
 
@@ -363,6 +370,9 @@ class EpsilonConstraintOptimizer:
 
       return np.array(constraints)
 
+    # note time when algorithm started
+    start = time.time()
+
     # run the optimizer
     result = differential_evolution(
       # callable function that returns the scalar objective function value
@@ -376,6 +386,8 @@ class EpsilonConstraintOptimizer:
       init=init, # type of population initialization
       # @note ignore this warning for now
       constraints=NonlinearConstraint(g, 0.0, np.inf))
+
+    elapsed = time.time() - start
 
     if result.success:
       # calculate the scaled decision variable values that optimize the
@@ -391,9 +403,10 @@ class EpsilonConstraintOptimizer:
         exit_message=result.message,
         amounts=x,
         metrics=y,
+        solve_time=elapsed
       )
     else:
-      return result
+      return result, elapsed
 
   def maximize_shgo(
           self,
@@ -537,6 +550,9 @@ class EpsilonConstraintOptimizer:
                 'maxiter': maxiter,
                 'disp': verbose >= 1}
 
+    # note time when algorithm started
+    start = time.time()
+
     result = shgo(
       # callable function that returns the scalar objective function value
       self._fi(i, statistic, verbose),
@@ -545,6 +561,8 @@ class EpsilonConstraintOptimizer:
       options=opt_dict, # dictionary of options including max iters
       sampling_method=sampling_method #sampling method (sobol or simplicial)
     )
+
+    elapsed = time.time() - start
 
     if result.success:
       # calculate the scaled decision variable values that optimize the
@@ -561,9 +579,10 @@ class EpsilonConstraintOptimizer:
         exit_message=result.message,
         amounts=x,
         metrics=y,
+        solve_time=elapsed
       )
     else:
-      return result
+      return result, elapsed
 
 
   def max_metrics(
