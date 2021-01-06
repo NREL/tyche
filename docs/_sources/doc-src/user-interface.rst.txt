@@ -18,6 +18,7 @@ these results. Tool output aims to aide decision-makers in
 **Feedback is appreciated to enhance the interface to best meet user
 needs.**
 
+
 User Input
 ----------
 
@@ -25,25 +26,31 @@ User Input
 **investment categories** and **investment levels** ($) in each topic
 area and/or across the investment portfolio. In the current iteration of
 the Eutychia prototype, users have the option to select a budget for
-each of the following investment categories: 1. Balance of System R&D 1.
-Inverter R&D 1. Module R&D
+each of the following investment categories:
+
+1. Balance of System R&D
+2. Inverter R&D
+3. Module R&D
 
 Later-stage iterations of the prototype will include as many categories
 as the user selects for which data is available.
 
 **Metrics** A user can also select up to three metrics to impact through
 R&D on these selected investment categories and specify goals that must
-be met. The current options include: 1. Greenhouse gas emissions
-(ΔgCO2e/system) 1. Labor
-(Δ:math:`/system) 1. Levelized cost of energy (Δ`/kWh)
+be met. The current options include:
+
+1. Greenhouse gas emissions (ΔgCO2e/system)
+2. Labor (Δ$/system)
+3. Levelized cost of energy (Δ$/kWh)
+
 
 Modes
 -----
 
-The Eutychia interface operates in two modes: 1. **Explore Mode**,
-checked by default, 1. **Optimize Mode**, which can be enabled by
-deselecting “explore.” Entering Optimize Mode allows users to update
-optimization parameters.
+The Eutychia interface operates in two modes:
+
+1. **Explore Mode**, checked by default,
+2. **Optimize Mode**, which can be enabled by deselecting “explore.” Entering Optimize Mode allows users to update optimization parameters.
 
 The selected mode determines which user inputs can be edited. The
 following table summarizes the parameters that can be updated, the
@@ -63,6 +70,7 @@ In either mode, changes made to investment level(s) by category will be
 reflected immediately in the output visualizations. In Optimize Mode,
 once satisfied with the selected metrics, the user can click “optimize”
 to model the chosen scenario.
+
 
 Visualizations
 --------------
@@ -90,6 +98,7 @@ of detail include:
 A user can toggle between their visualization options using the links
 (heatmap, column, grid) at the top left-hand corner of the screen. By
 default, Eutychia opens to the grid layout.
+
 
 References
 ----------
