@@ -1,0 +1,115 @@
+.container {
+    display: grid; 
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100px 1fr;
+    background-color: green; 
+    gap: 10px;
+    grid-template-areas: 'header header' 
+                         'options content';
+}
+.container > div {
+    /* color: white; */
+    background-color: white;
+    /* font-size: 40px;  */
+}
+#header { 
+    grid-area: header; 
+} 
+#options { 
+    grid-area: options; 
+}
+#content {
+    grid-area: content;
+}
+
+/* Format options pane */
+.wrapper-opt{ 
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 0;
+    justify-content: left;
+    align-items: center;
+}
+
+.wrapper-opt > div {
+    width: 100%;
+    margin: 5px;
+}
+
+/* Format output */
+.output{ 
+    display: flex;
+    flex: 1 0 100px;
+    background-color: beige; 
+    gap: 10px
+}
+.output > div { 
+    background-color: plum;
+    width: 100px;
+    /* flex-grow: 1; */
+}
+
+/* OLD */
+/* .modal_background {
+    display         : none
+  ; position        : fixed
+  ; z-index         : 1
+  ; left            : 0
+  ; top             : 0
+  ; width           : 100%
+  ; height          : 100%
+  ; overflow        : auto
+  ; background-color: rgba(0,0,0,0.4)
+  ; cursor          : wait
+  } */
+  
+  /* .modal_content {
+    background-color: #fefefe
+  ; margin          : 15% auto
+  ; padding         : 20px
+  ; border          : 1px solid #888
+  ; width           : 33%
+  ; border-radius   : 20px
+  } */
+  
+#optimizing_status {
+    font-style: italic
+}
+  
+#optimize_button, #optimize_metric {
+    width: 7em
+}
+  
+.plot {
+    align-items: center
+}
+
+.metric {
+    text-align: center
+}
+  
+.metric meter, .metric input {
+    width: 100%;
+    transform: rotate(-180deg)
+}
+.invest {
+    align-items: center
+}
+/* .invest meter, .invest input {
+    width: 90%
+} */
+table {
+    width : calc(100% - 16em)
+  ; height: calc(100% - 4em)
+  /* ; align-self: center */
+}
+h1 {
+    margin    : 0
+  ; font-size : 2em
+  ; text-align: center
+} 
+body {
+    height: 100vh
+  /* ; margin: 0em */
+  /* ; margin-left: 16em */
+}

@@ -141,6 +141,8 @@ async def plot():
     m = evaluator.metrics[int(form["met"])]    if form["met"].isdigit() else str(form["met"])
     c = evaluator.categories[int(form["cat"])] if form["cat"].isdigit() else str(form["cat"])
     
+    print(form["height"])
+    # figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100), constrained_layout=True)
     figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
     ax = figure.subplots()
     
@@ -170,7 +172,9 @@ async def plot():
             xlabel="", ylabel="",
             yticks=[],
             yticklabels=[],
-            xlim=(y0-dy, y1+dy),
+            xticks=[],
+            xticklabels=[],
+            # xlim=(y0-dy, y1+dy),
         )
 
     # ----- HEATMAP ------------------------------------------------------------------------
@@ -203,13 +207,14 @@ async def plot():
             xticklabels=[], yticklabels=[],
         )
 
-    figure.set_tight_layout(True)
+    # figure.set_tight_layout(True)
 
     # Save locally -- for prototyping.
     #   localpath = os.path.join("assets","plots",localdir,(str(m) + "_" + str(c).split()[0] + ".png").lower())
     #   figure.savefig(localpath)
     # Save for server.
     img = BytesIO()
+    # figure.savefig(img, format="png", bbox_inches='tight', pad_inches = 0)
     figure.savefig(img, format="png")
     img.seek(0)
     x = b64encode(img.getvalue())

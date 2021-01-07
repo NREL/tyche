@@ -1,36 +1,24 @@
 /* Content grid */
-.output--grid { 
+.container { 
     display: grid; 
-    grid-template-columns:  150px 1fr 200px;
+    grid-template-columns:  150px 1fr 1fr 1fr 200px;
     background-color: beige;   
 }
-.output--grid > div { 
-    background-color: green;
+.container > div { 
+    background-color: green; 
     margin: 10px;
 }
 
-/* Metrics */
-.output--visualization { 
-    display: grid; 
-    grid-template-columns:  1fr 1fr 1fr;
-    background-color: beige;   
-}
-.output--visualization > div { 
-    background-color: green;
-    margin: 0px;
-}
-
 /* Categories */
-.output--category{ 
+.flex-wrapper{ 
     display: flex;
     flex-direction: column;
     background-color: beige;
 }
-.output--category > div { 
+.flex-wrapper > div { 
     background-color: plum;
     border-color: palegreen;
     height: 100px;
-    margin: 0px;
 }
 
 
