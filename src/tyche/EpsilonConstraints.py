@@ -6,6 +6,12 @@ import numpy  as np
 import pandas as pd
 import time
 
+from pymoo.model.problem import FunctionalProblem
+from pymoo.algorithms.nsga2 import NSGA2, DE
+from pymoo.factory import get_sampling, get_crossover, get_mutation
+from pymoo.util.termination.f_tol import MultiObjectiveSpaceToleranceTermination
+from pymoo.optimize import minimize
+
 from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
@@ -408,6 +414,7 @@ class EpsilonConstraintOptimizer:
     else:
       return result, elapsed
 
+
   def maximize_shgo(
           self,
           metric,
@@ -583,6 +590,201 @@ class EpsilonConstraintOptimizer:
       )
     else:
       return result, elapsed
+
+
+  def maximize_pymoo(
+          self,
+          metric,
+          max_amount=None,
+          total_amount=None,
+          min_metric=None,
+          statistic=np.mean,
+          seed=1,
+          algo='NSGA2',
+          pop_size=40,
+          n_offsprings=None,
+          tol=1e-2,
+          maxiter=50,
+          verbose=0,
+  ):
+    """
+    Maximize the objective function using an algorithm from the pymoo library.
+
+    Parameters
+    ----------
+    metric : str
+      Name of metric to maximize.
+    max_amount : DataFrame
+      Maximum investment amounts by R&D category (defined in investments data)
+      and maximum metric values
+    total_amount : float
+      Upper limit on total investments summed across all R&D categories.
+    min_metric : DataFrame
+      Lower limits on all metrics.
+    statistic : function
+      Summary statistic used on the sample evaluations; the metric measure that
+      is fed to the optimizer.
+    seed : int
+      Sets the random seed for optimization. Defaults to 1. Not setting this
+      parameter means the solutions will not be reproducible.
+    algo : str
+      Name of optimization algorithm to use. Defaults to NSGA-II. Current
+      options are: NSGA-II ('NSGA2'), differential evolution ('DE').
+    pop_size : int
+      Number of solutions to evolve. Defaults to 40.
+    n_offsprings : int
+      Number of offspring created in a generation. Defaults to None, which sets
+      n_offsprings equal to pop_size (internal to the algorithm).
+    tol : float
+      Search tolerance fed to the algorithm. The algorithm terminates once tol
+      is satisfied OR when the maximum generations (maxiter) is reached,
+      whichever comes first.
+    maxiter : int
+      Maximum number of iterations the optimizer is permitted to execute. The
+      algorithm terminates once maxiter is reached OR when tol is satisified,
+      whichever comes first.
+    verbose : int
+      Verbosity level returned by the optimizer and this outer function.
+      Defaults to 0.
+      @todo fill out verbose parameter meanings
+    """
+
+    # get location index of metric
+    i = np.where(self.evaluator.metrics == metric)[0][0]
+
+    # if custom upper limits on investment amounts by category have not been
+    # defined, get the upper limits from self.evaluator
+    if max_amount is None:
+      max_amount = self.evaluator.max_amount.Amount
+
+    # scale the upper limits on investment amounts by category down such that
+    # variables and constraints remain on approximately the same range
+    bounds_lower = np.repeat(0, len(max_amount))
+    # @todo check that xu is dtype np.array
+    bounds_upper = max_amount / self.scale
+
+    # define a function that will construct the investment constraint for the
+    # optimizer, in the correct format
+    def g(x):
+
+      # create container for the constraints with a dummy value
+      constraints = [1]
+
+      # if the upper limit on total investments has been defined,
+      if total_amount is not None:
+
+        # scale the upper limit on investments (see line 107)
+        limit = total_amount / self.scale
+
+        # sum across all decision variable values (investment amounts) fed to
+        # this function
+        value = sum(x)
+
+        if verbose == 3:
+          print('Investment limit: ', np.round(limit, 3),
+                ' Investment value: ', np.round(value, 3),
+                ' Constraint met: ', value <= limit)
+        elif verbose > 3:
+          print('Decision variable values: ', np.round(x, 3),
+                ' Investment limit: ', np.round(limit, 3),
+                ' Investment value:  ', np.round(value, 3),
+                '  Constraint met: ', value <= limit)
+
+        # update the constraint container with the LHS value of the
+        # investment constraint as a >= 0 inequality constraint
+        constraints = [limit - value]
+
+      # exit the total_amount IF statement
+
+      # if lower limits on metrics have been defined,
+      if min_metric is not None:
+
+        # loop through all available metrics
+        for index, limit in min_metric.iteritems():
+
+          # get location index of the current metric
+          j = np.where(self.evaluator.metrics == index)[0][0]
+
+          value = - self._f(statistic, verbose)(x)[j]
+
+          if verbose == 3:
+            print('Metric limit:     ', np.round(limit, 3),
+                  '  Metric value:     ', np.round(value, 3),
+                  ' Constraint met: ', value >= limit)
+          elif verbose > 3:
+            print('Decision variable values: ', np.round(x, 3),
+                  ' Metric limit:     ', np.round(limit, 3),
+                  '  Metric value:      ', np.round(value, 3),
+                  ' Constraint met: ', value >= limit)
+
+          # append the existing constraints container with the LHS value of the
+          # current metric constraint formulated as >= 0
+          # as the loop executes, one constraint per metric will be added to
+          # the container
+          constraints += [value - limit]
+
+      return constraints
+
+    _problem = FunctionalProblem(
+      len(max_amount),
+      objs=None,
+      constr_ieq=None,
+      xl=bounds_lower,
+      xu=bounds_upper
+    )
+
+    # initialize algorithm
+    if algo == 'NSGA2':
+      _algorithm = NSGA2(
+        pop_size=pop_size,
+        n_offsprings=n_offsprings,
+        sampling=get_sampling("real_random"),
+        crossover=get_crossover("real_sbx", prob=0.9, eta=15),
+        mutation=get_mutation("real_pm", eta=20),
+        eliminate_duplicates=True
+      )
+    elif algo == 'DE': #@todo swap DE for a reproducible algorithm
+      _algorithm = DE(
+        pop_size=pop_size
+      )
+    else:
+      raise NotImplementedError
+
+    # specify termination criteria
+    _termination = MultiObjectiveSpaceToleranceTermination(
+      tol=tol,
+      n_max_gen=maxiter
+    )
+
+    # run the optimizer
+    _pymoo_result = minimize(
+      _problem,
+      _algorithm,
+      _termination,
+      seed=seed,
+      save_history=True,
+      verbose=verbose>0
+    )
+
+    # extract optimal decision variable values
+    result = [_pymoo_result.X]
+
+    # calculate the scaled decision variable values that optimize the
+    # objective function
+    # @todo check that this evaluates correctly
+    x = pd.Series(self.scale * result[0], name="Amount",
+                  index=self.evaluator.max_amount.index)
+
+    # evaluate the chosen statistic for the scaled decision variable values
+    y = self.evaluator.evaluate_statistic(x, statistic)
+
+    return Optimum(
+      exit_code=_pymoo_result.success,
+      exit_message=_pymoo_result.message,
+      amounts=x,
+      metrics=y,
+      solve_time=_pymoo_result.exec_time
+    )
 
 
   def max_metrics(
