@@ -7,7 +7,8 @@ import pandas as pd
 import time
 
 from pymoo.model.problem import FunctionalProblem
-from pymoo.algorithms.nsga2 import NSGA2, DE
+from pymoo.algorithms.nsga2 import NSGA2
+from pymoo.algorithms.so_de import DE
 from pymoo.factory import get_sampling, get_crossover, get_mutation
 from pymoo.util.termination.f_tol import MultiObjectiveSpaceToleranceTermination
 from pymoo.optimize import minimize
@@ -646,7 +647,15 @@ class EpsilonConstraintOptimizer:
     verbose : int
       Verbosity level returned by the optimizer and this outer function.
       Defaults to 0.
-      @todo fill out verbose parameter meanings
+      verbose = 0     No messages
+      verbose = 1     Output from algorithm
+      verbose = 2     Investment constraint status, metric constraint status,
+                      and output from algorithm
+      verbose = 3     Decision variable values, investment constraint status,
+                      metric constraint status, and output from algorithm
+      verbose > 3     All metric values, decision variable values, investment
+                      constraint status, metric constraint status, and output
+                      from algorithm
     """
 
     # get location index of metric
@@ -663,72 +672,81 @@ class EpsilonConstraintOptimizer:
     # @todo check that xu is dtype np.array
     bounds_upper = max_amount / self.scale
 
-    # define a function that will construct the investment constraint for the
-    # optimizer, in the correct format
-    def g(x):
+    # initialize constraints container
+    constraints = []
 
-      # create container for the constraints with a dummy value
-      constraints = [1]
+    # construct the investment constraint
+    # if the upper metric_limit on total investments has been defined,
+    if total_amount is not None:
 
-      # if the upper limit on total investments has been defined,
-      if total_amount is not None:
-
-        # scale the upper limit on investments (see line 107)
-        limit = total_amount / self.scale
+      def g_inv(x):
+        # scale the upper metric_limit on investments
+        inv_limit = total_amount / self.scale
 
         # sum across all decision variable values (investment amounts) fed to
         # this function
-        value = sum(x)
+        inv_value = sum(x)
 
-        if verbose == 3:
-          print('Investment limit: ', np.round(limit, 3),
-                ' Investment value: ', np.round(value, 3),
-                ' Constraint met: ', value <= limit)
-        elif verbose > 3:
+        if verbose == 2:
+          # print the investment limit (RHS of constraint), the investment
+          # amount (LHS of constraint), and a Boolean indicating whether the
+          # investment constraint is met
+          print('Investment limit: ', np.round(inv_limit, 3),
+                ' Investment value: ', np.round(inv_value, 3),
+                ' Constraint met: ', inv_value <= inv_limit)
+        # if verbose is greater than or equal to three
+        elif verbose > 2:
+          # also print the decision variable values
           print('Decision variable values: ', np.round(x, 3),
-                ' Investment limit: ', np.round(limit, 3),
-                ' Investment value:  ', np.round(value, 3),
-                '  Constraint met: ', value <= limit)
+                ' Investment limit: ', np.round(inv_limit, 3),
+                ' Investment value:  ', np.round(inv_value, 3),
+                '  Constraint met: ', inv_value <= inv_limit)
 
-        # update the constraint container with the LHS value of the
-        # investment constraint as a >= 0 inequality constraint
-        constraints = [limit - value]
+        return inv_limit - inv_value
 
-      # exit the total_amount IF statement
+      # update the constraint container with the LHS value of the
+      # investment constraint as a <= 0 inequality constraint
+      constraints += [g_inv]
 
-      # if lower limits on metrics have been defined,
-      if min_metric is not None:
+    # exit the total_amount IF statement
 
-        # loop through all available metrics
-        for index, limit in min_metric.iteritems():
+    def make_g_metric(metric_statistic, metric_index, metric_limit):
 
-          # get location index of the current metric
-          j = np.where(self.evaluator.metrics == index)[0][0]
+      j = np.where(self.evaluator.metrics == metric_index)[0][0]
 
-          value = - self._f(statistic, verbose)(x)[j]
+      def g_metric_fn(x):
+        met_value = - self._f(metric_statistic, verbose)(x)[j]
 
-          if verbose == 3:
-            print('Metric limit:     ', np.round(limit, 3),
-                  '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value >= limit)
-          elif verbose > 3:
-            print('Decision variable values: ', np.round(x, 3),
-                  ' Metric limit:     ', np.round(limit, 3),
-                  '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value >= limit)
+        if verbose == 2:
+          print('Metric limit:     ', np.round(metric_limit, 3),
+                '  Metric value:     ', np.round(met_value, 3),
+                ' Constraint met: ', met_value >= metric_limit)
+        elif verbose > 2:
+          print('Decision variable values: ', np.round(x, 3),
+                ' Metric limit:     ', np.round(metric_limit, 3),
+                '  Metric value:      ', np.round(met_value, 3),
+                ' Constraint met: ', met_value >= metric_limit)
 
-          # append the existing constraints container with the LHS value of the
-          # current metric constraint formulated as >= 0
-          # as the loop executes, one constraint per metric will be added to
-          # the container
-          constraints += [value - limit]
+        return met_value - metric_limit
 
-      return constraints
+      return g_metric_fn
+
+    # if lower limits on metrics have been defined,
+    if min_metric is not None:
+
+      # loop through all available metrics
+      for index, limit in min_metric.iteritems():
+        # append the existing constraints container with the value of the
+        # current metric constraint
+        # as the loop executes, one constraint per metric will be added to the
+        # container
+        g_metric = make_g_metric(statistic, index, limit)
+        constraints += [g_metric]
 
     _problem = FunctionalProblem(
       len(max_amount),
-      objs=None,
-      constr_ieq=None,
+      objs=self._fi(i, statistic, verbose),
+      constr_ieq=constraints,
       xl=bounds_lower,
       xu=bounds_upper
     )
@@ -798,7 +816,7 @@ class EpsilonConstraintOptimizer:
   ):
     """
     Maximum value of metrics.
-    @todo update to include additional algorithms
+    @todo update max_metrics to include additional algorithms
     Parameters
     ----------
     max_amount : DataFrame
