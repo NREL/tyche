@@ -1,5 +1,0 @@
-{
-  "SECRET_KEY"  : "tyche portfolio"
-, "INVESTMENTS" : "../../data/residential_pv_multiobjective"
-, "DESIGNS"     : "../../data/residential_pv_multiobjective"
-}

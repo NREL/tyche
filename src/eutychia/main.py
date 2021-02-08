@@ -22,7 +22,7 @@ from io import BytesIO
 from matplotlib.figure import Figure
 
 
-if __name__ == '__main__':
+if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
 
@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
   app = qt.Quart(__name__, static_url_path="", static_folder="static",)
 
-  app.config.from_file("demo.json", json.load)
+  app.config.from_file("ioc-1.json", json.load)
 
 
 # Compute investments.
@@ -40,7 +40,7 @@ if __name__ == '__main__':
   designs = ty.Designs(app.config["DESIGNS"])
   designs.compile()
 
-  tranche_results = investments.evaluate_tranches(designs, sample_count=25)
+  tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
   evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 
