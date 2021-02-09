@@ -40,14 +40,13 @@ class Evaluator:
     self.categories = summary.reset_index()["Category"].unique()
     self.metrics    = summary.reset_index()["Index"   ].unique()
     self.units      = summary[["Units"]].groupby("Index").max()
-    self.interpolators = summary.join(
-      self.amounts
-    ).groupby(
+    self.raw        = summary.join(self.amounts)
+    self.interpolators = self.raw.groupby(
       ["Category", "Index", "Sample"]
     ).apply(
       lambda df: interp1d(
-        np.append(df.Amount, 0),
-        np.append(df.Value , 0),
+        df.Amount,
+        df.Value ,
         kind = "linear"        ,
         fill_value = "extrapolate",
         assume_sorted = False  ,
@@ -85,7 +84,7 @@ class Evaluator:
     ----------
     amounts : DataFrame
       The investment levels.
-    statistics : DataFrame
+    statistic : function
       The statistic to evaluate.
     """
 
@@ -99,3 +98,46 @@ class Evaluator:
     ).aggregate(
       statistic
     )
+
+  def make_statistic_evaluator(self, statistic = np.mean):
+    """
+    Return a function that valuates a statistic for an investment.
+
+    Parameters
+    ----------
+    statistic : function
+      The statistic to evaluate.
+    """
+
+    interpolators1 = self.raw.groupby(
+      ["Category", "Index", "Amount"]
+    ).aggregate(
+      statistic
+    ).reset_index(
+    ).groupby(
+      ["Category", "Index"]
+    ).apply(
+      lambda df: interp1d(
+        df.Amount,
+        df.Value ,
+        kind = "linear"        ,
+        fill_value = "extrapolate",
+        assume_sorted = False  ,
+      )
+    ).rename(
+      "Interpolator"
+    )
+    def f(amounts):
+      return pd.DataFrame(
+        amounts
+      ).join(
+        interpolators1
+      ).apply(
+        lambda row: row["Interpolator"](row["Amount"]), axis = 1
+      ).groupby(
+        "Index"
+      ).sum(
+      ).rename(
+        "Value"
+      )
+    return f
