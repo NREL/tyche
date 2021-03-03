@@ -24,7 +24,7 @@ following criteria.
 -  Ability to work on a variety of potentially non-convex and otherwise
    complex problems
 
-Solutions to ``residential_pv_multiobjective``
+Solutions to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The solve times listed are in addition to the time required to set up
@@ -84,6 +84,11 @@ Maximize the objective function using the ``fmin_slsqp`` algorithm.
 ``verbose`` : int
    Amount of information provided by the wrapper as the optimization is
    performed. Defaults to 0.
+   * verbose = 0 : No messages.
+   * verbose = 1 : Summary message when fmin_slsqp completes.
+   * verbose = 2 : Status of each algorithm iteration and summary message.
+   * verbose = 3 : Investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.
+   * verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.
 
 **Return**
 
@@ -105,7 +110,7 @@ simultaneously. Both equality and inequality constraints can be defined,
 although they must be as separate functions and are provided to the
 ``fmin_slsqp`` algorithm under separate arguments.
 
-SLSQP Solution to ``residential_pv_multiobjective``
+SLSQP Solution to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Solve time: 1.5 s
@@ -187,9 +192,12 @@ convergence to the global minimum.
    involves many function evaluations as each solution in the population
    evolves. Defaults to 75.
 ``verbose`` : int
-   Amount of information provided by the wrapper as the optimization is
-   performed. Defaults to 0.\ ``differential_evolution`` has no
-   analogous verbosity parameter
+    Verbosity level returned by this outer function and the differential_evolution algorithm. Defaults to 0.
+    * verbose = 0 : No messages.
+    * verbose = 1 : Objective function value at every algorithm iteration.
+    * verbose = 2 : Investment constraint status, metric constraint status, and objective function value.
+    * verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and objective function value.
+    * verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and objective function value.
 
 **Returns**
 
@@ -211,7 +219,7 @@ Constraints for ``differential_evolution`` are defined by passing the
 same multi-valued function defined in ``maximize_slsqp`` to the
 ``NonLinearConstraint`` method. [7]
 
-Differential Evolution Solutions to ``residential_pv_multiobjective``
+Differential Evolution Solutions to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Solution 1**
@@ -297,9 +305,12 @@ algorithm.
    documentation, Sobol is better for “easier” problems. Defaults to
    ‘simplicial’.
 ``verbose`` : int
-   Verbosity level returned by this wrapper function. No analogous
-   parameters are available for ``shgo``. Defaults to 0 (no messages
-   returned during execution).
+    Verbosity level returned by this outer function and the SHGO algorithm. Defaults to 0.
+    *  verbose = 0 : No messages.
+    *  verbose = 1 : Convergence messages from SHGO algorithm.
+    *  verbose = 2 : Investment constraint status, metric constraint status, and convergence messages.
+    *  verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and convergence messages.
+    *  verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and convergence messages .
 
 **Returns**
 
