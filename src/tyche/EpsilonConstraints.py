@@ -53,21 +53,21 @@ class EpsilonConstraintOptimizer:
     self.scale = scale
     self._max_metrics = {}
 
-  def _f(self, statistic, verbose = 0):
+  def _f(self, evaluate, verbose = 0):
     def f(x):
-      xx = pd.Series(self.scale * x, name = "Amount",
-                     index = self.evaluator.max_amount.index)
-      yy = self.evaluator.evaluate_statistic(xx, statistic)
-      if verbose > 3:
-        print('All technology metrics: ', np.round(yy.values, 3))
-        # return the negative s.t. this function can be called as-is to
-        # maximize the objective function
+      xx = pd.Series(self.scale * x, name = "Amount", index = self.evaluator.max_amount.index)
+      yy = evaluate(xx)
+      if verbose > 2:
+        print ('scaled decision variables: ', xx.values, '\n')
+        print('metric statistics: ', yy.values, '\n')
+        # return the negative s.t. this function can be called as-is to maximize
+        # the objective function
         # (all algorithms minimize, minimizing the negative is maximizing)
       return - yy
     return f
 
-  def _fi(self, i, statistic, verbose = 0):
-    return lambda x: self._f(statistic, verbose)(x)[i]
+  def _fi(self, i, evaluate, verbose = 0):
+    return lambda x: self._f(evaluate, verbose)(x)[i]
 
   def maximize_slsqp(
     self                  ,
@@ -116,6 +116,9 @@ class EpsilonConstraintOptimizer:
                       constraint status, metric constraint status, status of
                       each algorithm iteration, and summary message
     """
+
+    # create a functio to evaluate the statistic
+    evaluate = self.evaluator.make_statistic_evaluator(statistic)
 
     # get location index of metric
     i = np.where(self.evaluator.metrics == metric)[0][0]
@@ -171,7 +174,7 @@ class EpsilonConstraintOptimizer:
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          value = - self._f(statistic, verbose)(x)[j]
+          value = - self._f(evaluate, verbose)(x)[j]
 
           if verbose == 3:
             print('Metric limit:     ', np.round(limit, 3),
@@ -203,22 +206,14 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = fmin_slsqp(
-      # callable function that returns the scalar objective function value
-      self._fi(i, statistic, verbose),
-      # scaled initial guess values for decision variables
-      initial / self.scale ,
-      # list of functions that return inequality constraints as const >= 0
-      f_ieqcons   = g      ,
-      # upper and lower bounds on decision variables
-      bounds      = bounds ,
-      # number of times fmin_slsqp is permitted to iterate
-      iter        = maxiter,
-      # requested accuracy of optimal solution
-      acc         = tol    ,
-      # how much information fmin_slsqp returns
-      iprint      = verbose,
-      # return final objective function value and summary information
-      full_output = True   ,
+      self._fi(i, evaluate, verbose), # callable function that returns the scalar objective function value
+      initial / self.scale , # scaled initial guess values for decision variables (investment amounts, metrics)
+      f_ieqcons   = g      , # list of functions that return inequality constraints in the form const >= 0
+      bounds      = bounds , # upper and lower bounds on decision variables
+      iter        = maxiter, # number of times fmin_slsqp is permitted to iterate
+      acc         = tol    , # requested accuracy of optimal solution
+      iprint      = verbose, # how much information fmin_slsqp returns
+      full_output = True   , # return final objective function value and summary information
     )
 
     elapsed = time.time() - start
@@ -229,7 +224,7 @@ class EpsilonConstraintOptimizer:
                   index = self.evaluator.max_amount.index)
 
     # evaluate the chosen statistic for the scaled decision variable values
-    y = self.evaluator.evaluate_statistic(x, statistic)
+    y = evaluate(x)
     
     return Optimum(
       exit_code    = result[3],
@@ -302,6 +297,9 @@ class EpsilonConstraintOptimizer:
                       objective function value
     """
 
+    # create a functio to evaluate the statistic
+    evaluate = self.evaluator.make_statistic_evaluator(statistic)
+
     # get location index of metric
     i = np.where(self.evaluator.metrics == metric)[0][0]
 
@@ -357,7 +355,7 @@ class EpsilonConstraintOptimizer:
           j = np.where(self.evaluator.metrics == index)[0][0]
 
           # calculate the summary statistic on the current metric
-          value = - self._f(statistic, verbose)(x)[j]
+          value = - self._f(evaluate, verbose)(x)[j]
 
           if verbose == 2:
             print('Metric limit:     ', np.round(limit, 3),
@@ -382,8 +380,7 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = differential_evolution(
-      # callable function that returns the scalar objective function value
-      self._fi(i, statistic, verbose),
+      self._fi(i, evaluate, verbose), # callable function that returns the scalar objective function value
       bounds=var_bounds,  # upper and lower bounds on decision variables
       strategy=strategy, # defines differential evolution strategy to use
       maxiter=maxiter, # default maximum iterations to execute
@@ -396,24 +393,8 @@ class EpsilonConstraintOptimizer:
 
     elapsed = time.time() - start
 
-    if result.success:
-      # calculate the scaled decision variable values that optimize the
-      # objective function
-      x = pd.Series(self.scale * result.x, name="Amount",
-                    index=self.evaluator.max_amount.index)
-
-      # evaluate the chosen statistic for the scaled decision variable values
-      y = self.evaluator.evaluate_statistic(x, statistic)
-
-      return Optimum(
-        exit_code=result.success,
-        exit_message=result.message,
-        amounts=x,
-        metrics=y,
-        solve_time=elapsed
-      )
-    else:
-      return result, elapsed
+    # evaluate the chosen statistic for the scaled decision variable values
+    y = evaluate(x)
 
 
   def maximize_shgo(
@@ -468,6 +449,9 @@ class EpsilonConstraintOptimizer:
                       convergence messages
     """
 
+    # create a functio to evaluate the statistic
+    evaluate = self.evaluator.make_statistic_evaluator(statistic)
+
     # get location metric_index of metric
     i = np.where(self.evaluator.metrics == metric)[0][0]
 
@@ -521,12 +505,12 @@ class EpsilonConstraintOptimizer:
 
     # exit the total_amount IF statement
 
-    def make_g_metric(metric_statistic, metric_index, metric_limit):
+    def make_g_metric(evaluate, metric_index, metric_limit):
 
       j = np.where(self.evaluator.metrics == metric_index)[0][0]
 
       def g_metric_fn(x):
-        met_value = - self._f(metric_statistic, verbose)(x)[j]
+        met_value = - self._f(evaluate, verbose)(x)[j]
 
         if verbose == 2:
           print('Metric limit:     ', np.round(metric_limit, 3),
@@ -551,7 +535,7 @@ class EpsilonConstraintOptimizer:
         # current metric constraint
         # as the loop executes, one constraint per metric will be added to the
         # container
-        g_metric = make_g_metric(statistic, index, limit)
+        g_metric = make_g_metric(evaluate, limit)
         constraints += [{'type': 'ineq', 'fun': g_metric}]
 
     opt_dict = {'f_tol': tol,
@@ -562,8 +546,7 @@ class EpsilonConstraintOptimizer:
     start = time.time()
 
     result = shgo(
-      # callable function that returns the scalar objective function value
-      self._fi(i, statistic, verbose),
+      self._fi(i, evaluate, verbose), # callable function that returns the scalar objective function value
       bounds=bounds,  # upper and lower bounds on decision variables
       constraints=constraints,
       options=opt_dict, # dictionary of options including max iters
@@ -578,10 +561,8 @@ class EpsilonConstraintOptimizer:
       x = pd.Series(self.scale * result.x, name="Amount",
                     index=self.evaluator.max_amount.index)
 
-      # evaluate the chosen metric_statistic for the scaled decision
-      # variable values
-      y = self.evaluator.evaluate_statistic(x, statistic)
-
+      # evaluate the chosen metric_statistic for the scaled decision variable values
+      y = evaluate(x)
       return Optimum(
         exit_code=result.success,
         exit_message=result.message,

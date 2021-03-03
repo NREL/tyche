@@ -18,11 +18,12 @@ import tyche as ty
 import uuid as uuid
 
 from base64 import b64encode
+from datetime import datetime
 from io import BytesIO
 from matplotlib.figure import Figure
 
 
-if __name__ == '__main__':
+if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
 
@@ -30,7 +31,7 @@ if __name__ == '__main__':
 
   app = qt.Quart(__name__, static_url_path="", static_folder="static",)
 
-  app.config.from_file("demo.json", json.load)
+  app.config.from_file("ioc-1.json", json.load)
 
 
 # Compute investments.
@@ -40,14 +41,19 @@ if __name__ == '__main__':
   designs = ty.Designs(app.config["DESIGNS"])
   designs.compile()
 
-  tranche_results = investments.evaluate_tranches(designs, sample_count=25)
+  tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
   evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
-  metric_range = evaluator.min_metric.apply(lambda x: np.minimum(0, x)).join(
-      evaluator.max_metric.apply(lambda x: np.maximum(0, x)),
+##metric_range = evaluator.min_metric.apply(lambda x: np.minimum(0, x)).join(
+##    evaluator.max_metric.apply(lambda x: np.maximum(0, x)),
+##    lsuffix=" Min",
+##    rsuffix=" Max",
+##)
+  metric_range = evaluator.min_metric.join(
+      evaluator.max_metric,
       lsuffix=" Min",
       rsuffix=" Max",
   )
@@ -261,7 +267,6 @@ if __name__ == '__main__':
       evaluation = session_evaluation[ident]
       form = await qt.request.form
       target_metric = evaluator.metrics[int(form["target"])]
-      print(target_metric)
       constraints = json.loads(form["constraints"])
       min_metric = pd.Series(
           [
@@ -278,6 +283,10 @@ if __name__ == '__main__':
           index=evaluator.categories,
       )
       total_amount = constraints["invest"]["invlimwid_x"]
+      print("\nOptimization started.", datetime.now())
+      print("> target_metric\n ", target_metric)
+      print("> min_metric\n ", min_metric)
+      print("> total_amount\n ", total_amount)
       optimum = optimizer.maximize_slsqp(
           metric=target_metric,
           min_metric=min_metric,
@@ -286,6 +295,10 @@ if __name__ == '__main__':
           # , tol          = 1e-4
           # , maxiter      = 10
       )
+      print("> exit_message\n ", optimum.exit_message)
+      print("> amounts\n ", optimum.amounts)
+      print("> metrics\n ", optimum.metrics)
+      print("Optimization finished.", datetime.now(), "\n")
       amounts = pd.DataFrame(optimum.amounts)
       session_amounts[ident] = amounts
       session_evaluation[ident] = evaluator.evaluate(amounts)

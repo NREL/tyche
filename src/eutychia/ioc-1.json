@@ -1,0 +1,5 @@
+{
+  "SECRET_KEY"  : "tyche portfolio"
+, "INVESTMENTS" : "../../ioc-1/data"
+, "DESIGNS"     : "../../ioc-1/data"
+}
