@@ -141,3 +141,73 @@ class Evaluator:
         "Value"
       )
     return f
+
+  def evaluate_corners_semilong(self, statistic = np.mean):
+    """
+    Return a dataframe indexed my investment amounts in each category,
+    with columns for each metric.
+
+    Parameters
+    ----------
+    statistic : function
+      The statistic to evaluate.
+    """
+
+    return pd.DataFrame(
+      self.raw.reset_index(
+      ).set_index(
+          ["Category", "Amount", "Index"]
+      ).drop(
+          columns = ["Tranche", "Sample", "Units"]
+      ).apply(
+          np.mean, axis=1
+      ).rename(
+          "Value"
+      )
+    ).reset_index(
+    ).set_index(
+      ["Category", "Amount"]
+    ).pivot_table(
+      index = ["Category", "Amount"],
+      columns = "Index",
+      values = "Value"
+    )
+
+  def evaluate_corners_wide(self, statistic = np.mean):
+    """
+    Return a dataframe indexed my investment amounts in each category,
+    with columns for each metric.
+
+    Parameters
+    ----------
+    statistic : function
+      The statistic to evaluate.
+    """
+
+    semilong = self.evaluate_corners_semilong(statistic)
+    joiner = pd.DataFrame(index = semilong.index)
+    joiner["KEY"] = 1
+    joiner.set_index("KEY", append = True, inplace = True)
+    combinations = pd.DataFrame(index = pd.Index([1], name = "KEY"))
+    for category in np.unique(joiner.index.get_level_values("Category")):
+        combinations = combinations.merge(
+            joiner.xs(
+              category
+            ).reset_index(
+              "Amount"
+            ).rename(
+              columns = {"Amount" : category}
+            ),
+            on = "KEY",
+            how = "outer",
+        )
+    combinations.set_index(list(combinations.columns), inplace = True)
+    result = pd.DataFrame([
+      pd.DataFrame([
+        semilong.loc[iname, ivalue]
+        for iname, ivalue in zip(combinations.index.names, i0)
+      ]).reset_index(drop = True).aggregate(np.sum)
+      for i0, _ in combinations.iterrows()
+    ])
+    result.index = combinations.index
+    return result
