@@ -1,8 +1,8 @@
 Optimization
 ============
 
-Summary
--------
+Non-Linear (NLP) Formulation Summary
+------------------------------------
 
 Technology models and data are defined before the optimizer is called.
 Three methods in the ``EpsilonConstraintOptimizer`` class,
@@ -349,6 +349,51 @@ constraint in the optimization problem is defined as a separate
 function, with a separate dictionary giving the constraint type. With
 ``shgo`` it is not possible to use one function that returns a vector of
 constraint values.
+
+
+Piecewise Linear (MILP) Formulation Summary
+-----------------------------------
+
+
+
+Notation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+================================ ================================================================== ===============
+Data                             Notation                                                           Information
+================================ ================================================================== ===============
+Funding levels (elicited)        :math: `v_{ik_i}, i \in \{1, ..., I\}, k_i \in \{1, ..., l_i \}`   Category :math: `i` has elicited metric data at :math: `l_i` distinct funding levels.
+Number of elicitation levels     :math: `l_i, i \in \{1, ..., I\}`                                  Category :math: `i` has elicited metric data at :math: `l_i` distinct funding levels.
+Metric data (elicited)           :math: `m_{jk_i}, j \in \{1, ..., J \}, k_i \in \{1, ..., l_i \}`  :math: `J` is the number of metrics for which data was elicited.
+================================ ================================================================== ===============
+
+
+================================ ====================================================================== ===============
+Variable                         Notation                                                               Information 
+================================ ====================================================================== ===============
+Investment amounts               :math: `c_{i}, i \in \{1, ..., I\}`                                    :math: `I` is the number of investment categories
+Metric value                     :math: `q_j, j \in \{1, ..., J \}`                                     :math: `J` is the number of metrics for which data was elicited
+Integer variables                :math: `y_{in_i}, n_i \in \{1, ..., l_i - 1 \}`                        Number of linear intervals for investment category :math: `i`
+Combination variables            :math: `\lambda_{ik_i}, i \in \{1, ..., I\}, k_i \in \{1, ..., l_i \}` Used to construct linear combinations of interval endpoints. :math: `\lambda_{ik_i} \geq 0 \forall i, k_i`
+
+
+BN: The number of intervals in which :math: `c_{i}` can be is not the same as the number of elicited levels. If we elicit data for :math: `l_i` funding levels, this defines :math: `l_i - 1` linear intervals for :math: `c_{i}$.
+
+Each metric :math: `m_j` and investment amount :math: `c_i` can be written as a linear combination of ``corners'' (elicited interval endpoints) and the new variables :math: `\lambda_{ik_i}$. Additional constraints on :math: `y_{in_i}` and :math: `\lambda_{ik_i}` take care of the piecewise linearity by ensuring that the corners used to calculate :math: `m_j` reflect the interval that :math: `c_i` is in.
+
+
+One-Investment-Category, One-Metric Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Extension to N x N Problem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+**Problem Size**
+
+
+
 
 References
 ----------
