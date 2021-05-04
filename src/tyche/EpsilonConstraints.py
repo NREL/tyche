@@ -17,6 +17,7 @@ from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
 
+from mip import Model, MINIMIZE, MAXIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
   "Optimum",
@@ -393,8 +394,24 @@ class EpsilonConstraintOptimizer:
 
     elapsed = time.time() - start
 
-    # evaluate the chosen statistic for the scaled decision variable values
-    y = evaluate(x)
+    if result.success:
+      # calculate the scaled decision variable values that optimize the
+      # objective function
+      x = pd.Series(self.scale * result.x, name="Amount",
+                    index=self.evaluator.max_amount.index)
+
+      # evaluate the chosen statistic for the scaled decision variable values
+      y = self.evaluator.evaluate_statistic(x, statistic)
+
+      return Optimum(
+        exit_code=result.success,
+        exit_message=result.message,
+        amounts=x,
+        metrics=y,
+        solve_time=elapsed
+      )
+    else:
+      return result, elapsed
 
 
   def maximize_shgo(
@@ -829,4 +846,147 @@ class EpsilonConstraintOptimizer:
        else np.nan for k, v in self._max_metrics.items()],
       name  = "Value",
       index = self._max_metrics.keys(),
+    )
+
+
+  def pwlinear_milp(
+          self,
+          metric,
+          max_amount=None,
+          total_amount=None,
+          min_metric=None,
+          statistic = np.mean
+  ):
+    """
+    Maximize the objective function using a piecewise linear
+    representation to create a mixed integer linear program.
+
+    Parameters
+    ----------
+    metric : str
+      Name of metric to maximize
+    max_amount : DataFrame
+      Maximum investment amounts by R&D category (defined in investments data)
+      and maximum metric values
+    total_amount : float
+      Upper limit on total investments summed across all R&D categories.
+    min_metric : DataFrame
+      Lower limits on all metrics
+    statistic : function
+      Summary statistic (metric measure) fed to evaluator_corners_wide method
+      in Evaluator
+    total_amount : float
+      Upper limit on total investments summed across all R&D categories
+
+    Returns
+    -------
+    Optimum : NamedTuple
+      exit_code
+      exit_message
+      amounts
+      metrics
+      solve_time
+    """
+
+    # investment categories
+    _categories = self.evaluator.categories
+
+    # metric to optimize
+    _metrics = metric
+
+    # if custom upper limits on investment amounts by category have not been
+    # defined, get the upper limits from self.evaluator
+    if max_amount is None:
+      max_amount = self.evaluator.max_amount.Amount
+
+    # get data frame of elicited metric values by investment level combinations
+    _wide = self.evaluator.evaluate_corners_wide(statistic).reset_index()
+
+    # (combinations of) Investment levels
+    inv_levels = _wide.loc[:, _categories].values.tolist()
+
+    # Elicited metric values
+    m = _wide.loc[:, _metrics].values.tolist()
+
+    # Number of investment level combinations/metric values
+    I = len(inv_levels)
+
+    # instantiate MILP model
+    _model = Model(sense=MAXIMIZE)
+
+    bin_vars = []
+    lmbd_vars = []
+
+    # create binary variables
+    for i in range(I - 1):
+      _name = 'y' + '_' + str(i)
+      bin_vars += [_model.add_var(name=_name, var_type=BINARY)]
+      del _name
+
+    # create continuous variables
+    for i in range(I):
+      _name = 'lmbd' + '_' + str(i)
+      lmbd_vars += [_model.add_var(name=_name, lb=0.0, ub=1.0)]
+      del _name
+
+    # create budget constraints
+
+    # total budget constraint
+    _model += xsum(lmbd_vars[i] * inv_levels[i][j]
+                    for i in range(I)
+                    for j in range(len(inv_levels[i]))) <= total_amount,\
+               'Total Budget'
+
+    # constraint on budget for each investment category
+    for j in range(len(_categories)):
+      _model += xsum(lmbd_vars[i] * [el[j] for el in inv_levels][i]
+                      for i in range(I)) <= max_amount[j],\
+                 'Budget for ' + _categories[j]
+
+    # convexity constraint for continuous variables
+    _model += sum(lmbd_vars) == 1, 'Lambda Sum'
+
+    # constrain binary variables such that only one interval can be active
+    # at a time
+    _model += sum(bin_vars) == 1, 'Binary Sum'
+
+    # constraint on lambda and binary variables
+    for i in range(I - 1):
+      _model += bin_vars[i] <= lmbd_vars[i] + lmbd_vars[i + 1],\
+                 'Interval Constraint' + str(i)
+
+    # objective function
+    _model.objective = xsum(m[i][0] * lmbd_vars[i] for i in range(I))
+
+    # note time when algorithm started
+    _start = time.time()
+
+    # find optimal solution
+    _model.optimize()
+
+    elapsed = time.time() - _start
+
+    # get the optimal variable values as two lists
+    lmbd_opt = []
+    y_opt = []
+
+    for v in _model.vars:
+      if 'lmbd' in v.name:
+        lmbd_opt += [v.x]
+      elif 'y' in v.name:
+        y_opt += [v.x]
+
+    inv_levels_opt = {}
+
+    # calculate the optimal investment values
+    for i in range(len(_categories)):
+      inv_levels_opt[_categories[i]] = sum([lmbd_opt[j] * [el[i] for el in inv_levels][j]
+                                            for j in range(len(lmbd_opt))])
+
+    return Optimum(
+      exit_code=_model.status,
+      exit_message=_model.status,
+      amounts=inv_levels_opt,
+      metrics=_model.objective_value,
+      solve_time=elapsed
     )
