@@ -17,7 +17,7 @@ from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
 
-from mip import Model, MINIMIZE, MAXIMIZE, BINARY, xsum
+from mip import Model, MAXIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
   "Optimum",
@@ -931,32 +931,44 @@ class EpsilonConstraintOptimizer:
 
     # create budget constraints
 
-    # total budget constraint
-    _model += xsum(lmbd_vars[i] * inv_levels[i][j]
-                    for i in range(I)
-                    for j in range(len(inv_levels[i]))) <= total_amount,\
-               'Total Budget'
+    # total budget constraint - only if total_amount is an input
+    if total_amount is not None:
+      _model += xsum(lmbd_vars[i] * inv_levels[i][j]
+                      for i in range(I)
+                      for j in range(len(inv_levels[i]))) <= total_amount,\
+                 'Total_Budget'
 
     # constraint on budget for each investment category
+    # this is either fed in as an argument or pulled from evaluator
     for j in range(len(_categories)):
       _model += xsum(lmbd_vars[i] * [el[j] for el in inv_levels][i]
                       for i in range(I)) <= max_amount[j],\
-                 'Budget for ' + _categories[j]
+                 'Budget_for_' + _categories[j].replace(' ', '')
+
+    # define metric constraints if lower limits on metrics have been defined
+    if min_metric is not None:
+
+      # loop through list of metric minima
+      for index, limit in min_metric.iteritems():
+        # add minimum-metric constraint on the lambda variables
+        _model += xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
+                       for i in range(I)) >= limit,\
+                  'Minimum_' + index
 
     # convexity constraint for continuous variables
-    _model += sum(lmbd_vars) == 1, 'Lambda Sum'
+    _model += sum(lmbd_vars) == 1, 'Lambda_Sum'
 
     # constrain binary variables such that only one interval can be active
     # at a time
-    _model += sum(bin_vars) == 1, 'Binary Sum'
+    _model += sum(bin_vars) == 1, 'Binary_Sum'
 
     # constraint on lambda and binary variables
     for i in range(I - 1):
       _model += bin_vars[i] <= lmbd_vars[i] + lmbd_vars[i + 1],\
-                 'Interval Constraint' + str(i)
+                 'Interval_Constraint_' + str(i)
 
     # objective function
-    _model.objective = xsum(m[i][0] * lmbd_vars[i] for i in range(I))
+    _model.objective = xsum(m[i] * lmbd_vars[i] for i in range(I))
 
     # note time when algorithm started
     _start = time.time()
@@ -966,27 +978,39 @@ class EpsilonConstraintOptimizer:
 
     elapsed = time.time() - _start
 
-    # get the optimal variable values as two lists
-    lmbd_opt = []
-    y_opt = []
+    # if a feasible solution was found, calculate the optimal investment values
+    # and return a populated Optimum tuple
+    if _model.status.value == 0:
+      # get the optimal variable values as two lists
+      lmbd_opt = []
+      y_opt = []
 
-    for v in _model.vars:
-      if 'lmbd' in v.name:
-        lmbd_opt += [v.x]
-      elif 'y' in v.name:
-        y_opt += [v.x]
+      for v in _model.vars:
+        if 'lmbd' in v.name:
+          lmbd_opt += [v.x]
+        elif 'y' in v.name:
+          y_opt += [v.x]
 
-    inv_levels_opt = {}
+      inv_levels_opt = {}
 
-    # calculate the optimal investment values
-    for i in range(len(_categories)):
-      inv_levels_opt[_categories[i]] = sum([lmbd_opt[j] * [el[i] for el in inv_levels][j]
-                                            for j in range(len(lmbd_opt))])
+      # calculate the optimal investment values
+      for i in range(len(_categories)):
+        inv_levels_opt[_categories[i]] = sum([lmbd_opt[j] * [el[i] for el in inv_levels][j]
+                                              for j in range(len(lmbd_opt))])
 
-    return Optimum(
-      exit_code=_model.status,
-      exit_message=_model.status,
-      amounts=inv_levels_opt,
-      metrics=_model.objective_value,
-      solve_time=elapsed
-    )
+      return Optimum(
+        exit_code=_model.status.value,
+        exit_message=_model.status,
+        amounts=inv_levels_opt,
+        metrics=_model.objective_value,
+        solve_time=elapsed
+      )
+    # if no feasible solution was found, return a partially empty Optimum tuple
+    else:
+      return Optimum(
+        exit_code=_model.status.value,
+        exit_message=_model.status,
+        amounts=None,
+        metrics=None,
+        solve_time=elapsed
+      )
