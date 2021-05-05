@@ -852,10 +852,11 @@ class EpsilonConstraintOptimizer:
   def pwlinear_milp(
           self,
           metric,
-          max_amount=None,
-          total_amount=None,
-          min_metric=None,
-          statistic = np.mean
+          max_amount   = None   ,
+          total_amount = None   ,
+          min_metric   = None   ,
+          statistic    = np.mean,
+          verbose      = 0      ,
   ):
     """
     Maximize the objective function using a piecewise linear
@@ -877,14 +878,16 @@ class EpsilonConstraintOptimizer:
       in Evaluator
     total_amount : float
       Upper limit on total investments summed across all R&D categories
+    verbose : int
+      A value greater than zero will save the optimization model as a .lp file
 
     Returns
     -------
     Optimum : NamedTuple
       exit_code
       exit_message
-      amounts
-      metrics
+      amounts (None, if no solution found)
+      metrics (None, if no solution found)
       solve_time
     """
 
@@ -970,11 +973,18 @@ class EpsilonConstraintOptimizer:
     # objective function
     _model.objective = xsum(m[i] * lmbd_vars[i] for i in range(I))
 
+    # save a copy of the model in LP format
+    # if the verbose parameter is 0, the MIP solver does not print output
+    if verbose > 0:
+      _model.write('model.lp')
+    else:
+      _model.verbose = 0
+
     # note time when algorithm started
     _start = time.time()
 
     # find optimal solution
-    _model.optimize()
+    _solution = _model.optimize()
 
     elapsed = time.time() - _start
 
@@ -991,17 +1001,21 @@ class EpsilonConstraintOptimizer:
         elif 'y' in v.name:
           y_opt += [v.x]
 
-      inv_levels_opt = {}
+      inv_levels_opt = []
 
       # calculate the optimal investment values
       for i in range(len(_categories)):
-        inv_levels_opt[_categories[i]] = sum([lmbd_opt[j] * [el[i] for el in inv_levels][j]
-                                              for j in range(len(lmbd_opt))])
+        inv_levels_opt += [sum([lmbd_opt[j] * [el[i] for el in inv_levels][j]
+                                for j in range(len(lmbd_opt))])]
+
+      # construct a Series of optimal investment levels
+      x = pd.Series(inv_levels_opt, name="Amount",
+                    index=self.evaluator.max_amount.index)
 
       return Optimum(
         exit_code=_model.status.value,
         exit_message=_model.status,
-        amounts=inv_levels_opt,
+        amounts=x,
         metrics=_model.objective_value,
         solve_time=elapsed
       )
