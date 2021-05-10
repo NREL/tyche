@@ -17,7 +17,7 @@ from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
 
-from mip import Model, MAXIMIZE, BINARY, xsum
+from mip import Model, MINIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
   "Optimum",
@@ -895,7 +895,7 @@ class EpsilonConstraintOptimizer:
     _categories = self.evaluator.categories
 
     # metric to optimize
-    _metrics = metric
+    _obj_metric = metric
 
     # if custom upper limits on investment amounts by category have not been
     # defined, get the upper limits from self.evaluator
@@ -908,14 +908,20 @@ class EpsilonConstraintOptimizer:
     # (combinations of) Investment levels
     inv_levels = _wide.loc[:, _categories].values.tolist()
 
-    # Elicited metric values
-    m = _wide.loc[:, _metrics].values.tolist()
+    # Elicited metric values - for objective function
+    m = _wide.loc[:, _obj_metric].values.tolist()
+
+    # all metric values - for calculating optimal metrics
+    _metric_data = _wide.copy().drop(columns=_categories).values.tolist()
+
+    # list of metrics
+    _all_metrics = _wide.copy().drop(columns=_categories).columns.values
 
     # Number of investment level combinations/metric values
     I = len(inv_levels)
 
     # instantiate MILP model
-    _model = Model(sense=MAXIMIZE)
+    _model = Model(sense=MINIMIZE)
 
     bin_vars = []
     lmbd_vars = []
@@ -953,6 +959,7 @@ class EpsilonConstraintOptimizer:
 
       # loop through list of metric minima
       for index, limit in min_metric.iteritems():
+
         # add minimum-metric constraint on the lambda variables
         _model += xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
                        for i in range(I)) >= limit,\
@@ -974,10 +981,10 @@ class EpsilonConstraintOptimizer:
     _model.objective = xsum(m[i] * lmbd_vars[i] for i in range(I))
 
     # save a copy of the model in LP format
-    # if the verbose parameter is 0, the MIP solver does not print output
     if verbose > 0:
       _model.write('model.lp')
     else:
+      # if the verbose parameter is 0, the MIP solver does not print output
       _model.verbose = 0
 
     # note time when algorithm started
@@ -1012,11 +1019,21 @@ class EpsilonConstraintOptimizer:
       x = pd.Series(inv_levels_opt, name="Amount",
                     index=self.evaluator.max_amount.index)
 
+      metrics_opt = []
+
+      # calculate optimal values of all metrics
+      for i in range(len(_all_metrics)):
+        metrics_opt += [sum([lmbd_opt[i] * [el[i] for el in _metric_data][j]
+                             for j in range(len(lmbd_opt))])]
+
+      y = pd.Series(metrics_opt, name="Value",
+                    index=_all_metrics)
+
       return Optimum(
         exit_code=_model.status.value,
         exit_message=_model.status,
         amounts=x,
-        metrics=_model.objective_value,
+        metrics=y,
         solve_time=elapsed
       )
     # if no feasible solution was found, return a partially empty Optimum tuple
