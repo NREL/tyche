@@ -16,7 +16,7 @@ from pymoo.optimize import minimize
 from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
-import pdb
+
 from mip import Model, MAXIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
@@ -1006,7 +1006,7 @@ class EpsilonConstraintOptimizer:
           lmbd_opt += [v.x]
         elif 'y' in v.name:
           y_opt += [v.x]
-      pdb.set_trace()
+      
       inv_levels_opt = []
 
       # calculate the optimal investment values
