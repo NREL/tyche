@@ -16,8 +16,8 @@ from pymoo.optimize import minimize
 from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
-
-from mip import Model, MINIMIZE, BINARY, xsum
+import pdb
+from mip import Model, MAXIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
   "Optimum",
@@ -921,22 +921,27 @@ class EpsilonConstraintOptimizer:
     I = len(inv_levels)
 
     # instantiate MILP model
-    _model = Model(sense=MINIMIZE)
+    _model = Model(sense=MAXIMIZE)
 
     bin_vars = []
     lmbd_vars = []
 
-    # create binary variables
-    for i in range(I - 1):
-      _name = 'y' + '_' + str(i)
-      bin_vars += [_model.add_var(name=_name, var_type=BINARY)]
-      del _name
-
-    # create continuous variables
+    # create continuous lambda variables
     for i in range(I):
-      _name = 'lmbd' + '_' + str(i)
-      lmbd_vars += [_model.add_var(name=_name, lb=0.0, ub=1.0)]
-      del _name
+      lmbd_vars += [_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0)]
+
+    # create binary variables and binary/lambda variable constraints
+    bin_count = 0
+    for i in range(I):
+      for j in range(i, I):
+        if j != i:
+          # add binary variable
+          bin_vars += [_model.add_var(name='y_' + str(i) + '_' + str(j),
+                                      var_type=BINARY)]
+          # add binary/lambda variable constraint
+          _model += bin_vars[bin_count] <= lmbd_vars[i] + lmbd_vars[j],\
+                    'Interval_Constraint_' + str(i) + '_' + str(j)
+          bin_count += 1
 
     # create budget constraints
 
@@ -972,11 +977,6 @@ class EpsilonConstraintOptimizer:
     # at a time
     _model += sum(bin_vars) == 1, 'Binary_Sum'
 
-    # constraint on lambda and binary variables
-    for i in range(I - 1):
-      _model += bin_vars[i] <= lmbd_vars[i] + lmbd_vars[i + 1],\
-                 'Interval_Constraint_' + str(i)
-
     # objective function
     _model.objective = xsum(m[i] * lmbd_vars[i] for i in range(I))
 
@@ -1001,13 +1001,12 @@ class EpsilonConstraintOptimizer:
       # get the optimal variable values as two lists
       lmbd_opt = []
       y_opt = []
-
       for v in _model.vars:
         if 'lmbd' in v.name:
           lmbd_opt += [v.x]
         elif 'y' in v.name:
           y_opt += [v.x]
-
+      pdb.set_trace()
       inv_levels_opt = []
 
       # calculate the optimal investment values
