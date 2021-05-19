@@ -359,40 +359,136 @@ Piecewise Linear (MILP) Formulation Summary
 Notation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-================================ ================================================================== ===============
-Data                             Notation                                                           Information
-================================ ================================================================== ===============
-Funding levels (elicited)        :math: `v_{ik_i}, i \in \{1, ..., I\}, k_i \in \{1, ..., l_i \}`   Category :math: `i` has elicited metric data at :math: `l_i` distinct funding levels.
-Number of elicitation levels     :math: `l_i, i \in \{1, ..., I\}`                                  Category :math: `i` has elicited metric data at :math: `l_i` distinct funding levels.
-Metric data (elicited)           :math: `m_{jk_i}, j \in \{1, ..., J \}, k_i \in \{1, ..., l_i \}`  :math: `J` is the number of metrics for which data was elicited.
-================================ ================================================================== ===============
+
+.. _tbl-milpindex:
+
+.. table:: Index definitions for the MILP formulation.
+
+=========== ================================================================
+Index       Description
+=========== ================================================================
+:math: `I`  Number of elicited data points (investment levels and metrics)
+:math: `J`  Number of investment categories
+:math: `K`  Number of metrics
+=========== =================================================================
 
 
-================================ ====================================================================== ===============
-Variable                         Notation                                                               Information 
-================================ ====================================================================== ===============
-Investment amounts               :math: `c_{i}, i \in \{1, ..., I\}`                                    :math: `I` is the number of investment categories
-Metric value                     :math: `q_j, j \in \{1, ..., J \}`                                     :math: `J` is the number of metrics for which data was elicited
-Integer variables                :math: `y_{in_i}, n_i \in \{1, ..., l_i - 1 \}`                        Number of linear intervals for investment category :math: `i`
-Combination variables            :math: `\lambda_{ik_i}, i \in \{1, ..., I\}, k_i \in \{1, ..., l_i \}` Used to construct linear combinations of interval endpoints. :math: `\lambda_{ik_i} \geq 0 \forall i, k_i`
+.. _tbl-milpdat:
+
+.. table:: Data definitions for the MILP formulation.
+
+===================== ============================================================ ================================================================================================
+Data                  Notation                                                     Information 
+===================== ============================================================ ================================================================================================
+Investment amounts    :math: `c_{ij}, i \in \{1, ..., I\}`                         :math: `c_i` is a point in :math: `J`-dimensional space
+Metric value          :math: `q_{ik}, i \in \{1, ..., I \}, k \in \{1, ..., K \}`  One metric will form the objective function, leaving up to :math: `K-1` metrics for constraints
 
 
-BN: The number of intervals in which :math: `c_{i}` can be is not the same as the number of elicited levels. If we elicit data for :math: `l_i` funding levels, this defines :math: `l_i - 1` linear intervals for :math: `c_{i}$.
+.. _tbl-milpvar:
 
-Each metric :math: `m_j` and investment amount :math: `c_i` can be written as a linear combination of ``corners'' (elicited interval endpoints) and the new variables :math: `\lambda_{ik_i}$. Additional constraints on :math: `y_{in_i}` and :math: `\lambda_{ik_i}` take care of the piecewise linearity by ensuring that the corners used to calculate :math: `m_j` reflect the interval that :math: `c_i` is in.
+.. table:: Variable definitions for the MILP formulation.
+
+===================== ============================================== ====================================================================================================
+Variable              Notation                                       Information 
+===================== ============================================== ====================================================================================================
+Binary variables      :math: `y_{ii'}, i, i' \in \{1, ..., I\}, i' > i` Number of linear intervals between elicited data points.
+Combination variables :math: `\lambda_{i}, i \in \{1, ..., I\}`      Used to construct linear combinations of elicited data points. :math: `\lambda_{i} \geq 0 \forall i`
+
+Each metric :math: `m_j` and investment amount :math: `c_i` can be written as a linear combination of elicited data points and the newly introduced variables :math: `\lambda_{i}` and :math: `y_{ii'}`. Additional constraints on :math: `y_{ii'}` and :math: `\lambda_{i}` take care of the piecewise linearity by ensuring that the corners used to calculate :math: `q_k` reflect the interval that :math: `c_i` is in. There will be a total of :math: `\binom{I}{2}` binary :math: `y` variables, which reduces to :math: `\frac{I(I-1)}{2}` binary variables.
 
 
 One-Investment-Category, One-Metric Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Suppose we have an elicited data set for one metric (:math: `K = 1`) and one investment category (:math: `J = 1`) with three possible investment levels (:math: `I = 3`). We can write the total investment amount as a linear combination of the three investment levels $c_{i1}$, $i \in \{1, 2, 3\}$, using the :math: `\lambda` variables:
+
+:math: `\lambda_{1}c_{11} + \lambda_{2}c_{21} + \lambda_{13}c_{31} = \sum_{i} \lambda_{i}c_{i1}`
+
+We can likewise write the metric as a linear combination of :math: `q_{1i}` and the :math: `\lambda` variables:
+
+:math: `\lambda_{1}q_{11} + \lambda_{2}q_{21} + \lambda_{3}q_{31} = \sum_{i} \lambda_{i}q_{i1}`
+
+We have the additional constraint on the $\lambda$ variables that 
+
+:math: `\sum_{i} \lambda_{i} = 1`
+
+These equations, combined with the integer variables :math: `y_{ii'} = \{ y_{12}, y_{13}, y_{23} \}`, can be used to construct a mixed-integer linear optimization problem.
+
+The MILP that uses this formulation to minimize capital subject to a investment budget :math: `B` is as follows:
+
+:math: `\min_{y, \lambda} \lambda_{1}q_{11} + \lambda_{2}q_{21} + \lambda_{3}q_{31}`
+
+subject to
+
+:math: `\lambda_{1}c_{11} + \lambda_{2}c_{21} + \lambda_{3}c_{31} \leq B` , (1) Total budget constraint
+:math: `\lambda_1 + \lambda_2 + \lambda_3 = 1` , (2)
+:math: `y_{12} + y_{23} + y_{13} = 1` , (3)
+:math: `y_{12} \leq \lambda_1 + \lambda_2 , (4)
+:math: `y_{23} \leq \lambda_2 + \lambda_3 , (5)
+:math: `y_{13} \leq \lambda_1 + \lambda_3 , (6)
+:math: `0 \leq \lambda_1, \lambda_2, \lambda_3 \leq 1` , (7)
+:math: `y_{12}, y_{23}, y_{13} \in \{ 0, 1 \}` , (8)
+
+(We've effectively removed the investments and the metrics as variables, replacing them with the elicited data points and the new :math: `\lambda` and :math: `y` variables.)
+
 
 Extension to N x N Problem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Note: :math: `k'` indicates the metric which is being constrained. :math: `k*` indicates the metric being optimized. :math: `J'` indicates the set of investment categories which have a budget limit (there may be more than one budget-constrained category in a problem).
+
+**No metric constraint or investment category-specific budget constraint**
+
+:math: `\min_{y, \lambda} \sum_i \lambda_{i}q_{ik*}`
+
+subject to
+
+:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B, (1) Total budget constraint
+:math: `\sum_i \lambda_i = 1` , (2)
+:math: `\sum_{i,i'} y_{ii'} = 1` , (3)
+:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i' , (4)
+:math: `0 \leq \lambda_i \leq 1 \forall i` , (5)
+:math: `y_{ii'} \in \{ 0, 1 \} \forall i, i'` , (6)
+
+
+**With investment category-specific budget constraint**
+
+
+:math: `\min_{y, \lambda} \sum_i \lambda_{i}q_{ik*}`
+
+subject to
+
+:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B, (1) Total budget constraint
+:math: `\sum_i \lambda_{i}c_{ij'}` \leq B_{j'} \forall j' \in J'   (2) Investment category budget constraint(s)
+:math: `\sum_i \lambda_i = 1` , (3)
+:math: `\sum_{i,i'} y_{ii'} = 1` , (4)
+:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i' , (5)
+:math: `0 \leq \lambda_i \leq 1 \forall i` , (6)
+:math: `y_{ii'} \in \{ 0, 1 \} \forall i, i'` , (7)
+
+
+**With metric constraint and investment category-specific budget constraint**
+
+
+:math: `\min_{y, \lambda} \sum_i \lambda_{i}q_{ik*}`
+
+subject to
+
+:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B, (1) Total budget constraint
+:math: `\sum_i \lambda_{i}c_{ij'}` \leq B_{j'} \forall j' \in J'   (2) Investment category budget constraint(s)
+:math: `\sum_i \lambda_{i}q_{ik'}` \leq M_{k'} , (3) Metric constraint
+:math: `\sum_i \lambda_i = 1` , (4)
+:math: `\sum_{i,i'} y_{ii'} = 1` , (5)
+:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i' , (6)
+:math: `0 \leq \lambda_i \leq 1 \forall i` , (7)
+:math: `y_{ii'} \in \{ 0, 1 \} \forall i, i'` , (8)
 
 
 **Problem Size**
 
+In general, :math: `I` is the number of rows in the dataset of elicited data. In the case that all investment categories have elicited data at the same number of levels (not necessarily the same levels themselves), :math: `I` can also be calculated as :math: `l^J` where :math: `l` is the number of investment levels.
 
+The problem will involve :math: `\frac{I(I-1)}{2}` binary variables and :math: `I` continuous (:math: `\lambda`) variables.
 
 
 References
