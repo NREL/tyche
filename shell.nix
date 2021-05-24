@@ -63,6 +63,7 @@ let
 
   env = (
     python.withPackages (ps: with ps; [
+      hypercorn
       matplotlib
     # mystic
       numpy
@@ -71,9 +72,11 @@ let
     # pymoso
     # pyomo
       quart
+      recommonmark
     # scikitlearn
       scipy
       seaborn
+      sphinx
     # statsmodels
     ])
   ).env;
