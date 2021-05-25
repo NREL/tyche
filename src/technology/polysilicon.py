@@ -2,6 +2,11 @@ import numpy           as np
 #mport numpy_financial as npf
 
 
+""" 
+------ Define Functions for Manufacturing Step Costs -----
+"""
+
+
 def buildingCosts(floorSQF, clean10KSQF, clean1KSQF, clean100SQF, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost):    
     return buildingCostSQF * floorSQF + CR10KCost * clean10KSQF + CR1KCost * clean1KSQF + CR100Cost * clean100SQF
 
@@ -28,19 +33,17 @@ def sizeFilamentBatch(diameter, filamentWidth, kerfLoss):
     size = np.trunc(0.9 * size)
     return size
 
-
 financialsHeader = [
-    "Material Cost"      ,
-    "Direct Labor Cost"  ,
-    "Utility Cost"       ,
-    "Equipment Cost"     ,
-    "Tooling Cost"       ,
-    "Building Cost"      ,
-    "Maintenance Cost"   ,
-    "Overhead Labor Cost",
-    "Cost of Capital"    ,
+    'Material Cost',
+    'Direct Labor Cost',
+    'Utility Cost',
+    'Equipment Cost',
+    'Tooling Cost',
+    'Building Cost',
+    'Maintenance Cost',
+    'Overhead Labor Cost',
+    'Cost of Capital'
 ]
-
 
 MATERIAL_COST       = np.array([1, 0, 0, 0, 0, 0, 0, 0, 0])
 DIRECT_LABOR_COST   = np.array([0, 1, 0, 0, 0, 0, 0, 0, 0])
@@ -56,8 +59,7 @@ VARIABLE_COSTS = MATERIAL_COST + DIRECT_LABOR_COST + UTILITY_COST
 WORKING_COSTS = VARIABLE_COSTS + MAINTENANCE_COST + OVERHEAD_LABOR_COST
 FIXED_COSTS = EQUIPMENT_COST + TOOLING_COST + BUILDING_COST + MAINTENANCE_COST + OVERHEAD_LABOR_COST + COST_OF_CAPITAL
 
-
-def stackFinancials(
+def makeFinancials(
     materialCost      = 0,
     directLaborCost   = 0,
     UtilityCost       = 0,
@@ -81,7 +83,6 @@ def stackFinancials(
             costOfCapital    ,
         ]
     )
-
 
 def financialSummary(dfs):
     summary = dfs.sum(axis = 0)[0]
@@ -129,20 +130,43 @@ def financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runt
         Power requirement for the manufacutirng process
     equipMaintCost : float
         Equipment cost expressed as fraction of total investment
+        
     """
 
-    annualProdVol    = z[232] # Scenario: Annual Production Volume
-    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
-    buildingLife     = z[130] # Indices: Building Recovery Life
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
+
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
     capitalRecRate   = z[128] # Indices: Capital Recovery Rate
-    elecPrice        = z[132] # Indices: Price of Electricity
     equipRecLife     = z[129] # Indices: Equipment Recovery Life
-    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
-    plantLife        = z[234] # Scenario: Length of Production Run
-    salary           = z[123] # Indices: Indirect Salary
-    skilledWage      = z[122] # Indices: Skilled Direct Wages
-    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    buildingLife     = z[130] # Indices: Building Recovery Life
     workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
 
     # calculate total costs to input into annuities and cost summary
     totalEquipInvest = capitalInvestment * (1 + auxEquipInvest) * (1 + installFactor) * np.ceil(runtimeOneStation)
@@ -155,12 +179,12 @@ def financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runt
     buildingAnnuity = np.pmt(capitalRecRate / 12, buildingLife * 12, -totalBuildingInvest) * (numParallelStations / np.ceil(runtimeOneStation)) * 12
 
     # create dataframe with normalized costs and total costs
-    costSummaryWeight = stackFinancials(
+    costSummaryWeight = makeFinancials(
                     totalMaterialCosts,
                     (unskilledWage * (1 + benefitFactor) * unskilledDirectLaborers / throughput + skilledWage * (1 + benefitFactor) * skilledDirectLaborers / throughput) / ((1 - avgDowntime) * (1 - cumRejectionRate)),
                     operatingPowerConsumption * elecPrice / ((throughput * (1 - cumRejectionRate) * (1 - avgDowntime))), 
                     0,0,0,0,0,0)
-    costSummaryTime = stackFinancials(
+    costSummaryTime = makeFinancials(
                     0,0,0,
                     totalEquipInvest * numParallelStations / (equipRecLife * np.ceil(runtimeOneStation)), 
                     totalToolingInvest / plantLife, 
@@ -181,7 +205,7 @@ def financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runt
     return np.stack([costSummaryWeight, costSummaryTime]) # dataframe object
 
 
-def harvestChunk(z): 
+def harvestChunk(inUse, z): 
     """
     Calculates cost of Harvest Chunk manfucturing step
     
@@ -199,45 +223,65 @@ def harvestChunk(z):
         Cumulative rejection rate (waste) for process steps
     """
     
-    annualProdVol     = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF   = z[134]      # Indices: Price of Building Space
-    capexFactor       = z[145]      # Indices: CapEx Correction Factor
-    CR100Cost         = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost         = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost          = z[136]      # Indices: Price of CR1K Building Space
-    days              = z[126]      # Indices: Working Days per Year
-    dedicatedEquip    = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    equipDiscount     = z[139]      # Indices: Equipment Discount
-    harvestChunkInUse = z[235] == 1 # Scenario: Use Harvest Chunk?
-    hrs               = z[127]      # Indices: Working Hours per Day
-    laborFactor       = z[144]      # Indices: Labor Count Multiplier
-    plantLife         = z[234]      # Scenario: Length of Production Run
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
 
-    if not harvestChunkInUse:
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+
+    if not inUse:
         costSummary, cumRejectionRate = skipStep()
     else: 
         
         # define input parameters
-
         argonGas                  = z[102]               # Harvest Chunk: Argon Usage
         argonPrice                = z[103]               # Harvest Chunk: Argon Price
         argonScrapRate            = z[104]               # Harvest Chunk: Argon Scrap Rate
-        auxEquipInvest            = z[108]               # Harvest Chunk: Auxiliary Equipment Investment
+        polySiYieldLossRate       = z[105]               # Harvest Chunk: Poly Si Yield Loss
+        polySiScrapReclRate       = z[106]               # Harvest Chunk: Poly Si Scrap Reclemation Rate
         avgDowntime               = z[107]               # Harvest Chunk: Average Downtime
+        auxEquipInvest            = z[108]               # Harvest Chunk: Auxiliary Equipment Investment
+        installFactor             = z[109]               # Harvest Chunk: Installation Cost Factor
+        equipMaintCost            = z[110]               # Harvest Chunk: Equipment Maintenance Cost Factor
         baseCapEx                 = z[120]               # Harvest Chunk: Capital Investment
-        clean100SQM               = z[119]               # Harvest Chunk: Clean 100 SQM
+        unskilledDirectLaborers   = z[111] * laborFactor # Harvest Chunk: Unskilled Direct Laborers Factor
+        skilledDirectLaborers     = z[112] * laborFactor # Harvest Chunk: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[113]               # Harvest Chunk: Tooling Investment
+        toolingLife               = z[114]               # Harvest Chunk: Tooling Life
+        operatingPowerConsumption = z[115]               # Harvest Chunk: Operating Power Consumption
+        floorSQM                  = z[116]               # Harvest Chunk: Floor SQM
         clean10KSQM               = z[117]               # Harvest Chunk: Clean 10k SQM
         clean1KSQM                = z[118]               # Harvest Chunk: Clean 1k SQM
-        equipMaintCost            = z[110]               # Harvest Chunk: Equipment Maintenance Cost Factor
-        floorSQM                  = z[116]               # Harvest Chunk: Floor SQM
-        installFactor             = z[109]               # Harvest Chunk: Installation Cost Factor
-        operatingPowerConsumption = z[115]               # Harvest Chunk: Operating Power Consumption
-        polySiScrapReclRate       = z[106]               # Harvest Chunk: Poly Si Scrap Reclemation Rate
-        polySiYieldLossRate       = z[105]               # Harvest Chunk: Poly Si Yield Loss
-        skilledDirectLaborers     = z[112] * laborFactor # Harvest Chunk: Skilled Direct Laborers Factor
-        toolingLife               = z[114]               # Harvest Chunk: Tooling Life
-        toolinglInvestment        = z[113]               # Harvest Chunk: Tooling Investment
-        unskilledDirectLaborers   = z[111] * laborFactor # Harvest Chunk: Unskilled Direct Laborers Factor
+        clean100SQM               = z[119]               # Harvest Chunk: Clean 100 SQM
 
         # intermediate calculations
         
@@ -260,6 +304,7 @@ def harvestChunk(z):
         
         buildingCostperStation = buildingCosts(floorSQM, clean10KSQM, clean1KSQM, clean100SQM, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost)
         
+        
         # cost calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
@@ -268,7 +313,7 @@ def harvestChunk(z):
     return costSummary, cumRejectionRate
 
 
-def siemensCVD(harvestChunkRejRate, z):
+def siemensCVD(inUse, harvestChunkRejRate, z):
     """
     Calculates cost of Harvest Chunk manfucturing step
     
@@ -296,52 +341,74 @@ def siemensCVD(harvestChunkRejRate, z):
         Effective production volume from the manufacturing step
     """
     
-    annualProdVol    = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF  = z[134]      # Indices: Price of Building Space
-    capexFactor      = z[145]      # Indices: CapEx Correction Factor
-    CR100Cost        = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost        = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost         = z[136]      # Indices: Price of CR1K Building Space
-    days             = z[126]      # Indices: Working Days per Year
-    dedicatedEquip   = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    equipDiscount    = z[139]      # Indices: Equipment Discount
-    hrs              = z[127]      # Indices: Working Hours per Day
-    laborFactor      = z[144]      # Indices: Labor Count Multiplier
-    plantLife        = z[234]      # Scenario: Length of Production Run
-    siemensCVDInUse  = z[236] == 1 # Scenario: Use Siemens CVD?
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
 
-    if not siemensCVDInUse:
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+
+    if not inUse:
         costSummary, cumRejectionRate = skipStep()
         reactorThroughput, totalSiPerRod, usableSiPerRod, effProductionVol = 0, 0, 0, 0
     else:
         
         # define siemens CVD mfg step input parameters
 
-        auxEquipInvest            = z[260]               # Siemens CSV: Auxiliary Equipment Investment
-        avgDowntime               = z[250]               # Siemens CSV: Average Downtime
-        baseCapEx                 = z[259]               # Siemens CSV: Capital Investment
-        batchSize                 = z[254]               # Siemens CSV: Batch Size
-        clean100SQM               = z[269]               # Siemens CSV: Clean 100 SQM
-        clean10KSQM               = z[267]               # Siemens CSV: Clean 10k SQM
-        clean1KSQM                = z[268]               # Siemens CSV: Clean 1k SQM
-        equipMaintCost            = z[262]               # Siemens CSV: Equipment Maintenance Cost Factor
-        finalRodSize              = z[255]               # Siemens CSV: Final Rod Size
-        floorSQM                  = z[266]               # Siemens CSV: Floor SQM
         h2Gas                     = z[244]               # Siemens CSV: Hydrogen Consumption Rate
         h2Price                   = z[245]               # Siemens CSV: Hydrogen Price
         h2ScrapRate               = z[246]               # Siemens CSV: Hydrogen Scrap Rate
-        inputCycleTime            = z[257]               # Siemens CSV: Cycle Time
-        installFactor             = z[261]               # Siemens CSV: Installation Cost Factor
         materialScrapRate         = z[247]               # Siemens CSV: Material Scrap Rate
-        operatingPowerConsumption = z[265]               # Siemens CSV: Operating Power Consumption
-        otherConsumableCost       = z[251]               # Siemens CSV: Other Consumable Cost
         polySiRejectRate          = z[248]               # Siemens CSV: Poly Si Reject Rate
         polySiScrapReclRate       = z[249]               # Siemens CSV: Poly Si Scrap Rec Rate
+        avgDowntime               = z[250]               # Siemens CSV: Average Downtime
+        otherConsumableCost       = z[251]               # Siemens CSV: Other Consumable Cost
+        batchSize                 = z[254]               # Siemens CSV: Batch Size
+        finalRodSize              = z[255]               # Siemens CSV: Final Rod Size
+        inputCycleTime            = z[257]               # Siemens CSV: Cycle Time
         processTime               = z[258]               # Siemens CSV: Setup, Harvest, Clean Time
-        skilledDirectLaborers     = z[253] * laborFactor # Siemens CSV: Skilled Direct Laborers Factor
-        toolingLife               = z[264]               # Siemens CSV: Tooling Life
-        toolinglInvestment        = z[263]               # Siemens CSV: Tooling Investment
+        baseCapEx                 = z[259]               # Siemens CSV: Capital Investment
+        auxEquipInvest            = z[260]               # Siemens CSV: Auxiliary Equipment Investment
+        installFactor             = z[261]               # Siemens CSV: Installation Cost Factor
+        equipMaintCost            = z[262]               # Siemens CSV: Equipment Maintenance Cost Factor
         unskilledDirectLaborers   = z[252] * laborFactor # Siemens CSV: Unskilled Direct Laborers Factor
+        skilledDirectLaborers     = z[253] * laborFactor # Siemens CSV: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[263]               # Siemens CSV: Tooling Investment
+        toolingLife               = z[264]               # Siemens CSV: Tooling Life
+        operatingPowerConsumption = z[265]               # Siemens CSV: Operating Power Consumption
+        floorSQM                  = z[266]               # Siemens CSV: Floor SQM
+        clean10KSQM               = z[267]               # Siemens CSV: Clean 10k SQM
+        clean1KSQM                = z[268]               # Siemens CSV: Clean 1k SQM
+        clean100SQM               = z[269]               # Siemens CSV: Clean 100 SQM
+        
         
         # intermediate calculations
         
@@ -370,6 +437,7 @@ def siemensCVD(harvestChunkRejRate, z):
         materialCosts = h2Gas * h2Price / throughput
         totalMaterialCosts = materialCosts / ((1 - cumRejectionRate) * (1 - h2ScrapRate)) / (1 - (materialScrapRate + polySiRejectRate)) + (otherConsumableCost / (1 - cumRejectionRate))
         
+        
         # financial calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
@@ -378,7 +446,7 @@ def siemensCVD(harvestChunkRejRate, z):
     return costSummary, reactorThroughput, cumRejectionRate, totalSiPerRod, usableSiPerRod, effProductionVol
 
 
-def etchFilaments(siemensCVDRejRate, usableSiPerRod, siemensEffProd, z):
+def etchFilaments(inUse, siemensCVDRejRate, usableSiPerRod, siemensEffProd, z):
     """
     Calculates cost of Etch Filaments manfucturing step
     
@@ -401,60 +469,81 @@ def etchFilaments(siemensCVDRejRate, usableSiPerRod, siemensEffProd, z):
     """
     
     annualProdVol      = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF    = z[134]      # Indices: Price of Building Space
-    capexFactor        = z[145]      # Indices: CapEx Correction Factor
-    CR100Cost          = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost          = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost           = z[136]      # Indices: Price of CR1K Building Space
-    days               = z[126]      # Indices: Working Days per Year
-    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    equipDiscount      = z[139]      # Indices: Equipment Discount
-    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
-    hrs                = z[127]      # Indices: Working Hours per Day
-    laborFactor        = z[144]      # Indices: Labor Count Multiplier
     plantLife          = z[234]      # Scenario: Length of Production Run
-    virginFilament     = z[101]      # Etch Filament: Fraction Virgin Filament
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
+
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+    virginFilament   = z[101] # Etch Filament: Fraction Virgin Filament
     
-    if not etchFilamentsInUse: 
+    if not inUse: 
         costSummary, cumRejectionRate = skipStep()
         HPProduction = 0
     else:
         
         # define etch filaments input parameters
 
-        auxEquipInvest            = z[ 18]               # TCS: Auxiliary Equipment Investment
-        avgDowntime               = z[ 82]               # Etch Filament: Average Downtime
-        baseCapEx                 = z[ 91]               # Etch Filament: Capital Investment
-        clean100SQM               = z[100]               # Etch Filament: Clean 100 SQM
-        clean10KSQM               = z[ 98]               # Etch Filament: Clean 10k SQM
-        clean1KSQM                = z[ 99]               # Etch Filament: Clean 1k SQM
-        DIWater                   = z[ 78]               # Etch Filament: DI Water Consumption Rate
-        DIWaterPrice              = z[ 79]               # Etch Filament: DI Water Price
-        equipMaintCost            = z[ 93]               # Etch Filament: Equipment Maintenance Cost Factor
-        filamentBatchSize         = z[ 85]               # Etch Filament: Filament Batch Size
-        filamentCycleTime         = z[ 87]               # Etch Filament: Filament Cycle Time
-        filamentSetupTime         = z[ 86]               # Etch Filament: Filament Setup Time
-        floorSQM                  = z[ 97]               # Etch Filament: Floor SQM
         HFGas                     = z[ 72]               # Etch Filament: HF Consumption Rate
         HFPrice                   = z[ 73]               # Etch Filament: HF Price
-        HPBatchSize               = z[ 88]               # Etch Filament: HP Batch Size
-        HPCycleTime               = z[ 90]               # Etch Filament: HP Cycle Time
-        HPSetupTime               = z[ 89]               # Etch Filament: HP Setup Time
-        installFactor             = z[ 92]               # Etch Filament: Installation Cost Factor
-        materialScrapRate         = z[ 80]               # Etch Filament: Material Scrap Rate
+        NitricRate                = z[ 74]               # Etch Filament: Nitric Consumption Rate
+        NitricPrice               = z[ 75]               # Etch Filament: Nitric Acid Price
         N2Gas                     = z[ 76]               # Etch Filament: Nitrogen Consumption Rate
         N2Price                   = z[ 77]               # Etch Filament: Nitrogen Price
-        NitricPrice               = z[ 75]               # Etch Filament: Nitric Acid Price
-        NitricRate                = z[ 74]               # Etch Filament: Nitric Consumption Rate
-        operatingPowerConsumption = z[ 96]               # Etch Filament: Operating Power Consumption
+        DIWater                   = z[ 78]               # Etch Filament: DI Water Consumption Rate
+        DIWaterPrice              = z[ 79]               # Etch Filament: DI Water Price
+        materialScrapRate         = z[ 80]               # Etch Filament: Material Scrap Rate
         partRejectRate            = z[ 81]               # Etch Filament: Part Reject Rate
-        skilledDirectLaborers     = z[ 84] * laborFactor # Etch Filament: Skilled Direct Laborers Factor
-        toolingLife               = z[ 95]               # Etch Filament: Tooling Life
-        toolinglInvestment        = z[ 94]               # Etch Filament: Tooling Investment
+        avgDowntime               = z[ 82]               # Etch Filament: Average Downtime
+        filamentBatchSize         = z[ 85]               # Etch Filament: Filament Batch Size
+        filamentSetupTime         = z[ 86]               # Etch Filament: Filament Setup Time
+        filamentCycleTime         = z[ 87]               # Etch Filament: Filament Cycle Time
+        HPBatchSize               = z[ 88]               # Etch Filament: HP Batch Size
+        HPSetupTime               = z[ 89]               # Etch Filament: HP Setup Time
+        HPCycleTime               = z[ 90]               # Etch Filament: HP Cycle Time
+        baseCapEx                 = z[ 91]               # Etch Filament: Capital Investment
+        auxEquipInvest            = z[ 18]               # TCS: Auxiliary Equipment Investment
+        installFactor             = z[ 92]               # Etch Filament: Installation Cost Factor
+        equipMaintCost            = z[ 93]               # Etch Filament: Equipment Maintenance Cost Factor
         unskilledDirectLaborers   = z[ 83] * laborFactor # Etch Filament: Unskilled Direct Laborers Factor
+        skilledDirectLaborers     = z[ 84] * laborFactor # Etch Filament: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[ 94]               # Etch Filament: Tooling Investment
+        toolingLife               = z[ 95]               # Etch Filament: Tooling Life
+        operatingPowerConsumption = z[ 96]               # Etch Filament: Operating Power Consumption
+        floorSQM                  = z[ 97]               # Etch Filament: Floor SQM
+        clean10KSQM               = z[ 98]               # Etch Filament: Clean 10k SQM
+        clean1KSQM                = z[ 99]               # Etch Filament: Clean 1k SQM
+        clean100SQM               = z[100]               # Etch Filament: Clean 100 SQM
+        
         
         # intermediate calculations
-
         HPProduction = 0    # scrubbed?
         
         cumRejectionRate = 1 - ( (1 - partRejectRate) * (1 - siemensCVDRejRate) )
@@ -479,15 +568,17 @@ def etchFilaments(siemensCVDRejRate, usableSiPerRod, siemensEffProd, z):
                 
         buildingCostperStation = buildingCosts(floorSQM, clean10KSQM, clean1KSQM, clean100SQM, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost)
 
+
         # financial calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
                                             totalMaterialCosts, unskilledDirectLaborers, skilledDirectLaborers, throughput, avgDowntime, cumRejectionRate, operatingPowerConsumption, equipMaintCost, z)
         
+        
     return costSummary, cumRejectionRate, HPProduction
 
 
-def machineFilaments(etchRejectionRate, totalSiPerRod, z):
+def machineFilaments(inUse, etchRejectionRate, totalSiPerRod, z):
     """
     Calculates cost of Machining Filaments manfucturing step
     
@@ -509,54 +600,76 @@ def machineFilaments(etchRejectionRate, totalSiPerRod, z):
         Cumulative rejection rate (waste) for process steps
     """
     
-    annualProdVol    = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF  = z[134]      # Indices: Price of Building Space
-    capexFactor      = z[145]      # Indices: CapEx Correction Factor
-    CR100Cost        = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost        = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost         = z[136]      # Indices: Price of CR1K Building Space
-    days             = z[126]      # Indices: Working Days per Year
-    dedicatedEquip   = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    hrs              = z[127]      # Indices: Working Hours per Day
-    laborFactor      = z[144]      # Indices: Labor Count Multiplier
-    machineFilInUse  = z[238] == 1 # Scenario: Use Machine Filaments?
-    plantLife        = z[234]      # Scenario: Length of Production Run
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
 
-    if not machineFilInUse: 
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+
+    if not inUse: 
         costSummary, cumRejectionRate = skipStep()
     else:
         
         # define etch filaments input parameters
 
-        auxEquipInvest            = z[195]               # Machine Filament: Auxiliary Equipment Investment
+        consumableRate            = z[183]               # Machine Filament: Consumable Rate
+        consumablePrice           = z[184]               # Machine Filament: Consumable Price
+        materialScrapRate         = z[185]               # Machine Filament: Material Scrap Rate
+        yieldLoss                 = z[186]               # Machine Filament: Yield Loss
+        scrapRecRate              = z[187]               # Machine Filament: Scrap Reclamation Rate
         avgDowntime               = z[188]               # Machine Filament: Average Downtime
+        filamentBatchSize         = z[191]               # Machine Filament: Filament Batch Size
+        filamentSetupTime         = z[192]               # Machine Filament: Filament Setup Time
+        filamentCycleTime         = z[193]               # Machine Filament: Filament Cycle Time
         baseCapEx                 = z[194]               # Machine Filament: Capital Investment
-        clean100SQM               = z[204]               # Machine Filament: Clean 100 SQM
+        auxEquipInvest            = z[195]               # Machine Filament: Auxiliary Equipment Investment
+        installFactor             = z[196]               # Machine Filament: Installation Cost Factor
+        equipMaintCost            = z[197]               # Machine Filament: Equipment Maintenance Cost Factor
+        unskilledDirectLaborers   = z[189] * laborFactor # Machine Filament: Unskilled Direct Laborers Factor
+        skilledDirectLaborers     = z[190] * laborFactor # Machine Filament: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[198]               # Machine Filament: Tooling Investment
+        toolingLife               = z[199]               # Machine Filament: Tooling Life
+        operatingPowerConsumption = z[200]               # Machine Filament: Operating Power Consumption
+        floorSQM                  = z[201]               # Machine Filament: Floor SQM
         clean10KSQM               = z[202]               # Machine Filament: Clean 10k SQM
         clean1KSQM                = z[203]               # Machine Filament: Clean 1k SQM
-        consumablePrice           = z[184]               # Machine Filament: Consumable Price
-        consumableRate            = z[183]               # Machine Filament: Consumable Rate
-        equipMaintCost            = z[197]               # Machine Filament: Equipment Maintenance Cost Factor
-        filamentBatchSize         = z[191]               # Machine Filament: Filament Batch Size
-        filamentCycleTime         = z[193]               # Machine Filament: Filament Cycle Time
-        filamentSetupTime         = z[192]               # Machine Filament: Filament Setup Time
-        filamentWidth             = z[218]               # Saw Ingots: Filament Width
-        finalDiameter             = z[164]               # Ingot Growth: Final Ingot Diameter
-        floorSQM                  = z[201]               # Machine Filament: Floor SQM
-        ingotDiameter             = z[163]               # Ingot Growth: As Grown Ingot Diameter
-        ingotLength               = z[161]               # Ingot Growth: Ingot Length
-        ingotWeight               = z[162]               # Ingot Growth: Ingot Weight (tops and tails)
-        installFactor             = z[196]               # Machine Filament: Installation Cost Factor
-        kerfLoss                  = z[210]               # Saw Ingots: Kerf Loss
-        materialScrapRate         = z[185]               # Machine Filament: Material Scrap Rate
-        operatingPowerConsumption = z[200]               # Machine Filament: Operating Power Consumption
-        scrapRecRate              = z[187]               # Machine Filament: Scrap Reclamation Rate
-        skilledDirectLaborers     = z[190] * laborFactor # Machine Filament: Skilled Direct Laborers Factor
-        toolingLife               = z[199]               # Machine Filament: Tooling Life
-        toolinglInvestment        = z[198]               # Machine Filament: Tooling Investment
-        unskilledDirectLaborers   = z[189] * laborFactor # Machine Filament: Unskilled Direct Laborers Factor
-        yieldLoss                 = z[186]               # Machine Filament: Yield Loss
+        clean100SQM               = z[204]               # Machine Filament: Clean 100 SQM
         
+        ingotLength   = z[161] # Ingot Growth: Ingot Length
+        ingotWeight   = z[162] # Ingot Growth: Ingot Weight (tops and tails)
+        ingotDiameter = z[163] # Ingot Growth: As Grown Ingot Diameter
+        finalDiameter = z[164] # Ingot Growth: Final Ingot Diameter
+        filamentWidth = z[218] # Saw Ingots: Filament Width
+        kerfLoss      = z[210] # Saw Ingots: Kerf Loss
         ingotGrossWeight = grossIngotWeight(ingotLength, ingotWeight, ingotDiameter)
         growthBatchSize = sizeFilamentBatch(finalDiameter, filamentWidth, kerfLoss)
 
@@ -584,15 +697,17 @@ def machineFilaments(etchRejectionRate, totalSiPerRod, z):
                 
         buildingCostperStation = buildingCosts(floorSQM, clean10KSQM, clean1KSQM, clean100SQM, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost)
 
+
         # financial calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
                                             totalMaterialCosts, unskilledDirectLaborers, skilledDirectLaborers, throughput, avgDowntime, cumRejectionRate, operatingPowerConsumption, equipMaintCost, z)
         
+        
     return costSummary, cumRejectionRate
 
 
-def sawIngots(machineRejectRate, usableSiPerRod, totalSiPerRod, z):
+def sawIngots(inUse, machineRejectRate, usableSiPerRod, totalSiPerRod, z):
     """
     Calculates cost of Sawing Ingot manfucturing step
     
@@ -616,58 +731,80 @@ def sawIngots(machineRejectRate, usableSiPerRod, totalSiPerRod, z):
         Cumulative rejection rate (waste) for process steps
     """
     
-    CR100Cost        = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost        = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost         = z[136]      # Indices: Price of CR1K Building Space
-    annualProdVol    = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF  = z[134]      # Indices: Price of Building Space
-    capexFactor      = z[145]      # Indices: CapEx Correction Factor
-    days             = z[126]      # Indices: Working Days per Year
-    dedicatedEquip   = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    hrs              = z[127]      # Indices: Working Hours per Day
-    laborFactor      = z[144]      # Indices: Labor Count Multiplier
-    plantLife        = z[234]      # Scenario: Length of Production Run
-    sawIngotInUse    = z[239] == 1 # Scenario: Use Saw Ingots?
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
 
-    if not sawIngotInUse: 
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+
+    if not inUse: 
         costSummary, cumRejectionRate = skipStep()
     else:
         
         # define etch filaments input parameters
 
-        auxEquipInvest            = z[222]               # Saw Ingots: Auxiliary Equipment Investment
-        avgDowntime               = z[214]               # Saw Ingots: Average Downtime
-        baseCapEx                 = z[221]               # Saw Ingots: Capital Investment
-        batchSize                 = z[217]               # Saw Ingots: Batch Size
-        clean100SQM               = z[231]               # Saw Ingots: Clean 100 SQM
-        clean10KSQM               = z[229]               # Saw Ingots: Clean 10k SQM
-        clean1KSQM                = z[230]               # Saw Ingots: Clean 1k SQM
-        cutSpeed                  = z[220]               # Saw Ingots: Cutting Speed
-        equipMaintCost            = z[224]               # Saw Ingots: Equipment Maintenance Cost Factor
-        filamentWidth             = z[218]               # Saw Ingots: Filament Width
-        finalDiameter             = z[164]               # Ingot Growth: Final Ingot Diameter
-        floorSQM                  = z[228]               # Saw Ingots: Floor SQM
-        ingotDiameter             = z[163]               # Ingot Growth: As Grown Ingot Diameter
-        ingotLength               = z[161]               # Ingot Growth: Ingot Length
-        ingotWeight               = z[162]               # Ingot Growth: Ingot Weight (tops and tails)
-        installFactor             = z[223]               # Saw Ingots: Installation Cost Factor
-        kerfLoss                  = z[210]               # Saw Ingots: Kerf Loss
-        kerfLoss                  = z[210]               # Saw Ingots: Kerf Loss
-        kerfPrice                 = z[212]               # Saw Ingots: Kerf Loss Si Price
-        operatingPowerConsumption = z[227]               # Saw Ingots: Operating Power Consumption
-        partRejectRate            = z[213]               # Saw Ingots: Part Reject Rate
-        sellKerf                  = z[211]               # Saw Ingots: Sell Kerf Loss Si?
-        setupTime                 = z[219]               # Saw Ingots: Setup Time
+        wireLife                  = z[205]               # Saw Ingots: Wire Life
+        wireCost                  = z[206]               # Saw Ingots: Wire Cost
         SiCSlurryConsumption      = z[207]               # Saw Ingots: SiC Slurry Consumption
         SiCSlurryPrice            = z[208]               # Saw Ingots: SiC Slurry Price
         SiCSlurryScrap            = z[209]               # Saw Ingots: SiC Slurry Scrap Rate
-        skilledDirectLaborers     = z[216] * laborFactor # Saw Ingots: Skilled Direct Laborers Factor
-        toolingLife               = z[226]               # Saw Ingots: Tooling Life
-        toolinglInvestment        = z[225]               # Saw Ingots: Tooling Investment
+        kerfLoss                  = z[210]               # Saw Ingots: Kerf Loss
+        sellKerf                  = z[211]               # Saw Ingots: Sell Kerf Loss Si?
+        kerfPrice                 = z[212]               # Saw Ingots: Kerf Loss Si Price
+        partRejectRate            = z[213]               # Saw Ingots: Part Reject Rate
+        avgDowntime               = z[214]               # Saw Ingots: Average Downtime
+        batchSize                 = z[217]               # Saw Ingots: Batch Size
+        setupTime                 = z[219]               # Saw Ingots: Setup Time
+        cutSpeed                  = z[220]               # Saw Ingots: Cutting Speed
+        baseCapEx                 = z[221]               # Saw Ingots: Capital Investment
+        auxEquipInvest            = z[222]               # Saw Ingots: Auxiliary Equipment Investment
+        installFactor             = z[223]               # Saw Ingots: Installation Cost Factor
+        equipMaintCost            = z[224]               # Saw Ingots: Equipment Maintenance Cost Factor
         unskilledDirectLaborers   = z[215] * laborFactor # Saw Ingots: Unskilled Direct Laborers Factor
-        wireCost                  = z[206]               # Saw Ingots: Wire Cost
-        wireLife                  = z[205]               # Saw Ingots: Wire Life
+        skilledDirectLaborers     = z[216] * laborFactor # Saw Ingots: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[225]               # Saw Ingots: Tooling Investment
+        toolingLife               = z[226]               # Saw Ingots: Tooling Life
+        operatingPowerConsumption = z[227]               # Saw Ingots: Operating Power Consumption
+        floorSQM                  = z[228]               # Saw Ingots: Floor SQM
+        clean10KSQM               = z[229]               # Saw Ingots: Clean 10k SQM
+        clean1KSQM                = z[230]               # Saw Ingots: Clean 1k SQM
+        clean100SQM               = z[231]               # Saw Ingots: Clean 100 SQM
 
+        ingotLength   = z[161] # Ingot Growth: Ingot Length
+        ingotWeight   = z[162] # Ingot Growth: Ingot Weight (tops and tails)
+        ingotDiameter = z[163] # Ingot Growth: As Grown Ingot Diameter
+        finalDiameter = z[164] # Ingot Growth: Final Ingot Diameter
+        filamentWidth = z[218] # Saw Ingots: Filament Width
+        kerfLoss      = z[210] # Saw Ingots: Kerf Loss
         ingotGrossWeight = grossIngotWeight(ingotLength, ingotWeight, ingotDiameter)
         growthBatchSize = sizeFilamentBatch(finalDiameter, filamentWidth, kerfLoss)
         
@@ -696,15 +833,17 @@ def sawIngots(machineRejectRate, usableSiPerRod, totalSiPerRod, z):
                 
         buildingCostperStation = buildingCosts(floorSQM, clean10KSQM, clean1KSQM, clean100SQM, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost)
 
+
         # financial calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
                                             totalMaterialCosts, unskilledDirectLaborers, skilledDirectLaborers, throughput, avgDowntime, cumRejectionRate, operatingPowerConsumption, equipMaintCost, z)
         
+        
     return costSummary, cumRejectionRate
 
 
-def cropIngots(sawRejectRate, totalSiPerRod, z):
+def cropIngots(inUse, sawRejectRate, totalSiPerRod, z):
     """
     Calculates cost of Crop Ingot manfucturing step
     
@@ -726,56 +865,78 @@ def cropIngots(sawRejectRate, totalSiPerRod, z):
         Cumulative rejection rate (waste) for process steps
     """
     
-    annualProdVol    = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF  = z[134]      # Indices: Price of Building Space
-    capexFactor      = z[145]      # Indices: CapEx Correction Factor
-    CR100Cost        = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost        = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost         = z[136]      # Indices: Price of CR1K Building Space
-    cropIngotInUse   = z[240] == 1 # Scenario: Use Crop Ingots?
-    days             = z[126]      # Indices: Working Days per Year
-    dedicatedEquip   = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    hrs              = z[127]      # Indices: Working Hours per Day
-    laborFactor      = z[144]      # Indices: Labor Count Multiplier
-    plantLife        = z[234]      # Scenario: Length of Production Run
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
 
-    if not cropIngotInUse: 
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+
+    if not inUse: 
         costSummary, cumRejectionRate = skipStep()
     else:
         
         # define etch filaments input parameters
 
-        auxEquipInvest            = z[ 62]               # Crop Ingots: Auxiliary Equipment Investment
-        avgDowntime               = z[ 55]               # Crop Ingots: Average Downtime
-        baseCapEx                 = z[ 61]               # Crop Ingots: Capital Investment
-        batchSize                 = z[ 58]               # Crop Ingots: Batch Size
-        bladeCost                 = z[ 50]               # Crop Ingots: Blade Cost
-        bladeLife                 = z[ 49]               # Crop Ingots: Blade Life
-        brickRejectRate           = z[ 53]               # Crop Ingots: Brick Reject Rate
-        clean100SQM               = z[ 71]               # Crop Ingots: Clean 100 SQM
-        clean10KSQM               = z[ 69]               # Crop Ingots: Clean 10k SQM
-        clean1KSQM                = z[ 70]               # Crop Ingots: Clean 1k SQM
-        equipMaintCost            = z[ 64]               # Crop Ingots: Equipment Maintenance Cost Factor
-        filamentWidth             = z[218]               # Saw Ingots: Filament Width
-        finalDiameter             = z[164]               # Ingot Growth: Final Ingot Diameter
-        floorSQM                  = z[ 68]               # Crop Ingots: Floor SQM
-        ingotDiameter             = z[163]               # Ingot Growth: As Grown Ingot Diameter
-        ingotLength               = z[161]               # Ingot Growth: Ingot Length
-        ingotWeight               = z[162]               # Ingot Growth: Ingot Weight (tops and tails)
-        installFactor             = z[ 63]               # Crop Ingots: Installation Cost Factor
-        kerfLoss                  = z[210]               # Saw Ingots: Kerf Loss
-        operatingPowerConsumption = z[ 67]               # Crop Ingots: Operating Power Consumption
-        sawRate                   = z[ 60]               # Crop Ingots: Saw Rate
-        scrapRecRate              = z[ 54]               # Crop Ingots: Scrap Reclamation Rate
-        setupTime                 = z[ 59]               # Crop Ingots: Setup Time
+        weightRemoved             = z[ 48]               # Crop Ingots: Weight of Sections Removed
         SiCSlurryConsumption      = z[ 51]               # Crop Ingots: SiC Slurry Consumption
         SiCSlurryPrice            = z[ 52]               # Crop Ingots: SiC Slurry Price
-        skilledDirectLaborers     = z[ 57] * laborFactor # Crop Ingots: Skilled Direct Laborers Factor
-        toolingLife               = z[ 66]               # Crop Ingots: Tooling Life
-        toolinglInvestment        = z[ 65]               # Crop Ingots: Tooling Investment
+        bladeLife                 = z[ 49]               # Crop Ingots: Blade Life
+        bladeCost                 = z[ 50]               # Crop Ingots: Blade Cost
+        brickRejectRate           = z[ 53]               # Crop Ingots: Brick Reject Rate
+        scrapRecRate              = z[ 54]               # Crop Ingots: Scrap Reclamation Rate
+        avgDowntime               = z[ 55]               # Crop Ingots: Average Downtime
+        batchSize                 = z[ 58]               # Crop Ingots: Batch Size
+        setupTime                 = z[ 59]               # Crop Ingots: Setup Time
+        sawRate                   = z[ 60]               # Crop Ingots: Saw Rate
+        baseCapEx                 = z[ 61]               # Crop Ingots: Capital Investment
+        auxEquipInvest            = z[ 62]               # Crop Ingots: Auxiliary Equipment Investment
+        installFactor             = z[ 63]               # Crop Ingots: Installation Cost Factor
+        equipMaintCost            = z[ 64]               # Crop Ingots: Equipment Maintenance Cost Factor
         unskilledDirectLaborers   = z[ 56] * laborFactor # Crop Ingots: Unskilled Direct Laborers Factor
-        weightRemoved             = z[ 48]               # Crop Ingots: Weight of Sections Removed
-
+        skilledDirectLaborers     = z[ 57] * laborFactor # Crop Ingots: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[ 65]               # Crop Ingots: Tooling Investment
+        toolingLife               = z[ 66]               # Crop Ingots: Tooling Life
+        operatingPowerConsumption = z[ 67]               # Crop Ingots: Operating Power Consumption
+        floorSQM                  = z[ 68]               # Crop Ingots: Floor SQM
+        clean10KSQM               = z[ 69]               # Crop Ingots: Clean 10k SQM
+        clean1KSQM                = z[ 70]               # Crop Ingots: Clean 1k SQM
+        clean100SQM               = z[ 71]               # Crop Ingots: Clean 100 SQM
+        
+        ingotLength   = z[161] # Ingot Growth: Ingot Length
+        ingotWeight   = z[162] # Ingot Growth: Ingot Weight (tops and tails)
+        ingotDiameter = z[163] # Ingot Growth: As Grown Ingot Diameter
+        finalDiameter = z[164] # Ingot Growth: Final Ingot Diameter
+        filamentWidth = z[218] # Saw Ingots: Filament Width
+        kerfLoss      = z[210] # Saw Ingots: Kerf Loss
         ingotGrossWeight = grossIngotWeight(ingotLength, ingotWeight, ingotDiameter)
         growthBatchSize = sizeFilamentBatch(finalDiameter, filamentWidth, kerfLoss)
 
@@ -803,15 +964,17 @@ def cropIngots(sawRejectRate, totalSiPerRod, z):
                 
         buildingCostperStation = buildingCosts(floorSQM, clean10KSQM, clean1KSQM, clean100SQM, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost)
 
+
         # financial calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
                                             totalMaterialCosts, unskilledDirectLaborers, skilledDirectLaborers, throughput, avgDowntime, cumRejectionRate, operatingPowerConsumption, equipMaintCost, z)
         
+        
     return costSummary, cumRejectionRate
 
 
-def annealIngots(cropRejectRate, totalSiPerRod, z):
+def annealIngots(inUse, cropRejectRate, totalSiPerRod, z):
     """
     Calculates cost of Anneal Ingot manfucturing step
     
@@ -833,20 +996,42 @@ def annealIngots(cropRejectRate, totalSiPerRod, z):
         Cumulative rejection rate (waste) for process steps
     """
     
-    annealIngotInUse = z[241] == 1 # Scenario: Use Anneal Ingots?
-    annualProdVol    = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF  = z[134]      # Indices: Price of Building Space
-    capexFactor      = z[145]      # Indices: CapEx Correction Factor
-    CR100Cost        = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost        = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost         = z[136]      # Indices: Price of CR1K Building Space
-    days             = z[126]      # Indices: Working Days per Year
-    dedicatedEquip   = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    hrs              = z[127]      # Indices: Working Hours per Day
-    laborFactor      = z[144]      # Indices: Labor Count Multiplier
-    plantLife        = z[234]      # Scenario: Length of Production Run
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
 
-    if not annealIngotInUse: 
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+
+    if not inUse: 
         costSummary, cumRejectionRate = skipStep()
     else:
         
@@ -855,30 +1040,30 @@ def annealIngots(cropRejectRate, totalSiPerRod, z):
         argonGas                  = z[ 28]               # Anneal Ingots: Argon Gas
         argonPrice                = z[ 29]               # Anneal Ingots: Argon Price
         argonScrapRate            = z[ 30]               # Anneal Ingots: Argon Scrap Rate
-        auxEquipInvest            = z[ 38]               # Anneal Ingots: Auxiliary Equipment Investment
+        polySiYieldLossRate       = z[ 31]               # Anneal Ingots: Poly Si Chunk Yield Loss Rate
+        polySiScrapReclRate       = z[ 32]               # Anneal Ingots: Poly Si Scrap Reclamation Rate
         avgDowntime               = z[ 33]               # Anneal Ingots: Average Downtime
+        furnaceCap                = z[ 34]               # Anneal Ingots: Furnace Capacity
         baseCapEx                 = z[ 37]               # Anneal Ingots: Capital Investment
-        clean100SQM               = z[ 47]               # Anneal Ingots: Clean 100 SQM
+        auxEquipInvest            = z[ 38]               # Anneal Ingots: Auxiliary Equipment Investment
+        installFactor             = z[ 39]               # Anneal Ingots: Installation Cost Factor
+        equipMaintCost            = z[ 40]               # Anneal Ingots: Equipment Maintenance Cost Factor
+        unskilledDirectLaborers   = z[ 35] * laborFactor # Anneal Ingots: Unskilled Direct Laborers Factor
+        skilledDirectLaborers     = z[ 36] * laborFactor # Anneal Ingots: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[ 41]               # Anneal Ingots: Tooling Investment
+        toolingLife               = z[ 42]               # Anneal Ingots: Tooling Life
+        operatingPowerConsumption = z[ 43]               # Anneal Ingots: Operating Power Consumption
+        floorSQM                  = z[ 44]               # Anneal Ingots: Floor SQM
         clean10KSQM               = z[ 45]               # Anneal Ingots: Clean 10k SQM
         clean1KSQM                = z[ 46]               # Anneal Ingots: Clean 1k SQM
-        equipMaintCost            = z[ 40]               # Anneal Ingots: Equipment Maintenance Cost Factor
-        filamentWidth             = z[218]               # Saw Ingots: Filament Width
-        finalDiameter             = z[164]               # Ingot Growth: Final Ingot Diameter
-        floorSQM                  = z[ 44]               # Anneal Ingots: Floor SQM
-        furnaceCap                = z[ 34]               # Anneal Ingots: Furnace Capacity
-        ingotDiameter             = z[163]               # Ingot Growth: As Grown Ingot Diameter
-        ingotLength               = z[161]               # Ingot Growth: Ingot Length
-        ingotWeight               = z[162]               # Ingot Growth: Ingot Weight (tops and tails)
-        installFactor             = z[ 39]               # Anneal Ingots: Installation Cost Factor
-        kerfLoss                  = z[210]               # Saw Ingots: Kerf Loss
-        operatingPowerConsumption = z[ 43]               # Anneal Ingots: Operating Power Consumption
-        polySiScrapReclRate       = z[ 32]               # Anneal Ingots: Poly Si Scrap Reclamation Rate
-        polySiYieldLossRate       = z[ 31]               # Anneal Ingots: Poly Si Chunk Yield Loss Rate
-        skilledDirectLaborers     = z[ 36] * laborFactor # Anneal Ingots: Skilled Direct Laborers Factor
-        toolingLife               = z[ 42]               # Anneal Ingots: Tooling Life
-        toolinglInvestment        = z[ 41]               # Anneal Ingots: Tooling Investment
-        unskilledDirectLaborers   = z[ 35] * laborFactor # Anneal Ingots: Unskilled Direct Laborers Factor
-
+        clean100SQM               = z[ 47]               # Anneal Ingots: Clean 100 SQM
+                
+        ingotLength   = z[161] # Ingot Growth: Ingot Length
+        ingotWeight   = z[162] # Ingot Growth: Ingot Weight (tops and tails)
+        ingotDiameter = z[163] # Ingot Growth: As Grown Ingot Diameter
+        finalDiameter = z[164] # Ingot Growth: Final Ingot Diameter
+        filamentWidth = z[218] # Saw Ingots: Filament Width
+        kerfLoss      = z[210] # Saw Ingots: Kerf Loss
         ingotGrossWeight = grossIngotWeight(ingotLength, ingotWeight, ingotDiameter)
         growthBatchSize = sizeFilamentBatch(finalDiameter, filamentWidth, kerfLoss)
 
@@ -903,15 +1088,17 @@ def annealIngots(cropRejectRate, totalSiPerRod, z):
                 
         buildingCostperStation = buildingCosts(floorSQM, clean10KSQM, clean1KSQM, clean100SQM, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost)
 
+
         # financial calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
                                             totalMaterialCosts, unskilledDirectLaborers, skilledDirectLaborers, throughput, avgDowntime, cumRejectionRate, operatingPowerConsumption, equipMaintCost, z)
         
+        
     return costSummary, cumRejectionRate
 
 
-def ingnotGrowth(annealRejectRate, usableSiPerRod, z):
+def ingnotGrowth(inUse, annealRejectRate, usableSiPerRod, z):
     """
     Calculates cost of Ingot Growth manfucturing step
     
@@ -933,67 +1120,88 @@ def ingnotGrowth(annealRejectRate, usableSiPerRod, z):
         Cumulative rejection rate (waste) for process steps
     """
     
-    annualProdVol    = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF  = z[134]      # Indices: Price of Building Space
-    capexFactor      = z[145]      # Indices: CapEx Correction Factor
-    CR100Cost        = z[137]      # Indices: Price of CR100Building Space
-    CR10KCost        = z[135]      # Indices: Price of CR10K Building Space
-    CR1KCost         = z[136]      # Indices: Price of CR1K Building Space
-    days             = z[126]      # Indices: Working Days per Year
-    dedicatedEquip   = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    equipDiscount    = z[139]      # Indices: Equipment Discount
-    growIngotInUse   = z[242] == 1 # Scenario: Use Grow Ingots?
-    hrs              = z[127]      # Indices: Working Hours per Day
-    laborFactor      = z[144]      # Indices: Labor Count Multiplier
-    plantLife        = z[234]      # Scenario: Length of Production Run
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
 
-    if not growIngotInUse: 
+    days             = z[126] # Indices: Working Days per Year
+    hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
+    laborFactor      = z[144] # Indices: Labor Count Multiplier
+    natGasPrice      = z[133] # Indices: Price of Natural Gas
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
+
+    if not inUse: 
         costSummary, cumRejectionRate = skipStep()
     else:
         
         # define input parameters
         
-        argonGas                  = z[155]               # Ingot Growth: Argon Consumption Rate
-        argonPrice                = z[156]               # Ingot Growth: Argon Price
-        auxEquipInvest            = z[172]               # Ingot Growth: Auxiliary Equipment Investment
-        avgDowntime               = z[158]               # Ingot Growth: Average Downtime
-        baseCapEx                 = z[171]               # Ingot Growth: Capital Investment
-        clean100SQM               = z[182]               # Ingot Growth: Clean 100 SQM
-        clean10KSQM               = z[180]               # Ingot Growth: Clean 10k SQM
-        clean1KSQM                = z[181]               # Ingot Growth: Clean 1k SQM
-        cleanTime                 = z[170]               # Ingot Growth: Clean
-        coolTime                  = z[169]               # Ingot Growth: Cool and Unload
-        crucibleCost              = z[151]               # Ingot Growth: Crucible Cost
-        crucibleLife              = z[152]               # Ingot Growth: Crucible Life
-        equipMaintCost            = z[174]               # Ingot Growth: Equipment Maintenance Cost Factor
-        filamentWidth             = z[218]               # Saw Ingots: Filament Width
-        finalDiameter             = z[164]               # Ingot Growth: Final Ingot Diameter
-        floorSQM                  = z[179]               # Ingot Growth: Floor SQM
-        fullPowerConsumption      = z[178]               # Ingot Growth: Full Power Consumption
-        ingotDiameter             = z[163]               # Ingot Growth: As Grown Ingot Diameter
-        ingotLength               = z[161]               # Ingot Growth: Ingot Length
-        ingotLength               = z[161]               # Ingot Growth: Ingot Length
-        ingotWeight               = z[162]               # Ingot Growth: Ingot Weight (tops and tails)
-        installFactor             = z[173]               # Ingot Growth: Installation Cost Factor
-        kerfLoss                  = z[210]               # Saw Ingots: Kerf Loss
-        meltTime                  = z[167]               # Ingot Growth: Melt/Stabilize
-        meltTime                  = z[167]               # Ingot Growth: Melt/Stabilize
-        operatingPowerConsumption = z[177]               # Ingot Growth: Operating Power Consumption
-        partRejectRate            = z[157]               # Ingot Growth: Part Reject Rate
         polySiPrice               = z[147]               # Ingot Growth: Poly-Si Material Price
         polySiScrapRate           = z[148]               # Ingot Growth: Poly Si Material Scrap Rate
-        pullSpeed                 = z[168]               # Ingot Growth: Average Pull Speed
-        pumpTime                  = z[166]               # Ingot Growth: Pump Down and Leak Check
-        setupTime                 = z[165]               # Ingot Growth: Setup (Load) Time
-        SiSeedLife                = z[150]               # Ingot Growth: Si Seed Life
         SiSeedPrice               = z[149]               # Ingot Growth: Si Seed Price
-        skilledDirectLaborers     = z[160] * laborFactor # Ingot Growth: Skilled Direct Laborers Factor
-        toolingLife               = z[176]               # Ingot Growth: Tooling Life
-        toolinglInvestment        = z[175]               # Ingot Growth: Tooling Investment
-        unskilledDirectLaborers   = z[159] * laborFactor # Ingot Growth: Unskilled Direct Laborers Factor
+        SiSeedLife                = z[150]               # Ingot Growth: Si Seed Life
+        crucibleCost              = z[151]               # Ingot Growth: Crucible Cost
+        crucibleLife              = z[152]               # Ingot Growth: Crucible Life
         waterConsumption          = z[153]               # Ingot Growth: Cooling Water Cons Rate
         waterPrice                = z[154]               # Ingot Growth: Water Price
-
+        argonGas                  = z[155]               # Ingot Growth: Argon Consumption Rate
+        argonPrice                = z[156]               # Ingot Growth: Argon Price
+        partRejectRate            = z[157]               # Ingot Growth: Part Reject Rate
+        avgDowntime               = z[158]               # Ingot Growth: Average Downtime
+        ingotLength               = z[161]               # Ingot Growth: Ingot Length
+        setupTime                 = z[165]               # Ingot Growth: Setup (Load) Time
+        pumpTime                  = z[166]               # Ingot Growth: Pump Down and Leak Check
+        meltTime                  = z[167]               # Ingot Growth: Melt/Stabilize
+        meltTime                  = z[167]               # Ingot Growth: Melt/Stabilize
+        pullSpeed                 = z[168]               # Ingot Growth: Average Pull Speed
+        coolTime                  = z[169]               # Ingot Growth: Cool and Unload
+        cleanTime                 = z[170]               # Ingot Growth: Clean
+        baseCapEx                 = z[171]               # Ingot Growth: Capital Investment
+        auxEquipInvest            = z[172]               # Ingot Growth: Auxiliary Equipment Investment
+        installFactor             = z[173]               # Ingot Growth: Installation Cost Factor
+        equipMaintCost            = z[174]               # Ingot Growth: Equipment Maintenance Cost Factor
+        unskilledDirectLaborers   = z[159] * laborFactor # Ingot Growth: Unskilled Direct Laborers Factor
+        skilledDirectLaborers     = z[160] * laborFactor # Ingot Growth: Skilled Direct Laborers Factor
+        toolinglInvestment        = z[175]               # Ingot Growth: Tooling Investment
+        toolingLife               = z[176]               # Ingot Growth: Tooling Life
+        operatingPowerConsumption = z[177]               # Ingot Growth: Operating Power Consumption
+        fullPowerConsumption      = z[178]               # Ingot Growth: Full Power Consumption
+        floorSQM                  = z[179]               # Ingot Growth: Floor SQM
+        clean10KSQM               = z[180]               # Ingot Growth: Clean 10k SQM
+        clean1KSQM                = z[181]               # Ingot Growth: Clean 1k SQM
+        clean100SQM               = z[182]               # Ingot Growth: Clean 100 SQM
+                
+        ingotLength   = z[161] # Ingot Growth: Ingot Length
+        ingotWeight   = z[162] # Ingot Growth: Ingot Weight (tops and tails)
+        ingotDiameter = z[163] # Ingot Growth: As Grown Ingot Diameter
+        finalDiameter = z[164] # Ingot Growth: Final Ingot Diameter
+        filamentWidth = z[218] # Saw Ingots: Filament Width
+        kerfLoss      = z[210] # Saw Ingots: Kerf Loss
         ingotGrossWeight = grossIngotWeight(ingotLength, ingotWeight, ingotDiameter)
         growthBatchSize = sizeFilamentBatch(finalDiameter, filamentWidth, kerfLoss)
 
@@ -1036,10 +1244,11 @@ def ingnotGrowth(annealRejectRate, usableSiPerRod, z):
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
                                             totalMaterialCosts, unskilledDirectLaborers, skilledDirectLaborers, throughput, avgDowntime, cumRejectionRate, adjPowerConsumption, equipMaintCost, z)
         
+        
     return costSummary, cumRejectionRate
 
 
-def TCS(siemensCVDRejRate, HPProduction, siemensEffProd, z):
+def TCS(inUse, siemensCVDRejRate, HPProduction, siemensEffProd, z):
     """
     Calculates cost of TCS manfucturing step
     
@@ -1061,49 +1270,67 @@ def TCS(siemensCVDRejRate, HPProduction, siemensEffProd, z):
         Summary of financial cost calculations
     """
     
-    annualProdVol    = z[232]      # Scenario: Annual Production Volume
-    buildingCostSQF  = z[134] # Indices: Price of Building Space
-    capexFactor      = z[145] # Indices: CapEx Correction Factor
-    CR100Cost        = z[137] # Indices: Price of CR100Building Space
-    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
-    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    annualProdVol      = z[232]      # Scenario: Annual Production Volume
+    plantLife          = z[234]      # Scenario: Length of Production Run
+    dedicatedEquip     = z[233] == 1 # Scenario: Dedicated Equipment Investment
+    harvestChunkInUse  = z[235] == 1 # Scenario: Use Harvest Chunk?
+    siemensCVDInUse    = z[236] == 1 # Scenario: Use Siemens CVD?
+    etchFilamentsInUse = z[237] == 1 # Scenario: Use Etch Filaments?
+    machineFilInUse    = z[238] == 1 # Scenario: Use Machine Filaments?
+    sawIngotInUse      = z[239] == 1 # Scenario: Use Saw Ingots?
+    cropIngotInUse     = z[240] == 1 # Scenario: Use Crop Ingots?
+    annealIngotInUse   = z[241] == 1 # Scenario: Use Anneal Ingots?
+    growIngotInUse     = z[242] == 1 # Scenario: Use Grow Ingots?
+    TCSInUse           = z[243] == 1 # Scenario: Use TCS?
+
     days             = z[126] # Indices: Working Days per Year
-    dedicatedEquip   = z[233] == 1 # Scenario: Dedicated Equipment Investment
-    elecFactor       = z[146] # Indices: Electricity Multiplier
-    elecPrice        = z[132] # Indices: Price of Electricity
-    equipDiscount    = z[139] # Indices: Equipment Discount
     hrs              = z[127] # Indices: Working Hours per Day
+    equipDiscount    = z[139] # Indices: Equipment Discount
+    capexFactor      = z[145] # Indices: CapEx Correction Factor
+    capitalRecRate   = z[128] # Indices: Capital Recovery Rate
+    equipRecLife     = z[129] # Indices: Equipment Recovery Life
+    buildingLife     = z[130] # Indices: Building Recovery Life
+    workingCapPeriod = z[131] # Indices: Working Capital Period
+    unskilledWage    = z[121] # Indices: Unskilled Direct Wages
+    skilledWage      = z[122] # Indices: Skilled Direct Wages
+    salary           = z[123] # Indices: Indirect Salary
+    indirectLabor    = z[124] # Indices: Indirect:Direct Labor Ratio
+    benefitFactor    = z[125] # Indices: Benefits on Wage and Salary
     laborFactor      = z[144] # Indices: Labor Count Multiplier
     natGasPrice      = z[133] # Indices: Price of Natural Gas
-    plantLife        = z[234]      # Scenario: Length of Production Run
-    TCSInUse         = z[243] == 1 # Scenario: Use TCS?
+    elecPrice        = z[132] # Indices: Price of Electricity
+    elecFactor       = z[146] # Indices: Electricity Multiplier
+    buildingCostSQF  = z[134] # Indices: Price of Building Space
+    CR10KCost        = z[135] # Indices: Price of CR10K Building Space
+    CR1KCost         = z[136] # Indices: Price of CR1K Building Space
+    CR100Cost        = z[137] # Indices: Price of CR100Building Space
     
-    if not TCSInUse: 
+    if not inUse: 
         costSummary, cumRejectionRate = skipStep()
     else:
         
         # define input parameters
         
-        auxEquipInvest          = z[ 18]               # TCS: Auxiliary Equipment Investment
-        avgDowntime             = z[ 15]               # TCS: Average Downtime
-        clean100SQM             = z[ 27]               # TCS: Clean 100 SQM
-        clean10KSQM             = z[ 25]               # TCS: Clean 10k SQM
-        clean1KSQM              = z[ 26]               # TCS: Clean 1k SQM
-        equipMaintCost          = z[ 20]               # TCS: Equipment Maintenance Cost Factor
-        H2Price                 = z[ 13]               # TCS: Hydrogen Price
-        H2Usage                 = z[ 12]               # TCS: Hydrogen Usage Factor
-        HClPrice                = z[ 10]               # TCS: HCl Price
-        HClScrapRate            = z[ 11]               # TCS: HCl Scrap Rate
-        HClUsage                = z[  9]               # TCS: HCl Usage Factor
-        installFactor           = z[ 19]               # TCS: Installation Cost Factor
+        MGSiUsage               = z[  6]               # TCS: MG Si Usage Factor
         MGSiPrice               = z[  7]               # TCS: MG Si Price
         MGSiScrapRate           = z[  8]               # TCS: MG Si Scrap Rate
-        MGSiUsage               = z[  6]               # TCS: MG Si Usage Factor
+        HClUsage                = z[  9]               # TCS: HCl Usage Factor
+        HClPrice                = z[ 10]               # TCS: HCl Price
+        HClScrapRate            = z[ 11]               # TCS: HCl Scrap Rate
+        H2Usage                 = z[ 12]               # TCS: Hydrogen Usage Factor
+        H2Price                 = z[ 13]               # TCS: Hydrogen Price
         otherScrapRate          = z[ 14]               # TCS: Other Material Scrap Rate
-        skilledDirectLaborers   = z[ 17] * laborFactor # TCS: Skilled Direct Laborers Factor
-        toolingLife             = z[ 22]               # TCS: Tooling Life
-        toolinglInvestment      = z[ 21]               # TCS: Tooling Investment
+        avgDowntime             = z[ 15]               # TCS: Average Downtime
+        auxEquipInvest          = z[ 18]               # TCS: Auxiliary Equipment Investment
+        installFactor           = z[ 19]               # TCS: Installation Cost Factor
+        equipMaintCost          = z[ 20]               # TCS: Equipment Maintenance Cost Factor
         unskilledDirectLaborers = z[ 16] * laborFactor # TCS: Unskilled Direct Laborers Factor
+        skilledDirectLaborers   = z[ 17] * laborFactor # TCS: Skilled Direct Laborers Factor
+        toolinglInvestment      = z[ 21]               # TCS: Tooling Investment
+        toolingLife             = z[ 22]               # TCS: Tooling Life
+        clean10KSQM             = z[ 25]               # TCS: Clean 10k SQM
+        clean1KSQM              = z[ 26]               # TCS: Clean 1k SQM
+        clean100SQM             = z[ 27]               # TCS: Clean 100 SQM
         
         # intermediate calculations
         
@@ -1138,13 +1365,14 @@ def TCS(siemensCVDRejRate, HPProduction, siemensEffProd, z):
         floorSQM = z[  5] # TCS Process: Floorspace (m2/station)
         buildingCostperStation = buildingCosts(floorSQM, clean10KSQM, clean1KSQM, clean100SQM, buildingCostSQF, CR10KCost, CR1KCost, CR100Cost)
         
+        
         # financial calculations
         
         costSummary = financialCalculations(capitalInvestment, auxEquipInvest, installFactor, runtimeOneStation, toolinglInvestment, toolSetPerStation, buildingCostperStation, numParallelStations, 
                                             totalMaterialCosts, unskilledDirectLaborers, skilledDirectLaborers, throughput, avgDowntime, cumRejectionRate, adjUtilities, equipMaintCost, z)
         
+        
     return costSummary
-
 
 
 import pandas as pd
@@ -1153,36 +1381,33 @@ import pandas as pd
 zp = pd.read_csv("../../ioc-2/data/parameters.tsv", header = 0, index_col = "Offset", sep="\t")
 
 
-harvestFinancials, harvestRejectRate = harvestChunk(zp.Value)
+harvestFinancials, harvestRejectRate = harvestChunk(True, zp.Value)
 
-siemensCVDFinancials, CVDthroughput, siemensCVDRejRate, totalSiPerRod, usableSiPerRod, siemensEffProd = siemensCVD(harvestRejectRate, zp.Value)
+siemensCVDFinancials, CVDthroughput, siemensCVDRejRate, totalSiPerRod, usableSiPerRod, siemensEffProd = siemensCVD(True, harvestRejectRate, zp.Value)
 
-etchFilamentsFinancial, etchRejectionRate, HPProduction = etchFilaments(siemensCVDRejRate, usableSiPerRod, siemensEffProd, zp.Value)
+etchFilamentsFinancial, etchRejectionRate, HPProduction = etchFilaments(True, siemensCVDRejRate, usableSiPerRod, siemensEffProd, zp.Value)
 
-machineFinancials, machineRejectRate = machineFilaments(etchRejectionRate, totalSiPerRod, zp.Value)
+machineFinancials, machineRejectRate = machineFilaments(True, etchRejectionRate, totalSiPerRod, zp.Value)
 
-sawFinancials, sawRejectRate = sawIngots(machineRejectRate, usableSiPerRod, totalSiPerRod, zp.Value)
+sawFinancials, sawRejectRate = sawIngots(True, machineRejectRate, usableSiPerRod, totalSiPerRod, zp.Value)
 
-cropFinancials, cropRejectRate = cropIngots(sawRejectRate, totalSiPerRod, zp.Value)
+cropFinancials, cropRejectRate = cropIngots(True, sawRejectRate, totalSiPerRod, zp.Value)
 
-annealFinacials, annealRejectRate = annealIngots(cropRejectRate, totalSiPerRod, zp.Value)
+annealFinacials, annealRejectRate = annealIngots(True, cropRejectRate, totalSiPerRod, zp.Value)
 
-growthFinancials, growthRejRate = ingnotGrowth(annealRejectRate, usableSiPerRod, zp.Value)
+growthFinancials, growthRejRate = ingnotGrowth(True, annealRejectRate, usableSiPerRod, zp.Value)
 
-TCSFinancials = TCS(siemensCVDRejRate, HPProduction, siemensEffProd, zp.Value)
+TCSFinancials = TCS(True, siemensCVDRejRate, HPProduction, siemensEffProd, zp.Value)
 
 
-steps = np.stack([
-  harvestFinancials     ,
-  siemensCVDFinancials  ,
-  etchFilamentsFinancial,
-  machineFinancials     ,
-  sawFinancials         ,
-  cropFinancials        ,
-  annealFinacials       ,
-  growthFinancials      ,
-  TCSFinancials         ,
-])
+
+steps = np.stack([harvestFinancials, siemensCVDFinancials, etchFilamentsFinancial, machineFinancials, sawFinancials, cropFinancials, annealFinacials, growthFinancials, TCSFinancials])
+pd.DataFrame(
+    financialSummary(steps),
+    index = np.append(financialsHeader, "Total")
+)
+
+
 
 print(
   pd.DataFrame(
