@@ -394,13 +394,13 @@ Variable              Notation                                       Information
 Binary variables      :math: `y_{ii'}, i, i' \in \{1, ..., I\}, i' > i` Number of linear intervals between elicited data points.
 Combination variables :math: `\lambda_{i}, i \in \{1, ..., I\}`      Used to construct linear combinations of elicited data points. :math: `\lambda_{i} \geq 0 \forall i`
 
-Each metric :math: `m_j` and investment amount :math: `c_i` can be written as a linear combination of elicited data points and the newly introduced variables :math: `\lambda_{i}` and :math: `y_{ii'}`. Additional constraints on :math: `y_{ii'}` and :math: `\lambda_{i}` take care of the piecewise linearity by ensuring that the corners used to calculate :math: `q_k` reflect the interval that :math: `c_i` is in. There will be a total of :math: `\binom{I}{2}` binary :math: `y` variables, which reduces to :math: `\frac{I(I-1)}{2}` binary variables.
+Each metric and investment amount can be written as a linear combination of elicited data points and the newly introduced variables :math: `\lambda_{i}` and :math: `y_{ii'}`. Additional constraints on :math: `y_{ii'}` and :math: `\lambda_{i}` take care of the piecewise linearity by ensuring that the corners used to calculate :math: `q_k` reflect the interval that :math: `c_i` is in. There will be a total of :math: `\binom{I}{2}` binary :math: `y` variables, which reduces to :math: `\frac{I(I-1)}{2}` binary variables.
 
 
 One-Investment-Category, One-Metric Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Suppose we have an elicited data set for one metric (:math: `K = 1`) and one investment category (:math: `J = 1`) with three possible investment levels (:math: `I = 3`). We can write the total investment amount as a linear combination of the three investment levels $c_{i1}$, $i \in \{1, 2, 3\}$, using the :math: `\lambda` variables:
+Suppose we have an elicited data set for one metric (:math: `K = 1`) and one investment category (:math: `J = 1`) with three possible investment levels (:math: `I = 3`). We can write the total investment amount as a linear combination of the three investment levels :math: `c_{i1}, i \in \{1, 2, 3\}`, using the :math: `\lambda` variables:
 
 :math: `\lambda_{1}c_{11} + \lambda_{2}c_{21} + \lambda_{13}c_{31} = \sum_{i} \lambda_{i}c_{i1}`
 
@@ -408,13 +408,13 @@ We can likewise write the metric as a linear combination of :math: `q_{1i}` and 
 
 :math: `\lambda_{1}q_{11} + \lambda_{2}q_{21} + \lambda_{3}q_{31} = \sum_{i} \lambda_{i}q_{i1}`
 
-We have the additional constraint on the $\lambda$ variables that 
+We have the additional constraint on the :math: `\lambda` variables that 
 
 :math: `\sum_{i} \lambda_{i} = 1`
 
 These equations, combined with the integer variables :math: `y_{ii'} = \{ y_{12}, y_{13}, y_{23} \}`, can be used to construct a mixed-integer linear optimization problem.
 
-The MILP that uses this formulation to minimize capital subject to a investment budget :math: `B` is as follows:
+The MILP that uses this formulation to minimize a technology metric subject to a investment budget :math: `B` is as follows:
 
 :math: `\min_{y, \lambda} \lambda_{1}q_{11} + \lambda_{2}q_{21} + \lambda_{3}q_{31}`
 
@@ -474,12 +474,12 @@ subject to
 
 subject to
 
-:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B, (1) Total budget constraint
-:math: `\sum_i \lambda_{i}c_{ij'}` \leq B_{j'} \forall j' \in J'   (2) Investment category budget constraint(s)
-:math: `\sum_i \lambda_{i}q_{ik'}` \leq M_{k'} , (3) Metric constraint
+:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B`, (1) Total budget constraint
+:math: `\sum_i \lambda_{i}c_{ij'} \leq B_{j'} \forall j' \in J'`   (2) Investment category budget constraint(s)
+:math: `\sum_i \lambda_{i}q_{ik'} \leq M_{k'}` , (3) Metric constraint
 :math: `\sum_i \lambda_i = 1` , (4)
 :math: `\sum_{i,i'} y_{ii'} = 1` , (5)
-:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i' , (6)
+:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i'` , (6)
 :math: `0 \leq \lambda_i \leq 1 \forall i` , (7)
 :math: `y_{ii'} \in \{ 0, 1 \} \forall i, i'` , (8)
 
