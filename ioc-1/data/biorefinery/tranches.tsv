@@ -1,0 +1,13 @@
+Category	Tranche	Scenario	Amount	Notes
+Preprocessing	Preprocessing 0	Preprocessing 0	0	
+Preprocessing	Preprocessing 1	Preprocessing 1	500000	
+Preprocessing	Preprocessing 2	Preprocessing 2	1500000	
+Fermentation	Fermentation 0	Fermentation 0	0	
+Fermentation	Fermentation 1	Fermentation 1	250000	
+Fermentation	Fermentation 2	Fermentation 2	400000	
+Conversion	Conversion 0	Conversion 0	0	
+Conversion	Conversion 1	Conversion 1	800000	
+Conversion	Conversion 2	Conversion 2	2000000	
+Separations	Separations 0	Separations 0	0	
+Separations	Separations 1	Separations 1	500000	
+Separations	Separations 2	Separations 2	2000000	

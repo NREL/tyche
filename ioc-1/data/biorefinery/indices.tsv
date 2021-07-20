@@ -1,0 +1,15 @@
+Technology	Type	Index	Offset	Description	Notes
+Biorefinery	Capital	Preprocessing	0	process area capital costs	
+Biorefinery	Capital	Fermentation	1	process area capital costs	
+Biorefinery	Capital	Conversion	2	process area capital costs	
+Biorefinery	Capital	Separations	3	process area capital costs	
+Biorefinery	Fixed	Rent	0		
+Biorefinery	Fixed	Insurance	1		
+Biorefinery	Input	Feedstock	0		
+Biorefinery	Output	Biofuel	0		
+Biorefinery	Technical Parameter	Fossil GHG	0	kg CO2-eq/year	
+Biorefinery	Technical Parameter	Biogenic GHG	1	kg CO2-eq/year	
+Biorefinery	Technical Parameter	Employment	2	person-hours/year	
+Biorefinery	Metric	Jobs	0	person-hours/gal biofuel	
+Biorefinery	Metric	Fossil GHG	1	kg CO2-eq/gal biofuel	
+Biorefinery	Metric	Total GHG	2	kg CO2-eq/gal biofuel	
