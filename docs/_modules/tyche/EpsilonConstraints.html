@@ -79,10 +79,10 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_max_metrics</span> <span class="o">=</span> <span class="p">{}</span>
 
-  <span class="k">def</span> <span class="nf">_f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">_f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
       <span class="n">xx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">max_amount</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-      <span class="n">yy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate_statistic</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">statistic</span><span class="p">)</span>
+      <span class="n">yy</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
       <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;scaled decision variables: &#39;</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;metric statistics: &#39;</span><span class="p">,</span> <span class="n">yy</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -92,8 +92,8 @@
       <span class="k">return</span> <span class="o">-</span> <span class="n">yy</span>
     <span class="k">return</span> <span class="n">f</span>
 
-  <span class="k">def</span> <span class="nf">_fi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-    <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">_fi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span>
 
 <div class="viewcode-block" id="EpsilonConstraintOptimizer.maximize_slsqp"><a class="viewcode-back" href="../../doc-src/tyche.html#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_slsqp">[docs]</a>  <span class="k">def</span> <span class="nf">maximize_slsqp</span><span class="p">(</span>
     <span class="bp">self</span>                  <span class="p">,</span>
@@ -133,6 +133,9 @@
 <span class="sd">    verbose : int</span>
 <span class="sd">      Verbosity level returned by the optimizer and this outer function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># create a functio to evaluate the statistic</span>
+    <span class="n">evaluate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">make_statistic_evaluator</span><span class="p">(</span><span class="n">statistic</span><span class="p">)</span>
 
     <span class="c1"># get location index of metric</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metrics</span> <span class="o">==</span> <span class="n">metric</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -186,7 +189,7 @@
           <span class="c1"># get location index of the current metric</span>
           <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metrics</span> <span class="o">==</span> <span class="n">index</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-          <span class="n">value</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">j</span><span class="p">]</span>
+          <span class="n">value</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">j</span><span class="p">]</span>
 
           <span class="c1"># if the verbose parameter is defined and is greater than 3,</span>
           <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
@@ -213,7 +216,7 @@
 
     <span class="c1"># run the optimizer</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">fmin_slsqp</span><span class="p">(</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">_fi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="c1"># callable function that returns the scalar objective function value</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_fi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="c1"># callable function that returns the scalar objective function value</span>
       <span class="n">initial</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="p">,</span> <span class="c1"># scaled initial guess values for decision variables (investment amounts, metrics)</span>
       <span class="n">f_ieqcons</span>   <span class="o">=</span> <span class="n">g</span>      <span class="p">,</span> <span class="c1"># list of functions that return inequality constraints in the form const &gt;= 0</span>
       <span class="n">bounds</span>      <span class="o">=</span> <span class="n">bounds</span> <span class="p">,</span> <span class="c1"># upper and lower bounds on decision variables</span>
@@ -227,7 +230,7 @@
     <span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">max_amount</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
     <span class="c1"># evaluate the chosen statistic for the scaled decision variable values</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate_statistic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">statistic</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">Optimum</span><span class="p">(</span>
       <span class="n">exit_code</span>    <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
@@ -289,6 +292,9 @@
 <span class="sd">      differential_evolution has no verbosity parameter</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># create a functio to evaluate the statistic</span>
+    <span class="n">evaluate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">make_statistic_evaluator</span><span class="p">(</span><span class="n">statistic</span><span class="p">)</span>
+
     <span class="c1"># get location index of metric</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metrics</span> <span class="o">==</span> <span class="n">metric</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
@@ -342,7 +348,7 @@
           <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metrics</span> <span class="o">==</span> <span class="n">index</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
           <span class="c1"># calculate the summary statistic on the current metric</span>
-          <span class="n">value</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">j</span><span class="p">]</span>
+          <span class="n">value</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">j</span><span class="p">]</span>
 
           <span class="c1"># if the verbose parameter is defined and is greater than 3,</span>
           <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
@@ -362,7 +368,7 @@
 
     <span class="c1"># run the optimizer</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">differential_evolution</span><span class="p">(</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">_fi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="c1"># callable function that returns the scalar objective function value</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_fi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="c1"># callable function that returns the scalar objective function value</span>
       <span class="n">bounds</span><span class="o">=</span><span class="n">var_bounds</span><span class="p">,</span>  <span class="c1"># upper and lower bounds on decision variables</span>
       <span class="n">strategy</span><span class="o">=</span><span class="n">strategy</span><span class="p">,</span> <span class="c1"># defines differential evolution strategy to use</span>
       <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="c1"># default maximum iterations to execute</span>
@@ -376,7 +382,7 @@
                   <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">max_amount</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
     <span class="c1"># evaluate the chosen statistic for the scaled decision variable values</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate_statistic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">statistic</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
     <span class="c1"># differential_evolution doesn&#39;t return exit_code or exit_message, only</span>
     <span class="c1"># decision variable values, objective function value, and number of</span>
@@ -430,6 +436,9 @@
 <span class="sd">      Verbosity level returned by this outer function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># create a functio to evaluate the statistic</span>
+    <span class="n">evaluate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">make_statistic_evaluator</span><span class="p">(</span><span class="n">statistic</span><span class="p">)</span>
+
     <span class="c1"># get location metric_index of metric</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metrics</span> <span class="o">==</span> <span class="n">metric</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
@@ -475,12 +484,12 @@
 
     <span class="c1"># exit the total_amount IF statement</span>
 
-    <span class="k">def</span> <span class="nf">make_g_metric</span><span class="p">(</span><span class="n">metric_statistic</span><span class="p">,</span> <span class="n">metric_index</span><span class="p">,</span> <span class="n">metric_limit</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">make_g_metric</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">metric_index</span><span class="p">,</span> <span class="n">metric_limit</span><span class="p">):</span>
 
       <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">metrics</span> <span class="o">==</span> <span class="n">metric_index</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
       <span class="k">def</span> <span class="nf">g_metric_fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="n">met_value</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">metric_statistic</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">met_value</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)(</span><span class="n">x</span><span class="p">)[</span><span class="n">j</span><span class="p">]</span>
 
         <span class="c1"># if the verbose parameter is defined and is greater than 3,</span>
         <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
@@ -502,14 +511,14 @@
         <span class="c1"># current metric constraint</span>
         <span class="c1"># as the loop executes, one constraint per metric will be added to the</span>
         <span class="c1"># container</span>
-        <span class="n">g_metric</span> <span class="o">=</span> <span class="n">make_g_metric</span><span class="p">(</span><span class="n">statistic</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
+        <span class="n">g_metric</span> <span class="o">=</span> <span class="n">make_g_metric</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
         <span class="n">constraints</span> <span class="o">+=</span> <span class="p">[{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ineq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">g_metric</span><span class="p">}]</span>
 
     <span class="n">opt_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;f_tol&#39;</span><span class="p">:</span> <span class="n">tol</span><span class="p">,</span>
                 <span class="s1">&#39;maxiter&#39;</span><span class="p">:</span> <span class="n">maxiter</span><span class="p">}</span>
 
     <span class="n">result</span> <span class="o">=</span> <span class="n">shgo</span><span class="p">(</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">_fi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="c1"># callable function that returns the scalar objective function value</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_fi</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">evaluate</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="c1"># callable function that returns the scalar objective function value</span>
       <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>  <span class="c1"># upper and lower bounds on decision variables</span>
       <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
       <span class="n">options</span><span class="o">=</span><span class="n">opt_dict</span><span class="p">,</span> <span class="c1"># dictionary of options including max iters</span>
@@ -521,7 +530,7 @@
       <span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">max_amount</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
       <span class="c1"># evaluate the chosen metric_statistic for the scaled decision variable values</span>
-      <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate_statistic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">statistic</span><span class="p">)</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
       <span class="k">return</span> <span class="n">Optimum</span><span class="p">(</span>
         <span class="n">exit_code</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
