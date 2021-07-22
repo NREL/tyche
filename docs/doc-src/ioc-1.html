@@ -39,19 +39,19 @@
 <h2>Set up.<a class="headerlink" href="#set-up" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="import-packages">
 <h3>Import packages.<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../src&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+import sys
+sys.path.insert(0, os.path.abspath(&quot;../src&quot;))
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>             <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">pl</span>
-<span class="kn">import</span> <span class="nn">pandas</span>            <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span>           <span class="k">as</span> <span class="nn">sb</span>
-<span class="kn">import</span> <span class="nn">tyche</span>             <span class="k">as</span> <span class="nn">ty</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy             as np
+import matplotlib.pyplot as pl
+import pandas            as pd
+import seaborn           as sb
+import tyche             as ty
 
-<span class="kn">from</span> <span class="nn">copy</span>            <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+from copy            import deepcopy
+from IPython.display import Image
 </pre></div>
 </div>
 </div>
@@ -59,21 +59,21 @@
 <div class="section" id="load-data">
 <h2>Load data.<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
 <p>The data are stored in a set of tab-separated value files in a folder.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">Designs</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs = ty.Designs(&quot;data&quot;)
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investments</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">Investments</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investments = ty.Investments(&quot;data&quot;)
 </pre></div>
 </div>
 <p>Compile the production and metric functions for each technology in the dataset.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs.compile()
 </pre></div>
 </div>
 </div>
 <div class="section" id="examine-the-input-data">
 <h2>Examine the input data.<a class="headerlink" href="#examine-the-input-data" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">functions</span></code> table specifies where the Python code for each technology resides.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">functions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs.functions
 </pre></div>
 </div>
 <div>
@@ -127,7 +127,7 @@
   </tbody>
 </table>
 </div><p>The <code class="docutils literal notranslate"><span class="pre">indices</span></code> table defines the subscripts for variables.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Offset&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs.indices.drop(&quot;Offset&quot;, axis = 1)
 </pre></div>
 </div>
 <div>
@@ -251,7 +251,7 @@
   </tbody>
 </table>
 </div><p>The <code class="docutils literal notranslate"><span class="pre">designs</span></code> table contains the cost, input, efficiency, and price data for a scenario.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">designs</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="s2">&quot;Reference&quot;</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="n">drop_level</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs.designs.xs(&quot;Reference&quot;, level = &quot;Scenario&quot;, drop_level = False)
 </pre></div>
 </div>
 <div>
@@ -380,7 +380,7 @@
   </tbody>
 </table>
 </div><p>The <code class="docutils literal notranslate"><span class="pre">parameters</span></code> table contains additional techno-economic parameters for each technology.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Offset&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="s2">&quot;Reference&quot;</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="n">drop_level</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs.parameters.drop(&quot;Offset&quot;, axis = 1).xs(&quot;Reference&quot;, level = &quot;Scenario&quot;, drop_level = False)
 </pre></div>
 </div>
 <div>
@@ -566,7 +566,7 @@
   </tbody>
 </table>
 </div><p>The <code class="docutils literal notranslate"><span class="pre">results</span></code> table specifies the units of measure for results of computations.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs.results
 </pre></div>
 </div>
 <div>
@@ -668,7 +668,7 @@
   </tbody>
 </table>
 </div><p>The <code class="docutils literal notranslate"><span class="pre">tranches</span></code> table specifies multually exclusive possibilities for investments: only one <code class="docutils literal notranslate"><span class="pre">Tranch</span></code> may be selected for each <code class="docutils literal notranslate"><span class="pre">Category</span></code>.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investments</span><span class="o">.</span><span class="n">tranches</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investments.tranches
 </pre></div>
 </div>
 <div>
@@ -858,7 +858,7 @@
   </tbody>
 </table>
 </div><p>The <code class="docutils literal notranslate"><span class="pre">investments</span></code> table bundles a consistent set of tranches (one per category) into an overall investment.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investments</span><span class="o">.</span><span class="n">investments</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investments.investments
 </pre></div>
 </div>
 <div>
@@ -1019,21 +1019,21 @@
 </div></div>
 <div class="section" id="evaluate-the-scenarios-in-the-dataset">
 <h2>Evaluate the scenarios in the dataset.<a class="headerlink" href="#evaluate-the-scenarios-in-the-dataset" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span> <span class="o">=</span> <span class="n">designs</span><span class="o">.</span><span class="n">evaluate_scenarios</span><span class="p">(</span><span class="n">sample_count</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>scenario_results = designs.evaluate_scenarios(sample_count=500)
 </pre></div>
 </div>
 <p>Format results as a pivot table.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
-    <span class="s2">&quot;PV Generic&quot;</span>
-<span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
-    <span class="p">[</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="s2">&quot;Variable&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">]</span>
-<span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">mean</span>
-<span class="p">)</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span>
-    <span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="p">)</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;Scenario&quot;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;Index&quot;</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>scenario_results.xs(
+    &quot;PV Generic&quot;
+).groupby(
+    [&quot;Scenario&quot;, &quot;Variable&quot;, &quot;Index&quot;]
+).aggregate(
+    np.mean
+).xs(
+    &quot;Metric&quot;, level = 1
+).pivot_table(
+    index = &quot;Scenario&quot;, columns = &quot;Index&quot;
+)
 </pre></div>
 </div>
 <div>
@@ -1340,7 +1340,7 @@
   </tbody>
 </table>
 </div><p>Print the units for the columns.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">designs</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;PV Generic&quot;</span><span class="p">,</span> <span class="s2">&quot;Metric&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>designs.results.loc[&quot;PV Generic&quot;, &quot;Metric&quot;].transpose()
 </pre></div>
 </div>
 <div>
@@ -1399,23 +1399,23 @@
 </div></div>
 <div class="section" id="save-results">
 <h2>Save results.<a class="headerlink" href="#save-results" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scenario_results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/example-scenario.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>scenario_results.to_csv(&quot;output/example-scenario.csv&quot;)
 </pre></div>
 </div>
 <div class="section" id="plot-the-results">
 <h3>Plot the results.<a class="headerlink" href="#plot-the-results" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">investments</span><span class="o">.</span><span class="n">tranches</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">scenario_results</span><span class="p">)</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="s2">&quot;Metric&quot;</span><span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="s2">&quot;Variable&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
-    <span class="n">row</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span>
-    <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;Index&quot;</span><span class="p">,</span>
-    <span class="n">sharex</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">sharey</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
-    <span class="n">sb</span><span class="o">.</span><span class="n">violinplot</span><span class="p">,</span>
-    <span class="s2">&quot;Value&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Tranche&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>g = sb.FacetGrid(
+    data = investments.tranches.join(scenario_results).xs(&quot;Metric&quot;, level = &quot;Variable&quot;).reset_index(),
+    row = &quot;Category&quot;,
+    col = &quot;Index&quot;,
+    sharex = False,
+    sharey = False,
+)
+g.map(
+    sb.violinplot,
+    &quot;Value&quot;,
+    &quot;Tranche&quot;,
+)
 </pre></div>
 </div>
 <pre class="literal-block">/nix/store/2hqyq1p29z76wvh920r43a63sy9n1cag-python3-3.7.6-env/lib/python3.7/site-packages/seaborn/axisgrid.py:728: UserWarning: Using the violinplot function without specifying <cite>order</cite> is likely to produce an incorrect plot.
@@ -1428,12 +1428,12 @@
 </div>
 <div class="section" id="evaluate-the-investments-in-the-dataset">
 <h2>Evaluate the investments in the dataset.<a class="headerlink" href="#evaluate-the-investments-in-the-dataset" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span> <span class="o">=</span> <span class="n">investments</span><span class="o">.</span><span class="n">evaluate_investments</span><span class="p">(</span><span class="n">designs</span><span class="p">,</span> <span class="n">sample_count</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investment_results = investments.evaluate_investments(designs, sample_count=500)
 </pre></div>
 </div>
 <div class="section" id="costs-of-investments">
 <h3>Costs of investments.<a class="headerlink" href="#costs-of-investments" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">amounts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investment_results.amounts
 </pre></div>
 </div>
 <div>
@@ -1479,16 +1479,16 @@
 </div></div>
 <div class="section" id="benefits-of-investments">
 <h3>Benefits of investments.<a class="headerlink" href="#benefits-of-investments" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
-    <span class="s2">&quot;Units&quot;</span><span class="p">,</span> <span class="n">append</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
-    <span class="p">[</span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="s2">&quot;Units&quot;</span><span class="p">]</span>
-<span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">mean</span>
-<span class="p">)</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="s2">&quot;Units&quot;</span><span class="p">],</span>
-    <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;Investment&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investment_results.summary.set_index(
+    &quot;Units&quot;, append = True
+).groupby(
+    [&quot;Investment&quot;, &quot;Index&quot;, &quot;Units&quot;]
+).aggregate(
+    np.mean
+).pivot_table(
+    index = [&quot;Index&quot;, &quot;Units&quot;],
+    columns = &quot;Investment&quot;,
+)
 </pre></div>
 </div>
 <div>
@@ -1593,16 +1593,16 @@
 </div></div>
 <div class="section" id="id1">
 <h3>Save results.<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">amounts</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/example-investment-amounts.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investment_results.amounts.to_csv(&quot;output/example-investment-amounts.csv&quot;)
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;output/example-investment-metrics.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investment_results.metrics.to_csv(&quot;output/example-investment-metrics.csv&quot;)
 </pre></div>
 </div>
 </div>
 <div class="section" id="id2">
 <h3>Plot the results.<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">investment_results</span><span class="o">.</span><span class="n">summary</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>investment_results.summary
 </pre></div>
 </div>
 <div>
@@ -1701,17 +1701,17 @@
   </tbody>
 </table>
 <p>12000 rows × 2 columns</p>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">investment_results</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
-    <span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;Index&quot;</span><span class="p">,</span>
-    <span class="n">sharex</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">col_wrap</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
-    <span class="n">sb</span><span class="o">.</span><span class="n">violinplot</span><span class="p">,</span>
-    <span class="s2">&quot;Value&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Investment&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>g = sb.FacetGrid(
+    data = investment_results.summary.reset_index(),
+    col = &quot;Index&quot;,
+    sharex = False,
+    col_wrap = 4
+)
+g.map(
+    sb.violinplot,
+    &quot;Value&quot;,
+    &quot;Investment&quot;,
+)
 </pre></div>
 </div>
 <pre class="literal-block">/nix/store/2hqyq1p29z76wvh920r43a63sy9n1cag-python3-3.7.6-env/lib/python3.7/site-packages/seaborn/axisgrid.py:728: UserWarning: Using the violinplot function without specifying <cite>order</cite> is likely to produce an incorrect plot.

@@ -15,7 +15,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="technology package" href="technology.html" />
+    <link rel="next" title="eutychia package" href="eutychia.html" />
     <link rel="prev" title="Python API" href="modules.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -606,6 +606,30 @@ is fed to the optimizer.</p></li>
 </dd></dl>
 
 <dl class="method">
+<dt id="tyche.Evaluator.Evaluator.evaluate_corners_semilong">
+<code class="sig-name descname">evaluate_corners_semilong</code><span class="sig-paren">(</span><em class="sig-param">statistic=&lt;function mean&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Evaluator.html#Evaluator.evaluate_corners_semilong"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.evaluate_corners_semilong" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dataframe indexed my investment amounts in each category,
+with columns for each metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>statistic</strong> (<em>function</em>) – The statistic to evaluate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Evaluator.Evaluator.evaluate_corners_wide">
+<code class="sig-name descname">evaluate_corners_wide</code><span class="sig-paren">(</span><em class="sig-param">statistic=&lt;function mean&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Evaluator.html#Evaluator.evaluate_corners_wide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.evaluate_corners_wide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dataframe indexed my investment amounts in each category,
+with columns for each metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>statistic</strong> (<em>function</em>) – The statistic to evaluate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="tyche.Evaluator.Evaluator.evaluate_statistic">
 <code class="sig-name descname">evaluate_statistic</code><span class="sig-paren">(</span><em class="sig-param">amounts</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Evaluator.html#Evaluator.evaluate_statistic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.evaluate_statistic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate a statistic for an investment.</p>
@@ -613,8 +637,19 @@ is fed to the optimizer.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>amounts</strong> (<em>DataFrame</em>) – The investment levels.</p></li>
-<li><p><strong>statistics</strong> (<em>DataFrame</em>) – The statistic to evaluate.</p></li>
+<li><p><strong>statistic</strong> (<em>function</em>) – The statistic to evaluate.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="tyche.Evaluator.Evaluator.make_statistic_evaluator">
+<code class="sig-name descname">make_statistic_evaluator</code><span class="sig-paren">(</span><em class="sig-param">statistic=&lt;function mean&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Evaluator.html#Evaluator.make_statistic_evaluator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.make_statistic_evaluator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a function that valuates a statistic for an investment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>statistic</strong> (<em>function</em>) – The statistic to evaluate.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -938,7 +973,7 @@ is fed to the optimizer.</p></li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA Definition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ioc-1.html">Mock FOA Example</a></li>
@@ -958,7 +993,7 @@ is fed to the optimizer.</p></li>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="modules.html">Python API</a><ul>
       <li>Previous: <a href="modules.html" title="previous chapter">Python API</a></li>
-      <li>Next: <a href="technology.html" title="next chapter">technology package</a></li>
+      <li>Next: <a href="eutychia.html" title="next chapter">eutychia package</a></li>
   </ul></li>
   </ul></li>
 </ul>

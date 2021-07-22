@@ -12,7 +12,7 @@ environment:
 
 ::
 
-   conda env create --file conda/win.yml
+   conda env create --file conda\win.yml
    conda activate tyche
 
 on Windows, or on Mac
@@ -22,6 +22,7 @@ on Windows, or on Mac
    conda env create --file conda/mac.yml
    conda activate tyche
 
+If you receive an HTTPS error, consider retrying the command with the `--insecure` flag added.
 Note that the conda environment was created with the command:
 
 ::
@@ -32,28 +33,32 @@ Note that the conda environment was created with the command:
 Running the Server
 ------------------
 
-Start the server in debug mode
+Visit the folder ``src/eutychia/`` and start the server in debug mode
 
 ::
 
+   cd src\eutychia
    debug.cmd
 
 on Windows, or on Mac
 
 ::
 
+   cd src/eutychia
    ./debug.sh
 
 or in production mode
 
 ::
 
+   cd src\eutychia
    run.cmd
 
 on Windows, or on Mac
 
 ::
 
+   cd src/eutychia
    ./run.sh
 
 and then visit http://127.0.0.1:5000/.
@@ -68,7 +73,7 @@ Using Jupyter, first start the notebook server
 
    jupyter notebook
 
-and visit http://localhost:8888/ to select ``example.ipynb``.
+and visit http://localhost:8888/ to select ``example.ipynb`` in the folder ``src/eutychia``.
 
-Alternatively, just open `example.py <example.py>`__ is the IDE of your
+Alternatively, just open `example.py <example.py>`__ in the IDE of your
 choice or run it at the command line.
