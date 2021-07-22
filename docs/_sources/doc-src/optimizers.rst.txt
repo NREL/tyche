@@ -1,8 +1,8 @@
 Optimization
 ============
 
-Summary
--------
+Non-Linear (NLP) Formulation Summary
+------------------------------------
 
 Technology models and data are defined before the optimizer is called.
 Three methods in the ``EpsilonConstraintOptimizer`` class,
@@ -24,7 +24,7 @@ following criteria.
 -  Ability to work on a variety of potentially non-convex and otherwise
    complex problems
 
-Solutions to ``residential_pv_multiobjective``
+Solutions to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The solve times listed are in addition to the time required to set up
@@ -84,6 +84,11 @@ Maximize the objective function using the ``fmin_slsqp`` algorithm.
 ``verbose`` : int
    Amount of information provided by the wrapper as the optimization is
    performed. Defaults to 0.
+   * verbose = 0 : No messages.
+   * verbose = 1 : Summary message when fmin_slsqp completes.
+   * verbose = 2 : Status of each algorithm iteration and summary message.
+   * verbose = 3 : Investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.
+   * verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.
 
 **Return**
 
@@ -105,7 +110,7 @@ simultaneously. Both equality and inequality constraints can be defined,
 although they must be as separate functions and are provided to the
 ``fmin_slsqp`` algorithm under separate arguments.
 
-SLSQP Solution to ``residential_pv_multiobjective``
+SLSQP Solution to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Solve time: 1.5 s
@@ -187,9 +192,12 @@ convergence to the global minimum.
    involves many function evaluations as each solution in the population
    evolves. Defaults to 75.
 ``verbose`` : int
-   Amount of information provided by the wrapper as the optimization is
-   performed. Defaults to 0.\ ``differential_evolution`` has no
-   analogous verbosity parameter
+    Verbosity level returned by this outer function and the differential_evolution algorithm. Defaults to 0.
+    * verbose = 0 : No messages.
+    * verbose = 1 : Objective function value at every algorithm iteration.
+    * verbose = 2 : Investment constraint status, metric constraint status, and objective function value.
+    * verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and objective function value.
+    * verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and objective function value.
 
 **Returns**
 
@@ -211,7 +219,7 @@ Constraints for ``differential_evolution`` are defined by passing the
 same multi-valued function defined in ``maximize_slsqp`` to the
 ``NonLinearConstraint`` method. [7]
 
-Differential Evolution Solutions to ``residential_pv_multiobjective``
+Differential Evolution Solutions to ``pv_residential_simple``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Solution 1**
@@ -297,9 +305,12 @@ algorithm.
    documentation, Sobol is better for “easier” problems. Defaults to
    ‘simplicial’.
 ``verbose`` : int
-   Verbosity level returned by this wrapper function. No analogous
-   parameters are available for ``shgo``. Defaults to 0 (no messages
-   returned during execution).
+    Verbosity level returned by this outer function and the SHGO algorithm. Defaults to 0.
+    *  verbose = 0 : No messages.
+    *  verbose = 1 : Convergence messages from SHGO algorithm.
+    *  verbose = 2 : Investment constraint status, metric constraint status, and convergence messages.
+    *  verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and convergence messages.
+    *  verbose > 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and convergence messages .
 
 **Returns**
 
@@ -338,6 +349,147 @@ constraint in the optimization problem is defined as a separate
 function, with a separate dictionary giving the constraint type. With
 ``shgo`` it is not possible to use one function that returns a vector of
 constraint values.
+
+
+Piecewise Linear (MILP) Formulation Summary
+-----------------------------------
+
+
+
+Notation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. _tbl-milpindex:
+
+.. table:: Index definitions for the MILP formulation.
+
+=========== ================================================================
+Index       Description
+=========== ================================================================
+:math: `I`  Number of elicited data points (investment levels and metrics)
+:math: `J`  Number of investment categories
+:math: `K`  Number of metrics
+=========== =================================================================
+
+
+.. _tbl-milpdat:
+
+.. table:: Data definitions for the MILP formulation.
+
+===================== ============================================================ ================================================================================================
+Data                  Notation                                                     Information 
+===================== ============================================================ ================================================================================================
+Investment amounts    :math: `c_{ij}, i \in \{1, ..., I\}`                         :math: `c_i` is a point in :math: `J`-dimensional space
+Metric value          :math: `q_{ik}, i \in \{1, ..., I \}, k \in \{1, ..., K \}`  One metric will form the objective function, leaving up to :math: `K-1` metrics for constraints
+
+
+.. _tbl-milpvar:
+
+.. table:: Variable definitions for the MILP formulation.
+
+===================== ============================================== ====================================================================================================
+Variable              Notation                                       Information 
+===================== ============================================== ====================================================================================================
+Binary variables      :math: `y_{ii'}, i, i' \in \{1, ..., I\}, i' > i` Number of linear intervals between elicited data points.
+Combination variables :math: `\lambda_{i}, i \in \{1, ..., I\}`      Used to construct linear combinations of elicited data points. :math: `\lambda_{i} \geq 0 \forall i`
+
+Each metric and investment amount can be written as a linear combination of elicited data points and the newly introduced variables :math: `\lambda_{i}` and :math: `y_{ii'}`. Additional constraints on :math: `y_{ii'}` and :math: `\lambda_{i}` take care of the piecewise linearity by ensuring that the corners used to calculate :math: `q_k` reflect the interval that :math: `c_i` is in. There will be a total of :math: `\binom{I}{2}` binary :math: `y` variables, which reduces to :math: `\frac{I(I-1)}{2}` binary variables.
+
+
+One-Investment-Category, One-Metric Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Suppose we have an elicited data set for one metric (:math: `K = 1`) and one investment category (:math: `J = 1`) with three possible investment levels (:math: `I = 3`). We can write the total investment amount as a linear combination of the three investment levels :math: `c_{i1}, i \in \{1, 2, 3\}`, using the :math: `\lambda` variables:
+
+:math: `\lambda_{1}c_{11} + \lambda_{2}c_{21} + \lambda_{13}c_{31} = \sum_{i} \lambda_{i}c_{i1}`
+
+We can likewise write the metric as a linear combination of :math: `q_{1i}` and the :math: `\lambda` variables:
+
+:math: `\lambda_{1}q_{11} + \lambda_{2}q_{21} + \lambda_{3}q_{31} = \sum_{i} \lambda_{i}q_{i1}`
+
+We have the additional constraint on the :math: `\lambda` variables that 
+
+:math: `\sum_{i} \lambda_{i} = 1`
+
+These equations, combined with the integer variables :math: `y_{ii'} = \{ y_{12}, y_{13}, y_{23} \}`, can be used to construct a mixed-integer linear optimization problem.
+
+The MILP that uses this formulation to minimize a technology metric subject to a investment budget :math: `B` is as follows:
+
+:math: `\min_{y, \lambda} \lambda_{1}q_{11} + \lambda_{2}q_{21} + \lambda_{3}q_{31}`
+
+subject to
+
+:math: `\lambda_{1}c_{11} + \lambda_{2}c_{21} + \lambda_{3}c_{31} \leq B` , (1) Total budget constraint
+:math: `\lambda_1 + \lambda_2 + \lambda_3 = 1` , (2)
+:math: `y_{12} + y_{23} + y_{13} = 1` , (3)
+:math: `y_{12} \leq \lambda_1 + \lambda_2 , (4)
+:math: `y_{23} \leq \lambda_2 + \lambda_3 , (5)
+:math: `y_{13} \leq \lambda_1 + \lambda_3 , (6)
+:math: `0 \leq \lambda_1, \lambda_2, \lambda_3 \leq 1` , (7)
+:math: `y_{12}, y_{23}, y_{13} \in \{ 0, 1 \}` , (8)
+
+(We've effectively removed the investments and the metrics as variables, replacing them with the elicited data points and the new :math: `\lambda` and :math: `y` variables.)
+
+
+Extension to N x N Problem
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Note: :math: `k'` indicates the metric which is being constrained. :math: `k*` indicates the metric being optimized. :math: `J'` indicates the set of investment categories which have a budget limit (there may be more than one budget-constrained category in a problem).
+
+**No metric constraint or investment category-specific budget constraint**
+
+:math: `\min_{y, \lambda} \sum_i \lambda_{i}q_{ik*}`
+
+subject to
+
+:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B, (1) Total budget constraint
+:math: `\sum_i \lambda_i = 1` , (2)
+:math: `\sum_{i,i'} y_{ii'} = 1` , (3)
+:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i' , (4)
+:math: `0 \leq \lambda_i \leq 1 \forall i` , (5)
+:math: `y_{ii'} \in \{ 0, 1 \} \forall i, i'` , (6)
+
+
+**With investment category-specific budget constraint**
+
+
+:math: `\min_{y, \lambda} \sum_i \lambda_{i}q_{ik*}`
+
+subject to
+
+:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B, (1) Total budget constraint
+:math: `\sum_i \lambda_{i}c_{ij'}` \leq B_{j'} \forall j' \in J'   (2) Investment category budget constraint(s)
+:math: `\sum_i \lambda_i = 1` , (3)
+:math: `\sum_{i,i'} y_{ii'} = 1` , (4)
+:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i' , (5)
+:math: `0 \leq \lambda_i \leq 1 \forall i` , (6)
+:math: `y_{ii'} \in \{ 0, 1 \} \forall i, i'` , (7)
+
+
+**With metric constraint and investment category-specific budget constraint**
+
+
+:math: `\min_{y, \lambda} \sum_i \lambda_{i}q_{ik*}`
+
+subject to
+
+:math: `\sum_i \sum_j \lambda_{i}c_{ij} \leq B`, (1) Total budget constraint
+:math: `\sum_i \lambda_{i}c_{ij'} \leq B_{j'} \forall j' \in J'`   (2) Investment category budget constraint(s)
+:math: `\sum_i \lambda_{i}q_{ik'} \leq M_{k'}` , (3) Metric constraint
+:math: `\sum_i \lambda_i = 1` , (4)
+:math: `\sum_{i,i'} y_{ii'} = 1` , (5)
+:math: `y_{ii'} \leq \lambda_i + \lambda_{i'} \forall i, i'` , (6)
+:math: `0 \leq \lambda_i \leq 1 \forall i` , (7)
+:math: `y_{ii'} \in \{ 0, 1 \} \forall i, i'` , (8)
+
+
+**Problem Size**
+
+In general, :math: `I` is the number of rows in the dataset of elicited data. In the case that all investment categories have elicited data at the same number of levels (not necessarily the same levels themselves), :math: `I` can also be calculated as :math: `l^J` where :math: `l` is the number of investment levels.
+
+The problem will involve :math: `\frac{I(I-1)}{2}` binary variables and :math: `I` continuous (:math: `\lambda`) variables.
+
 
 References
 ----------

@@ -23,7 +23,7 @@ Tracked quantities.
 
 :math:`\mathcal{O} = \{ \mathrm{oxygen}, \mathrm{hydrogen} \}`
 
-:math:`\mathcal{M} = \{ \mathrm{jobs} \}`
+:math:`\mathcal{M} = \{ \mathrm{cost}, \mathrm{GHG}, \mathrm{jobs} \}`
 
 
 Current design.

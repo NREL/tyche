@@ -40,7 +40,7 @@
 <h2>Conda Environment<a class="headerlink" href="#conda-environment" title="Permalink to this headline">¶</a></h2>
 <p>Before running the example or the server, create and activate the conda
 environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">--</span><span class="n">file</span> <span class="n">conda</span><span class="o">/</span><span class="n">win</span><span class="o">.</span><span class="n">yml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">--</span><span class="n">file</span> <span class="n">conda</span>\<span class="n">win</span><span class="o">.</span><span class="n">yml</span>
 <span class="n">conda</span> <span class="n">activate</span> <span class="n">tyche</span>
 </pre></div>
 </div>
@@ -49,27 +49,32 @@ environment:</p>
 <span class="n">conda</span> <span class="n">activate</span> <span class="n">tyche</span>
 </pre></div>
 </div>
-<p>Note that the conda environment was created with the command:</p>
+<p>If you receive an HTTPS error, consider retrying the command with the <cite>–insecure</cite> flag added.
+Note that the conda environment was created with the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">tyche</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.7</span> <span class="n">numpy</span> <span class="n">scipy</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">seaborn</span><span class="o">=</span><span class="mf">0.10</span> <span class="n">matplotlib</span><span class="o">=</span><span class="mf">3.3</span> <span class="n">quart</span> <span class="n">hypercorn</span> <span class="n">jupyter</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="running-the-server">
 <h2>Running the Server<a class="headerlink" href="#running-the-server" title="Permalink to this headline">¶</a></h2>
-<p>Start the server in debug mode</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">debug</span><span class="o">.</span><span class="n">cmd</span>
+<p>Visit the folder <code class="docutils literal notranslate"><span class="pre">src/eutychia/</span></code> and start the server in debug mode</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span>\<span class="n">eutychia</span>
+<span class="n">debug</span><span class="o">.</span><span class="n">cmd</span>
 </pre></div>
 </div>
 <p>on Windows, or on Mac</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">debug</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">eutychia</span>
+<span class="o">./</span><span class="n">debug</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 <p>or in production mode</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="o">.</span><span class="n">cmd</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span>\<span class="n">eutychia</span>
+<span class="n">run</span><span class="o">.</span><span class="n">cmd</span>
 </pre></div>
 </div>
 <p>on Windows, or on Mac</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">run</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">eutychia</span>
+<span class="o">./</span><span class="n">run</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 <p>and then visit <a class="reference external" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>.</p>
@@ -80,8 +85,8 @@ environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
 </pre></div>
 </div>
-<p>and visit <a class="reference external" href="http://localhost:8888/">http://localhost:8888/</a> to select <code class="docutils literal notranslate"><span class="pre">example.ipynb</span></code>.</p>
-<p>Alternatively, just open <a class="reference external" href="example.py">example.py</a> is the IDE of your
+<p>and visit <a class="reference external" href="http://localhost:8888/">http://localhost:8888/</a> to select <code class="docutils literal notranslate"><span class="pre">example.ipynb</span></code> in the folder <code class="docutils literal notranslate"><span class="pre">src/eutychia</span></code>.</p>
+<p>Alternatively, just open <a class="reference external" href="example.py">example.py</a> in the IDE of your
 choice or run it at the command line.</p>
 </div>
 </div>
@@ -111,7 +116,7 @@ choice or run it at the command line.</p>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA Definition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ioc-1.html">Mock FOA Example</a></li>

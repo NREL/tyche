@@ -15,7 +15,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="eutychia package" href="eutychia.html" />
+    <link rel="next" title="User Interface" href="user-interface.html" />
     <link rel="prev" title="Defining Technologies" href="example-technology.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -35,8 +35,8 @@
             
   <div class="section" id="optimization">
 <h1>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="non-linear-nlp-formulation-summary">
+<h2>Non-Linear (NLP) Formulation Summary<a class="headerlink" href="#non-linear-nlp-formulation-summary" title="Permalink to this headline">¶</a></h2>
 <p>Technology models and data are defined before the optimizer is called.
 Three methods in the <code class="docutils literal notranslate"><span class="pre">EpsilonConstraintOptimizer</span></code> class,
 <code class="docutils literal notranslate"><span class="pre">maximize_slsqp</span></code>, <code class="docutils literal notranslate"><span class="pre">maximize_shgo</span></code> and <code class="docutils literal notranslate"><span class="pre">maximize_diffev</span></code>, are
@@ -57,8 +57,8 @@ constraints</p></li>
 <li><p>Ability to work on a variety of potentially non-convex and otherwise
 complex problems</p></li>
 </ul>
-<div class="section" id="solutions-to-residential-pv-multiobjective">
-<h3>Solutions to <code class="docutils literal notranslate"><span class="pre">residential_pv_multiobjective</span></code><a class="headerlink" href="#solutions-to-residential-pv-multiobjective" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="solutions-to-pv-residential-simple">
+<h3>Solutions to <code class="docutils literal notranslate"><span class="pre">pv_residential_simple</span></code><a class="headerlink" href="#solutions-to-pv-residential-simple" title="Permalink to this headline">¶</a></h3>
 <p>The solve times listed are in addition to the time required to set up
 the problem and solve for the maximum allowable metric values, which
 currently uses the SLSQP algorithm. This setup time is between 10 and 15
@@ -140,7 +140,12 @@ to <code class="docutils literal notranslate"><span class="pre">None</span></cod
 Defaults to 50.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code><span class="classifier">int</span></dt><dd><p>Amount of information provided by the wrapper as the optimization is
-performed. Defaults to 0.</p>
+performed. Defaults to 0.
+* verbose = 0 : No messages.
+* verbose = 1 : Summary message when fmin_slsqp completes.
+* verbose = 2 : Status of each algorithm iteration and summary message.
+* verbose = 3 : Investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.
+* verbose &gt; 3 : All metric values, decision variable values, investment constraint status, metric constraint status, status of each algorithm iteration, and summary message.</p>
 </dd>
 </dl>
 <p><strong>Return</strong></p>
@@ -161,8 +166,8 @@ simultaneously. Both equality and inequality constraints can be defined,
 although they must be as separate functions and are provided to the
 <code class="docutils literal notranslate"><span class="pre">fmin_slsqp</span></code> algorithm under separate arguments.</p>
 </div>
-<div class="section" id="slsqp-solution-to-residential-pv-multiobjective">
-<h3>SLSQP Solution to <code class="docutils literal notranslate"><span class="pre">residential_pv_multiobjective</span></code><a class="headerlink" href="#slsqp-solution-to-residential-pv-multiobjective" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="slsqp-solution-to-pv-residential-simple">
+<h3>SLSQP Solution to <code class="docutils literal notranslate"><span class="pre">pv_residential_simple</span></code><a class="headerlink" href="#slsqp-solution-to-pv-residential-simple" title="Permalink to this headline">¶</a></h3>
 <p>Solve time: 1.5 s</p>
 <table class="docutils align-default">
 <colgroup>
@@ -267,9 +272,12 @@ corresponds to the number of algorithm iterations. Each iteration
 involves many function evaluations as each solution in the population
 evolves. Defaults to 75.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code><span class="classifier">int</span></dt><dd><p>Amount of information provided by the wrapper as the optimization is
-performed. Defaults to 0.<code class="docutils literal notranslate"><span class="pre">differential_evolution</span></code> has no
-analogous verbosity parameter</p>
+<dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code><span class="classifier">int</span></dt><dd><p>Verbosity level returned by this outer function and the differential_evolution algorithm. Defaults to 0.
+* verbose = 0 : No messages.
+* verbose = 1 : Objective function value at every algorithm iteration.
+* verbose = 2 : Investment constraint status, metric constraint status, and objective function value.
+* verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and objective function value.
+* verbose &gt; 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and objective function value.</p>
 </dd>
 </dl>
 <p><strong>Returns</strong></p>
@@ -288,8 +296,8 @@ a list of optimized <code class="docutils literal notranslate"><span class="pre"
 same multi-valued function defined in <code class="docutils literal notranslate"><span class="pre">maximize_slsqp</span></code> to the
 <code class="docutils literal notranslate"><span class="pre">NonLinearConstraint</span></code> method. [7]</p>
 </div>
-<div class="section" id="differential-evolution-solutions-to-residential-pv-multiobjective">
-<h3>Differential Evolution Solutions to <code class="docutils literal notranslate"><span class="pre">residential_pv_multiobjective</span></code><a class="headerlink" href="#differential-evolution-solutions-to-residential-pv-multiobjective" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="differential-evolution-solutions-to-pv-residential-simple">
+<h3>Differential Evolution Solutions to <code class="docutils literal notranslate"><span class="pre">pv_residential_simple</span></code><a class="headerlink" href="#differential-evolution-solutions-to-pv-residential-simple" title="Permalink to this headline">¶</a></h3>
 <p><strong>Solution 1</strong></p>
 <ul class="simple">
 <li><p>Seed = 2</p></li>
@@ -426,9 +434,12 @@ is faster, uses more memory and does not guarantee convergence. Per
 documentation, Sobol is better for “easier” problems. Defaults to
 ‘simplicial’.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code><span class="classifier">int</span></dt><dd><p>Verbosity level returned by this wrapper function. No analogous
-parameters are available for <code class="docutils literal notranslate"><span class="pre">shgo</span></code>. Defaults to 0 (no messages
-returned during execution).</p>
+<dt><code class="docutils literal notranslate"><span class="pre">verbose</span></code><span class="classifier">int</span></dt><dd><p>Verbosity level returned by this outer function and the SHGO algorithm. Defaults to 0.
+*  verbose = 0 : No messages.
+*  verbose = 1 : Convergence messages from SHGO algorithm.
+*  verbose = 2 : Investment constraint status, metric constraint status, and convergence messages.
+*  verbose = 3 : Decision variable values, investment constraint status, metric constraint status, and convergence messages.
+*  verbose &gt; 3 : All metric values, decision variable values, investment constraint status, metric constraint status, and convergence messages .</p>
 </dd>
 </dl>
 <p><strong>Returns</strong></p>
@@ -462,6 +473,170 @@ constraint in the optimization problem is defined as a separate
 function, with a separate dictionary giving the constraint type. With
 <code class="docutils literal notranslate"><span class="pre">shgo</span></code> it is not possible to use one function that returns a vector of
 constraint values.</p>
+</div>
+</div>
+<div class="section" id="piecewise-linear-milp-formulation-summary">
+<h2>Piecewise Linear (MILP) Formulation Summary<a class="headerlink" href="#piecewise-linear-milp-formulation-summary" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="notation">
+<h3>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h3>
+<p>Variable              Notation                                       Information
+===================== ============================================== ====================================================================================================
+Binary variables      :math: <cite>y_{ii’}, i, i’ in {1, …, I}, i’ &gt; i</cite> Number of linear intervals between elicited data points.
+Combination variables :math: <cite>lambda_{i}, i in {1, …, I}</cite>      Used to construct linear combinations of elicited data points. :math: <cite>lambda_{i} geq 0 forall i</cite></p>
+<p>Each metric and investment amount can be written as a linear combination of elicited data points and the newly introduced variables :math: <cite>lambda_{i}</cite> and :math: <cite>y_{ii’}</cite>. Additional constraints on :math: <cite>y_{ii’}</cite> and :math: <cite>lambda_{i}</cite> take care of the piecewise linearity by ensuring that the corners used to calculate :math: <cite>q_k</cite> reflect the interval that :math: <cite>c_i</cite> is in. There will be a total of :math: <cite>binom{I}{2}</cite> binary :math: <cite>y</cite> variables, which reduces to :math: <cite>frac{I(I-1)}{2}</cite> binary variables.</p>
+</div>
+<div class="section" id="one-investment-category-one-metric-example">
+<h3>One-Investment-Category, One-Metric Example<a class="headerlink" href="#one-investment-category-one-metric-example" title="Permalink to this headline">¶</a></h3>
+<p>Suppose we have an elicited data set for one metric (:math: <cite>K = 1</cite>) and one investment category (:math: <cite>J = 1</cite>) with three possible investment levels (:math: <cite>I = 3</cite>). We can write the total investment amount as a linear combination of the three investment levels :math: <cite>c_{i1}, i in {1, 2, 3}</cite>, using the :math: <cite>lambda</cite> variables:</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>lambda_{1}c_{11} + lambda_{2}c_{21} + lambda_{13}c_{31} = sum_{i} lambda_{i}c_{i1}</cite></p>
+</dd>
+</dl>
+<p>We can likewise write the metric as a linear combination of :math: <cite>q_{1i}</cite> and the :math: <cite>lambda</cite> variables:</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>lambda_{1}q_{11} + lambda_{2}q_{21} + lambda_{3}q_{31} = sum_{i} lambda_{i}q_{i1}</cite></p>
+</dd>
+</dl>
+<p>We have the additional constraint on the :math: <cite>lambda</cite> variables that</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>sum_{i} lambda_{i} = 1</cite></p>
+</dd>
+</dl>
+<p>These equations, combined with the integer variables :math: <cite>y_{ii’} = { y_{12}, y_{13}, y_{23} }</cite>, can be used to construct a mixed-integer linear optimization problem.</p>
+<p>The MILP that uses this formulation to minimize a technology metric subject to a investment budget :math: <cite>B</cite> is as follows:</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>min_{y, lambda} lambda_{1}q_{11} + lambda_{2}q_{21} + lambda_{3}q_{31}</cite></p>
+</dd>
+</dl>
+<p>subject to</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>lambda_{1}c_{11} + lambda_{2}c_{21} + lambda_{3}c_{31} leq B</cite> , (1) Total budget constraint</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>lambda_1 + lambda_2 + lambda_3 = 1</cite> , (2)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>y_{12} + y_{23} + y_{13} = 1</cite> , (3)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><a href="#id3"><span class="problematic" id="id4">`</span></a>y_{12} leq lambda_1 + lambda_2 , (4)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><a href="#id5"><span class="problematic" id="id6">`</span></a>y_{23} leq lambda_2 + lambda_3 , (5)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><a href="#id7"><span class="problematic" id="id8">`</span></a>y_{13} leq lambda_1 + lambda_3 , (6)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>0 leq lambda_1, lambda_2, lambda_3 leq 1</cite> , (7)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>y_{12}, y_{23}, y_{13} in { 0, 1 }</cite> , (8)</p>
+</dd>
+</dl>
+<p>(We’ve effectively removed the investments and the metrics as variables, replacing them with the elicited data points and the new :math: <cite>lambda</cite> and :math: <cite>y</cite> variables.)</p>
+</div>
+<div class="section" id="extension-to-n-x-n-problem">
+<h3>Extension to N x N Problem<a class="headerlink" href="#extension-to-n-x-n-problem" title="Permalink to this headline">¶</a></h3>
+<p>Note: :math: <cite>k’</cite> indicates the metric which is being constrained. :math: <cite>k*</cite> indicates the metric being optimized. :math: <cite>J’</cite> indicates the set of investment categories which have a budget limit (there may be more than one budget-constrained category in a problem).</p>
+<p><strong>No metric constraint or investment category-specific budget constraint</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>min_{y, lambda} sum_i lambda_{i}q_{ik*}</cite></p>
+</dd>
+</dl>
+<p>subject to</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><a href="#id9"><span class="problematic" id="id10">`</span></a>sum_i sum_j lambda_{i}c_{ij} leq B, (1) Total budget constraint</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>sum_i lambda_i = 1</cite> , (2)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>sum_{i,i’} y_{ii’} = 1</cite> , (3)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><a href="#id11"><span class="problematic" id="id12">`</span></a>y_{ii’} leq lambda_i + lambda_{i’} forall i, i’ , (4)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>0 leq lambda_i leq 1 forall i</cite> , (5)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>y_{ii’} in { 0, 1 } forall i, i’</cite> , (6)</p>
+</dd>
+</dl>
+<p><strong>With investment category-specific budget constraint</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>min_{y, lambda} sum_i lambda_{i}q_{ik*}</cite></p>
+</dd>
+</dl>
+<p>subject to</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><a href="#id13"><span class="problematic" id="id14">`</span></a>sum_i sum_j lambda_{i}c_{ij} leq B, (1) Total budget constraint</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>sum_i lambda_{i}c_{ij’}</cite> leq B_{j’} forall j’ in J’   (2) Investment category budget constraint(s)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>sum_i lambda_i = 1</cite> , (3)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>sum_{i,i’} y_{ii’} = 1</cite> , (4)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><a href="#id15"><span class="problematic" id="id16">`</span></a>y_{ii’} leq lambda_i + lambda_{i’} forall i, i’ , (5)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>0 leq lambda_i leq 1 forall i</cite> , (6)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>y_{ii’} in { 0, 1 } forall i, i’</cite> , (7)</p>
+</dd>
+</dl>
+<p><strong>With metric constraint and investment category-specific budget constraint</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>min_{y, lambda} sum_i lambda_{i}q_{ik*}</cite></p>
+</dd>
+</dl>
+<p>subject to</p>
+<dl class="field-list simple">
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>sum_i sum_j lambda_{i}c_{ij} leq B</cite>, (1) Total budget constraint</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>sum_i lambda_{i}c_{ij’} leq B_{j’} forall j’ in J’</cite>   (2) Investment category budget constraint(s)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>sum_i lambda_{i}q_{ik’} leq M_{k’}</cite> , (3) Metric constraint</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>sum_i lambda_i = 1</cite> , (4)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>sum_{i,i’} y_{ii’} = 1</cite> , (5)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>y_{ii’} leq lambda_i + lambda_{i’} forall i, i’</cite> , (6)</p>
+</dd>
+<dt class="field-odd">math</dt>
+<dd class="field-odd"><p><cite>0 leq lambda_i leq 1 forall i</cite> , (7)</p>
+</dd>
+<dt class="field-even">math</dt>
+<dd class="field-even"><p><cite>y_{ii’} in { 0, 1 } forall i, i’</cite> , (8)</p>
+</dd>
+</dl>
+<p><strong>Problem Size</strong></p>
+<p>In general, :math: <cite>I</cite> is the number of rows in the dataset of elicited data. In the case that all investment categories have elicited data at the same number of levels (not necessarily the same levels themselves), :math: <cite>I</cite> can also be calculated as :math: <cite>l^J</cite> where :math: <cite>l</cite> is the number of investment levels.</p>
+<p>The problem will involve :math: <cite>frac{I(I-1)}{2}</cite> binary variables and :math: <cite>I</cite> continuous (:math: <cite>lambda</cite>) variables.</p>
 </div>
 </div>
 <div class="section" id="references">
@@ -523,14 +698,15 @@ Last accessed 12/29/2020.</p></li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Optimization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#non-linear-nlp-formulation-summary">Non-Linear (NLP) Formulation Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sequential-least-squares-programming">Sequential Least Squares Programming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#differential-evolution">Differential Evolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simplicial-homology-global-optimization">Simplicial Homology Global Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#piecewise-linear-milp-formulation-summary">Piecewise Linear (MILP) Formulation Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA Definition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ioc-1.html">Mock FOA Example</a></li>
@@ -544,7 +720,7 @@ Last accessed 12/29/2020.</p></li>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="example-technology.html" title="previous chapter">Defining Technologies</a></li>
-      <li>Next: <a href="eutychia.html" title="next chapter">eutychia package</a></li>
+      <li>Next: <a href="user-interface.html" title="next chapter">User Interface</a></li>
   </ul></li>
 </ul>
 </div>
