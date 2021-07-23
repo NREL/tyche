@@ -53,6 +53,7 @@ def fixed_cost(scale, parameter):
     total fixed costs for one biorefinery (USD/year)
     """
     o_scale = parameter[10]
+
     rnt = parameter[8] * (scale / o_scale)
     ins = parameter[9] * (scale / o_scale)
 

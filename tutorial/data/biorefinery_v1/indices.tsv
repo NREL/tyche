@@ -3,6 +3,7 @@ Biorefinery v1	Capital	Preprocessing	0	process area capital costs
 Biorefinery v1	Capital	Fermentation	1	process area capital costs	
 Biorefinery v1	Capital	Conversion	2	process area capital costs	
 Biorefinery v1	Capital	Separations	3	process area capital costs	
+Biorefinery v1	Capital	Utilities	4	process area capital costs	
 Biorefinery v1	Fixed	Rent	0		
 Biorefinery v1	Fixed	Insurance	1		
 Biorefinery v1	Input	Feedstock	0		
