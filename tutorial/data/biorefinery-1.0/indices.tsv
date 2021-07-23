@@ -11,6 +11,16 @@ Biorefinery 1.0	Output	Biofuel	0
 Biorefinery 1.0	Technical Parameter	Fossil GHG	0	kg CO2-eq/year	
 Biorefinery 1.0	Technical Parameter	Biogenic GHG	1	kg CO2-eq/year	
 Biorefinery 1.0	Technical Parameter	Employment	2	person-hours/year	
+Biorefinery 1.0	Technical Parameter	Preprocessing Capital Cost	3	USD/biorefinery	
+Biorefinery 1.0	Technical Parameter	Fermentation Capital Cost	4	USD/biorefinery	
+Biorefinery 1.0	Technical Parameter	Conversion Capital Cost	5	USD/biorefinery	
+Biorefinery 1.0	Technical Parameter	Separations Capital Cost	6	USD/biorefinery	
+Biorefinery 1.0	Technical Parameter	Utilities Capital Cost	7	USD/biorefinery	
+Biorefinery 1.0	Technical Parameter	Rent	8	USD/year	
+Biorefinery 1.0	Technical Parameter	Insurance	9	USD/year	
+Biorefinery 1.0	Technical Parameter	Original Scale	10	unitless	
+Biorefinery 1.0	Technical Parameter	Scaling Factor	11	unitless	
+Biorefinery 1.0	Technical Parameter	Ideal Biofuel Yield	12	gal/metric ton	
 Biorefinery 1.0	Metric	Jobs	0	person-hours/gal biofuel	
 Biorefinery 1.0	Metric	Fossil GHG	1	kg CO2-eq/gal biofuel	
 Biorefinery 1.0	Metric	Total GHG	2	kg CO2-eq/gal biofuel	
