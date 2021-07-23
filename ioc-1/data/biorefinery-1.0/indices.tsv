@@ -6,6 +6,7 @@ Biorefinery	Capital	Separations	3	process area capital costs
 Biorefinery	Fixed	Rent	0		
 Biorefinery	Fixed	Insurance	1		
 Biorefinery	Input	Feedstock	0		
+Biorefinery	Input	Natural Gas	1		
 Biorefinery	Output	Biofuel	0		
 Biorefinery	Technical Parameter	Fossil GHG	0	kg CO2-eq/year	
 Biorefinery	Technical Parameter	Biogenic GHG	1	kg CO2-eq/year	
