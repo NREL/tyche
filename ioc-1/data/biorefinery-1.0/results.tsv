@@ -1,11 +1,11 @@
 Technology	Variable	Index	Units	Notes
-Biorefinery	Input	Feedstock	metric ton/year	per one year of expected operations
-Biorefinery	Input price	Feedstock	USD/metric ton	average over expected biorefinery lifetime
-Biorefinery	Input efficiency	Feedstock	1	unitless fraction. Losses are during transport, storage, and preprocessing
-Biorefinery	Input	Natural Gas	MJ/year	
-Biorefinery	Input price	Natural Gas	USD/MJ	
-Biorefinery	Input efficiency	Natural Gas	1	unitless fraction
-Biorefinery	Output price	Biofuel	USD/gal	average over expected biorefinery lifetime
-Biorefinery	Output efficiency	Biofuel	1	unitless fraction
-Biorefinery	Lifetime	Biorefinery	years	
-Biorefinery	Scale	Biorefinery	unitless	
+Biorefinery 1.0	Input	Feedstock	metric ton/year	per one year of expected operations
+Biorefinery 1.0	Input price	Feedstock	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery 1.0	Input efficiency	Feedstock	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery 1.0	Input	Natural Gas	MJ/year	
+Biorefinery 1.0	Input price	Natural Gas	USD/MJ	
+Biorefinery 1.0	Input efficiency	Natural Gas	1	unitless fraction
+Biorefinery 1.0	Output price	Biofuel	USD/gal	average over expected biorefinery lifetime
+Biorefinery 1.0	Output efficiency	Biofuel	1	unitless fraction
+Biorefinery 1.0	Lifetime	Biorefinery	years	
+Biorefinery 1.0	Scale	Biorefinery	unitless	
