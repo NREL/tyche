@@ -1,0 +1,10 @@
+Technology	Scenario	Variable	Index	Value	Units	Notes
+Wind Turbine	Reference	Scale	NaN	1	turbine	All calculations are normalized to one turbine.
+Wind Turbine	Reference	Lifetime	Rotor	1	lifetime	All calculations are normalized to turbine lifetime.
+Wind Turbine	Reference	Lifetime	Drive	1	lifetime	All calculations are normalized to turbine lifetime.
+Wind Turbine	Reference	Lifetime	Tower	1	lifetime	All calculations are normalized to turbine lifetime.
+Wind Turbine	Reference	Lifetime	BOS	1	lifetime	All calculations are normalized to turbine lifetime.
+Wind Turbine	Reference	Lifetime	
+Wind Turbine	Reference	
+Wind Turbine	Reference	
+Wind Turbine	Reference	
