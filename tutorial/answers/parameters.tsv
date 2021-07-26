@@ -1,1 +1,6 @@
 Technology	Scenario	Parameter	Offset	Value	Units	Notes
+Wind Turbine	Reference	Rotor design	0	0	1	rho
+Wind Turbine	Reference	Drive design	1	0.90	1	delta
+Wind Turbine	Reference	Tower design	2	1	1	tau
+Wind Turbine	Reference	BOS factor	3	1	1	beta
+Wind Turbine	Reference	O&M factor	4	1	1	mu

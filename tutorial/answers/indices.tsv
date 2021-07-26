@@ -6,10 +6,9 @@ Wind Turbine	Capital	BOS	3	Foundations, roads, civil work.
 Wind Turbine	Fixed	Replacements	0	Replacement components.	
 Wind Turbine	Fixed	O&M	1	Operations and maintenance.	
 Wind Turbine	Fixed	Land	2	Land lease.	
-Wind Turbine	Input	Fiberglass	0	Fiberglass for rotor blades.	
-Wind Turbine	Input	Steel	1	Steel for tower.	
+Wind Turbine	Input	Wind	0	Just a placeholder because at least one input is required.	
 Wind Turbine	Output	Electricity	0	Annual energy output.	
 Wind Turbine	Metric	Cost	0	Cost of the wind turbine.	
-Wind Turbine	Metric	AEP	1	Annual energy production.	
-Wind Turbine	Metric	LCOE	2	Levelized cost of energy.	
-Wind Turbine	Metric	CF	3	Capacity factor.	
+Wind Turbine	Metric	LCOE	1	Levelized cost of energy.	
+Wind Turbine	Metric	CF	2	Capacity factor.	
+Wind Turbine	Metric	AEP	3	Annual energy production.	
