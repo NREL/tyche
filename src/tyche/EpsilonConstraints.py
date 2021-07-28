@@ -657,6 +657,7 @@ class EpsilonConstraintOptimizer:
       Upper limit on total investments summed across all R&D categories
     verbose : int
       A value greater than zero will save the optimization model as a .lp file
+      A value greater than 1 will print out status messages
 
     Returns
     -------
@@ -679,6 +680,8 @@ class EpsilonConstraintOptimizer:
     if max_amount is None:
       max_amount = self.evaluator.max_amount.Amount
 
+    if verbose > 1: print('Getting and processing wide data')
+
     # get data frame of elicited metric values by investment level combinations
     _wide = self.evaluator.evaluate_corners_wide(statistic).reset_index()
 
@@ -697,15 +700,23 @@ class EpsilonConstraintOptimizer:
     # Number of investment level combinations/metric values
     I = len(inv_levels)
 
+    if verbose > 1: print('Data processed')
+
+    if verbose > 1: print('Building MIP model')
+
     # instantiate MILP model
     _model = Model(sense=MAXIMIZE)
 
     bin_vars = []
     lmbd_vars = []
 
+    if verbose > 1: print('Creating lambda variables')
+
     # create continuous lambda variables
     for i in range(I):
       lmbd_vars += [_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0)]
+
+    if verbose > 1: print('Creating binary variables and constraints')
 
     # create binary variables and binary/lambda variable constraints
     bin_count = 0
@@ -720,7 +731,7 @@ class EpsilonConstraintOptimizer:
                     'Interval_Constraint_' + str(i) + '_' + str(j)
           bin_count += 1
 
-    # create budget constraints
+    if verbose > 1: print('Creating total budget constraint')
 
     # total budget constraint - only if total_amount is an input
     if total_amount is not None:
@@ -729,12 +740,16 @@ class EpsilonConstraintOptimizer:
                       for j in range(len(inv_levels[i]))) <= total_amount,\
                  'Total_Budget'
 
+    if verbose > 1: print('Creating category budget constraints')
+
     # constraint on budget for each investment category
     # this is either fed in as an argument or pulled from evaluator
     for j in range(len(_categories)):
       _model += xsum(lmbd_vars[i] * [el[j] for el in inv_levels][i]
                       for i in range(I)) <= max_amount[j],\
                  'Budget_for_' + _categories[j].replace(' ', '')
+
+    if verbose > 1: print('Defining metric constraints')
 
     # define metric constraints if lower limits on metrics have been defined
     if min_metric is not None:
@@ -747,18 +762,25 @@ class EpsilonConstraintOptimizer:
                        for i in range(I)) >= limit,\
                   'Minimum_' + index
 
+    if verbose > 1: print('Defining convexity constraints')
+
     # convexity constraint for continuous variables
     _model += sum(lmbd_vars) == 1, 'Lambda_Sum'
+
+    if verbose > 1: print('Defining binary variable constraints')
 
     # constrain binary variables such that only one interval can be active
     # at a time
     _model += sum(bin_vars) == 1, 'Binary_Sum'
+
+    if verbose > 1: print('Defining objective function')
 
     # objective function
     _model.objective = xsum(m[i] * lmbd_vars[i] for i in range(I))
 
     # save a copy of the model in LP format
     if verbose > 0:
+      print('Saving model')
       _model.write('model.lp')
     else:
       # if the verbose parameter is 0, the MIP solver does not print output
@@ -767,6 +789,7 @@ class EpsilonConstraintOptimizer:
     # note time when algorithm started
     _start = time.time()
 
+    if verbose > 1: print('Optimizing')
     # find optimal solution
     _solution = _model.optimize()
 
@@ -776,6 +799,7 @@ class EpsilonConstraintOptimizer:
     # and return a populated Optimum tuple
     if _model.status.value == 0:
       # get the optimal variable values as two lists
+      if verbose > 1: print('Optimized')
       lmbd_opt = []
       y_opt = []
       for v in _model.vars:
@@ -796,6 +820,8 @@ class EpsilonConstraintOptimizer:
                     index=self.evaluator.max_amount.index)
 
       metrics_opt = []
+
+      if verbose > 1: print('Calculating optimal metric values')
 
       # calculate optimal values of all metrics
       for i in range(len(_all_metrics)):
