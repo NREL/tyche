@@ -1,0 +1,11 @@
+Technology	Scenario	Variable	Index	Value	Units	Notes
+Wind Turbine	Reference	Scale	NaN	1	%/100	Scale of operations, relative to a 1.5MW turbine.
+Wind Turbine	Reference	Lifetime	Rotor	8.6	year	Reciprocal of the capital-recovery factor.
+Wind Turbine	Reference	Lifetime	Drive	8.6	year	Reciprocal of the capital-recovery factor.
+Wind Turbine	Reference	Lifetime	Tower	8.6	year	Reciprocal of the capital-recovery factor.
+Wind Turbine	Reference	Lifetime	BOS	8.6	year	Reciprocal of the capital-recovery factor.
+Wind Turbine	Reference	Input	Wind	10.0	m/s	Wind speed at 50 meters.
+Wind Turbine	Reference	Input efficiency	Wind	0.593	%/100	Betz law.
+Wind Turbine	Reference	Input price	Wind	0	n/a	Wind is free.
+Wind Turbine	Reference	Output efficiency	Electricity	0.3282	%/100	Capacity factor.
+Wind Turbine	Reference	Output price	Electricity	0	$/kWh	Not tracking revenue.
