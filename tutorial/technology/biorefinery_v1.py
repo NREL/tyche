@@ -96,7 +96,7 @@ def production(scale, capital, lifetime, fixed, input, parameter):
 
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
     """
     Metrics function.
 
@@ -114,6 +114,8 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
       Raw input quantities (before losses). Units: metric ton feedstock/year
     input : array
       Input quantities. Units: metric ton feedstock/year
+    input_price : array`
+        Array of input prices. Various units.
     output_raw : array
       Raw output quantities (before losses). Units: gal biofuel/year
     output : array
@@ -124,19 +126,70 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
       The technological parameterization. Units vary; given in comments below
     """
 
+    # annual fossil GHG emissions, Units: kg CO2-eq/year
+    ghg_foss_ann = parameter[0]
+    # annual biogenic GHG emissions, Units: kg CO2-eq/year
+    ghg_bio_ann  = parameter[1]
+    # Annual person-hours required, Units: person-hours/year
+    emp_ann      = parameter[2]
+    # Preprocessing capital cost, Units: USD
+    pre_cap      = parameter[3]
+    # Fermentation capital cost, Units: USD
+    fer_cap      = parameter[4]
+    # Conversion capital cost, Units: USD
+    con_cap      = parameter[5]
+    # Separations capital cost, Units: USD
+    sep_cap      = parameter[6]
+    # Utilities capital cost, Units: USD
+    utl_cap      = parameter[7]
+    # Annual rent, Units: USD/year
+    rnt_ann      = parameter[8]
+    # Annual insurance, Units: USD/year
+    ins_ann      = parameter[9]
+    # Discount rate, Unitless
+    dr           = parameter[13]
+    # Depreciation period for all equipment except utilities, Units: years
+    dp           = parameter[14]
+    # Depreciation period for utilities, Units: years
+    dpu          = parameter[15]
+    # Income tax rate, Units: years
+    tr           = parameter[16]
+    # equipment lifetime
+    els          = lifetime[0]
+
     # JOBS: person-hours/gal biofuel
     # parameter[2] units: person-hours/year
     # output units: gal biofuel/year
-    emp = parameter[2] / output
+    emp = emp_ann / output
 
     # FOSSIL GHG: kg CO2-eq/gal biofuel
     # parameter[0] units: kg CO2-eq/year
     # output units: gal biofuel/year
-    ghg_foss = parameter[0] / output
+    ghg_foss = ghg_foss_ann / output
 
     # TOTAL GHG: kg CO2-eq/gal biofuel
     # parameter[0] and parameter[1] units: kg CO2-eq/year
     # output units: gal biofuel/year
-    ghg_tot = (parameter[0] + parameter[1]) / output
+    ghg_tot = (ghg_foss_ann + ghg_bio_ann) / output
 
-    return np.stack([emp, ghg_foss, ghg_tot])
+    # MINIMUM FUEL SELLING PRICE: USD/gal biofuel
+    # total project investment, Units: USD
+    # sum of all capital costs
+    tpi = pre_cap + fer_cap + con_cap + sep_cap + utl_cap
+
+    # depreciation costs, units: USD/year
+    dc = (pre_cap + fer_cap + con_cap + sep_cap) / dp + utl_cap / dpu
+
+    # operating costs, units: USD/year
+    oc = input_raw[0] * input_price[0] + input_raw[1] * input_price[1] + rnt_ann + ins_ann
+
+    # tpi discount factor, Units: unitless
+    df_tpi = (dr * (1 + dr) ** els) / ((1 + dr) ** els - 1)
+
+    # total revenue from biofuel sales, Units: USD/year
+    br = ((1 - tr) * oc - tr * dc + df_tpi * tpi) / (1 - tr)
+
+    # MFSP, Units: USD/gal biofuel
+    mfsp = br / output
+
+    return np.stack([emp, ghg_foss, ghg_tot, mfsp])

@@ -12,6 +12,10 @@ Biorefinery v1	Bioreference	Insurance	9	1000000	USD/year
 Biorefinery v1	Bioreference	Original Scale	10	1	unitless	
 Biorefinery v1	Bioreference	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Bioreference	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Bioreference	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Bioreference	Depreciation Period	14	7	years	
+Biorefinery v1	Bioreference	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Bioreference	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Conversion 0	Fossil GHG	0	158826150	kg CO2-eq/year	
 Biorefinery v1	Conversion 0	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Conversion 0	Employment	2	100800	person-hours/year	
@@ -25,6 +29,10 @@ Biorefinery v1	Conversion 0	Insurance	9	1000000	USD/year
 Biorefinery v1	Conversion 0	Original Scale	10	1	unitless	
 Biorefinery v1	Conversion 0	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Conversion 0	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Conversion 0	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Conversion 0	Depreciation Period	14	7	years	
+Biorefinery v1	Conversion 0	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Conversion 0	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Conversion 1	Fossil GHG	0	159668901	kg CO2-eq/year	
 Biorefinery v1	Conversion 1	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Conversion 1	Employment	2	109200	person-hours/year	
@@ -38,6 +46,10 @@ Biorefinery v1	Conversion 1	Insurance	9	1000000	USD/year
 Biorefinery v1	Conversion 1	Original Scale	10	1	unitless	
 Biorefinery v1	Conversion 1	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Conversion 1	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Conversion 1	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Conversion 1	Depreciation Period	14	7	years	
+Biorefinery v1	Conversion 1	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Conversion 1	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Conversion 2	Fossil GHG	0	160770960	kg CO2-eq/year	
 Biorefinery v1	Conversion 2	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Conversion 2	Employment	2	126000	person-hours/year	
@@ -51,6 +63,10 @@ Biorefinery v1	Conversion 2	Insurance	9	1000000	USD/year
 Biorefinery v1	Conversion 2	Original Scale	10	1	unitless	
 Biorefinery v1	Conversion 2	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Conversion 2	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Conversion 2	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Conversion 2	Depreciation Period	14	7	years	
+Biorefinery v1	Conversion 2	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Conversion 2	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Fermentation 0	Fossil GHG	0	159636487.5	kg CO2-eq/year	
 Biorefinery v1	Fermentation 0	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Fermentation 0	Employment	2	100800	person-hours/year	
@@ -64,6 +80,10 @@ Biorefinery v1	Fermentation 0	Insurance	9	1000000	USD/year
 Biorefinery v1	Fermentation 0	Original Scale	10	1	unitless	
 Biorefinery v1	Fermentation 0	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Fermentation 0	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Fermentation 0	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Fermentation 0	Depreciation Period	14	7	years	
+Biorefinery v1	Fermentation 0	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Fermentation 0	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Fermentation 1	Fossil GHG	0	164012310	kg CO2-eq/year	
 Biorefinery v1	Fermentation 1	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Fermentation 1	Employment	2	117600	person-hours/year	
@@ -77,6 +97,10 @@ Biorefinery v1	Fermentation 1	Insurance	9	1000000	USD/year
 Biorefinery v1	Fermentation 1	Original Scale	10	1	unitless	
 Biorefinery v1	Fermentation 1	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Fermentation 1	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Fermentation 1	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Fermentation 1	Depreciation Period	14	7	years	
+Biorefinery v1	Fermentation 1	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Fermentation 1	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Fermentation 2	Fossil GHG	0	164498512.5	kg CO2-eq/year	
 Biorefinery v1	Fermentation 2	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Fermentation 2	Employment	2	126000	person-hours/year	
@@ -90,6 +114,10 @@ Biorefinery v1	Fermentation 2	Insurance	9	1000000	USD/year
 Biorefinery v1	Fermentation 2	Original Scale	10	1	unitless	
 Biorefinery v1	Fermentation 2	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Fermentation 2	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Fermentation 2	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Fermentation 2	Depreciation Period	14	7	years	
+Biorefinery v1	Fermentation 2	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Fermentation 2	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Preprocessing 0	Fossil GHG	0	166119187.5	kg CO2-eq/year	
 Biorefinery v1	Preprocessing 0	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Preprocessing 0	Employment	2	126000	person-hours/year	
@@ -103,6 +131,10 @@ Biorefinery v1	Preprocessing 0	Insurance	9	1000000	USD/year
 Biorefinery v1	Preprocessing 0	Original Scale	10	1	unitless	
 Biorefinery v1	Preprocessing 0	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Preprocessing 0	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Preprocessing 0	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Preprocessing 0	Depreciation Period	14	7	years	
+Biorefinery v1	Preprocessing 0	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Preprocessing 0	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Preprocessing 1	Fossil GHG	0	170332942.5	kg CO2-eq/year	
 Biorefinery v1	Preprocessing 1	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Preprocessing 1	Employment	2	117600	person-hours/year	
@@ -116,6 +148,10 @@ Biorefinery v1	Preprocessing 1	Insurance	9	1000000	USD/year
 Biorefinery v1	Preprocessing 1	Original Scale	10	1	unitless	
 Biorefinery v1	Preprocessing 1	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Preprocessing 1	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Preprocessing 1	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Preprocessing 1	Depreciation Period	14	7	years	
+Biorefinery v1	Preprocessing 1	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Preprocessing 1	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Preprocessing 2	Fossil GHG	0	173736360	kg CO2-eq/year	
 Biorefinery v1	Preprocessing 2	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Preprocessing 2	Employment	2	109200	person-hours/year	
@@ -129,6 +165,10 @@ Biorefinery v1	Preprocessing 2	Insurance	9	1000000	USD/year
 Biorefinery v1	Preprocessing 2	Original Scale	10	1	unitless	
 Biorefinery v1	Preprocessing 2	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Preprocessing 2	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Preprocessing 2	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Preprocessing 2	Depreciation Period	14	7	years	
+Biorefinery v1	Preprocessing 2	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Preprocessing 2	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Separations 0	Fossil GHG	0	186377625	kg CO2-eq/year	
 Biorefinery v1	Separations 0	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Separations 0	Employment	2	100800	person-hours/year	
@@ -142,6 +182,10 @@ Biorefinery v1	Separations 0	Insurance	9	1000000	USD/year
 Biorefinery v1	Separations 0	Original Scale	10	1	unitless	
 Biorefinery v1	Separations 0	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Separations 0	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Separations 0	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Separations 0	Depreciation Period	14	7	years	
+Biorefinery v1	Separations 0	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Separations 0	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Separations 1	Fossil GHG	0	179894925	kg CO2-eq/year	
 Biorefinery v1	Separations 1	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Separations 1	Employment	2	117600	person-hours/year	
@@ -155,6 +199,10 @@ Biorefinery v1	Separations 1	Insurance	9	1000000	USD/year
 Biorefinery v1	Separations 1	Original Scale	10	1	unitless	
 Biorefinery v1	Separations 1	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Separations 1	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Separations 1	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Separations 1	Depreciation Period	14	7	years	
+Biorefinery v1	Separations 1	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Separations 1	Income Tax Rate	16	0.35	unitless	
 Biorefinery v1	Separations 2	Fossil GHG	0	163201972.5	kg CO2-eq/year	
 Biorefinery v1	Separations 2	Biogenic GHG	1	115762500	kg CO2-eq/year	
 Biorefinery v1	Separations 2	Employment	2	134400	person-hours/year	
@@ -168,3 +216,7 @@ Biorefinery v1	Separations 2	Insurance	9	1000000	USD/year
 Biorefinery v1	Separations 2	Original Scale	10	1	unitless	
 Biorefinery v1	Separations 2	Scaling Factor	11	0.6	unitless	
 Biorefinery v1	Separations 2	Ideal Biofuel Yield	12	103.95	gal/metric ton	
+Biorefinery v1	Separations 2	Discount Rate	13	0.1	unitless	
+Biorefinery v1	Separations 2	Depreciation Period	14	7	years	
+Biorefinery v1	Separations 2	Depreciation Period Utilities	15	30	years	
+Biorefinery v1	Separations 2	Income Tax Rate	16	0.35	unitless	

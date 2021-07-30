@@ -22,6 +22,10 @@ Biorefinery v1	Technical Parameter	Insurance	9	USD/year
 Biorefinery v1	Technical Parameter	Original Scale	10	unitless	
 Biorefinery v1	Technical Parameter	Scaling Factor	11	unitless	
 Biorefinery v1	Technical Parameter	Ideal Biofuel Yield	12	gal/metric ton	
+Biorefinery v1	Technical Parameter	Discount Rate	13	unitless	
+Biorefinery v1	Technical Parameter	Depreciation Period	14	year	
+Biorefinery v1	Technical Parameter	Depreciation Period Utilities	15	year	
+Biorefinery v1	Technical Parameter	Income Tax Rate	16	unitless	
 Biorefinery v1	Metric	Jobs	0	person-hours/gal biofuel	
 Biorefinery v1	Metric	Fossil GHG	1	kg CO2-eq/gal biofuel	
 Biorefinery v1	Metric	Total GHG	2	kg CO2-eq/gal biofuel	
