@@ -1,1 +1,28 @@
-Technology	Scenario	Parameter	Offset	Value	Units	Notes
+Technology	Scenario	Parameter	Offset	Value	Units	Notes	FASTSim Variable
+Class 8 Diesel Tractor	Reference	Glider cost	0	82333.33333333333	$	Class 8 glider cost before markup	gliderCost
+Class 8 Diesel Tractor	Reference	Fuel converter cost slope	1	50.0	$/kW	Diesel engine cost slope	iceDolPerKw, cngIceDolPerKw, fuelCellDolPerKw
+Class 8 Diesel Tractor	Reference	Fuel converter fixed cost	2	5000.0	$	Diesel engine fixed cost	
+Class 8 Diesel Tractor	Reference	Fuel storage cost slope	3	0.07	$/kWh	Diesel tank cost	fuelStorDolPerKwh, fuelStorH2DolPerKwh, fuelStorCngDolPerKwh
+Class 8 Diesel Tractor	Reference	Fuel storage fixed cost	4	0.0	$	Diesel tank cost	
+Class 8 Diesel Tractor	Reference	Energy storage cost slope	5	0.0	$/kWh	No LIB in a diesel tractor	essDolPerKwh
+Class 8 Diesel Tractor	Reference	Energy storage fixed cost	6	0.0	$	No LIB in a diesel tractor	
+Class 8 Diesel Tractor	Reference	Energy storage power cost slope	7	0.0	$/kW	No LIB in a diesel tractor	essDolPerKw
+Class 8 Diesel Tractor	Reference	Electric drive cost slope	8	0.0	$/kW	No electric drive in a diesel tractor	peAndMcDolPerKw
+Class 8 Diesel Tractor	Reference	Electric drive fixed cost	9	0.0	$	No electric drive in a diesel tractor	peAndMcBaseCost
+Class 8 Diesel Tractor	Reference	Plug cost	10	0.0	$	No plug in a diesel tractor	plugCost
+Class 8 Diesel Tractor	Reference	Glider weight	11	14000.0	kg	Class 8 glider weight	gliderKg+transKg
+Class 8 Diesel Tractor	Reference	Fuel converter size	12	317.0	kW	Diesel engine size to achieve 0-60mph in 60 sec	maxFuelConvKw
+Class 8 Diesel Tractor	Reference	Fuel converter weight	13	1385.0	kg	Diesel engine weight	fcMassKg
+Class 8 Diesel Tractor	Reference	Fuel storage size	14	3400.0	kWh	Diesel fuel storage	fuelStorKwh
+Class 8 Diesel Tractor	Reference	Fuel storage weight	15	415.0	kg	Diesel tank weight	fsMassKg
+Class 8 Diesel Tractor	Reference	Energy storage size	16	0.0	kWh	No LIB in a diesel tractor	maxEssKwh
+Class 8 Diesel Tractor	Reference	Energy storage weight	17	0.0	kg	No LIB in a diesel tractor	essMassKg
+Class 8 Diesel Tractor	Reference	Electric drive size	18	0.0	kW	No electric drive in a diesel tractor	
+Class 8 Diesel Tractor	Reference	Electric drive weight	19	0.0	kg	No electric drive in a diesel tractor	
+Class 8 Diesel Tractor	Reference	Dwell time cost	20	50.0	$/hour	Cost of truck/driver being idle	
+Class 8 Diesel Tractor	Reference	Dwell refueling rate	21	562.3199999999999	kWh/minute	Rate of energy flow during refueling	
+Class 8 Diesel Tractor	Reference	Maintance & repair cost	22	0.15	$/mi	Estimate for Class 8 diesel tractor	
+Class 8 Diesel Tractor	Reference	Other fixed cost	23	0.75	$/mi	Permits, fees, insurance, tolls, driver wages and benefits	
+Class 8 Diesel Tractor	Reference	Cost to price markup factor	24	1.5	$/$	Gross profit margin	
+Class 8 Diesel Tractor	Reference	Fuel carbon intensity	25	8961.267605633804	gram/gge	Grams of CO2e per gge of fuel	
+Class 8 Diesel Tractor	Reference	Carbon cost	26	50.0	$/tonne	$50/tonne CO2e price	

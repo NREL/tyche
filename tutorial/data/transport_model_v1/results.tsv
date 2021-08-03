@@ -1,1 +1,6 @@
 Technology	Variable	Index	Units	Notes
+Class 8 Diesel Tractor	Cost	LCOD	$/mile	LCOD = levelized cost of driving
+Class 8 Diesel Tractor	Metric	MSRP	$	MSRP = Minimimum suggested retail price
+Class 8 Diesel Tractor	Metric	Vehicle weight	kg	
+Class 8 Diesel Tractor	Metric	Lifetime cost	$	
+Class 8 Diesel Tractor	Metric	GHG emissions	g-CO2e	
