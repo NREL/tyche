@@ -633,6 +633,7 @@ class EpsilonConstraintOptimizer:
           total_amount = None   ,
           min_metric   = None   ,
           statistic    = np.mean,
+          sizelimit    = 1e6    ,
           verbose      = 0      ,
   ):
     """
@@ -655,6 +656,9 @@ class EpsilonConstraintOptimizer:
       in Evaluator
     total_amount : float
       Upper limit on total investments summed across all R&D categories
+    sizelimit : int
+      Maximum allowed number of binary variables. If the problem size exceeds
+      this limit, pwlinear_milp will exit before building or solving the model.
     verbose : int
       A value greater than zero will save the optimization model as a .lp file
       A value greater than 1 will print out status messages
@@ -685,6 +689,13 @@ class EpsilonConstraintOptimizer:
 
     # get data frame of elicited metric values by investment level combinations
     _wide = self.evaluator.evaluate_corners_wide(statistic).reset_index()
+
+    _nbinary = len(_wide) * (len(_wide)-1) / 2
+
+    if _nbinary >= sizelimit:
+      print('MILP contains %d binary variables and will exit without solving' %
+            _nbinary)
+      return None
 
     # (combinations of) Investment levels
     inv_levels = _wide.loc[:, _categories].values.tolist()
