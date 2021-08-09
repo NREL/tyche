@@ -39,7 +39,7 @@ def capital_cost(scale, parameter):
   battery_power             = parameter[18]
   edt_size                  = parameter[19]
   
-  markup                    = parameter[25]
+  markup                    = parameter[27]
   
   # Calculate component costs. 
   glider            = glider * markup
@@ -71,12 +71,48 @@ def fixed_cost(scale, parameter):
     The technological parameterization.
   """
   
-  fixed_costs = parameter[24]           # $/mile
-  fixed_costs = fixed_costs * scale     # $/yr
+  # Unpack variables.
+  fuel_storage_size         = parameter[14]
+  battery_size              = parameter[16]
+  dwell_time_cost           = parameter[21]
+  dwell_rate                = parameter[22]
+  dwell_type                = parameter[23]
+  dwell_bool                = parameter[24]
+  maintenence_cost          = parameter[25]
+  other_fixed_cost          = parameter[26]
+  
+  carbon_intensity          = parameter[28]
+  carbon_price              = parameter[29]
+  carbon_price_bool         = parameter[30]
+  fuel_efficiency           = parameter[31]                         # FIXME: duplicate of input[1]
+  
+  # Compute direct (non-fuel) fixed costs.
+  maintenence_cost  = maintenence_cost * scale                      # $/yr
+  other_fixed_cost  = other_fixed_cost * scale                      # $/yr
+  
+  # Compute indirect costs.
+  # Dwell time costs.
+  if dwell_type: 
+      dwell_size = battery_size
+  else: 
+      dwell_size = fuel_storage_size
+  
+  cost_per_refueling    = (dwell_size / dwell_rate / 60) * dwell_time_cost      # 60 mins/hour; simple linear refueling approximation
+  range_miles           = dwell_size / (fuel_efficiency * 33.7)                 # 33.7 kWh/gge
+  n_refuelings          = scale / range_miles
+  dwell_cost            = n_refuelings * cost_per_refueling * dwell_bool
+  
+  # Carbon costs.
+  energy = scale * fuel_efficiency                                  # gge/yr
+  carbon = energy * carbon_intensity / 1e6                          # 1e6 gram/tonne
+  carbon_cost = carbon * carbon_price * carbon_price_bool
+  
+  # Sum fixed costs.
+  fixed_cost = maintenence_cost + other_fixed_cost + dwell_cost + carbon_cost
   
   # Stack the costs for each category into a single array that we return.
   return np.stack([
-      fixed_costs
+      fixed_cost                                                    # $/yr
   ])
 
 
@@ -133,8 +169,36 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   parameter : array
     The technological parameterization.
   """
+  
+  # Unpack variables. 
+  glider_wt                 = parameter[11]
+  fuel_converter_wt         = parameter[13]
+  fuel_storage_wt           = parameter[15]
+  battery_wt                = parameter[17]
+  edt_wt                    = parameter[20]
+  
+  carbon_intensity          = parameter[28]
+  fuel_efficiency           = parameter[31]                         # FIXME: duplicate of input[1]
+  
+  # Compute LCOD.
+  lcod = cost
+  
+  # Compute upfront purchase price (MSRP). 
+  msrp = cost * scale * lifetime
+  
+  # Compute total (undiscounted) lifetime cost. 
+  lifetime_cost = lcod * scale * lifetime               # Could make lifetime a CRF to discount to NPV.
+
+  # Compute vehicle weight.
+  weight = glider_wt + fuel_converter_wt + fuel_storage_wt + battery_wt + edt_wt
+  
+  # Compute lifetime energy usage.
+  energy = scale * lifetime * fuel_efficiency
+  
+  # Compute greenhouse gas emissions. 
+  ghg = carbon_intensity * energy
 
   # Package results.
   return np.stack([
-
+      lcod, msrp, lifetime_cost, weight, energy, ghg
   ])

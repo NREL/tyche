@@ -9,7 +9,7 @@ Class 8 Diesel Tractor	Fixed	Other Fixed Costs	0	Other fixed costs (e.g., insura
 Class 8 Diesel Tractor	Input	Fuel	0	Fuel/energy input (e.g., diesel, electricity, hydrogen)	
 Class 8 Diesel Tractor	Output	VMT	0	Miles travelled	
 Class 8 Diesel Tractor	Metric	MSRP	0	MSRP = Minimimum suggested retail price	
-Class 8 Diesel Tractor	Metric	Vehicle weight	1		
-Class 8 Diesel Tractor	Metric	Lifetime cost	2		
-Class 8 Diesel Tractor	Metric	GHG emissions	3		
-Class 8 Diesel Tractor	Metric	Energy consumption	4		
+Class 8 Diesel Tractor	Metric	Lifetime cost	1		
+Class 8 Diesel Tractor	Metric	Vehicle weight	2		
+Class 8 Diesel Tractor	Metric	Energy consumption	3		
+Class 8 Diesel Tractor	Metric	GHG emissions	4		

@@ -17,12 +17,17 @@ Class 8 Diesel Tractor	Reference	Fuel storage size	14	3400.0	kWh	Diesel fuel sto
 Class 8 Diesel Tractor	Reference	Fuel storage weight	15	415.0	kg	Diesel tank weight	fsMassKg
 Class 8 Diesel Tractor	Reference	Energy storage size	16	0.0	kWh	No LIB in a diesel tractor	maxEssKwh
 Class 8 Diesel Tractor	Reference	Energy storage weight	17	0.0	kg	No LIB in a diesel tractor	essMassKg
-Class 8 Diesel Tractor	Reference	Electric drive size	18	0.0	kW	No electric drive in a diesel tractor	
-Class 8 Diesel Tractor	Reference	Electric drive weight	19	0.0	kg	No electric drive in a diesel tractor	
-Class 8 Diesel Tractor	Reference	Dwell time cost	20	50.0	$/hour	Cost of truck/driver being idle	
-Class 8 Diesel Tractor	Reference	Dwell refueling rate	21	562.3199999999999	kWh/minute	Rate of energy flow during refueling	
-Class 8 Diesel Tractor	Reference	Maintance & repair cost	22	0.15	$/mi	Estimate for Class 8 diesel tractor	
-Class 8 Diesel Tractor	Reference	Other fixed cost	23	0.75	$/mi	Permits, fees, insurance, tolls, driver wages and benefits	
-Class 8 Diesel Tractor	Reference	Cost to price markup factor	24	1.5	$/$	Gross profit margin	
-Class 8 Diesel Tractor	Reference	Fuel carbon intensity	25	8961.267605633804	gram/gge	Grams of CO2e per gge of fuel	
-Class 8 Diesel Tractor	Reference	Carbon cost	26	50.0	$/tonne	$50/tonne CO2e price	
+Class 8 Diesel Tractor	Reference	Energy storage power	18	0.0	kW	No LIB in a diesel tractor	
+Class 8 Diesel Tractor	Reference	Electric drive size	19	0.0	kW	No electric drive in a diesel tractor	
+Class 8 Diesel Tractor	Reference	Electric drive weight	20	0.0	kg	No electric drive in a diesel tractor	
+Class 8 Diesel Tractor	Reference	Dwell time cost	21	50.0	$/hour	Cost of truck/driver being idle	
+Class 8 Diesel Tractor	Reference	Dwell refueling rate	22	562.3199999999999	kWh/minute	Rate of energy flow during refueling	
+Class 8 Diesel Tractor	Reference	Dwell time basis	23	0.0		Selection of fuel/energy storage for dwell time calculation (0 = fuel storage, 1 = battery)	
+Class 8 Diesel Tractor	Reference	Dwell time boolean	24	1.0		Boolean to turn on or off dwell time costs (1 = on, 0 = off)	
+Class 8 Diesel Tractor	Reference	Maintance & repair cost	25	0.15	$/mi	Estimate for Class 8 diesel tractor	
+Class 8 Diesel Tractor	Reference	Other fixed cost	26	0.75	$/mi	Permits, fees, insurance, tolls, driver wages and benefits	
+Class 8 Diesel Tractor	Reference	Cost to price markup factor	27	1.5	$/$	Gross profit margin	
+Class 8 Diesel Tractor	Reference	Fuel carbon intensity	28	8961.267605633804	gram/gge	Grams of CO2e per gge of fuel	
+Class 8 Diesel Tractor	Reference	Carbon cost	29	50.0	$/tonne	$50/tonne CO2e price	
+Class 8 Diesel Tractor	Reference	Carbon cost boolean	30	1.0		Boolean to turn on or off carbon costs (1 = on, 0 = off)	
+Class 8 Diesel Tractor	Reference	Input fuel efficiency	31	0.12575452716297789	gge/mile	Inverse of diesel fuel economy of 7 mile/dge (duplicates design variable)	
