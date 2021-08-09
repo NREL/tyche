@@ -681,7 +681,8 @@ class EpsilonConstraintOptimizer:
     if max_amount is None:
       max_amount = self.evaluator.max_amount.Amount
 
-    if verbose > 1: print('Getting and processing wide data')
+    if verbose > 1: print('Getting and processing wide data at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # get data frame of elicited metric values by investment level combinations
     _wide = self.evaluator.evaluate_corners_wide(statistic).reset_index()
@@ -701,9 +702,11 @@ class EpsilonConstraintOptimizer:
     # Number of investment level combinations/metric values
     I = len(inv_levels)
 
-    if verbose > 1: print('Data processed at ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Data processed at %s s' %
+                          str(round(time.time() - _start, 1)))
 
-    if verbose > 1: print('Building MIP model at ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Building MIP model at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # instantiate MILP model
     _model = Model(sense=MAXIMIZE)
@@ -711,13 +714,15 @@ class EpsilonConstraintOptimizer:
     bin_vars = []
     lmbd_vars = []
 
-    if verbose > 1: print('Creating lambda variables at ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Creating %i lambda variables at %s s' %
+                          (I, str(round(time.time() - _start, 1))))
 
     # create continuous lambda variables
     for i in range(I):
       lmbd_vars += [_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0)]
 
-    if verbose > 1: print('Creating binary variables and constraints at ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Creating binary variables and constraints at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # create binary variables and binary/lambda variable constraints
     bin_count = 0
@@ -732,7 +737,8 @@ class EpsilonConstraintOptimizer:
                     'Interval_Constraint_' + str(i) + '_' + str(j)
           bin_count += 1
 
-    if verbose > 1: print('Creating total budget constraint at ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Creating total budget constraint at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # total budget constraint - only if total_amount is an input
     if total_amount is not None:
@@ -741,7 +747,8 @@ class EpsilonConstraintOptimizer:
                       for j in range(len(inv_levels[i]))) <= total_amount,\
                  'Total_Budget'
 
-    if verbose > 1: print('Creating category budget constraints at ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Creating category budget constraints at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # constraint on budget for each investment category
     # this is either fed in as an argument or pulled from evaluator
@@ -750,7 +757,8 @@ class EpsilonConstraintOptimizer:
                       for i in range(I)) <= max_amount[j],\
                  'Budget_for_' + _categories[j].replace(' ', '')
 
-    if verbose > 1: print('Defining metric constraints at ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Defining metric constraints at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # define metric constraints if lower limits on metrics have been defined
     if min_metric is not None:
@@ -763,25 +771,28 @@ class EpsilonConstraintOptimizer:
                        for i in range(I)) >= limit,\
                   'Minimum_' + index
 
-    if verbose > 1: print('Defining convexity constraints ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Defining convexity constraints at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # convexity constraint for continuous variables
     _model += sum(lmbd_vars) == 1, 'Lambda_Sum'
 
-    if verbose > 1: print('Defining binary variable constraints ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Defining binary variable constraints at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # constrain binary variables such that only one interval can be active
     # at a time
     _model += sum(bin_vars) == 1, 'Binary_Sum'
 
-    if verbose > 1: print('Defining objective function ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Defining objective function at %s s' %
+                          str(round(time.time() - _start, 1)))
 
     # objective function
     _model.objective = xsum(m[i] * lmbd_vars[i] for i in range(I))
 
     # save a copy of the model in LP format
     if verbose > 0:
-      print('Saving model')
+      print('Saving model at ', str(round(time.time() - _start, 1)))
       _model.write('model.lp')
     else:
       # if the verbose parameter is 0, the MIP solver does not print output
@@ -790,7 +801,8 @@ class EpsilonConstraintOptimizer:
     # note time when algorithm started
     _start = time.time()
 
-    if verbose > 1: print('Optimizing ', str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Optimizing at %s s' %
+                          str(round(time.time() - _start, 1)))
     # find optimal solution
     _solution = _model.optimize()
 
@@ -800,7 +812,8 @@ class EpsilonConstraintOptimizer:
     # and return a populated Optimum tuple
     if _model.status.value == 0:
       # get the optimal variable values as two lists
-      if verbose > 1: print('Optimized ', str(round(time.time() - _start, 1)))
+      if verbose > 1: print('Optimized at %s s' %
+                            str(round(time.time() - _start, 1)))
       lmbd_opt = []
       y_opt = []
       for v in _model.vars:
@@ -810,6 +823,9 @@ class EpsilonConstraintOptimizer:
           y_opt += [v.x]
       
       inv_levels_opt = []
+
+      if verbose > 1: print('Calculating optimal investment values at %s s' %
+                            str(round(time.time() - _start, 1)))
 
       # calculate the optimal investment values
       for i in range(len(_categories)):
@@ -822,7 +838,8 @@ class EpsilonConstraintOptimizer:
 
       metrics_opt = []
 
-      if verbose > 1: print('Calculating optimal metric values ', str(round(time.time() - _start, 1)))
+      if verbose > 1: print('Calculating optimal metric values at %s s' %
+                            str(round(time.time() - _start, 1)))
 
       # calculate optimal values of all metrics
       for i in range(len(_all_metrics)):
@@ -831,6 +848,9 @@ class EpsilonConstraintOptimizer:
 
       y = pd.Series(metrics_opt, name="Value",
                     index=_all_metrics)
+
+      if verbose > 1: print('Optimal metric values calculated at %s s' %
+                            str(round(time.time() - _start, 1)))
 
       return Optimum(
         exit_code=_model.status.value,
