@@ -92,10 +92,9 @@ def fixed_cost(scale, parameter):
   
   # Compute indirect costs.
   # Dwell time costs.
-  if dwell_type: 
-      dwell_size = battery_size
-  else: 
-      dwell_size = fuel_storage_size
+  ones = np.ones(len(dwell_type))
+  
+  dwell_size = fuel_storage_size * (ones - dwell_type) + battery_size * dwell_type
   
   cost_per_refueling    = (dwell_size / dwell_rate / 60) * dwell_time_cost      # 60 mins/hour; simple linear refueling approximation
   range_miles           = dwell_size / (fuel_efficiency * 33.7)                 # 33.7 kWh/gge
@@ -197,7 +196,16 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   
   # Compute greenhouse gas emissions. 
   ghg = carbon_intensity * energy
-
+  
+  # Print results.
+  print(lifetime)
+  print(lcod)
+  print(msrp)
+  print(lifetime_cost)
+  print(weight)
+  print(energy)
+  print(ghg)
+  
   # Package results.
   return np.stack([
       lcod, msrp, lifetime_cost, weight, energy, ghg
