@@ -91,7 +91,8 @@ def fixed_cost(scale, parameter):
   other_fixed_cost  = other_fixed_cost * scale                      # $/yr
   
   # Compute indirect costs.
-  # Dwell time costs.
+  
+  # Dwell time costs (included here instead of as an Input to allow boolean operator).
   ones = np.ones(len(dwell_type))
   
   dwell_size = fuel_storage_size * (ones - dwell_type) + battery_size * dwell_type
@@ -101,7 +102,7 @@ def fixed_cost(scale, parameter):
   n_refuelings          = scale / range_miles
   dwell_cost            = n_refuelings * cost_per_refueling * dwell_bool
   
-  # Carbon costs.
+  # Carbon costs (included here instead of as an Input to allow boolean operator).
   energy = scale * fuel_efficiency                                  # gge/yr
   carbon = energy * carbon_intensity / 1e6                          # 1e6 gram/tonne
   carbon_cost = carbon * carbon_price * carbon_price_bool
@@ -178,35 +179,25 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   
   carbon_intensity          = parameter[28]
   fuel_efficiency           = parameter[31]                         # FIXME: duplicate of input[1]
+  vehicle_lifetime          = parameter[32]
   
-  # Compute LCOD.
-  lcod = cost
   
   # Compute upfront purchase price (MSRP). 
-  msrp = cost * scale * lifetime
+  msrp = np.sum(capital, axis=0)
   
   # Compute total (undiscounted) lifetime cost. 
-  lifetime_cost = lcod * scale * lifetime               # Could make lifetime a CRF to discount to NPV.
+  lifetime_cost = cost * scale * vehicle_lifetime                   # Could make vehicle_lifetime a CRF to discount to NPV.
 
   # Compute vehicle weight.
   weight = glider_wt + fuel_converter_wt + fuel_storage_wt + battery_wt + edt_wt
   
   # Compute lifetime energy usage.
-  energy = scale * lifetime * fuel_efficiency
+  energy = scale * vehicle_lifetime * fuel_efficiency
   
   # Compute greenhouse gas emissions. 
   ghg = carbon_intensity * energy
-  
-  # Print results.
-  print(lifetime)
-  print(lcod)
-  print(msrp)
-  print(lifetime_cost)
-  print(weight)
-  print(energy)
-  print(ghg)
-  
+    
   # Package results.
   return np.stack([
-      lcod, msrp, lifetime_cost, weight, energy, ghg
+      msrp, lifetime_cost, weight, energy, ghg
   ])

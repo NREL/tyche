@@ -31,3 +31,4 @@ Class 8 Diesel Tractor	Reference	Fuel carbon intensity	28	8961.267605633804	gram
 Class 8 Diesel Tractor	Reference	Carbon cost	29	50.0	$/tonne	$50/tonne CO2e price	
 Class 8 Diesel Tractor	Reference	Carbon cost boolean	30	1.0		Boolean to turn on or off carbon costs (1 = on, 0 = off)	
 Class 8 Diesel Tractor	Reference	Input fuel efficiency	31	0.12575452716297789	gge/mile	Inverse of diesel fuel economy of 7 mile/dge (duplicates design variable)	
+Class 8 Diesel Tractor	Reference	Tractor lifetime	32	10.0	year	Vehicle lifetime before being retired	

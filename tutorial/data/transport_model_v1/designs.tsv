@@ -9,6 +9,5 @@ Class 8 Diesel Tractor	Reference	Lifetime	Plug	10.0	year	Lifetime of component
 Class 8 Diesel Tractor	Reference	Input	Fuel	1.0	gge	Gasoline gallon equivalent
 Class 8 Diesel Tractor	Reference	Input efficiency	Fuel	0.12575452716297789	gge/mile	Inverse of diesel fuel economy of 7 mile/dge
 Class 8 Diesel Tractor	Reference	Input price	Fuel	3.9759999999999995	$/gge	Equates to a $3.5/gal diesel price
-Class 8 Diesel Tractor	Reference	Output	VMT	1.0	mile/mile	Placeholder varible since output is needed
 Class 8 Diesel Tractor	Reference	Output efficiency	VMT	1.0	mile/mile	Placeholder varible since output is needed
 Class 8 Diesel Tractor	Reference	Output price	VMT	0.0	$/mi	Placeholder varible since output is needed
