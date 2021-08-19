@@ -6,7 +6,7 @@ model is specific to a Class 8 diesel tractor.
 - In theory, this general powertrain/vehicle approach should work for non-on-road vehicle applications, but
 a nother model or data would be needed to replace FASTSim estimates of powertrain design and fuel efficiency. 
 - Please see the [Jupyter Notebook](transport_model.ipynb) for in-line documenation and discussion of `V1` and `V2` models. 
-- Data flow diagrams are in the [model-architecture.pptx](./data/transport_model_v1/model-architecture.pptx).
+- Data flow diagrams are in the [model-architecture.pptx](./data/transport_model_v1/docs/model-architecture.pptx).
 
 ## Data Sources
 The `parameters.tsv` and `designs.tsv` [data](./data/transport_model_v1) are based on the recent NREL Report evaluating the total cost of ownership of commercial vehicles. 
