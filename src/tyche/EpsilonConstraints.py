@@ -732,8 +732,8 @@ class EpsilonConstraintOptimizer:
     for i in range(I):
       lmbd_vars += [_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0)]
 
-    if verbose > 1: print('Creating binary variables and constraints at %s s' %
-                          str(round(time.time() - _start, 1)))
+    if verbose > 1: print('Creating %i binary variables and constraints at %s s' %
+                          (_nbinary, str(round(time.time() - _start, 1))))
 
     # create binary variables and binary/lambda variable constraints
     bin_count = 0
@@ -782,13 +782,13 @@ class EpsilonConstraintOptimizer:
                        for i in range(I)) >= limit,\
                   'Minimum_' + index
 
-    if verbose > 1: print('Defining convexity constraints at %s s' %
+    if verbose > 1: print('Defining lambda convexity constraints at %s s' %
                           str(round(time.time() - _start, 1)))
 
     # convexity constraint for continuous variables
     _model += sum(lmbd_vars) == 1, 'Lambda_Sum'
 
-    if verbose > 1: print('Defining binary variable constraints at %s s' %
+    if verbose > 1: print('Defining binary convexity constraints at %s s' %
                           str(round(time.time() - _start, 1)))
 
     # constrain binary variables such that only one interval can be active
@@ -803,21 +803,22 @@ class EpsilonConstraintOptimizer:
 
     # save a copy of the model in LP format
     if verbose > 0:
-      print('Saving model at ', str(round(time.time() - _start, 1)))
+      print('Saving model at %s s' %
+            str(round(time.time() - _start, 1)))
       _model.write('model.lp')
     else:
       # if the verbose parameter is 0, the MIP solver does not print output
       _model.verbose = 0
 
-    # note time when algorithm started
-    _start = time.time()
-
     if verbose > 1: print('Optimizing at %s s' %
                           str(round(time.time() - _start, 1)))
+
+    _opt_start = time.time()
+
     # find optimal solution
     _solution = _model.optimize()
 
-    elapsed = time.time() - _start
+    elapsed = time.time() - _opt_start
 
     # if a feasible solution was found, calculate the optimal investment values
     # and return a populated Optimum tuple
