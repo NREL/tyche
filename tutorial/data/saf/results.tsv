@@ -1,0 +1,64 @@
+Technology	Variable	Index	Units	Notes
+HEFA Camelina	Cost	Cost	USD/year	
+HEFA Camelina	Output	Jet	gal/year	
+HEFA Camelina	Output	Gasoline	gal/year	
+HEFA Camelina	Output	Diesel	gal/year	
+HEFA Camelina	Output	Propane	gal/year	
+HEFA Camelina	Output	DDGS	kg/year	
+HEFA Camelina	Output	Electricity	kWh/year	
+HEFA Camelina	Metric	Jet GHG	kg CO2eq/MJ	
+HEFA Camelina	Metric	MJSP	USD/gal	
+HEFA Castor	Cost	Cost	USD/year	
+HEFA Castor	Output	Jet	gal/year	
+HEFA Castor	Output	Gasoline	gal/year	
+HEFA Castor	Output	Diesel	gal/year	
+HEFA Castor	Output	Propane	gal/year	
+HEFA Castor	Output	DDGS	kg/year	
+HEFA Castor	Output	Electricity	kWh/year	
+HEFA Castor	Metric	Jet GHG	kg CO2eq/MJ	
+HEFA Castor	Metric	MJSP	USD/gal	
+HEFA Jatropha	Cost	Cost	USD/year	
+HEFA Jatropha	Output	Jet	gal/year	
+HEFA Jatropha	Output	Gasoline	gal/year	
+HEFA Jatropha	Output	Diesel	gal/year	
+HEFA Jatropha	Output	Propane	gal/year	
+HEFA Jatropha	Output	DDGS	kg/year	
+HEFA Jatropha	Output	Electricity	kWh/year	
+HEFA Jatropha	Metric	Jet GHG	kg CO2eq/MJ	
+HEFA Jatropha	Metric	MJSP	USD/gal	
+HEFA Pennycress	Cost	Cost	USD/year	
+HEFA Pennycress	Output	Jet	gal/year	
+HEFA Pennycress	Output	Gasoline	gal/year	
+HEFA Pennycress	Output	Diesel	gal/year	
+HEFA Pennycress	Output	Propane	gal/year	
+HEFA Pennycress	Output	DDGS	kg/year	
+HEFA Pennycress	Output	Electricity	kWh/year	
+HEFA Pennycress	Metric	Jet GHG	kg CO2eq/MJ	
+HEFA Pennycress	Metric	MJSP	USD/gal	
+HEFA Yellow Grease	Cost	Cost	USD/year	
+HEFA Yellow Grease	Output	Jet	gal/year	
+HEFA Yellow Grease	Output	Gasoline	gal/year	
+HEFA Yellow Grease	Output	Diesel	gal/year	
+HEFA Yellow Grease	Output	Propane	gal/year	
+HEFA Yellow Grease	Output	DDGS	kg/year	
+HEFA Yellow Grease	Output	Electricity	kWh/year	
+HEFA Yellow Grease	Metric	Jet GHG	kg CO2eq/MJ	
+HEFA Yellow Grease	Metric	MJSP	USD/gal	
+ATJ Corn Dry Mill	Cost	Cost	USD/year	
+ATJ Corn Dry Mill	Output	Jet	gal/year	
+ATJ Corn Dry Mill	Output	Gasoline	gal/year	
+ATJ Corn Dry Mill	Output	Diesel	gal/year	
+ATJ Corn Dry Mill	Output	Propane	gal/year	
+ATJ Corn Dry Mill	Output	DDGS	kg/year	
+ATJ Corn Dry Mill	Output	Electricity	kWh/year	
+ATJ Corn Dry Mill	Metric	Jet GHG	kg CO2eq/MJ	
+ATJ Corn Dry Mill	Metric	MJSP	USD/gal	
+ATJ Stover Thermochem	Cost	Cost	USD/year	
+ATJ Stover Thermochem	Output	Jet	gal/year	
+ATJ Stover Thermochem	Output	Gasoline	gal/year	
+ATJ Stover Thermochem	Output	Diesel	gal/year	
+ATJ Stover Thermochem	Output	Propane	gal/year	
+ATJ Stover Thermochem	Output	DDGS	kg/year	
+ATJ Stover Thermochem	Output	Electricity	kWh/year	
+ATJ Stover Thermochem	Metric	Jet GHG	kg CO2eq/MJ	
+ATJ Stover Thermochem	Metric	MJSP	USD/gal	
