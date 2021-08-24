@@ -4,12 +4,10 @@ ATJ Corn Dry Mill	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021
 ATJ Corn Dry Mill	State of Technology	Discount Rate	2	0.1	unitless	
 ATJ Corn Dry Mill	State of Technology	Depreciation Period	3	7	years	
 ATJ Corn Dry Mill	State of Technology	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	State of Technology	All Capital	5	203000000	USD/biorefinery	Tao et al (2016) ATJ; Fig 6
-ATJ Corn Dry Mill	State of Technology	All Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	State of Technology	Capital	5	203000000	USD/biorefinery	Tao et al (2016) ATJ; Fig 6
+ATJ Corn Dry Mill	State of Technology	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Corn Dry Mill	State of Technology	DDGS	7	119040	kg/year	$26162400/yr DDGS revenue (Table 7); price is $199.38/US ton in 2011
-ATJ Corn Dry Mill	State of Technology	DDGS	7	0	kg/year	
 ATJ Corn Dry Mill	State of Technology	Electricity	8	0	kWh/year	electricity not produced by dry mill process
-ATJ Corn Dry Mill	State of Technology	Electricity	8	0	kWh/year	
 ATJ Corn Dry Mill	State of Technology	Diesel	9	4070000	gal/year	Tao et al (2016) ATJ; Table 6
 ATJ Corn Dry Mill	State of Technology	Gasoline	10	9340000	gal/year	Tao et al (2016) ATJ; Table 6
 ATJ Corn Dry Mill	State of Technology	Propane	11	0	gal/year	
@@ -26,11 +24,9 @@ ATJ Corn Dry Mill	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted
 ATJ Corn Dry Mill	Moderate	Discount Rate	2	0.1	unitless	
 ATJ Corn Dry Mill	Moderate	Depreciation Period	3	7	years	
 ATJ Corn Dry Mill	Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	Moderate	All Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
-ATJ Corn Dry Mill	Moderate	All Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
+ATJ Corn Dry Mill	Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Corn Dry Mill	Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	Moderate	DDGS	7	0	kg/year	
-ATJ Corn Dry Mill	Moderate	Electricity	8	0	kWh/year	
 ATJ Corn Dry Mill	Moderate	Electricity	8	0	kWh/year	
 ATJ Corn Dry Mill	Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
 ATJ Corn Dry Mill	Moderate	Gasoline	10	9433400	gal/year	SoT value +/- random percent up to 5%
@@ -48,11 +44,9 @@ ATJ Corn Dry Mill	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, conver
 ATJ Corn Dry Mill	Incremental	Discount Rate	2	0.1	unitless	
 ATJ Corn Dry Mill	Incremental	Depreciation Period	3	7	years	
 ATJ Corn Dry Mill	Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	Incremental	All Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Corn Dry Mill	Incremental	All Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Corn Dry Mill	Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Corn Dry Mill	Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	Incremental	DDGS	7	0	kg/year	
-ATJ Corn Dry Mill	Incremental	Electricity	8	0	kWh/year	
 ATJ Corn Dry Mill	Incremental	Electricity	8	0	kWh/year	
 ATJ Corn Dry Mill	Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
 ATJ Corn Dry Mill	Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
@@ -70,12 +64,10 @@ ATJ Stover Thermochem	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 
 ATJ Stover Thermochem	State of Technology	Discount Rate	2	0.1	unitless	
 ATJ Stover Thermochem	State of Technology	Depreciation Period	3	7	years	
 ATJ Stover Thermochem	State of Technology	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	State of Technology	All Capital	5	337000000	USD/biorefinery	Tao et al (2016) ATJ; Fig 6
-ATJ Stover Thermochem	State of Technology	All Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	State of Technology	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	State of Technology	Capital	5	337000000	USD/biorefinery	Tao et al (2016) ATJ; Fig 6
+ATJ Stover Thermochem	State of Technology	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Stover Thermochem	State of Technology	DDGS	7	0	kg/year	
 ATJ Stover Thermochem	State of Technology	Electricity	8	101721053	kWh/year	Table 7 for total revenue and Table 1 for selling price
-ATJ Stover Thermochem	State of Technology	Electricity	8	0	kWh/year	
 ATJ Stover Thermochem	State of Technology	Diesel	9	3130000	gal/year	Tao et al (2016) ATJ; Table 6
 ATJ Stover Thermochem	State of Technology	Gasoline	10	6540000	gal/year	Tao et al (2016) ATJ; Table 6
 ATJ Stover Thermochem	State of Technology	Propane	11	0	gal/year	
@@ -92,12 +84,10 @@ ATJ Stover Thermochem	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, conve
 ATJ Stover Thermochem	Moderate	Discount Rate	2	0.1	unitless	
 ATJ Stover Thermochem	Moderate	Depreciation Period	3	7	years	
 ATJ Stover Thermochem	Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	Moderate	All Capital	5	320150000	USD/biorefinery	SoT value less random percent between 5 and 10%
-ATJ Stover Thermochem	Moderate	All Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	Moderate	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent between 5 and 10%
+ATJ Stover Thermochem	Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Stover Thermochem	Moderate	DDGS	7	0	kg/year	
 ATJ Stover Thermochem	Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	Moderate	Electricity	8	0	kWh/year	
 ATJ Stover Thermochem	Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
 ATJ Stover Thermochem	Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
 ATJ Stover Thermochem	Moderate	Propane	11	0	gal/year	
@@ -114,12 +104,10 @@ ATJ Stover Thermochem	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, co
 ATJ Stover Thermochem	Incremental	Discount Rate	2	0.1	unitless	
 ATJ Stover Thermochem	Incremental	Depreciation Period	3	7	years	
 ATJ Stover Thermochem	Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	Incremental	All Capital	5	337000000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	Incremental	All Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	Incremental	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	Incremental	Capital	5	337000000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Stover Thermochem	Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Stover Thermochem	Incremental	DDGS	7	0	kg/year	
 ATJ Stover Thermochem	Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	Incremental	Electricity	8	0	kWh/year	
 ATJ Stover Thermochem	Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
 ATJ Stover Thermochem	Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
 ATJ Stover Thermochem	Incremental	Propane	11	0	gal/year	
@@ -136,8 +124,8 @@ HEFA Camelina	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, co
 HEFA Camelina	State of Technology	Discount Rate	2	0.1	unitless	
 HEFA Camelina	State of Technology	Depreciation Period	3	7	years	
 HEFA Camelina	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	State of Technology	All Capital	5	348800000	USD/biorefinery	estimate based on range given in text
-HEFA Camelina	State of Technology	All Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	State of Technology	Capital	5	348800000	USD/biorefinery	estimate based on range given in text
+HEFA Camelina	State of Technology	Fixed	6	14425000	USD/year	Fig. 6
 HEFA Camelina	State of Technology	DDGS	7	0	kg/year	
 HEFA Camelina	State of Technology	Electricity	8	0	kWh/year	
 HEFA Camelina	State of Technology	Diesel	9	1200000	gal/year	calculated using 4.7 gal/dry ton oil yield
@@ -156,8 +144,8 @@ HEFA Camelina	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted fro
 HEFA Camelina	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Camelina	Moderate	Depreciation Period	3	7	years	
 HEFA Camelina	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Moderate	All Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Camelina	Moderate	All Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	Moderate	Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Camelina	Moderate	Fixed	6	14425000	USD/year	Fig. 6
 HEFA Camelina	Moderate	DDGS	7	0	kg/year	
 HEFA Camelina	Moderate	Electricity	8	0	kWh/year	
 HEFA Camelina	Moderate	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
@@ -176,8 +164,8 @@ HEFA Camelina	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted 
 HEFA Camelina	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Camelina	Incremental	Depreciation Period	3	7	years	
 HEFA Camelina	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Incremental	All Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Camelina	Incremental	All Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	Incremental	Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Camelina	Incremental	Fixed	6	14425000	USD/year	Fig. 6
 HEFA Camelina	Incremental	DDGS	7	0	kg/year	
 HEFA Camelina	Incremental	Electricity	8	0	kWh/year	
 HEFA Camelina	Incremental	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
@@ -196,8 +184,8 @@ HEFA Castor	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, conv
 HEFA Castor	State of Technology	Discount Rate	2	0.1	unitless	
 HEFA Castor	State of Technology	Depreciation Period	3	7	years	
 HEFA Castor	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	State of Technology	All Capital	5	341000000	USD/biorefinery	
-HEFA Castor	State of Technology	All Fixed	6	11176000	USD/year	
+HEFA Castor	State of Technology	Capital	5	341000000	USD/biorefinery	
+HEFA Castor	State of Technology	Fixed	6	11176000	USD/year	
 HEFA Castor	State of Technology	DDGS	7	0	kg/year	
 HEFA Castor	State of Technology	Electricity	8	0	kWh/year	
 HEFA Castor	State of Technology	Diesel	9	100000	gal/year	
@@ -216,8 +204,8 @@ HEFA Castor	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from 
 HEFA Castor	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Castor	Moderate	Depreciation Period	3	7	years	
 HEFA Castor	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Moderate	All Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Castor	Moderate	All Fixed	6	11176000	USD/year	
+HEFA Castor	Moderate	Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Castor	Moderate	Fixed	6	11176000	USD/year	
 HEFA Castor	Moderate	DDGS	7	0	kg/year	
 HEFA Castor	Moderate	Electricity	8	0	kWh/year	
 HEFA Castor	Moderate	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
@@ -236,8 +224,8 @@ HEFA Castor	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted fr
 HEFA Castor	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Castor	Incremental	Depreciation Period	3	7	years	
 HEFA Castor	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Incremental	All Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Castor	Incremental	All Fixed	6	11176000	USD/year	
+HEFA Castor	Incremental	Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Castor	Incremental	Fixed	6	11176000	USD/year	
 HEFA Castor	Incremental	DDGS	7	0	kg/year	
 HEFA Castor	Incremental	Electricity	8	0	kWh/year	
 HEFA Castor	Incremental	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
@@ -256,8 +244,8 @@ HEFA Jatropha	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, co
 HEFA Jatropha	State of Technology	Discount Rate	2	0.1	unitless	
 HEFA Jatropha	State of Technology	Depreciation Period	3	7	years	
 HEFA Jatropha	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	State of Technology	All Capital	5	348800000	USD/biorefinery	
-HEFA Jatropha	State of Technology	All Fixed	6	14425000	USD/year	
+HEFA Jatropha	State of Technology	Capital	5	348800000	USD/biorefinery	
+HEFA Jatropha	State of Technology	Fixed	6	14425000	USD/year	
 HEFA Jatropha	State of Technology	DDGS	7	0	kg/year	
 HEFA Jatropha	State of Technology	Electricity	8	0	kWh/year	
 HEFA Jatropha	State of Technology	Diesel	9	800000	gal/year	calculated from 3.1 gal/dry ton oil and 258858 dry ton oil/yr
@@ -276,8 +264,8 @@ HEFA Jatropha	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted fro
 HEFA Jatropha	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Jatropha	Moderate	Depreciation Period	3	7	years	
 HEFA Jatropha	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Moderate	All Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Jatropha	Moderate	All Fixed	6	14425000	USD/year	
+HEFA Jatropha	Moderate	Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Jatropha	Moderate	Fixed	6	14425000	USD/year	
 HEFA Jatropha	Moderate	DDGS	7	0	kg/year	
 HEFA Jatropha	Moderate	Electricity	8	0	kWh/year	
 HEFA Jatropha	Moderate	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
@@ -296,8 +284,8 @@ HEFA Jatropha	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted 
 HEFA Jatropha	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Jatropha	Incremental	Depreciation Period	3	7	years	
 HEFA Jatropha	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Incremental	All Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Jatropha	Incremental	All Fixed	6	14425000	USD/year	
+HEFA Jatropha	Incremental	Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Jatropha	Incremental	Fixed	6	14425000	USD/year	
 HEFA Jatropha	Incremental	DDGS	7	0	kg/year	
 HEFA Jatropha	Incremental	Electricity	8	0	kWh/year	
 HEFA Jatropha	Incremental	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
@@ -316,8 +304,8 @@ HEFA Pennycress	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, 
 HEFA Pennycress	State of Technology	Discount Rate	2	0.1	unitless	
 HEFA Pennycress	State of Technology	Depreciation Period	3	7	years	
 HEFA Pennycress	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	State of Technology	All Capital	5	354000000	USD/biorefinery	Fig. 6
-HEFA Pennycress	State of Technology	All Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	State of Technology	Capital	5	354000000	USD/biorefinery	Fig. 6
+HEFA Pennycress	State of Technology	Fixed	6	10881000	USD/year	Fig. 6
 HEFA Pennycress	State of Technology	DDGS	7	0	kg/year	
 HEFA Pennycress	State of Technology	Electricity	8	0	kWh/year	
 HEFA Pennycress	State of Technology	Diesel	9	9500000	gal/year	36.9 gal/dry ton oil
@@ -336,8 +324,8 @@ HEFA Pennycress	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted f
 HEFA Pennycress	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Pennycress	Moderate	Depreciation Period	3	7	years	
 HEFA Pennycress	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Moderate	All Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Pennycress	Moderate	All Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	Moderate	Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Pennycress	Moderate	Fixed	6	10881000	USD/year	Fig. 6
 HEFA Pennycress	Moderate	DDGS	7	0	kg/year	
 HEFA Pennycress	Moderate	Electricity	8	0	kWh/year	
 HEFA Pennycress	Moderate	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
@@ -356,8 +344,8 @@ HEFA Pennycress	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converte
 HEFA Pennycress	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Pennycress	Incremental	Depreciation Period	3	7	years	
 HEFA Pennycress	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Incremental	All Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Pennycress	Incremental	All Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	Incremental	Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Pennycress	Incremental	Fixed	6	10881000	USD/year	Fig. 6
 HEFA Pennycress	Incremental	DDGS	7	0	kg/year	
 HEFA Pennycress	Incremental	Electricity	8	0	kWh/year	
 HEFA Pennycress	Incremental	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
@@ -376,8 +364,8 @@ HEFA Yellow Grease	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 202
 HEFA Yellow Grease	State of Technology	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	State of Technology	Depreciation Period	3	7	years	
 HEFA Yellow Grease	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	State of Technology	All Capital	5	348800000	USD/biorefinery	
-HEFA Yellow Grease	State of Technology	All Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	State of Technology	Capital	5	348800000	USD/biorefinery	
+HEFA Yellow Grease	State of Technology	Fixed	6	12600000	USD/year	Fig. 6
 HEFA Yellow Grease	State of Technology	DDGS	7	0	kg/year	
 HEFA Yellow Grease	State of Technology	Electricity	8	0	kWh/year	
 HEFA Yellow Grease	State of Technology	Diesel	9	200000	gal/year	
@@ -396,8 +384,8 @@ HEFA Yellow Grease	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converte
 HEFA Yellow Grease	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	Moderate	Depreciation Period	3	7	years	
 HEFA Yellow Grease	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Moderate	All Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Yellow Grease	Moderate	All Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	Moderate	Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Yellow Grease	Moderate	Fixed	6	12600000	USD/year	Fig. 6
 HEFA Yellow Grease	Moderate	DDGS	7	0	kg/year	
 HEFA Yellow Grease	Moderate	Electricity	8	0	kWh/year	
 HEFA Yellow Grease	Moderate	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
@@ -416,8 +404,8 @@ HEFA Yellow Grease	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, conve
 HEFA Yellow Grease	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	Incremental	Depreciation Period	3	7	years	
 HEFA Yellow Grease	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Incremental	All Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Yellow Grease	Incremental	All Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	Incremental	Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	Incremental	Fixed	6	12600000	USD/year	Fig. 6
 HEFA Yellow Grease	Incremental	DDGS	7	0	kg/year	
 HEFA Yellow Grease	Incremental	Electricity	8	0	kWh/year	
 HEFA Yellow Grease	Incremental	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
@@ -436,12 +424,10 @@ ATJ Corn Dry Mill	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted fro
 ATJ Corn Dry Mill	Leap	Discount Rate	2	0.1	unitless	
 ATJ Corn Dry Mill	Leap	Depreciation Period	3	7	years	
 ATJ Corn Dry Mill	Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	Leap	All Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Corn Dry Mill	Leap	All Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Corn Dry Mill	Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Corn Dry Mill	Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	Leap	DDGS	7	0	kg/year	
 ATJ Corn Dry Mill	Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
-ATJ Corn Dry Mill	Leap	Electricity	8	0	kWh/year	
 ATJ Corn Dry Mill	Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
 ATJ Corn Dry Mill	Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
 ATJ Corn Dry Mill	Leap	Propane	11	0	gal/year	
@@ -458,12 +444,10 @@ ATJ Stover Thermochem	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted
 ATJ Stover Thermochem	Leap	Discount Rate	2	0.1	unitless	
 ATJ Stover Thermochem	Leap	Depreciation Period	3	7	years	
 ATJ Stover Thermochem	Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	Leap	All Capital	5	323520000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Stover Thermochem	Leap	All Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	Leap	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	Leap	Capital	5	323520000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Stover Thermochem	Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
 ATJ Stover Thermochem	Leap	DDGS	7	0	kg/year	
 ATJ Stover Thermochem	Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	Leap	Electricity	8	0	kWh/year	
 ATJ Stover Thermochem	Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
 ATJ Stover Thermochem	Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
 ATJ Stover Thermochem	Leap	Propane	11	0	gal/year	
@@ -480,8 +464,8 @@ HEFA Camelina	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ
 HEFA Camelina	Leap	Discount Rate	2	0.1	unitless	
 HEFA Camelina	Leap	Depreciation Period	3	7	years	
 HEFA Camelina	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Leap	All Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Camelina	Leap	All Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	Leap	Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Camelina	Leap	Fixed	6	14425000	USD/year	Fig. 6
 HEFA Camelina	Leap	DDGS	7	0	kg/year	
 HEFA Camelina	Leap	Electricity	8	0	kWh/year	
 HEFA Camelina	Leap	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
@@ -500,8 +484,8 @@ HEFA Castor	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m
 HEFA Castor	Leap	Discount Rate	2	0.1	unitless	
 HEFA Castor	Leap	Depreciation Period	3	7	years	
 HEFA Castor	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Leap	All Capital	5	310310000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Castor	Leap	All Fixed	6	11176000	USD/year	
+HEFA Castor	Leap	Capital	5	310310000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Castor	Leap	Fixed	6	11176000	USD/year	
 HEFA Castor	Leap	DDGS	7	0	kg/year	
 HEFA Castor	Leap	Electricity	8	0	kWh/year	
 HEFA Castor	Leap	Diesel	9	103000	gal/year	SoT +/- random percent up to 10%
@@ -520,8 +504,8 @@ HEFA Jatropha	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ
 HEFA Jatropha	Leap	Discount Rate	2	0.1	unitless	
 HEFA Jatropha	Leap	Depreciation Period	3	7	years	
 HEFA Jatropha	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Leap	All Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Jatropha	Leap	All Fixed	6	14425000	USD/year	
+HEFA Jatropha	Leap	Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Jatropha	Leap	Fixed	6	14425000	USD/year	
 HEFA Jatropha	Leap	DDGS	7	0	kg/year	
 HEFA Jatropha	Leap	Electricity	8	0	kWh/year	
 HEFA Jatropha	Leap	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
@@ -540,8 +524,8 @@ HEFA Pennycress	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from 
 HEFA Pennycress	Leap	Discount Rate	2	0.1	unitless	
 HEFA Pennycress	Leap	Depreciation Period	3	7	years	
 HEFA Pennycress	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Leap	All Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Pennycress	Leap	All Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	Leap	Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Pennycress	Leap	Fixed	6	10881000	USD/year	Fig. 6
 HEFA Pennycress	Leap	DDGS	7	0	kg/year	
 HEFA Pennycress	Leap	Electricity	8	0	kWh/year	
 HEFA Pennycress	Leap	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
@@ -560,8 +544,8 @@ HEFA Yellow Grease	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted fr
 HEFA Yellow Grease	Leap	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	Leap	Depreciation Period	3	7	years	
 HEFA Yellow Grease	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Leap	All Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Yellow Grease	Leap	All Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	Leap	Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Yellow Grease	Leap	Fixed	6	12600000	USD/year	Fig. 6
 HEFA Yellow Grease	Leap	DDGS	7	0	kg/year	
 HEFA Yellow Grease	Leap	Electricity	8	0	kWh/year	
 HEFA Yellow Grease	Leap	Diesel	9	182000	gal/year	SoT +/- random percent up to 10%

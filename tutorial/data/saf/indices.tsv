@@ -1,6 +1,6 @@
 Technology	Type	Index	Offset	Description	Notes
-ATJ Corn Dry Mill	Capital	All capital	0		
-ATJ Corn Dry Mill	Fixed	All fixed	0		
+ATJ Corn Dry Mill	Capital	Capital	0		
+ATJ Corn Dry Mill	Fixed	Fixed	0		
 ATJ Corn Dry Mill	Input	Feedstock	0		
 ATJ Corn Dry Mill	Input	Raw Material	1		
 ATJ Corn Dry Mill	Metric	Jet GHG	0		
@@ -16,8 +16,8 @@ ATJ Corn Dry Mill	Technical Parameter	Jet LHV	1
 ATJ Corn Dry Mill	Technical Parameter	Discount Rate	2		
 ATJ Corn Dry Mill	Technical Parameter	Depreciation Period	3		
 ATJ Corn Dry Mill	Technical Parameter	Income Tax Rate	4		
-ATJ Corn Dry Mill	Technical Parameter	All Capital	5		
-ATJ Corn Dry Mill	Technical Parameter	All Fixed	6		
+ATJ Corn Dry Mill	Technical Parameter	Capital	5		
+ATJ Corn Dry Mill	Technical Parameter	Fixed	6		
 ATJ Corn Dry Mill	Technical Parameter	DDGS	7		
 ATJ Corn Dry Mill	Technical Parameter	Electricity	8		
 ATJ Corn Dry Mill	Technical Parameter	Diesel	9		
@@ -31,8 +31,8 @@ ATJ Corn Dry Mill	Technical Parameter	Gasoline Price	16
 ATJ Corn Dry Mill	Technical Parameter	Propane Price	17		
 ATJ Corn Dry Mill	Technical Parameter	Feedstock Price	18		
 ATJ Corn Dry Mill	Technical Parameter	Raw Material Price	19		
-ATJ Stover Thermochem	Capital	All capital	0		
-ATJ Stover Thermochem	Fixed	All fixed	0		
+ATJ Stover Thermochem	Capital	Capital	0		
+ATJ Stover Thermochem	Fixed	Fixed	0		
 ATJ Stover Thermochem	Input	Feedstock	0		
 ATJ Stover Thermochem	Input	Raw Material	1		
 ATJ Stover Thermochem	Metric	Jet GHG	0		
@@ -48,8 +48,8 @@ ATJ Stover Thermochem	Technical Parameter	Jet LHV	1
 ATJ Stover Thermochem	Technical Parameter	Discount Rate	2		
 ATJ Stover Thermochem	Technical Parameter	Depreciation Period	3		
 ATJ Stover Thermochem	Technical Parameter	Income Tax Rate	4		
-ATJ Stover Thermochem	Technical Parameter	All Capital	5		
-ATJ Stover Thermochem	Technical Parameter	All Fixed	6		
+ATJ Stover Thermochem	Technical Parameter	Capital	5		
+ATJ Stover Thermochem	Technical Parameter	Fixed	6		
 ATJ Stover Thermochem	Technical Parameter	DDGS	7		
 ATJ Stover Thermochem	Technical Parameter	Electricity	8		
 ATJ Stover Thermochem	Technical Parameter	Diesel	9		
@@ -63,8 +63,8 @@ ATJ Stover Thermochem	Technical Parameter	Gasoline Price	16
 ATJ Stover Thermochem	Technical Parameter	Propane Price	17		
 ATJ Stover Thermochem	Technical Parameter	Feedstock Price	18		
 ATJ Stover Thermochem	Technical Parameter	Raw Material Price	19		
-HEFA Camelina	Capital	All capital	0		
-HEFA Camelina	Fixed	All fixed	0		
+HEFA Camelina	Capital	Capital	0		
+HEFA Camelina	Fixed	Fixed	0		
 HEFA Camelina	Input	Feedstock	0		
 HEFA Camelina	Input	Raw Material	1		
 HEFA Camelina	Metric	Jet GHG	0		
@@ -80,8 +80,8 @@ HEFA Camelina	Technical Parameter	Jet LHV	1
 HEFA Camelina	Technical Parameter	Discount Rate	2		
 HEFA Camelina	Technical Parameter	Depreciation Period	3		
 HEFA Camelina	Technical Parameter	Income Tax Rate	4		
-HEFA Camelina	Technical Parameter	All Capital	5		
-HEFA Camelina	Technical Parameter	All Fixed	6		
+HEFA Camelina	Technical Parameter	Capital	5		
+HEFA Camelina	Technical Parameter	Fixed	6		
 HEFA Camelina	Technical Parameter	DDGS	7		
 HEFA Camelina	Technical Parameter	Electricity	8		
 HEFA Camelina	Technical Parameter	Diesel	9		
@@ -95,8 +95,8 @@ HEFA Camelina	Technical Parameter	Gasoline Price	16
 HEFA Camelina	Technical Parameter	Propane Price	17		
 HEFA Camelina	Technical Parameter	Feedstock Price	18		
 HEFA Camelina	Technical Parameter	Raw Material Price	19		
-HEFA Castor	Capital	All capital	0		
-HEFA Castor	Fixed	All fixed	0		
+HEFA Castor	Capital	Capital	0		
+HEFA Castor	Fixed	Fixed	0		
 HEFA Castor	Input	Feedstock	0		
 HEFA Castor	Input	Raw Material	1		
 HEFA Castor	Metric	Jet GHG	0		
@@ -112,8 +112,8 @@ HEFA Castor	Technical Parameter	Jet LHV	1
 HEFA Castor	Technical Parameter	Discount Rate	2		
 HEFA Castor	Technical Parameter	Depreciation Period	3		
 HEFA Castor	Technical Parameter	Income Tax Rate	4		
-HEFA Castor	Technical Parameter	All Capital	5		
-HEFA Castor	Technical Parameter	All Fixed	6		
+HEFA Castor	Technical Parameter	Capital	5		
+HEFA Castor	Technical Parameter	Fixed	6		
 HEFA Castor	Technical Parameter	DDGS	7		
 HEFA Castor	Technical Parameter	Electricity	8		
 HEFA Castor	Technical Parameter	Diesel	9		
@@ -127,8 +127,8 @@ HEFA Castor	Technical Parameter	Gasoline Price	16
 HEFA Castor	Technical Parameter	Propane Price	17		
 HEFA Castor	Technical Parameter	Feedstock Price	18		
 HEFA Castor	Technical Parameter	Raw Material Price	19		
-HEFA Jatropha	Capital	All capital	0		
-HEFA Jatropha	Fixed	All fixed	0		
+HEFA Jatropha	Capital	Capital	0		
+HEFA Jatropha	Fixed	Fixed	0		
 HEFA Jatropha	Input	Feedstock	0		
 HEFA Jatropha	Input	Raw Material	1		
 HEFA Jatropha	Metric	Jet GHG	0		
@@ -144,8 +144,8 @@ HEFA Jatropha	Technical Parameter	Jet LHV	1
 HEFA Jatropha	Technical Parameter	Discount Rate	2		
 HEFA Jatropha	Technical Parameter	Depreciation Period	3		
 HEFA Jatropha	Technical Parameter	Income Tax Rate	4		
-HEFA Jatropha	Technical Parameter	All Capital	5		
-HEFA Jatropha	Technical Parameter	All Fixed	6		
+HEFA Jatropha	Technical Parameter	Capital	5		
+HEFA Jatropha	Technical Parameter	Fixed	6		
 HEFA Jatropha	Technical Parameter	DDGS	7		
 HEFA Jatropha	Technical Parameter	Electricity	8		
 HEFA Jatropha	Technical Parameter	Diesel	9		
@@ -159,8 +159,8 @@ HEFA Jatropha	Technical Parameter	Gasoline Price	16
 HEFA Jatropha	Technical Parameter	Propane Price	17		
 HEFA Jatropha	Technical Parameter	Feedstock Price	18		
 HEFA Jatropha	Technical Parameter	Raw Material Price	19		
-HEFA Pennycress	Capital	All capital	0		
-HEFA Pennycress	Fixed	All fixed	0		
+HEFA Pennycress	Capital	Capital	0		
+HEFA Pennycress	Fixed	Fixed	0		
 HEFA Pennycress	Input	Feedstock	0		
 HEFA Pennycress	Input	Raw Material	1		
 HEFA Pennycress	Metric	Jet GHG	0		
@@ -176,8 +176,8 @@ HEFA Pennycress	Technical Parameter	Jet LHV	1
 HEFA Pennycress	Technical Parameter	Discount Rate	2		
 HEFA Pennycress	Technical Parameter	Depreciation Period	3		
 HEFA Pennycress	Technical Parameter	Income Tax Rate	4		
-HEFA Pennycress	Technical Parameter	All Capital	5		
-HEFA Pennycress	Technical Parameter	All Fixed	6		
+HEFA Pennycress	Technical Parameter	Capital	5		
+HEFA Pennycress	Technical Parameter	Fixed	6		
 HEFA Pennycress	Technical Parameter	DDGS	7		
 HEFA Pennycress	Technical Parameter	Electricity	8		
 HEFA Pennycress	Technical Parameter	Diesel	9		
@@ -191,24 +191,26 @@ HEFA Pennycress	Technical Parameter	Gasoline Price	16
 HEFA Pennycress	Technical Parameter	Propane Price	17		
 HEFA Pennycress	Technical Parameter	Feedstock Price	18		
 HEFA Pennycress	Technical Parameter	Raw Material Price	19		
-HEFA Yellow Grease	Capital	All capital	0		
-HEFA Yellow Grease	Fixed	All fixed	0		
+HEFA Yellow Grease	Capital	Capital	0		
+HEFA Yellow Grease	Fixed	Fixed	0		
 HEFA Yellow Grease	Input	Feedstock	0		
 HEFA Yellow Grease	Input	Raw Material	1		
-HEFA Yellow Grease	Lifetime	All capital	0		
+HEFA Yellow Grease	Lifetime	Capital	0		
 HEFA Yellow Grease	Metric	Jet GHG	0		
 HEFA Yellow Grease	Metric	MJSP	1		
 HEFA Yellow Grease	Output	Jet	0		
 HEFA Yellow Grease	Output	Gasoline	1		
 HEFA Yellow Grease	Output	Diesel	2		
 HEFA Yellow Grease	Output	Propane	3		
+HEFA Yellow Grease	Output	DDGS	4		
+HEFA Yellow Grease	Output	Electricity	5		
 HEFA Yellow Grease	Technical Parameter	Annual GHG	0		
 HEFA Yellow Grease	Technical Parameter	Jet LHV	1		
 HEFA Yellow Grease	Technical Parameter	Discount Rate	2		
 HEFA Yellow Grease	Technical Parameter	Depreciation Period	3		
 HEFA Yellow Grease	Technical Parameter	Income Tax Rate	4		
-HEFA Yellow Grease	Technical Parameter	All Capital	5		
-HEFA Yellow Grease	Technical Parameter	All Fixed	6		
+HEFA Yellow Grease	Technical Parameter	Capital	5		
+HEFA Yellow Grease	Technical Parameter	Fixed	6		
 HEFA Yellow Grease	Technical Parameter	DDGS	7		
 HEFA Yellow Grease	Technical Parameter	Electricity	8		
 HEFA Yellow Grease	Technical Parameter	Diesel	9		
@@ -222,5 +224,3 @@ HEFA Yellow Grease	Technical Parameter	Gasoline Price	16
 HEFA Yellow Grease	Technical Parameter	Propane Price	17		
 HEFA Yellow Grease	Technical Parameter	Feedstock Price	18		
 HEFA Yellow Grease	Technical Parameter	Raw Material Price	19		
-HEFA Yellow Grease	Output	DDGS	4		
-HEFA Yellow Grease	Output	Electricity	5		
