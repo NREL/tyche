@@ -19,7 +19,7 @@ ATJ Corn Dry Mill	State of Technology	Gasoline Price	16	2	USD/gal
 ATJ Corn Dry Mill	State of Technology	Propane Price	17	0.6	USD/gal	
 ATJ Corn Dry Mill	State of Technology	Feedstock Price	18	187.04	USD/dry metric ton biomass	
 ATJ Corn Dry Mill	State of Technology	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	Moderate	Annual GHG	0	st.triang(0.5,374538674,83230817)	kg CO2eq/yr	81 g CO2eq/MJ jet product
+ATJ Corn Dry Mill	Moderate	Annual GHG	0	st.triang(0.5,343035421,76230094)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
 ATJ Corn Dry Mill	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 ATJ Corn Dry Mill	Moderate	Discount Rate	2	0.1	unitless	
 ATJ Corn Dry Mill	Moderate	Depreciation Period	3	7	years	
@@ -29,9 +29,9 @@ ATJ Corn Dry Mill	Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overhe
 ATJ Corn Dry Mill	Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
 ATJ Corn Dry Mill	Moderate	Electricity	8	0	kWh/year	
 ATJ Corn Dry Mill	Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	Moderate	Gasoline	10	9433400	gal/year	SoT value +/- random percent up to 5%
+ATJ Corn Dry Mill	Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
 ATJ Corn Dry Mill	Moderate	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	Moderate	Jet	12	st.triang(0.5,38173320,8482960)	gal/year	base value increased by random percent 5-10%
+ATJ Corn Dry Mill	Moderate	Jet	12	st.triang(0.5,34962480,7769440)	gal/year	SoT varied between -3% and +7% random
 ATJ Corn Dry Mill	Moderate	DDGS Price	13	0.22	USD/kg	
 ATJ Corn Dry Mill	Moderate	Electricity Price	14	0.057	USD/kWh	
 ATJ Corn Dry Mill	Moderate	Diesel Price	15	3.25	USD/gal	
@@ -39,7 +39,7 @@ ATJ Corn Dry Mill	Moderate	Gasoline Price	16	2	USD/gal
 ATJ Corn Dry Mill	Moderate	Propane Price	17	0.6	USD/gal	
 ATJ Corn Dry Mill	Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
 ATJ Corn Dry Mill	Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	Incremental	Annual GHG	0	st.triang(0.5,320218251,71159611)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017
+ATJ Corn Dry Mill	Incremental	Annual GHG	0	st.triang(0.5,333701124,74155805)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
 ATJ Corn Dry Mill	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 ATJ Corn Dry Mill	Incremental	Discount Rate	2	0.1	unitless	
 ATJ Corn Dry Mill	Incremental	Depreciation Period	3	7	years	
@@ -51,7 +51,7 @@ ATJ Corn Dry Mill	Incremental	Electricity	8	0	kWh/year
 ATJ Corn Dry Mill	Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
 ATJ Corn Dry Mill	Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
 ATJ Corn Dry Mill	Incremental	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	Incremental	Jet	12	st.triang(0.5,33892200,7531600)	gal/year	base value varied by random percent +/- up to 5%
+ATJ Corn Dry Mill	Incremental	Jet	12	st.triang(0.5,35676000,7928000)	gal/year	SoT +/- up to 3% random
 ATJ Corn Dry Mill	Incremental	DDGS Price	13	0.22	USD/kg	
 ATJ Corn Dry Mill	Incremental	Electricity Price	14	0.057	USD/kWh	
 ATJ Corn Dry Mill	Incremental	Diesel Price	15	3.25	USD/gal	
@@ -79,7 +79,7 @@ ATJ Stover Thermochem	State of Technology	Gasoline Price	16	2	USD/gal
 ATJ Stover Thermochem	State of Technology	Propane Price	17	0.6	USD/gal	
 ATJ Stover Thermochem	State of Technology	Feedstock Price	18	88.18	USD/dry metric ton biomass	
 ATJ Stover Thermochem	State of Technology	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	Moderate	Annual GHG	0	st.triang(0.5,72690519,16153449)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017
+ATJ Stover Thermochem	Moderate	Annual GHG	0	st.triang(0.5,73382809,16307291)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
 ATJ Stover Thermochem	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 ATJ Stover Thermochem	Moderate	Discount Rate	2	0.1	unitless	
 ATJ Stover Thermochem	Moderate	Depreciation Period	3	7	years	
@@ -91,7 +91,7 @@ ATJ Stover Thermochem	Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random
 ATJ Stover Thermochem	Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
 ATJ Stover Thermochem	Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
 ATJ Stover Thermochem	Moderate	Propane	11	0	gal/year	
-ATJ Stover Thermochem	Moderate	Jet	12	st.triang(0.5,26091450,5798100)	gal/year	base value increased by random percent 5-10%
+ATJ Stover Thermochem	Moderate	Jet	12	st.triang(0.5,26339940,5853320)	gal/year	SoT varied between -3% and +7% random
 ATJ Stover Thermochem	Moderate	DDGS Price	13	0.22	USD/kg	
 ATJ Stover Thermochem	Moderate	Electricity Price	14	0.057	USD/kWh	
 ATJ Stover Thermochem	Moderate	Diesel Price	15	3.25	USD/gal	
@@ -99,7 +99,7 @@ ATJ Stover Thermochem	Moderate	Gasoline Price	16	2	USD/gal
 ATJ Stover Thermochem	Moderate	Propane Price	17	0.6	USD/gal	
 ATJ Stover Thermochem	Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
 ATJ Stover Thermochem	Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	Incremental	Annual GHG	0	st.triang(0.5,101134635,22474363)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021
+ATJ Stover Thermochem	Incremental	Annual GHG	0	st.triang(0.5,108509035,24113119)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
 ATJ Stover Thermochem	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 ATJ Stover Thermochem	Incremental	Discount Rate	2	0.1	unitless	
 ATJ Stover Thermochem	Incremental	Depreciation Period	3	7	years	
@@ -111,7 +111,7 @@ ATJ Stover Thermochem	Incremental	Electricity	8	97652210.88	kWh/year	SoT minus r
 ATJ Stover Thermochem	Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
 ATJ Stover Thermochem	Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
 ATJ Stover Thermochem	Incremental	Propane	11	0	gal/year	
-ATJ Stover Thermochem	Incremental	Jet	12	st.triang(0.5,23855040,5301120)	gal/year	base value varied by random percent +/- up to 5%
+ATJ Stover Thermochem	Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
 ATJ Stover Thermochem	Incremental	DDGS Price	13	0.22	USD/kg	
 ATJ Stover Thermochem	Incremental	Electricity Price	14	0.057	USD/kWh	
 ATJ Stover Thermochem	Incremental	Diesel Price	15	3.25	USD/gal	
@@ -139,7 +139,7 @@ HEFA Camelina	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Camelina	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Camelina	State of Technology	Feedstock Price	18	1587.59	USD/dry ton oil	
 HEFA Camelina	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Moderate	Annual GHG	0	st.triang(0.5,147683215,32818492)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation)
+HEFA Camelina	Moderate	Annual GHG	0	st.triang(0.5,136431160,30318036)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
 HEFA Camelina	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Camelina	Moderate	Depreciation Period	3	7	years	
@@ -151,7 +151,7 @@ HEFA Camelina	Moderate	Electricity	8	0	kWh/year
 HEFA Camelina	Moderate	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
 HEFA Camelina	Moderate	Gasoline	10	3192600	gal/year	SoT value +/- random percent up to 5%
 HEFA Camelina	Moderate	Propane	11	270400	gal/year	SoT +/- random percent up to 5%
-HEFA Camelina	Moderate	Jet	12	st.triang(0.5,54526500,12117000)	gal/year	base value increased by random percent 5-10%
+HEFA Camelina	Moderate	Jet	12	st.triang(0.5,50372100,11193800)	gal/year	SoT varied between -3% and +7% random
 HEFA Camelina	Moderate	DDGS Price	13	0.22	USD/kg	
 HEFA Camelina	Moderate	Electricity Price	14	0.057	USD/kWh	
 HEFA Camelina	Moderate	Diesel Price	15	3.25	USD/gal	
@@ -159,7 +159,7 @@ HEFA Camelina	Moderate	Gasoline Price	16	2	USD/gal
 HEFA Camelina	Moderate	Propane Price	17	0.6	USD/gal	
 HEFA Camelina	Moderate	Feedstock Price	18	1587.59	USD/dry ton oil	
 HEFA Camelina	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Incremental	Annual GHG	0	st.triang(0.5,203440265,45208948)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation)
+HEFA Camelina	Incremental	Annual GHG	0	st.triang(0.5,203440265,45208948)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
 HEFA Camelina	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Camelina	Incremental	Depreciation Period	3	7	years	
@@ -171,7 +171,7 @@ HEFA Camelina	Incremental	Electricity	8	0	kWh/year
 HEFA Camelina	Incremental	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
 HEFA Camelina	Incremental	Gasoline	10	23569000	gal/year	SoT value minus random percent between 0 and 10%
 HEFA Camelina	Incremental	Propane	11	234000	gal/year	SoT minus random percent up to 10%
-HEFA Camelina	Incremental	Jet	12	st.triang(0.5,53487900,11886200)	gal/year	base value varied by random percent +/- up to 5%
+HEFA Camelina	Incremental	Jet	12	st.triang(0.5,51930000,11540000)	gal/year	SoT +/- up to 3% random
 HEFA Camelina	Incremental	DDGS Price	13	0.22	USD/kg	
 HEFA Camelina	Incremental	Electricity Price	14	0.057	USD/kWh	
 HEFA Camelina	Incremental	Diesel Price	15	3.25	USD/gal	
@@ -199,7 +199,7 @@ HEFA Castor	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Castor	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Castor	State of Technology	Feedstock Price	18	1542.23	USD/dry ton oil	
 HEFA Castor	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Moderate	Annual GHG	0	st.triang(0.5,247496062,54999125)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021
+HEFA Castor	Moderate	Annual GHG	0	st.triang(0.5,233872426,51971650)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Castor	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Castor	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Castor	Moderate	Depreciation Period	3	7	years	
@@ -211,7 +211,7 @@ HEFA Castor	Moderate	Electricity	8	0	kWh/year
 HEFA Castor	Moderate	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
 HEFA Castor	Moderate	Gasoline	10	24354000	gal/year	SoT value +/- random percent up to 5%
 HEFA Castor	Moderate	Propane	11	515000	gal/year	SoT +/- random percent up to 5%
-HEFA Castor	Moderate	Jet	12	st.triang(0.5,49834800,11074400)	gal/year	base value increased by random percent 5-10%
+HEFA Castor	Moderate	Jet	12	st.triang(0.5,47091600,10464800)	gal/year	SoT varied between -3% and +7% random
 HEFA Castor	Moderate	DDGS Price	13	0.22	USD/kg	
 HEFA Castor	Moderate	Electricity Price	14	0.057	USD/kWh	
 HEFA Castor	Moderate	Diesel Price	15	3.25	USD/gal	
@@ -219,7 +219,7 @@ HEFA Castor	Moderate	Gasoline Price	16	2	USD/gal
 HEFA Castor	Moderate	Propane Price	17	0.6	USD/gal	
 HEFA Castor	Moderate	Feedstock Price	18	1542.23	USD/dry ton oil	
 HEFA Castor	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Incremental	Annual GHG	0	st.triang(0.5,449247719,99832826)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021
+HEFA Castor	Incremental	Annual GHG	0	st.triang(0.5,436288650,96953033)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Castor	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Castor	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Castor	Incremental	Depreciation Period	3	7	years	
@@ -231,7 +231,7 @@ HEFA Castor	Incremental	Electricity	8	0	kWh/year
 HEFA Castor	Incremental	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
 HEFA Castor	Incremental	Gasoline	10	23862000	gal/year	SoT value minus random percent between 0 and 10%
 HEFA Castor	Incremental	Propane	11	465000	gal/year	SoT minus random percent up to 10%
-HEFA Castor	Incremental	Jet	12	st.triang(0.5,47548800,10566400)	gal/year	base value varied by random percent +/- up to 5%
+HEFA Castor	Incremental	Jet	12	st.triang(0.5,45720000,10160000)	gal/year	SoT +/- up to 3% random
 HEFA Castor	Incremental	DDGS Price	13	0.22	USD/kg	
 HEFA Castor	Incremental	Electricity Price	14	0.057	USD/kWh	
 HEFA Castor	Incremental	Diesel Price	15	3.25	USD/gal	
@@ -259,7 +259,7 @@ HEFA Jatropha	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Jatropha	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Jatropha	State of Technology	Feedstock Price	18	362.88	USD/dry ton oil	
 HEFA Jatropha	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Moderate	Annual GHG	0	st.triang(0.5,165775611,36839025)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021
+HEFA Jatropha	Moderate	Annual GHG	0	st.triang(0.5,151960977,33769106)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Jatropha	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Jatropha	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Jatropha	Moderate	Depreciation Period	3	7	years	
@@ -271,7 +271,7 @@ HEFA Jatropha	Moderate	Electricity	8	0	kWh/year
 HEFA Jatropha	Moderate	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
 HEFA Jatropha	Moderate	Gasoline	10	25376000	gal/year	SoT value +/- random percent up to 5%
 HEFA Jatropha	Moderate	Propane	11	4512000	gal/year	SoT +/- random percent up to 5%
-HEFA Jatropha	Moderate	Jet	12	st.triang(0.5,42768000,9504000)	gal/year	base value increased by random percent 5-10%
+HEFA Jatropha	Moderate	Jet	12	st.triang(0.5,39204000,8712000)	gal/year	SoT varied between -3% and +7% random
 HEFA Jatropha	Moderate	DDGS Price	13	0.22	USD/kg	
 HEFA Jatropha	Moderate	Electricity Price	14	0.057	USD/kWh	
 HEFA Jatropha	Moderate	Diesel Price	15	3.25	USD/gal	
@@ -279,7 +279,7 @@ HEFA Jatropha	Moderate	Gasoline Price	16	2	USD/gal
 HEFA Jatropha	Moderate	Propane Price	17	0.6	USD/gal	
 HEFA Jatropha	Moderate	Feedstock Price	18	362.88	USD/dry ton oil	
 HEFA Jatropha	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Incremental	Annual GHG	0	st.triang(0.5,523517077,116337128)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021
+HEFA Jatropha	Incremental	Annual GHG	0	st.triang(0.5,502986995,111774888)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Jatropha	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Jatropha	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Jatropha	Incremental	Depreciation Period	3	7	years	
@@ -291,7 +291,7 @@ HEFA Jatropha	Incremental	Electricity	8	0	kWh/year
 HEFA Jatropha	Incremental	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
 HEFA Jatropha	Incremental	Gasoline	10	22692000	gal/year	SoT value minus random percent between 0 and 10%
 HEFA Jatropha	Incremental	Propane	11	4653000	gal/year	SoT minus random percent up to 10%
-HEFA Jatropha	Incremental	Jet	12	st.triang(0.5,40392000,8976000)	gal/year	base value varied by random percent +/- up to 5%
+HEFA Jatropha	Incremental	Jet	12	st.triang(0.5,39600000,8800000)	gal/year	SoT +/- up to 3% random
 HEFA Jatropha	Incremental	DDGS Price	13	0.22	USD/kg	
 HEFA Jatropha	Incremental	Electricity Price	14	0.057	USD/kWh	
 HEFA Jatropha	Incremental	Diesel Price	15	3.25	USD/gal	
@@ -319,7 +319,7 @@ HEFA Pennycress	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Pennycress	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Pennycress	State of Technology	Feedstock Price	18	734.83	USD/dry ton oil	
 HEFA Pennycress	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Moderate	Annual GHG	0	st.triang(0.5,161918208,35981824)	kg CO2eq/yr	35 g CO2eq/MJ jet product; dummy value
+HEFA Pennycress	Moderate	Annual GHG	0	st.triang(0.5,157291973,34953772)	kg CO2eq/yr	35 g CO2eq/MJ jet product; calculated from jet output
 HEFA Pennycress	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Pennycress	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Pennycress	Moderate	Depreciation Period	3	7	years	
@@ -331,7 +331,7 @@ HEFA Pennycress	Moderate	Electricity	8	0	kWh/year
 HEFA Pennycress	Moderate	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
 HEFA Pennycress	Moderate	Gasoline	10	19392000	gal/year	SoT value +/- random percent up to 5%
 HEFA Pennycress	Moderate	Propane	11	490000	gal/year	SoT +/- random percent up to 5%
-HEFA Pennycress	Moderate	Jet	12	st.triang(0.5,38083500,8463000)	gal/year	base value increased by random percent 5-10%
+HEFA Pennycress	Moderate	Jet	12	st.triang(0.5,36995400,8221200)	gal/year	SoT varied between -3% and +7% random
 HEFA Pennycress	Moderate	DDGS Price	13	0.22	USD/kg	
 HEFA Pennycress	Moderate	Electricity Price	14	0.057	USD/kWh	
 HEFA Pennycress	Moderate	Diesel Price	15	3.25	USD/gal	
@@ -339,7 +339,7 @@ HEFA Pennycress	Moderate	Gasoline Price	16	2	USD/gal
 HEFA Pennycress	Moderate	Propane Price	17	0.6	USD/gal	
 HEFA Pennycress	Moderate	Feedstock Price	18	734.83	USD/dry ton oil	
 HEFA Pennycress	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Incremental	Annual GHG	0	st.triang(0.5,199235621,44274582)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation)
+HEFA Pennycress	Incremental	Annual GHG	0	st.triang(0.5,201208251,44712945)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation); calculated from jet output
 HEFA Pennycress	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Pennycress	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Pennycress	Incremental	Depreciation Period	3	7	years	
@@ -351,7 +351,7 @@ HEFA Pennycress	Incremental	Electricity	8	0	kWh/year
 HEFA Pennycress	Incremental	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
 HEFA Pennycress	Incremental	Gasoline	10	18048000	gal/year	SoT value minus random percent between 0 and 10%
 HEFA Pennycress	Incremental	Propane	11	480000	gal/year	SoT minus random percent up to 10%
-HEFA Pennycress	Incremental	Jet	12	st.triang(0.5,36632700,8140600)	gal/year	base value varied by random percent +/- up to 5%
+HEFA Pennycress	Incremental	Jet	12	st.triang(0.5,36270000,8060000)	gal/year	SoT +/- up to 3% random
 HEFA Pennycress	Incremental	DDGS Price	13	0.22	USD/kg	
 HEFA Pennycress	Incremental	Electricity Price	14	0.057	USD/kWh	
 HEFA Pennycress	Incremental	Diesel Price	15	3.25	USD/gal	
@@ -379,7 +379,7 @@ HEFA Yellow Grease	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Yellow Grease	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Yellow Grease	State of Technology	Feedstock Price	18	553.39	USD/dry ton oil	
 HEFA Yellow Grease	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Moderate	Annual GHG	0	st.triang(0.5,123460444,27435654)	kg CO2eq/yr	21 g CO2eq/MJ jet product; dummy value
+HEFA Yellow Grease	Moderate	Annual GHG	0	st.triang(0.5,122306608,27179246)	kg CO2eq/yr	21 g CO2eq/MJ jet product; calculated from jet output
 HEFA Yellow Grease	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Yellow Grease	Moderate	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	Moderate	Depreciation Period	3	7	years	
@@ -391,7 +391,7 @@ HEFA Yellow Grease	Moderate	Electricity	8	0	kWh/year
 HEFA Yellow Grease	Moderate	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
 HEFA Yellow Grease	Moderate	Gasoline	10	22990000	gal/year	SoT value +/- random percent up to 5%
 HEFA Yellow Grease	Moderate	Propane	11	404000	gal/year	SoT +/- random percent up to 5%
-HEFA Yellow Grease	Moderate	Jet	12	st.triang(0.5,48535200,10785600)	gal/year	base value increased by random percent 5-10%
+HEFA Yellow Grease	Moderate	Jet	12	st.triang(0.5,48081600,10684800)	gal/year	SoT varied between -3% and +7% random
 HEFA Yellow Grease	Moderate	DDGS Price	13	0.22	USD/kg	
 HEFA Yellow Grease	Moderate	Electricity Price	14	0.057	USD/kWh	
 HEFA Yellow Grease	Moderate	Diesel Price	15	3.25	USD/gal	
@@ -399,7 +399,7 @@ HEFA Yellow Grease	Moderate	Gasoline Price	16	2	USD/gal
 HEFA Yellow Grease	Moderate	Propane Price	17	0.6	USD/gal	
 HEFA Yellow Grease	Moderate	Feedstock Price	18	553.39	USD/dry ton oil	
 HEFA Yellow Grease	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Incremental	Annual GHG	0	st.triang(0.5,77900409,17311202)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021
+HEFA Yellow Grease	Incremental	Annual GHG	0	st.triang(0.5,77136679,17141484)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
 HEFA Yellow Grease	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Yellow Grease	Incremental	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	Incremental	Depreciation Period	3	7	years	
@@ -411,7 +411,7 @@ HEFA Yellow Grease	Incremental	Electricity	8	0	kWh/year
 HEFA Yellow Grease	Incremental	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
 HEFA Yellow Grease	Incremental	Gasoline	10	22264000	gal/year	SoT value minus random percent between 0 and 10%
 HEFA Yellow Grease	Incremental	Propane	11	376000	gal/year	SoT minus random percent up to 10%
-HEFA Yellow Grease	Incremental	Jet	12	st.triang(0.5,46267200,10281600)	gal/year	base value varied by random percent +/- up to 5%
+HEFA Yellow Grease	Incremental	Jet	12	st.triang(0.5,45360000,10080000)	gal/year	SoT +/- up to 3% random
 HEFA Yellow Grease	Incremental	DDGS Price	13	0.22	USD/kg	
 HEFA Yellow Grease	Incremental	Electricity Price	14	0.057	USD/kWh	
 HEFA Yellow Grease	Incremental	Diesel Price	15	3.25	USD/gal	
@@ -419,7 +419,7 @@ HEFA Yellow Grease	Incremental	Gasoline Price	16	2	USD/gal
 HEFA Yellow Grease	Incremental	Propane Price	17	0.6	USD/gal	
 HEFA Yellow Grease	Incremental	Feedstock Price	18	553.39	USD/dry ton oil	
 HEFA Yellow Grease	Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	Leap	Annual GHG	0	st.triang(0.5,374538674,83230817)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021
+ATJ Corn Dry Mill	Leap	Annual GHG	0	st.triang(0.5,369638168,82141815)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
 ATJ Corn Dry Mill	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 ATJ Corn Dry Mill	Leap	Discount Rate	2	0.1	unitless	
 ATJ Corn Dry Mill	Leap	Depreciation Period	3	7	years	
@@ -431,7 +431,7 @@ ATJ Corn Dry Mill	Leap	Electricity	8	0	kWh/year	electricity not produced by dry 
 ATJ Corn Dry Mill	Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
 ATJ Corn Dry Mill	Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
 ATJ Corn Dry Mill	Leap	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	Leap	Jet	12	st.triang(0.5,38173320,8482960)	gal/year	SoT value increased by random percent up to 15%
+ATJ Corn Dry Mill	Leap	Jet	12	st.triang(0.5,38530080,8562240)	gal/year	SoT varied between -3% and +10% random
 ATJ Corn Dry Mill	Leap	DDGS Price	13	0.22	USD/kg	
 ATJ Corn Dry Mill	Leap	Electricity Price	14	0.057	USD/kWh	
 ATJ Corn Dry Mill	Leap	Diesel Price	15	3.25	USD/gal	
@@ -439,7 +439,7 @@ ATJ Corn Dry Mill	Leap	Gasoline Price	16	2	USD/gal
 ATJ Corn Dry Mill	Leap	Propane Price	17	0.6	USD/gal	
 ATJ Corn Dry Mill	Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
 ATJ Corn Dry Mill	Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	Leap	Annual GHG	0	st.triang(0.5,79613425,17691872)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021
+ATJ Stover Thermochem	Leap	Annual GHG	0	st.triang(0.5,68590954,15242434)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
 ATJ Stover Thermochem	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 ATJ Stover Thermochem	Leap	Discount Rate	2	0.1	unitless	
 ATJ Stover Thermochem	Leap	Depreciation Period	3	7	years	
@@ -451,7 +451,7 @@ ATJ Stover Thermochem	Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random perc
 ATJ Stover Thermochem	Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
 ATJ Stover Thermochem	Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
 ATJ Stover Thermochem	Leap	Propane	11	0	gal/year	
-ATJ Stover Thermochem	Leap	Jet	12	st.triang(0.5,28576350,6350300)	gal/year	SoT value increased by random percent up to 15%
+ATJ Stover Thermochem	Leap	Jet	12	st.triang(0.5,26836920,5963760)	gal/year	SoT varied between -3% and +10% random
 ATJ Stover Thermochem	Leap	DDGS Price	13	0.22	USD/kg	
 ATJ Stover Thermochem	Leap	Electricity Price	14	0.057	USD/kWh	
 ATJ Stover Thermochem	Leap	Diesel Price	15	3.25	USD/gal	
@@ -459,7 +459,7 @@ ATJ Stover Thermochem	Leap	Gasoline Price	16	2	USD/gal
 ATJ Stover Thermochem	Leap	Propane Price	17	0.6	USD/gal	
 ATJ Stover Thermochem	Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
 ATJ Stover Thermochem	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Leap	Annual GHG	0	st.triang(0.5,154715749,34381278)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation)
+HEFA Camelina	Leap	Annual GHG	0	st.triang(0.5,143463695,31880821)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
 HEFA Camelina	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	Leap	Discount Rate	2	0.1	unitless	
 HEFA Camelina	Leap	Depreciation Period	3	7	years	
@@ -471,7 +471,7 @@ HEFA Camelina	Leap	Electricity	8	0	kWh/year
 HEFA Camelina	Leap	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
 HEFA Camelina	Leap	Gasoline	10	24605000	gal/year	SoT value +/- random percent up to 10%
 HEFA Camelina	Leap	Propane	11	236600	gal/year	SoT +/- random percent up to 10%
-HEFA Camelina	Leap	Jet	12	st.triang(0.5,57123000,12694000)	gal/year	SoT value increased by random percent up to 15%
+HEFA Camelina	Leap	Jet	12	st.triang(0.5,52968600,11770800)	gal/year	SoT varied between -3% and +10% random
 HEFA Camelina	Leap	DDGS Price	13	0.22	USD/kg	
 HEFA Camelina	Leap	Electricity Price	14	0.057	USD/kWh	
 HEFA Camelina	Leap	Diesel Price	15	3.25	USD/gal	
@@ -479,7 +479,7 @@ HEFA Camelina	Leap	Gasoline Price	16	2	USD/gal
 HEFA Camelina	Leap	Propane Price	17	0.6	USD/gal	
 HEFA Camelina	Leap	Feedstock Price	18	1587.59	USD/dry ton oil	
 HEFA Camelina	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Leap	Annual GHG	0	st.triang(0.5,240684244,53485388)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021
+HEFA Castor	Leap	Annual GHG	0	st.triang(0.5,224823230,49960718)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Castor	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Castor	Leap	Discount Rate	2	0.1	unitless	
 HEFA Castor	Leap	Depreciation Period	3	7	years	
@@ -491,7 +491,7 @@ HEFA Castor	Leap	Electricity	8	0	kWh/year
 HEFA Castor	Leap	Diesel	9	103000	gal/year	SoT +/- random percent up to 10%
 HEFA Castor	Leap	Gasoline	10	23616000	gal/year	SoT value +/- random percent up to 10%
 HEFA Castor	Leap	Propane	11	465000	gal/year	SoT +/- random percent up to 10%
-HEFA Castor	Leap	Jet	12	st.triang(0.5,48463200,10769600)	gal/year	SoT value increased by random percent up to 15%
+HEFA Castor	Leap	Jet	12	st.triang(0.5,46634400,10363200)	gal/year	SoT varied between -3% and +10% random
 HEFA Castor	Leap	DDGS Price	13	0.22	USD/kg	
 HEFA Castor	Leap	Electricity Price	14	0.057	USD/kWh	
 HEFA Castor	Leap	Diesel Price	15	3.25	USD/gal	
@@ -499,7 +499,7 @@ HEFA Castor	Leap	Gasoline Price	16	2	USD/gal
 HEFA Castor	Leap	Propane Price	17	0.6	USD/gal	
 HEFA Castor	Leap	Feedstock Price	18	1542.23	USD/dry ton oil	
 HEFA Castor	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Leap	Annual GHG	0	st.triang(0.5,162705692,36156820)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021
+HEFA Jatropha	Leap	Annual GHG	0	st.triang(0.5,147763822,32836405)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Jatropha	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Jatropha	Leap	Discount Rate	2	0.1	unitless	
 HEFA Jatropha	Leap	Depreciation Period	3	7	years	
@@ -511,7 +511,7 @@ HEFA Jatropha	Leap	Electricity	8	0	kWh/year
 HEFA Jatropha	Leap	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
 HEFA Jatropha	Leap	Gasoline	10	24156000	gal/year	SoT value +/- random percent up to 10%
 HEFA Jatropha	Leap	Propane	11	4230000	gal/year	SoT +/- random percent up to 10%
-HEFA Jatropha	Leap	Jet	12	st.triang(0.5,41976000,9328000)	gal/year	SoT value increased by random percent up to 15%
+HEFA Jatropha	Leap	Jet	12	st.triang(0.5,39996000,8888000)	gal/year	SoT varied between -3% and +10% random
 HEFA Jatropha	Leap	DDGS Price	13	0.22	USD/kg	
 HEFA Jatropha	Leap	Electricity Price	14	0.057	USD/kWh	
 HEFA Jatropha	Leap	Diesel Price	15	3.25	USD/gal	
@@ -519,7 +519,7 @@ HEFA Jatropha	Leap	Gasoline Price	16	2	USD/gal
 HEFA Jatropha	Leap	Propane Price	17	0.6	USD/gal	
 HEFA Jatropha	Leap	Feedstock Price	18	362.88	USD/dry ton oil	
 HEFA Jatropha	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Leap	Annual GHG	0	st.triang(0.5,154207817,34268404)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation)
+HEFA Pennycress	Leap	Annual GHG	0	st.triang(0.5,154612008,34358224)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation); calculated from jet output
 HEFA Pennycress	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Pennycress	Leap	Discount Rate	2	0.1	unitless	
 HEFA Pennycress	Leap	Depreciation Period	3	7	years	
@@ -531,7 +531,7 @@ HEFA Pennycress	Leap	Electricity	8	0	kWh/year
 HEFA Pennycress	Leap	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
 HEFA Pennycress	Leap	Gasoline	10	17664000	gal/year	SoT value +/- random percent up to 10%
 HEFA Pennycress	Leap	Propane	11	450000	gal/year	SoT +/- random percent up to 10%
-HEFA Pennycress	Leap	Jet	12	st.triang(0.5,36270000,8060000)	gal/year	SoT value increased by random percent up to 15%
+HEFA Pennycress	Leap	Jet	12	st.triang(0.5,38446200,8543600)	gal/year	SoT varied between -3% and +10% random
 HEFA Pennycress	Leap	DDGS Price	13	0.22	USD/kg	
 HEFA Pennycress	Leap	Electricity Price	14	0.057	USD/kWh	
 HEFA Pennycress	Leap	Diesel Price	15	3.25	USD/gal	
@@ -539,7 +539,7 @@ HEFA Pennycress	Leap	Gasoline Price	16	2	USD/gal
 HEFA Pennycress	Leap	Propane Price	17	0.6	USD/gal	
 HEFA Pennycress	Leap	Feedstock Price	18	734.83	USD/dry ton oil	
 HEFA Pennycress	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Leap	Annual GHG	0	st.triang(0.5,115383593,25640798)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021
+HEFA Yellow Grease	Leap	Annual GHG	0	st.triang(0.5,115900072,25755571)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
 HEFA Yellow Grease	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Yellow Grease	Leap	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	Leap	Depreciation Period	3	7	years	
@@ -551,7 +551,7 @@ HEFA Yellow Grease	Leap	Electricity	8	0	kWh/year
 HEFA Yellow Grease	Leap	Diesel	9	182000	gal/year	SoT +/- random percent up to 10%
 HEFA Yellow Grease	Leap	Gasoline	10	26136000	gal/year	SoT value +/- random percent up to 10%
 HEFA Yellow Grease	Leap	Propane	11	364000	gal/year	SoT +/- random percent up to 10%
-HEFA Yellow Grease	Leap	Jet	12	st.triang(0.5,45360000,10080000)	gal/year	SoT value increased by random percent up to 15%
+HEFA Yellow Grease	Leap	Jet	12	st.triang(0.5,48081600,10684800)	gal/year	SoT varied between -3% and +10% random
 HEFA Yellow Grease	Leap	DDGS Price	13	0.22	USD/kg	
 HEFA Yellow Grease	Leap	Electricity Price	14	0.057	USD/kWh	
 HEFA Yellow Grease	Leap	Diesel Price	15	3.25	USD/gal	
