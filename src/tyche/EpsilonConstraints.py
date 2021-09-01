@@ -10,7 +10,7 @@ from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
 
-from mip import Model, MINIMIZE, BINARY, xsum
+from mip import Model, MAXIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
   "Optimum",
@@ -717,7 +717,7 @@ class EpsilonConstraintOptimizer:
     if verbose > 1: print('Building MIP model at ', str(round(time.time() - _start, 1)))
 
     # instantiate MILP model
-    _model = Model(sense=MINIMIZE)
+    _model = Model(sense=MAXIMIZE)
 
     bin_vars = []
     lmbd_vars = []
