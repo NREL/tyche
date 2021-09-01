@@ -5,6 +5,8 @@ HEFA Camelina	Input	Feedstock	0
 HEFA Camelina	Input	Raw Material	1		
 HEFA Camelina	Metric	Reduction in Jet GHG	0		
 HEFA Camelina	Metric	Reduction in MJSP	1		
+HEFA Camelina	Metric	MJSP	2		
+HEFA Camelina	Metric	Jet GHG	3		
 HEFA Camelina	Output	Jet	0		
 HEFA Camelina	Output	Gasoline	1		
 HEFA Camelina	Output	Diesel	2		
@@ -37,6 +39,8 @@ HEFA Castor	Input	Feedstock	0
 HEFA Castor	Input	Raw Material	1		
 HEFA Castor	Metric	Reduction in Jet GHG	0		
 HEFA Castor	Metric	Reduction in MJSP	1		
+HEFA Castor	Metric	MJSP	2		
+HEFA Castor	Metric	Jet GHG	3		
 HEFA Castor	Output	Jet	0		
 HEFA Castor	Output	Gasoline	1		
 HEFA Castor	Output	Diesel	2		
@@ -69,6 +73,8 @@ HEFA Jatropha	Input	Feedstock	0
 HEFA Jatropha	Input	Raw Material	1		
 HEFA Jatropha	Metric	Reduction in Jet GHG	0		
 HEFA Jatropha	Metric	Reduction in MJSP	1		
+HEFA Jatropha	Metric	MJSP	2		
+HEFA Jatropha	Metric	Jet GHG	3		
 HEFA Jatropha	Output	Jet	0		
 HEFA Jatropha	Output	Gasoline	1		
 HEFA Jatropha	Output	Diesel	2		
@@ -101,6 +107,8 @@ HEFA Pennycress	Input	Feedstock	0
 HEFA Pennycress	Input	Raw Material	1		
 HEFA Pennycress	Metric	Reduction in Jet GHG	0		
 HEFA Pennycress	Metric	Reduction in MJSP	1		
+HEFA Pennycress	Metric	MJSP	2		
+HEFA Pennycress	Metric	Jet GHG	3		
 HEFA Pennycress	Output	Jet	0		
 HEFA Pennycress	Output	Gasoline	1		
 HEFA Pennycress	Output	Diesel	2		
@@ -134,6 +142,8 @@ HEFA Yellow Grease	Input	Raw Material	1
 HEFA Yellow Grease	Lifetime	Capital	0		
 HEFA Yellow Grease	Metric	Reduction in Jet GHG	0		
 HEFA Yellow Grease	Metric	Reduction in MJSP	1		
+HEFA Yellow Grease	Metric	MJSP	2		
+HEFA Yellow Grease	Metric	Jet GHG	3		
 HEFA Yellow Grease	Output	Jet	0		
 HEFA Yellow Grease	Output	Gasoline	1		
 HEFA Yellow Grease	Output	Diesel	2		

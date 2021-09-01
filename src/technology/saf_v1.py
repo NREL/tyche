@@ -61,10 +61,20 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     The technological parameterization.
   """
 
-  _out = parameter[12]
+  _jet = parameter[12]
+  _gas = parameter[10]
+  _dsl = parameter[9]
+  _ppn = parameter[11]
+  _ddgs = parameter[7]
+  _elec = parameter[8]
 
   # Stack the output for each category into a single array that we return.
-  return np.stack([_out
+  return np.stack([_jet,
+                   _gas,
+                   _dsl,
+                   _ppn,
+                   _ddgs,
+                   _elec
   ])
 
 def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
@@ -138,6 +148,9 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   # equipment lifetime
   els = lifetime[0]
 
+  mjsp_bench = parameter[20]
+  ghg_bench = parameter[21]
+
   # FOSSIL GHG: kg CO2-eq/gal SAF
   ghg_foss = ghg_foss_ann / (jet * lhv)
 
@@ -165,6 +178,8 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   mjsp = (br + cr) / output[0]
 
   # Package results.
-  return np.stack([ghg_foss,
-                   mjsp
+  return np.stack([ghg_bench - ghg_foss,
+                   mjsp_bench - mjsp,
+                   mjsp,
+                   ghg_foss
   ])
