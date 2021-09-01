@@ -1,13 +1,13 @@
 Investment	Category	Tranche	Notes
-No R&D	Overall Process Efficiency	State of Technology	
-Low R&D	Overall Process Efficiency	OPE Incremental	
-Moderate R&D	Overall Process Efficiency	OPE Moderate	
-High R&D	Overall Process Efficiency	OPE Leap	
-No R&D	CoProduct Revenue	State of Technology	
-Low R&D	CoProduct Revenue	CPR Incremental	
-Moderate R&D	CoProduct Revenue	CPR Moderate	
-High R&D	CoProduct Revenue	CPR Leap	
-No R&D	Fatty Acid Composition	State of Technology	
-Low R&D	Fatty Acid Composition	FAC Incremental	
-Moderate R&D	Fatty Acid Composition	FAC Moderate	
-High R&D	Fatty Acid Composition	FAC Leap	
+State of Technology	Overall Process Efficiency	State of Technology	
+Incremental Progress	Overall Process Efficiency	OPE Incremental	
+Moderate Progress	Overall Process Efficiency	OPE Moderate	
+Leap Forward	Overall Process Efficiency	OPE Leap	
+State of Technology	Co-Product Revenue	State of Technology	
+Incremental Progress	Co-Product Revenue	CPR Incremental	
+Moderate Progress	Co-Product Revenue	CPR Moderate	
+Leap Forward	Co-Product Revenue	CPR Leap	
+State of Technology	Fatty Acid Composition	State of Technology	
+Incremental Progress	Fatty Acid Composition	FAC Incremental	
+Moderate Progress	Fatty Acid Composition	FAC Moderate	
+Leap Forward	Fatty Acid Composition	FAC Leap	
