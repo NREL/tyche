@@ -1,13 +1,13 @@
 Category	Tranche	Scenario	Amount	Notes
-Overall Process Efficiency	OPE SoT	State of Technology	0	
-Overall Process Efficiency	OPE In	Incremental	15000000	
-Overall Process Efficiency	OPE Mo	Moderate	25000000	
-Overall Process Efficiency	OPE Le	Leap	35000000	
-Fatty Acid Composition	FAC SoT	State of Technology	0	
-Fatty Acid Composition	FAC In	Incremental	20000000	
-Fatty Acid Composition	FAC Mo	Moderate	27000000	
-Fatty Acid Composition	FAC Le	Leap	39000000	
-Co-Product Revenue	CPR SoT	State of Technology	0	
-Co-Product Revenue	CPR In	Incremental	18000000	
-Co-Product Revenue	CPR Mo	Moderate	22000000	
-Co-Product Revenue	CPR Le	Leap	28000000	
+Overall Process Efficiency	OPE 0	State of Technology	0	
+Overall Process Efficiency	OPE 1	OPE Incremental	17666667	
+Overall Process Efficiency	OPE 2	OPE Moderate	24666667	
+Overall Process Efficiency	OPE 3	OPE Leap	34000000	
+CoProduct Revenue	CPR 0	State of Technology	0	
+CoProduct Revenue	CPR 1	CPR Incremental	17666666	
+CoProduct Revenue	CPR 2	CPR Moderate	24666666	
+CoProduct Revenue	CPR 3	CPR Leap	34000000	
+Fatty Acid Composition	FAC 0	State of Technology	0	
+Fatty Acid Composition	FAC 1	FAC Incremental	17666666	
+Fatty Acid Composition	FAC 2	FAC Moderate	24666666	
+Fatty Acid Composition	FAC 3	FAC Leap	34000000	

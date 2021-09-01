@@ -156,9 +156,9 @@ class Evaluator:
     return pd.DataFrame(
       self.raw.reset_index(
       ).set_index(
-          ["Category", "Amount", "Index"]
+          ["Category","Amount", "Index"]
       ).drop(
-          columns = ["Tranche", "Sample", "Units"]
+          columns = ["Tranche","Technology","Sample", "Units"]
       ).apply(
           np.mean, axis=1
       ).rename(

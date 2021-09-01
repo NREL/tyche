@@ -137,6 +137,9 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   # equipment lifetime
   els = lifetime[0]
 
+  mjsp_bench = parameter[20]
+  ghg_bench = parameter[21]
+
   # FOSSIL GHG: kg CO2-eq/gal SAF
   ghg_foss = ghg_foss_ann / (jet * lhv)
 
@@ -161,9 +164,9 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, outpu
   cr = ddgs * ddgs_p + elec * elec_p + dsl * dsl_p + gas * gas_p + ppn * ppn_p
 
   # MJSP, Units: USD/gal SAF
-  mjsp = (br + cr) / output
+  mjsp = (br + cr) / output[0]
 
   # Package results.
-  return np.stack([ghg_foss,
-                   mjsp
+  return np.stack([ghg_bench - ghg_foss,
+                   mjsp_bench - mjsp
   ])

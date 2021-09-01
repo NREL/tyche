@@ -19,46 +19,8 @@ ATJ Corn Dry Mill	State of Technology	Gasoline Price	16	2	USD/gal
 ATJ Corn Dry Mill	State of Technology	Propane Price	17	0.6	USD/gal	
 ATJ Corn Dry Mill	State of Technology	Feedstock Price	18	187.04	USD/dry metric ton biomass	
 ATJ Corn Dry Mill	State of Technology	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	Moderate	Annual GHG	0	st.triang(0.5,343035421,76230094)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
-ATJ Corn Dry Mill	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	Moderate	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	Moderate	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
-ATJ Corn Dry Mill	Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	Moderate	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	Moderate	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	Moderate	Jet	12	st.triang(0.5,34962480,7769440)	gal/year	SoT varied between -3% and +7% random
-ATJ Corn Dry Mill	Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	Incremental	Annual GHG	0	st.triang(0.5,333701124,74155805)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Corn Dry Mill	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	Incremental	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	Incremental	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Corn Dry Mill	Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	Incremental	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Corn Dry Mill	Incremental	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	Incremental	Jet	12	st.triang(0.5,35676000,7928000)	gal/year	SoT +/- up to 3% random
-ATJ Corn Dry Mill	Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	Incremental	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	State of Technology	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	State of Technology	Benchmark GHG	21	0.099	kg CO2eq/gal	
 ATJ Stover Thermochem	State of Technology	Annual GHG	0	st.triang(0.5,83074879,18461084)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021
 ATJ Stover Thermochem	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 ATJ Stover Thermochem	State of Technology	Discount Rate	2	0.1	unitless	
@@ -79,46 +41,8 @@ ATJ Stover Thermochem	State of Technology	Gasoline Price	16	2	USD/gal
 ATJ Stover Thermochem	State of Technology	Propane Price	17	0.6	USD/gal	
 ATJ Stover Thermochem	State of Technology	Feedstock Price	18	88.18	USD/dry metric ton biomass	
 ATJ Stover Thermochem	State of Technology	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	Moderate	Annual GHG	0	st.triang(0.5,73382809,16307291)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Stover Thermochem	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	Moderate	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	Moderate	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent between 5 and 10%
-ATJ Stover Thermochem	Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	Moderate	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	Moderate	Propane	11	0	gal/year	
-ATJ Stover Thermochem	Moderate	Jet	12	st.triang(0.5,26339940,5853320)	gal/year	SoT varied between -3% and +7% random
-ATJ Stover Thermochem	Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	Incremental	Annual GHG	0	st.triang(0.5,108509035,24113119)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	Incremental	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	Incremental	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	Incremental	Capital	5	337000000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	Incremental	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Stover Thermochem	Incremental	Propane	11	0	gal/year	
-ATJ Stover Thermochem	Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
-ATJ Stover Thermochem	Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	Incremental	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	State of Technology	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	State of Technology	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	State of Technology	Annual GHG	0	st.triang(0.5,295643202,65698489)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation)
 HEFA Camelina	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	State of Technology	Discount Rate	2	0.1	unitless	
@@ -139,46 +63,8 @@ HEFA Camelina	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Camelina	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Camelina	State of Technology	Feedstock Price	18	1587.59	USD/dry ton oil	
 HEFA Camelina	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Moderate	Annual GHG	0	st.triang(0.5,136431160,30318036)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
-HEFA Camelina	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Camelina	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Camelina	Moderate	Depreciation Period	3	7	years	
-HEFA Camelina	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Moderate	Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Camelina	Moderate	Fixed	6	14425000	USD/year	Fig. 6
-HEFA Camelina	Moderate	DDGS	7	0	kg/year	
-HEFA Camelina	Moderate	Electricity	8	0	kWh/year	
-HEFA Camelina	Moderate	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
-HEFA Camelina	Moderate	Gasoline	10	3192600	gal/year	SoT value +/- random percent up to 5%
-HEFA Camelina	Moderate	Propane	11	270400	gal/year	SoT +/- random percent up to 5%
-HEFA Camelina	Moderate	Jet	12	st.triang(0.5,50372100,11193800)	gal/year	SoT varied between -3% and +7% random
-HEFA Camelina	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Camelina	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Camelina	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Camelina	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Camelina	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Camelina	Moderate	Feedstock Price	18	1587.59	USD/dry ton oil	
-HEFA Camelina	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Incremental	Annual GHG	0	st.triang(0.5,203440265,45208948)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
-HEFA Camelina	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Camelina	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Camelina	Incremental	Depreciation Period	3	7	years	
-HEFA Camelina	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Incremental	Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Camelina	Incremental	Fixed	6	14425000	USD/year	Fig. 6
-HEFA Camelina	Incremental	DDGS	7	0	kg/year	
-HEFA Camelina	Incremental	Electricity	8	0	kWh/year	
-HEFA Camelina	Incremental	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
-HEFA Camelina	Incremental	Gasoline	10	23569000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Camelina	Incremental	Propane	11	234000	gal/year	SoT minus random percent up to 10%
-HEFA Camelina	Incremental	Jet	12	st.triang(0.5,51930000,11540000)	gal/year	SoT +/- up to 3% random
-HEFA Camelina	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Camelina	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Camelina	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Camelina	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Camelina	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Camelina	Incremental	Feedstock Price	18	1587.59	USD/dry ton oil	
-HEFA Camelina	Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	State of Technology	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	State of Technology	Benchmark GHG	21	0.06	kg CO2eq/gal	
 HEFA Castor	State of Technology	Annual GHG	0	st.triang(0.5,293517371,65226082)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021
 HEFA Castor	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Castor	State of Technology	Discount Rate	2	0.1	unitless	
@@ -199,46 +85,8 @@ HEFA Castor	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Castor	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Castor	State of Technology	Feedstock Price	18	1542.23	USD/dry ton oil	
 HEFA Castor	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Moderate	Annual GHG	0	st.triang(0.5,233872426,51971650)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Castor	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Castor	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Castor	Moderate	Depreciation Period	3	7	years	
-HEFA Castor	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Moderate	Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Castor	Moderate	Fixed	6	11176000	USD/year	
-HEFA Castor	Moderate	DDGS	7	0	kg/year	
-HEFA Castor	Moderate	Electricity	8	0	kWh/year	
-HEFA Castor	Moderate	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
-HEFA Castor	Moderate	Gasoline	10	24354000	gal/year	SoT value +/- random percent up to 5%
-HEFA Castor	Moderate	Propane	11	515000	gal/year	SoT +/- random percent up to 5%
-HEFA Castor	Moderate	Jet	12	st.triang(0.5,47091600,10464800)	gal/year	SoT varied between -3% and +7% random
-HEFA Castor	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Castor	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Castor	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Castor	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Castor	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Castor	Moderate	Feedstock Price	18	1542.23	USD/dry ton oil	
-HEFA Castor	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Incremental	Annual GHG	0	st.triang(0.5,436288650,96953033)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Castor	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Castor	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Castor	Incremental	Depreciation Period	3	7	years	
-HEFA Castor	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Incremental	Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Castor	Incremental	Fixed	6	11176000	USD/year	
-HEFA Castor	Incremental	DDGS	7	0	kg/year	
-HEFA Castor	Incremental	Electricity	8	0	kWh/year	
-HEFA Castor	Incremental	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
-HEFA Castor	Incremental	Gasoline	10	23862000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Castor	Incremental	Propane	11	465000	gal/year	SoT minus random percent up to 10%
-HEFA Castor	Incremental	Jet	12	st.triang(0.5,45720000,10160000)	gal/year	SoT +/- up to 3% random
-HEFA Castor	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Castor	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Castor	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Castor	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Castor	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Castor	Incremental	Feedstock Price	18	1542.23	USD/dry ton oil	
-HEFA Castor	Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	State of Technology	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	State of Technology	Benchmark GHG	21	0.094	kg CO2eq/gal	
 HEFA Jatropha	State of Technology	Annual GHG	0	st.triang(0.5,263821140,58626920)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021
 HEFA Jatropha	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Jatropha	State of Technology	Discount Rate	2	0.1	unitless	
@@ -259,46 +107,8 @@ HEFA Jatropha	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Jatropha	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Jatropha	State of Technology	Feedstock Price	18	362.88	USD/dry ton oil	
 HEFA Jatropha	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Moderate	Annual GHG	0	st.triang(0.5,151960977,33769106)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Jatropha	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Jatropha	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Jatropha	Moderate	Depreciation Period	3	7	years	
-HEFA Jatropha	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Moderate	Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Jatropha	Moderate	Fixed	6	14425000	USD/year	
-HEFA Jatropha	Moderate	DDGS	7	0	kg/year	
-HEFA Jatropha	Moderate	Electricity	8	0	kWh/year	
-HEFA Jatropha	Moderate	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
-HEFA Jatropha	Moderate	Gasoline	10	25376000	gal/year	SoT value +/- random percent up to 5%
-HEFA Jatropha	Moderate	Propane	11	4512000	gal/year	SoT +/- random percent up to 5%
-HEFA Jatropha	Moderate	Jet	12	st.triang(0.5,39204000,8712000)	gal/year	SoT varied between -3% and +7% random
-HEFA Jatropha	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Jatropha	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Jatropha	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Jatropha	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Jatropha	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Jatropha	Moderate	Feedstock Price	18	362.88	USD/dry ton oil	
-HEFA Jatropha	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Incremental	Annual GHG	0	st.triang(0.5,502986995,111774888)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Jatropha	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Jatropha	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Jatropha	Incremental	Depreciation Period	3	7	years	
-HEFA Jatropha	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Incremental	Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Jatropha	Incremental	Fixed	6	14425000	USD/year	
-HEFA Jatropha	Incremental	DDGS	7	0	kg/year	
-HEFA Jatropha	Incremental	Electricity	8	0	kWh/year	
-HEFA Jatropha	Incremental	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
-HEFA Jatropha	Incremental	Gasoline	10	22692000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Jatropha	Incremental	Propane	11	4653000	gal/year	SoT minus random percent up to 10%
-HEFA Jatropha	Incremental	Jet	12	st.triang(0.5,39600000,8800000)	gal/year	SoT +/- up to 3% random
-HEFA Jatropha	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Jatropha	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Jatropha	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Jatropha	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Jatropha	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Jatropha	Incremental	Feedstock Price	18	362.88	USD/dry ton oil	
-HEFA Jatropha	Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	State of Technology	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	State of Technology	Benchmark GHG	21	0.14	kg CO2eq/gal	
 HEFA Pennycress	State of Technology	Annual GHG	0	st.triang(0.5,143663693,31925265)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation)
 HEFA Pennycress	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Pennycress	State of Technology	Discount Rate	2	0.1	unitless	
@@ -319,46 +129,8 @@ HEFA Pennycress	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Pennycress	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Pennycress	State of Technology	Feedstock Price	18	734.83	USD/dry ton oil	
 HEFA Pennycress	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Moderate	Annual GHG	0	st.triang(0.5,157291973,34953772)	kg CO2eq/yr	35 g CO2eq/MJ jet product; calculated from jet output
-HEFA Pennycress	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Pennycress	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Pennycress	Moderate	Depreciation Period	3	7	years	
-HEFA Pennycress	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Moderate	Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Pennycress	Moderate	Fixed	6	10881000	USD/year	Fig. 6
-HEFA Pennycress	Moderate	DDGS	7	0	kg/year	
-HEFA Pennycress	Moderate	Electricity	8	0	kWh/year	
-HEFA Pennycress	Moderate	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
-HEFA Pennycress	Moderate	Gasoline	10	19392000	gal/year	SoT value +/- random percent up to 5%
-HEFA Pennycress	Moderate	Propane	11	490000	gal/year	SoT +/- random percent up to 5%
-HEFA Pennycress	Moderate	Jet	12	st.triang(0.5,36995400,8221200)	gal/year	SoT varied between -3% and +7% random
-HEFA Pennycress	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Pennycress	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Pennycress	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Pennycress	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Pennycress	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Pennycress	Moderate	Feedstock Price	18	734.83	USD/dry ton oil	
-HEFA Pennycress	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Incremental	Annual GHG	0	st.triang(0.5,201208251,44712945)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation); calculated from jet output
-HEFA Pennycress	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Pennycress	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Pennycress	Incremental	Depreciation Period	3	7	years	
-HEFA Pennycress	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Incremental	Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Pennycress	Incremental	Fixed	6	10881000	USD/year	Fig. 6
-HEFA Pennycress	Incremental	DDGS	7	0	kg/year	
-HEFA Pennycress	Incremental	Electricity	8	0	kWh/year	
-HEFA Pennycress	Incremental	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
-HEFA Pennycress	Incremental	Gasoline	10	18048000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Pennycress	Incremental	Propane	11	480000	gal/year	SoT minus random percent up to 10%
-HEFA Pennycress	Incremental	Jet	12	st.triang(0.5,36270000,8060000)	gal/year	SoT +/- up to 3% random
-HEFA Pennycress	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Pennycress	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Pennycress	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Pennycress	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Pennycress	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Pennycress	Incremental	Feedstock Price	18	734.83	USD/dry ton oil	
-HEFA Pennycress	Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	State of Technology	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	State of Technology	Benchmark GHG	21	0.047	kg CO2eq/gal	
 HEFA Yellow Grease	State of Technology	Annual GHG	0	st.triang(0.5,94504657,21001035)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021
 HEFA Yellow Grease	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Yellow Grease	State of Technology	Discount Rate	2	0.1	unitless	
@@ -379,183 +151,1391 @@ HEFA Yellow Grease	State of Technology	Gasoline Price	16	2	USD/gal
 HEFA Yellow Grease	State of Technology	Propane Price	17	0.6	USD/gal	
 HEFA Yellow Grease	State of Technology	Feedstock Price	18	553.39	USD/dry ton oil	
 HEFA Yellow Grease	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Moderate	Annual GHG	0	st.triang(0.5,122306608,27179246)	kg CO2eq/yr	21 g CO2eq/MJ jet product; calculated from jet output
-HEFA Yellow Grease	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Yellow Grease	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Yellow Grease	Moderate	Depreciation Period	3	7	years	
-HEFA Yellow Grease	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Moderate	Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Yellow Grease	Moderate	Fixed	6	12600000	USD/year	Fig. 6
-HEFA Yellow Grease	Moderate	DDGS	7	0	kg/year	
-HEFA Yellow Grease	Moderate	Electricity	8	0	kWh/year	
-HEFA Yellow Grease	Moderate	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
-HEFA Yellow Grease	Moderate	Gasoline	10	22990000	gal/year	SoT value +/- random percent up to 5%
-HEFA Yellow Grease	Moderate	Propane	11	404000	gal/year	SoT +/- random percent up to 5%
-HEFA Yellow Grease	Moderate	Jet	12	st.triang(0.5,48081600,10684800)	gal/year	SoT varied between -3% and +7% random
-HEFA Yellow Grease	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Yellow Grease	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Yellow Grease	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Yellow Grease	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Yellow Grease	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Yellow Grease	Moderate	Feedstock Price	18	553.39	USD/dry ton oil	
-HEFA Yellow Grease	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Incremental	Annual GHG	0	st.triang(0.5,77136679,17141484)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-HEFA Yellow Grease	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Yellow Grease	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Yellow Grease	Incremental	Depreciation Period	3	7	years	
-HEFA Yellow Grease	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Incremental	Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Yellow Grease	Incremental	Fixed	6	12600000	USD/year	Fig. 6
-HEFA Yellow Grease	Incremental	DDGS	7	0	kg/year	
-HEFA Yellow Grease	Incremental	Electricity	8	0	kWh/year	
-HEFA Yellow Grease	Incremental	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
-HEFA Yellow Grease	Incremental	Gasoline	10	22264000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Yellow Grease	Incremental	Propane	11	376000	gal/year	SoT minus random percent up to 10%
-HEFA Yellow Grease	Incremental	Jet	12	st.triang(0.5,45360000,10080000)	gal/year	SoT +/- up to 3% random
-HEFA Yellow Grease	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Yellow Grease	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Yellow Grease	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Yellow Grease	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Yellow Grease	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Yellow Grease	Incremental	Feedstock Price	18	553.39	USD/dry ton oil	
-HEFA Yellow Grease	Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	Leap	Annual GHG	0	st.triang(0.5,369638168,82141815)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
-ATJ Corn Dry Mill	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	Leap	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	Leap	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Corn Dry Mill	Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
-ATJ Corn Dry Mill	Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
-ATJ Corn Dry Mill	Leap	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	Leap	Jet	12	st.triang(0.5,38530080,8562240)	gal/year	SoT varied between -3% and +10% random
-ATJ Corn Dry Mill	Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	Leap	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	Leap	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	Leap	Annual GHG	0	st.triang(0.5,68590954,15242434)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	Leap	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	Leap	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	Leap	Capital	5	323520000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Stover Thermochem	Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	Leap	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
-ATJ Stover Thermochem	Leap	Propane	11	0	gal/year	
-ATJ Stover Thermochem	Leap	Jet	12	st.triang(0.5,26836920,5963760)	gal/year	SoT varied between -3% and +10% random
-ATJ Stover Thermochem	Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	Leap	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	Leap	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Leap	Annual GHG	0	st.triang(0.5,143463695,31880821)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
-HEFA Camelina	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Camelina	Leap	Discount Rate	2	0.1	unitless	
-HEFA Camelina	Leap	Depreciation Period	3	7	years	
-HEFA Camelina	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Leap	Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Camelina	Leap	Fixed	6	14425000	USD/year	Fig. 6
-HEFA Camelina	Leap	DDGS	7	0	kg/year	
-HEFA Camelina	Leap	Electricity	8	0	kWh/year	
-HEFA Camelina	Leap	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
-HEFA Camelina	Leap	Gasoline	10	24605000	gal/year	SoT value +/- random percent up to 10%
-HEFA Camelina	Leap	Propane	11	236600	gal/year	SoT +/- random percent up to 10%
-HEFA Camelina	Leap	Jet	12	st.triang(0.5,52968600,11770800)	gal/year	SoT varied between -3% and +10% random
-HEFA Camelina	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Camelina	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Camelina	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Camelina	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Camelina	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Camelina	Leap	Feedstock Price	18	1587.59	USD/dry ton oil	
-HEFA Camelina	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Leap	Annual GHG	0	st.triang(0.5,224823230,49960718)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Castor	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Castor	Leap	Discount Rate	2	0.1	unitless	
-HEFA Castor	Leap	Depreciation Period	3	7	years	
-HEFA Castor	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Leap	Capital	5	310310000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Castor	Leap	Fixed	6	11176000	USD/year	
-HEFA Castor	Leap	DDGS	7	0	kg/year	
-HEFA Castor	Leap	Electricity	8	0	kWh/year	
-HEFA Castor	Leap	Diesel	9	103000	gal/year	SoT +/- random percent up to 10%
-HEFA Castor	Leap	Gasoline	10	23616000	gal/year	SoT value +/- random percent up to 10%
-HEFA Castor	Leap	Propane	11	465000	gal/year	SoT +/- random percent up to 10%
-HEFA Castor	Leap	Jet	12	st.triang(0.5,46634400,10363200)	gal/year	SoT varied between -3% and +10% random
-HEFA Castor	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Castor	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Castor	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Castor	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Castor	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Castor	Leap	Feedstock Price	18	1542.23	USD/dry ton oil	
-HEFA Castor	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Leap	Annual GHG	0	st.triang(0.5,147763822,32836405)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Jatropha	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Jatropha	Leap	Discount Rate	2	0.1	unitless	
-HEFA Jatropha	Leap	Depreciation Period	3	7	years	
-HEFA Jatropha	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Leap	Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Jatropha	Leap	Fixed	6	14425000	USD/year	
-HEFA Jatropha	Leap	DDGS	7	0	kg/year	
-HEFA Jatropha	Leap	Electricity	8	0	kWh/year	
-HEFA Jatropha	Leap	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
-HEFA Jatropha	Leap	Gasoline	10	24156000	gal/year	SoT value +/- random percent up to 10%
-HEFA Jatropha	Leap	Propane	11	4230000	gal/year	SoT +/- random percent up to 10%
-HEFA Jatropha	Leap	Jet	12	st.triang(0.5,39996000,8888000)	gal/year	SoT varied between -3% and +10% random
-HEFA Jatropha	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Jatropha	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Jatropha	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Jatropha	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Jatropha	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Jatropha	Leap	Feedstock Price	18	362.88	USD/dry ton oil	
-HEFA Jatropha	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Leap	Annual GHG	0	st.triang(0.5,154612008,34358224)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation); calculated from jet output
-HEFA Pennycress	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Pennycress	Leap	Discount Rate	2	0.1	unitless	
-HEFA Pennycress	Leap	Depreciation Period	3	7	years	
-HEFA Pennycress	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Leap	Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Pennycress	Leap	Fixed	6	10881000	USD/year	Fig. 6
-HEFA Pennycress	Leap	DDGS	7	0	kg/year	
-HEFA Pennycress	Leap	Electricity	8	0	kWh/year	
-HEFA Pennycress	Leap	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
-HEFA Pennycress	Leap	Gasoline	10	17664000	gal/year	SoT value +/- random percent up to 10%
-HEFA Pennycress	Leap	Propane	11	450000	gal/year	SoT +/- random percent up to 10%
-HEFA Pennycress	Leap	Jet	12	st.triang(0.5,38446200,8543600)	gal/year	SoT varied between -3% and +10% random
-HEFA Pennycress	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Pennycress	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Pennycress	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Pennycress	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Pennycress	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Pennycress	Leap	Feedstock Price	18	734.83	USD/dry ton oil	
-HEFA Pennycress	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Leap	Annual GHG	0	st.triang(0.5,115900072,25755571)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-HEFA Yellow Grease	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Yellow Grease	Leap	Discount Rate	2	0.1	unitless	
-HEFA Yellow Grease	Leap	Depreciation Period	3	7	years	
-HEFA Yellow Grease	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Leap	Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Yellow Grease	Leap	Fixed	6	12600000	USD/year	Fig. 6
-HEFA Yellow Grease	Leap	DDGS	7	0	kg/year	
-HEFA Yellow Grease	Leap	Electricity	8	0	kWh/year	
-HEFA Yellow Grease	Leap	Diesel	9	182000	gal/year	SoT +/- random percent up to 10%
-HEFA Yellow Grease	Leap	Gasoline	10	26136000	gal/year	SoT value +/- random percent up to 10%
-HEFA Yellow Grease	Leap	Propane	11	364000	gal/year	SoT +/- random percent up to 10%
-HEFA Yellow Grease	Leap	Jet	12	st.triang(0.5,48081600,10684800)	gal/year	SoT varied between -3% and +10% random
-HEFA Yellow Grease	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Yellow Grease	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Yellow Grease	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Yellow Grease	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Yellow Grease	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Yellow Grease	Leap	Feedstock Price	18	553.39	USD/dry ton oil	
-HEFA Yellow Grease	Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	State of Technology	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	State of Technology	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	OPE Moderate	Annual GHG	0	st.triang(0.6,381539397,84786533)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
+ATJ Corn Dry Mill	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	OPE Moderate	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	OPE Moderate	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	OPE Moderate	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	OPE Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
+ATJ Corn Dry Mill	OPE Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	OPE Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	OPE Moderate	Electricity	8	0	kWh/year	
+ATJ Corn Dry Mill	OPE Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	OPE Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	OPE Moderate	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	OPE Moderate	Jet	12	st.triang(0.8,38886840,8641520)	gal/year	SoT varied between -3% and +7% random
+ATJ Corn Dry Mill	OPE Moderate	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	OPE Moderate	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	OPE Moderate	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	OPE Moderate	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	OPE Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	OPE Moderate	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	OPE Moderate	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	OPE Moderate	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	OPE Moderate	Annual GHG	0	st.triang(0.4,74075100,16461133)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
+ATJ Stover Thermochem	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	OPE Moderate	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	OPE Moderate	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	OPE Moderate	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	OPE Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent up to 10%
+ATJ Stover Thermochem	OPE Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	OPE Moderate	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	OPE Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
+ATJ Stover Thermochem	OPE Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
+ATJ Stover Thermochem	OPE Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
+ATJ Stover Thermochem	OPE Moderate	Propane	11	0	gal/year	
+ATJ Stover Thermochem	OPE Moderate	Jet	12	st.triang(0.5,26588430,5908540)	gal/year	SoT varied between -3% and +7% random
+ATJ Stover Thermochem	OPE Moderate	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	OPE Moderate	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	OPE Moderate	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	OPE Moderate	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	OPE Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	OPE Moderate	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	OPE Moderate	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	OPE Moderate	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	OPE Moderate	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
+HEFA Camelina	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	OPE Moderate	Discount Rate	2	0.1	unitless	
+HEFA Camelina	OPE Moderate	Depreciation Period	3	7	years	
+HEFA Camelina	OPE Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	OPE Moderate	Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Camelina	OPE Moderate	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	OPE Moderate	DDGS	7	0	kg/year	
+HEFA Camelina	OPE Moderate	Electricity	8	0	kWh/year	
+HEFA Camelina	OPE Moderate	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	OPE Moderate	Gasoline	10	26159000	gal/year	SoT value +/- random percent up to 5%
+HEFA Camelina	OPE Moderate	Propane	11	270400	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	OPE Moderate	Jet	12	st.triang(0.8,56603700,12578600)	gal/year	SoT varied between -3% and +7% random
+HEFA Camelina	OPE Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	OPE Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	OPE Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	OPE Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	OPE Moderate	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	OPE Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	OPE Moderate	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	OPE Moderate	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	OPE Moderate	Annual GHG	0	st.triang(0.3,238413638,52980808)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	OPE Moderate	Discount Rate	2	0.1	unitless	
+HEFA Castor	OPE Moderate	Depreciation Period	3	7	years	
+HEFA Castor	OPE Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	OPE Moderate	Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Castor	OPE Moderate	Fixed	6	11176000	USD/year	
+HEFA Castor	OPE Moderate	DDGS	7	0	kg/year	
+HEFA Castor	OPE Moderate	Electricity	8	0	kWh/year	
+HEFA Castor	OPE Moderate	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	OPE Moderate	Gasoline	10	24354000	gal/year	SoT value +/- random percent up to 5%
+HEFA Castor	OPE Moderate	Propane	11	515000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	OPE Moderate	Jet	12	st.triang(0.8,48006000,10668000)	gal/year	SoT varied between -3% and +7% random
+HEFA Castor	OPE Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	OPE Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	OPE Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Castor	OPE Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Castor	OPE Moderate	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	OPE Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	OPE Moderate	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	OPE Moderate	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	OPE Moderate	Annual GHG	0	st.triang(0.5,162705692,36156820)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	OPE Moderate	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	OPE Moderate	Depreciation Period	3	7	years	
+HEFA Jatropha	OPE Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	OPE Moderate	Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Jatropha	OPE Moderate	Fixed	6	14425000	USD/year	
+HEFA Jatropha	OPE Moderate	DDGS	7	0	kg/year	
+HEFA Jatropha	OPE Moderate	Electricity	8	0	kWh/year	
+HEFA Jatropha	OPE Moderate	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	OPE Moderate	Gasoline	10	25376000	gal/year	SoT value +/- random percent up to 5%
+HEFA Jatropha	OPE Moderate	Propane	11	4512000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	OPE Moderate	Jet	12	st.triang(0.5,41976000,9328000)	gal/year	SoT varied between -3% and +7% random
+HEFA Jatropha	OPE Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	OPE Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	OPE Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	OPE Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	OPE Moderate	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	OPE Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	OPE Moderate	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	OPE Moderate	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	OPE Moderate	Annual GHG	0	st.triang(0.6,161918208,35981824)	kg CO2eq/yr	35 g CO2eq/MJ jet product; calculated from jet output
+HEFA Pennycress	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	OPE Moderate	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	OPE Moderate	Depreciation Period	3	7	years	
+HEFA Pennycress	OPE Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	OPE Moderate	Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Pennycress	OPE Moderate	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	OPE Moderate	DDGS	7	0	kg/year	
+HEFA Pennycress	OPE Moderate	Electricity	8	0	kWh/year	
+HEFA Pennycress	OPE Moderate	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	OPE Moderate	Gasoline	10	19392000	gal/year	SoT value +/- random percent up to 5%
+HEFA Pennycress	OPE Moderate	Propane	11	490000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	OPE Moderate	Jet	12	st.triang(0.3,38083500,8463000)	gal/year	SoT varied between -3% and +7% random
+HEFA Pennycress	OPE Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	OPE Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	OPE Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	OPE Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	OPE Moderate	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	OPE Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	OPE Moderate	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	OPE Moderate	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	OPE Moderate	Annual GHG	0	st.triang(0.4,131537296,29230510)	kg CO2eq/yr	21 g CO2eq/MJ jet product; calculated from jet output
+HEFA Yellow Grease	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	OPE Moderate	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	OPE Moderate	Depreciation Period	3	7	years	
+HEFA Yellow Grease	OPE Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	OPE Moderate	Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Yellow Grease	OPE Moderate	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	OPE Moderate	DDGS	7	0	kg/year	
+HEFA Yellow Grease	OPE Moderate	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	OPE Moderate	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	OPE Moderate	Gasoline	10	22990000	gal/year	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	OPE Moderate	Propane	11	404000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	OPE Moderate	Jet	12	st.triang(0.4,51710400,11491200)	gal/year	SoT varied between -3% and +7% random
+HEFA Yellow Grease	OPE Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	OPE Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	OPE Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	OPE Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	OPE Moderate	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	OPE Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	OPE Moderate	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	OPE Moderate	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	OPE Leap	Annual GHG	0	st.triang(0.7,362793017,80620670)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
+ATJ Corn Dry Mill	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	OPE Leap	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	OPE Leap	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	OPE Leap	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	OPE Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Corn Dry Mill	OPE Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	OPE Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
+ATJ Corn Dry Mill	OPE Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
+ATJ Corn Dry Mill	OPE Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
+ATJ Corn Dry Mill	OPE Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
+ATJ Corn Dry Mill	OPE Leap	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	OPE Leap	Jet	12	st.triang(0.6,37816560,8403680)	gal/year	SoT varied between -3% and +10% random
+ATJ Corn Dry Mill	OPE Leap	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	OPE Leap	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	OPE Leap	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	OPE Leap	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	OPE Leap	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	OPE Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	OPE Leap	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	OPE Leap	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	OPE Leap	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	OPE Leap	Annual GHG	0	st.triang(0.3,69861157,15524702)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+ATJ Stover Thermochem	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	OPE Leap	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	OPE Leap	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	OPE Leap	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	OPE Leap	Capital	5	310040000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Stover Thermochem	OPE Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	OPE Leap	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	OPE Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
+ATJ Stover Thermochem	OPE Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
+ATJ Stover Thermochem	OPE Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
+ATJ Stover Thermochem	OPE Leap	Propane	11	0	gal/year	
+ATJ Stover Thermochem	OPE Leap	Jet	12	st.triang(0.4,27333900,6074200)	gal/year	SoT varied between -3% and +10% random
+ATJ Stover Thermochem	OPE Leap	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	OPE Leap	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	OPE Leap	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	OPE Leap	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	OPE Leap	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	OPE Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	OPE Leap	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	OPE Leap	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	OPE Leap	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	OPE Leap	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
+HEFA Camelina	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	OPE Leap	Discount Rate	2	0.1	unitless	
+HEFA Camelina	OPE Leap	Depreciation Period	3	7	years	
+HEFA Camelina	OPE Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	OPE Leap	Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Camelina	OPE Leap	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	OPE Leap	DDGS	7	0	kg/year	
+HEFA Camelina	OPE Leap	Electricity	8	0	kWh/year	
+HEFA Camelina	OPE Leap	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	OPE Leap	Gasoline	10	24605000	gal/year	SoT value +/- random percent up to 10%
+HEFA Camelina	OPE Leap	Propane	11	236600	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	OPE Leap	Jet	12	st.triang(0.7,60238800,13386400)	gal/year	SoT varied between -3% and +10% random
+HEFA Camelina	OPE Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	OPE Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	OPE Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	OPE Leap	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	OPE Leap	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	OPE Leap	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	OPE Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	OPE Leap	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	OPE Leap	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	OPE Leap	Annual GHG	0	st.triang(0.6,253477171,56328260)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	OPE Leap	Discount Rate	2	0.1	unitless	
+HEFA Castor	OPE Leap	Depreciation Period	3	7	years	
+HEFA Castor	OPE Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	OPE Leap	Capital	5	300310000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Castor	OPE Leap	Fixed	6	11176000	USD/year	
+HEFA Castor	OPE Leap	DDGS	7	0	kg/year	
+HEFA Castor	OPE Leap	Electricity	8	0	kWh/year	
+HEFA Castor	OPE Leap	Diesel	9	108000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	OPE Leap	Gasoline	10	25092000	gal/year	SoT value +/- random percent up to 10%
+HEFA Castor	OPE Leap	Propane	11	570000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	OPE Leap	Jet	12	st.triang(0.7,52578000,11684000)	gal/year	SoT varied between -3% and +10% random
+HEFA Castor	OPE Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	OPE Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	OPE Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	OPE Leap	Gasoline Price	16	2	USD/gal	
+HEFA Castor	OPE Leap	Propane Price	17	0.6	USD/gal	
+HEFA Castor	OPE Leap	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	OPE Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	OPE Leap	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	OPE Leap	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	OPE Leap	Annual GHG	0	st.triang(0.4,166782928,37062873)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	OPE Leap	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	OPE Leap	Depreciation Period	3	7	years	
+HEFA Jatropha	OPE Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	OPE Leap	Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Jatropha	OPE Leap	Fixed	6	14425000	USD/year	
+HEFA Jatropha	OPE Leap	DDGS	7	0	kg/year	
+HEFA Jatropha	OPE Leap	Electricity	8	0	kWh/year	
+HEFA Jatropha	OPE Leap	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	OPE Leap	Gasoline	10	24156000	gal/year	SoT value +/- random percent up to 10%
+HEFA Jatropha	OPE Leap	Propane	11	4230000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	OPE Leap	Jet	12	st.triang(0.8,45144000,10032000)	gal/year	SoT varied between -3% and +10% random
+HEFA Jatropha	OPE Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	OPE Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	OPE Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	OPE Leap	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	OPE Leap	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	OPE Leap	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	OPE Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	OPE Leap	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	OPE Leap	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	OPE Leap	Annual GHG	0	st.triang(0.8,170656651,37923700)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation); calculated from jet output
+HEFA Pennycress	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	OPE Leap	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	OPE Leap	Depreciation Period	3	7	years	
+HEFA Pennycress	OPE Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	OPE Leap	Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Pennycress	OPE Leap	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	OPE Leap	DDGS	7	0	kg/year	
+HEFA Pennycress	OPE Leap	Electricity	8	0	kWh/year	
+HEFA Pennycress	OPE Leap	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	OPE Leap	Gasoline	10	17664000	gal/year	SoT value +/- random percent up to 10%
+HEFA Pennycress	OPE Leap	Propane	11	450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	OPE Leap	Jet	12	st.triang(0.6,42435900,9430200)	gal/year	SoT varied between -3% and +10% random
+HEFA Pennycress	OPE Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	OPE Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	OPE Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	OPE Leap	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	OPE Leap	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	OPE Leap	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	OPE Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	OPE Leap	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	OPE Leap	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	OPE Leap	Annual GHG	0	st.triang(0.3,115900072,25755571)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Yellow Grease	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	OPE Leap	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	OPE Leap	Depreciation Period	3	7	years	
+HEFA Yellow Grease	OPE Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	OPE Leap	Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Yellow Grease	OPE Leap	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	OPE Leap	DDGS	7	0	kg/year	
+HEFA Yellow Grease	OPE Leap	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	OPE Leap	Diesel	9	228000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	OPE Leap	Gasoline	10	26990000	gal/year	SoT value +/- random percent up to 10%
+HEFA Yellow Grease	OPE Leap	Propane	11	440000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	OPE Leap	Jet	12	st.triang(0.8,48081600,10684800)	gal/year	SoT varied between -3% and +10% random
+HEFA Yellow Grease	OPE Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	OPE Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	OPE Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	OPE Leap	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	OPE Leap	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	OPE Leap	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	OPE Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	OPE Leap	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	OPE Leap	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	OPE Incremental	Annual GHG	0	st.triang(0.5,337071843,74904854)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
+ATJ Corn Dry Mill	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	OPE Incremental	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	OPE Incremental	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	OPE Incremental	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	OPE Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Corn Dry Mill	OPE Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	OPE Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
+ATJ Corn Dry Mill	OPE Incremental	Electricity	8	0	kWh/year	
+ATJ Corn Dry Mill	OPE Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
+ATJ Corn Dry Mill	OPE Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
+ATJ Corn Dry Mill	OPE Incremental	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	OPE Incremental	Jet	12	st.triang(0.3,35676000,7928000)	gal/year	SoT +/- up to 3% random
+ATJ Corn Dry Mill	OPE Incremental	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	OPE Incremental	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	OPE Incremental	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	OPE Incremental	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	OPE Incremental	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	OPE Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	OPE Incremental	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	OPE Incremental	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	OPE Incremental	Annual GHG	0	st.triang(0.8,109562521,24347227)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+ATJ Stover Thermochem	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	OPE Incremental	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	OPE Incremental	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	OPE Incremental	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	OPE Incremental	Capital	5	333630000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Stover Thermochem	OPE Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	OPE Incremental	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	OPE Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
+ATJ Stover Thermochem	OPE Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
+ATJ Stover Thermochem	OPE Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
+ATJ Stover Thermochem	OPE Incremental	Propane	11	0	gal/year	
+ATJ Stover Thermochem	OPE Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
+ATJ Stover Thermochem	OPE Incremental	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	OPE Incremental	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	OPE Incremental	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	OPE Incremental	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	OPE Incremental	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	OPE Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	OPE Incremental	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	OPE Incremental	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	OPE Incremental	Annual GHG	0	st.triang(0.3,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
+HEFA Camelina	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	OPE Incremental	Discount Rate	2	0.1	unitless	
+HEFA Camelina	OPE Incremental	Depreciation Period	3	7	years	
+HEFA Camelina	OPE Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	OPE Incremental	Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Camelina	OPE Incremental	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	OPE Incremental	DDGS	7	0	kg/year	
+HEFA Camelina	OPE Incremental	Electricity	8	0	kWh/year	
+HEFA Camelina	OPE Incremental	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	OPE Incremental	Gasoline	10	23569000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Camelina	OPE Incremental	Propane	11	234000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	OPE Incremental	Jet	12	st.triang(0.7,51930000,11540000)	gal/year	SoT +/- up to 3% random
+HEFA Camelina	OPE Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	OPE Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	OPE Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	OPE Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	OPE Incremental	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	OPE Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	OPE Incremental	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	OPE Incremental	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	OPE Incremental	Annual GHG	0	st.triang(0.7,453567409,100792758)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	OPE Incremental	Discount Rate	2	0.1	unitless	
+HEFA Castor	OPE Incremental	Depreciation Period	3	7	years	
+HEFA Castor	OPE Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	OPE Incremental	Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Castor	OPE Incremental	Fixed	6	11176000	USD/year	
+HEFA Castor	OPE Incremental	DDGS	7	0	kg/year	
+HEFA Castor	OPE Incremental	Electricity	8	0	kWh/year	
+HEFA Castor	OPE Incremental	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	OPE Incremental	Gasoline	10	23862000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Castor	OPE Incremental	Propane	11	465000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	OPE Incremental	Jet	12	st.triang(0.6,45720000,10160000)	gal/year	SoT +/- up to 3% random
+HEFA Castor	OPE Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	OPE Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	OPE Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Castor	OPE Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Castor	OPE Incremental	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	OPE Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	OPE Incremental	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	OPE Incremental	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	OPE Incremental	Annual GHG	0	st.triang(0.5,533782117,118618248)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	OPE Incremental	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	OPE Incremental	Depreciation Period	3	7	years	
+HEFA Jatropha	OPE Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	OPE Incremental	Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Jatropha	OPE Incremental	Fixed	6	14425000	USD/year	
+HEFA Jatropha	OPE Incremental	DDGS	7	0	kg/year	
+HEFA Jatropha	OPE Incremental	Electricity	8	0	kWh/year	
+HEFA Jatropha	OPE Incremental	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	OPE Incremental	Gasoline	10	22692000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Jatropha	OPE Incremental	Propane	11	4653000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	OPE Incremental	Jet	12	st.triang(0.7,39600000,8800000)	gal/year	SoT +/- up to 3% random
+HEFA Jatropha	OPE Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	OPE Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	OPE Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	OPE Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	OPE Incremental	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	OPE Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	OPE Incremental	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	OPE Incremental	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	OPE Incremental	Annual GHG	0	st.triang(0.3,201208251,44712945)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation); calculated from jet output
+HEFA Pennycress	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	OPE Incremental	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	OPE Incremental	Depreciation Period	3	7	years	
+HEFA Pennycress	OPE Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	OPE Incremental	Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Pennycress	OPE Incremental	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	OPE Incremental	DDGS	7	0	kg/year	
+HEFA Pennycress	OPE Incremental	Electricity	8	0	kWh/year	
+HEFA Pennycress	OPE Incremental	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	OPE Incremental	Gasoline	10	18048000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Pennycress	OPE Incremental	Propane	11	480000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	OPE Incremental	Jet	12	st.triang(0.8,36270000,8060000)	gal/year	SoT +/- up to 3% random
+HEFA Pennycress	OPE Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	OPE Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	OPE Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	OPE Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	OPE Incremental	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	OPE Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	OPE Incremental	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	OPE Incremental	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	OPE Incremental	Annual GHG	0	st.triang(0.5,77136679,17141484)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Yellow Grease	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	OPE Incremental	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	OPE Incremental	Depreciation Period	3	7	years	
+HEFA Yellow Grease	OPE Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	OPE Incremental	Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	OPE Incremental	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	OPE Incremental	DDGS	7	0	kg/year	
+HEFA Yellow Grease	OPE Incremental	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	OPE Incremental	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
+HEFA Yellow Grease	OPE Incremental	Gasoline	10	22264000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Yellow Grease	OPE Incremental	Propane	11	376000	gal/year	SoT minus random percent up to 10%
+HEFA Yellow Grease	OPE Incremental	Jet	12	st.triang(0.4,45360000,10080000)	gal/year	SoT +/- up to 3% random
+HEFA Yellow Grease	OPE Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	OPE Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	OPE Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	OPE Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	OPE Incremental	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	OPE Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	OPE Incremental	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	OPE Incremental	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	FAC Moderate	Annual GHG	0	st.triang(0.6,381539397,84786533)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
+ATJ Corn Dry Mill	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	FAC Moderate	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	FAC Moderate	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	FAC Moderate	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	FAC Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
+ATJ Corn Dry Mill	FAC Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	FAC Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	FAC Moderate	Electricity	8	0	kWh/year	
+ATJ Corn Dry Mill	FAC Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	FAC Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	FAC Moderate	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	FAC Moderate	Jet	12	st.triang(0.8,38886840,8641520)	gal/year	SoT varied between -3% and +7% random
+ATJ Corn Dry Mill	FAC Moderate	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	FAC Moderate	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	FAC Moderate	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	FAC Moderate	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	FAC Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	FAC Moderate	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	FAC Moderate	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	FAC Moderate	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	FAC Moderate	Annual GHG	0	st.triang(0.4,74075100,16461133)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
+ATJ Stover Thermochem	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	FAC Moderate	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	FAC Moderate	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	FAC Moderate	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	FAC Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent up to 10%
+ATJ Stover Thermochem	FAC Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	FAC Moderate	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	FAC Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
+ATJ Stover Thermochem	FAC Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
+ATJ Stover Thermochem	FAC Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
+ATJ Stover Thermochem	FAC Moderate	Propane	11	0	gal/year	
+ATJ Stover Thermochem	FAC Moderate	Jet	12	st.triang(0.5,26588430,5908540)	gal/year	SoT varied between -3% and +7% random
+ATJ Stover Thermochem	FAC Moderate	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	FAC Moderate	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	FAC Moderate	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	FAC Moderate	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	FAC Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	FAC Moderate	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	FAC Moderate	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	FAC Moderate	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	FAC Moderate	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
+HEFA Camelina	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	FAC Moderate	Discount Rate	2	0.1	unitless	
+HEFA Camelina	FAC Moderate	Depreciation Period	3	7	years	
+HEFA Camelina	FAC Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	FAC Moderate	Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Camelina	FAC Moderate	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	FAC Moderate	DDGS	7	0	kg/year	
+HEFA Camelina	FAC Moderate	Electricity	8	0	kWh/year	
+HEFA Camelina	FAC Moderate	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	FAC Moderate	Gasoline	10	26159000	gal/year	SoT value +/- random percent up to 5%
+HEFA Camelina	FAC Moderate	Propane	11	270400	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	FAC Moderate	Jet	12	st.triang(0.8,56603700,12578600)	gal/year	SoT varied between -3% and +7% random
+HEFA Camelina	FAC Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	FAC Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	FAC Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	FAC Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	FAC Moderate	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	FAC Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	FAC Moderate	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	FAC Moderate	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	FAC Moderate	Annual GHG	0	st.triang(0.3,238413638,52980808)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	FAC Moderate	Discount Rate	2	0.1	unitless	
+HEFA Castor	FAC Moderate	Depreciation Period	3	7	years	
+HEFA Castor	FAC Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	FAC Moderate	Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Castor	FAC Moderate	Fixed	6	11176000	USD/year	
+HEFA Castor	FAC Moderate	DDGS	7	0	kg/year	
+HEFA Castor	FAC Moderate	Electricity	8	0	kWh/year	
+HEFA Castor	FAC Moderate	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	FAC Moderate	Gasoline	10	24354000	gal/year	SoT value +/- random percent up to 5%
+HEFA Castor	FAC Moderate	Propane	11	515000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	FAC Moderate	Jet	12	st.triang(0.8,48006000,10668000)	gal/year	SoT varied between -3% and +7% random
+HEFA Castor	FAC Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	FAC Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	FAC Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Castor	FAC Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Castor	FAC Moderate	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	FAC Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	FAC Moderate	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	FAC Moderate	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	FAC Moderate	Annual GHG	0	st.triang(0.5,162705692,36156820)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	FAC Moderate	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	FAC Moderate	Depreciation Period	3	7	years	
+HEFA Jatropha	FAC Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	FAC Moderate	Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Jatropha	FAC Moderate	Fixed	6	14425000	USD/year	
+HEFA Jatropha	FAC Moderate	DDGS	7	0	kg/year	
+HEFA Jatropha	FAC Moderate	Electricity	8	0	kWh/year	
+HEFA Jatropha	FAC Moderate	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	FAC Moderate	Gasoline	10	25376000	gal/year	SoT value +/- random percent up to 5%
+HEFA Jatropha	FAC Moderate	Propane	11	4512000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	FAC Moderate	Jet	12	st.triang(0.5,41976000,9328000)	gal/year	SoT varied between -3% and +7% random
+HEFA Jatropha	FAC Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	FAC Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	FAC Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	FAC Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	FAC Moderate	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	FAC Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	FAC Moderate	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	FAC Moderate	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	FAC Moderate	Annual GHG	0	st.triang(0.6,161918208,35981824)	kg CO2eq/yr	35 g CO2eq/MJ jet product; calculated from jet output
+HEFA Pennycress	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	FAC Moderate	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	FAC Moderate	Depreciation Period	3	7	years	
+HEFA Pennycress	FAC Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	FAC Moderate	Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Pennycress	FAC Moderate	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	FAC Moderate	DDGS	7	0	kg/year	
+HEFA Pennycress	FAC Moderate	Electricity	8	0	kWh/year	
+HEFA Pennycress	FAC Moderate	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	FAC Moderate	Gasoline	10	19392000	gal/year	SoT value +/- random percent up to 5%
+HEFA Pennycress	FAC Moderate	Propane	11	490000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	FAC Moderate	Jet	12	st.triang(0.3,38083500,8463000)	gal/year	SoT varied between -3% and +7% random
+HEFA Pennycress	FAC Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	FAC Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	FAC Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	FAC Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	FAC Moderate	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	FAC Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	FAC Moderate	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	FAC Moderate	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	FAC Moderate	Annual GHG	0	st.triang(0.4,131537296,29230510)	kg CO2eq/yr	21 g CO2eq/MJ jet product; calculated from jet output
+HEFA Yellow Grease	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	FAC Moderate	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	FAC Moderate	Depreciation Period	3	7	years	
+HEFA Yellow Grease	FAC Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	FAC Moderate	Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Yellow Grease	FAC Moderate	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	FAC Moderate	DDGS	7	0	kg/year	
+HEFA Yellow Grease	FAC Moderate	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	FAC Moderate	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	FAC Moderate	Gasoline	10	22990000	gal/year	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	FAC Moderate	Propane	11	404000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	FAC Moderate	Jet	12	st.triang(0.4,51710400,11491200)	gal/year	SoT varied between -3% and +7% random
+HEFA Yellow Grease	FAC Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	FAC Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	FAC Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	FAC Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	FAC Moderate	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	FAC Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	FAC Moderate	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	FAC Moderate	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	FAC Leap	Annual GHG	0	st.triang(0.7,362793017,80620670)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
+ATJ Corn Dry Mill	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	FAC Leap	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	FAC Leap	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	FAC Leap	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	FAC Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Corn Dry Mill	FAC Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	FAC Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
+ATJ Corn Dry Mill	FAC Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
+ATJ Corn Dry Mill	FAC Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
+ATJ Corn Dry Mill	FAC Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
+ATJ Corn Dry Mill	FAC Leap	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	FAC Leap	Jet	12	st.triang(0.6,37816560,8403680)	gal/year	SoT varied between -3% and +10% random
+ATJ Corn Dry Mill	FAC Leap	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	FAC Leap	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	FAC Leap	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	FAC Leap	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	FAC Leap	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	FAC Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	FAC Leap	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	FAC Leap	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	FAC Leap	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	FAC Leap	Annual GHG	0	st.triang(0.3,69861157,15524702)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+ATJ Stover Thermochem	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	FAC Leap	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	FAC Leap	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	FAC Leap	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	FAC Leap	Capital	5	310040000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Stover Thermochem	FAC Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	FAC Leap	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	FAC Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
+ATJ Stover Thermochem	FAC Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
+ATJ Stover Thermochem	FAC Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
+ATJ Stover Thermochem	FAC Leap	Propane	11	0	gal/year	
+ATJ Stover Thermochem	FAC Leap	Jet	12	st.triang(0.4,27333900,6074200)	gal/year	SoT varied between -3% and +10% random
+ATJ Stover Thermochem	FAC Leap	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	FAC Leap	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	FAC Leap	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	FAC Leap	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	FAC Leap	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	FAC Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	FAC Leap	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	FAC Leap	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	FAC Leap	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	FAC Leap	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
+HEFA Camelina	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	FAC Leap	Discount Rate	2	0.1	unitless	
+HEFA Camelina	FAC Leap	Depreciation Period	3	7	years	
+HEFA Camelina	FAC Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	FAC Leap	Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Camelina	FAC Leap	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	FAC Leap	DDGS	7	0	kg/year	
+HEFA Camelina	FAC Leap	Electricity	8	0	kWh/year	
+HEFA Camelina	FAC Leap	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	FAC Leap	Gasoline	10	24605000	gal/year	SoT value +/- random percent up to 10%
+HEFA Camelina	FAC Leap	Propane	11	236600	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	FAC Leap	Jet	12	st.triang(0.7,60238800,13386400)	gal/year	SoT varied between -3% and +10% random
+HEFA Camelina	FAC Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	FAC Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	FAC Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	FAC Leap	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	FAC Leap	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	FAC Leap	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	FAC Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	FAC Leap	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	FAC Leap	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	FAC Leap	Annual GHG	0	st.triang(0.6,253477171,56328260)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	FAC Leap	Discount Rate	2	0.1	unitless	
+HEFA Castor	FAC Leap	Depreciation Period	3	7	years	
+HEFA Castor	FAC Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	FAC Leap	Capital	5	300310000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Castor	FAC Leap	Fixed	6	11176000	USD/year	
+HEFA Castor	FAC Leap	DDGS	7	0	kg/year	
+HEFA Castor	FAC Leap	Electricity	8	0	kWh/year	
+HEFA Castor	FAC Leap	Diesel	9	108000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	FAC Leap	Gasoline	10	25092000	gal/year	SoT value +/- random percent up to 10%
+HEFA Castor	FAC Leap	Propane	11	570000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	FAC Leap	Jet	12	st.triang(0.7,52578000,11684000)	gal/year	SoT varied between -3% and +10% random
+HEFA Castor	FAC Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	FAC Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	FAC Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	FAC Leap	Gasoline Price	16	2	USD/gal	
+HEFA Castor	FAC Leap	Propane Price	17	0.6	USD/gal	
+HEFA Castor	FAC Leap	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	FAC Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	FAC Leap	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	FAC Leap	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	FAC Leap	Annual GHG	0	st.triang(0.4,166782928,37062873)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	FAC Leap	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	FAC Leap	Depreciation Period	3	7	years	
+HEFA Jatropha	FAC Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	FAC Leap	Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Jatropha	FAC Leap	Fixed	6	14425000	USD/year	
+HEFA Jatropha	FAC Leap	DDGS	7	0	kg/year	
+HEFA Jatropha	FAC Leap	Electricity	8	0	kWh/year	
+HEFA Jatropha	FAC Leap	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	FAC Leap	Gasoline	10	24156000	gal/year	SoT value +/- random percent up to 10%
+HEFA Jatropha	FAC Leap	Propane	11	4230000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	FAC Leap	Jet	12	st.triang(0.8,45144000,10032000)	gal/year	SoT varied between -3% and +10% random
+HEFA Jatropha	FAC Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	FAC Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	FAC Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	FAC Leap	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	FAC Leap	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	FAC Leap	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	FAC Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	FAC Leap	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	FAC Leap	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	FAC Leap	Annual GHG	0	st.triang(0.8,170656651,37923700)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation); calculated from jet output
+HEFA Pennycress	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	FAC Leap	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	FAC Leap	Depreciation Period	3	7	years	
+HEFA Pennycress	FAC Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	FAC Leap	Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Pennycress	FAC Leap	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	FAC Leap	DDGS	7	0	kg/year	
+HEFA Pennycress	FAC Leap	Electricity	8	0	kWh/year	
+HEFA Pennycress	FAC Leap	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	FAC Leap	Gasoline	10	17664000	gal/year	SoT value +/- random percent up to 10%
+HEFA Pennycress	FAC Leap	Propane	11	450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	FAC Leap	Jet	12	st.triang(0.6,42435900,9430200)	gal/year	SoT varied between -3% and +10% random
+HEFA Pennycress	FAC Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	FAC Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	FAC Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	FAC Leap	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	FAC Leap	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	FAC Leap	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	FAC Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	FAC Leap	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	FAC Leap	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	FAC Leap	Annual GHG	0	st.triang(0.3,115900072,25755571)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Yellow Grease	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	FAC Leap	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	FAC Leap	Depreciation Period	3	7	years	
+HEFA Yellow Grease	FAC Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	FAC Leap	Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Yellow Grease	FAC Leap	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	FAC Leap	DDGS	7	0	kg/year	
+HEFA Yellow Grease	FAC Leap	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	FAC Leap	Diesel	9	228000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	FAC Leap	Gasoline	10	26990000	gal/year	SoT value +/- random percent up to 10%
+HEFA Yellow Grease	FAC Leap	Propane	11	440000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	FAC Leap	Jet	12	st.triang(0.8,48081600,10684800)	gal/year	SoT varied between -3% and +10% random
+HEFA Yellow Grease	FAC Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	FAC Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	FAC Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	FAC Leap	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	FAC Leap	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	FAC Leap	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	FAC Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	FAC Leap	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	FAC Leap	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	FAC Incremental	Annual GHG	0	st.triang(0.5,337071843,74904854)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
+ATJ Corn Dry Mill	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	FAC Incremental	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	FAC Incremental	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	FAC Incremental	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	FAC Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Corn Dry Mill	FAC Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	FAC Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
+ATJ Corn Dry Mill	FAC Incremental	Electricity	8	0	kWh/year	
+ATJ Corn Dry Mill	FAC Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
+ATJ Corn Dry Mill	FAC Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
+ATJ Corn Dry Mill	FAC Incremental	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	FAC Incremental	Jet	12	st.triang(0.3,35676000,7928000)	gal/year	SoT +/- up to 3% random
+ATJ Corn Dry Mill	FAC Incremental	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	FAC Incremental	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	FAC Incremental	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	FAC Incremental	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	FAC Incremental	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	FAC Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	FAC Incremental	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	FAC Incremental	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	FAC Incremental	Annual GHG	0	st.triang(0.8,109562521,24347227)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+ATJ Stover Thermochem	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	FAC Incremental	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	FAC Incremental	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	FAC Incremental	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	FAC Incremental	Capital	5	333630000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Stover Thermochem	FAC Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	FAC Incremental	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	FAC Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
+ATJ Stover Thermochem	FAC Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
+ATJ Stover Thermochem	FAC Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
+ATJ Stover Thermochem	FAC Incremental	Propane	11	0	gal/year	
+ATJ Stover Thermochem	FAC Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
+ATJ Stover Thermochem	FAC Incremental	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	FAC Incremental	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	FAC Incremental	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	FAC Incremental	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	FAC Incremental	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	FAC Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	FAC Incremental	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	FAC Incremental	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	FAC Incremental	Annual GHG	0	st.triang(0.3,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
+HEFA Camelina	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	FAC Incremental	Discount Rate	2	0.1	unitless	
+HEFA Camelina	FAC Incremental	Depreciation Period	3	7	years	
+HEFA Camelina	FAC Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	FAC Incremental	Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Camelina	FAC Incremental	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	FAC Incremental	DDGS	7	0	kg/year	
+HEFA Camelina	FAC Incremental	Electricity	8	0	kWh/year	
+HEFA Camelina	FAC Incremental	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	FAC Incremental	Gasoline	10	23569000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Camelina	FAC Incremental	Propane	11	234000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	FAC Incremental	Jet	12	st.triang(0.7,51930000,11540000)	gal/year	SoT +/- up to 3% random
+HEFA Camelina	FAC Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	FAC Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	FAC Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	FAC Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	FAC Incremental	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	FAC Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	FAC Incremental	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	FAC Incremental	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	FAC Incremental	Annual GHG	0	st.triang(0.7,453567409,100792758)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	FAC Incremental	Discount Rate	2	0.1	unitless	
+HEFA Castor	FAC Incremental	Depreciation Period	3	7	years	
+HEFA Castor	FAC Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	FAC Incremental	Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Castor	FAC Incremental	Fixed	6	11176000	USD/year	
+HEFA Castor	FAC Incremental	DDGS	7	0	kg/year	
+HEFA Castor	FAC Incremental	Electricity	8	0	kWh/year	
+HEFA Castor	FAC Incremental	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	FAC Incremental	Gasoline	10	23862000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Castor	FAC Incremental	Propane	11	465000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	FAC Incremental	Jet	12	st.triang(0.6,45720000,10160000)	gal/year	SoT +/- up to 3% random
+HEFA Castor	FAC Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	FAC Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	FAC Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Castor	FAC Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Castor	FAC Incremental	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	FAC Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	FAC Incremental	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	FAC Incremental	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	FAC Incremental	Annual GHG	0	st.triang(0.5,533782117,118618248)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	FAC Incremental	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	FAC Incremental	Depreciation Period	3	7	years	
+HEFA Jatropha	FAC Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	FAC Incremental	Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Jatropha	FAC Incremental	Fixed	6	14425000	USD/year	
+HEFA Jatropha	FAC Incremental	DDGS	7	0	kg/year	
+HEFA Jatropha	FAC Incremental	Electricity	8	0	kWh/year	
+HEFA Jatropha	FAC Incremental	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	FAC Incremental	Gasoline	10	22692000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Jatropha	FAC Incremental	Propane	11	4653000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	FAC Incremental	Jet	12	st.triang(0.7,39600000,8800000)	gal/year	SoT +/- up to 3% random
+HEFA Jatropha	FAC Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	FAC Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	FAC Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	FAC Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	FAC Incremental	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	FAC Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	FAC Incremental	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	FAC Incremental	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	FAC Incremental	Annual GHG	0	st.triang(0.3,201208251,44712945)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation); calculated from jet output
+HEFA Pennycress	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	FAC Incremental	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	FAC Incremental	Depreciation Period	3	7	years	
+HEFA Pennycress	FAC Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	FAC Incremental	Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Pennycress	FAC Incremental	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	FAC Incremental	DDGS	7	0	kg/year	
+HEFA Pennycress	FAC Incremental	Electricity	8	0	kWh/year	
+HEFA Pennycress	FAC Incremental	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	FAC Incremental	Gasoline	10	18048000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Pennycress	FAC Incremental	Propane	11	480000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	FAC Incremental	Jet	12	st.triang(0.8,36270000,8060000)	gal/year	SoT +/- up to 3% random
+HEFA Pennycress	FAC Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	FAC Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	FAC Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	FAC Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	FAC Incremental	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	FAC Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	FAC Incremental	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	FAC Incremental	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	FAC Incremental	Annual GHG	0	st.triang(0.5,77136679,17141484)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Yellow Grease	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	FAC Incremental	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	FAC Incremental	Depreciation Period	3	7	years	
+HEFA Yellow Grease	FAC Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	FAC Incremental	Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	FAC Incremental	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	FAC Incremental	DDGS	7	0	kg/year	
+HEFA Yellow Grease	FAC Incremental	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	FAC Incremental	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
+HEFA Yellow Grease	FAC Incremental	Gasoline	10	22264000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Yellow Grease	FAC Incremental	Propane	11	376000	gal/year	SoT minus random percent up to 10%
+HEFA Yellow Grease	FAC Incremental	Jet	12	st.triang(0.4,45360000,10080000)	gal/year	SoT +/- up to 3% random
+HEFA Yellow Grease	FAC Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	FAC Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	FAC Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	FAC Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	FAC Incremental	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	FAC Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	FAC Incremental	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	FAC Incremental	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	CPR Moderate	Annual GHG	0	st.triang(0.6,381539397,84786533)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
+ATJ Corn Dry Mill	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	CPR Moderate	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	CPR Moderate	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	CPR Moderate	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	CPR Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
+ATJ Corn Dry Mill	CPR Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	CPR Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	CPR Moderate	Electricity	8	0	kWh/year	
+ATJ Corn Dry Mill	CPR Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	CPR Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
+ATJ Corn Dry Mill	CPR Moderate	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	CPR Moderate	Jet	12	st.triang(0.8,38886840,8641520)	gal/year	SoT varied between -3% and +7% random
+ATJ Corn Dry Mill	CPR Moderate	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	CPR Moderate	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	CPR Moderate	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	CPR Moderate	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	CPR Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	CPR Moderate	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	CPR Moderate	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	CPR Moderate	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	CPR Moderate	Annual GHG	0	st.triang(0.4,74075100,16461133)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
+ATJ Stover Thermochem	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	CPR Moderate	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	CPR Moderate	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	CPR Moderate	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	CPR Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent up to 10%
+ATJ Stover Thermochem	CPR Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	CPR Moderate	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	CPR Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
+ATJ Stover Thermochem	CPR Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
+ATJ Stover Thermochem	CPR Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
+ATJ Stover Thermochem	CPR Moderate	Propane	11	0	gal/year	
+ATJ Stover Thermochem	CPR Moderate	Jet	12	st.triang(0.5,26588430,5908540)	gal/year	SoT varied between -3% and +7% random
+ATJ Stover Thermochem	CPR Moderate	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	CPR Moderate	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	CPR Moderate	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	CPR Moderate	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	CPR Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	CPR Moderate	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	CPR Moderate	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	CPR Moderate	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	CPR Moderate	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
+HEFA Camelina	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	CPR Moderate	Discount Rate	2	0.1	unitless	
+HEFA Camelina	CPR Moderate	Depreciation Period	3	7	years	
+HEFA Camelina	CPR Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	CPR Moderate	Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Camelina	CPR Moderate	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	CPR Moderate	DDGS	7	0	kg/year	
+HEFA Camelina	CPR Moderate	Electricity	8	0	kWh/year	
+HEFA Camelina	CPR Moderate	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	CPR Moderate	Gasoline	10	26159000	gal/year	SoT value +/- random percent up to 5%
+HEFA Camelina	CPR Moderate	Propane	11	270400	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	CPR Moderate	Jet	12	st.triang(0.8,56603700,12578600)	gal/year	SoT varied between -3% and +7% random
+HEFA Camelina	CPR Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	CPR Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	CPR Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	CPR Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	CPR Moderate	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	CPR Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	CPR Moderate	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	CPR Moderate	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	CPR Moderate	Annual GHG	0	st.triang(0.3,238413638,52980808)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	CPR Moderate	Discount Rate	2	0.1	unitless	
+HEFA Castor	CPR Moderate	Depreciation Period	3	7	years	
+HEFA Castor	CPR Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	CPR Moderate	Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Castor	CPR Moderate	Fixed	6	11176000	USD/year	
+HEFA Castor	CPR Moderate	DDGS	7	0	kg/year	
+HEFA Castor	CPR Moderate	Electricity	8	0	kWh/year	
+HEFA Castor	CPR Moderate	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	CPR Moderate	Gasoline	10	24354000	gal/year	SoT value +/- random percent up to 5%
+HEFA Castor	CPR Moderate	Propane	11	515000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	CPR Moderate	Jet	12	st.triang(0.8,48006000,10668000)	gal/year	SoT varied between -3% and +7% random
+HEFA Castor	CPR Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	CPR Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	CPR Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Castor	CPR Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Castor	CPR Moderate	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	CPR Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	CPR Moderate	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	CPR Moderate	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	CPR Moderate	Annual GHG	0	st.triang(0.5,162705692,36156820)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	CPR Moderate	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	CPR Moderate	Depreciation Period	3	7	years	
+HEFA Jatropha	CPR Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	CPR Moderate	Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Jatropha	CPR Moderate	Fixed	6	14425000	USD/year	
+HEFA Jatropha	CPR Moderate	DDGS	7	0	kg/year	
+HEFA Jatropha	CPR Moderate	Electricity	8	0	kWh/year	
+HEFA Jatropha	CPR Moderate	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	CPR Moderate	Gasoline	10	25376000	gal/year	SoT value +/- random percent up to 5%
+HEFA Jatropha	CPR Moderate	Propane	11	4512000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	CPR Moderate	Jet	12	st.triang(0.5,41976000,9328000)	gal/year	SoT varied between -3% and +7% random
+HEFA Jatropha	CPR Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	CPR Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	CPR Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	CPR Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	CPR Moderate	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	CPR Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	CPR Moderate	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	CPR Moderate	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	CPR Moderate	Annual GHG	0	st.triang(0.6,161918208,35981824)	kg CO2eq/yr	35 g CO2eq/MJ jet product; calculated from jet output
+HEFA Pennycress	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	CPR Moderate	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	CPR Moderate	Depreciation Period	3	7	years	
+HEFA Pennycress	CPR Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	CPR Moderate	Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Pennycress	CPR Moderate	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	CPR Moderate	DDGS	7	0	kg/year	
+HEFA Pennycress	CPR Moderate	Electricity	8	0	kWh/year	
+HEFA Pennycress	CPR Moderate	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	CPR Moderate	Gasoline	10	19392000	gal/year	SoT value +/- random percent up to 5%
+HEFA Pennycress	CPR Moderate	Propane	11	490000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	CPR Moderate	Jet	12	st.triang(0.3,38083500,8463000)	gal/year	SoT varied between -3% and +7% random
+HEFA Pennycress	CPR Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	CPR Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	CPR Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	CPR Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	CPR Moderate	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	CPR Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	CPR Moderate	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	CPR Moderate	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	CPR Moderate	Annual GHG	0	st.triang(0.4,131537296,29230510)	kg CO2eq/yr	21 g CO2eq/MJ jet product; calculated from jet output
+HEFA Yellow Grease	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	CPR Moderate	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	CPR Moderate	Depreciation Period	3	7	years	
+HEFA Yellow Grease	CPR Moderate	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	CPR Moderate	Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Yellow Grease	CPR Moderate	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	CPR Moderate	DDGS	7	0	kg/year	
+HEFA Yellow Grease	CPR Moderate	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	CPR Moderate	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	CPR Moderate	Gasoline	10	22990000	gal/year	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	CPR Moderate	Propane	11	404000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	CPR Moderate	Jet	12	st.triang(0.4,51710400,11491200)	gal/year	SoT varied between -3% and +7% random
+HEFA Yellow Grease	CPR Moderate	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	CPR Moderate	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	CPR Moderate	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	CPR Moderate	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	CPR Moderate	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	CPR Moderate	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	CPR Moderate	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	CPR Moderate	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	CPR Leap	Annual GHG	0	st.triang(0.7,362793017,80620670)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
+ATJ Corn Dry Mill	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	CPR Leap	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	CPR Leap	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	CPR Leap	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	CPR Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Corn Dry Mill	CPR Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	CPR Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
+ATJ Corn Dry Mill	CPR Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
+ATJ Corn Dry Mill	CPR Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
+ATJ Corn Dry Mill	CPR Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
+ATJ Corn Dry Mill	CPR Leap	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	CPR Leap	Jet	12	st.triang(0.6,37816560,8403680)	gal/year	SoT varied between -3% and +10% random
+ATJ Corn Dry Mill	CPR Leap	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	CPR Leap	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	CPR Leap	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	CPR Leap	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	CPR Leap	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	CPR Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	CPR Leap	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	CPR Leap	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	CPR Leap	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	CPR Leap	Annual GHG	0	st.triang(0.3,69861157,15524702)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+ATJ Stover Thermochem	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	CPR Leap	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	CPR Leap	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	CPR Leap	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	CPR Leap	Capital	5	310040000	USD/biorefinery	SoT value less random percent up to 15%
+ATJ Stover Thermochem	CPR Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	CPR Leap	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	CPR Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
+ATJ Stover Thermochem	CPR Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
+ATJ Stover Thermochem	CPR Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
+ATJ Stover Thermochem	CPR Leap	Propane	11	0	gal/year	
+ATJ Stover Thermochem	CPR Leap	Jet	12	st.triang(0.4,27333900,6074200)	gal/year	SoT varied between -3% and +10% random
+ATJ Stover Thermochem	CPR Leap	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	CPR Leap	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	CPR Leap	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	CPR Leap	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	CPR Leap	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	CPR Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	CPR Leap	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	CPR Leap	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	CPR Leap	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	CPR Leap	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
+HEFA Camelina	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	CPR Leap	Discount Rate	2	0.1	unitless	
+HEFA Camelina	CPR Leap	Depreciation Period	3	7	years	
+HEFA Camelina	CPR Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	CPR Leap	Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Camelina	CPR Leap	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	CPR Leap	DDGS	7	0	kg/year	
+HEFA Camelina	CPR Leap	Electricity	8	0	kWh/year	
+HEFA Camelina	CPR Leap	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	CPR Leap	Gasoline	10	24605000	gal/year	SoT value +/- random percent up to 10%
+HEFA Camelina	CPR Leap	Propane	11	236600	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	CPR Leap	Jet	12	st.triang(0.7,60238800,13386400)	gal/year	SoT varied between -3% and +10% random
+HEFA Camelina	CPR Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	CPR Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	CPR Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	CPR Leap	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	CPR Leap	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	CPR Leap	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	CPR Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	CPR Leap	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	CPR Leap	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	CPR Leap	Annual GHG	0	st.triang(0.6,253477171,56328260)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	CPR Leap	Discount Rate	2	0.1	unitless	
+HEFA Castor	CPR Leap	Depreciation Period	3	7	years	
+HEFA Castor	CPR Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	CPR Leap	Capital	5	300310000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Castor	CPR Leap	Fixed	6	11176000	USD/year	
+HEFA Castor	CPR Leap	DDGS	7	0	kg/year	
+HEFA Castor	CPR Leap	Electricity	8	0	kWh/year	
+HEFA Castor	CPR Leap	Diesel	9	108000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	CPR Leap	Gasoline	10	25092000	gal/year	SoT value +/- random percent up to 10%
+HEFA Castor	CPR Leap	Propane	11	570000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	CPR Leap	Jet	12	st.triang(0.7,52578000,11684000)	gal/year	SoT varied between -3% and +10% random
+HEFA Castor	CPR Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	CPR Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	CPR Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	CPR Leap	Gasoline Price	16	2	USD/gal	
+HEFA Castor	CPR Leap	Propane Price	17	0.6	USD/gal	
+HEFA Castor	CPR Leap	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	CPR Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	CPR Leap	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	CPR Leap	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	CPR Leap	Annual GHG	0	st.triang(0.4,166782928,37062873)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	CPR Leap	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	CPR Leap	Depreciation Period	3	7	years	
+HEFA Jatropha	CPR Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	CPR Leap	Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Jatropha	CPR Leap	Fixed	6	14425000	USD/year	
+HEFA Jatropha	CPR Leap	DDGS	7	0	kg/year	
+HEFA Jatropha	CPR Leap	Electricity	8	0	kWh/year	
+HEFA Jatropha	CPR Leap	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	CPR Leap	Gasoline	10	24156000	gal/year	SoT value +/- random percent up to 10%
+HEFA Jatropha	CPR Leap	Propane	11	4230000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	CPR Leap	Jet	12	st.triang(0.8,45144000,10032000)	gal/year	SoT varied between -3% and +10% random
+HEFA Jatropha	CPR Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	CPR Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	CPR Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	CPR Leap	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	CPR Leap	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	CPR Leap	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	CPR Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	CPR Leap	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	CPR Leap	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	CPR Leap	Annual GHG	0	st.triang(0.8,170656651,37923700)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation); calculated from jet output
+HEFA Pennycress	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	CPR Leap	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	CPR Leap	Depreciation Period	3	7	years	
+HEFA Pennycress	CPR Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	CPR Leap	Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Pennycress	CPR Leap	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	CPR Leap	DDGS	7	0	kg/year	
+HEFA Pennycress	CPR Leap	Electricity	8	0	kWh/year	
+HEFA Pennycress	CPR Leap	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	CPR Leap	Gasoline	10	17664000	gal/year	SoT value +/- random percent up to 10%
+HEFA Pennycress	CPR Leap	Propane	11	450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	CPR Leap	Jet	12	st.triang(0.6,42435900,9430200)	gal/year	SoT varied between -3% and +10% random
+HEFA Pennycress	CPR Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	CPR Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	CPR Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	CPR Leap	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	CPR Leap	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	CPR Leap	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	CPR Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	CPR Leap	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	CPR Leap	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	CPR Leap	Annual GHG	0	st.triang(0.3,115900072,25755571)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Yellow Grease	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	CPR Leap	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	CPR Leap	Depreciation Period	3	7	years	
+HEFA Yellow Grease	CPR Leap	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	CPR Leap	Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Yellow Grease	CPR Leap	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	CPR Leap	DDGS	7	0	kg/year	
+HEFA Yellow Grease	CPR Leap	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	CPR Leap	Diesel	9	228000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	CPR Leap	Gasoline	10	26990000	gal/year	SoT value +/- random percent up to 10%
+HEFA Yellow Grease	CPR Leap	Propane	11	440000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	CPR Leap	Jet	12	st.triang(0.8,48081600,10684800)	gal/year	SoT varied between -3% and +10% random
+HEFA Yellow Grease	CPR Leap	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	CPR Leap	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	CPR Leap	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	CPR Leap	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	CPR Leap	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	CPR Leap	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	CPR Leap	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	CPR Leap	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	CPR Leap	Benchmark GHG	21	0.027	kg CO2eq/gal	
+ATJ Corn Dry Mill	CPR Incremental	Annual GHG	0	st.triang(0.5,337071843,74904854)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
+ATJ Corn Dry Mill	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Corn Dry Mill	CPR Incremental	Discount Rate	2	0.1	unitless	
+ATJ Corn Dry Mill	CPR Incremental	Depreciation Period	3	7	years	
+ATJ Corn Dry Mill	CPR Incremental	Income Tax Rate	4	0.35	unitless	
+ATJ Corn Dry Mill	CPR Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Corn Dry Mill	CPR Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Corn Dry Mill	CPR Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
+ATJ Corn Dry Mill	CPR Incremental	Electricity	8	0	kWh/year	
+ATJ Corn Dry Mill	CPR Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
+ATJ Corn Dry Mill	CPR Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
+ATJ Corn Dry Mill	CPR Incremental	Propane	11	0	gal/year	
+ATJ Corn Dry Mill	CPR Incremental	Jet	12	st.triang(0.3,35676000,7928000)	gal/year	SoT +/- up to 3% random
+ATJ Corn Dry Mill	CPR Incremental	DDGS Price	13	0.22	USD/kg	
+ATJ Corn Dry Mill	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
+ATJ Corn Dry Mill	CPR Incremental	Diesel Price	15	3.25	USD/gal	
+ATJ Corn Dry Mill	CPR Incremental	Gasoline Price	16	2	USD/gal	
+ATJ Corn Dry Mill	CPR Incremental	Propane Price	17	0.6	USD/gal	
+ATJ Corn Dry Mill	CPR Incremental	Feedstock Price	18	187.04	USD/dry metric ton biomass	
+ATJ Corn Dry Mill	CPR Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Corn Dry Mill	CPR Incremental	Benchmark MJSP	20	10.07	USD/gal	
+ATJ Corn Dry Mill	CPR Incremental	Benchmark GHG	21	0.099	kg CO2eq/gal	
+ATJ Stover Thermochem	CPR Incremental	Annual GHG	0	st.triang(0.8,109562521,24347227)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+ATJ Stover Thermochem	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+ATJ Stover Thermochem	CPR Incremental	Discount Rate	2	0.1	unitless	
+ATJ Stover Thermochem	CPR Incremental	Depreciation Period	3	7	years	
+ATJ Stover Thermochem	CPR Incremental	Income Tax Rate	4	0.35	unitless	
+ATJ Stover Thermochem	CPR Incremental	Capital	5	333630000	USD/biorefinery	SoT value +/- random percent up to 5%
+ATJ Stover Thermochem	CPR Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
+ATJ Stover Thermochem	CPR Incremental	DDGS	7	0	kg/year	
+ATJ Stover Thermochem	CPR Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
+ATJ Stover Thermochem	CPR Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
+ATJ Stover Thermochem	CPR Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
+ATJ Stover Thermochem	CPR Incremental	Propane	11	0	gal/year	
+ATJ Stover Thermochem	CPR Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
+ATJ Stover Thermochem	CPR Incremental	DDGS Price	13	0.22	USD/kg	
+ATJ Stover Thermochem	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
+ATJ Stover Thermochem	CPR Incremental	Diesel Price	15	3.25	USD/gal	
+ATJ Stover Thermochem	CPR Incremental	Gasoline Price	16	2	USD/gal	
+ATJ Stover Thermochem	CPR Incremental	Propane Price	17	0.6	USD/gal	
+ATJ Stover Thermochem	CPR Incremental	Feedstock Price	18	88.18	USD/dry metric ton biomass	
+ATJ Stover Thermochem	CPR Incremental	Raw Material Price	19	1000	USD/kg	
+ATJ Stover Thermochem	CPR Incremental	Benchmark MJSP	20	9.45	USD/gal	
+ATJ Stover Thermochem	CPR Incremental	Benchmark GHG	21	0.0442	kg CO2eq/gal	
+HEFA Camelina	CPR Incremental	Annual GHG	0	st.triang(0.3,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
+HEFA Camelina	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	CPR Incremental	Discount Rate	2	0.1	unitless	
+HEFA Camelina	CPR Incremental	Depreciation Period	3	7	years	
+HEFA Camelina	CPR Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	CPR Incremental	Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Camelina	CPR Incremental	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	CPR Incremental	DDGS	7	0	kg/year	
+HEFA Camelina	CPR Incremental	Electricity	8	0	kWh/year	
+HEFA Camelina	CPR Incremental	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	CPR Incremental	Gasoline	10	23569000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Camelina	CPR Incremental	Propane	11	234000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	CPR Incremental	Jet	12	st.triang(0.7,51930000,11540000)	gal/year	SoT +/- up to 3% random
+HEFA Camelina	CPR Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	CPR Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	CPR Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	CPR Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	CPR Incremental	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	CPR Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	CPR Incremental	Benchmark MJSP	20	11.2	USD/gal	
+HEFA Camelina	CPR Incremental	Benchmark GHG	21	0.06	kg CO2eq/gal	
+HEFA Castor	CPR Incremental	Annual GHG	0	st.triang(0.7,453567409,100792758)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	CPR Incremental	Discount Rate	2	0.1	unitless	
+HEFA Castor	CPR Incremental	Depreciation Period	3	7	years	
+HEFA Castor	CPR Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	CPR Incremental	Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Castor	CPR Incremental	Fixed	6	11176000	USD/year	
+HEFA Castor	CPR Incremental	DDGS	7	0	kg/year	
+HEFA Castor	CPR Incremental	Electricity	8	0	kWh/year	
+HEFA Castor	CPR Incremental	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	CPR Incremental	Gasoline	10	23862000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Castor	CPR Incremental	Propane	11	465000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	CPR Incremental	Jet	12	st.triang(0.6,45720000,10160000)	gal/year	SoT +/- up to 3% random
+HEFA Castor	CPR Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	CPR Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	CPR Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Castor	CPR Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Castor	CPR Incremental	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	CPR Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	CPR Incremental	Benchmark MJSP	20	11.45	USD/gal	
+HEFA Castor	CPR Incremental	Benchmark GHG	21	0.094	kg CO2eq/gal	
+HEFA Jatropha	CPR Incremental	Annual GHG	0	st.triang(0.5,533782117,118618248)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	CPR Incremental	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	CPR Incremental	Depreciation Period	3	7	years	
+HEFA Jatropha	CPR Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	CPR Incremental	Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Jatropha	CPR Incremental	Fixed	6	14425000	USD/year	
+HEFA Jatropha	CPR Incremental	DDGS	7	0	kg/year	
+HEFA Jatropha	CPR Incremental	Electricity	8	0	kWh/year	
+HEFA Jatropha	CPR Incremental	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	CPR Incremental	Gasoline	10	22692000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Jatropha	CPR Incremental	Propane	11	4653000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	CPR Incremental	Jet	12	st.triang(0.7,39600000,8800000)	gal/year	SoT +/- up to 3% random
+HEFA Jatropha	CPR Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	CPR Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	CPR Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	CPR Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	CPR Incremental	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	CPR Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	CPR Incremental	Benchmark MJSP	20	5.6	USD/gal	
+HEFA Jatropha	CPR Incremental	Benchmark GHG	21	0.14	kg CO2eq/gal	
+HEFA Pennycress	CPR Incremental	Annual GHG	0	st.triang(0.3,201208251,44712945)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation); calculated from jet output
+HEFA Pennycress	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	CPR Incremental	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	CPR Incremental	Depreciation Period	3	7	years	
+HEFA Pennycress	CPR Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	CPR Incremental	Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Pennycress	CPR Incremental	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	CPR Incremental	DDGS	7	0	kg/year	
+HEFA Pennycress	CPR Incremental	Electricity	8	0	kWh/year	
+HEFA Pennycress	CPR Incremental	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	CPR Incremental	Gasoline	10	18048000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Pennycress	CPR Incremental	Propane	11	480000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	CPR Incremental	Jet	12	st.triang(0.8,36270000,8060000)	gal/year	SoT +/- up to 3% random
+HEFA Pennycress	CPR Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	CPR Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	CPR Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	CPR Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	CPR Incremental	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	CPR Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	CPR Incremental	Benchmark MJSP	20	9.15	USD/gal	
+HEFA Pennycress	CPR Incremental	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Yellow Grease	CPR Incremental	Annual GHG	0	st.triang(0.5,77136679,17141484)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Yellow Grease	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	CPR Incremental	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	CPR Incremental	Depreciation Period	3	7	years	
+HEFA Yellow Grease	CPR Incremental	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	CPR Incremental	Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	CPR Incremental	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	CPR Incremental	DDGS	7	0	kg/year	
+HEFA Yellow Grease	CPR Incremental	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	CPR Incremental	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
+HEFA Yellow Grease	CPR Incremental	Gasoline	10	22264000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Yellow Grease	CPR Incremental	Propane	11	376000	gal/year	SoT minus random percent up to 10%
+HEFA Yellow Grease	CPR Incremental	Jet	12	st.triang(0.4,45360000,10080000)	gal/year	SoT +/- up to 3% random
+HEFA Yellow Grease	CPR Incremental	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	CPR Incremental	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	CPR Incremental	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	CPR Incremental	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	CPR Incremental	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	CPR Incremental	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	CPR Incremental	Benchmark MJSP	20	5.9	USD/gal	
+HEFA Yellow Grease	CPR Incremental	Benchmark GHG	21	0.027	kg CO2eq/gal	
