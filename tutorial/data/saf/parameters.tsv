@@ -1,48 +1,4 @@
 Technology	Scenario	Parameter	Offset	Value	Units	Notes
-ATJ Corn Dry Mill	State of Technology	Annual GHG	0	st.triang(0.5,311143239,69142942)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021
-ATJ Corn Dry Mill	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	State of Technology	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	State of Technology	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	State of Technology	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	State of Technology	Capital	5	203000000	USD/biorefinery	Tao et al (2016) ATJ; Fig 6
-ATJ Corn Dry Mill	State of Technology	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	State of Technology	DDGS	7	119040	kg/year	$26162400/yr DDGS revenue (Table 7); price is $199.38/US ton in 2011
-ATJ Corn Dry Mill	State of Technology	Electricity	8	0	kWh/year	electricity not produced by dry mill process
-ATJ Corn Dry Mill	State of Technology	Diesel	9	4070000	gal/year	Tao et al (2016) ATJ; Table 6
-ATJ Corn Dry Mill	State of Technology	Gasoline	10	9340000	gal/year	Tao et al (2016) ATJ; Table 6
-ATJ Corn Dry Mill	State of Technology	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	State of Technology	Jet	12	st.triang(0.5, 35676000,7928000)	gal/year	Tao et al (2016) ATJ; Table 6 +/- 10%
-ATJ Corn Dry Mill	State of Technology	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	State of Technology	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	State of Technology	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	State of Technology	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	State of Technology	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	State of Technology	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	State of Technology	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	State of Technology	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	State of Technology	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	State of Technology	Annual GHG	0	st.triang(0.5,83074879,18461084)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021
-ATJ Stover Thermochem	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	State of Technology	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	State of Technology	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	State of Technology	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	State of Technology	Capital	5	337000000	USD/biorefinery	Tao et al (2016) ATJ; Fig 6
-ATJ Stover Thermochem	State of Technology	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	State of Technology	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	State of Technology	Electricity	8	101721053	kWh/year	Table 7 for total revenue and Table 1 for selling price
-ATJ Stover Thermochem	State of Technology	Diesel	9	3130000	gal/year	Tao et al (2016) ATJ; Table 6
-ATJ Stover Thermochem	State of Technology	Gasoline	10	6540000	gal/year	Tao et al (2016) ATJ; Table 6
-ATJ Stover Thermochem	State of Technology	Propane	11	0	gal/year	
-ATJ Stover Thermochem	State of Technology	Jet	12	st.triang(0.5, 24849000,5522000)	gal/year	Tao et al (2016) ATJ; Table 6 +/- 10%
-ATJ Stover Thermochem	State of Technology	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	State of Technology	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	State of Technology	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	State of Technology	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	State of Technology	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	State of Technology	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	State of Technology	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	State of Technology	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	State of Technology	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	State of Technology	Annual GHG	0	st.triang(0.5,295643202,65698489)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation)
 HEFA Camelina	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	State of Technology	Discount Rate	2	0.1	unitless	
@@ -153,50 +109,6 @@ HEFA Yellow Grease	State of Technology	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	State of Technology	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	State of Technology	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	State of Technology	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	OPE Moderate	Annual GHG	0	st.triang(0.6,381539397,84786533)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
-ATJ Corn Dry Mill	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	OPE Moderate	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	OPE Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
-ATJ Corn Dry Mill	OPE Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	OPE Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	OPE Moderate	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	OPE Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	OPE Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	OPE Moderate	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	OPE Moderate	Jet	12	st.triang(0.8,38886840,8641520)	gal/year	SoT varied between -3% and +7% random
-ATJ Corn Dry Mill	OPE Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	OPE Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	OPE Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	OPE Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	OPE Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	OPE Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	OPE Moderate	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	OPE Moderate	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	OPE Moderate	Annual GHG	0	st.triang(0.4,74075100,16461133)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Stover Thermochem	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	OPE Moderate	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	OPE Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	OPE Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent up to 10%
-ATJ Stover Thermochem	OPE Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	OPE Moderate	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	OPE Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	OPE Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	OPE Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	OPE Moderate	Propane	11	0	gal/year	
-ATJ Stover Thermochem	OPE Moderate	Jet	12	st.triang(0.5,26588430,5908540)	gal/year	SoT varied between -3% and +7% random
-ATJ Stover Thermochem	OPE Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	OPE Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	OPE Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	OPE Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	OPE Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	OPE Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	OPE Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	OPE Moderate	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	OPE Moderate	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	OPE Moderate	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
 HEFA Camelina	OPE Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	OPE Moderate	Discount Rate	2	0.1	unitless	
@@ -307,50 +219,6 @@ HEFA Yellow Grease	OPE Moderate	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	OPE Moderate	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	OPE Moderate	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	OPE Moderate	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	OPE Leap	Annual GHG	0	st.triang(0.7,362793017,80620670)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
-ATJ Corn Dry Mill	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	OPE Leap	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	OPE Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	OPE Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Corn Dry Mill	OPE Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	OPE Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	OPE Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
-ATJ Corn Dry Mill	OPE Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	OPE Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
-ATJ Corn Dry Mill	OPE Leap	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	OPE Leap	Jet	12	st.triang(0.6,37816560,8403680)	gal/year	SoT varied between -3% and +10% random
-ATJ Corn Dry Mill	OPE Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	OPE Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	OPE Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	OPE Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	OPE Leap	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	OPE Leap	Annual GHG	0	st.triang(0.3,69861157,15524702)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	OPE Leap	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	OPE Leap	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	OPE Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	OPE Leap	Capital	5	310040000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Stover Thermochem	OPE Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	OPE Leap	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	OPE Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	OPE Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	OPE Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
-ATJ Stover Thermochem	OPE Leap	Propane	11	0	gal/year	
-ATJ Stover Thermochem	OPE Leap	Jet	12	st.triang(0.4,27333900,6074200)	gal/year	SoT varied between -3% and +10% random
-ATJ Stover Thermochem	OPE Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	OPE Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	OPE Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	OPE Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	OPE Leap	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	OPE Leap	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
 HEFA Camelina	OPE Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	OPE Leap	Discount Rate	2	0.1	unitless	
@@ -461,50 +329,6 @@ HEFA Yellow Grease	OPE Leap	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	OPE Leap	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	OPE Leap	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	OPE Leap	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	OPE Incremental	Annual GHG	0	st.triang(0.5,337071843,74904854)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Corn Dry Mill	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	OPE Incremental	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	OPE Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Corn Dry Mill	OPE Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	OPE Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	OPE Incremental	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	OPE Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	OPE Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Corn Dry Mill	OPE Incremental	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	OPE Incremental	Jet	12	st.triang(0.3,35676000,7928000)	gal/year	SoT +/- up to 3% random
-ATJ Corn Dry Mill	OPE Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	OPE Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	OPE Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	OPE Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	OPE Incremental	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	OPE Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	OPE Incremental	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	OPE Incremental	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	OPE Incremental	Annual GHG	0	st.triang(0.8,109562521,24347227)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	OPE Incremental	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	OPE Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	OPE Incremental	Capital	5	333630000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	OPE Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	OPE Incremental	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	OPE Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	OPE Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	OPE Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Stover Thermochem	OPE Incremental	Propane	11	0	gal/year	
-ATJ Stover Thermochem	OPE Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
-ATJ Stover Thermochem	OPE Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	OPE Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	OPE Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	OPE Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	OPE Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	OPE Incremental	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	OPE Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	OPE Incremental	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	OPE Incremental	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	OPE Incremental	Annual GHG	0	st.triang(0.3,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
 HEFA Camelina	OPE Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	OPE Incremental	Discount Rate	2	0.1	unitless	
@@ -615,50 +439,6 @@ HEFA Yellow Grease	OPE Incremental	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	OPE Incremental	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	OPE Incremental	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	OPE Incremental	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	FAC Moderate	Annual GHG	0	st.triang(0.6,381539397,84786533)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
-ATJ Corn Dry Mill	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	FAC Moderate	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	FAC Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
-ATJ Corn Dry Mill	FAC Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	FAC Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	FAC Moderate	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	FAC Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	FAC Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	FAC Moderate	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	FAC Moderate	Jet	12	st.triang(0.8,38886840,8641520)	gal/year	SoT varied between -3% and +7% random
-ATJ Corn Dry Mill	FAC Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	FAC Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	FAC Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	FAC Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	FAC Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	FAC Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	FAC Moderate	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	FAC Moderate	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	FAC Moderate	Annual GHG	0	st.triang(0.4,74075100,16461133)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Stover Thermochem	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	FAC Moderate	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	FAC Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	FAC Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent up to 10%
-ATJ Stover Thermochem	FAC Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	FAC Moderate	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	FAC Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	FAC Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	FAC Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	FAC Moderate	Propane	11	0	gal/year	
-ATJ Stover Thermochem	FAC Moderate	Jet	12	st.triang(0.5,26588430,5908540)	gal/year	SoT varied between -3% and +7% random
-ATJ Stover Thermochem	FAC Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	FAC Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	FAC Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	FAC Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	FAC Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	FAC Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	FAC Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	FAC Moderate	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	FAC Moderate	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	FAC Moderate	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
 HEFA Camelina	FAC Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	FAC Moderate	Discount Rate	2	0.1	unitless	
@@ -769,50 +549,6 @@ HEFA Yellow Grease	FAC Moderate	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	FAC Moderate	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	FAC Moderate	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	FAC Moderate	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	FAC Leap	Annual GHG	0	st.triang(0.7,362793017,80620670)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
-ATJ Corn Dry Mill	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	FAC Leap	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	FAC Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	FAC Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Corn Dry Mill	FAC Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	FAC Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	FAC Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
-ATJ Corn Dry Mill	FAC Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	FAC Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
-ATJ Corn Dry Mill	FAC Leap	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	FAC Leap	Jet	12	st.triang(0.6,37816560,8403680)	gal/year	SoT varied between -3% and +10% random
-ATJ Corn Dry Mill	FAC Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	FAC Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	FAC Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	FAC Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	FAC Leap	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	FAC Leap	Annual GHG	0	st.triang(0.3,69861157,15524702)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	FAC Leap	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	FAC Leap	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	FAC Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	FAC Leap	Capital	5	310040000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Stover Thermochem	FAC Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	FAC Leap	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	FAC Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	FAC Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	FAC Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
-ATJ Stover Thermochem	FAC Leap	Propane	11	0	gal/year	
-ATJ Stover Thermochem	FAC Leap	Jet	12	st.triang(0.4,27333900,6074200)	gal/year	SoT varied between -3% and +10% random
-ATJ Stover Thermochem	FAC Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	FAC Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	FAC Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	FAC Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	FAC Leap	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	FAC Leap	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
 HEFA Camelina	FAC Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	FAC Leap	Discount Rate	2	0.1	unitless	
@@ -923,50 +659,6 @@ HEFA Yellow Grease	FAC Leap	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	FAC Leap	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	FAC Leap	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	FAC Leap	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	FAC Incremental	Annual GHG	0	st.triang(0.5,337071843,74904854)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Corn Dry Mill	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	FAC Incremental	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	FAC Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Corn Dry Mill	FAC Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	FAC Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	FAC Incremental	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	FAC Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	FAC Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Corn Dry Mill	FAC Incremental	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	FAC Incremental	Jet	12	st.triang(0.3,35676000,7928000)	gal/year	SoT +/- up to 3% random
-ATJ Corn Dry Mill	FAC Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	FAC Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	FAC Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	FAC Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	FAC Incremental	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	FAC Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	FAC Incremental	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	FAC Incremental	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	FAC Incremental	Annual GHG	0	st.triang(0.8,109562521,24347227)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	FAC Incremental	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	FAC Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	FAC Incremental	Capital	5	333630000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	FAC Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	FAC Incremental	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	FAC Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	FAC Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	FAC Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Stover Thermochem	FAC Incremental	Propane	11	0	gal/year	
-ATJ Stover Thermochem	FAC Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
-ATJ Stover Thermochem	FAC Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	FAC Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	FAC Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	FAC Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	FAC Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	FAC Incremental	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	FAC Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	FAC Incremental	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	FAC Incremental	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	FAC Incremental	Annual GHG	0	st.triang(0.3,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
 HEFA Camelina	FAC Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	FAC Incremental	Discount Rate	2	0.1	unitless	
@@ -1077,50 +769,6 @@ HEFA Yellow Grease	FAC Incremental	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	FAC Incremental	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	FAC Incremental	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	FAC Incremental	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	CPR Moderate	Annual GHG	0	st.triang(0.6,381539397,84786533)	kg CO2eq/yr	81 g CO2eq/MJ jet product; calculated from jet output
-ATJ Corn Dry Mill	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	CPR Moderate	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	CPR Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Capital	5	192850000	USD/biorefinery	SoT value less random percent between 5 and 10%
-ATJ Corn Dry Mill	CPR Moderate	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	CPR Moderate	DDGS	7	115468.8	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	CPR Moderate	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	CPR Moderate	Diesel	9	4232800	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	CPR Moderate	Gasoline	10	9433400	gal/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	CPR Moderate	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	CPR Moderate	Jet	12	st.triang(0.8,38886840,8641520)	gal/year	SoT varied between -3% and +7% random
-ATJ Corn Dry Mill	CPR Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	CPR Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	CPR Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	CPR Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	CPR Moderate	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	CPR Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	CPR Moderate	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	CPR Moderate	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	CPR Moderate	Annual GHG	0	st.triang(0.4,74075100,16461133)	kg CO2eq/yr	23 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Stover Thermochem	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	CPR Moderate	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	CPR Moderate	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	CPR Moderate	Capital	5	320150000	USD/biorefinery	SoT value less random percent up to 10%
-ATJ Stover Thermochem	CPR Moderate	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	CPR Moderate	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	CPR Moderate	Electricity	8	106807105.7	kWh/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	CPR Moderate	Diesel	9	3004800	gal/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	CPR Moderate	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	CPR Moderate	Propane	11	0	gal/year	
-ATJ Stover Thermochem	CPR Moderate	Jet	12	st.triang(0.5,26588430,5908540)	gal/year	SoT varied between -3% and +7% random
-ATJ Stover Thermochem	CPR Moderate	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	CPR Moderate	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	CPR Moderate	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	CPR Moderate	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	CPR Moderate	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	CPR Moderate	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	CPR Moderate	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	CPR Moderate	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	CPR Moderate	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	CPR Moderate	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
 HEFA Camelina	CPR Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	CPR Moderate	Discount Rate	2	0.1	unitless	
@@ -1231,50 +879,6 @@ HEFA Yellow Grease	CPR Moderate	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	CPR Moderate	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	CPR Moderate	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	CPR Moderate	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	CPR Leap	Annual GHG	0	st.triang(0.7,362793017,80620670)	kg CO2eq/yr	72 g CO2eq/MJ jet product; Source: Han 2021; calculated from jet output
-ATJ Corn Dry Mill	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	CPR Leap	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	CPR Leap	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	CPR Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	CPR Leap	Capital	5	178640000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Corn Dry Mill	CPR Leap	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	CPR Leap	DDGS	7	124992	kg/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	CPR Leap	Electricity	8	0	kWh/year	electricity not produced by dry mill process
-ATJ Corn Dry Mill	CPR Leap	Diesel	9	3825800	gal/year	SoT +/- random percent up to 10%
-ATJ Corn Dry Mill	CPR Leap	Gasoline	10	9713600	gal/year	SoT value +/- random percent up to 10%
-ATJ Corn Dry Mill	CPR Leap	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	CPR Leap	Jet	12	st.triang(0.6,37816560,8403680)	gal/year	SoT varied between -3% and +10% random
-ATJ Corn Dry Mill	CPR Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	CPR Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	CPR Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	CPR Leap	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	CPR Leap	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	CPR Leap	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	CPR Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	CPR Leap	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	CPR Leap	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	CPR Leap	Annual GHG	0	st.triang(0.3,69861157,15524702)	kg CO2eq/yr	28 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	CPR Leap	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	CPR Leap	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	CPR Leap	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	CPR Leap	Capital	5	310040000	USD/biorefinery	SoT value less random percent up to 15%
-ATJ Stover Thermochem	CPR Leap	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	CPR Leap	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	CPR Leap	Electricity	8	91548947.7	kWh/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	CPR Leap	Diesel	9	3317800	gal/year	SoT +/- random percent up to 10%
-ATJ Stover Thermochem	CPR Leap	Gasoline	10	6605400	gal/year	SoT value +/- random percent up to 10%
-ATJ Stover Thermochem	CPR Leap	Propane	11	0	gal/year	
-ATJ Stover Thermochem	CPR Leap	Jet	12	st.triang(0.4,27333900,6074200)	gal/year	SoT varied between -3% and +10% random
-ATJ Stover Thermochem	CPR Leap	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	CPR Leap	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	CPR Leap	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	CPR Leap	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	CPR Leap	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	CPR Leap	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	CPR Leap	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	CPR Leap	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	CPR Leap	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	CPR Leap	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
 HEFA Camelina	CPR Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	CPR Leap	Discount Rate	2	0.1	unitless	
@@ -1385,50 +989,6 @@ HEFA Yellow Grease	CPR Leap	Feedstock Price	18	553.39	USD/dry ton oil
 HEFA Yellow Grease	CPR Leap	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	CPR Leap	Benchmark MJSP	20	5.9	USD/gal	
 HEFA Yellow Grease	CPR Leap	Benchmark GHG	21	0.027	kg CO2eq/gal	
-ATJ Corn Dry Mill	CPR Incremental	Annual GHG	0	st.triang(0.5,337071843,74904854)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Han 2017; calculated from jet output
-ATJ Corn Dry Mill	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Corn Dry Mill	CPR Incremental	Discount Rate	2	0.1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Depreciation Period	3	7	years	
-ATJ Corn Dry Mill	CPR Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Capital	5	211120000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Corn Dry Mill	CPR Incremental	Fixed	6	24180400	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Corn Dry Mill	CPR Incremental	DDGS	7	114278.4	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	CPR Incremental	Electricity	8	0	kWh/year	
-ATJ Corn Dry Mill	CPR Incremental	Diesel	9	4070000	gal/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	CPR Incremental	Gasoline	10	9246600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Corn Dry Mill	CPR Incremental	Propane	11	0	gal/year	
-ATJ Corn Dry Mill	CPR Incremental	Jet	12	st.triang(0.3,35676000,7928000)	gal/year	SoT +/- up to 3% random
-ATJ Corn Dry Mill	CPR Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Corn Dry Mill	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Corn Dry Mill	CPR Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Corn Dry Mill	CPR Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Corn Dry Mill	CPR Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Corn Dry Mill	CPR Incremental	Feedstock Price	18	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	CPR Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Corn Dry Mill	CPR Incremental	Benchmark MJSP	20	10.07	USD/gal	
-ATJ Corn Dry Mill	CPR Incremental	Benchmark GHG	21	0.099	kg CO2eq/gal	
-ATJ Stover Thermochem	CPR Incremental	Annual GHG	0	st.triang(0.8,109562521,24347227)	kg CO2eq/yr	35 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-ATJ Stover Thermochem	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-ATJ Stover Thermochem	CPR Incremental	Discount Rate	2	0.1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Depreciation Period	3	7	years	
-ATJ Stover Thermochem	CPR Incremental	Income Tax Rate	4	0.35	unitless	
-ATJ Stover Thermochem	CPR Incremental	Capital	5	333630000	USD/biorefinery	SoT value +/- random percent up to 5%
-ATJ Stover Thermochem	CPR Incremental	Fixed	6	15185500	USD/year	Labor, Supplies, and Overheads + Utilities (Fig 7)
-ATJ Stover Thermochem	CPR Incremental	DDGS	7	0	kg/year	
-ATJ Stover Thermochem	CPR Incremental	Electricity	8	97652210.88	kWh/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	CPR Incremental	Diesel	9	2973500	gal/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	CPR Incremental	Gasoline	10	6147600	gal/year	SoT value minus random percent between 0 and 10%
-ATJ Stover Thermochem	CPR Incremental	Propane	11	0	gal/year	
-ATJ Stover Thermochem	CPR Incremental	Jet	12	st.triang(0.5,24849000,5522000)	gal/year	SoT +/- up to 3% random
-ATJ Stover Thermochem	CPR Incremental	DDGS Price	13	0.22	USD/kg	
-ATJ Stover Thermochem	CPR Incremental	Electricity Price	14	0.057	USD/kWh	
-ATJ Stover Thermochem	CPR Incremental	Diesel Price	15	3.25	USD/gal	
-ATJ Stover Thermochem	CPR Incremental	Gasoline Price	16	2	USD/gal	
-ATJ Stover Thermochem	CPR Incremental	Propane Price	17	0.6	USD/gal	
-ATJ Stover Thermochem	CPR Incremental	Feedstock Price	18	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	CPR Incremental	Raw Material Price	19	1000	USD/kg	
-ATJ Stover Thermochem	CPR Incremental	Benchmark MJSP	20	9.45	USD/gal	
-ATJ Stover Thermochem	CPR Incremental	Benchmark GHG	21	0.0442	kg CO2eq/gal	
 HEFA Camelina	CPR Incremental	Annual GHG	0	st.triang(0.3,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
 HEFA Camelina	CPR Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Camelina	CPR Incremental	Discount Rate	2	0.1	unitless	

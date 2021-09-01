@@ -44,21 +44,3 @@ HEFA Yellow Grease	Output	DDGS	kg/year
 HEFA Yellow Grease	Output	Electricity	kWh/year	
 HEFA Yellow Grease	Metric	Reduction in Jet GHG	kg CO2eq/MJ	
 HEFA Yellow Grease	Metric	Reduction in MJSP	USD/gal	
-ATJ Corn Dry Mill	Cost	Cost	USD/year	
-ATJ Corn Dry Mill	Output	Jet	gal/year	
-ATJ Corn Dry Mill	Output	Gasoline	gal/year	
-ATJ Corn Dry Mill	Output	Diesel	gal/year	
-ATJ Corn Dry Mill	Output	Propane	gal/year	
-ATJ Corn Dry Mill	Output	DDGS	kg/year	
-ATJ Corn Dry Mill	Output	Electricity	kWh/year	
-ATJ Corn Dry Mill	Metric	Reduction in Jet GHG	kg CO2eq/MJ	
-ATJ Corn Dry Mill	Metric	Reduction in MJSP	USD/gal	
-ATJ Stover Thermochem	Cost	Cost	USD/year	
-ATJ Stover Thermochem	Output	Jet	gal/year	
-ATJ Stover Thermochem	Output	Gasoline	gal/year	
-ATJ Stover Thermochem	Output	Diesel	gal/year	
-ATJ Stover Thermochem	Output	Propane	gal/year	
-ATJ Stover Thermochem	Output	DDGS	kg/year	
-ATJ Stover Thermochem	Output	Electricity	kWh/year	
-ATJ Stover Thermochem	Metric	Reduction in Jet GHG	kg CO2eq/MJ	
-ATJ Stover Thermochem	Metric	Reduction in MJSP	USD/gal	

@@ -1,44 +1,4 @@
 Technology	Scenario	Variable	Index	Value	Units	Notes
-ATJ Corn Dry Mill	State of Technology	Input	Feedstock	657000	dry metric ton biomass/year	2000 dry metric tons/day and 7884 operating hrs/yr
-ATJ Corn Dry Mill	State of Technology	Input	Raw Material	159749.2	kg/year	total of $159,749,200/yr (Table 7)
-ATJ Corn Dry Mill	State of Technology	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Input price	Feedstock	187.04	USD/dry metric ton biomass	calculated from Table 7 ($3.60/bushel)
-ATJ Corn Dry Mill	State of Technology	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	State of Technology	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	State of Technology	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	State of Technology	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Corn Dry Mill	State of Technology	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	State of Technology	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	State of Technology	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	State of Technology	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Corn Dry Mill	State of Technology	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	State of Technology	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	State of Technology	Input	Feedstock	657000	dry metric ton biomass/year	2000 dry metric tons/day and 7884 operating hrs/yr
-ATJ Stover Thermochem	State of Technology	Input	Raw Material	98567.7	kg/year	total of $98,567,700/yr
-ATJ Stover Thermochem	State of Technology	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	State of Technology	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	State of Technology	Input price	Feedstock	88.18	USD/dry metric ton biomass	Tao et al (2016); Section 3.1.1; $80/US ton converted to $/metric ton
-ATJ Stover Thermochem	State of Technology	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	State of Technology	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	State of Technology	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	State of Technology	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	State of Technology	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	State of Technology	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	State of Technology	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	State of Technology	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	State of Technology	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Stover Thermochem	State of Technology	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	State of Technology	Output price	Electricity	0.057	USD/kWh	Table 1
-ATJ Stover Thermochem	State of Technology	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	State of Technology	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Stover Thermochem	State of Technology	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	State of Technology	Scale	Capital	1	unitless	
 HEFA Camelina	State of Technology	Input	Feedstock	258858	dry ton oil/year	camelina; basis is dry oil content of feedstock; 788 dry ton oil/day and 7884 operating hours/year
 HEFA Camelina	State of Technology	Input	Raw Material	46737	kg/year	value to produce $46,737,000 per year (Fig 6)
 HEFA Camelina	State of Technology	Input efficiency	Feedstock	1	unitless	
@@ -139,46 +99,6 @@ HEFA Yellow Grease	State of Technology	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	State of Technology	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	State of Technology	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	State of Technology	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	OPE Moderate	Input	Raw Material	156554.216	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	OPE Moderate	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Input price	Feedstock	187.04	USD/dry metric ton biomass	calculated from Table 7 ($3.60/bushel)
-ATJ Corn Dry Mill	OPE Moderate	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	OPE Moderate	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	OPE Moderate	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	OPE Moderate	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Corn Dry Mill	OPE Moderate	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	OPE Moderate	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	OPE Moderate	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	OPE Moderate	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Corn Dry Mill	OPE Moderate	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	OPE Moderate	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	OPE Moderate	Input	Raw Material	94624.992	kg/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	OPE Moderate	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Input price	Feedstock	88.18	USD/dry metric ton biomass	Tao et al (2016); Section 3.1.1; $80/US ton converted to $/metric ton
-ATJ Stover Thermochem	OPE Moderate	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	OPE Moderate	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	OPE Moderate	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	OPE Moderate	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Stover Thermochem	OPE Moderate	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	OPE Moderate	Output price	Electricity	0.057	USD/kWh	Table 1
-ATJ Stover Thermochem	OPE Moderate	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	OPE Moderate	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Stover Thermochem	OPE Moderate	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	OPE Moderate	Scale	Capital	1	unitless	
 HEFA Camelina	OPE Moderate	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	OPE Moderate	Input	Raw Material	42998.04	kg/year	SoT minus random percent up to 10%
 HEFA Camelina	OPE Moderate	Input efficiency	Feedstock	1	unitless	
@@ -279,46 +199,6 @@ HEFA Yellow Grease	OPE Moderate	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	OPE Moderate	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	OPE Moderate	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	OPE Moderate	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	OPE Leap	Input	Raw Material	140579.296	kg/year	SoT minus random percent up to 15%
-ATJ Corn Dry Mill	OPE Leap	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Input price	Feedstock	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	OPE Leap	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	OPE Leap	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	OPE Leap	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	OPE Leap	Output price	DDGS	0.22	USD/kg	
-ATJ Corn Dry Mill	OPE Leap	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	OPE Leap	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Output price	Jet	1	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	OPE Leap	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	OPE Leap	Input	Raw Material	87725.253	kg/year	SoT minus random percent up to 15%
-ATJ Stover Thermochem	OPE Leap	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Input price	Feedstock	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	OPE Leap	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	OPE Leap	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	OPE Leap	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	OPE Leap	Output price	DDGS	0.22	USD/kg	
-ATJ Stover Thermochem	OPE Leap	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Output price	Electricity	0.057	USD/kWh	
-ATJ Stover Thermochem	OPE Leap	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Output price	Jet	1	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	OPE Leap	Scale	Capital	1	unitless	
 HEFA Camelina	OPE Leap	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	OPE Leap	Input	Raw Material	42063.3	kg/year	SoT minus random percent up to 15%
 HEFA Camelina	OPE Leap	Input efficiency	Feedstock	1	unitless	
@@ -419,46 +299,6 @@ HEFA Yellow Grease	OPE Leap	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	OPE Leap	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	OPE Leap	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	OPE Leap	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	OPE Incremental	Input	Raw Material	161346.692	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	OPE Incremental	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Input price	Feedstock	187.04	USD/dry metric ton biomass	calculated from Table 7 ($3.60/bushel)
-ATJ Corn Dry Mill	OPE Incremental	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	OPE Incremental	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	OPE Incremental	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	OPE Incremental	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Corn Dry Mill	OPE Incremental	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	OPE Incremental	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	OPE Incremental	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	OPE Incremental	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Corn Dry Mill	OPE Incremental	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	OPE Incremental	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	OPE Incremental	Input	Raw Material	102510.408	kg/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	OPE Incremental	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Input price	Feedstock	88.18	USD/dry metric ton biomass	Tao et al (2016); Section 3.1.1; $80/US ton converted to $/metric ton
-ATJ Stover Thermochem	OPE Incremental	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	OPE Incremental	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	OPE Incremental	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	OPE Incremental	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Stover Thermochem	OPE Incremental	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	OPE Incremental	Output price	Electricity	0.057	USD/kWh	Table 1
-ATJ Stover Thermochem	OPE Incremental	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	OPE Incremental	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Stover Thermochem	OPE Incremental	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	OPE Incremental	Scale	Capital	1	unitless	
 HEFA Camelina	OPE Incremental	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	OPE Incremental	Input	Raw Material	49073.85	kg/year	SoT +/- random percent up to 5%
 HEFA Camelina	OPE Incremental	Input efficiency	Feedstock	1	unitless	
@@ -559,46 +399,6 @@ HEFA Yellow Grease	OPE Incremental	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	OPE Incremental	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	OPE Incremental	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	OPE Incremental	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	CPR Incremental	Input	Raw Material	161346.692	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	CPR Incremental	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Input price	Feedstock	187.04	USD/dry metric ton biomass	calculated from Table 7 ($3.60/bushel)
-ATJ Corn Dry Mill	CPR Incremental	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	CPR Incremental	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	CPR Incremental	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	CPR Incremental	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Corn Dry Mill	CPR Incremental	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	CPR Incremental	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	CPR Incremental	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	CPR Incremental	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Corn Dry Mill	CPR Incremental	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	CPR Incremental	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	CPR Incremental	Input	Raw Material	102510.408	kg/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	CPR Incremental	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Input price	Feedstock	88.18	USD/dry metric ton biomass	Tao et al (2016); Section 3.1.1; $80/US ton converted to $/metric ton
-ATJ Stover Thermochem	CPR Incremental	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	CPR Incremental	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	CPR Incremental	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	CPR Incremental	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Stover Thermochem	CPR Incremental	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	CPR Incremental	Output price	Electricity	0.057	USD/kWh	Table 1
-ATJ Stover Thermochem	CPR Incremental	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	CPR Incremental	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Stover Thermochem	CPR Incremental	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	CPR Incremental	Scale	Capital	1	unitless	
 HEFA Camelina	CPR Incremental	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	CPR Incremental	Input	Raw Material	49073.85	kg/year	SoT +/- random percent up to 5%
 HEFA Camelina	CPR Incremental	Input efficiency	Feedstock	1	unitless	
@@ -699,46 +499,6 @@ HEFA Yellow Grease	CPR Incremental	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	CPR Incremental	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	CPR Incremental	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	CPR Incremental	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	FAC Incremental	Input	Raw Material	161346.692	kg/year	SoT +/- random percent up to 5%
-ATJ Corn Dry Mill	FAC Incremental	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Input price	Feedstock	187.04	USD/dry metric ton biomass	calculated from Table 7 ($3.60/bushel)
-ATJ Corn Dry Mill	FAC Incremental	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	FAC Incremental	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	FAC Incremental	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	FAC Incremental	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Corn Dry Mill	FAC Incremental	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	FAC Incremental	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	FAC Incremental	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	FAC Incremental	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Corn Dry Mill	FAC Incremental	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	FAC Incremental	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	FAC Incremental	Input	Raw Material	102510.408	kg/year	SoT +/- random percent up to 5%
-ATJ Stover Thermochem	FAC Incremental	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Input price	Feedstock	88.18	USD/dry metric ton biomass	Tao et al (2016); Section 3.1.1; $80/US ton converted to $/metric ton
-ATJ Stover Thermochem	FAC Incremental	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	FAC Incremental	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	FAC Incremental	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	FAC Incremental	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Stover Thermochem	FAC Incremental	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	FAC Incremental	Output price	Electricity	0.057	USD/kWh	Table 1
-ATJ Stover Thermochem	FAC Incremental	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	FAC Incremental	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Stover Thermochem	FAC Incremental	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	FAC Incremental	Scale	Capital	1	unitless	
 HEFA Camelina	FAC Incremental	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	FAC Incremental	Input	Raw Material	49073.85	kg/year	SoT +/- random percent up to 5%
 HEFA Camelina	FAC Incremental	Input efficiency	Feedstock	1	unitless	
@@ -839,46 +599,6 @@ HEFA Yellow Grease	FAC Incremental	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	FAC Incremental	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	FAC Incremental	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	FAC Incremental	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	CPR Moderate	Input	Raw Material	156554.216	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	CPR Moderate	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Input price	Feedstock	187.04	USD/dry metric ton biomass	calculated from Table 7 ($3.60/bushel)
-ATJ Corn Dry Mill	CPR Moderate	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	CPR Moderate	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	CPR Moderate	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	CPR Moderate	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Corn Dry Mill	CPR Moderate	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	CPR Moderate	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	CPR Moderate	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	CPR Moderate	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Corn Dry Mill	CPR Moderate	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	CPR Moderate	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	CPR Moderate	Input	Raw Material	94624.992	kg/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	CPR Moderate	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Input price	Feedstock	88.18	USD/dry metric ton biomass	Tao et al (2016); Section 3.1.1; $80/US ton converted to $/metric ton
-ATJ Stover Thermochem	CPR Moderate	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	CPR Moderate	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	CPR Moderate	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	CPR Moderate	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Stover Thermochem	CPR Moderate	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	CPR Moderate	Output price	Electricity	0.057	USD/kWh	Table 1
-ATJ Stover Thermochem	CPR Moderate	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	CPR Moderate	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Stover Thermochem	CPR Moderate	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	CPR Moderate	Scale	Capital	1	unitless	
 HEFA Camelina	CPR Moderate	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	CPR Moderate	Input	Raw Material	42998.04	kg/year	SoT minus random percent up to 10%
 HEFA Camelina	CPR Moderate	Input efficiency	Feedstock	1	unitless	
@@ -979,46 +699,6 @@ HEFA Yellow Grease	CPR Moderate	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	CPR Moderate	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	CPR Moderate	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	CPR Moderate	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	FAC Moderate	Input	Raw Material	156554.216	kg/year	SoT minus random percent up to 10%
-ATJ Corn Dry Mill	FAC Moderate	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Input price	Feedstock	187.04	USD/dry metric ton biomass	calculated from Table 7 ($3.60/bushel)
-ATJ Corn Dry Mill	FAC Moderate	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	FAC Moderate	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	FAC Moderate	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	FAC Moderate	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Corn Dry Mill	FAC Moderate	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	FAC Moderate	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	FAC Moderate	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	FAC Moderate	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Corn Dry Mill	FAC Moderate	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	FAC Moderate	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	FAC Moderate	Input	Raw Material	94624.992	kg/year	SoT minus random percent up to 10%
-ATJ Stover Thermochem	FAC Moderate	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Input price	Feedstock	88.18	USD/dry metric ton biomass	Tao et al (2016); Section 3.1.1; $80/US ton converted to $/metric ton
-ATJ Stover Thermochem	FAC Moderate	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	FAC Moderate	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	FAC Moderate	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	FAC Moderate	Output price	DDGS	0.22	USD/kg	Agricultural Marketing Resource Center, 2011 avg DDGS price ($199.38/short ton)
-ATJ Stover Thermochem	FAC Moderate	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	FAC Moderate	Output price	Electricity	0.057	USD/kWh	Table 1
-ATJ Stover Thermochem	FAC Moderate	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	FAC Moderate	Output price	Jet	1	USD/gal	dummy value - ignore - this is not MJSP
-ATJ Stover Thermochem	FAC Moderate	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	FAC Moderate	Scale	Capital	1	unitless	
 HEFA Camelina	FAC Moderate	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	FAC Moderate	Input	Raw Material	42998.04	kg/year	SoT minus random percent up to 10%
 HEFA Camelina	FAC Moderate	Input efficiency	Feedstock	1	unitless	
@@ -1119,46 +799,6 @@ HEFA Yellow Grease	FAC Moderate	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	FAC Moderate	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	FAC Moderate	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	FAC Moderate	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	CRP Leap	Input	Raw Material	140579.296	kg/year	SoT minus random percent up to 15%
-ATJ Corn Dry Mill	CRP Leap	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Input price	Feedstock	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	CRP Leap	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	CRP Leap	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	CRP Leap	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	CRP Leap	Output price	DDGS	0.22	USD/kg	
-ATJ Corn Dry Mill	CRP Leap	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	CRP Leap	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	CRP Leap	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	CRP Leap	Output price	Jet	1	USD/gal	
-ATJ Corn Dry Mill	CRP Leap	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	CRP Leap	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	CRP Leap	Input	Raw Material	87725.253	kg/year	SoT minus random percent up to 15%
-ATJ Stover Thermochem	CRP Leap	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Input price	Feedstock	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	CRP Leap	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	CRP Leap	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	CRP Leap	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	CRP Leap	Output price	DDGS	0.22	USD/kg	
-ATJ Stover Thermochem	CRP Leap	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	CRP Leap	Output price	Electricity	0.057	USD/kWh	
-ATJ Stover Thermochem	CRP Leap	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	CRP Leap	Output price	Jet	1	USD/gal	
-ATJ Stover Thermochem	CRP Leap	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	CRP Leap	Scale	Capital	1	unitless	
 HEFA Camelina	CRP Leap	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	CRP Leap	Input	Raw Material	42063.3	kg/year	SoT minus random percent up to 15%
 HEFA Camelina	CRP Leap	Input efficiency	Feedstock	1	unitless	
@@ -1259,46 +899,6 @@ HEFA Yellow Grease	CRP Leap	Output price	Gasoline	2	USD/gal
 HEFA Yellow Grease	CRP Leap	Output price	Jet	1	USD/gal	
 HEFA Yellow Grease	CRP Leap	Output price	Propane	0.6	USD/gal	
 HEFA Yellow Grease	CRP Leap	Scale	Capital	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Corn Dry Mill	FAC Leap	Input	Raw Material	140579.296	kg/year	SoT minus random percent up to 15%
-ATJ Corn Dry Mill	FAC Leap	Input efficiency	Feedstock	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Input efficiency	Raw Material	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Input price	Feedstock	187.04	USD/dry metric ton biomass	
-ATJ Corn Dry Mill	FAC Leap	Input price	Raw Material	1000	USD/kg	
-ATJ Corn Dry Mill	FAC Leap	Lifetime	Capital	30	year	
-ATJ Corn Dry Mill	FAC Leap	Output efficiency	DDGS	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Output efficiency	Diesel	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Output efficiency	Electricity	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Output efficiency	Gasoline	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Output efficiency	Jet	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Output efficiency	Propane	1	unitless	
-ATJ Corn Dry Mill	FAC Leap	Output price	DDGS	0.22	USD/kg	
-ATJ Corn Dry Mill	FAC Leap	Output price	Diesel	3.03	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Output price	Electricity	0.057	USD/kWh	
-ATJ Corn Dry Mill	FAC Leap	Output price	Gasoline	2.75	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Output price	Jet	1	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Output price	Propane	0.6	USD/gal	
-ATJ Corn Dry Mill	FAC Leap	Scale	Capital	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Input	Feedstock	657000	dry metric ton biomass/year	
-ATJ Stover Thermochem	FAC Leap	Input	Raw Material	87725.253	kg/year	SoT minus random percent up to 15%
-ATJ Stover Thermochem	FAC Leap	Input efficiency	Feedstock	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Input efficiency	Raw Material	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Input price	Feedstock	88.18	USD/dry metric ton biomass	
-ATJ Stover Thermochem	FAC Leap	Input price	Raw Material	1000	USD/kg	
-ATJ Stover Thermochem	FAC Leap	Lifetime	Capital	30	year	
-ATJ Stover Thermochem	FAC Leap	Output efficiency	DDGS	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Output efficiency	Diesel	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Output efficiency	Electricity	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Output efficiency	Gasoline	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Output efficiency	Jet	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Output efficiency	Propane	1	unitless	
-ATJ Stover Thermochem	FAC Leap	Output price	DDGS	0.22	USD/kg	
-ATJ Stover Thermochem	FAC Leap	Output price	Diesel	3.03	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Output price	Electricity	0.057	USD/kWh	
-ATJ Stover Thermochem	FAC Leap	Output price	Gasoline	2.75	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Output price	Jet	1	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Output price	Propane	0.6	USD/gal	
-ATJ Stover Thermochem	FAC Leap	Scale	Capital	1	unitless	
 HEFA Camelina	FAC Leap	Input	Feedstock	258858	dry ton oil/year	
 HEFA Camelina	FAC Leap	Input	Raw Material	42063.3	kg/year	SoT minus random percent up to 15%
 HEFA Camelina	FAC Leap	Input efficiency	Feedstock	1	unitless	
