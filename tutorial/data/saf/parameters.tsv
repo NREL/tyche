@@ -1,441 +1,441 @@
 Technology	Scenario	Parameter	Offset	Value	Units	Notes
 HEFA Camelina	State of Technology	Annual GHG	0	328492447	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation)
-HEFA Camelina	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Camelina	State of Technology	Discount Rate	2	0.1	unitless	
-HEFA Camelina	State of Technology	Depreciation Period	3	7	years	
-HEFA Camelina	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	State of Technology	Capital	5	348800000	USD/biorefinery	estimate based on range given in text
-HEFA Camelina	State of Technology	Fixed	6	14425000	USD/year	Fig. 6
-HEFA Camelina	State of Technology	DDGS	7	0	kg/year	
-HEFA Camelina	State of Technology	Electricity	8	0	kWh/year	
-HEFA Camelina	State of Technology	Diesel	9	1200000	gal/year	calculated using 4.7 gal/dry ton oil yield
-HEFA Camelina	State of Technology	Gasoline	10	25900000	gal/year	calculated using 100 gal/dry ton oil yield
-HEFA Camelina	State of Technology	Propane	11	260000	gal/year	gas; calculated using 1 gal/dry ton oil yield
-HEFA Camelina	State of Technology	Jet	12	57700000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
-HEFA Camelina	State of Technology	DDGS Price	13	0.22	USD/kg	
-HEFA Camelina	State of Technology	Electricity Price	14	0.057	USD/kWh	
-HEFA Camelina	State of Technology	Diesel Price	15	3.25	USD/gal	
-HEFA Camelina	State of Technology	Gasoline Price	16	2	USD/gal	
-HEFA Camelina	State of Technology	Propane Price	17	0.6	USD/gal	
-HEFA Camelina	State of Technology	Feedstock Price	18	1587.59	USD/dry ton oil	
-HEFA Camelina	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	State of Technology	Benchmark MJSP	20	9.671947	USD/gal	
-HEFA Camelina	State of Technology	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Camelina	Moderate Progress	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
+HEFA Camelina	Leap Forward	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
+HEFA Camelina	Incremental Progress	Annual GHG	0	st.triang(0.5,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
 HEFA Castor	State of Technology	Annual GHG	0	326130412	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021
-HEFA Castor	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Castor	State of Technology	Discount Rate	2	0.1	unitless	
-HEFA Castor	State of Technology	Depreciation Period	3	7	years	
-HEFA Castor	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	State of Technology	Capital	5	341000000	USD/biorefinery	
-HEFA Castor	State of Technology	Fixed	6	11176000	USD/year	
-HEFA Castor	State of Technology	DDGS	7	0	kg/year	
-HEFA Castor	State of Technology	Electricity	8	0	kWh/year	
-HEFA Castor	State of Technology	Diesel	9	100000	gal/year	
-HEFA Castor	State of Technology	Gasoline	10	24600000	gal/year	
-HEFA Castor	State of Technology	Propane	11	500000	gal/year	
-HEFA Castor	State of Technology	Jet	12	50800000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
-HEFA Castor	State of Technology	DDGS Price	13	0.22	USD/kg	
-HEFA Castor	State of Technology	Electricity Price	14	0.057	USD/kWh	
-HEFA Castor	State of Technology	Diesel Price	15	3.25	USD/gal	
-HEFA Castor	State of Technology	Gasoline Price	16	2	USD/gal	
-HEFA Castor	State of Technology	Propane Price	17	0.6	USD/gal	
-HEFA Castor	State of Technology	Feedstock Price	18	1542.23	USD/dry ton oil	
-HEFA Castor	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	State of Technology	Benchmark MJSP	20	10.32857	USD/gal	
-HEFA Castor	State of Technology	Benchmark GHG	21	0.053	kg CO2eq/gal	
+HEFA Castor	Moderate Progress	Annual GHG	0	st.triang(0.3,238413638,52980808)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	Leap Forward	Annual GHG	0	st.triang(0.6,253477171,56328260)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Castor	Incremental Progress	Annual GHG	0	st.triang(0.7,453567409,100792758)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Jatropha	State of Technology	Annual GHG	0	293134600	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021
-HEFA Jatropha	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Jatropha	State of Technology	Discount Rate	2	0.1	unitless	
-HEFA Jatropha	State of Technology	Depreciation Period	3	7	years	
-HEFA Jatropha	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	State of Technology	Capital	5	348800000	USD/biorefinery	
-HEFA Jatropha	State of Technology	Fixed	6	14425000	USD/year	
-HEFA Jatropha	State of Technology	DDGS	7	0	kg/year	
-HEFA Jatropha	State of Technology	Electricity	8	0	kWh/year	
-HEFA Jatropha	State of Technology	Diesel	9	800000	gal/year	calculated from 3.1 gal/dry ton oil and 258858 dry ton oil/yr
-HEFA Jatropha	State of Technology	Gasoline	10	24400000	gal/year	calculated from 94.2 gal/dry ton oil and 258858 dry ton oil/yr
-HEFA Jatropha	State of Technology	Propane	11	4700000	gal/year	calculated from 18.3 gal/dry ton oil and 258858 dry ton oil/yr
-HEFA Jatropha	State of Technology	Jet	12	44000000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
-HEFA Jatropha	State of Technology	DDGS Price	13	0.22	USD/kg	
-HEFA Jatropha	State of Technology	Electricity Price	14	0.057	USD/kWh	
-HEFA Jatropha	State of Technology	Diesel Price	15	3.25	USD/gal	
-HEFA Jatropha	State of Technology	Gasoline Price	16	2	USD/gal	
-HEFA Jatropha	State of Technology	Propane Price	17	0.6	USD/gal	
-HEFA Jatropha	State of Technology	Feedstock Price	18	362.88	USD/dry ton oil	
-HEFA Jatropha	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	State of Technology	Benchmark MJSP	20	5.008918	USD/gal	
-HEFA Jatropha	State of Technology	Benchmark GHG	21	0.055	kg CO2eq/gal	
+HEFA Jatropha	Moderate Progress	Annual GHG	0	st.triang(0.5,162705692,36156820)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	Leap Forward	Annual GHG	0	st.triang(0.4,166782928,37062873)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
+HEFA Jatropha	Incremental Progress	Annual GHG	0	st.triang(0.5,533782117,118618248)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
 HEFA Pennycress	State of Technology	Annual GHG	0	159626325.3	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation)
-HEFA Pennycress	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Pennycress	State of Technology	Discount Rate	2	0.1	unitless	
-HEFA Pennycress	State of Technology	Depreciation Period	3	7	years	
-HEFA Pennycress	State of Technology	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	State of Technology	Capital	5	354000000	USD/biorefinery	Fig. 6
-HEFA Pennycress	State of Technology	Fixed	6	10881000	USD/year	Fig. 6
-HEFA Pennycress	State of Technology	DDGS	7	0	kg/year	
-HEFA Pennycress	State of Technology	Electricity	8	0	kWh/year	
-HEFA Pennycress	State of Technology	Diesel	9	9500000	gal/year	36.9 gal/dry ton oil
-HEFA Pennycress	State of Technology	Gasoline	10	19200000	gal/year	74.3 gal/dry ton oil
-HEFA Pennycress	State of Technology	Propane	11	500000	gal/year	2.1 gal/dry ton oil
-HEFA Pennycress	State of Technology	Jet	12	40300000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
-HEFA Pennycress	State of Technology	DDGS Price	13	0.22	USD/kg	
-HEFA Pennycress	State of Technology	Electricity Price	14	0.057	USD/kWh	
-HEFA Pennycress	State of Technology	Diesel Price	15	3.25	USD/gal	
-HEFA Pennycress	State of Technology	Gasoline Price	16	2	USD/gal	
-HEFA Pennycress	State of Technology	Propane Price	17	0.6	USD/gal	
-HEFA Pennycress	State of Technology	Feedstock Price	18	734.83	USD/dry ton oil	
-HEFA Pennycress	State of Technology	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	State of Technology	Benchmark MJSP	20	8.284299	USD/gal	
-HEFA Pennycress	State of Technology	Benchmark GHG	21	0.0327	kg CO2eq/gal	
+HEFA Pennycress	Moderate Progress	Annual GHG	0	st.triang(0.6,161918208,35981824)	kg CO2eq/yr	35 g CO2eq/MJ jet product; calculated from jet output
+HEFA Pennycress	Leap Forward	Annual GHG	0	st.triang(0.8,170656651,37923700)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation); calculated from jet output
+HEFA Pennycress	Incremental Progress	Annual GHG	0	st.triang(0.3,201208251,44712945)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation); calculated from jet output
 HEFA Yellow Grease	State of Technology	Annual GHG	0	105005174.4	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021
+HEFA Yellow Grease	Moderate Progress	Annual GHG	0	st.triang(0.4,131537296,29230510)	kg CO2eq/yr	21 g CO2eq/MJ jet product; calculated from jet output
+HEFA Yellow Grease	Leap Forward	Annual GHG	0	st.triang(0.3,115900072,25755571)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Yellow Grease	Incremental Progress	Annual GHG	0	st.triang(0.5,77136679,17141484)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
+HEFA Camelina	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	Moderate Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	Leap Forward	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	Incremental Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	Moderate Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	Leap Forward	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Castor	Incremental Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	Moderate Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	Leap Forward	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Jatropha	Incremental Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	Moderate Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	Leap Forward	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Pennycress	Incremental Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
 HEFA Yellow Grease	State of Technology	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	Moderate Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	Leap Forward	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Yellow Grease	Incremental Progress	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
+HEFA Camelina	State of Technology	Discount Rate	2	0.1	unitless	
+HEFA Camelina	Moderate Progress	Discount Rate	2	0.1	unitless	
+HEFA Camelina	Leap Forward	Discount Rate	2	0.1	unitless	
+HEFA Camelina	Incremental Progress	Discount Rate	2	0.1	unitless	
+HEFA Castor	State of Technology	Discount Rate	2	0.1	unitless	
+HEFA Castor	Moderate Progress	Discount Rate	2	0.1	unitless	
+HEFA Castor	Leap Forward	Discount Rate	2	0.1	unitless	
+HEFA Castor	Incremental Progress	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	State of Technology	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	Moderate Progress	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	Leap Forward	Discount Rate	2	0.1	unitless	
+HEFA Jatropha	Incremental Progress	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	State of Technology	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	Moderate Progress	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	Leap Forward	Discount Rate	2	0.1	unitless	
+HEFA Pennycress	Incremental Progress	Discount Rate	2	0.1	unitless	
 HEFA Yellow Grease	State of Technology	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	Moderate Progress	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	Leap Forward	Discount Rate	2	0.1	unitless	
+HEFA Yellow Grease	Incremental Progress	Discount Rate	2	0.1	unitless	
+HEFA Camelina	State of Technology	Depreciation Period	3	7	years	
+HEFA Camelina	Moderate Progress	Depreciation Period	3	7	years	
+HEFA Camelina	Leap Forward	Depreciation Period	3	7	years	
+HEFA Camelina	Incremental Progress	Depreciation Period	3	7	years	
+HEFA Castor	State of Technology	Depreciation Period	3	7	years	
+HEFA Castor	Moderate Progress	Depreciation Period	3	7	years	
+HEFA Castor	Leap Forward	Depreciation Period	3	7	years	
+HEFA Castor	Incremental Progress	Depreciation Period	3	7	years	
+HEFA Jatropha	State of Technology	Depreciation Period	3	7	years	
+HEFA Jatropha	Moderate Progress	Depreciation Period	3	7	years	
+HEFA Jatropha	Leap Forward	Depreciation Period	3	7	years	
+HEFA Jatropha	Incremental Progress	Depreciation Period	3	7	years	
+HEFA Pennycress	State of Technology	Depreciation Period	3	7	years	
+HEFA Pennycress	Moderate Progress	Depreciation Period	3	7	years	
+HEFA Pennycress	Leap Forward	Depreciation Period	3	7	years	
+HEFA Pennycress	Incremental Progress	Depreciation Period	3	7	years	
 HEFA Yellow Grease	State of Technology	Depreciation Period	3	7	years	
+HEFA Yellow Grease	Moderate Progress	Depreciation Period	3	7	years	
+HEFA Yellow Grease	Leap Forward	Depreciation Period	3	7	years	
+HEFA Yellow Grease	Incremental Progress	Depreciation Period	3	7	years	
+HEFA Camelina	State of Technology	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	Moderate Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	Leap Forward	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	Incremental Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	State of Technology	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	Moderate Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	Leap Forward	Income Tax Rate	4	0.35	unitless	
+HEFA Castor	Incremental Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	State of Technology	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	Moderate Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	Leap Forward	Income Tax Rate	4	0.35	unitless	
+HEFA Jatropha	Incremental Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	State of Technology	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	Moderate Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	Leap Forward	Income Tax Rate	4	0.35	unitless	
+HEFA Pennycress	Incremental Progress	Income Tax Rate	4	0.35	unitless	
 HEFA Yellow Grease	State of Technology	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	Moderate Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	Leap Forward	Income Tax Rate	4	0.35	unitless	
+HEFA Yellow Grease	Incremental Progress	Income Tax Rate	4	0.35	unitless	
+HEFA Camelina	State of Technology	Capital	5	348800000	USD/biorefinery	estimate based on range given in text
+HEFA Camelina	Moderate Progress	Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Camelina	Leap Forward	Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Camelina	Incremental Progress	Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Castor	State of Technology	Capital	5	341000000	USD/biorefinery	
+HEFA Castor	Moderate Progress	Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Castor	Leap Forward	Capital	5	300310000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Castor	Incremental Progress	Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Jatropha	State of Technology	Capital	5	348800000	USD/biorefinery	
+HEFA Jatropha	Moderate Progress	Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Jatropha	Leap Forward	Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Jatropha	Incremental Progress	Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Pennycress	State of Technology	Capital	5	354000000	USD/biorefinery	Fig. 6
+HEFA Pennycress	Moderate Progress	Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Pennycress	Leap Forward	Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Pennycress	Incremental Progress	Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
 HEFA Yellow Grease	State of Technology	Capital	5	348800000	USD/biorefinery	
+HEFA Yellow Grease	Moderate Progress	Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
+HEFA Yellow Grease	Leap Forward	Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
+HEFA Yellow Grease	Incremental Progress	Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
+HEFA Camelina	State of Technology	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	Moderate Progress	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	Leap Forward	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Camelina	Incremental Progress	Fixed	6	14425000	USD/year	Fig. 6
+HEFA Castor	State of Technology	Fixed	6	11176000	USD/year	
+HEFA Castor	Moderate Progress	Fixed	6	11176000	USD/year	
+HEFA Castor	Leap Forward	Fixed	6	11176000	USD/year	
+HEFA Castor	Incremental Progress	Fixed	6	11176000	USD/year	
+HEFA Jatropha	State of Technology	Fixed	6	14425000	USD/year	
+HEFA Jatropha	Moderate Progress	Fixed	6	14425000	USD/year	
+HEFA Jatropha	Leap Forward	Fixed	6	14425000	USD/year	
+HEFA Jatropha	Incremental Progress	Fixed	6	14425000	USD/year	
+HEFA Pennycress	State of Technology	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	Moderate Progress	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	Leap Forward	Fixed	6	10881000	USD/year	Fig. 6
+HEFA Pennycress	Incremental Progress	Fixed	6	10881000	USD/year	Fig. 6
 HEFA Yellow Grease	State of Technology	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	Moderate Progress	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	Leap Forward	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Yellow Grease	Incremental Progress	Fixed	6	12600000	USD/year	Fig. 6
+HEFA Camelina	State of Technology	DDGS	7	0	kg/year	
+HEFA Camelina	Moderate Progress	DDGS	7	0	kg/year	
+HEFA Camelina	Leap Forward	DDGS	7	0	kg/year	
+HEFA Camelina	Incremental Progress	DDGS	7	0	kg/year	
+HEFA Castor	State of Technology	DDGS	7	0	kg/year	
+HEFA Castor	Moderate Progress	DDGS	7	0	kg/year	
+HEFA Castor	Leap Forward	DDGS	7	0	kg/year	
+HEFA Castor	Incremental Progress	DDGS	7	0	kg/year	
+HEFA Jatropha	State of Technology	DDGS	7	0	kg/year	
+HEFA Jatropha	Moderate Progress	DDGS	7	0	kg/year	
+HEFA Jatropha	Leap Forward	DDGS	7	0	kg/year	
+HEFA Jatropha	Incremental Progress	DDGS	7	0	kg/year	
+HEFA Pennycress	State of Technology	DDGS	7	0	kg/year	
+HEFA Pennycress	Moderate Progress	DDGS	7	0	kg/year	
+HEFA Pennycress	Leap Forward	DDGS	7	0	kg/year	
+HEFA Pennycress	Incremental Progress	DDGS	7	0	kg/year	
 HEFA Yellow Grease	State of Technology	DDGS	7	0	kg/year	
+HEFA Yellow Grease	Moderate Progress	DDGS	7	0	kg/year	
+HEFA Yellow Grease	Leap Forward	DDGS	7	0	kg/year	
+HEFA Yellow Grease	Incremental Progress	DDGS	7	0	kg/year	
+HEFA Camelina	State of Technology	Electricity	8	0	kWh/year	
+HEFA Camelina	Moderate Progress	Electricity	8	0	kWh/year	
+HEFA Camelina	Leap Forward	Electricity	8	0	kWh/year	
+HEFA Camelina	Incremental Progress	Electricity	8	0	kWh/year	
+HEFA Castor	State of Technology	Electricity	8	0	kWh/year	
+HEFA Castor	Moderate Progress	Electricity	8	0	kWh/year	
+HEFA Castor	Leap Forward	Electricity	8	0	kWh/year	
+HEFA Castor	Incremental Progress	Electricity	8	0	kWh/year	
+HEFA Jatropha	State of Technology	Electricity	8	0	kWh/year	
+HEFA Jatropha	Moderate Progress	Electricity	8	0	kWh/year	
+HEFA Jatropha	Leap Forward	Electricity	8	0	kWh/year	
+HEFA Jatropha	Incremental Progress	Electricity	8	0	kWh/year	
+HEFA Pennycress	State of Technology	Electricity	8	0	kWh/year	
+HEFA Pennycress	Moderate Progress	Electricity	8	0	kWh/year	
+HEFA Pennycress	Leap Forward	Electricity	8	0	kWh/year	
+HEFA Pennycress	Incremental Progress	Electricity	8	0	kWh/year	
 HEFA Yellow Grease	State of Technology	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	Moderate Progress	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	Leap Forward	Electricity	8	0	kWh/year	
+HEFA Yellow Grease	Incremental Progress	Electricity	8	0	kWh/year	
+HEFA Camelina	State of Technology	Diesel	9	1200000	gal/year	calculated using 4.7 gal/dry ton oil yield
+HEFA Camelina	Moderate Progress	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	Leap Forward	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	Incremental Progress	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	State of Technology	Diesel	9	100000	gal/year	
+HEFA Castor	Moderate Progress	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	Leap Forward	Diesel	9	108000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	Incremental Progress	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	State of Technology	Diesel	9	800000	gal/year	calculated from 3.1 gal/dry ton oil and 258858 dry ton oil/yr
+HEFA Jatropha	Moderate Progress	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	Leap Forward	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	Incremental Progress	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	State of Technology	Diesel	9	9500000	gal/year	36.9 gal/dry ton oil
+HEFA Pennycress	Moderate Progress	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	Leap Forward	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	Incremental Progress	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
 HEFA Yellow Grease	State of Technology	Diesel	9	200000	gal/year	
+HEFA Yellow Grease	Moderate Progress	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	Leap Forward	Diesel	9	228000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	Incremental Progress	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	State of Technology	Gasoline	10	25900000	gal/year	calculated using 100 gal/dry ton oil yield
+HEFA Camelina	Moderate Progress	Gasoline	10	26159000	gal/year	SoT value +/- random percent up to 5%
+HEFA Camelina	Leap Forward	Gasoline	10	24605000	gal/year	SoT value +/- random percent up to 10%
+HEFA Camelina	Incremental Progress	Gasoline	10	23569000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Castor	State of Technology	Gasoline	10	24600000	gal/year	
+HEFA Castor	Moderate Progress	Gasoline	10	24354000	gal/year	SoT value +/- random percent up to 5%
+HEFA Castor	Leap Forward	Gasoline	10	25092000	gal/year	SoT value +/- random percent up to 10%
+HEFA Castor	Incremental Progress	Gasoline	10	23862000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Jatropha	State of Technology	Gasoline	10	24400000	gal/year	calculated from 94.2 gal/dry ton oil and 258858 dry ton oil/yr
+HEFA Jatropha	Moderate Progress	Gasoline	10	25376000	gal/year	SoT value +/- random percent up to 5%
+HEFA Jatropha	Leap Forward	Gasoline	10	24156000	gal/year	SoT value +/- random percent up to 10%
+HEFA Jatropha	Incremental Progress	Gasoline	10	22692000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Pennycress	State of Technology	Gasoline	10	19200000	gal/year	74.3 gal/dry ton oil
+HEFA Pennycress	Moderate Progress	Gasoline	10	19392000	gal/year	SoT value +/- random percent up to 5%
+HEFA Pennycress	Leap Forward	Gasoline	10	17664000	gal/year	SoT value +/- random percent up to 10%
+HEFA Pennycress	Incremental Progress	Gasoline	10	18048000	gal/year	SoT value minus random percent between 0 and 10%
 HEFA Yellow Grease	State of Technology	Gasoline	10	24200000	gal/year	
+HEFA Yellow Grease	Moderate Progress	Gasoline	10	22990000	gal/year	SoT value +/- random percent up to 5%
+HEFA Yellow Grease	Leap Forward	Gasoline	10	26990000	gal/year	SoT value +/- random percent up to 10%
+HEFA Yellow Grease	Incremental Progress	Gasoline	10	22264000	gal/year	SoT value minus random percent between 0 and 10%
+HEFA Camelina	State of Technology	Propane	11	260000	gal/year	gas; calculated using 1 gal/dry ton oil yield
+HEFA Camelina	Moderate Progress	Propane	11	270400	gal/year	SoT +/- random percent up to 5%
+HEFA Camelina	Leap Forward	Propane	11	236600	gal/year	SoT +/- random percent up to 10%
+HEFA Camelina	Incremental Progress	Propane	11	234000	gal/year	SoT minus random percent up to 10%
+HEFA Castor	State of Technology	Propane	11	500000	gal/year	
+HEFA Castor	Moderate Progress	Propane	11	515000	gal/year	SoT +/- random percent up to 5%
+HEFA Castor	Leap Forward	Propane	11	570000	gal/year	SoT +/- random percent up to 10%
+HEFA Castor	Incremental Progress	Propane	11	465000	gal/year	SoT minus random percent up to 10%
+HEFA Jatropha	State of Technology	Propane	11	4700000	gal/year	calculated from 18.3 gal/dry ton oil and 258858 dry ton oil/yr
+HEFA Jatropha	Moderate Progress	Propane	11	4512000	gal/year	SoT +/- random percent up to 5%
+HEFA Jatropha	Leap Forward	Propane	11	4230000	gal/year	SoT +/- random percent up to 10%
+HEFA Jatropha	Incremental Progress	Propane	11	4653000	gal/year	SoT minus random percent up to 10%
+HEFA Pennycress	State of Technology	Propane	11	500000	gal/year	2.1 gal/dry ton oil
+HEFA Pennycress	Moderate Progress	Propane	11	490000	gal/year	SoT +/- random percent up to 5%
+HEFA Pennycress	Leap Forward	Propane	11	450000	gal/year	SoT +/- random percent up to 10%
+HEFA Pennycress	Incremental Progress	Propane	11	480000	gal/year	SoT minus random percent up to 10%
 HEFA Yellow Grease	State of Technology	Propane	11	400000	gal/year	
+HEFA Yellow Grease	Moderate Progress	Propane	11	404000	gal/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	Leap Forward	Propane	11	440000	gal/year	SoT +/- random percent up to 10%
+HEFA Yellow Grease	Incremental Progress	Propane	11	376000	gal/year	SoT minus random percent up to 10%
+HEFA Camelina	State of Technology	Jet	12	57700000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
+HEFA Camelina	Moderate Progress	Jet	12	st.triang(0.8,56603700,12578600)	gal/year	SoT varied between -3% and +7% random
+HEFA Camelina	Leap Forward	Jet	12	st.triang(0.7,60238800,13386400)	gal/year	SoT varied between -3% and +10% random
+HEFA Camelina	Incremental Progress	Jet	12	st.triang(0.5,52449300,11655400)	gal/year	SoT +/- up to 3% random
+HEFA Castor	State of Technology	Jet	12	50800000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
+HEFA Castor	Moderate Progress	Jet	12	st.triang(0.8,48006000,10668000)	gal/year	SoT varied between -3% and +7% random
+HEFA Castor	Leap Forward	Jet	12	st.triang(0.7,52578000,11684000)	gal/year	SoT varied between -3% and +10% random
+HEFA Castor	Incremental Progress	Jet	12	st.triang(0.7,48006000,10668000)	gal/year	SoT +/- up to 3% random
+HEFA Jatropha	State of Technology	Jet	12	44000000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
+HEFA Jatropha	Moderate Progress	Jet	12	st.triang(0.5,41976000,9328000)	gal/year	SoT varied between -3% and +7% random
+HEFA Jatropha	Leap Forward	Jet	12	st.triang(0.8,45144000,10032000)	gal/year	SoT varied between -3% and +10% random
+HEFA Jatropha	Incremental Progress	Jet	12	st.triang(0.6,41184000,9152000)	gal/year	SoT +/- up to 3% random
+HEFA Pennycress	State of Technology	Jet	12	40300000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
+HEFA Pennycress	Moderate Progress	Jet	12	st.triang(0.3,38083500,8463000)	gal/year	SoT varied between -3% and +7% random
+HEFA Pennycress	Leap Forward	Jet	12	st.triang(0.6,42435900,9430200)	gal/year	SoT varied between -3% and +10% random
+HEFA Pennycress	Incremental Progress	Jet	12	st.triang(0.7,36995400,8221200)	gal/year	SoT +/- up to 3% random
 HEFA Yellow Grease	State of Technology	Jet	12	50400000	gal/year	given in Table 3 of Tao et al. (2017) +/- 10%
+HEFA Yellow Grease	Moderate Progress	Jet	12	st.triang(0.4,51710400,11491200)	gal/year	SoT varied between -3% and +7% random
+HEFA Yellow Grease	Leap Forward	Jet	12	st.triang(0.8,48081600,10684800)	gal/year	SoT varied between -3% and +10% random
+HEFA Yellow Grease	Incremental Progress	Jet	12	st.triang(0.6,45813600,10180800)	gal/year	SoT +/- up to 3% random
+HEFA Camelina	State of Technology	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	Moderate Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	Leap Forward	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	Incremental Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	State of Technology	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	Moderate Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	Leap Forward	DDGS Price	13	0.22	USD/kg	
+HEFA Castor	Incremental Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	State of Technology	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	Moderate Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	Leap Forward	DDGS Price	13	0.22	USD/kg	
+HEFA Jatropha	Incremental Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	State of Technology	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	Moderate Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	Leap Forward	DDGS Price	13	0.22	USD/kg	
+HEFA Pennycress	Incremental Progress	DDGS Price	13	0.22	USD/kg	
 HEFA Yellow Grease	State of Technology	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	Moderate Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	Leap Forward	DDGS Price	13	0.22	USD/kg	
+HEFA Yellow Grease	Incremental Progress	DDGS Price	13	0.22	USD/kg	
+HEFA Camelina	State of Technology	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	Moderate Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	Leap Forward	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	Incremental Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	State of Technology	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	Moderate Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	Leap Forward	Electricity Price	14	0.057	USD/kWh	
+HEFA Castor	Incremental Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	State of Technology	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	Moderate Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	Leap Forward	Electricity Price	14	0.057	USD/kWh	
+HEFA Jatropha	Incremental Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	State of Technology	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	Moderate Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	Leap Forward	Electricity Price	14	0.057	USD/kWh	
+HEFA Pennycress	Incremental Progress	Electricity Price	14	0.057	USD/kWh	
 HEFA Yellow Grease	State of Technology	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	Moderate Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	Leap Forward	Electricity Price	14	0.057	USD/kWh	
+HEFA Yellow Grease	Incremental Progress	Electricity Price	14	0.057	USD/kWh	
+HEFA Camelina	State of Technology	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	Moderate Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	Leap Forward	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	Incremental Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	State of Technology	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	Moderate Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	Leap Forward	Diesel Price	15	3.25	USD/gal	
+HEFA Castor	Incremental Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	State of Technology	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	Moderate Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	Leap Forward	Diesel Price	15	3.25	USD/gal	
+HEFA Jatropha	Incremental Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	State of Technology	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	Moderate Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	Leap Forward	Diesel Price	15	3.25	USD/gal	
+HEFA Pennycress	Incremental Progress	Diesel Price	15	3.25	USD/gal	
 HEFA Yellow Grease	State of Technology	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	Leap Forward	Diesel Price	15	3.25	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Diesel Price	15	3.25	USD/gal	
+HEFA Camelina	State of Technology	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	Moderate Progress	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	Leap Forward	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	Incremental Progress	Gasoline Price	16	2	USD/gal	
+HEFA Castor	State of Technology	Gasoline Price	16	2	USD/gal	
+HEFA Castor	Moderate Progress	Gasoline Price	16	2	USD/gal	
+HEFA Castor	Leap Forward	Gasoline Price	16	2	USD/gal	
+HEFA Castor	Incremental Progress	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	State of Technology	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	Moderate Progress	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	Leap Forward	Gasoline Price	16	2	USD/gal	
+HEFA Jatropha	Incremental Progress	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	State of Technology	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	Moderate Progress	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	Leap Forward	Gasoline Price	16	2	USD/gal	
+HEFA Pennycress	Incremental Progress	Gasoline Price	16	2	USD/gal	
 HEFA Yellow Grease	State of Technology	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	Leap Forward	Gasoline Price	16	2	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Gasoline Price	16	2	USD/gal	
+HEFA Camelina	State of Technology	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	Moderate Progress	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	Leap Forward	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	Incremental Progress	Propane Price	17	0.6	USD/gal	
+HEFA Castor	State of Technology	Propane Price	17	0.6	USD/gal	
+HEFA Castor	Moderate Progress	Propane Price	17	0.6	USD/gal	
+HEFA Castor	Leap Forward	Propane Price	17	0.6	USD/gal	
+HEFA Castor	Incremental Progress	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	State of Technology	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	Moderate Progress	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	Leap Forward	Propane Price	17	0.6	USD/gal	
+HEFA Jatropha	Incremental Progress	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	State of Technology	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	Moderate Progress	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	Leap Forward	Propane Price	17	0.6	USD/gal	
+HEFA Pennycress	Incremental Progress	Propane Price	17	0.6	USD/gal	
 HEFA Yellow Grease	State of Technology	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	Leap Forward	Propane Price	17	0.6	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Propane Price	17	0.6	USD/gal	
+HEFA Camelina	State of Technology	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	Moderate Progress	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	Leap Forward	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Camelina	Incremental Progress	Feedstock Price	18	1587.59	USD/dry ton oil	
+HEFA Castor	State of Technology	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	Moderate Progress	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	Leap Forward	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Castor	Incremental Progress	Feedstock Price	18	1542.23	USD/dry ton oil	
+HEFA Jatropha	State of Technology	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	Moderate Progress	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	Leap Forward	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Jatropha	Incremental Progress	Feedstock Price	18	362.88	USD/dry ton oil	
+HEFA Pennycress	State of Technology	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	Moderate Progress	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	Leap Forward	Feedstock Price	18	734.83	USD/dry ton oil	
+HEFA Pennycress	Incremental Progress	Feedstock Price	18	734.83	USD/dry ton oil	
 HEFA Yellow Grease	State of Technology	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	Moderate Progress	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	Leap Forward	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Yellow Grease	Incremental Progress	Feedstock Price	18	553.39	USD/dry ton oil	
+HEFA Camelina	State of Technology	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	Moderate Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	Leap Forward	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	Incremental Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	State of Technology	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	Moderate Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	Leap Forward	Raw Material Price	19	1000	USD/kg	
+HEFA Castor	Incremental Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	State of Technology	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	Moderate Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	Leap Forward	Raw Material Price	19	1000	USD/kg	
+HEFA Jatropha	Incremental Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	State of Technology	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	Moderate Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	Leap Forward	Raw Material Price	19	1000	USD/kg	
+HEFA Pennycress	Incremental Progress	Raw Material Price	19	1000	USD/kg	
 HEFA Yellow Grease	State of Technology	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	Moderate Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	Leap Forward	Raw Material Price	19	1000	USD/kg	
+HEFA Yellow Grease	Incremental Progress	Raw Material Price	19	1000	USD/kg	
+HEFA Camelina	State of Technology	Benchmark MJSP	20	9.671947	USD/gal	
+HEFA Camelina	Moderate Progress	Benchmark MJSP	20	9.671947	USD/gal	
+HEFA Camelina	Leap Forward	Benchmark MJSP	20	9.671947	USD/gal	
+HEFA Camelina	Incremental Progress	Benchmark MJSP	20	9.671947	USD/gal	
+HEFA Castor	State of Technology	Benchmark MJSP	20	10.32857	USD/gal	
+HEFA Castor	Moderate Progress	Benchmark MJSP	20	10.32857	USD/gal	
+HEFA Castor	Leap Forward	Benchmark MJSP	20	10.32857	USD/gal	
+HEFA Castor	Incremental Progress	Benchmark MJSP	20	10.32857	USD/gal	
+HEFA Jatropha	State of Technology	Benchmark MJSP	20	5.008918	USD/gal	
+HEFA Jatropha	Moderate Progress	Benchmark MJSP	20	5.008918	USD/gal	
+HEFA Jatropha	Leap Forward	Benchmark MJSP	20	5.008918	USD/gal	
+HEFA Jatropha	Incremental Progress	Benchmark MJSP	20	5.008918	USD/gal	
+HEFA Pennycress	State of Technology	Benchmark MJSP	20	8.284299	USD/gal	
+HEFA Pennycress	Moderate Progress	Benchmark MJSP	20	8.284299	USD/gal	
+HEFA Pennycress	Leap Forward	Benchmark MJSP	20	8.284299	USD/gal	
+HEFA Pennycress	Incremental Progress	Benchmark MJSP	20	8.284299	USD/gal	
 HEFA Yellow Grease	State of Technology	Benchmark MJSP	20	5.28731	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Benchmark MJSP	20	5.28731	USD/gal	
+HEFA Yellow Grease	Leap Forward	Benchmark MJSP	20	5.28731	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Benchmark MJSP	20	5.28731	USD/gal	
+HEFA Camelina	State of Technology	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Camelina	Moderate Progress	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Camelina	Leap Forward	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Camelina	Incremental Progress	Benchmark GHG	21	0.047	kg CO2eq/gal	
+HEFA Castor	State of Technology	Benchmark GHG	21	0.053	kg CO2eq/gal	
+HEFA Castor	Moderate Progress	Benchmark GHG	21	0.053	kg CO2eq/gal	
+HEFA Castor	Leap Forward	Benchmark GHG	21	0.053	kg CO2eq/gal	
+HEFA Castor	Incremental Progress	Benchmark GHG	21	0.053	kg CO2eq/gal	
+HEFA Jatropha	State of Technology	Benchmark GHG	21	0.055	kg CO2eq/gal	
+HEFA Jatropha	Moderate Progress	Benchmark GHG	21	0.055	kg CO2eq/gal	
+HEFA Jatropha	Leap Forward	Benchmark GHG	21	0.055	kg CO2eq/gal	
+HEFA Jatropha	Incremental Progress	Benchmark GHG	21	0.055	kg CO2eq/gal	
+HEFA Pennycress	State of Technology	Benchmark GHG	21	0.0327	kg CO2eq/gal	
+HEFA Pennycress	Moderate Progress	Benchmark GHG	21	0.0327	kg CO2eq/gal	
+HEFA Pennycress	Leap Forward	Benchmark GHG	21	0.0327	kg CO2eq/gal	
+HEFA Pennycress	Incremental Progress	Benchmark GHG	21	0.0327	kg CO2eq/gal	
 HEFA Yellow Grease	State of Technology	Benchmark GHG	21	0.0172	kg CO2eq/gal	
-HEFA Camelina	Moderate	Annual GHG	0	st.triang(0.8,153309242,34068720)	kg CO2eq/yr	22 g CO2eq/MJ jet product; Source: Zemanek 2020/Shonnard (energy allocation); calculated from jet output
-HEFA Camelina	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Camelina	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Camelina	Moderate	Depreciation Period	3	7	years	
-HEFA Camelina	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Moderate	Capital	5	317408000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Camelina	Moderate	Fixed	6	14425000	USD/year	Fig. 6
-HEFA Camelina	Moderate	DDGS	7	0	kg/year	
-HEFA Camelina	Moderate	Electricity	8	0	kWh/year	
-HEFA Camelina	Moderate	Diesel	9	1176000	gal/year	SoT +/- random percent up to 5%
-HEFA Camelina	Moderate	Gasoline	10	26159000	gal/year	SoT value +/- random percent up to 5%
-HEFA Camelina	Moderate	Propane	11	270400	gal/year	SoT +/- random percent up to 5%
-HEFA Camelina	Moderate	Jet	12	st.triang(0.8,56603700,12578600)	gal/year	SoT varied between -3% and +7% random
-HEFA Camelina	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Camelina	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Camelina	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Camelina	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Camelina	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Camelina	Moderate	Feedstock Price	18	1587.59	USD/dry ton oil	
-HEFA Camelina	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Moderate	Benchmark MJSP	20	9.671947	USD/gal	
-HEFA Camelina	Moderate	Benchmark GHG	21	0.047	kg CO2eq/gal	
-HEFA Castor	Moderate	Annual GHG	0	st.triang(0.3,238413638,52980808)	kg CO2eq/yr	41 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Castor	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Castor	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Castor	Moderate	Depreciation Period	3	7	years	
-HEFA Castor	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Moderate	Capital	5	320540000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Castor	Moderate	Fixed	6	11176000	USD/year	
-HEFA Castor	Moderate	DDGS	7	0	kg/year	
-HEFA Castor	Moderate	Electricity	8	0	kWh/year	
-HEFA Castor	Moderate	Diesel	9	100000	gal/year	SoT +/- random percent up to 5%
-HEFA Castor	Moderate	Gasoline	10	24354000	gal/year	SoT value +/- random percent up to 5%
-HEFA Castor	Moderate	Propane	11	515000	gal/year	SoT +/- random percent up to 5%
-HEFA Castor	Moderate	Jet	12	st.triang(0.8,48006000,10668000)	gal/year	SoT varied between -3% and +7% random
-HEFA Castor	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Castor	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Castor	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Castor	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Castor	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Castor	Moderate	Feedstock Price	18	1542.23	USD/dry ton oil	
-HEFA Castor	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Moderate	Benchmark MJSP	20	10.32857	USD/gal	
-HEFA Castor	Moderate	Benchmark GHG	21	0.053	kg CO2eq/gal	
-HEFA Jatropha	Moderate	Annual GHG	0	st.triang(0.5,162705692,36156820)	kg CO2eq/yr	32 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Jatropha	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Jatropha	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Jatropha	Moderate	Depreciation Period	3	7	years	
-HEFA Jatropha	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Moderate	Capital	5	324384000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Jatropha	Moderate	Fixed	6	14425000	USD/year	
-HEFA Jatropha	Moderate	DDGS	7	0	kg/year	
-HEFA Jatropha	Moderate	Electricity	8	0	kWh/year	
-HEFA Jatropha	Moderate	Diesel	9	768000	gal/year	SoT +/- random percent up to 5%
-HEFA Jatropha	Moderate	Gasoline	10	25376000	gal/year	SoT value +/- random percent up to 5%
-HEFA Jatropha	Moderate	Propane	11	4512000	gal/year	SoT +/- random percent up to 5%
-HEFA Jatropha	Moderate	Jet	12	st.triang(0.5,41976000,9328000)	gal/year	SoT varied between -3% and +7% random
-HEFA Jatropha	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Jatropha	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Jatropha	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Jatropha	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Jatropha	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Jatropha	Moderate	Feedstock Price	18	362.88	USD/dry ton oil	
-HEFA Jatropha	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Moderate	Benchmark MJSP	20	5.008918	USD/gal	
-HEFA Jatropha	Moderate	Benchmark GHG	21	0.055	kg CO2eq/gal	
-HEFA Pennycress	Moderate	Annual GHG	0	st.triang(0.6,161918208,35981824)	kg CO2eq/yr	35 g CO2eq/MJ jet product; calculated from jet output
-HEFA Pennycress	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Pennycress	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Pennycress	Moderate	Depreciation Period	3	7	years	
-HEFA Pennycress	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Moderate	Capital	5	322140000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Pennycress	Moderate	Fixed	6	10881000	USD/year	Fig. 6
-HEFA Pennycress	Moderate	DDGS	7	0	kg/year	
-HEFA Pennycress	Moderate	Electricity	8	0	kWh/year	
-HEFA Pennycress	Moderate	Diesel	9	9690000	gal/year	SoT +/- random percent up to 5%
-HEFA Pennycress	Moderate	Gasoline	10	19392000	gal/year	SoT value +/- random percent up to 5%
-HEFA Pennycress	Moderate	Propane	11	490000	gal/year	SoT +/- random percent up to 5%
-HEFA Pennycress	Moderate	Jet	12	st.triang(0.3,38083500,8463000)	gal/year	SoT varied between -3% and +7% random
-HEFA Pennycress	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Pennycress	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Pennycress	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Pennycress	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Pennycress	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Pennycress	Moderate	Feedstock Price	18	734.83	USD/dry ton oil	
-HEFA Pennycress	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Moderate	Benchmark MJSP	20	8.284299	USD/gal	
-HEFA Pennycress	Moderate	Benchmark GHG	21	0.0327	kg CO2eq/gal	
-HEFA Yellow Grease	Moderate	Annual GHG	0	st.triang(0.4,131537296,29230510)	kg CO2eq/yr	21 g CO2eq/MJ jet product; calculated from jet output
-HEFA Yellow Grease	Moderate	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Yellow Grease	Moderate	Discount Rate	2	0.1	unitless	
-HEFA Yellow Grease	Moderate	Depreciation Period	3	7	years	
-HEFA Yellow Grease	Moderate	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Moderate	Capital	5	331360000	USD/biorefinery	SoT value less random percent between 5 and 10%
-HEFA Yellow Grease	Moderate	Fixed	6	12600000	USD/year	Fig. 6
-HEFA Yellow Grease	Moderate	DDGS	7	0	kg/year	
-HEFA Yellow Grease	Moderate	Electricity	8	0	kWh/year	
-HEFA Yellow Grease	Moderate	Diesel	9	202000	gal/year	SoT +/- random percent up to 5%
-HEFA Yellow Grease	Moderate	Gasoline	10	22990000	gal/year	SoT value +/- random percent up to 5%
-HEFA Yellow Grease	Moderate	Propane	11	404000	gal/year	SoT +/- random percent up to 5%
-HEFA Yellow Grease	Moderate	Jet	12	st.triang(0.4,51710400,11491200)	gal/year	SoT varied between -3% and +7% random
-HEFA Yellow Grease	Moderate	DDGS Price	13	0.22	USD/kg	
-HEFA Yellow Grease	Moderate	Electricity Price	14	0.057	USD/kWh	
-HEFA Yellow Grease	Moderate	Diesel Price	15	3.25	USD/gal	
-HEFA Yellow Grease	Moderate	Gasoline Price	16	2	USD/gal	
-HEFA Yellow Grease	Moderate	Propane Price	17	0.6	USD/gal	
-HEFA Yellow Grease	Moderate	Feedstock Price	18	553.39	USD/dry ton oil	
-HEFA Yellow Grease	Moderate	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Moderate	Benchmark MJSP	20	5.28731	USD/gal	
-HEFA Yellow Grease	Moderate	Benchmark GHG	21	0.0172	kg CO2eq/gal	
-HEFA Camelina	Leap	Annual GHG	0	st.triang(0.8,151771898,33727088)	kg CO2eq/yr	47 g CO2eq/MJ jet product; Source: Zemanek 2020/De Jong (energy allocation); calculated from jet output
-HEFA Camelina	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Camelina	Leap	Discount Rate	2	0.1	unitless	
-HEFA Camelina	Leap	Depreciation Period	3	7	years	
-HEFA Camelina	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Leap	Capital	5	296480000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Camelina	Leap	Fixed	6	14425000	USD/year	Fig. 6
-HEFA Camelina	Leap	DDGS	7	0	kg/year	
-HEFA Camelina	Leap	Electricity	8	0	kWh/year	
-HEFA Camelina	Leap	Diesel	9	1272000	gal/year	SoT +/- random percent up to 10%
-HEFA Camelina	Leap	Gasoline	10	24605000	gal/year	SoT value +/- random percent up to 10%
-HEFA Camelina	Leap	Propane	11	236600	gal/year	SoT +/- random percent up to 10%
-HEFA Camelina	Leap	Jet	12	st.triang(0.7,60238800,13386400)	gal/year	SoT varied between -3% and +10% random
-HEFA Camelina	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Camelina	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Camelina	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Camelina	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Camelina	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Camelina	Leap	Feedstock Price	18	1587.59	USD/dry ton oil	
-HEFA Camelina	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Leap	Benchmark MJSP	20	9.671947	USD/gal	
-HEFA Camelina	Leap	Benchmark GHG	21	0.047	kg CO2eq/gal	
-HEFA Castor	Leap	Annual GHG	0	st.triang(0.6,253477171,56328260)	kg CO2eq/yr	53 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Castor	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Castor	Leap	Discount Rate	2	0.1	unitless	
-HEFA Castor	Leap	Depreciation Period	3	7	years	
-HEFA Castor	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Leap	Capital	5	300310000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Castor	Leap	Fixed	6	11176000	USD/year	
-HEFA Castor	Leap	DDGS	7	0	kg/year	
-HEFA Castor	Leap	Electricity	8	0	kWh/year	
-HEFA Castor	Leap	Diesel	9	108000	gal/year	SoT +/- random percent up to 10%
-HEFA Castor	Leap	Gasoline	10	25092000	gal/year	SoT value +/- random percent up to 10%
-HEFA Castor	Leap	Propane	11	570000	gal/year	SoT +/- random percent up to 10%
-HEFA Castor	Leap	Jet	12	st.triang(0.7,52578000,11684000)	gal/year	SoT varied between -3% and +10% random
-HEFA Castor	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Castor	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Castor	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Castor	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Castor	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Castor	Leap	Feedstock Price	18	1542.23	USD/dry ton oil	
-HEFA Castor	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Leap	Benchmark MJSP	20	10.32857	USD/gal	
-HEFA Castor	Leap	Benchmark GHG	21	0.053	kg CO2eq/gal	
-HEFA Jatropha	Leap	Annual GHG	0	st.triang(0.4,166782928,37062873)	kg CO2eq/yr	55 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Jatropha	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Jatropha	Leap	Discount Rate	2	0.1	unitless	
-HEFA Jatropha	Leap	Depreciation Period	3	7	years	
-HEFA Jatropha	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Leap	Capital	5	299968000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Jatropha	Leap	Fixed	6	14425000	USD/year	
-HEFA Jatropha	Leap	DDGS	7	0	kg/year	
-HEFA Jatropha	Leap	Electricity	8	0	kWh/year	
-HEFA Jatropha	Leap	Diesel	9	744000	gal/year	SoT +/- random percent up to 10%
-HEFA Jatropha	Leap	Gasoline	10	24156000	gal/year	SoT value +/- random percent up to 10%
-HEFA Jatropha	Leap	Propane	11	4230000	gal/year	SoT +/- random percent up to 10%
-HEFA Jatropha	Leap	Jet	12	st.triang(0.8,45144000,10032000)	gal/year	SoT varied between -3% and +10% random
-HEFA Jatropha	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Jatropha	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Jatropha	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Jatropha	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Jatropha	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Jatropha	Leap	Feedstock Price	18	362.88	USD/dry ton oil	
-HEFA Jatropha	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Leap	Benchmark MJSP	20	5.008918	USD/gal	
-HEFA Jatropha	Leap	Benchmark GHG	21	0.055	kg CO2eq/gal	
-HEFA Pennycress	Leap	Annual GHG	0	st.triang(0.8,170656651,37923700)	kg CO2eq/yr	33 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (energy allocation); calculated from jet output
-HEFA Pennycress	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Pennycress	Leap	Discount Rate	2	0.1	unitless	
-HEFA Pennycress	Leap	Depreciation Period	3	7	years	
-HEFA Pennycress	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Leap	Capital	5	300900000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Pennycress	Leap	Fixed	6	10881000	USD/year	Fig. 6
-HEFA Pennycress	Leap	DDGS	7	0	kg/year	
-HEFA Pennycress	Leap	Electricity	8	0	kWh/year	
-HEFA Pennycress	Leap	Diesel	9	10450000	gal/year	SoT +/- random percent up to 10%
-HEFA Pennycress	Leap	Gasoline	10	17664000	gal/year	SoT value +/- random percent up to 10%
-HEFA Pennycress	Leap	Propane	11	450000	gal/year	SoT +/- random percent up to 10%
-HEFA Pennycress	Leap	Jet	12	st.triang(0.6,42435900,9430200)	gal/year	SoT varied between -3% and +10% random
-HEFA Pennycress	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Pennycress	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Pennycress	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Pennycress	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Pennycress	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Pennycress	Leap	Feedstock Price	18	734.83	USD/dry ton oil	
-HEFA Pennycress	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Leap	Benchmark MJSP	20	8.284299	USD/gal	
-HEFA Pennycress	Leap	Benchmark GHG	21	0.0327	kg CO2eq/gal	
-HEFA Yellow Grease	Leap	Annual GHG	0	st.triang(0.3,115900072,25755571)	kg CO2eq/yr	17 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-HEFA Yellow Grease	Leap	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Yellow Grease	Leap	Discount Rate	2	0.1	unitless	
-HEFA Yellow Grease	Leap	Depreciation Period	3	7	years	
-HEFA Yellow Grease	Leap	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Leap	Capital	5	317408000	USD/biorefinery	SoT value less random percent up to 15%
-HEFA Yellow Grease	Leap	Fixed	6	12600000	USD/year	Fig. 6
-HEFA Yellow Grease	Leap	DDGS	7	0	kg/year	
-HEFA Yellow Grease	Leap	Electricity	8	0	kWh/year	
-HEFA Yellow Grease	Leap	Diesel	9	228000	gal/year	SoT +/- random percent up to 10%
-HEFA Yellow Grease	Leap	Gasoline	10	26990000	gal/year	SoT value +/- random percent up to 10%
-HEFA Yellow Grease	Leap	Propane	11	440000	gal/year	SoT +/- random percent up to 10%
-HEFA Yellow Grease	Leap	Jet	12	st.triang(0.8,48081600,10684800)	gal/year	SoT varied between -3% and +10% random
-HEFA Yellow Grease	Leap	DDGS Price	13	0.22	USD/kg	
-HEFA Yellow Grease	Leap	Electricity Price	14	0.057	USD/kWh	
-HEFA Yellow Grease	Leap	Diesel Price	15	3.25	USD/gal	
-HEFA Yellow Grease	Leap	Gasoline Price	16	2	USD/gal	
-HEFA Yellow Grease	Leap	Propane Price	17	0.6	USD/gal	
-HEFA Yellow Grease	Leap	Feedstock Price	18	553.39	USD/dry ton oil	
-HEFA Yellow Grease	Leap	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Leap	Benchmark MJSP	20	5.28731	USD/gal	
-HEFA Yellow Grease	Leap	Benchmark GHG	21	0.0172	kg CO2eq/gal	
-HEFA Camelina	Incremental	Annual GHG	0	st.triang(0.3,199489968,44331104)	kg CO2eq/yr	31 g CO2eq/MJ jet product; Source: Zemanek 2020/Lokesh (energy allocation); calculated from jet output
-HEFA Camelina	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Camelina	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Camelina	Incremental	Depreciation Period	3	7	years	
-HEFA Camelina	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Camelina	Incremental	Capital	5	352288000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Camelina	Incremental	Fixed	6	14425000	USD/year	Fig. 6
-HEFA Camelina	Incremental	DDGS	7	0	kg/year	
-HEFA Camelina	Incremental	Electricity	8	0	kWh/year	
-HEFA Camelina	Incremental	Diesel	9	1188000	gal/year	SoT minus random percent up to 10%
-HEFA Camelina	Incremental	Gasoline	10	23569000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Camelina	Incremental	Propane	11	234000	gal/year	SoT minus random percent up to 10%
-HEFA Camelina	Incremental	Jet	12	st.triang(0.3,52449300,11655400)	gal/year	SoT +/- up to 3% random
-HEFA Camelina	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Camelina	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Camelina	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Camelina	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Camelina	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Camelina	Incremental	Feedstock Price	18	1587.59	USD/dry ton oil	
-HEFA Camelina	Incremental	Raw Material Price	19	1000	USD/kg	
-HEFA Camelina	Incremental	Benchmark MJSP	20	9.671947	USD/gal	
-HEFA Camelina	Incremental	Benchmark GHG	21	0.047	kg CO2eq/gal	
-HEFA Castor	Incremental	Annual GHG	0	st.triang(0.7,453567409,100792758)	kg CO2eq/yr	78 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Castor	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Castor	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Castor	Incremental	Depreciation Period	3	7	years	
-HEFA Castor	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Castor	Incremental	Capital	5	341000000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Castor	Incremental	Fixed	6	11176000	USD/year	
-HEFA Castor	Incremental	DDGS	7	0	kg/year	
-HEFA Castor	Incremental	Electricity	8	0	kWh/year	
-HEFA Castor	Incremental	Diesel	9	94000	gal/year	SoT minus random percent up to 10%
-HEFA Castor	Incremental	Gasoline	10	23862000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Castor	Incremental	Propane	11	465000	gal/year	SoT minus random percent up to 10%
-HEFA Castor	Incremental	Jet	12	st.triang(0.7,48006000,10668000)	gal/year	SoT +/- up to 3% random
-HEFA Castor	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Castor	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Castor	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Castor	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Castor	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Castor	Incremental	Feedstock Price	18	1542.23	USD/dry ton oil	
-HEFA Castor	Incremental	Raw Material Price	19	1000	USD/kg	
-HEFA Castor	Incremental	Benchmark MJSP	20	10.32857	USD/gal	
-HEFA Castor	Incremental	Benchmark GHG	21	0.053	kg CO2eq/gal	
-HEFA Jatropha	Incremental	Annual GHG	0	st.triang(0.5,533782117,118618248)	kg CO2eq/yr	107 g CO2eq/MJ jet product; Source: Liu 2021; calculated from jet output
-HEFA Jatropha	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Jatropha	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Jatropha	Incremental	Depreciation Period	3	7	years	
-HEFA Jatropha	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Jatropha	Incremental	Capital	5	366240000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Jatropha	Incremental	Fixed	6	14425000	USD/year	
-HEFA Jatropha	Incremental	DDGS	7	0	kg/year	
-HEFA Jatropha	Incremental	Electricity	8	0	kWh/year	
-HEFA Jatropha	Incremental	Diesel	9	744000	gal/year	SoT minus random percent up to 10%
-HEFA Jatropha	Incremental	Gasoline	10	22692000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Jatropha	Incremental	Propane	11	4653000	gal/year	SoT minus random percent up to 10%
-HEFA Jatropha	Incremental	Jet	12	st.triang(0.6,41184000,9152000)	gal/year	SoT +/- up to 3% random
-HEFA Jatropha	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Jatropha	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Jatropha	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Jatropha	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Jatropha	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Jatropha	Incremental	Feedstock Price	18	362.88	USD/dry ton oil	
-HEFA Jatropha	Incremental	Raw Material Price	19	1000	USD/kg	
-HEFA Jatropha	Incremental	Benchmark MJSP	20	5.008918	USD/gal	
-HEFA Jatropha	Incremental	Benchmark GHG	21	0.055	kg CO2eq/gal	
-HEFA Pennycress	Incremental	Annual GHG	0	st.triang(0.3,201208251,44712945)	kg CO2eq/yr	45 g CO2eq/MJ jet product; Source: Zemanek 2020/Fan (monetary allocation); calculated from jet output
-HEFA Pennycress	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Pennycress	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Pennycress	Incremental	Depreciation Period	3	7	years	
-HEFA Pennycress	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Pennycress	Incremental	Capital	5	336300000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Pennycress	Incremental	Fixed	6	10881000	USD/year	Fig. 6
-HEFA Pennycress	Incremental	DDGS	7	0	kg/year	
-HEFA Pennycress	Incremental	Electricity	8	0	kWh/year	
-HEFA Pennycress	Incremental	Diesel	9	9120000	gal/year	SoT minus random percent up to 10%
-HEFA Pennycress	Incremental	Gasoline	10	18048000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Pennycress	Incremental	Propane	11	480000	gal/year	SoT minus random percent up to 10%
-HEFA Pennycress	Incremental	Jet	12	st.triang(0.7,36995400,8221200)	gal/year	SoT +/- up to 3% random
-HEFA Pennycress	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Pennycress	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Pennycress	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Pennycress	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Pennycress	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Pennycress	Incremental	Feedstock Price	18	734.83	USD/dry ton oil	
-HEFA Pennycress	Incremental	Raw Material Price	19	1000	USD/kg	
-HEFA Pennycress	Incremental	Benchmark MJSP	20	8.284299	USD/gal	
-HEFA Pennycress	Incremental	Benchmark GHG	21	0.0327	kg CO2eq/gal	
-HEFA Yellow Grease	Incremental	Annual GHG	0	st.triang(0.5,77136679,17141484)	kg CO2eq/yr	14 g CO2eq/MJ jet product; Source: Capaz 2021; calculated from jet output
-HEFA Yellow Grease	Incremental	Jet LHV	1	121.13	MJ/gal	Source: Capaz 2021, converted from GJ/m3
-HEFA Yellow Grease	Incremental	Discount Rate	2	0.1	unitless	
-HEFA Yellow Grease	Incremental	Depreciation Period	3	7	years	
-HEFA Yellow Grease	Incremental	Income Tax Rate	4	0.35	unitless	
-HEFA Yellow Grease	Incremental	Capital	5	348800000	USD/biorefinery	SoT value +/- random percent up to 5%
-HEFA Yellow Grease	Incremental	Fixed	6	12600000	USD/year	Fig. 6
-HEFA Yellow Grease	Incremental	DDGS	7	0	kg/year	
-HEFA Yellow Grease	Incremental	Electricity	8	0	kWh/year	
-HEFA Yellow Grease	Incremental	Diesel	9	186000	gal/year	SoT minus random percent up to 10%
-HEFA Yellow Grease	Incremental	Gasoline	10	22264000	gal/year	SoT value minus random percent between 0 and 10%
-HEFA Yellow Grease	Incremental	Propane	11	376000	gal/year	SoT minus random percent up to 10%
-HEFA Yellow Grease	Incremental	Jet	12	st.triang(0.6,45813600,10180800)	gal/year	SoT +/- up to 3% random
-HEFA Yellow Grease	Incremental	DDGS Price	13	0.22	USD/kg	
-HEFA Yellow Grease	Incremental	Electricity Price	14	0.057	USD/kWh	
-HEFA Yellow Grease	Incremental	Diesel Price	15	3.25	USD/gal	
-HEFA Yellow Grease	Incremental	Gasoline Price	16	2	USD/gal	
-HEFA Yellow Grease	Incremental	Propane Price	17	0.6	USD/gal	
-HEFA Yellow Grease	Incremental	Feedstock Price	18	553.39	USD/dry ton oil	
-HEFA Yellow Grease	Incremental	Raw Material Price	19	1000	USD/kg	
-HEFA Yellow Grease	Incremental	Benchmark MJSP	20	5.28731	USD/gal	
-HEFA Yellow Grease	Incremental	Benchmark GHG	21	0.0172	kg CO2eq/gal	
+HEFA Yellow Grease	Moderate Progress	Benchmark GHG	21	0.0172	kg CO2eq/gal	
+HEFA Yellow Grease	Leap Forward	Benchmark GHG	21	0.0172	kg CO2eq/gal	
+HEFA Yellow Grease	Incremental Progress	Benchmark GHG	21	0.0172	kg CO2eq/gal	
