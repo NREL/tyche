@@ -1,0 +1,10 @@
+{
+    "id" : 213
+  , "loc" : ["tutorial","data","saf"]
+  , "technology_model" : "saf_demo"
+  , "sample_count" : 1000
+  , "total_amount" : 5E6
+  , "target_metric" : "Reduction in MJSP"
+  , "Technology" : "HEFA Castor"
+  , "permutation" : [2,1,3]
+  }
