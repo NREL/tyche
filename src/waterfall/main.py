@@ -166,6 +166,13 @@ def _uuid(args, key_list=['Index','Technology','Order','sample_count','total_amo
     return uuid.uuid3(uuid.NAMESPACE_DNS, id_str)
 
 
+# def merge_multi(self, df, on):
+#     return self.reset_index().join(df,on=on).set_index(self.index.names)
+
+# s1.reset_index().join(s2, on=on).set_index(self.index.names)
+
+
+
 # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 # tyche_dir = get_dir(r"(.*/tyche)")
 tyche_dir = os.path.abspath("")
@@ -173,7 +180,7 @@ waterfall_dir = os.path.join(tyche_dir,"src","waterfall")
 data_dir = os.path.join(tyche_dir,"tutorial","data")
 input_dir = os.path.join(waterfall_dir,"data","_inp")
 
-args = read_args(os.path.join(input_dir,"213.json"), tyche_dir)
+args = read_args(os.path.join(input_dir,"saf_camelina_mjsp_213.json"), tyche_dir)
 
 
 # Import technology functions
