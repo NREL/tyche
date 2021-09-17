@@ -304,7 +304,7 @@ class Designs:
     sample_count : int
       The number of random samples.
     """
-
+    print(f"Evaluating {technology}")
     f_capital    = self.compiled_functions[technology].capital
     f_fixed      = self.compiled_functions[technology].fixed        
     f_production = self.compiled_functions[technology].production
