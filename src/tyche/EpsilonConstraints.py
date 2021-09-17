@@ -14,7 +14,7 @@ from mip import Model, MAXIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
   "Optimum",
-  ["exit_code", "exit_message", "amounts", "metrics", "solve_time"]
+  ["exit_code", "exit_message", "amounts", "metrics", "solve_time", "opt_sense"]
 )
 """
 Named tuple type for optimization results.
@@ -33,12 +33,14 @@ class EpsilonConstraintOptimizer:
     The scaling factor for output.
   """
 
-  def __init__(self, evaluator, scale = 1e6):
+  def __init__(self, evaluator, sense = 'max', scale = 1e6):
     """
     Parameters
     ----------
     evaluator : tyche.Evaluator
       The technology evaluator.
+    sense : str
+      Optimization sense: 'min' or 'max'.
     scale : float
       The scaling factor for output.
     """
@@ -47,25 +49,38 @@ class EpsilonConstraintOptimizer:
     self.scale = scale
     self._max_metrics = {}
 
-  def _f(self, evaluate, verbose = 0):
+    self.valid_sense = {'min', 'max'}
+    if sense not in self.valid_sense:
+      raise ValueError(f'EpsilonConstraintOptimizer: sense must be one of {self.valid_sense}')
+    else:
+      self.sense = sense
+
+  def _f(self, evaluate, sense, verbose = 0):
     def f(x):
       xx = pd.Series(self.scale * x, name = "Amount", index = self.evaluator.max_amount.index)
       yy = evaluate(xx)
       if verbose > 2:
         print ('scaled decision variables: ', xx.values, '\n')
         print('metric statistics: ', yy.values, '\n')
-        # return the negative s.t. this function can be called as-is to maximize
-        # the objective function
-        # (all algorithms minimize, minimizing the negative is maximizing)
-      return - yy
+      # fmin_slsqp always minimizes the objective function
+      # if this method is maximizing, multiply the objective function by -1.0 to
+      # maximize by minimizing the negative
+      # if this method is minimizing, keep the objective function as is to
+      # minimize
+      if sense == 'max':
+        _obj_mult = -1.0
+      else:
+        _obj_mult = 1.0
+      return _obj_mult * yy
     return f
 
-  def _fi(self, i, evaluate, verbose = 0):
-    return lambda x: self._f(evaluate, verbose)(x)[i]
+  def _fi(self, i, evaluate, sense, verbose = 0):
+    return lambda x: self._f(evaluate, sense, verbose)(x)[i]
 
-  def maximize_slsqp(
+  def opt_slsqp(
     self                  ,
     metric                ,
+    sense        = None   ,
     max_amount   = None   ,
     total_amount = None   ,
     min_metric   = None   ,
@@ -82,6 +97,10 @@ class EpsilonConstraintOptimizer:
     ----------
     metric : str
       Name of metric to maximize.
+    sense : str
+      Optimization sense ('minimize' or 'maximize'). If no value is provided to
+       this method, the sense value used to create the
+       EpsilonConstraintOptimizer object is used instead.
     max_amount : DataFrame
       Maximum investment amounts by R&D category (defined in investments data)
       and maximum metric values
@@ -110,6 +129,18 @@ class EpsilonConstraintOptimizer:
                       constraint status, metric constraint status, status of
                       each algorithm iteration, and summary message
     """
+
+    # If no optimization sense is provided, use the default value from self.
+    # If an optimization sense IS provided, overwrite the default value with
+    # the provided value.
+    # _sense is the parameter used only in this method
+    if sense is None:
+      _sense = self.sense
+    else:
+      if sense not in self.valid_sense:
+        raise ValueError(f'opt_slsqp: sense must be one of {self.valid_sense}')
+      else:
+        _sense = sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -200,7 +231,7 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = fmin_slsqp(
-      self._fi(i, evaluate, verbose), # callable function that returns the scalar objective function value
+      self._fi(i, evaluate, _sense, verbose), # callable function that returns the scalar objective function value
       initial / self.scale , # scaled initial guess values for decision variables (investment amounts, metrics)
       f_ieqcons   = g      , # list of functions that return inequality constraints in the form const >= 0
       bounds      = bounds , # upper and lower bounds on decision variables
@@ -225,7 +256,8 @@ class EpsilonConstraintOptimizer:
       exit_message = result[4],
       amounts      = x        ,
       metrics      = y        ,
-      solve_time   = elapsed
+      solve_time   = elapsed  ,
+      opt_sense    = _sense   ,
     )
 
 
@@ -611,11 +643,12 @@ class EpsilonConstraintOptimizer:
     verbose : int
       Verbosity level.
     """
-
+    _sense = 'max'
     self._max_metrics = {
-      metric : self.maximize_slsqp(metric, max_amount, total_amount,
-                                   None, statistic, None,
-                                   tol, maxiter, verbose)
+      metric : self.opt_slsqp(metric, _sense, max_amount, total_amount,
+                              None, statistic, None,
+                              tol, maxiter, verbose
+                              )
       for metric in self.evaluator.metrics
     }
     return pd.Series(
