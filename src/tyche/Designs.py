@@ -304,7 +304,7 @@ class Designs:
     sample_count : int
       The number of random samples.
     """
-
+    print(f"Evaluating {technology}")
     f_capital    = self.compiled_functions[technology].capital
     f_fixed      = self.compiled_functions[technology].fixed        
     f_production = self.compiled_functions[technology].production
@@ -331,8 +331,8 @@ class Designs:
            np.sum(fixed_cost, axis=0) / design.scale +                     \
            np.sum(design.input_price  * input , axis=0) -                  \
            np.sum(design.output_price * output, axis=0)
-    
-    metric = f_metrics(design.scale, capital_cost, design.lifetime, fixed_cost, input_raw, input, output_raw, output, cost, parameter)
+
+    metric = f_metrics(design.scale, capital_cost, design.lifetime, fixed_cost, input_raw, input, design.input_price, output_raw, output, cost, parameter)
     
     def organize(df, ix):
       ix1 = pd.MultiIndex.from_product(
