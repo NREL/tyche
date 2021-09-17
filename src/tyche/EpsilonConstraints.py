@@ -643,12 +643,19 @@ class EpsilonConstraintOptimizer:
     verbose : int
       Verbosity level.
     """
-    _sense = 'max'
     self._max_metrics = {
-      metric : self.opt_slsqp(metric, _sense, max_amount, total_amount,
-                              None, statistic, None,
-                              tol, maxiter, verbose
-                              )
+      metric : self.opt_slsqp(
+        metric,
+        self.sense,
+        max_amount,
+        total_amount,
+        None,
+        statistic,
+        None,
+        tol,
+        maxiter,
+        verbose
+      )
       for metric in self.evaluator.metrics
     }
     return pd.Series(
