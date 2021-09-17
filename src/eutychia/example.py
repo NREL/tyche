@@ -197,7 +197,7 @@ if __name__ == '__main__':
 # In[21]:
 
 
-  optimum = optimizer.maximize_slsqp(
+  optimum = optimizer.opt_slsqp(
       "LCOE"                       ,
       total_amount = investment_max,
       min_metric   = metric_min    ,
@@ -229,7 +229,7 @@ if __name__ == '__main__':
 # In[24]:
 
 
-  optimum = optimizer.maximize_slsqp(
+  optimum = optimizer.opt_slsqp(
       "LCOE"                       ,
       total_amount = investment_max,
       min_metric   = metric_min    ,
@@ -243,7 +243,7 @@ if __name__ == '__main__':
 # In[25]:
 
 
-  optimum = optimizer.maximize_slsqp(
+  optimum = optimizer.opt_slsqp(
       "LCOE"                                                         ,
       total_amount = investment_max                                  ,
       min_metric   = pd.Series([30], name = "Value", index = ["GHG"]),

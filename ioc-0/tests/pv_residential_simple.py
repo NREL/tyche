@@ -34,7 +34,7 @@ print(metric_min)
 
 
 # Use SLSQP.
-optimum = optimizer.maximize_slsqp(
+optimum = optimizer.opt_slsqp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,

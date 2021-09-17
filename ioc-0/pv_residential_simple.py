@@ -20,7 +20,7 @@ optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 q = optimizer.max_metrics(verbose = 0)
 q
 
-optimizer.maximize_slsqp(
+optimizer.opt_slsqp(
   "LCOE"                                                       ,
   total_amount = 3e6                                           ,
   min_metric   = pd.Series([40], name="Value", index = ["GHG"]),
