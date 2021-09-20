@@ -620,6 +620,7 @@ class EpsilonConstraintOptimizer:
     self                  ,
     max_amount   = None   ,
     total_amount = None   ,
+    metric_sense = None   ,
     statistic    = np.mean,
     tol          = 1e-8   ,
     maxiter      = 50     ,
@@ -634,6 +635,10 @@ class EpsilonConstraintOptimizer:
       The maximum amounts that can be invested in each category.
     total_amount : float
       The maximum amount that can be invested *in toto*.
+    metric_sense : Dict or str
+      Optimization sense for each metric. Must be 'min' or 'max'. If None, then
+      the sense provided to the EpsilonConstraintOptimizer class is used for
+      all metrics. If string, the sense is used for all metrics.
     statistic : function
       The statistic used on the sample evaluations.
     tol : float
@@ -643,21 +648,63 @@ class EpsilonConstraintOptimizer:
     verbose : int
       Verbosity level.
     """
-    self._max_metrics = {
-      metric : self.opt_slsqp(
-        metric,
-        self.sense,
-        max_amount,
-        total_amount,
-        None,
-        statistic,
-        None,
-        tol,
-        maxiter,
-        verbose
-      )
-      for metric in self.evaluator.metrics
-    }
+    # if no metric_sense is provided, use the sense value provided to the
+    # EpsilonConstraintOptimizer class object for all metrics
+    if metric_sense is None:
+      self._max_metrics = {
+        metric : self.opt_slsqp(
+          metric,
+          self.sense,
+          max_amount,
+          total_amount,
+          None,
+          statistic,
+          None,
+          tol,
+          maxiter,
+          verbose
+        )
+        for metric in self.evaluator.metrics
+      }
+    else:
+      # if metric_sense is a dictionary, use the sense value provided per metric
+      if type(metric_sense) == dict:
+        self._max_metrics = {
+          metric: self.opt_slsqp(
+            metric,
+            metric_sense[metric],
+            max_amount,
+            total_amount,
+            None,
+            statistic,
+            None,
+            tol,
+            maxiter,
+            verbose
+          )
+          for metric in self.evaluator.metrics
+        }
+      # if metric_sense is a string, apply that sense to all metrics
+      elif type(metric_sense) == str:
+        self._max_metrics = {
+          metric: self.opt_slsqp(
+            metric,
+            metric_sense,
+            max_amount,
+            total_amount,
+            None,
+            statistic,
+            None,
+            tol,
+            maxiter,
+            verbose
+          )
+          for metric in self.evaluator.metrics
+        }
+      else:
+        raise TypeError(f'optimum_metrics: metric_sense must be dict or str')
+
+
     return pd.Series(
       [v.metrics[k] if v.exit_code == 0
        else np.nan for k, v in self._max_metrics.items()],
