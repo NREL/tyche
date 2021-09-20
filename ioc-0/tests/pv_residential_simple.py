@@ -50,7 +50,7 @@ print(optimum.metrics)
 
 # Use Piecewise-Linear MILP.
 
-optimum = optimizer.pwlinear_milp(
+optimum = optimizer.opt_milp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,
