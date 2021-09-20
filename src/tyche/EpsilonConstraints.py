@@ -10,7 +10,7 @@ from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
 
-from mip import Model, MAXIMIZE, BINARY, xsum
+from mip import Model, MAXIMIZE, MINIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
   "Optimum",
@@ -98,7 +98,7 @@ class EpsilonConstraintOptimizer:
     metric : str
       Name of metric to maximize.
     sense : str
-      Optimization sense ('minimize' or 'maximize'). If no value is provided to
+      Optimization sense ('min' or 'max'). If no value is provided to
        this method, the sense value used to create the
        EpsilonConstraintOptimizer object is used instead.
     max_amount : DataFrame
@@ -433,7 +433,8 @@ class EpsilonConstraintOptimizer:
         exit_message=result.message,
         amounts=x,
         metrics=y,
-        solve_time=elapsed
+        solve_time=elapsed,
+        opt_sense=None
       )
     else:
       return result, elapsed
@@ -610,7 +611,8 @@ class EpsilonConstraintOptimizer:
         exit_message=result.message,
         amounts=x,
         metrics=y,
-        solve_time=elapsed
+        solve_time=elapsed,
+        opt_sense=None
       )
     else:
       return result, elapsed
@@ -713,9 +715,10 @@ class EpsilonConstraintOptimizer:
     )
 
 
-  def pwlinear_milp(
+  def opt_milp(
           self,
           metric,
+          sense        = None   ,
           max_amount   = None   ,
           total_amount = None   ,
           min_metric   = None   ,
@@ -731,6 +734,10 @@ class EpsilonConstraintOptimizer:
     ----------
     metric : str
       Name of metric to maximize
+    sense : str
+      Optimization sense ('min' or 'max'). If no value is provided to this
+      method, the sense value used to create the EpsilonConstraintOptimizer
+      object is used instead.
     max_amount : DataFrame
       Maximum investment amounts by R&D category (defined in investments data)
       and maximum metric values
@@ -759,6 +766,19 @@ class EpsilonConstraintOptimizer:
       metrics (None, if no solution found)
       solve_time
     """
+
+    # If no optimization sense is provided, use the default value from self.
+    # If an optimization sense IS provided, overwrite the default value with
+    # the provided value.
+    # _sense is the parameter used only in this method
+    if sense is None:
+      _sense = self.sense
+    else:
+      if sense not in self.valid_sense:
+        raise ValueError(f'opt_milp: sense must be one of {self.valid_sense}')
+      else:
+        _sense = sense
+
     _start = time.time()
 
     # investment categories
@@ -772,7 +792,7 @@ class EpsilonConstraintOptimizer:
     if max_amount is None:
       max_amount = self.evaluator.max_amount.Amount
 
-    if verbose > 1: print('Getting and processing wide data at %s s' %
+    if verbose > 1: print(f'Getting and processing wide data at %s s' %
                           str(round(time.time() - _start, 1)))
 
     # get data frame of elicited metric values by investment level combinations
@@ -781,8 +801,7 @@ class EpsilonConstraintOptimizer:
     _nbinary = len(_wide) * (len(_wide)-1) / 2
 
     if _nbinary >= sizelimit:
-      print('MILP contains %d binary variables and will exit without solving' %
-            _nbinary)
+      print(f'MILP contains {_nbinary} binary variables and will exit without solving')
       return None
 
     # (combinations of) Investment levels
@@ -807,7 +826,10 @@ class EpsilonConstraintOptimizer:
                           str(round(time.time() - _start, 1)))
 
     # instantiate MILP model
-    _model = Model(sense=MAXIMIZE)
+    if _sense == 'max':
+      _model = Model(sense=MAXIMIZE)
+    else:
+      _model = Model(sense=MINIMIZE)
 
     bin_vars = []
     lmbd_vars = []
@@ -956,7 +978,8 @@ class EpsilonConstraintOptimizer:
         exit_message=_model.status,
         amounts=x,
         metrics=y,
-        solve_time=elapsed
+        solve_time=elapsed,
+        opt_sense = _sense
       )
     # if no feasible solution was found, return a partially empty Optimum tuple
     else:
@@ -965,5 +988,6 @@ class EpsilonConstraintOptimizer:
         exit_message=_model.status,
         amounts=None,
         metrics=None,
-        solve_time=elapsed
+        solve_time=elapsed,
+        opt_sense=_sense
       )
