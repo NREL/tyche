@@ -169,7 +169,7 @@ if __name__ == '__main__':
 # In[18]:
 
 
-  metric_max = optimizer.max_metrics()
+  metric_max = optimizer.optimum_metrics()
   metric_max
 
 

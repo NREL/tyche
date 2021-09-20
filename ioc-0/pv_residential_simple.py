@@ -17,7 +17,7 @@ evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 
 optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
-q = optimizer.max_metrics(verbose = 0)
+q = optimizer.optimum_metrics(verbose = 0)
 q
 
 optimizer.opt_slsqp(

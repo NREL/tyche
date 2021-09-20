@@ -24,7 +24,7 @@ print(tranche_results.amounts)
 evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
-metric_max = optimizer.max_metrics()
+metric_max = optimizer.optimum_metrics()
 print(metric_max)
 
 investment_max = 3e6

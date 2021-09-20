@@ -616,7 +616,7 @@ class EpsilonConstraintOptimizer:
       return result, elapsed
 
 
-  def max_metrics(
+  def optimum_metrics(
     self                  ,
     max_amount   = None   ,
     total_amount = None   ,
