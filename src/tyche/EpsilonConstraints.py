@@ -83,7 +83,8 @@ class EpsilonConstraintOptimizer:
     sense        = None   ,
     max_amount   = None   ,
     total_amount = None   ,
-    min_metric   = None   ,
+    eps_metric   = None   ,
+    eps_sense    = None   ,
     statistic    = np.mean,
     initial      = None   ,
     tol          = 1e-8   ,
@@ -106,8 +107,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
-    min_metric : DataFrame
-      Lower limits on all metrics.
+    eps_metric : DataFrame
+      RHS of the epsilon constraint on one or more metrics.
+    eps_sense : str
+      Whether the epsilon constraint is a minimum constraint (LHS >= RHS) or a
+       maximum constraint (LHS <= RHS). If no value is provided, defaults to
+       'min' (LHS >= RHS).
     statistic : function
       Summary statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
@@ -141,6 +146,14 @@ class EpsilonConstraintOptimizer:
         raise ValueError(f'opt_slsqp: sense must be one of {self.valid_sense}')
       else:
         _sense = sense
+
+    if eps_sense is None:
+      _eps_sense = 'min'
+    else:
+      if eps_sense not in self.valid_sense:
+        raise ValueError(f'opt_slsqp: eps_sense must be one of {self.valid_sense}')
+      else:
+        _eps_sense = eps_sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -191,15 +204,15 @@ class EpsilonConstraintOptimizer:
       # exit the total_amount IF statement
 
       # if lower limits on metrics have been defined,
-      if min_metric is not None:
+      if eps_metric is not None:
 
         # loop through all available metrics
-        for index, limit in min_metric.iteritems():
+        for index, limit in eps_metric.iteritems():
 
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          value = - self._f(evaluate, verbose)(x)[j]
+          value = self._f(evaluate, _eps_sense, verbose)(x)[j]
 
           if verbose == 3:
             print('Metric limit:     ', np.round(limit, 3),
