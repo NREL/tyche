@@ -108,11 +108,11 @@ class EpsilonConstraintOptimizer:
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
     eps_metric : DataFrame
-      RHS of the epsilon constraint on one or more metrics.
-    eps_sense : str
-      Whether the epsilon constraint is a minimum constraint (LHS >= RHS) or a
-       maximum constraint (LHS <= RHS). If no value is provided, defaults to
-       'min' (LHS >= RHS).
+      RHS of the epsilon constraint(s) on one or more metrics.
+    eps_sense : DataFrame
+      Whether the epsilon constraint on each metric is a minimum constraint
+      (LHS >= RHS) or a maximum constraint (LHS <= RHS). If no value is
+      provided, defaults to 'min' (LHS >= RHS) for all epsilon constraints.
     statistic : function
       Summary statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
@@ -150,7 +150,7 @@ class EpsilonConstraintOptimizer:
     if eps_sense is None:
       _eps_sense = 'min'
     else:
-      if eps_sense not in self.valid_sense:
+      if not all(eps_sense.isin(self.valid_sense)):
         raise ValueError(f'opt_slsqp: eps_sense must be one of {self.valid_sense}')
       else:
         _eps_sense = eps_sense
@@ -212,7 +212,7 @@ class EpsilonConstraintOptimizer:
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          value = self._f(evaluate, _eps_sense, verbose)(x)[j]
+          value = self._f(evaluate, eps_sense[index], verbose)(x)[j]
 
           if verbose == 3:
             print('Metric limit:     ', np.round(limit, 3),
@@ -734,7 +734,8 @@ class EpsilonConstraintOptimizer:
           sense        = None   ,
           max_amount   = None   ,
           total_amount = None   ,
-          min_metric   = None   ,
+          eps_metric   = None   ,
+          eps_sense    = None   ,
           statistic    = np.mean,
           sizelimit    = 1e6    ,
           verbose      = 0      ,
@@ -756,8 +757,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
-    min_metric : DataFrame
-      Lower limits on all metrics
+    eps_metric : DataFrame
+      RHS of the epsilon constraint(s) on one or more metrics.
+    eps_sense : str
+      Whether the epsilon constraint is a minimum constraint (LHS >= RHS) or a
+       maximum constraint (LHS <= RHS). If no value is provided, defaults to
+       'min' (LHS >= RHS).
     statistic : function
       Summary statistic (metric measure) fed to evaluator_corners_wide method
       in Evaluator
@@ -778,6 +783,7 @@ class EpsilonConstraintOptimizer:
       amounts (None, if no solution found)
       metrics (None, if no solution found)
       solve_time
+      opt_sense
     """
 
     # If no optimization sense is provided, use the default value from self.
@@ -791,6 +797,14 @@ class EpsilonConstraintOptimizer:
         raise ValueError(f'opt_milp: sense must be one of {self.valid_sense}')
       else:
         _sense = sense
+
+    if eps_sense is None:
+      _eps_sense = 'min'
+    else:
+      if eps_sense not in self.valid_sense:
+        raise ValueError(f'opt_milp: eps_sense must be one of {self.valid_sense}')
+      else:
+        _eps_sense = eps_sense
 
     _start = time.time()
 
@@ -894,15 +908,15 @@ class EpsilonConstraintOptimizer:
                           str(round(time.time() - _start, 1)))
 
     # define metric constraints if lower limits on metrics have been defined
-    if min_metric is not None:
+    if eps_metric is not None:
 
       # loop through list of metric minima
-      for index, limit in min_metric.iteritems():
+      for index, limit in eps_metric.iteritems():
 
         # add minimum-metric constraint on the lambda variables
         _model += xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
                        for i in range(I)) >= limit,\
-                  'Minimum_' + index
+                  'Eps_Const_' + index
 
     if verbose > 1: print('Defining lambda convexity constraints at %s s' %
                           str(round(time.time() - _start, 1)))
