@@ -84,4 +84,8 @@ optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 optimum = optimizer.maximize_slsqp(
     metric = args['target_metric'],
     total_amount = args['total_amount'],
+    max_amount = pd.Series(
+        [2000000, 2000000, 2000000],
+        index=["OPE Investment Only", "CPR Investment Only", "FAC Investment Only"],
+    )
 )
