@@ -10,38 +10,54 @@ from itertools import permutations
 class Waterfall:
   """
   amounts : DataFrame
-  evaluator : Evaluator
   order : array
+  evaluator : Evaluator
+  raw : DataFrame
+  max_amount : float
+  path : string
+  values : array of DataFrames
   """
   def __init__(self,
     amounts,
     evaluator,
     order = None,
     metric = None,
+    max_amount = None,
     data = os.path.abspath(os.path.join("src","waterfall","data"))
   ):
+    print("\nCreate waterfall for the following investments\n", amounts, "\n")
+    self._data_path = data
 
-    if type(order)==list:       order=np.array(order)
-    if type(order)!=np.ndarray: order=np.arange(0, len(evaluator.categories))
-    if 0 not in order:          order-=1
-    self.order = order
-
-    # After all other parameters have been defined, can define path
-    self.path = data
-
-    # Save investment information.
-    print("\nCreate waterfall for the following investments:")
-    print(amounts)
+    self.evaluator = evaluator
     self.amounts = pd.DataFrame(amounts.copy())
+    
+    if type(max_amount)==float: self.max_amount = max_amount
+    else:                       self.max_amount = self.total_amount()
 
-    # Get notes.
     raw = evaluator.raw.copy().reset_index()
     raw = raw[['Category','Index','Units','Technology']].drop_duplicates()
     raw['Metric'] = metric
     self.raw = raw.set_index(['Category','Index'])
 
-    self.evaluator = evaluator
+    # Set properties: order, path, and values.
+    self.order = order
+    self.refresh(order)
+    return None
+
+
+  def refresh(self, order):
+    """
+    Update Waterfall parameters: order, path, and values for the given order.
+
+    Parameters
+    ----------
+    order : np.ndarray
+      Investment order
+    """
+    order = self._order(order)
+    self._path()
     self.values = []
+    return order
 
 
   def total_amount(self):
@@ -66,10 +82,10 @@ class Waterfall:
 
 
   def sample_count(self):
-      """
-      Return the number of samples used in the model.
-      """
-      return self.evaluator.interpolators.reset_index()['Sample'].max()
+    """
+    Return the number of samples used in the model.
+    """
+    return self.evaluator.interpolators.reset_index()['Sample'].max()
 
 
   def evaluate_investments(self, order):
@@ -79,11 +95,10 @@ class Waterfall:
     order : array
       order in which to invest in categories
     """
-    amounts = self._select_loc(self.amounts, order)
+    amounts = self._select_loc(self.amounts.copy(), order)
     value = self.evaluator.evaluate(amounts)
 
-    # Join input options to 'values' and amounts before saving
-    # to use for plot annotation.
+    # Before saving, join input options to 'values' and amounts to use for plot annotation.
     value = pd.DataFrame(value)
     value = value.join(self.raw, on=self.raw.index.names)
     value = value.join(amounts, on=amounts.index.names)
@@ -102,23 +117,31 @@ class Waterfall:
     ----------
     order : array
     """
-    self._reset()
-    self._path()
+    order = self.refresh(order)
+    print("Cascading investment order: ", order+1)
 
-    # Calculate values for each investment step.
-    if type(order)==np.ndarray:  self.order = order
-    else:                        order = self.order
-    print('\n' + str(w.order))
+    [self.evaluate_investments(order[:ii]) for ii in np.arange(0,len(order)+1)]
 
-    N = len(order)
-    [self.evaluate_investments(order[:ii]) for ii in np.arange(0,N+1)]
-
-    # Save amounts and order.
-    self.amounts.to_csv(self._save_as('amounts'))
+    # Save amounts and order -- !!!! How much do we care about saving max amount?
+    amounts = self.amounts.copy()
+    amounts['Maximum'] = self.max_amount
+    amounts.to_csv(self._save_as('amounts'))
+    
     pd.DataFrame({'Order' : order+1}).to_csv(self._save_as('order'), index=False)
 
-    print("Results saved to\n", self.path)
     return self.values
+
+
+  def cascade_permutations(self):
+    """
+    Invest in all permutations of investment order.
+    """
+    N = len(self.evaluator.categories)
+    orders = [np.array(order) for order in permutations(np.arange(0,N), N)]
+
+    [self.cascade_investments(order=order) for order in orders]
+    print("Results saved to\n", os.path.join(self._data_path, str(self._uuid())))
+    return self
 
 
   def _select_loc(self, df, idx):
@@ -153,23 +176,45 @@ class Waterfall:
     df.loc[idx,column] = 0
     return df.set_index(index_names)
 
+
+  def _order(self, order=None):
+    """
+    Set and return invsestment order as an array. If no input order is given,
+    initialize to 0:N-1, where N is the number of investment categories.
+
+    Parameters
+    ----------
+    order : array
+      Investment order
+    """
+    if type(order)==list:       order=np.array(order)
+    # If no input order is given and Waterfall order is already defined, use that.
+    # If order has not yet been defined, set it as 0:N-1, where N is the number of
+    # investment categories.
+    if type(order)!=np.ndarray:
+      if self.order==np.ndarray: order=self.order
+      else:                      order=np.arange(0, len(self.evaluator.categories))
+    if 0 not in order:           order-=1
+
+    self.order = order
+    return order
+
+
   def _path(self):
     """
     Return the path to the directory to which waterfall cascade data will be saved.
     If necessary, make this path.
     """
-    path = os.path.join(self.path, str(self._uuid()))
+    # Add UUID to the path and create directory, if necessary.
+    path = os.path.join(self._data_path, str(self._uuid()))
     if not os.path.isdir(path): os.mkdir(path)
 
+    # Add INVESTMENT ORDER to the path and create directory, if necessary.
     path = os.path.join(path, self._print_order())
     if not os.path.isdir(path): os.mkdir(path)
+    
     self.path = path
     return self.path
-  
-  def _reset(self):
-    self.path = os.path.abspath(os.path.join("src","waterfall","data"))
-    self.values = []
-    return self
 
 
   def _save_as(self, name, order=None, ext=".csv"):
@@ -196,12 +241,12 @@ class Waterfall:
       # Indices of investments made (0 for null investment)
       order = '-'.join([ii, self._print_order(order)])
       name = '_'.join([name,order])
-      
     return os.path.join(self.path, name+ext)
+
 
   def _uuid(self):
     """
-    Generate a UUID based on optimizer input options:
+    Return a UUID based on optimizer input options:
     - Metric
     - Technology
     - Sample count
@@ -229,20 +274,13 @@ class Waterfall:
 
 
 # ------------------------------------------------------------------------------------------
-
 # exec(open("src/waterfall/Waterfall.py").read())
 
 w = Waterfall(
   optimum.amounts.copy(),
   evaluator,
   metric = args['target_metric'],
+  max_amount = args['max_amount'],
 )
 
-N = len(evaluator.categories)
-orders = [np.array(x) for x in permutations(np.arange(0,N), N)]
-
-for order in orders:
-#   w.order = order
-  w.cascade_investments(order=order)
-  print(order)
-  print(w.total_amount())
+w.cascade_permutations()

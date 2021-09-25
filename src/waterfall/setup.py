@@ -1,6 +1,3 @@
-# # exec(open("src/waterfall/main.py").read())
-
-
 import os
 import sys
 import re as re
@@ -21,33 +18,15 @@ from io import BytesIO
 from matplotlib.figure import Figure
 
 def read_args(file, tyche_directory):
-    # Read options.
-    with open(file) as f:
-        args = json.load(f)
-    
-    args['Order'] = np.array(args['Order'])-1
+    with open(file) as f:  args = json.load(f)
+
     args['Index'] = args['target_metric']
 
     args['data_dir'] = os.path.join(
         tyche_directory,
         *args['data_dir'] if type(args['data_dir'])==list else args['data_dir'],
     )
-
-    # Define the output path for any evaluations made. If this directory does not already
-    # exist, create it. Then save the input arguments to this directory.
-    # args['uuid'] = _uuid(args)
-    # args['output_dir'] = os.path.join(
-    #     tyche_directory,
-    #     'src', 'waterfall', 'data',
-    #     str(args['uuid']),
-    # )
-
-    # if not os.path.isdir(args['output_dir']): os.mkdir(args['output_dir'])
-
-    # _save_args(args) !!!! not working
-
     return args
-
 
 tyche_dir = os.path.abspath("")
 waterfall_dir = os.path.join(tyche_dir,"src","waterfall")
@@ -59,7 +38,6 @@ args = read_args(os.path.join(input_dir,"saf_camelina_mjsp_213.json"), tyche_dir
 
 # Import technology functions
 exec('import ' + args['technology_model'])
-
 
 # Compute investments.
 investments = ty.Investments(args['data_dir'])
@@ -85,7 +63,7 @@ optimum = optimizer.maximize_slsqp(
     metric = args['target_metric'],
     total_amount = args['total_amount'],
     max_amount = pd.Series(
-        [2000000, 2000000, 2000000],
-        index=["OPE Investment Only", "CPR Investment Only", "FAC Investment Only"],
+        [args['max_amount']] * len(evaluator.categories),
+        # index=["OPE Investment Only", "CPR Investment Only", "FAC Investment Only"],
     )
 )
