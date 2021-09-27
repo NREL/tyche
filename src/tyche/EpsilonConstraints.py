@@ -146,11 +146,15 @@ class EpsilonConstraintOptimizer:
         raise ValueError(f'opt_slsqp: sense must be one of {self.valid_sense}')
       else:
         _sense = sense
-
-    if eps_sense is None:
-      _eps_sense = 'min'
+    if eps_sense is None and eps_metric is not None:
+      # No value for eps_sense but at least one eps_metric:
+      _eps_sense = pd.Series(
+        ['min' for i in eps_metric],
+        name='Value',
+        index=eps_metric.index
+      )
     else:
-      if not all(eps_sense.isin(self.valid_sense)):
+      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
         raise ValueError(f'opt_slsqp: eps_sense must be one of {self.valid_sense}')
       else:
         _eps_sense = eps_sense
@@ -212,7 +216,7 @@ class EpsilonConstraintOptimizer:
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          value = self._f(evaluate, eps_sense[index], verbose)(x)[j]
+          value = self._f(evaluate, _eps_sense[index], verbose)(x)[j]
 
           if verbose == 3:
             print('Metric limit:     ', np.round(limit, 3),
@@ -357,10 +361,14 @@ class EpsilonConstraintOptimizer:
       else:
         _sense = sense
 
-    if eps_sense is None:
-      _eps_sense = 'min'
+    if eps_sense is None and eps_metric is not None:
+      _eps_sense = pd.Series(
+        ['min' for i in eps_metric],
+        name='Value',
+        index=eps_metric.index
+      )
     else:
-      if not all(eps_sense.isin(self.valid_sense)):
+      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
         raise ValueError(f'opt_diffev: eps_sense must be one of {self.valid_sense}')
       else:
         _eps_sense = eps_sense
@@ -555,10 +563,14 @@ class EpsilonConstraintOptimizer:
       else:
         _sense = sense
 
-    if eps_sense is None:
-      _eps_sense = 'min'
+    if eps_sense is None and eps_metric is not None:
+      _eps_sense = pd.Series(
+        ['min' for i in eps_metric],
+        name='Value',
+        index=eps_metric.index
+      )
     else:
-      if not all(eps_sense.isin(self.valid_sense)):
+      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
         raise ValueError(f'opt_shgo: eps_sense must be one of {self.valid_sense}')
       else:
         _eps_sense = eps_sense
@@ -856,10 +868,14 @@ class EpsilonConstraintOptimizer:
       else:
         _sense = sense
 
-    if eps_sense is None:
-      _eps_sense = 'min'
+    if eps_sense is None and eps_metric is not None:
+      _eps_sense = pd.Series(
+        ['min' for i in eps_metric],
+        name='Value',
+        index=eps_metric.index
+      )
     else:
-      if eps_sense not in self.valid_sense:
+      if eps_sense not in self.valid_sense and eps_metric is not None:
         raise ValueError(f'opt_milp: eps_sense must be one of {self.valid_sense}')
       else:
         _eps_sense = eps_sense
@@ -970,9 +986,13 @@ class EpsilonConstraintOptimizer:
 
       # loop through list of metric minima
       for index, limit in eps_metric.iteritems():
+        if _eps_sense[index] == 'max':
+          _eps_mult = -1.0
+        else:
+          _eps_mult = 1.0
 
-        # add minimum-metric constraint on the lambda variables
-        _model += xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
+        # add metric constraint on the lambda variables
+        _model += _eps_mult * xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
                        for i in range(I)) >= limit,\
                   'Eps_Const_' + index
 
