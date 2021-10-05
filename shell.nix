@@ -5,6 +5,24 @@ let
   python = python37.override {
     packageOverrides = python-self: python-super: {
 
+      mip = python.pkgs.buildPythonPackage rec {
+        pname = "mip";
+        version = "1.13.0";
+        src = python.pkgs.fetchPypi {
+          inherit pname version;
+          sha256 = "0ynczcabpxqwg797wscw1gck4wg574wc2zyp77qsas8jv7xb6b5j";
+        };
+        propagatedBuildInputs = (with python.pkgs; [
+          cffi
+          setuptools_scm
+        ]); 
+        doCheck = false;
+        meta = with lib; {
+          homepage = https://python-mip.com/;
+          description = "Python-MIP is a collection of Python tools for the modeling and solution of Mixed-Integer Linear programs (MIPs).";
+        };
+      };
+
       werkzeug = python-super.werkzeug.overrideAttrs (oldAttrs: {
         src = python37.pkgs.fetchPypi {
           pname = "Werkzeug";
@@ -64,7 +82,9 @@ let
   env = (
     python.withPackages (ps: with ps; [
       hypercorn
+      jupyter
       matplotlib
+      mip
     # mystic
       numpy
       pandas
