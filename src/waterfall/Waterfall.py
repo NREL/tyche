@@ -1,14 +1,7 @@
-exec(open("src/waterfall/setup.py").read())
-
-print("\nSaving optimum.amounts:")
-setup_amounts = optimum.amounts.copy()
-print(setup_amounts)
-
-
-from itertools import permutations
-
 class Waterfall:
   """
+  Sequentially evaluate investments to generate Waterfall plot input data.
+  
   amounts : DataFrame
   order : array
   evaluator : Evaluator
@@ -90,6 +83,8 @@ class Waterfall:
 
   def evaluate_investments(self, order):
     """
+    Evaluate for the investment amounts for the indices given in `order`. 
+
     Parameters
     ----------
     order : array
@@ -104,7 +99,7 @@ class Waterfall:
     value = value.join(amounts, on=amounts.index.names)
 
     self.values.append(value)
-    self.values[-1].to_csv(self._save_as("value", order=order))
+    self._save(value, "value", order)
     return self
 
 
@@ -122,19 +117,18 @@ class Waterfall:
 
     [self.evaluate_investments(order[:ii]) for ii in np.arange(0,len(order)+1)]
 
-    # Save amounts and order -- !!!! How much do we care about saving max amount?
-    amounts = self.amounts.copy()
-    amounts['Maximum'] = self.max_amount
-    amounts.to_csv(self._save_as('amounts'))
-    
-    pd.DataFrame({'Order' : order+1}).to_csv(self._save_as('order'), index=False)
+    # Save amounts and order.
+    self._save(self.amounts.copy(), 'amounts')
+    self._save(order.copy(), 'order')
 
     return self.values
 
 
   def cascade_permutations(self):
     """
-    Invest in all permutations of investment order.
+    Invest in all permutations of investment order. This will iterate, beginning with all
+    investment amounts set to zero and adding one investment index at a time, until the
+    improvement value has been calculated with all investments made.
     """
     N = len(self.evaluator.categories)
     orders = [np.array(order) for order in permutations(np.arange(0,N), N)]
@@ -153,21 +147,21 @@ class Waterfall:
     df : DataFrame
       Investment amounts
     idx : array
-      Integer indices
+      Integer indices NOT to set to zero.
     """
     return self._zero_value(df, np.setdiff1d(np.arange(0,len(df)), idx))
 
 
   def _zero_value(self, df, idx, column='Amount'):
     """
-    Set investment amounts to zero.
+    Set investment amounts to zero for the integer row indices in `idx`.
 
     Parameters
     ----------
     df : DataFrame
       Investment amounts
     idx : array
-      Integer indices
+      Integer indices of rows that WILL be set to zero.
     column : 'Amount'
       name of column of values to set to zero
     """
@@ -273,14 +267,58 @@ class Waterfall:
     return string.ljust(len(self.order), '0')
 
 
-# ------------------------------------------------------------------------------------------
-# exec(open("src/waterfall/Waterfall.py").read())
+  def _save(self, df, name, order=None, edit=True):
+    """
+    Save an array or DataFrame to a .csv file in the directory `self.path`:
 
-w = Waterfall(
-  optimum.amounts.copy(),
-  evaluator,
-  metric = args['target_metric'],
-  max_amount = args['max_amount'],
-)
+    Parameters
+    ----------
+    df : array or DataFrame
+      data to save
+    name : string
+      file name
+    order : array
+      investment order. If saving investment results, this will be appended to the file name
+    edit : bool
+      should `df` be altered before it's saved? If true, this will edit 'Metric' and 'Index'
+      columns to rename: "<change> in X" -> "X <change>" and add the maximum allowed
+      investment amount to the 'amount' summary table.
+    """
+    # If given an array, make it a DataFrame and don't save its index.
+    index = type(df)!=np.ndarray
+    if not index:
+      print(name,"\t",index)
+      df = pd.DataFrame({name.title() : df+1})
+      
+    # If saving a value, rename: "Reduction in x" -> "X Reduction" to be succinct,
+    # and add the maximum allowed investment amount to the 'amount' summary table.
+    if edit==True:
+    #   print('\n',name,'\n\n')
+      df = self._condense(df.copy())
+      if name=='amounts':  df['Maximum'] = self.max_amount
 
-w.cascade_permutations()
+    df.to_csv(self._save_as(name, order=order), index=index)
+    return None
+
+
+  def _condense(self, df):
+    """
+    This function edits Metric and Index columns to rename: "<change> in X" -> "X <change>"
+    (ex: Reduction in MJSP to MJSP Reduction)
+
+    Parameters
+    ----------
+    df : DataFrame
+    """
+    if type(df.index)==pd.MultiIndex:
+      idx = df.index.names.copy()
+      df = df.reset_index()
+
+    cols = list(set(df.columns) & set(['Metric','Index']))
+
+    if len(cols)>0:
+      for col in cols:
+        df[col] = df[col].str.replace(r'(\S+) in (.*)', r'\2 \1')
+      df = df.set_index(idx)
+      
+    return df

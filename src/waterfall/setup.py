@@ -35,7 +35,6 @@ input_dir = os.path.join(waterfall_dir,"data","_inp")
 
 args = read_args(os.path.join(input_dir,"saf_camelina_mjsp_213.json"), tyche_dir)
 
-
 # Import technology functions
 exec('import ' + args['technology_model'])
 
