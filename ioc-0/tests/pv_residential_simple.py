@@ -24,7 +24,7 @@ print(tranche_results.amounts)
 evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
-metric_max = optimizer.max_metrics()
+metric_max = optimizer.optimum_metrics()
 print(metric_max)
 
 investment_max = 3e6
@@ -34,7 +34,7 @@ print(metric_min)
 
 
 # Use SLSQP.
-optimum = optimizer.maximize_slsqp(
+optimum = optimizer.opt_slsqp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,
@@ -50,7 +50,7 @@ print(optimum.metrics)
 
 # Use Piecewise-Linear MILP.
 
-optimum = optimizer.pwlinear_milp(
+optimum = optimizer.opt_milp(
     "LCOE"                       ,
     total_amount = investment_max,
     min_metric   = metric_min    ,

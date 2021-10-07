@@ -1,0 +1,401 @@
+Technology	Scenario	Variable	Index	Value	Units	Notes
+HEFA Camelina	State of Technology	Input	Feedstock	258858	dry ton oil/year	camelina; basis is dry oil content of feedstock; 788 dry ton oil/day and 7884 operating hours/year
+HEFA Camelina	State of Technology	Input	Raw Material	46737	kg/year	value to produce $46,737,000 per year (Fig 6)
+HEFA Camelina	State of Technology	Input efficiency	Feedstock	1	unitless	
+HEFA Camelina	State of Technology	Input efficiency	Raw Material	1	unitless	
+HEFA Camelina	State of Technology	Input price	Feedstock	1587.59	USD/dry ton oil	camelina; basis is oil content of bone-dry feedstock; $1.75/kg (assume bone dry)
+HEFA Camelina	State of Technology	Input price	Raw Material	1000	USD/kg	dummy value to produce $46,737,000 per year (Fig 6)
+HEFA Camelina	State of Technology	Lifetime	Capital	30	year	Table 2 of Tao et al. (2017)
+HEFA Camelina	State of Technology	Output efficiency	DDGS	1	unitless	
+HEFA Camelina	State of Technology	Output efficiency	Diesel	1	unitless	4.7 gal/dry ton oil
+HEFA Camelina	State of Technology	Output efficiency	Electricity	1	unitless	
+HEFA Camelina	State of Technology	Output efficiency	Gasoline	1	unitless	100 gal/dry ton oil
+HEFA Camelina	State of Technology	Output efficiency	Jet	1	unitless	184.3 gal/dry ton oil
+HEFA Camelina	State of Technology	Output efficiency	Propane	1	unitless	1 gal/dry ton oil
+HEFA Camelina	State of Technology	Output price	DDGS	0.22	USD/kg	
+HEFA Camelina	State of Technology	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Camelina	State of Technology	Output price	Electricity	0.057	USD/kWh	
+HEFA Camelina	State of Technology	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Camelina	State of Technology	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Camelina	State of Technology	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Camelina	State of Technology	Scale	Capital	1	unitless	
+HEFA Castor	State of Technology	Input	Feedstock	258858	dry ton oil/year	
+HEFA Castor	State of Technology	Input	Raw Material	35052	kg/year	value to get $35,052,000/yr (Fig 6)
+HEFA Castor	State of Technology	Input efficiency	Feedstock	1	unitless	
+HEFA Castor	State of Technology	Input efficiency	Raw Material	1	unitless	
+HEFA Castor	State of Technology	Input price	Feedstock	1542.23	USD/dry ton oil	$1.70/kg converted
+HEFA Castor	State of Technology	Input price	Raw Material	1000	USD/kg	dummy value
+HEFA Castor	State of Technology	Lifetime	Capital	30	year	
+HEFA Castor	State of Technology	Output efficiency	DDGS	1	unitless	
+HEFA Castor	State of Technology	Output efficiency	Diesel	1	unitless	0.5 gal/dry ton oil
+HEFA Castor	State of Technology	Output efficiency	Electricity	1	unitless	
+HEFA Castor	State of Technology	Output efficiency	Gasoline	1	unitless	94.9 gal/dry ton oil
+HEFA Castor	State of Technology	Output efficiency	Jet	1	unitless	196.2 gal/dry ton oil
+HEFA Castor	State of Technology	Output efficiency	Propane	1	unitless	1.8 gal/dry ton oil
+HEFA Castor	State of Technology	Output price	DDGS	0.22	USD/kg	
+HEFA Castor	State of Technology	Output price	Diesel	3.25	USD/gal	
+HEFA Castor	State of Technology	Output price	Electricity	0.057	USD/kWh	
+HEFA Castor	State of Technology	Output price	Gasoline	2	USD/gal	
+HEFA Castor	State of Technology	Output price	Jet	1	USD/gal	
+HEFA Castor	State of Technology	Output price	Propane	0.6	USD/gal	
+HEFA Castor	State of Technology	Scale	Capital	1	unitless	
+HEFA Jatropha	State of Technology	Input	Feedstock	258858	dry ton oil/year	
+HEFA Jatropha	State of Technology	Input	Raw Material	27720	kg/year	value to produce $27,720,000/yr (fig 6)
+HEFA Jatropha	State of Technology	Input efficiency	Feedstock	1	unitless	
+HEFA Jatropha	State of Technology	Input efficiency	Raw Material	1	unitless	
+HEFA Jatropha	State of Technology	Input price	Feedstock	362.88	USD/dry ton oil	
+HEFA Jatropha	State of Technology	Input price	Raw Material	1000	USD/kg	
+HEFA Jatropha	State of Technology	Lifetime	Capital	30	year	
+HEFA Jatropha	State of Technology	Output efficiency	DDGS	1	unitless	
+HEFA Jatropha	State of Technology	Output efficiency	Diesel	1	unitless	3.1 gal/dry ton oil
+HEFA Jatropha	State of Technology	Output efficiency	Electricity	1	unitless	
+HEFA Jatropha	State of Technology	Output efficiency	Gasoline	1	unitless	94.2 gal/dry ton oil
+HEFA Jatropha	State of Technology	Output efficiency	Jet	1	unitless	170 gal/dry ton oil
+HEFA Jatropha	State of Technology	Output efficiency	Propane	1	unitless	18.3 gal/dry ton oil
+HEFA Jatropha	State of Technology	Output price	DDGS	0.22	USD/kg	
+HEFA Jatropha	State of Technology	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Jatropha	State of Technology	Output price	Electricity	0.057	USD/kWh	
+HEFA Jatropha	State of Technology	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Jatropha	State of Technology	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Jatropha	State of Technology	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Jatropha	State of Technology	Scale	Capital	1	unitless	
+HEFA Pennycress	State of Technology	Input	Feedstock	258858	dry ton oil/year	
+HEFA Pennycress	State of Technology	Input	Raw Material	32643	kg/year	value to produce $32,643,000/yr (fig 6)
+HEFA Pennycress	State of Technology	Input efficiency	Feedstock	1	unitless	
+HEFA Pennycress	State of Technology	Input efficiency	Raw Material	1	unitless	
+HEFA Pennycress	State of Technology	Input price	Feedstock	734.83	USD/dry ton oil	
+HEFA Pennycress	State of Technology	Input price	Raw Material	1000	USD/kg	dummy value to produce $32,643,000/yr (fig 6)
+HEFA Pennycress	State of Technology	Lifetime	Capital	30	year	
+HEFA Pennycress	State of Technology	Output efficiency	DDGS	1	unitless	
+HEFA Pennycress	State of Technology	Output efficiency	Diesel	1	unitless	
+HEFA Pennycress	State of Technology	Output efficiency	Electricity	1	unitless	
+HEFA Pennycress	State of Technology	Output efficiency	Gasoline	1	unitless	
+HEFA Pennycress	State of Technology	Output efficiency	Jet	1	unitless	
+HEFA Pennycress	State of Technology	Output efficiency	Propane	1	unitless	
+HEFA Pennycress	State of Technology	Output price	DDGS	0.22	USD/kg	
+HEFA Pennycress	State of Technology	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Pennycress	State of Technology	Output price	Electricity	0.057	USD/kWh	
+HEFA Pennycress	State of Technology	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Pennycress	State of Technology	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Pennycress	State of Technology	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Pennycress	State of Technology	Scale	Capital	1	unitless	
+HEFA Yellow Grease	State of Technology	Input	Feedstock	258858	dry ton oil/year	
+HEFA Yellow Grease	State of Technology	Input	Raw Material	31248	kg/year	value to get $31,248,000/yr (Fig 6)
+HEFA Yellow Grease	State of Technology	Input efficiency	Feedstock	1	unitless	
+HEFA Yellow Grease	State of Technology	Input efficiency	Raw Material	1	unitless	
+HEFA Yellow Grease	State of Technology	Input price	Feedstock	553.39	USD/dry ton oil	$0.61/kg converted (Table 3)
+HEFA Yellow Grease	State of Technology	Input price	Raw Material	1000	USD/kg	
+HEFA Yellow Grease	State of Technology	Lifetime	Capital	30	year	
+HEFA Yellow Grease	State of Technology	Output efficiency	DDGS	1	unitless	
+HEFA Yellow Grease	State of Technology	Output efficiency	Diesel	1	unitless	0.8 gal/dry ton oil
+HEFA Yellow Grease	State of Technology	Output efficiency	Electricity	1	unitless	
+HEFA Yellow Grease	State of Technology	Output efficiency	Gasoline	1	unitless	93.7 gal/dry ton oil
+HEFA Yellow Grease	State of Technology	Output efficiency	Jet	1	unitless	194.7 gal/dry ton oil
+HEFA Yellow Grease	State of Technology	Output efficiency	Propane	1	unitless	1.6 gal/dry ton oil
+HEFA Yellow Grease	State of Technology	Output price	DDGS	0.22	USD/kg	
+HEFA Yellow Grease	State of Technology	Output price	Diesel	3.25	USD/gal	
+HEFA Yellow Grease	State of Technology	Output price	Electricity	0.057	USD/kWh	
+HEFA Yellow Grease	State of Technology	Output price	Gasoline	2	USD/gal	
+HEFA Yellow Grease	State of Technology	Output price	Jet	1	USD/gal	
+HEFA Yellow Grease	State of Technology	Output price	Propane	0.6	USD/gal	
+HEFA Yellow Grease	State of Technology	Scale	Capital	1	unitless	
+HEFA Camelina	Incremental Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Camelina	Incremental Progress	Input	Raw Material	49073.85	kg/year	SoT +/- random percent up to 5%
+HEFA Camelina	Incremental Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Camelina	Incremental Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Camelina	Incremental Progress	Input price	Feedstock	1587.59	USD/dry ton oil	camelina; basis is oil content of bone-dry feedstock; $1.75/kg (assume bone dry)
+HEFA Camelina	Incremental Progress	Input price	Raw Material	1000	USD/kg	dummy value to produce $46,737,000 per year (Fig 6)
+HEFA Camelina	Incremental Progress	Lifetime	Capital	30	year	Table 2 of Tao et al. (2017)
+HEFA Camelina	Incremental Progress	Output efficiency	DDGS	1	unitless	
+HEFA Camelina	Incremental Progress	Output efficiency	Diesel	1	unitless	4.7 gal/dry ton oil
+HEFA Camelina	Incremental Progress	Output efficiency	Electricity	1	unitless	
+HEFA Camelina	Incremental Progress	Output efficiency	Gasoline	1	unitless	100 gal/dry ton oil
+HEFA Camelina	Incremental Progress	Output efficiency	Jet	1	unitless	184.3 gal/dry ton oil
+HEFA Camelina	Incremental Progress	Output efficiency	Propane	1	unitless	1 gal/dry ton oil
+HEFA Camelina	Incremental Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Camelina	Incremental Progress	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Camelina	Incremental Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Camelina	Incremental Progress	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Camelina	Incremental Progress	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Camelina	Incremental Progress	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Camelina	Incremental Progress	Scale	Capital	1	unitless	
+HEFA Castor	Incremental Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Castor	Incremental Progress	Input	Raw Material	33649.92	kg/year	SoT +/- random percent up to 5%
+HEFA Castor	Incremental Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Castor	Incremental Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Castor	Incremental Progress	Input price	Feedstock	1542.23	USD/dry ton oil	$1.70/kg converted
+HEFA Castor	Incremental Progress	Input price	Raw Material	1000	USD/kg	dummy value
+HEFA Castor	Incremental Progress	Lifetime	Capital	30	year	
+HEFA Castor	Incremental Progress	Output efficiency	DDGS	1	unitless	
+HEFA Castor	Incremental Progress	Output efficiency	Diesel	1	unitless	0.5 gal/dry ton oil
+HEFA Castor	Incremental Progress	Output efficiency	Electricity	1	unitless	
+HEFA Castor	Incremental Progress	Output efficiency	Gasoline	1	unitless	94.9 gal/dry ton oil
+HEFA Castor	Incremental Progress	Output efficiency	Jet	1	unitless	196.2 gal/dry ton oil
+HEFA Castor	Incremental Progress	Output efficiency	Propane	1	unitless	1.8 gal/dry ton oil
+HEFA Castor	Incremental Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Castor	Incremental Progress	Output price	Diesel	3.25	USD/gal	
+HEFA Castor	Incremental Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Castor	Incremental Progress	Output price	Gasoline	2	USD/gal	
+HEFA Castor	Incremental Progress	Output price	Jet	1	USD/gal	
+HEFA Castor	Incremental Progress	Output price	Propane	0.6	USD/gal	
+HEFA Castor	Incremental Progress	Scale	Capital	1	unitless	
+HEFA Jatropha	Incremental Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Jatropha	Incremental Progress	Input	Raw Material	29106	kg/year	SoT +/- random percent up to 5%
+HEFA Jatropha	Incremental Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Jatropha	Incremental Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Jatropha	Incremental Progress	Input price	Feedstock	362.88	USD/dry ton oil	
+HEFA Jatropha	Incremental Progress	Input price	Raw Material	1000	USD/kg	
+HEFA Jatropha	Incremental Progress	Lifetime	Capital	30	year	
+HEFA Jatropha	Incremental Progress	Output efficiency	DDGS	1	unitless	
+HEFA Jatropha	Incremental Progress	Output efficiency	Diesel	1	unitless	3.1 gal/dry ton oil
+HEFA Jatropha	Incremental Progress	Output efficiency	Electricity	1	unitless	
+HEFA Jatropha	Incremental Progress	Output efficiency	Gasoline	1	unitless	94.2 gal/dry ton oil
+HEFA Jatropha	Incremental Progress	Output efficiency	Jet	1	unitless	170 gal/dry ton oil
+HEFA Jatropha	Incremental Progress	Output efficiency	Propane	1	unitless	18.3 gal/dry ton oil
+HEFA Jatropha	Incremental Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Jatropha	Incremental Progress	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Jatropha	Incremental Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Jatropha	Incremental Progress	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Jatropha	Incremental Progress	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Jatropha	Incremental Progress	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Jatropha	Incremental Progress	Scale	Capital	1	unitless	
+HEFA Pennycress	Incremental Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Pennycress	Incremental Progress	Input	Raw Material	33295.86	kg/year	SoT +/- random percent up to 5%
+HEFA Pennycress	Incremental Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Pennycress	Incremental Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Pennycress	Incremental Progress	Input price	Feedstock	734.83	USD/dry ton oil	
+HEFA Pennycress	Incremental Progress	Input price	Raw Material	1000	USD/kg	dummy value to produce $32,643,000/yr (fig 6)
+HEFA Pennycress	Incremental Progress	Lifetime	Capital	30	year	
+HEFA Pennycress	Incremental Progress	Output efficiency	DDGS	1	unitless	
+HEFA Pennycress	Incremental Progress	Output efficiency	Diesel	1	unitless	
+HEFA Pennycress	Incremental Progress	Output efficiency	Electricity	1	unitless	
+HEFA Pennycress	Incremental Progress	Output efficiency	Gasoline	1	unitless	
+HEFA Pennycress	Incremental Progress	Output efficiency	Jet	1	unitless	
+HEFA Pennycress	Incremental Progress	Output efficiency	Propane	1	unitless	
+HEFA Pennycress	Incremental Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Pennycress	Incremental Progress	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Pennycress	Incremental Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Pennycress	Incremental Progress	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Pennycress	Incremental Progress	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Pennycress	Incremental Progress	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Pennycress	Incremental Progress	Scale	Capital	1	unitless	
+HEFA Yellow Grease	Incremental Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Yellow Grease	Incremental Progress	Input	Raw Material	31560.48	kg/year	SoT +/- random percent up to 5%
+HEFA Yellow Grease	Incremental Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Yellow Grease	Incremental Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Yellow Grease	Incremental Progress	Input price	Feedstock	553.39	USD/dry ton oil	$0.61/kg converted (Table 3)
+HEFA Yellow Grease	Incremental Progress	Input price	Raw Material	1000	USD/kg	
+HEFA Yellow Grease	Incremental Progress	Lifetime	Capital	30	year	
+HEFA Yellow Grease	Incremental Progress	Output efficiency	DDGS	1	unitless	
+HEFA Yellow Grease	Incremental Progress	Output efficiency	Diesel	1	unitless	0.8 gal/dry ton oil
+HEFA Yellow Grease	Incremental Progress	Output efficiency	Electricity	1	unitless	
+HEFA Yellow Grease	Incremental Progress	Output efficiency	Gasoline	1	unitless	93.7 gal/dry ton oil
+HEFA Yellow Grease	Incremental Progress	Output efficiency	Jet	1	unitless	194.7 gal/dry ton oil
+HEFA Yellow Grease	Incremental Progress	Output efficiency	Propane	1	unitless	1.6 gal/dry ton oil
+HEFA Yellow Grease	Incremental Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Yellow Grease	Incremental Progress	Output price	Diesel	3.25	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Yellow Grease	Incremental Progress	Output price	Gasoline	2	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Output price	Jet	1	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Output price	Propane	0.6	USD/gal	
+HEFA Yellow Grease	Incremental Progress	Scale	Capital	1	unitless	
+HEFA Camelina	Moderate Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Camelina	Moderate Progress	Input	Raw Material	42998.04	kg/year	SoT minus random percent up to 10%
+HEFA Camelina	Moderate Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Camelina	Moderate Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Camelina	Moderate Progress	Input price	Feedstock	1587.59	USD/dry ton oil	camelina; basis is oil content of bone-dry feedstock; $1.75/kg (assume bone dry)
+HEFA Camelina	Moderate Progress	Input price	Raw Material	1000	USD/kg	dummy value to produce $46,737,000 per year (Fig 6)
+HEFA Camelina	Moderate Progress	Lifetime	Capital	30	year	Table 2 of Tao et al. (2017)
+HEFA Camelina	Moderate Progress	Output efficiency	DDGS	1	unitless	
+HEFA Camelina	Moderate Progress	Output efficiency	Diesel	1	unitless	4.7 gal/dry ton oil
+HEFA Camelina	Moderate Progress	Output efficiency	Electricity	1	unitless	
+HEFA Camelina	Moderate Progress	Output efficiency	Gasoline	1	unitless	100 gal/dry ton oil
+HEFA Camelina	Moderate Progress	Output efficiency	Jet	1	unitless	184.3 gal/dry ton oil
+HEFA Camelina	Moderate Progress	Output efficiency	Propane	1	unitless	1 gal/dry ton oil
+HEFA Camelina	Moderate Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Camelina	Moderate Progress	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Camelina	Moderate Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Camelina	Moderate Progress	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Camelina	Moderate Progress	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Camelina	Moderate Progress	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Camelina	Moderate Progress	Scale	Capital	1	unitless	
+HEFA Castor	Moderate Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Castor	Moderate Progress	Input	Raw Material	33299.4	kg/year	SoT minus random percent up to 10%
+HEFA Castor	Moderate Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Castor	Moderate Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Castor	Moderate Progress	Input price	Feedstock	1542.23	USD/dry ton oil	$1.70/kg converted
+HEFA Castor	Moderate Progress	Input price	Raw Material	1000	USD/kg	dummy value
+HEFA Castor	Moderate Progress	Lifetime	Capital	30	year	
+HEFA Castor	Moderate Progress	Output efficiency	DDGS	1	unitless	
+HEFA Castor	Moderate Progress	Output efficiency	Diesel	1	unitless	0.5 gal/dry ton oil
+HEFA Castor	Moderate Progress	Output efficiency	Electricity	1	unitless	
+HEFA Castor	Moderate Progress	Output efficiency	Gasoline	1	unitless	94.9 gal/dry ton oil
+HEFA Castor	Moderate Progress	Output efficiency	Jet	1	unitless	196.2 gal/dry ton oil
+HEFA Castor	Moderate Progress	Output efficiency	Propane	1	unitless	1.8 gal/dry ton oil
+HEFA Castor	Moderate Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Castor	Moderate Progress	Output price	Diesel	3.25	USD/gal	
+HEFA Castor	Moderate Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Castor	Moderate Progress	Output price	Gasoline	2	USD/gal	
+HEFA Castor	Moderate Progress	Output price	Jet	1	USD/gal	
+HEFA Castor	Moderate Progress	Output price	Propane	0.6	USD/gal	
+HEFA Castor	Moderate Progress	Scale	Capital	1	unitless	
+HEFA Jatropha	Moderate Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Jatropha	Moderate Progress	Input	Raw Material	26611.2	kg/year	SoT minus random percent up to 10%
+HEFA Jatropha	Moderate Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Jatropha	Moderate Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Jatropha	Moderate Progress	Input price	Feedstock	362.88	USD/dry ton oil	
+HEFA Jatropha	Moderate Progress	Input price	Raw Material	1000	USD/kg	
+HEFA Jatropha	Moderate Progress	Lifetime	Capital	30	year	
+HEFA Jatropha	Moderate Progress	Output efficiency	DDGS	1	unitless	
+HEFA Jatropha	Moderate Progress	Output efficiency	Diesel	1	unitless	3.1 gal/dry ton oil
+HEFA Jatropha	Moderate Progress	Output efficiency	Electricity	1	unitless	
+HEFA Jatropha	Moderate Progress	Output efficiency	Gasoline	1	unitless	94.2 gal/dry ton oil
+HEFA Jatropha	Moderate Progress	Output efficiency	Jet	1	unitless	170 gal/dry ton oil
+HEFA Jatropha	Moderate Progress	Output efficiency	Propane	1	unitless	18.3 gal/dry ton oil
+HEFA Jatropha	Moderate Progress	Output price	DDGS	0.22	USD'/kg	
+HEFA Jatropha	Moderate Progress	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Jatropha	Moderate Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Jatropha	Moderate Progress	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Jatropha	Moderate Progress	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Jatropha	Moderate Progress	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Jatropha	Moderate Progress	Scale	Capital	1	unitless	
+HEFA Pennycress	Moderate Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Pennycress	Moderate Progress	Input	Raw Material	31663.71	kg/year	SoT minus random percent up to 10%
+HEFA Pennycress	Moderate Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Pennycress	Moderate Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Pennycress	Moderate Progress	Input price	Feedstock	734.83	USD/dry ton oil	
+HEFA Pennycress	Moderate Progress	Input price	Raw Material	1000	USD/kg	dummy value to produce $32,643,000/yr (fig 6)
+HEFA Pennycress	Moderate Progress	Lifetime	Capital	30	year	
+HEFA Pennycress	Moderate Progress	Output efficiency	DDGS	1	unitless	
+HEFA Pennycress	Moderate Progress	Output efficiency	Diesel	1	unitless	
+HEFA Pennycress	Moderate Progress	Output efficiency	Electricity	1	unitless	
+HEFA Pennycress	Moderate Progress	Output efficiency	Gasoline	1	unitless	
+HEFA Pennycress	Moderate Progress	Output efficiency	Jet	1	unitless	
+HEFA Pennycress	Moderate Progress	Output efficiency	Propane	1	unitless	
+HEFA Pennycress	Moderate Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Pennycress	Moderate Progress	Output price	Diesel	3.25	USD/gal	biodiesel, between $2.9 - $3.6/gal
+HEFA Pennycress	Moderate Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Pennycress	Moderate Progress	Output price	Gasoline	2	USD/gal	naphtha product sold as gasoline surrogate
+HEFA Pennycress	Moderate Progress	Output price	Jet	1	USD/gal	dummy value only used in default cost calculation; this is not MJSP
+HEFA Pennycress	Moderate Progress	Output price	Propane	0.6	USD/gal	2015 price: $0.4 - $0.8 / gal
+HEFA Pennycress	Moderate Progress	Scale	Capital	1	unitless	
+HEFA Yellow Grease	Moderate Progress	Input	Feedstock	258858	dry ton oil/year	
+HEFA Yellow Grease	Moderate Progress	Input	Raw Material	30623.04	kg/year	SoT minus random percent up to 10%
+HEFA Yellow Grease	Moderate Progress	Input efficiency	Feedstock	1	unitless	
+HEFA Yellow Grease	Moderate Progress	Input efficiency	Raw Material	1	unitless	
+HEFA Yellow Grease	Moderate Progress	Input price	Feedstock	553.39	USD/dry ton oil	$0.61/kg converted (Table 3)
+HEFA Yellow Grease	Moderate Progress	Input price	Raw Material	1000	USD/kg	
+HEFA Yellow Grease	Moderate Progress	Lifetime	Capital	30	year	
+HEFA Yellow Grease	Moderate Progress	Output efficiency	DDGS	1	unitless	
+HEFA Yellow Grease	Moderate Progress	Output efficiency	Diesel	1	unitless	0.8 gal/dry ton oil
+HEFA Yellow Grease	Moderate Progress	Output efficiency	Electricity	1	unitless	
+HEFA Yellow Grease	Moderate Progress	Output efficiency	Gasoline	1	unitless	93.7 gal/dry ton oil
+HEFA Yellow Grease	Moderate Progress	Output efficiency	Jet	1	unitless	194.7 gal/dry ton oil
+HEFA Yellow Grease	Moderate Progress	Output efficiency	Propane	1	unitless	1.6 gal/dry ton oil
+HEFA Yellow Grease	Moderate Progress	Output price	DDGS	0.22	USD/kg	
+HEFA Yellow Grease	Moderate Progress	Output price	Diesel	3.25	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Output price	Electricity	0.057	USD/kWh	
+HEFA Yellow Grease	Moderate Progress	Output price	Gasoline	2	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Output price	Jet	1	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Output price	Propane	0.6	USD/gal	
+HEFA Yellow Grease	Moderate Progress	Scale	Capital	1	unitless	
+HEFA Camelina	Leap Forward	Input	Feedstock	258858	dry ton oil/year	
+HEFA Camelina	Leap Forward	Input	Raw Material	42063.3	kg/year	SoT minus random percent up to 15%
+HEFA Camelina	Leap Forward	Input efficiency	Feedstock	1	unitless	
+HEFA Camelina	Leap Forward	Input efficiency	Raw Material	1	unitless	
+HEFA Camelina	Leap Forward	Input price	Feedstock	1587.59	USD/dry ton oil	
+HEFA Camelina	Leap Forward	Input price	Raw Material	1000	USD/kg	
+HEFA Camelina	Leap Forward	Lifetime	Capital	30	year	
+HEFA Camelina	Leap Forward	Output efficiency	DDGS	1	unitless	
+HEFA Camelina	Leap Forward	Output efficiency	Diesel	1	unitless	
+HEFA Camelina	Leap Forward	Output efficiency	Electricity	1	unitless	
+HEFA Camelina	Leap Forward	Output efficiency	Gasoline	1	unitless	
+HEFA Camelina	Leap Forward	Output efficiency	Jet	1	unitless	
+HEFA Camelina	Leap Forward	Output efficiency	Propane	1	unitless	
+HEFA Camelina	Leap Forward	Output price	DDGS	0.22	USD/kg	
+HEFA Camelina	Leap Forward	Output price	Diesel	3.25	USD/gal	
+HEFA Camelina	Leap Forward	Output price	Electricity	0.057	USD/kWh	
+HEFA Camelina	Leap Forward	Output price	Gasoline	2	USD/gal	
+HEFA Camelina	Leap Forward	Output price	Jet	1	USD/gal	
+HEFA Camelina	Leap Forward	Output price	Propane	0.6	USD/gal	
+HEFA Camelina	Leap Forward	Scale	Capital	1	unitless	
+HEFA Castor	Leap Forward	Input	Feedstock	258858	dry ton oil/year	
+HEFA Castor	Leap Forward	Input	Raw Material	33299.4	kg/year	SoT minus random percent up to 15%
+HEFA Castor	Leap Forward	Input efficiency	Feedstock	1	unitless	
+HEFA Castor	Leap Forward	Input efficiency	Raw Material	1	unitless	
+HEFA Castor	Leap Forward	Input price	Feedstock	1542.23	USD/dry ton oil	
+HEFA Castor	Leap Forward	Input price	Raw Material	1000	USD/kg	
+HEFA Castor	Leap Forward	Lifetime	Capital	30	year	
+HEFA Castor	Leap Forward	Output efficiency	DDGS	1	unitless	
+HEFA Castor	Leap Forward	Output efficiency	Diesel	1	unitless	
+HEFA Castor	Leap Forward	Output efficiency	Electricity	1	unitless	
+HEFA Castor	Leap Forward	Output efficiency	Gasoline	1	unitless	
+HEFA Castor	Leap Forward	Output efficiency	Jet	1	unitless	
+HEFA Castor	Leap Forward	Output efficiency	Propane	1	unitless	
+HEFA Castor	Leap Forward	Output price	DDGS	0.22	USD/kg	
+HEFA Castor	Leap Forward	Output price	Diesel	3.25	USD/gal	
+HEFA Castor	Leap Forward	Output price	Electricity	0.057	USD/kWh	
+HEFA Castor	Leap Forward	Output price	Gasoline	2	USD/gal	
+HEFA Castor	Leap Forward	Output price	Jet	1	USD/gal	
+HEFA Castor	Leap Forward	Output price	Propane	0.6	USD/gal	
+HEFA Castor	Leap Forward	Scale	Capital	1	unitless	
+HEFA Jatropha	Leap Forward	Input	Feedstock	258858	dry ton oil/year	
+HEFA Jatropha	Leap Forward	Input	Raw Material	25779.6	kg/year	SoT minus random percent up to 15%
+HEFA Jatropha	Leap Forward	Input efficiency	Feedstock	1	unitless	
+HEFA Jatropha	Leap Forward	Input efficiency	Raw Material	1	unitless	
+HEFA Jatropha	Leap Forward	Input price	Feedstock	362.88	USD/dry ton oil	
+HEFA Jatropha	Leap Forward	Input price	Raw Material	1000	USD/kg	
+HEFA Jatropha	Leap Forward	Lifetime	Capital	30	year	
+HEFA Jatropha	Leap Forward	Output efficiency	DDGS	1	unitless	
+HEFA Jatropha	Leap Forward	Output efficiency	Diesel	1	unitless	
+HEFA Jatropha	Leap Forward	Output efficiency	Electricity	1	unitless	
+HEFA Jatropha	Leap Forward	Output efficiency	Gasoline	1	unitless	
+HEFA Jatropha	Leap Forward	Output efficiency	Jet	1	unitless	
+HEFA Jatropha	Leap Forward	Output efficiency	Propane	1	unitless	
+HEFA Jatropha	Leap Forward	Output price	DDGS	0.22	USD/kg	
+HEFA Jatropha	Leap Forward	Output price	Diesel	3.25	USD/gal	
+HEFA Jatropha	Leap Forward	Output price	Electricity	0.057	USD/kWh	
+HEFA Jatropha	Leap Forward	Output price	Gasoline	2	USD/gal	
+HEFA Jatropha	Leap Forward	Output price	Jet	1	USD/gal	
+HEFA Jatropha	Leap Forward	Output price	Propane	0.6	USD/gal	
+HEFA Jatropha	Leap Forward	Scale	Capital	1	unitless	
+HEFA Pennycress	Leap Forward	Input	Feedstock	258858	dry ton oil/year	
+HEFA Pennycress	Leap Forward	Input	Raw Material	29052.27	kg/year	SoT minus random percent up to 15%
+HEFA Pennycress	Leap Forward	Input efficiency	Feedstock	1	unitless	
+HEFA Pennycress	Leap Forward	Input efficiency	Raw Material	1	unitless	
+HEFA Pennycress	Leap Forward	Input price	Feedstock	734.83	USD/dry ton oil	
+HEFA Pennycress	Leap Forward	Input price	Raw Material	1000	USD/kg	
+HEFA Pennycress	Leap Forward	Lifetime	Capital	30	year	
+HEFA Pennycress	Leap Forward	Output efficiency	DDGS	1	unitless	
+HEFA Pennycress	Leap Forward	Output efficiency	Diesel	1	unitless	
+HEFA Pennycress	Leap Forward	Output efficiency	Electricity	1	unitless	
+HEFA Pennycress	Leap Forward	Output efficiency	Gasoline	1	unitless	
+HEFA Pennycress	Leap Forward	Output efficiency	Jet	1	unitless	
+HEFA Pennycress	Leap Forward	Output efficiency	Propane	1	unitless	
+HEFA Pennycress	Leap Forward	Output price	DDGS	0.22	USD/kg	
+HEFA Pennycress	Leap Forward	Output price	Diesel	3.25	USD/gal	
+HEFA Pennycress	Leap Forward	Output price	Electricity	0.057	USD/kWh	
+HEFA Pennycress	Leap Forward	Output price	Gasoline	2	USD/gal	
+HEFA Pennycress	Leap Forward	Output price	Jet	1	USD/gal	
+HEFA Pennycress	Leap Forward	Output price	Propane	0.6	USD/gal	
+HEFA Pennycress	Leap Forward	Scale	Capital	1	unitless	
+HEFA Yellow Grease	Leap Forward	Input	Feedstock	258858	dry ton oil/year	
+HEFA Yellow Grease	Leap Forward	Input	Raw Material	26873.28	kg/year	SoT minus random percent up to 15%
+HEFA Yellow Grease	Leap Forward	Input efficiency	Feedstock	1	unitless	
+HEFA Yellow Grease	Leap Forward	Input efficiency	Raw Material	1	unitless	
+HEFA Yellow Grease	Leap Forward	Input price	Feedstock	553.39	USD/dry ton oil	
+HEFA Yellow Grease	Leap Forward	Input price	Raw Material	1000	USD/kg	
+HEFA Yellow Grease	Leap Forward	Lifetime	Capital	30	year	
+HEFA Yellow Grease	Leap Forward	Output efficiency	DDGS	1	unitless	
+HEFA Yellow Grease	Leap Forward	Output efficiency	Diesel	1	unitless	
+HEFA Yellow Grease	Leap Forward	Output efficiency	Electricity	1	unitless	
+HEFA Yellow Grease	Leap Forward	Output efficiency	Gasoline	1	unitless	
+HEFA Yellow Grease	Leap Forward	Output efficiency	Jet	1	unitless	
+HEFA Yellow Grease	Leap Forward	Output efficiency	Propane	1	unitless	
+HEFA Yellow Grease	Leap Forward	Output price	DDGS	0.22	USD/kg	
+HEFA Yellow Grease	Leap Forward	Output price	Diesel	3.25	USD/gal	
+HEFA Yellow Grease	Leap Forward	Output price	Electricity	0.057	USD/kWh	
+HEFA Yellow Grease	Leap Forward	Output price	Gasoline	2	USD/gal	
+HEFA Yellow Grease	Leap Forward	Output price	Jet	1	USD/gal	
+HEFA Yellow Grease	Leap Forward	Output price	Propane	0.6	USD/gal	
+HEFA Yellow Grease	Leap Forward	Scale	Capital	1	unitless	

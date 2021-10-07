@@ -287,7 +287,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       print("> target_metric\n ", target_metric)
       print("> min_metric\n ", min_metric)
       print("> total_amount\n ", total_amount)
-      optimum = optimizer.maximize_slsqp(
+      optimum = optimizer.opt_slsqp(
           metric=target_metric,
           min_metric=min_metric,
           max_amount=max_amount,
