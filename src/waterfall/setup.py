@@ -28,12 +28,11 @@ def read_args(file, tyche_directory):
     )
     return args
 
+# Define paths
 tyche_dir = os.path.abspath("")
 waterfall_dir = os.path.join(tyche_dir,"src","waterfall")
 data_dir = os.path.join(tyche_dir,"tutorial","data")
-input_dir = os.path.join(waterfall_dir,"data","_inp")
-
-args = read_args(os.path.join(input_dir,"saf_camelina_mjsp_213.json"), tyche_dir)
+args = read_args(os.path.join(waterfall_dir,"inp.json"), tyche_dir)
 
 # Import technology functions
 exec('import ' + args['technology_model'])
