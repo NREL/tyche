@@ -66,3 +66,13 @@ optimum = optimizer.maximize_slsqp(
         # index=["OPE Investment Only", "CPR Investment Only", "FAC Investment Only"],
     )
 )
+
+
+w = ty.Waterfall(
+  optimum.amounts,
+  evaluator,
+  data = args['data_dir'],
+  metric = args['target_metric'],
+)
+
+w.cascade_permutations()

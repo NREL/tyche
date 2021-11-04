@@ -1,3 +1,10 @@
+import os
+import numpy as np
+import pandas as pd
+import uuid as uuid
+
+from itertools import permutations
+
 class Waterfall:
   """
   Sequentially evaluate investments to generate Waterfall plot input data.
@@ -13,12 +20,14 @@ class Waterfall:
   def __init__(self,
     amounts,
     evaluator,
+    data,
     order = None,
     metric = None,
     max_amount = None,
-    data = os.path.abspath(os.path.join("src","waterfall","data"))
   ):
     print("\nCreate waterfall for the following investments\n", amounts, "\n")
+    data = os.path.join(data, "waterfall")
+    if not os.path.isdir(data): os.mkdir(data)
     self._data_path = data
 
     self.evaluator = evaluator
@@ -34,6 +43,7 @@ class Waterfall:
 
     # Set properties: order, path, and values.
     self.order = order
+    print
     self.refresh(order)
     return None
 
@@ -287,13 +297,11 @@ class Waterfall:
     # If given an array, make it a DataFrame and don't save its index.
     index = type(df)!=np.ndarray
     if not index:
-      print(name,"\t",index)
       df = pd.DataFrame({name.title() : df+1})
       
     # If saving a value, rename: "Reduction in x" -> "X Reduction" to be succinct,
     # and add the maximum allowed investment amount to the 'amount' summary table.
     if edit==True:
-    #   print('\n',name,'\n\n')
       df = self._condense(df.copy())
       if name=='amounts':  df['Maximum'] = self.max_amount
 
