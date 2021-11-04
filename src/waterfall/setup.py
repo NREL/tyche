@@ -69,8 +69,8 @@ optimum = optimizer.maximize_slsqp(
 
 
 w = ty.Waterfall(
-  optimum.amounts,
-  evaluator,
+  amounts = optimum.amounts,
+  evaluator = evaluator,
   data = args['data_dir'],
   metric = args['target_metric'],
 )
