@@ -1,6 +1,20 @@
+"""
+Minimum working example to run tyche and generate waterfall plot input.
+Options are read from a json file that must include:
+  data_loc : string or list
+    path to data location (likely within tutorial/data/)
+  technology_model : string 
+    file in src/technology where cost, production, metric functions are defined.
+  sample_count : int
+  total_amount : float
+  max_amount : float
+  target_metric : string
+  technology (optional) : string
+"""
+inp_loc = os.path.join("tutorial","waterfall","saf_waterfall.json")
+
 import os
 import sys
-import re as re
 
 sys.path.insert(0, os.path.abspath("src"))  # import tyche module
 sys.path.insert(0, os.path.abspath(os.path.join("src","technology")))
@@ -8,69 +22,47 @@ sys.path.insert(0, os.path.abspath(os.path.join("src","technology")))
 import json as json
 import numpy as np
 import pandas as pd
-import seaborn as sb
 import tyche as ty
-import uuid as uuid
-
-from base64 import b64encode
-from datetime import datetime
-from io import BytesIO
-from matplotlib.figure import Figure
-
-def read_args(file, tyche_directory):
-    with open(file) as f:  args = json.load(f)
-
-    args['Index'] = args['target_metric']
-
-    args['data_dir'] = os.path.join(
-        tyche_directory,
-        *args['data_dir'] if type(args['data_dir'])==list else args['data_dir'],
-    )
-    return args
-
-# Define paths
-tyche_dir = os.path.abspath("")
-waterfall_dir = os.path.join(tyche_dir,"src","waterfall")
-data_dir = os.path.join(tyche_dir,"tutorial","data")
-args = read_args(os.path.join(waterfall_dir,"inp.json"), tyche_dir)
 
 # Import technology functions
+with open(inp_loc) as f:  args = json.load(f)
+if type(args['data_loc'])==list:  args['data_loc'] = os.path.join(*args['data_loc'])
 exec('import ' + args['technology_model'])
 
 # Compute investments.
-investments = ty.Investments(args['data_dir'])
+investments = ty.Investments(args['data_loc'])
 
-designs = ty.Designs(args['data_dir'])
+designs = ty.Designs(args['data_loc'])
 designs.compile()
 
 tranche_results = investments.evaluate_tranches(designs, sample_count=args['sample_count'])
 
 summary = tranche_results.summary[
-    tranche_results.summary.index.get_level_values('Technology') == args['Technology']
-] if 'Technology' in args.keys() else tranche_results.summary
-
+    tranche_results.summary.index.get_level_values('Technology') == args['technology']
+] if 'technology' in args.keys() else tranche_results.summary
 
 evaluator = ty.Evaluator(investments.tranches, summary)
-metric_list = evaluator.metrics
 
 optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
+# Limit the maximum investment amount for each category to the same input value.
+max_amount = pd.Series(
+    [args['max_amount']] * len(evaluator.categories),
+    index = evaluator.categories,
+)
 
 # Run optimizer.
 optimum = optimizer.maximize_slsqp(
     metric = args['target_metric'],
     total_amount = args['total_amount'],
-    max_amount = pd.Series(
-        [args['max_amount']] * len(evaluator.categories),
-        # index=["OPE Investment Only", "CPR Investment Only", "FAC Investment Only"],
-    )
+    max_amount = max_amount,
 )
 
-
+# Define waterfall object and generate output.
 w = ty.Waterfall(
   amounts = optimum.amounts,
   evaluator = evaluator,
-  data = args['data_dir'],
+  data = args['data_loc'],
   metric = args['target_metric'],
 )
 
