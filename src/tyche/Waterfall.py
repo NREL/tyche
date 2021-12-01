@@ -26,10 +26,13 @@ class Waterfall:
     max_amount = None,
   ):
     print("\nCreate waterfall for the following investments\n", amounts, "\n")
+    
+    # Define path to output.
     data = os.path.join(data, "waterfall")
     if not os.path.isdir(data): os.mkdir(data)
     self._data_path = data
 
+    # Save evaluator internally and extract amounts.
     self.evaluator = evaluator
     self.amounts = pd.DataFrame(amounts.copy())
     
@@ -39,11 +42,10 @@ class Waterfall:
     raw = evaluator.raw.copy().reset_index()
     raw = raw[['Category','Index','Units','Technology']].drop_duplicates()
     raw['Metric'] = metric
-    self.raw = raw.set_index(['Category','Index'])
+    self.raw = self._condense(raw.set_index(['Category','Index']))
 
     # Set properties: order, path, and values.
     self.order = order
-    print
     self.refresh(order)
     return None
 
