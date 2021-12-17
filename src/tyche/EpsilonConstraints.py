@@ -212,7 +212,7 @@ class EpsilonConstraintOptimizer:
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
-          value = self._f(evaluate, _eps_sense[index], verbose)(x)[j]
+          value = self._f(evaluate, eps_sense[index], verbose)(x)[j]
 
           if verbose == 3:
             print('Metric limit:     ', np.round(limit, 3),
@@ -426,7 +426,7 @@ class EpsilonConstraintOptimizer:
           j = np.where(self.evaluator.metrics == index)[0][0]
 
           # calculate the summary statistic on the current metric
-          value = self._f(evaluate, _eps_sense[index], verbose)(x)[j]
+          value = self._f(evaluate, eps_sense[index], verbose)(x)[j]
 
           if verbose == 2:
             print('Metric limit:     ', np.round(limit, 3),
@@ -655,7 +655,7 @@ class EpsilonConstraintOptimizer:
         # current metric constraint
         # as the loop executes, one constraint per metric will be added to the
         # container
-        g_metric = make_g_metric(evaluate, _eps_sense[index], limit)
+        g_metric = make_g_metric(evaluate, eps_sense[index], limit)
         constraints += [{'type': 'ineq', 'fun': g_metric}]
 
     opt_dict = {'f_tol': tol,
@@ -727,66 +727,74 @@ class EpsilonConstraintOptimizer:
     verbose : int
       Verbosity level.
     """
-    # if no metric_sense is provided, use the sense value provided to the
-    # EpsilonConstraintOptimizer class object for all metrics
+    # if no metric_sense is provided, default to maximizing metrics
     if sense is None:
       print('optimum_metrics: No optimization sense provided; Maximizing metrics')
       self._max_metrics = {
-        metric : self.opt_slsqp(
-          metric,
-          'max',
-          max_amount,
-          total_amount,
-          None,
-          None,
-          statistic,
-          tol,
-          maxiter,
-          verbose
+        mtr : self.opt_slsqp(
+          metric = mtr,
+          sense = 'max',
+          max_amount=max_amount,
+          total_amount=total_amount,
+          eps_metric=None,
+          eps_sense=None,
+          statistic=statistic,
+          initial=None,
+          tol=tol,
+          maxiter=maxiter,
+          verbose=verbose
         )
-        for metric in self.evaluator.metrics
+        for mtr in self.evaluator.metrics
       }
     else:
       # if metric_sense is a dictionary, use the sense value provided per metric
       if type(sense) == dict:
         self._max_metrics = {
-          metric: self.opt_slsqp(
-            metric,
-            sense[metric],
-            max_amount,
-            total_amount,
-            None,
-            None,
-            statistic,
-            tol,
-            maxiter,
-            verbose
+          mtr: self.opt_slsqp(
+            metric = mtr,
+            sense = sense[mtr],
+            max_amount = max_amount,
+            total_amount = total_amount,
+            eps_metric = None,
+            eps_sense = None,
+            statistic = statistic,
+            initial = None,
+            tol = tol,
+            maxiter = maxiter,
+            verbose = verbose
           )
-          for metric in self.evaluator.metrics
+          for mtr in self.evaluator.metrics
         }
       # if metric_sense is a string, apply that sense to all metrics
       elif type(sense) == str:
         self._max_metrics = {
-          metric: self.opt_slsqp(
-            metric,
-            sense,
-            max_amount,
-            total_amount,
-            None,
-            None,
-            statistic,
-            tol,
-            maxiter,
-            verbose
+          mtr: self.opt_slsqp(
+            metric = mtr,
+            sense = sense,
+            max_amount = max_amount,
+            total_amount = total_amount,
+            eps_metric = None,
+            eps_sense = None,
+            statistic = statistic,
+            initial = None,
+            tol = tol,
+            maxiter = maxiter,
+            verbose = verbose
           )
-          for metric in self.evaluator.metrics
+          for mtr in self.evaluator.metrics
         }
       else:
         raise TypeError(f'optimum_metrics: sense must be dict or str')
 
+    # Provide info on any failed metric optimizations
+    for k,v in self._max_metrics.items():
+      if v.exit_code != 0:
+        print(f'Metric {k} optimization failed: Code {v.exit_code}, {v.exit_message}')
+        v.metrics[k] = -1.0
+
     return pd.Series(
-      [v.metrics[k] if v.exit_code == 0
-       else np.nan for k, v in self._max_metrics.items()],
+      [v.metrics[k]
+       for k, v in self._max_metrics.items()],
       name  = "Value",
       index = self._max_metrics.keys(),
     )
@@ -979,7 +987,7 @@ class EpsilonConstraintOptimizer:
 
       # loop through list of metric minima
       for index, limit in eps_metric.iteritems():
-        if _eps_sense[index] == 'max':
+        if eps_sense[index] == 'max':
           _eps_mult = -1.0
         else:
           _eps_mult = 1.0
