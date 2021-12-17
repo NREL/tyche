@@ -9,7 +9,7 @@ import time
 from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
-
+import pdb
 from mip import Model, MAXIMIZE, MINIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
@@ -92,7 +92,7 @@ class EpsilonConstraintOptimizer:
     verbose      = 0      ,
   ):
     """
-    Maximize the objective function using the fmin_slsqp algorithm.
+    Optimize the objective function using the fmin_slsqp algorithm.
 
     Parameters
     ----------
@@ -146,18 +146,18 @@ class EpsilonConstraintOptimizer:
         raise ValueError(f'opt_slsqp: sense must be one of {self.valid_sense}')
       else:
         _sense = sense
-    if eps_sense is None and eps_metric is not None:
-      # No value for eps_sense but at least one eps_metric:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
-        raise ValueError(f'opt_slsqp: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
+    #if eps_sense is None:
+    #  # No value for eps_sense:
+    #  _eps_sense = pd.Series(
+    #    ['min' for i in eps_metric],
+    #    name='Value',
+    #    index=eps_metric.index
+    #  )
+    #else:
+      #if not all([eps_sense].isin(self.valid_sense)):
+      #  raise ValueError(f'opt_slsqp: eps_sense must be one of {self.valid_sense}')
+      #else:
+    #    _eps_sense = eps_sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -743,8 +743,8 @@ class EpsilonConstraintOptimizer:
           max_amount,
           total_amount,
           None,
-          statistic,
           None,
+          statistic,
           tol,
           maxiter,
           verbose
@@ -761,8 +761,8 @@ class EpsilonConstraintOptimizer:
             max_amount,
             total_amount,
             None,
-            statistic,
             None,
+            statistic,
             tol,
             maxiter,
             verbose
@@ -778,8 +778,8 @@ class EpsilonConstraintOptimizer:
             max_amount,
             total_amount,
             None,
-            statistic,
             None,
+            statistic,
             tol,
             maxiter,
             verbose
