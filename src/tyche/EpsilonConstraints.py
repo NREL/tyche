@@ -9,7 +9,7 @@ import time
 from collections    import namedtuple
 from scipy.optimize import fmin_slsqp, differential_evolution, shgo
 from scipy.optimize import NonlinearConstraint
-import pdb
+
 from mip import Model, MAXIMIZE, MINIMIZE, BINARY, xsum
 
 Optimum = namedtuple(
@@ -33,14 +33,12 @@ class EpsilonConstraintOptimizer:
     The scaling factor for output.
   """
 
-  def __init__(self, evaluator, sense = 'max', scale = 1e6):
+  def __init__(self, evaluator, scale = 1e6):
     """
     Parameters
     ----------
     evaluator : tyche.Evaluator
       The technology evaluator.
-    sense : str
-      Optimization sense: 'min' or 'max'.
     scale : float
       The scaling factor for output.
     """
@@ -49,11 +47,9 @@ class EpsilonConstraintOptimizer:
     self.scale = scale
     self._max_metrics = {}
 
+    # Create and store the set of valid optimization sense parameters for use
+    # in optimization methods
     self.valid_sense = {'min', 'max'}
-    if sense not in self.valid_sense:
-      raise ValueError(f'EpsilonConstraintOptimizer: sense must be one of {self.valid_sense}')
-    else:
-      self.sense = sense
 
   def _f(self, evaluate, sense, verbose = 0):
     def f(x):
@@ -140,12 +136,12 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_slsqp: No optimization sense specified; maximizing objective function')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_slsqp: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
+
     #if eps_sense is None:
     #  # No value for eps_sense:
     #  _eps_sense = pd.Series(
@@ -159,7 +155,7 @@ class EpsilonConstraintOptimizer:
       #else:
     #    _eps_sense = eps_sense
 
-    # create a functio to evaluate the statistic
+    # create a function to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
 
     # get location index of metric
@@ -248,7 +244,7 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = fmin_slsqp(
-      self._fi(i, evaluate, _sense, verbose), # callable function that returns the scalar objective function value
+      self._fi(i, evaluate, sense, verbose), # callable function that returns the scalar objective function value
       initial / self.scale , # scaled initial guess values for decision variables (investment amounts, metrics)
       f_ieqcons   = g      , # list of functions that return inequality constraints in the form const >= 0
       bounds      = bounds , # upper and lower bounds on decision variables
@@ -274,7 +270,7 @@ class EpsilonConstraintOptimizer:
       amounts      = x        ,
       metrics      = y        ,
       solve_time   = elapsed  ,
-      opt_sense    = _sense   ,
+      opt_sense    = sense   ,
     )
 
 
@@ -354,24 +350,23 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_diffev: No optimization sense provided; Maximizing objective function')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_diffev: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
 
-    if eps_sense is None and eps_metric is not None:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
-        raise ValueError(f'opt_diffev: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
+    # if eps_sense is None and eps_metric is not None:
+    #   _eps_sense = pd.Series(
+    #     ['min' for i in eps_metric],
+    #     name='Value',
+    #     index=eps_metric.index
+    #   )
+    # else:
+    #   if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
+    #     raise ValueError(f'opt_diffev: eps_sense must be one of {self.valid_sense}')
+    #   else:
+    #     _eps_sense = eps_sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -456,7 +451,7 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = differential_evolution(
-      self._fi(i, evaluate, _sense, verbose), # callable function that returns the scalar objective function value
+      self._fi(i, evaluate, sense, verbose), # callable function that returns the scalar objective function value
       bounds=var_bounds,  # upper and lower bounds on decision variables
       strategy=strategy, # defines differential evolution strategy to use
       maxiter=maxiter, # default maximum iterations to execute
@@ -484,7 +479,7 @@ class EpsilonConstraintOptimizer:
         amounts=x,
         metrics=y,
         solve_time=elapsed,
-        opt_sense=_sense
+        opt_sense=sense
       )
     else:
       return result, elapsed
@@ -556,24 +551,23 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_shgo: No optimization sense provided; Maximizing objective function')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_shgo: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
 
-    if eps_sense is None and eps_metric is not None:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
-        raise ValueError(f'opt_shgo: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
+    # if eps_sense is None and eps_metric is not None:
+    #   _eps_sense = pd.Series(
+    #     ['min' for i in eps_metric],
+    #     name='Value',
+    #     index=eps_metric.index
+    #   )
+    # else:
+    #   if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
+    #     raise ValueError(f'opt_shgo: eps_sense must be one of {self.valid_sense}')
+    #   else:
+    #     _eps_sense = eps_sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -672,7 +666,7 @@ class EpsilonConstraintOptimizer:
     start = time.time()
 
     result = shgo(
-      self._fi(i, evaluate, _sense, verbose), # callable function that returns the scalar objective function value
+      self._fi(i, evaluate, sense, verbose), # callable function that returns the scalar objective function value
       bounds=bounds,  # upper and lower bounds on decision variables
       constraints=constraints,
       options=opt_dict, # dictionary of options including max iters
@@ -695,7 +689,7 @@ class EpsilonConstraintOptimizer:
         amounts=x,
         metrics=y,
         solve_time=elapsed,
-        opt_sense=_sense
+        opt_sense=sense
       )
     else:
       return result, elapsed
@@ -705,7 +699,7 @@ class EpsilonConstraintOptimizer:
     self                  ,
     max_amount   = None   ,
     total_amount = None   ,
-    metric_sense = None   ,
+    sense = None   ,
     statistic    = np.mean,
     tol          = 1e-8   ,
     maxiter      = 50     ,
@@ -720,7 +714,7 @@ class EpsilonConstraintOptimizer:
       The maximum amounts that can be invested in each category.
     total_amount : float
       The maximum amount that can be invested *in toto*.
-    metric_sense : Dict or str
+    sense : Dict or str
       Optimization sense for each metric. Must be 'min' or 'max'. If None, then
       the sense provided to the EpsilonConstraintOptimizer class is used for
       all metrics. If string, the sense is used for all metrics.
@@ -735,11 +729,12 @@ class EpsilonConstraintOptimizer:
     """
     # if no metric_sense is provided, use the sense value provided to the
     # EpsilonConstraintOptimizer class object for all metrics
-    if metric_sense is None:
+    if sense is None:
+      print('optimum_metrics: No optimization sense provided; Maximizing metrics')
       self._max_metrics = {
         metric : self.opt_slsqp(
           metric,
-          self.sense,
+          'max',
           max_amount,
           total_amount,
           None,
@@ -753,11 +748,11 @@ class EpsilonConstraintOptimizer:
       }
     else:
       # if metric_sense is a dictionary, use the sense value provided per metric
-      if type(metric_sense) == dict:
+      if type(sense) == dict:
         self._max_metrics = {
           metric: self.opt_slsqp(
             metric,
-            metric_sense[metric],
+            sense[metric],
             max_amount,
             total_amount,
             None,
@@ -770,11 +765,11 @@ class EpsilonConstraintOptimizer:
           for metric in self.evaluator.metrics
         }
       # if metric_sense is a string, apply that sense to all metrics
-      elif type(metric_sense) == str:
+      elif type(sense) == str:
         self._max_metrics = {
           metric: self.opt_slsqp(
             metric,
-            metric_sense,
+            sense,
             max_amount,
             total_amount,
             None,
@@ -787,8 +782,7 @@ class EpsilonConstraintOptimizer:
           for metric in self.evaluator.metrics
         }
       else:
-        raise TypeError(f'optimum_metrics: metric_sense must be dict or str')
-
+        raise TypeError(f'optimum_metrics: sense must be dict or str')
 
     return pd.Series(
       [v.metrics[k] if v.exit_code == 0
@@ -861,24 +855,23 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_milp: No optimization sense provided; Maximizing objective')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_milp: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
 
-    if eps_sense is None and eps_metric is not None:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if eps_sense not in self.valid_sense and eps_metric is not None:
-        raise ValueError(f'opt_milp: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
+    # if eps_sense is None and eps_metric is not None:
+    #   _eps_sense = pd.Series(
+    #     ['min' for i in eps_metric],
+    #     name='Value',
+    #     index=eps_metric.index
+    #   )
+    # else:
+    #   if eps_sense not in self.valid_sense and eps_metric is not None:
+    #     raise ValueError(f'opt_milp: eps_sense must be one of {self.valid_sense}')
+    #   else:
+    #     _eps_sense = eps_sense
 
     _start = time.time()
 
@@ -927,7 +920,7 @@ class EpsilonConstraintOptimizer:
                           str(round(time.time() - _start, 1)))
 
     # instantiate MILP model
-    if _sense == 'max':
+    if sense == 'max':
       _model = Model(sense=MAXIMIZE)
     else:
       _model = Model(sense=MINIMIZE)
@@ -1084,7 +1077,7 @@ class EpsilonConstraintOptimizer:
         amounts=x,
         metrics=y,
         solve_time=elapsed,
-        opt_sense = _sense
+        opt_sense = sense
       )
     # if no feasible solution was found, return a partially empty Optimum tuple
     else:
@@ -1094,5 +1087,5 @@ class EpsilonConstraintOptimizer:
         amounts=None,
         metrics=None,
         solve_time=elapsed,
-        opt_sense=_sense
+        opt_sense=sense
       )
