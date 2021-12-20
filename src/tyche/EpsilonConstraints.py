@@ -1063,18 +1063,18 @@ class EpsilonConstraintOptimizer:
       x = pd.Series(inv_levels_opt, name="Amount",
                     index=self.evaluator.max_amount.index)
 
-      metrics_opt = []
+      y = pd.Series(None, name="Value",
+                    index=_all_metrics)
 
       if verbose > 1: print('Calculating optimal metric values at %s s' %
                             str(round(time.time() - _start, 1)))
 
       # calculate optimal values of all metrics
-      for i in range(len(_all_metrics)):
-        metrics_opt += [sum([lmbd_opt[i] * [el[i] for el in _metric_data][j]
-                             for j in range(len(lmbd_opt))])]
-
-      y = pd.Series(metrics_opt, name="Value",
-                    index=_all_metrics)
+      for j in range(len(_all_metrics)):
+        y[j] = sum(
+          [lmbd_opt[i] * _metric_data[i][j]
+           for i in range(len(_metric_data))]
+        )
 
       if verbose > 1: print('Optimal metric values calculated at %s s' %
                             str(round(time.time() - _start, 1)))
