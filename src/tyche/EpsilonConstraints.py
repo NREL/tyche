@@ -476,18 +476,17 @@ class EpsilonConstraintOptimizer:
 
 
   def opt_shgo(
-          self,
-          metric,
-          sense=None,
-          max_amount=None,
-          total_amount=None,
-          eps_metric=None,
-          eps_sense=None,
-          statistic=np.mean,
-          tol=1e-8,
-          maxiter=50,
-          sampling_method='simplicial',
-          verbose=0,
+          self                           ,
+          metric                         ,
+          sense            = None        ,
+          max_amount       = None        ,
+          total_amount     = None        ,
+          eps_metric       = None        ,
+          statistic        = np.mean     ,
+          tol              = 0.01        ,
+          maxiter          = 50          ,
+          sampling_method  = 'simplicial',
+          verbose          = 0           ,
   ):
     """
     Maximize the objective function using the shgo global optimization
@@ -506,12 +505,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper metric_limit on total investments summed across all R&D categories.
-    eps_metric : DataFrame
-      RHS of the epsilon constraint(s) on one or more metrics.
-    eps_sense : DataFrame
-      Whether the epsilon constraint on each metric is a minimum constraint
-      (LHS >= RHS) or a maximum constraint (LHS <= RHS). If no value is
-      provided, defaults to 'min' (LHS >= RHS) for all epsilon constraints.
+    eps_metric : Dict
+      RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
+      names, and the values are dictionaries of the form
+      {'limit': float, 'sense': str}. The sense defines whether the epsilon
+       constraint is a lower or an upper bound, and the value must be either
+       'upper' or 'lower'.
     statistic : function
       Summary metric_statistic used on the sample evaluations; the metric
       measure that is fed to the optimizer.
@@ -546,18 +545,6 @@ class EpsilonConstraintOptimizer:
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_shgo: sense must be one of {self.valid_sense}')
-
-    # if eps_sense is None and eps_metric is not None:
-    #   _eps_sense = pd.Series(
-    #     ['min' for i in eps_metric],
-    #     name='Value',
-    #     index=eps_metric.index
-    #   )
-    # else:
-    #   if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
-    #     raise ValueError(f'opt_shgo: eps_sense must be one of {self.valid_sense}')
-    #   else:
-    #     _eps_sense = eps_sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -615,12 +602,21 @@ class EpsilonConstraintOptimizer:
 
     # exit the total_amount IF statement
 
-    def make_g_metric(evaluate, sense, metric_index, metric_limit):
+    def make_g_metric(mkg_evaluate, mkg_sense, metric_index, metric_limit):
 
       j = np.where(self.evaluator.metrics == metric_index)[0][0]
 
-      def g_metric_fn(x, sense):
-        met_value = self._f(evaluate, sense, verbose)(x)[j]
+      def g_metric_fn(x):
+        if mkg_sense == 'upper':
+          met_value = self._f(evaluate=mkg_evaluate,
+                              sense='max',
+                              verbose=verbose)(x)[j]
+        elif mkg_sense == 'lower':
+          met_value = self._f(evaluate=mkg_evaluate,
+                              sense='min',
+                              verbose=verbose)(x)[j]
+        else:
+          raise ValueError('opt_shgo: Epsilon constraint must be upper or lower')
 
         if verbose == 2:
           print('Metric limit:     ', np.round(metric_limit, 3),
@@ -640,12 +636,18 @@ class EpsilonConstraintOptimizer:
     if eps_metric is not None:
 
       # loop through all available metrics
-      for index, limit in eps_metric.iteritems():
+      for index, info in eps_metric.items():
         # append the existing constraints container with the value of the
         # current metric constraint
         # as the loop executes, one constraint per metric will be added to the
         # container
-        g_metric = make_g_metric(evaluate, eps_sense[index], limit)
+        g_metric = make_g_metric(
+          mkg_evaluate = evaluate,
+          mkg_sense = info['sense'],
+          metric_index = index,
+          metric_limit = info['limit']
+        )
+
         constraints += [{'type': 'ineq', 'fun': g_metric}]
 
     opt_dict = {'f_tol': tol,
