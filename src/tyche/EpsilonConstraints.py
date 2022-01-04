@@ -691,7 +691,7 @@ class EpsilonConstraintOptimizer:
     self                  ,
     max_amount   = None   ,
     total_amount = None   ,
-    sense = None   ,
+    sense        = None   ,
     statistic    = np.mean,
     tol          = 1e-8   ,
     maxiter      = 50     ,
@@ -730,7 +730,6 @@ class EpsilonConstraintOptimizer:
           total_amount=total_amount,
           eps_metric=None,
           statistic=statistic,
-          initial=None,
           tol=tol,
           maxiter=maxiter,
           verbose=verbose
@@ -748,7 +747,6 @@ class EpsilonConstraintOptimizer:
             total_amount = total_amount,
             eps_metric = None,
             statistic = statistic,
-            initial = None,
             tol = tol,
             maxiter = maxiter,
             verbose = verbose
@@ -765,7 +763,6 @@ class EpsilonConstraintOptimizer:
             total_amount = total_amount,
             eps_metric = None,
             statistic = statistic,
-            initial = None,
             tol = tol,
             maxiter = maxiter,
             verbose = verbose
@@ -796,7 +793,6 @@ class EpsilonConstraintOptimizer:
           max_amount   = None   ,
           total_amount = None   ,
           eps_metric   = None   ,
-          eps_sense    = None   ,
           statistic    = np.mean,
           sizelimit    = 1e6    ,
           verbose      = 0      ,
@@ -818,12 +814,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
-    eps_metric : DataFrame
-      RHS of the epsilon constraint(s) on one or more metrics.
-    eps_sense : str
-      Whether the epsilon constraint is a minimum constraint (LHS >= RHS) or a
-       maximum constraint (LHS <= RHS). If no value is provided, defaults to
-       'min' (LHS >= RHS).
+    eps_metric : Dict
+      RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
+      names, and the values are dictionaries of the form
+      {'limit': float, 'sense': str}. The sense defines whether the epsilon
+       constraint is a lower or an upper bound, and the value must be either
+       'upper' or 'lower'.
     statistic : function
       Summary statistic (metric measure) fed to evaluator_corners_wide method
       in Evaluator
@@ -857,18 +853,6 @@ class EpsilonConstraintOptimizer:
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_milp: sense must be one of {self.valid_sense}')
-
-    # if eps_sense is None and eps_metric is not None:
-    #   _eps_sense = pd.Series(
-    #     ['min' for i in eps_metric],
-    #     name='Value',
-    #     index=eps_metric.index
-    #   )
-    # else:
-    #   if eps_sense not in self.valid_sense and eps_metric is not None:
-    #     raise ValueError(f'opt_milp: eps_sense must be one of {self.valid_sense}')
-    #   else:
-    #     _eps_sense = eps_sense
 
     _start = time.time()
 
@@ -975,15 +959,17 @@ class EpsilonConstraintOptimizer:
     if eps_metric is not None:
 
       # loop through list of metric minima
-      for index, limit in eps_metric.iteritems():
-        if eps_sense[index] == 'max':
+      for index, info in eps_metric.items():
+        if info['sense'] == 'upper':
           _eps_mult = -1.0
-        else:
+        elif info['sense'] == 'lower':
           _eps_mult = 1.0
+        else:
+          raise ValueError('opt_milp: Epsilon constraint must be upper or lower')
 
         # add metric constraint on the lambda variables
         _model += _eps_mult * xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
-                       for i in range(I)) >= limit,\
+                       for i in range(I)) >= info['limit'],\
                   'Eps_Const_' + index
 
     if verbose > 1: print('Defining lambda convexity constraints at %s s' %
