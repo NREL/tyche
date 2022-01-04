@@ -80,7 +80,6 @@ class EpsilonConstraintOptimizer:
     max_amount   = None   ,
     total_amount = None   ,
     eps_metric   = None   ,
-    eps_sense    = None   ,
     statistic    = np.mean,
     initial      = None   ,
     tol          = 1e-8   ,
@@ -103,12 +102,9 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
-    eps_metric : DataFrame
-      RHS of the epsilon constraint(s) on one or more metrics.
-    eps_sense : DataFrame
-      Whether the epsilon constraint on each metric is a minimum constraint
-      (LHS >= RHS) or a maximum constraint (LHS <= RHS). If no value is
-      provided, defaults to 'min' (LHS >= RHS) for all epsilon constraints.
+    eps_metric : Dict
+      RHS of the epsilon constraint(s) on one or more metrics, in the form
+      metric: constraint value.
     statistic : function
       Summary statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
@@ -141,19 +137,6 @@ class EpsilonConstraintOptimizer:
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_slsqp: sense must be one of {self.valid_sense}')
-
-    #if eps_sense is None:
-    #  # No value for eps_sense:
-    #  _eps_sense = pd.Series(
-    #    ['min' for i in eps_metric],
-    #    name='Value',
-    #    index=eps_metric.index
-    #  )
-    #else:
-      #if not all([eps_sense].isin(self.valid_sense)):
-      #  raise ValueError(f'opt_slsqp: eps_sense must be one of {self.valid_sense}')
-      #else:
-    #    _eps_sense = eps_sense
 
     # create a function to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -207,28 +190,36 @@ class EpsilonConstraintOptimizer:
       if eps_metric is not None:
 
         # loop through all available metrics
-        for index, limit in eps_metric.iteritems():
+        for index, info in eps_metric.items():
 
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
-
-          value = self._f(evaluate, eps_sense[index], verbose)(x)[j]
+          if info['sense'] == 'lower':
+            value = self._f(evaluate=evaluate,
+                            sense='min',
+                            verbose=verbose)(x)[j]
+          elif info['sense'] == 'upper':
+            value = self._f(evaluate=evaluate,
+                            sense='max',
+                            verbose=verbose)(x)[j]
+          else:
+            raise ValueError('opt_slsqp: Epsilon constraint must be upper or lower')
 
           if verbose == 3:
-            print('Metric limit:     ', np.round(limit, 3),
+            print('Metric limit:     ', np.round(info['limit'], 3),
                   '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value >= limit)
+                  ' Constraint met: ', value >= info['limit'])
           elif verbose > 3:
             print('Decision variable values: ', np.round(x, 3),
-                  ' Metric limit:     ', np.round(limit, 3),
+                  ' Metric limit:     ', np.round(info['limit'], 3),
                   '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value >= limit)
+                  ' Constraint met: ', value >= info['limit'])
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
           # as the loop executes, one constraint per metric will be added to
           # the container
-          constraints += [value - limit]
+          constraints += [value - info['limit']]
 
       return constraints
 
@@ -737,7 +728,6 @@ class EpsilonConstraintOptimizer:
           max_amount=max_amount,
           total_amount=total_amount,
           eps_metric=None,
-          eps_sense=None,
           statistic=statistic,
           initial=None,
           tol=tol,
@@ -756,7 +746,6 @@ class EpsilonConstraintOptimizer:
             max_amount = max_amount,
             total_amount = total_amount,
             eps_metric = None,
-            eps_sense = None,
             statistic = statistic,
             initial = None,
             tol = tol,
@@ -774,7 +763,6 @@ class EpsilonConstraintOptimizer:
             max_amount = max_amount,
             total_amount = total_amount,
             eps_metric = None,
-            eps_sense = None,
             statistic = statistic,
             initial = None,
             tol = tol,
