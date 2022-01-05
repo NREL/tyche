@@ -61,6 +61,12 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     The technological parameterization.
   """
 
+  _out = parameter[12]
+
+  # Stack the output for each category into a single array that we return.
+  return np.stack([_out
+  ])
+
   _jet = parameter[12]
   _gas = parameter[10]
   _dsl = parameter[9]
