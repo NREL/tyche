@@ -33,14 +33,12 @@ class EpsilonConstraintOptimizer:
     The scaling factor for output.
   """
 
-  def __init__(self, evaluator, sense = 'max', scale = 1e6):
+  def __init__(self, evaluator, scale = 1e6):
     """
     Parameters
     ----------
     evaluator : tyche.Evaluator
       The technology evaluator.
-    sense : str
-      Optimization sense: 'min' or 'max'.
     scale : float
       The scaling factor for output.
     """
@@ -49,11 +47,9 @@ class EpsilonConstraintOptimizer:
     self.scale = scale
     self._max_metrics = {}
 
+    # Create and store the set of valid optimization sense parameters for use
+    # in optimization methods
     self.valid_sense = {'min', 'max'}
-    if sense not in self.valid_sense:
-      raise ValueError(f'EpsilonConstraintOptimizer: sense must be one of {self.valid_sense}')
-    else:
-      self.sense = sense
 
   def _f(self, evaluate, sense, verbose = 0):
     def f(x):
@@ -84,7 +80,6 @@ class EpsilonConstraintOptimizer:
     max_amount   = None   ,
     total_amount = None   ,
     eps_metric   = None   ,
-    eps_sense    = None   ,
     statistic    = np.mean,
     initial      = None   ,
     tol          = 1e-8   ,
@@ -92,7 +87,7 @@ class EpsilonConstraintOptimizer:
     verbose      = 0      ,
   ):
     """
-    Maximize the objective function using the fmin_slsqp algorithm.
+    Optimize the objective function using the fmin_slsqp algorithm.
 
     Parameters
     ----------
@@ -107,12 +102,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
-    eps_metric : DataFrame
-      RHS of the epsilon constraint(s) on one or more metrics.
-    eps_sense : DataFrame
-      Whether the epsilon constraint on each metric is a minimum constraint
-      (LHS >= RHS) or a maximum constraint (LHS <= RHS). If no value is
-      provided, defaults to 'min' (LHS >= RHS) for all epsilon constraints.
+    eps_metric : Dict
+      RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
+      names, and the values are dictionaries of the form
+      {'limit': float, 'sense': str}. The sense defines whether the epsilon
+       constraint is a lower or an upper bound, and the value must be either
+       'upper' or 'lower'.
     statistic : function
       Summary statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
@@ -140,26 +135,13 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_slsqp: No optimization sense specified; maximizing objective function')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_slsqp: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
-    if eps_sense is None and eps_metric is not None:
-      # No value for eps_sense but at least one eps_metric:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
-        raise ValueError(f'opt_slsqp: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
 
-    # create a functio to evaluate the statistic
+    # create a function to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
 
     # get location index of metric
@@ -211,28 +193,36 @@ class EpsilonConstraintOptimizer:
       if eps_metric is not None:
 
         # loop through all available metrics
-        for index, limit in eps_metric.iteritems():
+        for index, info in eps_metric.items():
 
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
-
-          value = self._f(evaluate, _eps_sense[index], verbose)(x)[j]
+          if info['sense'] == 'lower':
+            value = self._f(evaluate=evaluate,
+                            sense='min',
+                            verbose=verbose)(x)[j]
+          elif info['sense'] == 'upper':
+            value = self._f(evaluate=evaluate,
+                            sense='max',
+                            verbose=verbose)(x)[j]
+          else:
+            raise ValueError('opt_slsqp: Epsilon constraint must be upper or lower')
 
           if verbose == 3:
-            print('Metric limit:     ', np.round(limit, 3),
+            print('Metric limit:     ', np.round(info['limit'], 3),
                   '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value >= limit)
+                  ' Constraint met: ', value >= info['limit'])
           elif verbose > 3:
             print('Decision variable values: ', np.round(x, 3),
-                  ' Metric limit:     ', np.round(limit, 3),
+                  ' Metric limit:     ', np.round(info['limit'], 3),
                   '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value >= limit)
+                  ' Constraint met: ', value >= info['limit'])
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
           # as the loop executes, one constraint per metric will be added to
           # the container
-          constraints += [value - limit]
+          constraints += [value - info['limit']]
 
       return constraints
 
@@ -248,7 +238,7 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = fmin_slsqp(
-      self._fi(i, evaluate, _sense, verbose), # callable function that returns the scalar objective function value
+      self._fi(i, evaluate, sense, verbose), # callable function that returns the scalar objective function value
       initial / self.scale , # scaled initial guess values for decision variables (investment amounts, metrics)
       f_ieqcons   = g      , # list of functions that return inequality constraints in the form const >= 0
       bounds      = bounds , # upper and lower bounds on decision variables
@@ -274,25 +264,24 @@ class EpsilonConstraintOptimizer:
       amounts      = x        ,
       metrics      = y        ,
       solve_time   = elapsed  ,
-      opt_sense    = _sense   ,
+      opt_sense    = sense   ,
     )
 
 
   def opt_diffev(
-          self,
-          metric, # objective function
-          sense = None,
-          max_amount=None, # upper investment limit
-          total_amount=None, # total investments
-          eps_metric=None, # RHS of epsilon constraints on metrics
-          eps_sense=None, # whether espilon constraints are lower or upper bounds
-          statistic=np.mean, # how to quantify the metrics
-          strategy='best1bin',
-          seed=2, # random seed
-          tol=0.01, #looser tolerance means greater chance of convergence
-          maxiter=75, #this algorithm tends to require more iterations
-          init='latinhypercube',
-          verbose=0, # how much to report back during execution
+          self                            ,
+          metric                          ,
+          sense         = None            ,
+          max_amount    = None            ,
+          total_amount  = None            ,
+          eps_metric    = None            ,
+          statistic     = np.mean         ,
+          strategy      = 'best1bin'      ,
+          seed          = 2               ,
+          tol           = 0.01            ,
+          maxiter       = 75              ,
+          init          = 'latinhypercube',
+          verbose       = 0               ,
   ):
     """
     Maximize the objective function using the differential_evoluation
@@ -301,7 +290,7 @@ class EpsilonConstraintOptimizer:
     Parameters
     ----------
     metric : str
-      Name of metric to maximize.
+      Name of metric to maximize. The objective function.
     sense : str
       Optimization sense ('min' or 'max'). If no value is provided to
        this method, the sense value used to create the
@@ -311,12 +300,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
-    eps_metric : DataFrame
-      RHS of the epsilon constraint(s) on one or more metrics.
-    eps_sense : DataFrame
-      Whether the epsilon constraint on each metric is a minimum constraint
-      (LHS >= RHS) or a maximum constraint (LHS <= RHS). If no value is
-      provided, defaults to 'min' (LHS >= RHS) for all epsilon constraints.
+    eps_metric : Dict
+      RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
+      names, and the values are dictionaries of the form
+      {'limit': float, 'sense': str}. The sense defines whether the epsilon
+       constraint is a lower or an upper bound, and the value must be either
+       'upper' or 'lower'.
     statistic : function
       Summary statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
@@ -354,24 +343,11 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_diffev: No optimization sense provided; Maximizing objective function')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_diffev: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
-
-    if eps_sense is None and eps_metric is not None:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
-        raise ValueError(f'opt_diffev: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -392,8 +368,8 @@ class EpsilonConstraintOptimizer:
     # optimizer, in the correct format
     def g(x):
 
-      # create container for the constraints with a dummy value
-      constraints = [1]
+      # create empty container for the constraints
+      constraints = []
 
       # if the upper limit on total investments has been defined,
       if total_amount is not None:
@@ -417,7 +393,7 @@ class EpsilonConstraintOptimizer:
 
         # update the constraint container with the LHS value of the
         # investment constraint as a >= 0 inequality constraint
-        constraints = [limit - value]
+        constraints += [limit - value]
 
       # exit the total_amount IF statement
 
@@ -425,29 +401,38 @@ class EpsilonConstraintOptimizer:
       if eps_metric is not None:
 
         # loop through all available metrics
-        for index, limit in eps_metric.iteritems():
+        for index, info in eps_metric.items():
 
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
 
           # calculate the summary statistic on the current metric
-          value = self._f(evaluate, _eps_sense[index], verbose)(x)[j]
+          if info['sense'] == 'lower':
+            value = self._f(evaluate=evaluate,
+                            sense='min',
+                            verbose=verbose)(x)[j]
+          elif info['sense'] == 'upper':
+            value = self._f(evaluate=evaluate,
+                            sense='max',
+                            verbose=verbose)(x)[j]
+          else:
+            raise ValueError('opt_diffev: Epsilon constraint must be upper or lower')
 
-          if verbose == 2:
-            print('Metric limit:     ', np.round(limit, 3),
+          if verbose == 3:
+            print('Metric limit:     ', np.round(info['limit'], 3),
                   '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value <= limit)
-          elif verbose > 2:
+                  ' Constraint met: ', value <= info['limit'])
+          elif verbose > 3:
             print('Decision variable values: ', np.round(x, 3),
-                  ' Metric limit:     ', np.round(limit, 3),
+                  ' Metric limit:     ', np.round(info['limit'], 3),
                   '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value <= limit)
+                  ' Constraint met: ', value <= info['limit'])
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
           # as the loop executes, one constraint per metric will be added to
           # the container
-          constraints += [value - limit]
+          constraints += [value - info['limit']]
 
       return np.array(constraints)
 
@@ -456,7 +441,7 @@ class EpsilonConstraintOptimizer:
 
     # run the optimizer
     result = differential_evolution(
-      self._fi(i, evaluate, _sense, verbose), # callable function that returns the scalar objective function value
+      self._fi(i, evaluate, sense, verbose), # callable function that returns the scalar objective function value
       bounds=var_bounds,  # upper and lower bounds on decision variables
       strategy=strategy, # defines differential evolution strategy to use
       maxiter=maxiter, # default maximum iterations to execute
@@ -484,25 +469,24 @@ class EpsilonConstraintOptimizer:
         amounts=x,
         metrics=y,
         solve_time=elapsed,
-        opt_sense=_sense
+        opt_sense=sense
       )
     else:
       return result, elapsed
 
 
   def opt_shgo(
-          self,
-          metric,
-          sense=None,
-          max_amount=None,
-          total_amount=None,
-          eps_metric=None,
-          eps_sense=None,
-          statistic=np.mean,
-          tol=1e-8,
-          maxiter=50,
-          sampling_method='simplicial',
-          verbose=0,
+          self                           ,
+          metric                         ,
+          sense            = None        ,
+          max_amount       = None        ,
+          total_amount     = None        ,
+          eps_metric       = None        ,
+          statistic        = np.mean     ,
+          tol              = 0.01        ,
+          maxiter          = 50          ,
+          sampling_method  = 'simplicial',
+          verbose          = 0           ,
   ):
     """
     Maximize the objective function using the shgo global optimization
@@ -521,12 +505,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper metric_limit on total investments summed across all R&D categories.
-    eps_metric : DataFrame
-      RHS of the epsilon constraint(s) on one or more metrics.
-    eps_sense : DataFrame
-      Whether the epsilon constraint on each metric is a minimum constraint
-      (LHS >= RHS) or a maximum constraint (LHS <= RHS). If no value is
-      provided, defaults to 'min' (LHS >= RHS) for all epsilon constraints.
+    eps_metric : Dict
+      RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
+      names, and the values are dictionaries of the form
+      {'limit': float, 'sense': str}. The sense defines whether the epsilon
+       constraint is a lower or an upper bound, and the value must be either
+       'upper' or 'lower'.
     statistic : function
       Summary metric_statistic used on the sample evaluations; the metric
       measure that is fed to the optimizer.
@@ -556,24 +540,11 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_shgo: No optimization sense provided; Maximizing objective function')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_shgo: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
-
-    if eps_sense is None and eps_metric is not None:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if not all(eps_sense.isin(self.valid_sense)) and eps_metric is not None:
-        raise ValueError(f'opt_shgo: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
 
     # create a functio to evaluate the statistic
     evaluate = self.evaluator.make_statistic_evaluator(statistic)
@@ -631,12 +602,21 @@ class EpsilonConstraintOptimizer:
 
     # exit the total_amount IF statement
 
-    def make_g_metric(evaluate, sense, metric_index, metric_limit):
+    def make_g_metric(mkg_evaluate, mkg_sense, metric_index, metric_limit):
 
       j = np.where(self.evaluator.metrics == metric_index)[0][0]
 
-      def g_metric_fn(x, sense):
-        met_value = self._f(evaluate, sense, verbose)(x)[j]
+      def g_metric_fn(x):
+        if mkg_sense == 'upper':
+          met_value = self._f(evaluate=mkg_evaluate,
+                              sense='max',
+                              verbose=verbose)(x)[j]
+        elif mkg_sense == 'lower':
+          met_value = self._f(evaluate=mkg_evaluate,
+                              sense='min',
+                              verbose=verbose)(x)[j]
+        else:
+          raise ValueError('opt_shgo: Epsilon constraint must be upper or lower')
 
         if verbose == 2:
           print('Metric limit:     ', np.round(metric_limit, 3),
@@ -656,12 +636,18 @@ class EpsilonConstraintOptimizer:
     if eps_metric is not None:
 
       # loop through all available metrics
-      for index, limit in eps_metric.iteritems():
+      for index, info in eps_metric.items():
         # append the existing constraints container with the value of the
         # current metric constraint
         # as the loop executes, one constraint per metric will be added to the
         # container
-        g_metric = make_g_metric(evaluate, _eps_sense[index], limit)
+        g_metric = make_g_metric(
+          mkg_evaluate = evaluate,
+          mkg_sense = info['sense'],
+          metric_index = index,
+          metric_limit = info['limit']
+        )
+
         constraints += [{'type': 'ineq', 'fun': g_metric}]
 
     opt_dict = {'f_tol': tol,
@@ -672,7 +658,7 @@ class EpsilonConstraintOptimizer:
     start = time.time()
 
     result = shgo(
-      self._fi(i, evaluate, _sense, verbose), # callable function that returns the scalar objective function value
+      self._fi(i, evaluate, sense, verbose), # callable function that returns the scalar objective function value
       bounds=bounds,  # upper and lower bounds on decision variables
       constraints=constraints,
       options=opt_dict, # dictionary of options including max iters
@@ -695,7 +681,7 @@ class EpsilonConstraintOptimizer:
         amounts=x,
         metrics=y,
         solve_time=elapsed,
-        opt_sense=_sense
+        opt_sense=sense
       )
     else:
       return result, elapsed
@@ -705,7 +691,7 @@ class EpsilonConstraintOptimizer:
     self                  ,
     max_amount   = None   ,
     total_amount = None   ,
-    metric_sense = None   ,
+    sense        = None   ,
     statistic    = np.mean,
     tol          = 1e-8   ,
     maxiter      = 50     ,
@@ -720,7 +706,7 @@ class EpsilonConstraintOptimizer:
       The maximum amounts that can be invested in each category.
     total_amount : float
       The maximum amount that can be invested *in toto*.
-    metric_sense : Dict or str
+    sense : Dict or str
       Optimization sense for each metric. Must be 'min' or 'max'. If None, then
       the sense provided to the EpsilonConstraintOptimizer class is used for
       all metrics. If string, the sense is used for all metrics.
@@ -733,66 +719,68 @@ class EpsilonConstraintOptimizer:
     verbose : int
       Verbosity level.
     """
-    # if no metric_sense is provided, use the sense value provided to the
-    # EpsilonConstraintOptimizer class object for all metrics
-    if metric_sense is None:
+    # if no metric_sense is provided, default to maximizing metrics
+    if sense is None:
+      print('optimum_metrics: No optimization sense provided; Maximizing metrics')
       self._max_metrics = {
-        metric : self.opt_slsqp(
-          metric,
-          self.sense,
-          max_amount,
-          total_amount,
-          None,
-          statistic,
-          None,
-          tol,
-          maxiter,
-          verbose
+        mtr : self.opt_slsqp(
+          metric = mtr,
+          sense = 'max',
+          max_amount=max_amount,
+          total_amount=total_amount,
+          eps_metric=None,
+          statistic=statistic,
+          tol=tol,
+          maxiter=maxiter,
+          verbose=verbose
         )
-        for metric in self.evaluator.metrics
+        for mtr in self.evaluator.metrics
       }
     else:
       # if metric_sense is a dictionary, use the sense value provided per metric
-      if type(metric_sense) == dict:
+      if type(sense) == dict:
         self._max_metrics = {
-          metric: self.opt_slsqp(
-            metric,
-            metric_sense[metric],
-            max_amount,
-            total_amount,
-            None,
-            statistic,
-            None,
-            tol,
-            maxiter,
-            verbose
+          mtr: self.opt_slsqp(
+            metric = mtr,
+            sense = sense[mtr],
+            max_amount = max_amount,
+            total_amount = total_amount,
+            eps_metric = None,
+            statistic = statistic,
+            tol = tol,
+            maxiter = maxiter,
+            verbose = verbose
           )
-          for metric in self.evaluator.metrics
+          for mtr in self.evaluator.metrics
         }
       # if metric_sense is a string, apply that sense to all metrics
-      elif type(metric_sense) == str:
+      elif type(sense) == str:
         self._max_metrics = {
-          metric: self.opt_slsqp(
-            metric,
-            metric_sense,
-            max_amount,
-            total_amount,
-            None,
-            statistic,
-            None,
-            tol,
-            maxiter,
-            verbose
+          mtr: self.opt_slsqp(
+            metric = mtr,
+            sense = sense,
+            max_amount = max_amount,
+            total_amount = total_amount,
+            eps_metric = None,
+            statistic = statistic,
+            tol = tol,
+            maxiter = maxiter,
+            verbose = verbose
           )
-          for metric in self.evaluator.metrics
+          for mtr in self.evaluator.metrics
         }
       else:
-        raise TypeError(f'optimum_metrics: metric_sense must be dict or str')
+        raise TypeError(f'optimum_metrics: sense must be dict or str')
 
+    # Provide info on any failed metric optimizations
+    for k,v in self._max_metrics.items():
+      if v.exit_code != 0:
+        print(f'Metric {k} optimization failed: Code {v.exit_code}, {v.exit_message}')
+        v.metrics[k] = -1.0
 
     return pd.Series(
-      [v.metrics[k] if v.exit_code == 0
-       else np.nan for k, v in self._max_metrics.items()],
+      [v.metrics[k]
+       for k, v in self._max_metrics.items()],
       name  = "Value",
       index = self._max_metrics.keys(),
     )
@@ -805,7 +793,6 @@ class EpsilonConstraintOptimizer:
           max_amount   = None   ,
           total_amount = None   ,
           eps_metric   = None   ,
-          eps_sense    = None   ,
           statistic    = np.mean,
           sizelimit    = 1e6    ,
           verbose      = 0      ,
@@ -827,12 +814,12 @@ class EpsilonConstraintOptimizer:
       and maximum metric values
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
-    eps_metric : DataFrame
-      RHS of the epsilon constraint(s) on one or more metrics.
-    eps_sense : str
-      Whether the epsilon constraint is a minimum constraint (LHS >= RHS) or a
-       maximum constraint (LHS <= RHS). If no value is provided, defaults to
-       'min' (LHS >= RHS).
+    eps_metric : Dict
+      RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
+      names, and the values are dictionaries of the form
+      {'limit': float, 'sense': str}. The sense defines whether the epsilon
+       constraint is a lower or an upper bound, and the value must be either
+       'upper' or 'lower'.
     statistic : function
       Summary statistic (metric measure) fed to evaluator_corners_wide method
       in Evaluator
@@ -861,24 +848,11 @@ class EpsilonConstraintOptimizer:
     # the provided value.
     # _sense is the parameter used only in this method
     if sense is None:
-      _sense = self.sense
+      print('opt_milp: No optimization sense provided; Maximizing objective')
+      sense = 'max'
     else:
       if sense not in self.valid_sense:
         raise ValueError(f'opt_milp: sense must be one of {self.valid_sense}')
-      else:
-        _sense = sense
-
-    if eps_sense is None and eps_metric is not None:
-      _eps_sense = pd.Series(
-        ['min' for i in eps_metric],
-        name='Value',
-        index=eps_metric.index
-      )
-    else:
-      if eps_sense not in self.valid_sense and eps_metric is not None:
-        raise ValueError(f'opt_milp: eps_sense must be one of {self.valid_sense}')
-      else:
-        _eps_sense = eps_sense
 
     _start = time.time()
 
@@ -927,7 +901,7 @@ class EpsilonConstraintOptimizer:
                           str(round(time.time() - _start, 1)))
 
     # instantiate MILP model
-    if _sense == 'max':
+    if sense == 'max':
       _model = Model(sense=MAXIMIZE)
     else:
       _model = Model(sense=MINIMIZE)
@@ -985,15 +959,17 @@ class EpsilonConstraintOptimizer:
     if eps_metric is not None:
 
       # loop through list of metric minima
-      for index, limit in eps_metric.iteritems():
-        if _eps_sense[index] == 'max':
+      for index, info in eps_metric.items():
+        if info['sense'] == 'upper':
           _eps_mult = -1.0
-        else:
+        elif info['sense'] == 'lower':
           _eps_mult = 1.0
+        else:
+          raise ValueError('opt_milp: Epsilon constraint must be upper or lower')
 
         # add metric constraint on the lambda variables
         _model += _eps_mult * xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
-                       for i in range(I)) >= limit,\
+                       for i in range(I)) >= info['limit'],\
                   'Eps_Const_' + index
 
     if verbose > 1: print('Defining lambda convexity constraints at %s s' %
@@ -1062,18 +1038,18 @@ class EpsilonConstraintOptimizer:
       x = pd.Series(inv_levels_opt, name="Amount",
                     index=self.evaluator.max_amount.index)
 
-      metrics_opt = []
+      y = pd.Series(None, name="Value",
+                    index=_all_metrics)
 
       if verbose > 1: print('Calculating optimal metric values at %s s' %
                             str(round(time.time() - _start, 1)))
 
       # calculate optimal values of all metrics
-      for i in range(len(_all_metrics)):
-        metrics_opt += [sum([lmbd_opt[i] * [el[i] for el in _metric_data][j]
-                             for j in range(len(lmbd_opt))])]
-
-      y = pd.Series(metrics_opt, name="Value",
-                    index=_all_metrics)
+      for j in range(len(_all_metrics)):
+        y[j] = sum(
+          [lmbd_opt[i] * _metric_data[i][j]
+           for i in range(len(_metric_data))]
+        )
 
       if verbose > 1: print('Optimal metric values calculated at %s s' %
                             str(round(time.time() - _start, 1)))
@@ -1084,7 +1060,7 @@ class EpsilonConstraintOptimizer:
         amounts=x,
         metrics=y,
         solve_time=elapsed,
-        opt_sense = _sense
+        opt_sense = sense
       )
     # if no feasible solution was found, return a partially empty Optimum tuple
     else:
@@ -1094,5 +1070,5 @@ class EpsilonConstraintOptimizer:
         amounts=None,
         metrics=None,
         solve_time=elapsed,
-        opt_sense=_sense
+        opt_sense=sense
       )
