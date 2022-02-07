@@ -1,0 +1,105 @@
+Category,Tranche,Scenario,Sample,Technology,Index,Value,Units
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,1,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,1,Wind Turbine,Cost,206458.99179208744,$/turbine/year
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,1,Wind Turbine,LCOE,0.04788010013731156,$/kWh
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,2,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,2,Wind Turbine,Cost,206479.42379997286,$/turbine/year
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,2,Wind Turbine,LCOE,0.04788483854359296,$/kWh
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,1,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,1,Wind Turbine,Cost,203649.63001259085,$/turbine/year
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,1,Wind Turbine,LCOE,0.04722857838881977,$/kWh
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,2,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,2,Wind Turbine,Cost,206147.97004037822,$/turbine/year
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,2,Wind Turbine,LCOE,0.04780797078858493,$/kWh
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,1,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,1,Wind Turbine,Cost,205044.7547773148,$/turbine/year
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,1,Wind Turbine,LCOE,0.0475521230930693,$/kWh
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,2,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,2,Wind Turbine,Cost,203018.20178447047,$/turbine/year
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,2,Wind Turbine,LCOE,0.04708214327098109,$/kWh
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,1,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,1,Wind Turbine,Cost,193579.19454993476,$/turbine/year
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,1,Wind Turbine,LCOE,0.044893134172062796,$/kWh
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,2,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,2,Wind Turbine,Cost,189325.55635238506,$/turbine/year
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,2,Wind Turbine,LCOE,0.04390666891289079,$/kWh
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,1,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,1,Wind Turbine,Cost,213535.53660314376,$/turbine/year
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,1,Wind Turbine,LCOE,0.0495212283402467,$/kWh
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,2,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,2,Wind Turbine,Cost,205990.32577621084,$/turbine/year
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,2,Wind Turbine,LCOE,0.047771411358119395,$/kWh
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,1,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,1,Wind Turbine,Cost,208909.7947507843,$/turbine/year
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,1,Wind Turbine,LCOE,0.04844846817040452,$/kWh
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,2,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,2,Wind Turbine,Cost,199325.49657695286,$/turbine/year
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,2,Wind Turbine,LCOE,0.04622576451228035,$/kWh
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,1,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,1,Wind Turbine,Cost,201080.2723815638,$/turbine/year
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,1,Wind Turbine,LCOE,0.046632716229490674,$/kWh
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,2,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,2,Wind Turbine,Cost,188063.48728591745,$/turbine/year
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,2,Wind Turbine,LCOE,0.04361398128152074,$/kWh
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,1,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,1,Wind Turbine,Cost,204090.10089434785,$/turbine/year
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,1,Wind Turbine,LCOE,0.04733072840778012,$/kWh
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,2,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,2,Wind Turbine,Cost,202202.1714180698,$/turbine/year
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,2,Wind Turbine,LCOE,0.04689289689658391,$/kWh
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,1,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,1,Wind Turbine,Cost,197892.53362390317,$/turbine/year
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,1,Wind Turbine,LCOE,0.04589344471797384,$/kWh
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,2,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,2,Wind Turbine,Cost,194161.25491363037,$/turbine/year
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,2,Wind Turbine,LCOE,0.045028120341751014,$/kWh
+Base Case,Business as Usual,Reference,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Base Case,Business as Usual,Reference,1,Wind Turbine,CF,0.3282,%/100
+Base Case,Business as Usual,Reference,1,Wind Turbine,Cost,211793.54319443653,$/turbine/year
+Base Case,Business as Usual,Reference,1,Wind Turbine,LCOE,0.04911724100056506,$/kWh
+Base Case,Business as Usual,Reference,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Base Case,Business as Usual,Reference,2,Wind Turbine,CF,0.3282,%/100
+Base Case,Business as Usual,Reference,2,Wind Turbine,Cost,212472.94306024665,$/turbine/year
+Base Case,Business as Usual,Reference,2,Wind Turbine,LCOE,0.04927480126629096,$/kWh
+Drive Investment Only,No Drive Investment,Reference,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,No Drive Investment,Reference,1,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,No Drive Investment,Reference,1,Wind Turbine,Cost,211793.54319443653,$/turbine/year
+Drive Investment Only,No Drive Investment,Reference,1,Wind Turbine,LCOE,0.04911724100056506,$/kWh
+Drive Investment Only,No Drive Investment,Reference,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Drive Investment Only,No Drive Investment,Reference,2,Wind Turbine,CF,0.3282,%/100
+Drive Investment Only,No Drive Investment,Reference,2,Wind Turbine,Cost,212472.94306024665,$/turbine/year
+Drive Investment Only,No Drive Investment,Reference,2,Wind Turbine,LCOE,0.04927480126629096,$/kWh
+Rotor Investment Only,No Rotor Investment,Reference,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,No Rotor Investment,Reference,1,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,No Rotor Investment,Reference,1,Wind Turbine,Cost,211793.54319443653,$/turbine/year
+Rotor Investment Only,No Rotor Investment,Reference,1,Wind Turbine,LCOE,0.04911724100056506,$/kWh
+Rotor Investment Only,No Rotor Investment,Reference,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Rotor Investment Only,No Rotor Investment,Reference,2,Wind Turbine,CF,0.3282,%/100
+Rotor Investment Only,No Rotor Investment,Reference,2,Wind Turbine,Cost,212472.94306024665,$/turbine/year
+Rotor Investment Only,No Rotor Investment,Reference,2,Wind Turbine,LCOE,0.04927480126629096,$/kWh
+Tower Investment Only,No Tower Investment,Reference,1,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,No Tower Investment,Reference,1,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,No Tower Investment,Reference,1,Wind Turbine,Cost,211793.54319443653,$/turbine/year
+Tower Investment Only,No Tower Investment,Reference,1,Wind Turbine,LCOE,0.04911724100056506,$/kWh
+Tower Investment Only,No Tower Investment,Reference,2,Wind Turbine,AEP,4312.0,MWh/turbine/year
+Tower Investment Only,No Tower Investment,Reference,2,Wind Turbine,CF,0.3282,%/100
+Tower Investment Only,No Tower Investment,Reference,2,Wind Turbine,Cost,212472.94306024665,$/turbine/year
+Tower Investment Only,No Tower Investment,Reference,2,Wind Turbine,LCOE,0.04927480126629096,$/kWh
