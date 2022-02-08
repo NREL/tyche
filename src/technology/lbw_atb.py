@@ -28,5 +28,4 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
     """Metrics function."""
     lcoe1 = parameter[0]
     lcoe5 = parameter[1]
-    lcoe10 = parameter[2]
-    return np.stack([lcoe1, lcoe5, lcoe10])
+    return np.stack([lcoe1, lcoe5])
