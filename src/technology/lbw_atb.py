@@ -26,6 +26,6 @@ def production(scale, capital, lifetime, fixed, input, parameter):
 
 def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
     """Metrics function."""
-    lcoe1 = parameter[0]
-    lcoe5 = parameter[1]
-    return np.stack([lcoe1, lcoe5])
+    lcoe = parameter[0]
+    ann_inv = parameter[1]
+    return np.stack([lcoe, ann_inv])
