@@ -191,7 +191,7 @@ function x2y(target, x, y) {
     , invest : {}
     }
     forEachByClassName("invlimwid", target => constraints.invest[target.id] = Number(target.value))
-    forEachByClassName("metlimwid", target => constraints.metric[target.id] = Number(target.value))
+    forEachByClassName("metlimwid", target => constraints.metric[target.id] = - Number(target.value))
     postRequest(
       "/optimize"
     , "target=" +  optimize_metric.value + "&constraints=" + JSON.stringify(constraints)

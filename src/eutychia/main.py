@@ -1,3 +1,8 @@
+"""
+Web server user interface for Tyche.
+"""
+
+
 # Import modules and functions.
 
 import os
@@ -8,123 +13,131 @@ sys.path.insert(0, os.path.abspath(".."))
 import json as json
 import numpy as np
 import pandas as pd
-import quart as qt
 import seaborn as sb
 import tyche as ty
 import uuid as uuid
 
 from base64 import b64encode
+from datetime import datetime
 from io import BytesIO
 from matplotlib.figure import Figure
 
 
+if 'QUART_APP' in os.environ or __name__ == '__main__':
+
+  import quart as qt
+
 # Create and configure application.
 
-app = qt.Quart(__name__, static_url_path="", static_folder="static",)
+  app = qt.Quart(__name__, static_url_path="", static_folder="static",)
 
-app.config.from_file("demo.json", json.load)
+  app.config.from_file("ioc-0.json", json.load)
 
 
 # Compute investments.
 
-investments = ty.Investments(app.config["INVESTMENTS"])
+  investments = ty.Investments(app.config["INVESTMENTS"])
 
-designs = ty.Designs(app.config["DESIGNS"])
-designs.compile()
+  designs = ty.Designs(app.config["DESIGNS"])
+  designs.compile()
 
-tranche_results = investments.evaluate_tranches(designs, sample_count=25)
+  tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
-evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
+  evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 
-optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+  optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
-metric_range = evaluator.min_metric.apply(lambda x: np.minimum(0, x)).join(
-    evaluator.max_metric.apply(lambda x: np.maximum(0, x)),
-    lsuffix=" Min",
-    rsuffix=" Max",
-)
+##metric_range = evaluator.min_metric.apply(lambda x: np.minimum(0, x)).join(
+##    evaluator.max_metric.apply(lambda x: np.maximum(0, x)),
+##    lsuffix=" Min",
+##    rsuffix=" Max",
+##)
+  metric_range = evaluator.min_metric.join(
+      evaluator.max_metric,
+      lsuffix=" Min",
+      rsuffix=" Max",
+  )
 
 
 # Session-level storage.
 
-session_amounts = {}
-session_evaluation = {}
+  session_amounts = {}
+  session_evaluation = {}
 
 
 # Main page.
 
 
-@app.route("/")
-async def explorer():
-    ident = uuid.uuid4()
-    qt.session["ID"] = ident
-    amounts = (
-        evaluator.amounts.groupby("Category")
-        .max()
-        .apply(lambda x: x[0] / 2, axis=1)
-        .rename("Amount")
-        .to_frame()
-    )
-    session_amounts[ident] = amounts
-    session_evaluation[ident] = evaluator.evaluate(amounts)
+  @app.route("/")
+  async def explorer():
+      ident = uuid.uuid4()
+      qt.session["ID"] = ident
+      amounts = (
+          evaluator.amounts.groupby("Category")
+          .max()
+          .apply(lambda x: x[0] / 2, axis=1)
+          .rename("Amount")
+          .to_frame()
+      )
+      session_amounts[ident] = amounts
+      session_evaluation[ident] = evaluator.evaluate(amounts)
 
-    plot_layout = "grid.html"
-    if plot_layout == "grid.html":
-        plot_types = ["box plot", "distribution", "violin"]
-    elif plot_layout == "column.html":
-        plot_types = ["box plot", "distribution", "violin"]
-    elif plot_layout == "heatmap.html":
-        plot_types = ["heatmap", "annotated"]
+      plot_layout = "grid.html"
+      if plot_layout == "grid.html":
+          plot_types = ["box plot", "distribution", "violin"]
+      elif plot_layout == "column.html":
+          plot_types = ["box plot", "distribution", "violin"]
+      elif plot_layout == "heatmap.html":
+          plot_types = ["heatmap", "annotated"]
 
-    return await qt.render_template(
-        plot_layout,
-        categories=evaluator.max_amount["Amount"],
-        metrics=metric_range,
-        units=evaluator.units["Units"],
-        plot_types=plot_types,
-    )
-
-
-
-def setup_template(plot_layout):
-    if plot_layout == "grid":
-        plot_types = ["box plot", "distribution", "violin"]
-    elif plot_layout == "column":
-        plot_types = ["box plot", "distribution", "violin"]
-    elif plot_layout == "heatmap":
-        plot_types = ["heatmap", "annotated"]
-
-    return qt.render_template(
-        plot_layout + ".html",
-        categories=evaluator.max_amount["Amount"],
-        metrics=metric_range,
-        units=evaluator.units["Units"],
-        plot_types=plot_types,
-    )
+      return await qt.render_template(
+          plot_layout,
+          categories=evaluator.max_amount["Amount"],
+          metrics=metric_range,
+          units=evaluator.units["Units"],
+          plot_types=plot_types,
+      )
 
 
-@app.route("/layout/<name>")
-async def layout(name):
-    plot_layout = name
 
-    if plot_layout == "grid":
-        plot_types = ["box plot", "distribution", "violin"]
-    elif plot_layout == "column":
-        plot_types = ["box plot", "distribution", "violin"]
-    elif plot_layout == "heatmap":
-        plot_types = ["heatmap", "annotated"]
+  def setup_template(plot_layout):
+      if plot_layout == "grid":
+          plot_types = ["box plot", "distribution", "violin"]
+      elif plot_layout == "column":
+          plot_types = ["box plot", "distribution", "violin"]
+      elif plot_layout == "heatmap":
+          plot_types = ["heatmap", "annotated"]
 
-    return await qt.render_template(
-        plot_layout + ".html",
-        categories=evaluator.max_amount["Amount"],
-        metrics=metric_range,
-        units=evaluator.units["Units"],
-        plot_types=plot_types,
-    )
+      return qt.render_template(
+          plot_layout + ".html",
+          categories=evaluator.max_amount["Amount"],
+          metrics=metric_range,
+          units=evaluator.units["Units"],
+          plot_types=plot_types,
+      )
+
+
+  @app.route("/layout/<name>")
+  async def layout(name):
+      plot_layout = name
+
+      if plot_layout == "grid":
+          plot_types = ["box plot", "distribution", "violin"]
+      elif plot_layout == "column":
+          plot_types = ["box plot", "distribution", "violin"]
+      elif plot_layout == "heatmap":
+          plot_types = ["heatmap", "annotated"]
+
+      return await qt.render_template(
+          plot_layout + ".html",
+          categories=evaluator.max_amount["Amount"],
+          metrics=metric_range,
+          units=evaluator.units["Units"],
+          plot_types=plot_types,
+      )
 
 
 # Generate plots.
-
 
 @app.route("/plot", methods=["POST"])
 async def plot():
@@ -221,87 +234,93 @@ async def plot():
     return "data:image/png;base64,{}".format(x.decode("utf-8"))
 
 
-# Comptue metrics.
+# Compute metrics.
 
-
-@app.route("/metric", methods=["POST"])
-async def metric():
-    ident = qt.session["ID"]
-    evaluation = session_evaluation[ident]
-    form = await qt.request.form
-    m = evaluator.metrics[int(form["met"])]
-    return str(
-        np.mean(evaluation.xs(m, level="Index").groupby("Sample").aggregate(np.sum))
-    )
+  @app.route("/metric", methods=["POST"])
+  async def metric():
+      ident = qt.session["ID"]
+      evaluation = session_evaluation[ident]
+      form = await qt.request.form
+      m = evaluator.metrics[int(form["met"])]
+      return str(
+          np.mean(evaluation.xs(m, level="Index").groupby("Sample").aggregate(np.sum))
+      )
 
 
 # Update investment and recompute.
 
 
-@app.route("/invest", methods=["POST"])
-async def invest():
-    ident = qt.session["ID"]
-    form = await qt.request.form
-    c = int(form["cat"])
-    v = float(form["value"])
-    session_amounts[ident].loc[evaluator.categories[c]] = v
-    session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])
-    return ""
+  @app.route("/invest", methods=["POST"])
+  async def invest():
+      ident = qt.session["ID"]
+      form = await qt.request.form
+      c = int(form["cat"])
+      v = float(form["value"])
+      session_amounts[ident].loc[evaluator.categories[c]] = v
+      session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])
+      return ""
 
 
 # Optimize investments.
 
 
-@app.route("/optimize", methods=["POST"])
-async def optimize():
-    ident = qt.session["ID"]
-    evaluation = session_evaluation[ident]
-    form = await qt.request.form
-    target_metric = evaluator.metrics[int(form["target"])]
-    print(target_metric)
-    constraints = json.loads(form["constraints"])
-    min_metric = pd.Series(
-        [
-            constraints["metric"]["metlimwid_" + str(m)]
-            for m in range(len(evaluator.metrics))
-        ],
-        index=evaluator.metrics,
-    )
-    max_amount = pd.Series(
-        [
-            constraints["invest"]["invlimwid_" + str(m)]
-            for m in range(len(evaluator.categories))
-        ],
-        index=evaluator.categories,
-    )
-    total_amount = constraints["invest"]["invlimwid_x"]
-    optimum = optimizer.maximize_slsqp(
-        metric=target_metric,
-        min_metric=min_metric,
-        max_amount=max_amount,
-        total_amount=total_amount
-        # , tol          = 1e-4
-        # , maxiter      = 10
-    )
-    amounts = pd.DataFrame(optimum.amounts)
-    session_amounts[ident] = amounts
-    session_evaluation[ident] = evaluator.evaluate(amounts)
-    result = {}
-    result["message"] = optimum.exit_message
-    result["amount"] = {
-        "invoptwid_" + str(m): optimum.amounts[m] for m in range(len(optimum.amounts))
-    }
-    return json.dumps(result)
+  @app.route("/optimize", methods=["POST"])
+  async def optimize():
+      ident = qt.session["ID"]
+      evaluation = session_evaluation[ident]
+      form = await qt.request.form
+      target_metric = evaluator.metrics[int(form["target"])]
+      constraints = json.loads(form["constraints"])
+      min_metric = pd.Series(
+          [
+              constraints["metric"]["metlimwid_" + str(m)]
+              for m in range(len(evaluator.metrics))
+          ],
+          index=evaluator.metrics,
+      )
+      max_amount = pd.Series(
+          [
+              constraints["invest"]["invlimwid_" + str(m)]
+              for m in range(len(evaluator.categories))
+          ],
+          index=evaluator.categories,
+      )
+      total_amount = constraints["invest"]["invlimwid_x"]
+      print("\nOptimization started.", datetime.now())
+      print("> target_metric\n ", target_metric)
+      print("> min_metric\n ", min_metric)
+      print("> total_amount\n ", total_amount)
+      optimum = optimizer.opt_slsqp(
+          metric=target_metric,
+          min_metric=min_metric,
+          max_amount=max_amount,
+          total_amount=total_amount
+          # , tol          = 1e-4
+          # , maxiter      = 10
+      )
+      print("> exit_message\n ", optimum.exit_message)
+      print("> amounts\n ", optimum.amounts)
+      print("> metrics\n ", optimum.metrics)
+      print("Optimization finished.", datetime.now(), "\n")
+      amounts = pd.DataFrame(optimum.amounts)
+      session_amounts[ident] = amounts
+      session_evaluation[ident] = evaluator.evaluate(amounts)
+      result = {}
+      result["message"] = optimum.exit_message
+      result["amount"] = {
+          "invoptwid_" + str(m): optimum.amounts[m] for m in range(len(optimum.amounts))
+      }
+      return json.dumps(result)
 
 
 # ------------------------------------------------------------------------------------------
-def aggregate_over(ser, idx, statistic=np.mean):
-    ser = ser.astype("float64")
-    idx_res = list(set(ser.index.names.copy()) - set(idx))
-    return ser.groupby(idx_res).aggregate(statistic)
+  def aggregate_over(ser, idx, statistic=np.mean):
+      ser = ser.astype("float64")
+      idx_res = list(set(ser.index.names.copy()) - set(idx))
+      return ser.groupby(idx_res).aggregate(statistic)
 
 
-def normalize_to_metric(x):
-    x_mean = aggregate_over(x, ['Sample'])
-    met_diff = (metric_range['Value Max'] - metric_range['Value Min'])
-    return x_mean / met_diff
+  def normalize_to_metric(x):
+      x_mean = aggregate_over(x, ['Sample'])
+      met_diff = (metric_range['Value Max'] - metric_range['Value Min'])
+      return x_mean / met_diff

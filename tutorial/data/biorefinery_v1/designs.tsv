@@ -1,0 +1,183 @@
+Technology	Scenario	Variable	Index	Value	Units	Notes
+Biorefinery v1	Bioreference	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Bioreference	Input	Natural Gas	10563588000	MJ/year	for steam production and process heat
+Biorefinery v1	Bioreference	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Bioreference	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Bioreference	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Bioreference	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Bioreference	Lifetime	Conversion	30	year	
+Biorefinery v1	Bioreference	Lifetime	Fermentation	30	year	
+Biorefinery v1	Bioreference	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Bioreference	Lifetime	Separations	30	year	
+Biorefinery v1	Bioreference	Lifetime	Utilities	30	year	
+Biorefinery v1	Bioreference	Output efficiency	Biofuel	0.76	1	unitless fraction
+Biorefinery v1	Bioreference	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Bioreference	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Conversion 0	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Conversion 0	Input	Natural Gas	10563588000	MJ/year	for steam production and process heat
+Biorefinery v1	Conversion 0	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Conversion 0	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Conversion 0	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Conversion 0	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Conversion 0	Lifetime	Conversion	30	year	
+Biorefinery v1	Conversion 0	Lifetime	Fermentation	30	year	
+Biorefinery v1	Conversion 0	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Conversion 0	Lifetime	Separations	30	year	
+Biorefinery v1	Conversion 0	Lifetime	Utilities	30	year	
+Biorefinery v1	Conversion 0	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.83)	1	unitless fraction
+Biorefinery v1	Conversion 0	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Conversion 0	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Conversion 1	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Conversion 1	Input	Natural Gas	10563588000	MJ/year	for steam production and process heat
+Biorefinery v1	Conversion 1	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Conversion 1	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Conversion 1	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Conversion 1	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Conversion 1	Lifetime	Conversion	30	year	
+Biorefinery v1	Conversion 1	Lifetime	Fermentation	30	year	
+Biorefinery v1	Conversion 1	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Conversion 1	Lifetime	Separations	30	year	
+Biorefinery v1	Conversion 1	Lifetime	Utilities	30	year	
+Biorefinery v1	Conversion 1	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.88)	1	unitless fraction
+Biorefinery v1	Conversion 1	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Conversion 1	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Conversion 2	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Conversion 2	Input	Natural Gas	10563588000	MJ/year	for steam production and process heat
+Biorefinery v1	Conversion 2	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Conversion 2	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Conversion 2	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Conversion 2	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Conversion 2	Lifetime	Conversion	30	year	
+Biorefinery v1	Conversion 2	Lifetime	Fermentation	30	year	
+Biorefinery v1	Conversion 2	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Conversion 2	Lifetime	Separations	30	year	
+Biorefinery v1	Conversion 2	Lifetime	Utilities	30	year	
+Biorefinery v1	Conversion 2	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.91)	1	unitless fraction
+Biorefinery v1	Conversion 2	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Conversion 2	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Fermentation 0	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Fermentation 0	Input	Natural Gas	11091767400	MJ/year	for steam production and process heat
+Biorefinery v1	Fermentation 0	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Fermentation 0	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Fermentation 0	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Fermentation 0	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Fermentation 0	Lifetime	Conversion	30	year	
+Biorefinery v1	Fermentation 0	Lifetime	Fermentation	30	year	
+Biorefinery v1	Fermentation 0	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Fermentation 0	Lifetime	Separations	30	year	
+Biorefinery v1	Fermentation 0	Lifetime	Utilities	30	year	
+Biorefinery v1	Fermentation 0	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.77)	1	unitless fraction
+Biorefinery v1	Fermentation 0	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Fermentation 0	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Fermentation 1	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Fermentation 1	Input	Natural Gas	10352316240	MJ/year	for steam production and process heat
+Biorefinery v1	Fermentation 1	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Fermentation 1	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Fermentation 1	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Fermentation 1	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Fermentation 1	Lifetime	Conversion	30	year	
+Biorefinery v1	Fermentation 1	Lifetime	Fermentation	30	year	
+Biorefinery v1	Fermentation 1	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Fermentation 1	Lifetime	Separations	30	year	
+Biorefinery v1	Fermentation 1	Lifetime	Utilities	30	year	
+Biorefinery v1	Fermentation 1	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.82)	1	unitless fraction
+Biorefinery v1	Fermentation 1	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Fermentation 1	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Fermentation 2	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Fermentation 2	Input	Natural Gas	9718500960	MJ/year	for steam production and process heat
+Biorefinery v1	Fermentation 2	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Fermentation 2	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Fermentation 2	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Fermentation 2	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Fermentation 2	Lifetime	Conversion	30	year	
+Biorefinery v1	Fermentation 2	Lifetime	Fermentation	30	year	
+Biorefinery v1	Fermentation 2	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Fermentation 2	Lifetime	Separations	30	year	
+Biorefinery v1	Fermentation 2	Lifetime	Utilities	30	year	
+Biorefinery v1	Fermentation 2	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.84)	1	unitless fraction
+Biorefinery v1	Fermentation 2	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Fermentation 2	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Preprocessing 0	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Preprocessing 0	Input	Natural Gas	10563588000	MJ/year	for steam production and process heat
+Biorefinery v1	Preprocessing 0	Input efficiency	Feedstock	st.triang(0.5, loc=0.8, scale=0.85)	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Preprocessing 0	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Preprocessing 0	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Preprocessing 0	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Preprocessing 0	Lifetime	Conversion	30	year	
+Biorefinery v1	Preprocessing 0	Lifetime	Fermentation	30	year	
+Biorefinery v1	Preprocessing 0	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Preprocessing 0	Lifetime	Separations	30	year	
+Biorefinery v1	Preprocessing 0	Lifetime	Utilities	30	year	
+Biorefinery v1	Preprocessing 0	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.78)	1	unitless fraction
+Biorefinery v1	Preprocessing 0	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Preprocessing 0	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Preprocessing 1	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Preprocessing 1	Input	Natural Gas	10563588000	MJ/year	for steam production and process heat
+Biorefinery v1	Preprocessing 1	Input efficiency	Feedstock	st.triang(0.5, loc=0.8, scale=0.91)	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Preprocessing 1	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Preprocessing 1	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Preprocessing 1	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Preprocessing 1	Lifetime	Conversion	30	year	
+Biorefinery v1	Preprocessing 1	Lifetime	Fermentation	30	year	
+Biorefinery v1	Preprocessing 1	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Preprocessing 1	Lifetime	Separations	30	year	
+Biorefinery v1	Preprocessing 1	Lifetime	Utilities	30	year	
+Biorefinery v1	Preprocessing 1	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.81)	1	unitless fraction
+Biorefinery v1	Preprocessing 1	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Preprocessing 1	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Preprocessing 2	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Preprocessing 2	Input	Natural Gas	10563588000	MJ/year	for steam production and process heat
+Biorefinery v1	Preprocessing 2	Input efficiency	Feedstock	st.triang(0.5, loc=0.8, scale=0.95)	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Preprocessing 2	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Preprocessing 2	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Preprocessing 2	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Preprocessing 2	Lifetime	Conversion	30	year	
+Biorefinery v1	Preprocessing 2	Lifetime	Fermentation	30	year	
+Biorefinery v1	Preprocessing 2	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Preprocessing 2	Lifetime	Separations	30	year	
+Biorefinery v1	Preprocessing 2	Lifetime	Utilities	30	year	
+Biorefinery v1	Preprocessing 2	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.82)	1	unitless fraction
+Biorefinery v1	Preprocessing 2	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Preprocessing 2	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Separations 0	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Separations 0	Input	Natural Gas	11831218560	MJ/year	for steam production and process heat
+Biorefinery v1	Separations 0	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Separations 0	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Separations 0	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Separations 0	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Separations 0	Lifetime	Conversion	30	year	
+Biorefinery v1	Separations 0	Lifetime	Fermentation	30	year	
+Biorefinery v1	Separations 0	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Separations 0	Lifetime	Separations	30	year	
+Biorefinery v1	Separations 0	Lifetime	Utilities	30	year	
+Biorefinery v1	Separations 0	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.78)	1	unitless fraction
+Biorefinery v1	Separations 0	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Separations 0	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Separations 1	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Separations 1	Input	Natural Gas	10880495640	MJ/year	for steam production and process heat
+Biorefinery v1	Separations 1	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Separations 1	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Separations 1	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Separations 1	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Separations 1	Lifetime	Conversion	30	year	
+Biorefinery v1	Separations 1	Lifetime	Fermentation	30	year	
+Biorefinery v1	Separations 1	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Separations 1	Lifetime	Separations	30	year	
+Biorefinery v1	Separations 1	Lifetime	Utilities	30	year	
+Biorefinery v1	Separations 1	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.80)	1	unitless fraction
+Biorefinery v1	Separations 1	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Separations 1	Scale	Biorefinery	1	unitless	
+Biorefinery v1	Separations 2	Input	Feedstock	771750	metric ton/year	per one year of expected operations
+Biorefinery v1	Separations 2	Input	Natural Gas	10246680360	MJ/year	for steam production and process heat
+Biorefinery v1	Separations 2	Input efficiency	Feedstock	0.8	1	unitless fraction. Losses are during transport, storage, and preprocessing
+Biorefinery v1	Separations 2	Input efficiency	Natural Gas	1	1	unitless fraction
+Biorefinery v1	Separations 2	Input price	Feedstock	58	USD/metric ton	average over expected biorefinery lifetime
+Biorefinery v1	Separations 2	Input price	Natural Gas	0.00521	USD/MJ	
+Biorefinery v1	Separations 2	Lifetime	Conversion	30	year	
+Biorefinery v1	Separations 2	Lifetime	Fermentation	30	year	
+Biorefinery v1	Separations 2	Lifetime	Preprocessing	30	year	
+Biorefinery v1	Separations 2	Lifetime	Separations	30	year	
+Biorefinery v1	Separations 2	Lifetime	Utilities	30	year	
+Biorefinery v1	Separations 2	Output efficiency	Biofuel	st.triang(0.5, loc=0.76, scale=0.81)	1	unitless fraction
+Biorefinery v1	Separations 2	Output price	Biofuel	2.15	USD/gal	average over expected biorefinery lifetime
+Biorefinery v1	Separations 2	Scale	Biorefinery	1	unitless	

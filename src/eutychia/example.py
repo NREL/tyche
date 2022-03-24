@@ -7,6 +7,10 @@
 
 # ### Import packages.
 
+"""
+Example script for multiple objective optimization of residential PV.
+"""
+
 # In[1]:
 
 
@@ -25,20 +29,21 @@ import seaborn           as sb
 import tyche             as ty
 
 
+if __name__ == '__main__':
+
 # ## Load data.
 
 # ### The data are stored in a set of tab-separated value files in a folder.
 
 # In[3]:
 
-
-designs = ty.Designs("../../data/residential_pv_multiobjective")
+  designs = ty.Designs("../../ioc-0/data/pv_residential_simple")
 
 
 # In[4]:
 
 
-investments = ty.Investments("../../data/residential_pv_multiobjective")
+  investments = ty.Investments("../../ioc-0/data/pv_residential_simple")
 
 
 # ### Compile the production and metric functions for each technology in the dataset.
@@ -46,7 +51,7 @@ investments = ty.Investments("../../data/residential_pv_multiobjective")
 # In[5]:
 
 
-designs.compile()
+  designs.compile()
 
 
 # ## Multi-objective decision analysis.
@@ -58,7 +63,7 @@ designs.compile()
 # In[6]:
 
 
-tranche_results = investments.evaluate_tranches(designs, sample_count=50)
+  tranche_results = investments.evaluate_tranches(designs, sample_count=50)
 
 
 # ### Fit a response surface to the results.
@@ -68,7 +73,7 @@ tranche_results = investments.evaluate_tranches(designs, sample_count=50)
 # In[7]:
 
 
-evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
+  evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 
 
 # Here are the categories of investment and the maximum amount that could be invested in each:
@@ -76,7 +81,7 @@ evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
 # In[8]:
 
 
-evaluator.max_amount
+  evaluator.max_amount
 
 
 # Here are the metrics and their units of measure:
@@ -84,7 +89,7 @@ evaluator.max_amount
 # In[9]:
 
 
-evaluator.units
+  evaluator.units
 
 
 # #### Example interpolation.
@@ -94,37 +99,37 @@ evaluator.units
 # In[10]:
 
 
-example_investments = evaluator.max_amount / 2
-example_investments
+  example_investments = evaluator.max_amount / 2
+  example_investments
 
 
 # In[11]:
 
 
-evaluation = evaluator.evaluate(example_investments)
-evaluation
+  evaluation = evaluator.evaluate(example_investments)
+  evaluation
 
 
 # In[12]:
 
 
-evaluator.units.loc["GHG"]
+  evaluator.units.loc["GHG"]
 
 
 # In[13]:
 
 
-summary = evaluation.xs("GHG", level = "Index")
-values = summary.xs("Module R&D", level = "Category")
-plt = sb.boxplot(y = values)
-y0 = min(0, evaluator.min_metric.loc["GHG"][0])
-y1 = max(0, evaluator.max_metric.loc["GHG"][0])
-dy = (y1 - y0) / 20
-plt.set(
-  xlabel = "Module R&D",
-  ylabel = "GHG [" + evaluator.units.loc["GHG"].values[0] + "]",
-  ylim = (y0 - dy, y1 + dy),
-);
+  summary = evaluation.xs("GHG", level = "Index")
+  values = summary.xs("Module R&D", level = "Category")
+  plt = sb.boxplot(y = values)
+  y0 = min(0, evaluator.min_metric.loc["GHG"][0])
+  y1 = max(0, evaluator.max_metric.loc["GHG"][0])
+  dy = (y1 - y0) / 20
+  plt.set(
+    xlabel = "Module R&D",
+    ylabel = "GHG [" + evaluator.units.loc["GHG"].values[0] + "]",
+    ylim = (y0 - dy, y1 + dy),
+  );
 
 
 # Let's evaluate the mean instead of outputing the whole distribution.
@@ -132,7 +137,7 @@ plt.set(
 # In[14]:
 
 
-evaluator.evaluate_statistic(example_investments, np.mean)
+  evaluator.evaluate_statistic(example_investments, np.mean)
 
 
 # Here is the standard deviation:
@@ -140,7 +145,7 @@ evaluator.evaluate_statistic(example_investments, np.mean)
 # In[15]:
 
 
-evaluator.evaluate_statistic(example_investments, np.std)
+  evaluator.evaluate_statistic(example_investments, np.std)
 
 
 # A risk-averse decision maker might be interested in the 10% percentile:
@@ -148,7 +153,7 @@ evaluator.evaluate_statistic(example_investments, np.std)
 # In[16]:
 
 
-evaluator.evaluate_statistic(example_investments, lambda x: np.quantile(x, 0.1))
+  evaluator.evaluate_statistic(example_investments, lambda x: np.quantile(x, 0.1))
 
 
 # ### ε-Constraint multiobjective optimization
@@ -156,7 +161,7 @@ evaluator.evaluate_statistic(example_investments, lambda x: np.quantile(x, 0.1))
 # In[17]:
 
 
-optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+  optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
 
 # In order to meaningfully map the decision space, we need to know the maximum values for each of the metrics.
@@ -164,8 +169,8 @@ optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 # In[18]:
 
 
-metric_max = optimizer.max_metrics()
-metric_max
+  metric_max = optimizer.optimum_metrics()
+  metric_max
 
 
 # #### Example optimization.
@@ -175,7 +180,7 @@ metric_max
 # In[19]:
 
 
-investment_max = 3e6
+  investment_max = 3e6
 
 
 # Require that the GHG reduction be at least 40 gCO2e/system and that the Labor wages not decrease.
@@ -183,8 +188,8 @@ investment_max = 3e6
 # In[20]:
 
 
-metric_min = pd.Series([40, 0], name = "Value", index = ["GHG", "Labor"])
-metric_min
+  metric_min = pd.Series([40, 0], name = "Value", index = ["GHG", "Labor"])
+  metric_min
 
 
 # Compute the ε-constrained maximum for the LCOE.
@@ -192,13 +197,13 @@ metric_min
 # In[21]:
 
 
-optimum = optimizer.maximize_slsqp(
-    "LCOE"                       ,
-    total_amount = investment_max,
-    min_metric   = metric_min    ,
-    statistic    = np.mean       ,
-)
-optimum.exit_message
+  optimum = optimizer.opt_slsqp(
+      "LCOE"                       ,
+      total_amount = investment_max,
+      min_metric   = metric_min    ,
+      statistic    = np.mean       ,
+  )
+  optimum.exit_message
 
 
 # Here are the optimal spending levels:
@@ -206,7 +211,7 @@ optimum.exit_message
 # In[22]:
 
 
-np.round(optimum.amounts)
+  np.round(optimum.amounts)
 
 
 # Here are the three metrics at that optimum:
@@ -214,7 +219,7 @@ np.round(optimum.amounts)
 # In[23]:
 
 
-optimum.metrics
+  optimum.metrics
 
 
 # *Thus, by putting all of the investment into Module R&D, we can expected to achieve a mean 3.75 ¢/kWh reduction in LCOE under the GHG and Labor constraints.*
@@ -224,13 +229,13 @@ optimum.metrics
 # In[24]:
 
 
-optimum = optimizer.maximize_slsqp(
-    "LCOE"                       ,
-    total_amount = investment_max,
-    min_metric   = metric_min    ,
-    statistic    = lambda x: np.quantile(x, 0.1),
-)
-optimum.exit_message
+  optimum = optimizer.opt_slsqp(
+      "LCOE"                       ,
+      total_amount = investment_max,
+      min_metric   = metric_min    ,
+      statistic    = lambda x: np.quantile(x, 0.1),
+  )
+  optimum.exit_message
 
 
 # Let's try again, but with a less stringent set of constraints, only constraining GHG somewhat but not Labor at all.
@@ -238,23 +243,23 @@ optimum.exit_message
 # In[25]:
 
 
-optimum = optimizer.maximize_slsqp(
-    "LCOE"                                                         ,
-    total_amount = investment_max                                  ,
-    min_metric   = pd.Series([30], name = "Value", index = ["GHG"]),
-    statistic    = lambda x: np.quantile(x, 0.1)                   ,
-)
-optimum.exit_message
+  optimum = optimizer.opt_slsqp(
+      "LCOE"                                                         ,
+      total_amount = investment_max                                  ,
+      min_metric   = pd.Series([30], name = "Value", index = ["GHG"]),
+      statistic    = lambda x: np.quantile(x, 0.1)                   ,
+  )
+  optimum.exit_message
 
 
 # In[26]:
 
 
-np.round(optimum.amounts)
+  np.round(optimum.amounts)
 
 
 # In[27]:
 
 
-optimum.metrics
+  optimum.metrics
 
