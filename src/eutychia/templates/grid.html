@@ -2,175 +2,69 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <link href="/view.css" type="text/css" rel="stylesheet">
-  <script src="/controller.js" type="application/javascript"> </script>
-  <title>R&amp;D Portfolio Evaluation</title>
+    <meta charset="UTF-8">
+    <link href="/view.css" type="text/css" rel="stylesheet">
+    <script src="/controller.js" type="application/javascript"> </script>
+    <!-- <title>R&amp;D Portfolio Evaluation</title> -->
 </head>
 
 <body onload="setup()">
 
-  <div id="plot_layout">Jump to <a href="/layout/column">column</a>, <a href="/layout/heatmap">heatmap</a>, . . . </div>
+    <div class="output--grid">
+        <div id="one">Image One</div>
+        <div id="two">Image Two</div>
+        <div id="three">Image Three</div>
+        <div id="four">Image Four</div>
+        <div id="five">Image Five</div>
+        <div id="six">Image Six</div>
+        <div id="seven">Image Seven</div>
+        <div id="eight">Image Eight</div>
+        <div id="nine">Image Nine</div>
+    </div>
 
-  <h1>R&amp;D Portfolio Evaluation</h1>
-  <!-- selector to navigate between views. If you select the one you're not on, 
-    it'll move you to that page. Anchor:
-    <div>Jump to <a href="/radarview">radar</a>, <a href="/paretoview">pareto</a>, . . . </div>
- -->
-  <table>
-    <thead>
-      <tr>
-        <th />  <!-- column: category labels -->
-        <th />  <!-- column: investment sliders -->
-        {% for metric in metrics.index %}
-        {% set met = loop.index - 1 -%}
-        <th><span>{{ metrics.index[met] }}</span>
-          <br />
-          <span>[{{ units.values[met] }}]</span></th>
-        {% endfor %}
-      </tr>
-    </thead>
-    <tbody>
-      <!-- row: metric sliders -->
-      <tr>
-        <td>
-        <!-- drop-down: select plot type -->
-          <select id="plot_type"
-            onchange="updateAllPlots()">
-            {% for typ in plot_types %}
-            <option value="{{typ}}">{{ typ }}</option>
-            {% endfor %}
-          </select>
-        </td>
-        <!-- optimization information -->
-        <td>
-            <!-- mode -->
-            <input id="explore_mode"
-            type="checkbox"
-            onclick="updateMode()"
-            checked> </input>
-            <label>explore</label>
-            <br />
-            <br />
-            <!-- button: optimize! -->
-            <button id="optimize_button"
-            onclick="optimize()"
-            disabled>optimize</button>
-            <br />
-            <!-- drop-down: select optimization metric -->
-            <select id="optimize_metric" disabled>
-                {% for metric in metrics.index %}
-                {% set met = loop.index - 1 -%}
-                <option value="{{met}}">{{ metrics.index[met] }}</option>
+    <div class="output--grid">
+        <div>
+            <select id="plot_type" onchange="updateAllPlots()">
+                {% for typ in plot_types %}
+                <option value="{{typ}}">{{ typ }}</option>
                 {% endfor %}
             </select>
-        </td>
-        <!-- <td />  column: investment sliders -->
-        <!-- metric sliders -->
-        <!-- [to-do] round very small values to zero -->
-        {% for metric in metrics.index %}
-        {% set met = loop.index - 1 -%}
-        <td class="metric">
-          <!-- current value (visual) -->
-          <meter id="metoptwid_{{met}}" class="metoptwid"
-            min="{{ metrics.iloc[met]['Value Min'] }}"
-            max="{{ metrics.iloc[met]['Value Max'] }}"> </meter>
-          <br />
-          <!-- current value (numeric) -->
-          <label id="metoptlab_{{met}}" class="metoptlab" for="metoptwid_{{met}}">Mean: 0</label>
-          <br />
-          <!-- metric slider (visual) -->
-          <input id="metlimwid_{{met}}" class="metlimwid" type="range"
-            min="{{ - metrics.iloc[met]['Value Max'] }}"
-            max="{{ - metrics.iloc[met]['Value Min'] }}"
-            step="{{ (metrics.iloc[met]['Value Max'] - metrics.iloc[met]['Value Min']) / 100 }}"
-            value="{{ - metrics.iloc[met]['Value Min'] }}"
-            onchange="updateMetric(event.target)"
-            disabled />
-          <br />
-          <!-- metric slider (numeric) -->
-          <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">Required: 0</label>
-        </td>
-        {% endfor %}
-      </tr>
-      <!-- investment category-specific information: labels, sliders, metric plots -->
-      {% for category in categories %}
-      {% set cat = loop.index - 1 -%}
-      <tr>
-        <!-- label investment category -->
-        <td>{{ categories.index[cat] }}</td>
-        <!-- investment sliders -->
-        <!-- [to-do] in thousands of dollars -->
-        <td class="invest">
-          <!-- investment value (visual) -->
-          <meter id="invoptwid_{{cat}}" class="invoptwid invpart"
-            min="0"
-            max="{{ categories.values[cat] }}"
-            value="{{ categories.values[cat] / 2 }}"> </meter>
-          <br />
-          <!-- investment value (numeric) -->
-          <label id="invoptlab_{{cat}}" class="invoptlab" for="invoptwid_{{cat}}">
-            Current: $0</label>
-          <br />
-          <!-- investment slider (visual) -->
-          <input id="invlimwid_{{cat}}" class="invlimwid" type="range"
-            min="0"
-            max="{{ categories.values[cat] }}"
-            step="1000"
-            onchange="updateInvest(event.target)" />
-          <br />
-          <!-- investment slider (numeric) -->
-          <label id="invlimlab_{{cat}}" class="invlimlab" for="invlimwid_{{cat}}">
-            Allowed: $0</label>
-        </td>
-        <!-- plot metrics -->
-        {% for metric in metrics.index %}
-        {% set met = loop.index - 1 -%}
-        <td><img id="img_{{met}}_{{cat}}" class="plot" /></td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
-      <!-- totals -->
-      <tr>
-        <td><span>Portfolio Totals</span></td>
-        <td class="invest">
-          <!-- total investment value (visual) -->
-          <meter id="invoptwid_x"
-            min="0"
-            max="{{ categories.values.sum() }}"
-            value="{{ categories.values.sum() / 2}}">
-          </meter>
-          <br />
-          <!-- total investment value (numeric) -->
-          <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
-          <br />
-          <!-- total investment slider (visual) -->
-          <input id="invlimwid_x" class="invlimwid" type="range"
-            min="0"
-            max="{{ categories.values.sum() }}"
-            step="1000"
-            onchange="updateInvest(event.target)"
-            disabled />
-          <br />
-          <!-- total investment slider (numeric) -->
-          <label id="invlimlab_x" class="invlimlab" for="invlimwid_x">Allowed: $0</label>
-        </td>
-        <!-- plot metric totals -->
-        {% for metric in metrics.index %}
-        {% set met = loop.index - 1 -%}
-        <td><img id="img_{{met}}_x" class="plot" /></td>
-        {% endfor %}
-      </tr>
-    </tbody>
-    <!-- <tfoot> -->
-    <!-- </tfoot> -->
-  </table>
-  <div id="optimizing" class="modal_background">
-    <div class="modal_content">
-      <p><span id="optimizing_status">Optimizing . . .</span><span id="optimizing_result"></span></p>
-      <button id="optimizing_close" onclick="closeOptimizing()" disabled>close</button>
+        </div>
+        <!-- METRICS -->
+        <div class="output--visualization">
+            {% for metric in metrics.index %}
+            {% set met = loop.index - 1 -%}
+            <div>
+                <span>{{ metrics.index[met] }}</span>
+                <br />
+                <span>[{{ units.values[met] }}]</span>
+            </div>
+            {% endfor %}
+        </div>
+        <div></div>
+        <!-- CATEGORY NAMES -->
+        <div class="output--category">
+            {% for category in categories %}
+            {% set cat = loop.index - 1 -%}
+            <div>
+                {{ categories.index[cat] }}
+            </div>
+            {% endfor %}
+        </div>
+        <!-- PLOTS -->
+        <div class="output--visualization">
+            {% for category in categories %}
+            {% set cat = loop.index - 1 -%}
+                {% for metric in metrics.index %}
+                {% set met = loop.index - 1 -%}
+                <div>
+                    <img id="img_{{met}}_{{cat}}" class="plot" />
+                </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <!-- INVESTMENT SLIDERS -->
+        <div></div>
     </div>
-  </div>
 </body>
-
 </html>
