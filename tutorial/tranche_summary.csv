@@ -1,0 +1,65 @@
+Category,Technology,Tranche,Sample,Index,Value,Units
+Conversion,Biorefinery v1,Conversion Reference,1,Fossil GHG,3.322700691121744,kg CO2-eq/gal biofuel
+Conversion,Biorefinery v1,Conversion Reference,1,Jobs,0.002066597125673388,person-hours/gal biofuel
+Conversion,Biorefinery v1,Conversion Reference,1,MFSP,2.8009582401594355,USD/gal biofuel
+Conversion,Biorefinery v1,Conversion Reference,1,Total GHG,5.696058327637275,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation Reference,1,Fossil GHG,3.322700691121744,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation Reference,1,Jobs,0.002066597125673388,person-hours/gal biofuel
+Fermentation,Biorefinery v1,Fermentation Reference,1,MFSP,2.8009582401594355,USD/gal biofuel
+Fermentation,Biorefinery v1,Fermentation Reference,1,Total GHG,5.696058327637275,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing Reference,1,Fossil GHG,3.322700691121744,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing Reference,1,Jobs,0.002066597125673388,person-hours/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing Reference,1,MFSP,2.8009582401594355,USD/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing Reference,1,Total GHG,5.696058327637275,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations Reference,1,Fossil GHG,3.322700691121744,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations Reference,1,Jobs,0.002066597125673388,person-hours/gal biofuel
+Separations,Biorefinery v1,Separations Reference,1,MFSP,2.8009582401594355,USD/gal biofuel
+Separations,Biorefinery v1,Separations Reference,1,Total GHG,5.696058327637275,kg CO2-eq/gal biofuel
+Conversion,Biorefinery v1,Conversion 0,1,Fossil GHG,2.0332225085484534,kg CO2-eq/gal biofuel
+Conversion,Biorefinery v1,Conversion 0,1,Jobs,0.0012903972605372862,person-hours/gal biofuel
+Conversion,Biorefinery v1,Conversion 0,1,MFSP,1.75749691991733,USD/gal biofuel
+Conversion,Biorefinery v1,Conversion 0,1,Total GHG,3.5151631124467433,kg CO2-eq/gal biofuel
+Conversion,Biorefinery v1,Conversion 1,1,Fossil GHG,2.0637270661831013,kg CO2-eq/gal biofuel
+Conversion,Biorefinery v1,Conversion 1,1,Jobs,0.0014114144596460564,person-hours/gal biofuel
+Conversion,Biorefinery v1,Conversion 1,1,MFSP,1.7703233690528806,USD/gal biofuel
+Conversion,Biorefinery v1,Conversion 1,1,Total GHG,3.5599621063367333,kg CO2-eq/gal biofuel
+Conversion,Biorefinery v1,Conversion 2,1,Fossil GHG,1.7312951636693288,kg CO2-eq/gal biofuel
+Conversion,Biorefinery v1,Conversion 2,1,Jobs,0.0013568569262902667,person-hours/gal biofuel
+Conversion,Biorefinery v1,Conversion 2,1,MFSP,1.4711641816523024,USD/gal biofuel
+Conversion,Biorefinery v1,Conversion 2,1,Total GHG,2.9779074646985113,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 0,1,Fossil GHG,1.9509106428046115,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 0,1,Jobs,0.00123187246145531,person-hours/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 0,1,MFSP,1.6977102059268658,USD/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 0,1,Total GHG,3.365639172757194,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 1,1,Fossil GHG,2.140476149272258,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 1,1,Jobs,0.0015347628184397717,person-hours/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 1,1,MFSP,1.7542539279219334,USD/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 1,1,Total GHG,3.6512582986739086,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 2,1,Fossil GHG,2.8316598873705394,kg CO2-eq/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 2,1,Jobs,0.0021689505904114964,person-hours/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 2,1,MFSP,2.253306716173867,USD/gal biofuel
+Fermentation,Biorefinery v1,Fermentation 2,1,Total GHG,4.824383242311102,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 0,1,Fossil GHG,1.378354275618216,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 0,1,Jobs,0.0010454700708664088,person-hours/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 0,1,MFSP,1.1342964620734668,USD/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 0,1,Total GHG,2.3388799032267293,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 1,1,Fossil GHG,1.6861375340084688,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 1,1,Jobs,0.001164130502820357,person-hours/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 1,1,MFSP,1.352828675463036,USD/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 1,1,Total GHG,2.8320784977222577,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 2,1,Fossil GHG,1.3190087473718382,kg CO2-eq/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 2,1,Jobs,0.0008290478470540348,person-hours/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 2,1,MFSP,1.037050086761764,USD/gal biofuel
+Preprocessing,Biorefinery v1,Preprocessing 2,1,Total GHG,2.197879181388255,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations 0,1,Fossil GHG,2.661267007389124,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations 0,1,Jobs,0.0014393128700122865,person-hours/gal biofuel
+Separations,Biorefinery v1,Separations 0,1,MFSP,2.043532799042067,USD/gal biofuel
+Separations,Biorefinery v1,Separations 0,1,Total GHG,4.314227881543859,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations 1,1,Fossil GHG,2.123323085827076,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations 1,1,Jobs,0.0013880480224401227,person-hours/gal biofuel
+Separations,Biorefinery v1,Separations 1,1,MFSP,1.6287111048589165,USD/gal biofuel
+Separations,Biorefinery v1,Separations 1,1,Total GHG,3.489682857916572,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations 2,1,Fossil GHG,2.0302263895483876,kg CO2-eq/gal biofuel
+Separations,Biorefinery v1,Separations 2,1,Jobs,0.0016719309367128103,person-hours/gal biofuel
+Separations,Biorefinery v1,Separations 2,1,MFSP,1.6741669782655992,USD/gal biofuel
+Separations,Biorefinery v1,Separations 2,1,Total GHG,3.4703075283967264,kg CO2-eq/gal biofuel

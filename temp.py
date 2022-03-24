@@ -842,8 +842,7 @@ class EpsilonConstraintOptimizer:
       solve_time
       opt_sense
     """
-    import time
-    time0 = time.time()
+
     # If no optimization sense is provided, use the default value from self.
     # If an optimization sense IS provided, overwrite the default value with
     # the provided value.
@@ -909,15 +908,16 @@ class EpsilonConstraintOptimizer:
 
     bin_vars = []
     lmbd_vars = []
-    #%%
-    time0 = time.time()
+
     if verbose > 1: print('Creating %i lambda variables at %s s' %
                           (I, str(round(time.time() - _start, 1))))
 
+    
+    lmbd_vars = [_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0) for i in range(I)]
+    
     # create continuous lambda variables
-    for i in range(I):
-      #lmbd_vars += [_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0)]
-      lmbd_vars.append(_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0))
+    #for i in range(I):
+    #  lmbd_vars.append(_model.add_var(name='lmbd_' + str(i), lb=0.0, ub=1.0))
 
     if verbose > 1: print('Creating %i binary variables and constraints at %s s' %
                           (_nbinary, str(round(time.time() - _start, 1))))
@@ -934,13 +934,7 @@ class EpsilonConstraintOptimizer:
           _model += bin_vars[bin_count] <= lmbd_vars[i] + lmbd_vars[j],\
                     'Interval_Constraint_' + str(i) + '_' + str(j)
           bin_count += 1
-    
-    print('Lambda and Binar variable ends')
-    print(time.time()- time0)
-    print("")
-    #%%
-    time0 = time.time()
-    
+
     if verbose > 1: print('Creating total budget constraint at %s s' %
                           str(round(time.time() - _start, 1)))
 
@@ -960,11 +954,6 @@ class EpsilonConstraintOptimizer:
       _model += xsum(lmbd_vars[i] * [el[j] for el in inv_levels][i]
                       for i in range(I)) <= max_amount[j],\
                  'Budget_for_' + _categories[j].replace(' ', '')
-    print('Budget constraint ends')
-    print(time.time()- time0)
-    print("")
-    #%%
-    time0 = time.time()
 
     if verbose > 1: print('Defining metric constraints at %s s' %
                           str(round(time.time() - _start, 1)))
@@ -985,41 +974,19 @@ class EpsilonConstraintOptimizer:
         _model += _eps_mult * xsum(lmbd_vars[i] * _wide.loc[:,index].values.tolist()[i]
                        for i in range(I)) >= info['limit'],\
                   'Eps_Const_' + index
-    print('Metric Constraint ends')
-    print(time.time()- time0)
-    print("")
-    #%%
-    time0 = time.time()
 
     if verbose > 1: print('Defining lambda convexity constraints at %s s' %
                           str(round(time.time() - _start, 1)))
 
-    time0 = time.time()
-    lmbd_vars = np.asarray(lmbd_vars)
     # convexity constraint for continuous variables
-    _model += np.sum(lmbd_vars) == 1, 'Lambda_Sum'
-    print('lamda sum')
-    print(time.time()- time0)
+    _model += sum(lmbd_vars) == 1, 'Lambda_Sum'
 
     if verbose > 1: print('Defining binary convexity constraints at %s s' %
                           str(round(time.time() - _start, 1)))
 
     # constrain binary variables such that only one interval can be active
     # at a time
-    
-    bin_var = np.asarray(bin_vars)
-    time0 = time.time()
-    x = bin_var.sum()
-    print('binary sum')
-    print(time.time()- time0)  
-    _model += bin_var.sum() == 1, 'Binary_Sum'
-    
-    print('Convexity Constraint ends')
-    print(time.time()- time0)
-    print("")
-    
-    #%%
-    time0 = time.time()
+    _model += sum(bin_vars) == 1, 'Binary_Sum'
 
     if verbose > 1: print('Defining objective function at %s s' %
                           str(round(time.time() - _start, 1)))
@@ -1038,22 +1005,11 @@ class EpsilonConstraintOptimizer:
 
     if verbose > 1: print('Optimizing at %s s' %
                           str(round(time.time() - _start, 1)))
-    
-    print('Objective Func ends')
-    print(time.time()- time0)
-    print("")
-    #%%
-    print('MOdel building ends')
-    print(time.time()- time0)
-    print("")
+
     _opt_start = time.time()
 
-    time0 = time.time()
     # find optimal solution
     _solution = _model.optimize()
-    print('Optimization ends')
-    print(time.time()- time0)
-    print("")
 
     elapsed = time.time() - _opt_start
 
@@ -1067,9 +1023,9 @@ class EpsilonConstraintOptimizer:
       y_opt = []
       for v in _model.vars:
         if 'lmbd' in v.name:
-          lmbd_opt += [v.x]
+          lmbd_opt.append(v.x)
         elif 'y' in v.name:
-          y_opt += [v.x]
+          y_opt.append(v.x)
       
       inv_levels_opt = []
 
