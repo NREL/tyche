@@ -10,4 +10,8 @@ _static/
 _templates/
 __pycache__/
 .ipynb_checkpoints/
+
+src/eutychia/assets/
+src/eutychia/env/
+src/eutychia-2101/
 *.lp
