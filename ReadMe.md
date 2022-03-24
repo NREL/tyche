@@ -2,7 +2,7 @@
 ===========================================================
 
 *   documentation:
-    *   [web](https://nrel.github.com/tyche/)
+    *   [web](https://tyche.live/)
     *   [PDF](docs/tyche.pdf)
     *   [Markdown](index.rst)
 *   Conda environments: [conda/](conda/)

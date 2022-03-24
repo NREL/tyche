@@ -1,0 +1,271 @@
+Technology	Scenario	Parameter	Offset	Value	Units	Notes
+PolySilicon Wafer	Reference	TCS Process: Efficiency	0	0.9		
+PolySilicon Wafer	Reference	TCS Process: Waste $/kg TCS	1	300		
+PolySilicon Wafer	Reference	TCS Process: Heat Natural Gas (m3/kg Poly Si)	2	5		
+PolySilicon Wafer	Reference	TCS Process: Power (kW)	3	70000		
+PolySilicon Wafer	Reference	TCS Process: Equipment Cost ($/station)	4	15000000		
+PolySilicon Wafer	Reference	TCS Process: Floorspace (m2/station)	5	800000		
+PolySilicon Wafer	Reference	TCS: MG Si Usage Factor	6	1.212910354	kg MG Si / kg PolySilicon	
+PolySilicon Wafer	Reference	TCS: MG Si Price	7	5	$/kg	
+PolySilicon Wafer	Reference	TCS: MG Si Scrap Rate	8	0.3		
+PolySilicon Wafer	Reference	TCS: HCl Usage Factor	9	1.04003648	kg HCL / kg PolySilicon	
+PolySilicon Wafer	Reference	TCS: HCl Price	10	0.1	$/pc	
+PolySilicon Wafer	Reference	TCS: HCl Scrap Rate	11	0.1		
+PolySilicon Wafer	Reference	TCS: Hydrogen Usage Factor	12	1	kg H2 / kg PolySilicon	
+PolySilicon Wafer	Reference	TCS: Hydrogen Price	13	0.001	$/kg	
+PolySilicon Wafer	Reference	TCS: Other Material Scrap Rate	14	0		
+PolySilicon Wafer	Reference	TCS: Average Downtime	15	0		
+PolySilicon Wafer	Reference	TCS: Unskilled Direct Laborers Factor	16	10		
+PolySilicon Wafer	Reference	TCS: Skilled Direct Laborers Factor	17	5		
+PolySilicon Wafer	Reference	TCS: Auxiliary Equipment Investment	18	0		
+PolySilicon Wafer	Reference	TCS: Installation Cost Factor	19	3.3		
+PolySilicon Wafer	Reference	TCS: Equipment Maintenance Cost Factor	20	0.03		
+PolySilicon Wafer	Reference	TCS: Tooling Investment	21	0	$/toolset	
+PolySilicon Wafer	Reference	TCS: Tooling Life	22	2.00E+07	kgs/tool	
+PolySilicon Wafer	Reference	TCS: Operating Power Consumption	23	40	kW	
+PolySilicon Wafer	Reference	TCS: Full Power Consumption	24	100	kW	
+PolySilicon Wafer	Reference	TCS: Clean 10k SQM	25	0	sq meter	
+PolySilicon Wafer	Reference	TCS: Clean 1k SQM	26	0	sq meter	
+PolySilicon Wafer	Reference	TCS: Clean 100 SQM	27	0	sq meter	
+PolySilicon Wafer	Reference	Anneal Ingots: Argon Gas	28	0	SLM	
+PolySilicon Wafer	Reference	Anneal Ingots: Argon Price	29	0.5	/Standard liter	
+PolySilicon Wafer	Reference	Anneal Ingots: Argon Scrap Rate	30	0.05		
+PolySilicon Wafer	Reference	Anneal Ingots: Poly Si Chunk Yield Loss Rate	31	0.01		
+PolySilicon Wafer	Reference	Anneal Ingots: Poly Si Scrap Reclamation Rate	32	0.95		
+PolySilicon Wafer	Reference	Anneal Ingots: Average Downtime	33	0.15		
+PolySilicon Wafer	Reference	Anneal Ingots: Furnace Capacity	34	40	kgs/hour	
+PolySilicon Wafer	Reference	Anneal Ingots: Unskilled Direct Laborers Factor	35	2		
+PolySilicon Wafer	Reference	Anneal Ingots: Skilled Direct Laborers Factor	36	0.6		
+PolySilicon Wafer	Reference	Anneal Ingots: Capital Investment	37	4.00E+05	$/station	
+PolySilicon Wafer	Reference	Anneal Ingots: Auxiliary Equipment Investment	38	0.1		
+PolySilicon Wafer	Reference	Anneal Ingots: Installation Cost Factor	39	0.25		
+PolySilicon Wafer	Reference	Anneal Ingots: Equipment Maintenance Cost Factor	40	0.03		
+PolySilicon Wafer	Reference	Anneal Ingots: Tooling Investment	41	150000	$/toolset	
+PolySilicon Wafer	Reference	Anneal Ingots: Tooling Life	42	1.50E+08	kgs/tool	
+PolySilicon Wafer	Reference	Anneal Ingots: Operating Power Consumption	43	5000	kW	
+PolySilicon Wafer	Reference	Anneal Ingots: Floor SQM	44	0	sq meter	
+PolySilicon Wafer	Reference	Anneal Ingots: Clean 10k SQM	45	625	sq meter	
+PolySilicon Wafer	Reference	Anneal Ingots: Clean 1k SQM	46	0	sq meter	
+PolySilicon Wafer	Reference	Anneal Ingots: Clean 100 SQM	47	0	sq meter	
+PolySilicon Wafer	Reference	Crop Ingots: Weight of Sections Removed	48	15	kg	
+PolySilicon Wafer	Reference	Crop Ingots: Blade Life	49	50	batches	
+PolySilicon Wafer	Reference	Crop Ingots: Blade Cost	50	500	/blade	
+PolySilicon Wafer	Reference	Crop Ingots: SiC Slurry Consumption	51	0	kg/hr	
+PolySilicon Wafer	Reference	Crop Ingots: SiC Slurry Price	52	0	/kg	
+PolySilicon Wafer	Reference	Crop Ingots: Brick Reject Rate	53	0.01		
+PolySilicon Wafer	Reference	Crop Ingots: Scrap Reclamation Rate	54	0.95		
+PolySilicon Wafer	Reference	Crop Ingots: Average Downtime	55	0.1		
+PolySilicon Wafer	Reference	Crop Ingots: Unskilled Direct Laborers Factor	56	2		
+PolySilicon Wafer	Reference	Crop Ingots: Skilled Direct Laborers Factor	57	0.6		
+PolySilicon Wafer	Reference	Crop Ingots: Batch Size	58	1	ingots/batch	
+PolySilicon Wafer	Reference	Crop Ingots: Setup Time	59	5	minutes/batch	
+PolySilicon Wafer	Reference	Crop Ingots: Saw Rate	60	20	mm/min	
+PolySilicon Wafer	Reference	Crop Ingots: Capital Investment	61	4.00E+05	$/station	
+PolySilicon Wafer	Reference	Crop Ingots: Auxiliary Equipment Investment	62	0.1		
+PolySilicon Wafer	Reference	Crop Ingots: Installation Cost Factor	63	0.25		
+PolySilicon Wafer	Reference	Crop Ingots: Equipment Maintenance Cost Factor	64	0.03		
+PolySilicon Wafer	Reference	Crop Ingots: Tooling Investment	65	0	$/toolset	
+PolySilicon Wafer	Reference	Crop Ingots: Tooling Life	66	2.00E+08	kgs/tool	
+PolySilicon Wafer	Reference	Crop Ingots: Operating Power Consumption	67	10	kW	
+PolySilicon Wafer	Reference	Crop Ingots: Floor SQM	68	25	sq meter	
+PolySilicon Wafer	Reference	Crop Ingots: Clean 10k SQM	69	0	sq meter	
+PolySilicon Wafer	Reference	Crop Ingots: Clean 1k SQM	70	0	sq meter	
+PolySilicon Wafer	Reference	Crop Ingots: Clean 100 SQM	71	0	sq meter	
+PolySilicon Wafer	Reference	Etch Filament: HF Consumption Rate	72	15	SCM/hr	
+PolySilicon Wafer	Reference	Etch Filament: HF Price	73	2.5	$/SCM	
+PolySilicon Wafer	Reference	Etch Filament: Nitric Consumption Rate	74	15	kg/hr	
+PolySilicon Wafer	Reference	Etch Filament: Nitric Acid Price	75	4	$/kg	
+PolySilicon Wafer	Reference	Etch Filament: Nitrogen Consumption Rate	76	20	SCM/hr	
+PolySilicon Wafer	Reference	Etch Filament: Nitrogen Price	77	2.5	$/SCM	
+PolySilicon Wafer	Reference	Etch Filament: DI Water Consumption Rate	78	15	m3	
+PolySilicon Wafer	Reference	Etch Filament: DI Water Price	79	3	$/m3	
+PolySilicon Wafer	Reference	Etch Filament: Material Scrap Rate	80	0.05		
+PolySilicon Wafer	Reference	Etch Filament: Part Reject Rate	81	0.01		
+PolySilicon Wafer	Reference	Etch Filament: Average Downtime	82	0.1		
+PolySilicon Wafer	Reference	Etch Filament: Unskilled Direct Laborers Factor	83	2		
+PolySilicon Wafer	Reference	Etch Filament: Skilled Direct Laborers Factor	84	0.6		
+PolySilicon Wafer	Reference	Etch Filament: Filament Batch Size	85	30	filaments/batch	
+PolySilicon Wafer	Reference	Etch Filament: Filament Setup Time	86	10	min/batch	
+PolySilicon Wafer	Reference	Etch Filament: Filament Cycle Time	87	30	min/batch	
+PolySilicon Wafer	Reference	Etch Filament: HP Batch Size	88	10	kgs hair pin / batch	
+PolySilicon Wafer	Reference	Etch Filament: HP Setup Time	89	7	min/batch	
+PolySilicon Wafer	Reference	Etch Filament: HP Cycle Time	90	30	min/batch	
+PolySilicon Wafer	Reference	Etch Filament: Capital Investment	91	3.00E+02	$/station	
+PolySilicon Wafer	Reference	Etch Filament: Installation Cost Factor	92	0.25		
+PolySilicon Wafer	Reference	Etch Filament: Equipment Maintenance Cost Factor	93	0.03		
+PolySilicon Wafer	Reference	Etch Filament: Tooling Investment	94	15000	$/toolset	
+PolySilicon Wafer	Reference	Etch Filament: Tooling Life	95	1.50E+08	cycles/tool	
+PolySilicon Wafer	Reference	Etch Filament: Operating Power Consumption	96	75	kW	
+PolySilicon Wafer	Reference	Etch Filament: Floor SQM	97	0	sq meter	
+PolySilicon Wafer	Reference	Etch Filament: Clean 10k SQM	98	750	sq meter	
+PolySilicon Wafer	Reference	Etch Filament: Clean 1k SQM	99	0	sq meter	
+PolySilicon Wafer	Reference	Etch Filament: Clean 100 SQM	100	0	sq meter	
+PolySilicon Wafer	Reference	Etch Filament: Fraction Virgin Filament	101	1		
+PolySilicon Wafer	Reference	Harvest Chunk: Argon Usage	102	10	SLM	
+PolySilicon Wafer	Reference	Harvest Chunk: Argon Price	103	0.1	$/std liter	
+PolySilicon Wafer	Reference	Harvest Chunk: Argon Scrap Rate	104	0.05	%	
+PolySilicon Wafer	Reference	Harvest Chunk: Poly Si Yield Loss	105	0.01	%	
+PolySilicon Wafer	Reference	Harvest Chunk: Poly Si Scrap Reclemation Rate	106	0.95	%	
+PolySilicon Wafer	Reference	Harvest Chunk: Average Downtime	107	0.1	%	
+PolySilicon Wafer	Reference	Harvest Chunk: Auxiliary Equipment Investment	108	0	%	
+PolySilicon Wafer	Reference	Harvest Chunk: Installation Cost Factor	109	3.3		
+PolySilicon Wafer	Reference	Harvest Chunk: Equipment Maintenance Cost Factor	110	0.03	%	
+PolySilicon Wafer	Reference	Harvest Chunk: Unskilled Direct Laborers Factor	111	30	ppl/station	
+PolySilicon Wafer	Reference	Harvest Chunk: Skilled Direct Laborers Factor	112	10	ppl/station	
+PolySilicon Wafer	Reference	Harvest Chunk: Tooling Investment	113	1.50E+05	$/toolset	
+PolySilicon Wafer	Reference	Harvest Chunk: Tooling Life	114	1.50E+08	kgs/tool	
+PolySilicon Wafer	Reference	Harvest Chunk: Operating Power Consumption	115	6000	kW	
+PolySilicon Wafer	Reference	Harvest Chunk: Floor SQM	116	0	sq meter	
+PolySilicon Wafer	Reference	Harvest Chunk: Clean 10k SQM	117	500	sq meter	
+PolySilicon Wafer	Reference	Harvest Chunk: Clean 1k SQM	118	0	sq meter	
+PolySilicon Wafer	Reference	Harvest Chunk: Clean 100 SQM	119	0	sq meter	
+PolySilicon Wafer	Reference	Harvest Chunk: Capital Investment	120	1200	$/station	
+PolySilicon Wafer	Reference	Indices: Unskilled Direct Wages	121	13.55	?	
+PolySilicon Wafer	Reference	Indices: Skilled Direct Wages	122	23.68	?	
+PolySilicon Wafer	Reference	Indices: Indirect Salary	123	82491.00	?	
+PolySilicon Wafer	Reference	Indices: Indirect:Direct Labor Ratio	124	0.35	?	
+PolySilicon Wafer	Reference	Indices: Benefits on Wage and Salary	125	0.33	?	
+PolySilicon Wafer	Reference	Indices: Working Days per Year	126	350.00	?	
+PolySilicon Wafer	Reference	Indices: Working Hours per Day	127	24.00	?	
+PolySilicon Wafer	Reference	Indices: Capital Recovery Rate	128	0.14	?	
+PolySilicon Wafer	Reference	Indices: Equipment Recovery Life	129	10.00	?	
+PolySilicon Wafer	Reference	Indices: Building Recovery Life	130	20.00	?	
+PolySilicon Wafer	Reference	Indices: Working Capital Period	131	3.00	?	
+PolySilicon Wafer	Reference	Indices: Price of Electricity	132	0.045	?	
+PolySilicon Wafer	Reference	Indices: Price of Natural Gas	133	0.00	?	
+PolySilicon Wafer	Reference	Indices: Price of Building Space	134	20.00	?	
+PolySilicon Wafer	Reference	Indices: Price of CR10K Building Space	135	50.00	?	
+PolySilicon Wafer	Reference	Indices: Price of CR1K Building Space	136	500.00	?	
+PolySilicon Wafer	Reference	Indices: Price of CR100Building Space	137	5000.00	?	
+PolySilicon Wafer	Reference	Indices: Installation Costs	138	3.30	?	
+PolySilicon Wafer	Reference	Indices: Equipment Discount	139	0.00	?	
+PolySilicon Wafer	Reference	Indices: Expected inflation rate	140	0.00	?	
+PolySilicon Wafer	Reference	Indices: Corporate Tax Rate	141	0.28	?	
+PolySilicon Wafer	Reference	Indices: SG&A (including freight)	142	0.06	?	
+PolySilicon Wafer	Reference	Indices: R&D	143	0.02	?	
+PolySilicon Wafer	Reference	Indices: Labor Count Multiplier	144	0.64	?	
+PolySilicon Wafer	Reference	Indices: CapEx Correction Factor	145	0.87	?	
+PolySilicon Wafer	Reference	Indices: Electricity Multiplier	146	0.50	0.50	?
+PolySilicon Wafer	Reference	Ingot Growth: Poly-Si Material Price	147	15	$/kg	
+PolySilicon Wafer	Reference	Ingot Growth: Poly Si Material Scrap Rate	148	0.25		
+PolySilicon Wafer	Reference	Ingot Growth: Si Seed Price	149	100	$/pc	
+PolySilicon Wafer	Reference	Ingot Growth: Si Seed Life	150	1	cycles	
+PolySilicon Wafer	Reference	Ingot Growth: Crucible Cost	151	700	$/charge 	
+PolySilicon Wafer	Reference	Ingot Growth: Crucible Life	152	1	batches/crucible	
+PolySilicon Wafer	Reference	Ingot Growth: Cooling Water Cons Rate	153	850	m3/batch	
+PolySilicon Wafer	Reference	Ingot Growth: Water Price	154	0.2	$/m3	
+PolySilicon Wafer	Reference	Ingot Growth: Argon Consumption Rate	155	100	SLM	
+PolySilicon Wafer	Reference	Ingot Growth: Argon Price	156	0.5	$/Standard liter	
+PolySilicon Wafer	Reference	Ingot Growth: Part Reject Rate	157	0.01		
+PolySilicon Wafer	Reference	Ingot Growth: Average Downtime	158	0.1		
+PolySilicon Wafer	Reference	Ingot Growth: Unskilled Direct Laborers Factor	159	0.75	ppl/station	
+PolySilicon Wafer	Reference	Ingot Growth: Skilled Direct Laborers Factor	160	0.225	ppl/station	
+PolySilicon Wafer	Reference	Ingot Growth: Ingot Length	161	500	cm usable length	
+PolySilicon Wafer	Reference	Ingot Growth: Ingot Weight (tops and tails)	162	0.2	of gross ingot weight	
+PolySilicon Wafer	Reference	Ingot Growth: As Grown Ingot Diameter	163	153	mm	
+PolySilicon Wafer	Reference	Ingot Growth: Final Ingot Diameter	164	150	mm	
+PolySilicon Wafer	Reference	Ingot Growth: Setup (Load) Time	165	5	hours/batch	
+PolySilicon Wafer	Reference	Ingot Growth: Pump Down and Leak Check	166	5	hours/batch	
+PolySilicon Wafer	Reference	Ingot Growth: Melt/Stabilize	167	14	hours/batch	
+PolySilicon Wafer	Reference	Ingot Growth: Average Pull Speed	168	75	mm/hr	
+PolySilicon Wafer	Reference	Ingot Growth: Cool and Unload	169	12	hours/batch	
+PolySilicon Wafer	Reference	Ingot Growth: Clean	170	6	hours/batch	
+PolySilicon Wafer	Reference	Ingot Growth: Capital Investment	171	6.00E+05	$/station	
+PolySilicon Wafer	Reference	Ingot Growth: Auxiliary Equipment Investment	172	1		
+PolySilicon Wafer	Reference	Ingot Growth: Installation Cost Factor	173	0.25		
+PolySilicon Wafer	Reference	Ingot Growth: Equipment Maintenance Cost Factor	174	0.03		
+PolySilicon Wafer	Reference	Ingot Growth: Tooling Investment	175	0	$/toolset	
+PolySilicon Wafer	Reference	Ingot Growth: Tooling Life	176	2.00E+04	kgs/tool	
+PolySilicon Wafer	Reference	Ingot Growth: Operating Power Consumption	177	40	kW	
+PolySilicon Wafer	Reference	Ingot Growth: Full Power Consumption	178	100	kW	
+PolySilicon Wafer	Reference	Ingot Growth: Floor SQM	179	30	sq meter	
+PolySilicon Wafer	Reference	Ingot Growth: Clean 10k SQM	180	0	sq meter	
+PolySilicon Wafer	Reference	Ingot Growth: Clean 1k SQM	181	0	sq meter	
+PolySilicon Wafer	Reference	Ingot Growth: Clean 100 SQM	182	0	sq meter	
+PolySilicon Wafer	Reference	Machine Filament: Consumable Rate	183	1.5	units/hr	
+PolySilicon Wafer	Reference	Machine Filament: Consumable Price	184	2	$/unit	
+PolySilicon Wafer	Reference	Machine Filament: Material Scrap Rate	185	0.1		
+PolySilicon Wafer	Reference	Machine Filament: Yield Loss	186	0.01		
+PolySilicon Wafer	Reference	Machine Filament: Scrap Reclamation Rate	187	0.95		
+PolySilicon Wafer	Reference	Machine Filament: Average Downtime	188	0.1		
+PolySilicon Wafer	Reference	Machine Filament: Unskilled Direct Laborers Factor	189	2		
+PolySilicon Wafer	Reference	Machine Filament: Skilled Direct Laborers Factor	190	0.6		
+PolySilicon Wafer	Reference	Machine Filament: Filament Batch Size	191	20	filaments/batch	
+PolySilicon Wafer	Reference	Machine Filament: Filament Setup Time	192	0	min/batch	
+PolySilicon Wafer	Reference	Machine Filament: Filament Cycle Time	193	50	min/batch	
+PolySilicon Wafer	Reference	Machine Filament: Capital Investment	194	3.00E+05	$/station	
+PolySilicon Wafer	Reference	Machine Filament: Auxiliary Equipment Investment	195	0.1		
+PolySilicon Wafer	Reference	Machine Filament: Installation Cost Factor	196	0.25		
+PolySilicon Wafer	Reference	Machine Filament: Equipment Maintenance Cost Factor	197	0.03		
+PolySilicon Wafer	Reference	Machine Filament: Tooling Investment	198	3000	$/toolset	
+PolySilicon Wafer	Reference	Machine Filament: Tooling Life	199	2.00E+04	kgs/tool	
+PolySilicon Wafer	Reference	Machine Filament: Operating Power Consumption	200	500	kW	
+PolySilicon Wafer	Reference	Machine Filament: Floor SQM	201	1000	sq meter	
+PolySilicon Wafer	Reference	Machine Filament: Clean 10k SQM	202	0	sq meter	
+PolySilicon Wafer	Reference	Machine Filament: Clean 1k SQM	203	0	sq meter	
+PolySilicon Wafer	Reference	Machine Filament: Clean 100 SQM	204	0	sq meter	
+PolySilicon Wafer	Reference	Saw Ingots: Wire Life	205	1	batches	
+PolySilicon Wafer	Reference	Saw Ingots: Wire Cost	206	5000	$/wire	
+PolySilicon Wafer	Reference	Saw Ingots: SiC Slurry Consumption	207	0	kg/hr	
+PolySilicon Wafer	Reference	Saw Ingots: SiC Slurry Price	208	0	$/kg	
+PolySilicon Wafer	Reference	Saw Ingots: SiC Slurry Scrap Rate	209	0.1		
+PolySilicon Wafer	Reference	Saw Ingots: Kerf Loss	210	400	microns	
+PolySilicon Wafer	Reference	Saw Ingots: Sell Kerf Loss Si?	211	1	[1=Yes,0=No]	
+PolySilicon Wafer	Reference	Saw Ingots: Kerf Loss Si Price	212	5	$/kg	
+PolySilicon Wafer	Reference	Saw Ingots: Part Reject Rate	213	0.15		
+PolySilicon Wafer	Reference	Saw Ingots: Average Downtime	214	0.1		
+PolySilicon Wafer	Reference	Saw Ingots: Unskilled Direct Laborers Factor	215	2		
+PolySilicon Wafer	Reference	Saw Ingots: Skilled Direct Laborers Factor	216	0.6		
+PolySilicon Wafer	Reference	Saw Ingots: Batch Size	217	1	ingot/batch	
+PolySilicon Wafer	Reference	Saw Ingots: Filament Width	218	8	mm per filament	
+PolySilicon Wafer	Reference	Saw Ingots: Setup Time	219	45	minutes/batch	
+PolySilicon Wafer	Reference	Saw Ingots: Cutting Speed	220	5	mm/min	
+PolySilicon Wafer	Reference	Saw Ingots: Capital Investment	221	1.50E+06	$/station	
+PolySilicon Wafer	Reference	Saw Ingots: Auxiliary Equipment Investment	222	0.1		
+PolySilicon Wafer	Reference	Saw Ingots: Installation Cost Factor	223	0.25		
+PolySilicon Wafer	Reference	Saw Ingots: Equipment Maintenance Cost Factor	224	0.03		
+PolySilicon Wafer	Reference	Saw Ingots: Tooling Investment	225	0	$/toolset	
+PolySilicon Wafer	Reference	Saw Ingots: Tooling Life	226	2.00E+00	kgs/tool	
+PolySilicon Wafer	Reference	Saw Ingots: Operating Power Consumption	227	50	kW	
+PolySilicon Wafer	Reference	Saw Ingots: Floor SQM	228	150	sq meter	
+PolySilicon Wafer	Reference	Saw Ingots: Clean 10k SQM	229	0	sq meter	
+PolySilicon Wafer	Reference	Saw Ingots: Clean 1k SQM	230	0	sq meter	
+PolySilicon Wafer	Reference	Saw Ingots: Clean 100 SQM	231	0	sq meter	
+PolySilicon Wafer	Reference	Scenario: Annual Production Volume	232	5200	metric tons / yr	
+PolySilicon Wafer	Reference	Scenario: Dedicated Equipment Investment	233	1		True = Yes, dedicated equipment investment. False = No
+PolySilicon Wafer	Reference	Scenario: Length of Production Run	234	8	years	
+PolySilicon Wafer	Reference	Scenario: Use Harvest Chunk?	235	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use Siemens CVD?	236	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use Etch Filaments?	237	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use Machine Filaments?	238	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use Saw Ingots?	239	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use Crop Ingots?	240	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use Anneal Ingots?	241	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use Grow Ingots?	242	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Scenario: Use TCS?	243	1		True = Include Manufacuring Step, False = Do Not Include Manufacturing Step
+PolySilicon Wafer	Reference	Siemens CSV: Hydrogen Consumption Rate	244	125	kg/hr-station	
+PolySilicon Wafer	Reference	Siemens CSV: Hydrogen Price	245	2	$/kg	
+PolySilicon Wafer	Reference	Siemens CSV: Hydrogen Scrap Rate	246	0.25		
+PolySilicon Wafer	Reference	Siemens CSV: Material Scrap Rate	247	0.05		
+PolySilicon Wafer	Reference	Siemens CSV: Poly Si Reject Rate	248	0.01		
+PolySilicon Wafer	Reference	Siemens CSV: Poly Si Scrap Rec Rate	249	0		
+PolySilicon Wafer	Reference	Siemens CSV: Average Downtime	250	0		
+PolySilicon Wafer	Reference	Siemens CSV: Other Consumable Cost	251	1.5	$/kg PS	
+PolySilicon Wafer	Reference	Siemens CSV: Unskilled Direct Laborers Factor	252	1		
+PolySilicon Wafer	Reference	Siemens CSV: Skilled Direct Laborers Factor	253	0.3		
+PolySilicon Wafer	Reference	Siemens CSV: Batch Size	254	55	rods/batch	
+PolySilicon Wafer	Reference	Siemens CSV: Final Rod Size	255	130	mm diameter rods	
+PolySilicon Wafer	Reference	Siemens CSV: Projected Annual Production Volume	256	350	MTPA	
+PolySilicon Wafer	Reference	Siemens CSV: Cycle Time	257	75	hrs/batch	
+PolySilicon Wafer	Reference	Siemens CSV: Setup, Harvest, Clean Time	258	0	hrs/batch	
+PolySilicon Wafer	Reference	Siemens CSV: Capital Investment	259	3.00E+06	$/station	
+PolySilicon Wafer	Reference	Siemens CSV: Auxiliary Equipment Investment	260	0		
+PolySilicon Wafer	Reference	Siemens CSV: Installation Cost Factor	261	3.3		
+PolySilicon Wafer	Reference	Siemens CSV: Equipment Maintenance Cost Factor	262	0.03		
+PolySilicon Wafer	Reference	Siemens CSV: Tooling Investment	263	0	$/toolset	
+PolySilicon Wafer	Reference	Siemens CSV: Tooling Life	264	1.50E+07	kg/tool	
+PolySilicon Wafer	Reference	Siemens CSV: Operating Power Consumption	265	1500	kW	
+PolySilicon Wafer	Reference	Siemens CSV: Floor SQM	266	75	sq meter	
+PolySilicon Wafer	Reference	Siemens CSV: Clean 10k SQM	267	0	sq meter	
+PolySilicon Wafer	Reference	Siemens CSV: Clean 1k SQM	268	0	sq meter	
+PolySilicon Wafer	Reference	Siemens CSV: Clean 100 SQM	269	0	sq meter	

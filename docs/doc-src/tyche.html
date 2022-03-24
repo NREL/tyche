@@ -15,7 +15,7 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="technology package" href="technology.html" />
+    <link rel="next" title="eutychia package" href="eutychia.html" />
     <link rel="prev" title="Python API" href="modules.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -363,264 +363,11 @@ instead of just integers. For instance:</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-tyche.EpsilonConstraints">
-<span id="tyche-epsilonconstraints-module"></span><h2>tyche.EpsilonConstraints module<a class="headerlink" href="#module-tyche.EpsilonConstraints" title="Permalink to this headline">¶</a></h2>
-<p>Epsilon-constraint optimization.</p>
-<dl class="class">
-<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer">
-<em class="property">class </em><code class="sig-prename descclassname">tyche.EpsilonConstraints.</code><code class="sig-name descname">EpsilonConstraintOptimizer</code><span class="sig-paren">(</span><em class="sig-param">evaluator</em>, <em class="sig-param">scale=1000000.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>An epsilon-constration multi-objective optimizer.</p>
-<dl class="attribute">
-<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.evaluator">
-<code class="sig-name descname">evaluator</code><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.evaluator" title="Permalink to this definition">¶</a></dt>
-<dd><p>The technology evaluator.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>tyche.Evaluator</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.scale">
-<code class="sig-name descname">scale</code><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>The scaling factor for output.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.max_metrics">
-<code class="sig-name descname">max_metrics</code><span class="sig-paren">(</span><em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">tol=1e-08</em>, <em class="sig-param">maxiter=50</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.max_metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.max_metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximum value of metrics.
-&#64;todo update to include additional algorithms
-:param max_amount: The maximum amounts that can be invested in each category.
-:type max_amount: DataFrame
-:param total_amount: The maximum amount that can be invested <em>in toto</em>.
-:type total_amount: float
-:param min_metric: The minimum constraint for each metric.
-:type min_metric: DataFrame
-:param statistic: The statistic used on the sample evaluations.
-:type statistic: function
-:param initial: The initial value for the search.
-:type initial: array of float
-:param tol: The search tolerance.
-:type tol: float
-:param maxiter: The maximum iterations for the search.
-:type maxiter: int
-:param verbose: Verbosity level.
-:type verbose: int</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_diffev">
-<code class="sig-name descname">maximize_diffev</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">min_metric=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">strategy='best1bin'</em>, <em class="sig-param">seed=2</em>, <em class="sig-param">tol=0.01</em>, <em class="sig-param">maxiter=75</em>, <em class="sig-param">init='latinhypercube'</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.maximize_diffev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_diffev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximize the objective function using the differential_evoluation algorithm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>metric</strong> (<em>str</em>) – Name of metric to maximize.</p></li>
-<li><p><strong>max_amount</strong> (<em>DataFrame</em>) – Maximum investment amounts by R&amp;D category (defined in investments data)
-and maximum metric values</p></li>
-<li><p><strong>total_amount</strong> (<em>float</em>) – Upper limit on total investments summed across all R&amp;D categories.</p></li>
-<li><p><strong>min_metric</strong> (<em>DataFrame</em>) – Lower limits on all metrics.</p></li>
-<li><p><strong>statistic</strong> (<em>function</em>) – Summary statistic used on the sample evaluations; the metric measure that
-is fed to the optimizer.</p></li>
-<li><p><strong>strategy</strong> (<em>str</em>) – Which differential evolution strategy to use. ‘best1bin’ is the default.
-See algorithm docs for full list.</p></li>
-<li><p><strong>seed</strong> (<em>int</em>) – Sets the random seed for optimization by creating a new <cite>RandomState</cite>
-instance. Defaults to 1. Not setting this parameter means the solutions
-will not be reproducible.</p></li>
-<li><p><strong>init</strong> (<em>str</em><em> or </em><em>array-like</em>) – Type of population initialization. Default is Latin hypercube;
-alternatives are ‘random’ or specifying every member of the initial
-population in an array of shape (popsize, len(variables)).</p></li>
-<li><p><strong>tol</strong> (<em>float</em>) – Relative tolerance for convergence</p></li>
-<li><p><strong>maxiter</strong> (<em>int</em>) – Upper limit on generations of evolution (analogous to algorithm
-iterations)</p></li>
-<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level returned by this outer function.
-differential_evolution has no verbosity parameter</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_shgo">
-<code class="sig-name descname">maximize_shgo</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">min_metric=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">tol=1e-08</em>, <em class="sig-param">maxiter=50</em>, <em class="sig-param">sampling_method='simplicial'</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.maximize_shgo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_shgo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximize the objective function using the shgo global optimization algorithm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>metric</strong> (<em>str</em>) – Name of metric to maximize.</p></li>
-<li><p><strong>max_amount</strong> (<em>DataFrame</em>) – Maximum investment amounts by R&amp;D category (defined in investments data)
-and maximum metric values</p></li>
-<li><p><strong>total_amount</strong> (<em>float</em>) – Upper metric_limit on total investments summed across all R&amp;D categories.</p></li>
-<li><p><strong>min_metric</strong> (<em>DataFrame</em>) – Lower limits on all metrics.</p></li>
-<li><p><strong>statistic</strong> (<em>function</em>) – Summary metric_statistic used on the sample evaluations; the metric measure that
-is fed to the optimizer.</p></li>
-<li><p><strong>tol</strong> (<em>float</em>) – Objective function tolerance in stopping criterion.</p></li>
-<li><p><strong>maxiter</strong> (<em>int</em>) – Upper metric_limit on iterations that can be performed</p></li>
-<li><p><strong>sampling_method</strong> (<em>str</em>) – Allowable values are ‘sobol and ‘simplicial’. Simplicial is default, uses
-less memory, and guarantees convergence (theoretically). Sobol is faster,
-uses more memory and does not guarantee convergence. Per documentation,
-Sobol is better for “easier” problems.</p></li>
-<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level returned by this outer function.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_slsqp">
-<code class="sig-name descname">maximize_slsqp</code><span class="sig-paren">(</span><em class="sig-param">metric</em>, <em class="sig-param">max_amount=None</em>, <em class="sig-param">total_amount=None</em>, <em class="sig-param">min_metric=None</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em>, <em class="sig-param">initial=None</em>, <em class="sig-param">tol=1e-08</em>, <em class="sig-param">maxiter=50</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/EpsilonConstraints.html#EpsilonConstraintOptimizer.maximize_slsqp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.EpsilonConstraints.EpsilonConstraintOptimizer.maximize_slsqp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximize the objective function using the fmin_slsqp algorithm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>metric</strong> (<em>str</em>) – Name of metric to maximize.</p></li>
-<li><p><strong>max_amount</strong> (<em>DataFrame</em>) – Maximum investment amounts by R&amp;D category (defined in investments data)
-and maximum metric values</p></li>
-<li><p><strong>total_amount</strong> (<em>float</em>) – Upper limit on total investments summed across all R&amp;D categories.</p></li>
-<li><p><strong>min_metric</strong> (<em>DataFrame</em>) – Lower limits on all metrics.</p></li>
-<li><p><strong>statistic</strong> (<em>function</em>) – Summary statistic used on the sample evaluations; the metric measure that
-is fed to the optimizer.</p></li>
-<li><p><strong>initial</strong> (<em>array of float</em>) – Initial value of decision variable(s) fed to the optimizer.</p></li>
-<li><p><strong>tol</strong> (<em>float</em>) – Search tolerance fed to the optimizer.</p></li>
-<li><p><strong>maxiter</strong> (<em>int</em>) – Maximum number of iterations the optimizer is permitted to execute.</p></li>
-<li><p><strong>verbose</strong> (<em>int</em>) – Verbosity level returned by the optimizer and this outer function.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="tyche.EpsilonConstraints.Optimum">
-<em class="property">class </em><code class="sig-prename descclassname">tyche.EpsilonConstraints.</code><code class="sig-name descname">Optimum</code><span class="sig-paren">(</span><em class="sig-param">exit_code</em>, <em class="sig-param">exit_message</em>, <em class="sig-param">amounts</em>, <em class="sig-param">metrics</em><span class="sig-paren">)</span><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
-<p>Named tuple type for optimization results.</p>
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.Optimum.amounts">
-<em class="property">property </em><code class="sig-name descname">amounts</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.amounts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 2</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.Optimum.exit_code">
-<em class="property">property </em><code class="sig-name descname">exit_code</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.exit_code" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 0</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.Optimum.exit_message">
-<em class="property">property </em><code class="sig-name descname">exit_message</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.exit_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 1</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.EpsilonConstraints.Optimum.metrics">
-<em class="property">property </em><code class="sig-name descname">metrics</code><a class="headerlink" href="#tyche.EpsilonConstraints.Optimum.metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 3</p>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="tyche-epsilonconstraints-module">
+<h2>tyche.EpsilonConstraints module<a class="headerlink" href="#tyche-epsilonconstraints-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-tyche.Evaluator">
-<span id="tyche-evaluator-module"></span><h2>tyche.Evaluator module<a class="headerlink" href="#module-tyche.Evaluator" title="Permalink to this headline">¶</a></h2>
-<p>Fast evaluation of technology investments.</p>
-<dl class="class">
-<dt id="tyche.Evaluator.Evaluator">
-<em class="property">class </em><code class="sig-prename descclassname">tyche.Evaluator.</code><code class="sig-name descname">Evaluator</code><span class="sig-paren">(</span><em class="sig-param">tranches</em>, <em class="sig-param">summary</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Evaluator.html#Evaluator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Evalutate technology investments using a response surface.</p>
-<dl class="attribute">
-<dt id="tyche.Evaluator.Evaluator.amounts">
-<code class="sig-name descname">amounts</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.amounts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cost of tranches.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="tyche.Evaluator.Evaluator.categories">
-<code class="sig-name descname">categories</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.categories" title="Permalink to this definition">¶</a></dt>
-<dd><p>Categories of investment.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="tyche.Evaluator.Evaluator.metrics">
-<code class="sig-name descname">metrics</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Metrics for technologies.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="tyche.Evaluator.Evaluator.units">
-<code class="sig-name descname">units</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.units" title="Permalink to this definition">¶</a></dt>
-<dd><p>Units of measure for metrics.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="tyche.Evaluator.Evaluator.interpolators">
-<code class="sig-name descname">interpolators</code><a class="headerlink" href="#tyche.Evaluator.Evaluator.interpolators" title="Permalink to this definition">¶</a></dt>
-<dd><p>Interpolation functions for technology metrics.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.Evaluator.Evaluator.evaluate">
-<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">amounts</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Evaluator.html#Evaluator.evaluate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.evaluate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample the distribution for an investment.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>amounts</strong> (<em>DataFrame</em>) – The investment levels.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.Evaluator.Evaluator.evaluate_statistic">
-<code class="sig-name descname">evaluate_statistic</code><span class="sig-paren">(</span><em class="sig-param">amounts</em>, <em class="sig-param">statistic=&lt;function mean&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Evaluator.html#Evaluator.evaluate_statistic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Evaluator.Evaluator.evaluate_statistic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate a statistic for an investment.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>amounts</strong> (<em>DataFrame</em>) – The investment levels.</p></li>
-<li><p><strong>statistics</strong> (<em>DataFrame</em>) – The statistic to evaluate.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="tyche-evaluator-module">
+<h2>tyche.Evaluator module<a class="headerlink" href="#tyche-evaluator-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-tyche.IO">
 <span id="tyche-io-module"></span><h2>tyche.IO module<a class="headerlink" href="#module-tyche.IO" title="Permalink to this headline">¶</a></h2>
@@ -656,66 +403,8 @@ is fed to the optimizer.</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-tyche.Investments">
-<span id="tyche-investments-module"></span><h2>tyche.Investments module<a class="headerlink" href="#module-tyche.Investments" title="Permalink to this headline">¶</a></h2>
-<p>Investments in technologies.</p>
-<dl class="class">
-<dt id="tyche.Investments.Investments">
-<em class="property">class </em><code class="sig-prename descclassname">tyche.Investments.</code><code class="sig-name descname">Investments</code><span class="sig-paren">(</span><em class="sig-param">path=None</em>, <em class="sig-param">tranches='tranches.tsv'</em>, <em class="sig-param">investments='investments.tsv'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Investments.html#Investments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Investments.Investments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Investments in a technology.</p>
-<dl class="attribute">
-<dt id="tyche.Investments.Investments.tranches">
-<code class="sig-name descname">tranches</code><a class="headerlink" href="#tyche.Investments.Investments.tranches" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <em>tranches</em> table.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="tyche.Investments.Investments.investments">
-<code class="sig-name descname">investments</code><a class="headerlink" href="#tyche.Investments.Investments.investments" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <em>investments</em> table.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.Investments.Investments.evaluate_investments">
-<code class="sig-name descname">evaluate_investments</code><span class="sig-paren">(</span><em class="sig-param">designs</em>, <em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Investments.html#Investments.evaluate_investments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Investments.Investments.evaluate_investments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate the investments for a design.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>designs</strong> (<em>tyche.Designs</em>) – The designs.</p></li>
-<li><p><strong>sample_count</strong> (<em>int</em>) – The number of random samples.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="tyche.Investments.Investments.evaluate_tranches">
-<code class="sig-name descname">evaluate_tranches</code><span class="sig-paren">(</span><em class="sig-param">designs</em>, <em class="sig-param">sample_count=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tyche/Investments.html#Investments.evaluate_tranches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tyche.Investments.Investments.evaluate_tranches" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate the tranches of investment for a design.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>designs</strong> (<em>tyche.Designs</em>) – The designs.</p></li>
-<li><p><strong>sample_count</strong> (<em>int</em>) – The number of random samples.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="tyche-investments-module">
+<h2>tyche.Investments module<a class="headerlink" href="#tyche-investments-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-tyche.Types">
 <span id="tyche-types-module"></span><h2>tyche.Types module<a class="headerlink" href="#module-tyche.Types" title="Permalink to this headline">¶</a></h2>
@@ -907,9 +596,8 @@ is fed to the optimizer.</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-tyche">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tyche" title="Permalink to this headline">¶</a></h2>
-<p>Tyche: a Python package for R&amp;D pathways analysis and evaluation.</p>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -938,7 +626,7 @@ is fed to the optimizer.</p></li>
 <li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA Definition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ioc-1.html">Mock FOA Example</a></li>
@@ -958,7 +646,7 @@ is fed to the optimizer.</p></li>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="modules.html">Python API</a><ul>
       <li>Previous: <a href="modules.html" title="previous chapter">Python API</a></li>
-      <li>Next: <a href="technology.html" title="next chapter">technology package</a></li>
+      <li>Next: <a href="eutychia.html" title="next chapter">eutychia package</a></li>
   </ul></li>
   </ul></li>
 </ul>

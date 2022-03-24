@@ -97,7 +97,7 @@ class Investments:
         "Units",
         append=True
       ).sum(
-        level=["Category", "Tranche", "Sample", "Index", "Units"]
+        level=["Category","Technology", "Tranche", "Sample", "Index", "Units"]
       ).reset_index(
         "Units"
       )[["Value", "Units"]],
@@ -138,7 +138,7 @@ class Investments:
         "Units",
         append=True
       ).sum(
-        level=["Investment", "Sample", "Index", "Units"]
+        level=["Investment", "Technology", "Sample", "Index", "Units"]
       ).reset_index(
         "Units"
       )[["Value", "Units"]],

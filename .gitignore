@@ -14,3 +14,4 @@ __pycache__/
 src/eutychia/assets/
 src/eutychia/env/
 src/eutychia-2101/
+*.lp
