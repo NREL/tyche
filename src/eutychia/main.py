@@ -47,11 +47,6 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
-##metric_range = evaluator.min_metric.apply(lambda x: np.minimum(0, x)).join(
-##    evaluator.max_metric.apply(lambda x: np.maximum(0, x)),
-##    lsuffix=" Min",
-##    rsuffix=" Max",
-##)
   metric_range = evaluator.min_metric.join(
       evaluator.max_metric,
       lsuffix=" Min",
@@ -236,91 +231,91 @@ async def plot():
 
 # Compute metrics.
 
-  @app.route("/metric", methods=["POST"])
-  async def metric():
-      ident = qt.session["ID"]
-      evaluation = session_evaluation[ident]
-      form = await qt.request.form
-      m = evaluator.metrics[int(form["met"])]
-      return str(
-          np.mean(evaluation.xs(m, level="Index").groupby("Sample").aggregate(np.sum))
-      )
+@app.route("/metric", methods=["POST"])
+async def metric():
+    ident = qt.session["ID"]
+    evaluation = session_evaluation[ident]
+    form = await qt.request.form
+    m = evaluator.metrics[int(form["met"])]
+    return str(
+        np.mean(evaluation.xs(m, level="Index").groupby("Sample").aggregate(np.sum))
+    )
 
 
 # Update investment and recompute.
 
 
-  @app.route("/invest", methods=["POST"])
-  async def invest():
-      ident = qt.session["ID"]
-      form = await qt.request.form
-      c = int(form["cat"])
-      v = float(form["value"])
-      session_amounts[ident].loc[evaluator.categories[c]] = v
-      session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])
-      return ""
+@app.route("/invest", methods=["POST"])
+async def invest():
+    ident = qt.session["ID"]
+    form = await qt.request.form
+    c = int(form["cat"])
+    v = float(form["value"])
+    session_amounts[ident].loc[evaluator.categories[c]] = v
+    session_evaluation[ident] = evaluator.evaluate(session_amounts[ident])
+    return ""
 
 
 # Optimize investments.
 
 
-  @app.route("/optimize", methods=["POST"])
-  async def optimize():
-      ident = qt.session["ID"]
-      evaluation = session_evaluation[ident]
-      form = await qt.request.form
-      target_metric = evaluator.metrics[int(form["target"])]
-      constraints = json.loads(form["constraints"])
-      min_metric = pd.Series(
-          [
-              constraints["metric"]["metlimwid_" + str(m)]
-              for m in range(len(evaluator.metrics))
-          ],
-          index=evaluator.metrics,
-      )
-      max_amount = pd.Series(
-          [
-              constraints["invest"]["invlimwid_" + str(m)]
-              for m in range(len(evaluator.categories))
-          ],
-          index=evaluator.categories,
-      )
-      total_amount = constraints["invest"]["invlimwid_x"]
-      print("\nOptimization started.", datetime.now())
-      print("> target_metric\n ", target_metric)
-      print("> min_metric\n ", min_metric)
-      print("> total_amount\n ", total_amount)
-      optimum = optimizer.opt_slsqp(
-          metric=target_metric,
-          min_metric=min_metric,
-          max_amount=max_amount,
-          total_amount=total_amount
-          # , tol          = 1e-4
-          # , maxiter      = 10
-      )
-      print("> exit_message\n ", optimum.exit_message)
-      print("> amounts\n ", optimum.amounts)
-      print("> metrics\n ", optimum.metrics)
-      print("Optimization finished.", datetime.now(), "\n")
-      amounts = pd.DataFrame(optimum.amounts)
-      session_amounts[ident] = amounts
-      session_evaluation[ident] = evaluator.evaluate(amounts)
-      result = {}
-      result["message"] = optimum.exit_message
-      result["amount"] = {
-          "invoptwid_" + str(m): optimum.amounts[m] for m in range(len(optimum.amounts))
-      }
-      return json.dumps(result)
+@app.route("/optimize", methods=["POST"])
+async def optimize():
+    ident = qt.session["ID"]
+    evaluation = session_evaluation[ident]
+    form = await qt.request.form
+    target_metric = evaluator.metrics[int(form["target"])]
+    constraints = json.loads(form["constraints"])
+    min_metric = pd.Series(
+        [
+            constraints["metric"]["metlimwid_" + str(m)]
+            for m in range(len(evaluator.metrics))
+        ],
+        index=evaluator.metrics,
+    )
+    max_amount = pd.Series(
+        [
+            constraints["invest"]["invlimwid_" + str(m)]
+            for m in range(len(evaluator.categories))
+        ],
+        index=evaluator.categories,
+    )
+    total_amount = constraints["invest"]["invlimwid_x"]
+    print("\nOptimization started.", datetime.now())
+    print("> target_metric\n ", target_metric)
+    print("> min_metric\n ", min_metric)
+    print("> total_amount\n ", total_amount)
+    optimum = optimizer.opt_slsqp(
+        metric=target_metric,
+        min_metric=min_metric,
+        max_amount=max_amount,
+        total_amount=total_amount
+        # , tol          = 1e-4
+        # , maxiter      = 10
+    )
+    print("> exit_message\n ", optimum.exit_message)
+    print("> amounts\n ", optimum.amounts)
+    print("> metrics\n ", optimum.metrics)
+    print("Optimization finished.", datetime.now(), "\n")
+    amounts = pd.DataFrame(optimum.amounts)
+    session_amounts[ident] = amounts
+    session_evaluation[ident] = evaluator.evaluate(amounts)
+    result = {}
+    result["message"] = optimum.exit_message
+    result["amount"] = {
+        "invoptwid_" + str(m): optimum.amounts[m] for m in range(len(optimum.amounts))
+    }
+    return json.dumps(result)
 
 
 # ------------------------------------------------------------------------------------------
-  def aggregate_over(ser, idx, statistic=np.mean):
-      ser = ser.astype("float64")
-      idx_res = list(set(ser.index.names.copy()) - set(idx))
-      return ser.groupby(idx_res).aggregate(statistic)
+def aggregate_over(ser, idx, statistic=np.mean):
+    ser = ser.astype("float64")
+    idx_res = list(set(ser.index.names.copy()) - set(idx))
+    return ser.groupby(idx_res).aggregate(statistic)
 
 
-  def normalize_to_metric(x):
-      x_mean = aggregate_over(x, ['Sample'])
-      met_diff = (metric_range['Value Max'] - metric_range['Value Min'])
-      return x_mean / met_diff
+def normalize_to_metric(x):
+    x_mean = aggregate_over(x, ['Sample'])
+    met_diff = (metric_range['Value Max'] - metric_range['Value Min'])
+    return x_mean / met_diff
