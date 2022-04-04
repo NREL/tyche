@@ -7,7 +7,7 @@ Submodules
 technology.biorefinery module
 -----------------------------
 
-.. automodule:: technology.biorefinery
+.. automodule:: technology.biorefinery_v1
    :members:
    :undoc-members:
    :show-inheritance:
