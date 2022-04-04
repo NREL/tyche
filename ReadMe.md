@@ -2,8 +2,7 @@
 ===========================================================
 
 *   documentation:
-    *   [web](https://tyche.live/)
-    *   [PDF](docs/tyche.pdf)
+    *   [PDF](docs/tyche.pdf) (to update)
     *   [Markdown](index.rst)
 *   Conda environments: [conda/](conda/)
 *   Python packages:
