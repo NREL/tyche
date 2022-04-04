@@ -49,8 +49,10 @@ exclude_patterns = [
   'literature',
   'tmp'       ,
   'ReadMe.md' ,
+  'tutorial/ReadMe.md',
   'ioc-0'     ,
   'ioc-1'     ,
+  'ioc-2'     ,
 ]
 
 
@@ -71,3 +73,5 @@ html_static_path = ['_static']
 numfig = True
 
 latex_engine = 'xelatex'
+
+master_doc = 'index'

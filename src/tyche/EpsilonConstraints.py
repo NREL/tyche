@@ -95,8 +95,8 @@ class EpsilonConstraintOptimizer:
       Name of metric to maximize.
     sense : str
       Optimization sense ('min' or 'max'). If no value is provided to
-       this method, the sense value used to create the
-       EpsilonConstraintOptimizer object is used instead.
+      this method, the sense value used to create the
+      EpsilonConstraintOptimizer object is used instead.
     max_amount : DataFrame
       Maximum investment amounts by R&D category (defined in investments data)
       and maximum metric values
@@ -106,8 +106,8 @@ class EpsilonConstraintOptimizer:
       RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
       names, and the values are dictionaries of the form
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
-       constraint is a lower or an upper bound, and the value must be either
-       'upper' or 'lower'.
+      constraint is a lower or an upper bound, and the value must be either
+      'upper' or 'lower'.
     statistic : function
       Summary statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
@@ -124,10 +124,11 @@ class EpsilonConstraintOptimizer:
       verbose = 1     Summary message when fmin_slsqp completes
       verbose = 2     Status of each algorithm iteration and summary message
       verbose = 3     Investment constraint status, metric constraint status,
-                      status of each algorithm iteration, and summary message
+      status of each algorithm iteration, and summary message
       verbose > 3     All metric values, decision variable values, investment
-                      constraint status, metric constraint status, status of
-                      each algorithm iteration, and summary message
+      constraint status, metric constraint status, status of
+      each algorithm iteration, and summary message
+
     """
 
     # If no optimization sense is provided, use the default value from self.
@@ -284,8 +285,7 @@ class EpsilonConstraintOptimizer:
           verbose       = 0               ,
   ):
     """
-    Maximize the objective function using the differential_evoluation
-     algorithm.
+    Maximize the objective function using the differential_evoluaion algorithm.
 
     Parameters
     ----------
@@ -302,10 +302,9 @@ class EpsilonConstraintOptimizer:
       Upper limit on total investments summed across all R&D categories.
     eps_metric : Dict
       RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
-      names, and the values are dictionaries of the form
-      {'limit': float, 'sense': str}. The sense defines whether the epsilon
-       constraint is a lower or an upper bound, and the value must be either
-       'upper' or 'lower'.
+      names, and the values are dictionaries of the form {'limit': float, 'sense': str}.
+      The sense defines whether the epsilon constraint is a lower or an upper bound,
+      and the value must be either 'upper' or 'lower'.
     statistic : function
       Summary statistic used on the sample evaluations; the metric measure that
       is fed to the optimizer.
@@ -327,16 +326,17 @@ class EpsilonConstraintOptimizer:
       iterations)
     verbose : int
       Verbosity level returned by this outer function and the
-       differential_evolution algorithm.
+      differential_evolution algorithm.
       verbose = 0     No messages
       verbose = 1     Objective function value at every algorithm iteration
       verbose = 2     Investment constraint status, metric constraint status,
-                      and objective function value
+      and objective function value
       verbose = 3     Decision variable values, investment constraint status,
-                      metric constraint status, and objective function value
+      metric constraint status, and objective function value
       verbose > 3     All metric values, decision variable values, investment
-                      constraint status, metric constraint status, and
-                      objective function value
+      constraint status, metric constraint status, and
+      objective function value
+
     """
     # If no optimization sense is provided, use the default value from self.
     # If an optimization sense IS provided, overwrite the default value with
@@ -498,8 +498,8 @@ class EpsilonConstraintOptimizer:
       Name of metric to maximize.
     sense : str
       Optimization sense ('min' or 'max'). If no value is provided to
-       this method, the sense value used to create the
-       EpsilonConstraintOptimizer object is used instead.
+      this method, the sense value used to create the
+      EpsilonConstraintOptimizer object is used instead.
     max_amount : DataFrame
       Maximum investment amounts by R&D category (defined in investments data)
       and maximum metric values
@@ -509,8 +509,8 @@ class EpsilonConstraintOptimizer:
       RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
       names, and the values are dictionaries of the form
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
-       constraint is a lower or an upper bound, and the value must be either
-       'upper' or 'lower'.
+      constraint is a lower or an upper bound, and the value must be either
+      'upper' or 'lower'.
     statistic : function
       Summary metric_statistic used on the sample evaluations; the metric
       measure that is fed to the optimizer.
@@ -528,12 +528,13 @@ class EpsilonConstraintOptimizer:
       verbose = 0     No messages
       verbose = 1     Convergence messages from SHGO algorithm
       verbose = 2     Investment constraint status, metric constraint status,
-                      and convergence messages
+      and convergence messages
       verbose = 3     Decision variable values, investment constraint status,
-                      metric constraint status, and convergence messages
+      metric constraint status, and convergence messages
       verbose > 3     All metric values, decision variable values, investment
-                      constraint status, metric constraint status, and
-                      convergence messages
+      constraint status, metric constraint status, and
+      convergence messages
+
     """
     # If no optimization sense is provided, use the default value from self.
     # If an optimization sense IS provided, overwrite the default value with
@@ -818,8 +819,8 @@ class EpsilonConstraintOptimizer:
       RHS of the epsilon constraint(s) on one or more metrics. Keys are metric
       names, and the values are dictionaries of the form
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
-       constraint is a lower or an upper bound, and the value must be either
-       'upper' or 'lower'.
+      constraint is a lower or an upper bound, and the value must be either
+      'upper' or 'lower'.
     statistic : function
       Summary statistic (metric measure) fed to evaluator_corners_wide method
       in Evaluator
@@ -841,6 +842,7 @@ class EpsilonConstraintOptimizer:
       metrics (None, if no solution found)
       solve_time
       opt_sense
+
     """
     import time
     time0 = time.time()
