@@ -10,7 +10,7 @@ from .Distributions import parse_distribution
 from .IO            import make_table, read_table
 from .Types         import Functions, Indices, Inputs, Results
 
-
+import pdb
 def sampler(x, sample_count):
   """
   Sample from an array.
@@ -118,11 +118,11 @@ class Designs:
   def __init__(
     self                         ,
     path       = None            ,
-    indices    = "indices.tsv"   ,
-    functions  = "functions.tsv" ,
-    designs    = "designs.tsv"   ,
-    parameters = "parameters.tsv",
-    results    = "results.tsv"   ,
+    indices    = "indices.csv"   ,
+    functions  = "functions.csv" ,
+    designs    = "designs.csv"   ,
+    parameters = "parameters.csv",
+    results    = "results.csv"   ,
   ):
     """
     Parameters
