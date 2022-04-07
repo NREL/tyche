@@ -1,0 +1,5 @@
+﻿Category,Tranche,Scenario,Amount,Notes
+PV R&D,No PV R&D,Base PV,1500000,
+PV R&D,Low PV R&D,Slow Progress on PV,3000000,
+PV R&D,Medium PV R&D,Moderate Progress on PV,4500000,
+PV R&D,High PV R&D,Fast Progress on PV,1000000,

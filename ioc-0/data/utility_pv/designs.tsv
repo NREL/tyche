@@ -1,8 +1,0 @@
-Technology	Scenario	Variable	Index	Value	Units	Notes
-Simple pv	Base PV	Input	Solar Radiation	5.5	kWh/m2/day	
-Simple pv	Base PV	Input efficiency	Solar Radiation	0.152	1	From Kavlak et al. (2018)
-Simple pv	Base PV	Input price	Solar Radiation	0	USD/kWh/m2/day	
-Simple pv	Base PV	Output efficiency	Electricity	1	1	No output inverter losses assumed
-Simple pv	Base PV	Lifetime	Other Capital Cost	20	yr	"Assumed, Kavlak et al. (2019) do not provide a lifetime"
-Simple pv	Base PV	Scale		0.05	module/yr	Inverse of lifetime. Constant needed to levelize appropriately (put on $/module basis) based on dimensional analysis
-Simple pv	Base PV	Output price	Electricity	0.092	USD/kWh	"Average commercial rate in Denver, CO"
