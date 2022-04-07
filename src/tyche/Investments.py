@@ -41,8 +41,8 @@ class Investments:
   def __init__(
     self                           ,
     path        = None             ,
-    tranches    = "tranches.tsv"   ,
-    investments = "investments.tsv",
+    tranches    = "tranches.csv"   ,
+    investments = "investments.csv",
   ):
     """
     Parameters

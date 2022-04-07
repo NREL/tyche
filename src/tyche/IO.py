@@ -42,6 +42,6 @@ def read_table(path, name, dtypes, index):
 
   return pd.read_csv(
     os.path.join(path, name),
-    sep="\t",
+    sep=",",
     index_col=index, converters=dtypes
   ).sort_index()

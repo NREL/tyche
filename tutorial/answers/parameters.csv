@@ -1,0 +1,51 @@
+Technology,Scenario,Parameter,Offset,Value,Units,Notes
+Wind Turbine,Reference,Rotor design,0,0,1,rho
+Wind Turbine,Reference,Drive design,1,0.9,1,delta
+Wind Turbine,Reference,Tower design,2,1,1,tau
+Wind Turbine,Reference,BOS factor,3,1,1,beta
+Wind Turbine,Reference,O&M factor,4,1,1,mu
+Wind Turbine,Casual Rotor R&D,Rotor design,0,"st.triang(0.5, 0.0, 0.4)",1,rho
+Wind Turbine,Casual Rotor R&D,Drive design,1,0.9,1,delta
+Wind Turbine,Casual Rotor R&D,Tower design,2,1,1,tau
+Wind Turbine,Casual Rotor R&D,BOS factor,3,1,1,beta
+Wind Turbine,Casual Rotor R&D,O&M factor,4,1,1,mu
+Wind Turbine,Focused Rotor R&D,Rotor design,0,"st.triang(0.5, 0.3, 0.4)",1,rho
+Wind Turbine,Focused Rotor R&D,Drive design,1,0.9,1,delta
+Wind Turbine,Focused Rotor R&D,Tower design,2,1,1,tau
+Wind Turbine,Focused Rotor R&D,BOS factor,3,1,1,beta
+Wind Turbine,Focused Rotor R&D,O&M factor,4,1,1,mu
+Wind Turbine,Intense Rotor R&D,Rotor design,0,"st.triang(0.5, 0.6, 0.4)",1,rho
+Wind Turbine,Intense Rotor R&D,Drive design,1,0.9,1,delta
+Wind Turbine,Intense Rotor R&D,Tower design,2,1,1,tau
+Wind Turbine,Intense Rotor R&D,BOS factor,3,1,1,beta
+Wind Turbine,Intense Rotor R&D,O&M factor,4,1,1,mu
+Wind Turbine,Casual Drive R&D,Rotor design,0,0,1,rho
+Wind Turbine,Casual Drive R&D,Drive design,1,"st.triang(0.5, 0.87, 0.03)",1,delta
+Wind Turbine,Casual Drive R&D,Tower design,2,1,1,tau
+Wind Turbine,Casual Drive R&D,BOS factor,3,1,1,beta
+Wind Turbine,Casual Drive R&D,O&M factor,4,1,1,mu
+Wind Turbine,Focused Drive R&D,Rotor design,0,0,1,rho
+Wind Turbine,Focused Drive R&D,Drive design,1,"st.triang(0.5, 0.84, 0.06)",1,delta
+Wind Turbine,Focused Drive R&D,Tower design,2,1,1,tau
+Wind Turbine,Focused Drive R&D,BOS factor,3,1,1,beta
+Wind Turbine,Focused Drive R&D,O&M factor,4,1,1,mu
+Wind Turbine,Intense Drive R&D,Rotor design,0,0,1,rho
+Wind Turbine,Intense Drive R&D,Drive design,1,"st.triang(0.5, 0.80, 0.10)",1,delta
+Wind Turbine,Intense Drive R&D,Tower design,2,1,1,tau
+Wind Turbine,Intense Drive R&D,BOS factor,3,1,1,beta
+Wind Turbine,Intense Drive R&D,O&M factor,4,1,1,mu
+Wind Turbine,Casual Tower R&D,Rotor design,0,0,1,rho
+Wind Turbine,Casual Tower R&D,Drive design,1,0.9,1,delta
+Wind Turbine,Casual Tower R&D,Tower design,2,"st.triang(0.5, 0.8, 0.2)",1,tau
+Wind Turbine,Casual Tower R&D,BOS factor,3,1,1,beta
+Wind Turbine,Casual Tower R&D,O&M factor,4,1,1,mu
+Wind Turbine,Focused Tower R&D,Rotor design,0,0,1,rho
+Wind Turbine,Focused Tower R&D,Drive design,1,0.9,1,delta
+Wind Turbine,Focused Tower R&D,Tower design,2,"st.triang(0.5, 0.6, 0.4)",1,tau
+Wind Turbine,Focused Tower R&D,BOS factor,3,1,1,beta
+Wind Turbine,Focused Tower R&D,O&M factor,4,1,1,mu
+Wind Turbine,Intense Tower R&D,Rotor design,0,0,1,rho
+Wind Turbine,Intense Tower R&D,Drive design,1,0.9,1,delta
+Wind Turbine,Intense Tower R&D,Tower design,2,"mixture([0.7, 0.3], [st.triang(0.1, 0.5, 0.1), st.triang(0.5, 0.6, 0.4)])",1,tau
+Wind Turbine,Intense Tower R&D,BOS factor,3,1,1,beta
+Wind Turbine,Intense Tower R&D,O&M factor,4,1,1,mu
