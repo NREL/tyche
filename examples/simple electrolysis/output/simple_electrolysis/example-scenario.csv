@@ -1,0 +1,1201 @@
+Technology,Scenario,Sample,Variable,Index,Value,Units
+Simple electrolysis,Base Electrolysis,1,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,1,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,1,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,1,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,1,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,1,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,2,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,2,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,2,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,2,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,2,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,2,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,3,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,3,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,3,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,3,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,3,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,3,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,4,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,4,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,4,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,4,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,4,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,4,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,5,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,5,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,5,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,5,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,5,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,5,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,6,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,6,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,6,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,6,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,6,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,6,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,7,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,7,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,7,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,7,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,7,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,7,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,8,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,8,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,8,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,8,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,8,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,8,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,9,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,9,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,9,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,9,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,9,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,9,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,10,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,10,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,10,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,10,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,10,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,10,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,11,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,11,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,11,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,11,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,11,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,11,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,12,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,12,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,12,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,12,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,12,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,12,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,13,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,13,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,13,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,13,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,13,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,13,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,14,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,14,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,14,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,14,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,14,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,14,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,15,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,15,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,15,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,15,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,15,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,15,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,16,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,16,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,16,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,16,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,16,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,16,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,17,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,17,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,17,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,17,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,17,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,17,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,18,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,18,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,18,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,18,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,18,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,18,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,19,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,19,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,19,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,19,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,19,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,19,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,20,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,20,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,20,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,20,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,20,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,20,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,21,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,21,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,21,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,21,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,21,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,21,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,22,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,22,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,22,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,22,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,22,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,22,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,23,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,23,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,23,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,23,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,23,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,23,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,24,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,24,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,24,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,24,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,24,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,24,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,25,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,25,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,25,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,25,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,25,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,25,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,26,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,26,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,26,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,26,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,26,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,26,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,27,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,27,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,27,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,27,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,27,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,27,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,28,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,28,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,28,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,28,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,28,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,28,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,29,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,29,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,29,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,29,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,29,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,29,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,30,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,30,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,30,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,30,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,30,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,30,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,31,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,31,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,31,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,31,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,31,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,31,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,32,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,32,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,32,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,32,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,32,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,32,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,33,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,33,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,33,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,33,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,33,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,33,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,34,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,34,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,34,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,34,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,34,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,34,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,35,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,35,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,35,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,35,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,35,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,35,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,36,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,36,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,36,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,36,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,36,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,36,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,37,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,37,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,37,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,37,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,37,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,37,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,38,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,38,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,38,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,38,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,38,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,38,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,39,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,39,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,39,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,39,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,39,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,39,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,40,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,40,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,40,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,40,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,40,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,40,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,41,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,41,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,41,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,41,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,41,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,41,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,42,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,42,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,42,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,42,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,42,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,42,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,43,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,43,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,43,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,43,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,43,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,43,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,44,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,44,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,44,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,44,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,44,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,44,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,45,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,45,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,45,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,45,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,45,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,45,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,46,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,46,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,46,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,46,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,46,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,46,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,47,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,47,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,47,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,47,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,47,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,47,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,48,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,48,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,48,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,48,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,48,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,48,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,49,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,49,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,49,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,49,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,49,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,49,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Base Electrolysis,50,Cost,Cost,0.18389993415097475,USD/mole
+Simple electrolysis,Base Electrolysis,50,Metric,Cost,0.1021214436044039,USD/gH2
+Simple electrolysis,Base Electrolysis,50,Metric,GHG,21.391958531623178,gCO2e/gH2
+Simple electrolysis,Base Electrolysis,50,Metric,Jobs,8.329647648533098e-05,job/gH2
+Simple electrolysis,Base Electrolysis,50,Output,Hydrogen,1.800796460176991,g/mole
+Simple electrolysis,Base Electrolysis,50,Output,Oxygen,14.406371681415928,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,1,Cost,Cost,0.18422947819964536,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,1,Metric,Cost,0.09610932080950059,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,1,Metric,GHG,20.096552523374562,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,1,Metric,Jobs,7.825239620883234e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,1,Output,Hydrogen,1.9168742079117254,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,1,Output,Oxygen,15.39246747633413,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,2,Cost,Cost,0.1840059457433122,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,2,Metric,Cost,0.09981211844426084,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,2,Metric,GHG,20.89616520467613,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,2,Metric,Jobs,8.136594557398037e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,2,Output,Hydrogen,1.8435230973087564,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,2,Output,Oxygen,15.029301624164333,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,3,Cost,Cost,0.18340216022988903,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,3,Metric,Cost,0.09842634133220564,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,3,Metric,GHG,20.67388382864174,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,3,Metric,Jobs,8.05004214853559e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,3,Output,Hydrogen,1.8633442810890994,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,3,Output,Oxygen,15.067121829134077,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,4,Cost,Cost,0.1828904999838279,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,4,Metric,Cost,0.09647451225816706,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,4,Metric,GHG,20.320604383404508,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,4,Metric,Jobs,7.912481424680163e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,4,Output,Hydrogen,1.895739047577774,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,4,Output,Oxygen,15.686848073282825,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,5,Cost,Cost,0.18356429901310786,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,5,Metric,Cost,0.0976821859568786,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,5,Metric,GHG,20.499455516507076,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,5,Metric,Jobs,7.982122870463773e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,5,Output,Hydrogen,1.879199336244805,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,5,Output,Oxygen,15.486165222128019,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,6,Cost,Cost,0.18423777902562044,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,6,Metric,Cost,0.09648588696116646,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,6,Metric,GHG,20.174383875159037,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,6,Metric,Jobs,7.8555457630448e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,6,Output,Hydrogen,1.9094790422538404,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,6,Output,Oxygen,15.214148778131124,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,7,Cost,Cost,0.18338134421263336,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,7,Metric,Cost,0.09921393613971188,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,7,Metric,GHG,20.841679079586083,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,7,Metric,Jobs,8.115378630718715e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,7,Output,Hydrogen,1.8483425952821582,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,7,Output,Oxygen,15.04123505093965,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,8,Cost,Cost,0.18200971553481646,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,8,Metric,Cost,0.09725894399073673,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,8,Metric,GHG,20.584966058758113,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,8,Metric,Jobs,8.015419152622006e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,8,Output,Hydrogen,1.8713930880449583,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,8,Output,Oxygen,15.316789524825285,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,9,Cost,Cost,0.18286674309730377,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,9,Metric,Cost,0.09546344203784611,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,9,Metric,GHG,20.110253055885945,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,9,Metric,Jobs,7.83057436422842e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,9,Output,Hydrogen,1.9155682970744652,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,9,Output,Oxygen,15.824479078444353,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,10,Cost,Cost,0.18465806097572932,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,10,Metric,Cost,0.09904295363097755,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,10,Metric,GHG,20.661911105334745,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,10,Metric,Jobs,8.045380183321268e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,10,Output,Hydrogen,1.8644240120679723,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,10,Output,Oxygen,15.076254058158286,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,11,Cost,Cost,0.1833336688871392,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,11,Metric,Cost,0.09878464787613335,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,11,Metric,GHG,20.75689568696044,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,11,Metric,Jobs,8.082365487673638e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,11,Output,Hydrogen,1.8558923155450466,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,11,Output,Oxygen,14.957441928813614,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,12,Cost,Cost,0.18309853532330622,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,12,Metric,Cost,0.0990366657341038,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,12,Metric,GHG,20.83657418735051,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,12,Metric,Jobs,8.113390876603394e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,12,Output,Hydrogen,1.8487954331468903,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,12,Output,Oxygen,15.196537974146919,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,13,Cost,Cost,0.1828065946452136,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,13,Metric,Cost,0.09678021604730334,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,13,Metric,GHG,20.394351726903157,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,13,Metric,Jobs,7.941197326753879e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,13,Output,Hydrogen,1.888883928052641,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,13,Output,Oxygen,15.566713475366296,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,14,Cost,Cost,0.18294056929400682,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,14,Metric,Cost,0.09757365231905872,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,14,Metric,GHG,20.546493337270405,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,14,Metric,Jobs,8.000438560097062e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,14,Output,Hydrogen,1.8748972181117554,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,14,Output,Oxygen,15.180766514003611,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,15,Cost,Cost,0.1842408519669143,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,15,Metric,Cost,0.09725533879026942,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,15,Metric,GHG,20.33493058183622,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,15,Metric,Jobs,7.918059791191236e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,15,Output,Hydrogen,1.8944034770597906,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,15,Output,Oxygen,15.1102043814251,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,16,Cost,Cost,0.18369762451907784,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,16,Metric,Cost,0.09849210403959203,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,16,Metric,GHG,20.654422246881683,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,16,Metric,Jobs,8.04246415522073e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,16,Output,Hydrogen,1.8651000129435222,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,16,Output,Oxygen,14.907008836475972,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,17,Cost,Cost,0.18366118742811713,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,17,Metric,Cost,0.09850562843581823,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,17,Metric,GHG,20.661356654136423,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,17,Metric,Jobs,8.045164289899753e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,17,Output,Hydrogen,1.864474044219538,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,17,Output,Oxygen,15.27183250119482,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,18,Cost,Cost,0.18296606850623282,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,18,Metric,Cost,0.09800975060015867,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,18,Metric,GHG,20.635448105407768,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,18,Metric,Jobs,8.03507596247169e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,18,Output,Hydrogen,1.8668149585714446,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,18,Output,Oxygen,15.534792266359586,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,19,Cost,Cost,0.18307879258479495,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,19,Metric,Cost,0.09765342062248611,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,19,Metric,GHG,20.54776533378959,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,19,Metric,Jobs,8.000933852886607e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,19,Output,Hydrogen,1.8747811537759735,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,19,Output,Oxygen,15.405507471866962,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,20,Cost,Cost,0.18264036379895557,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,20,Metric,Cost,0.09633468697624069,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,20,Metric,GHG,20.31894259408867,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,20,Metric,Jobs,7.911834353518046e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,20,Output,Hydrogen,1.895894091024562,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,20,Output,Oxygen,15.540909756363071,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,21,Cost,Cost,0.1823316000719117,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,21,Metric,Cost,0.09807935031556723,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,21,Metric,GHG,20.721959164819634,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,21,Metric,Jobs,8.068761828192534e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,21,Output,Hydrogen,1.8590212872053649,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,21,Output,Oxygen,15.473918160735721,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,22,Cost,Cost,0.18367020744525278,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,22,Metric,Cost,0.09824574918430576,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,22,Metric,GHG,20.605835506620632,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,22,Metric,Jobs,8.02354534392222e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,22,Output,Hydrogen,1.8694977540523772,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,22,Output,Oxygen,14.873839474188571,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,23,Cost,Cost,0.18292312799005928,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,23,Metric,Cost,0.09758443668686921,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,23,Metric,GHG,20.55072352475083,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,23,Metric,Jobs,8.002085719759749e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,23,Output,Hydrogen,1.874511286846144,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,23,Output,Oxygen,14.870111963095137,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,24,Cost,Cost,0.18395304476875052,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,24,Metric,Cost,0.09666212543462976,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,24,Metric,GHG,20.242518088150835,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,24,Metric,Jobs,7.882076012072387e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,24,Output,Hydrogen,1.903051934163743,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,24,Output,Oxygen,15.304586660268354,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,25,Cost,Cost,0.18296710046751577,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,25,Metric,Cost,0.09605449046650566,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,25,Metric,GHG,20.223664091439826,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,25,Metric,Jobs,7.874734601554171e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,25,Output,Hydrogen,1.9048261000490827,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,25,Output,Oxygen,15.58374586338104,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,26,Cost,Cost,0.1823296293671231,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,26,Metric,Cost,0.09838054106202794,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,26,Metric,GHG,20.78581865090732,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,26,Metric,Jobs,8.093627574699125e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,26,Output,Hydrogen,1.8533098862727957,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,26,Output,Oxygen,15.258846134284449,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,27,Cost,Cost,0.1833861967123418,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,27,Metric,Cost,0.09771695972759095,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,27,Metric,GHG,20.52666898764819,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,27,Metric,Jobs,7.992719311437792e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,27,Output,Hydrogen,1.87670796577763,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,27,Output,Oxygen,15.29925465910603,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,28,Cost,Cost,0.18403823878722725,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,28,Metric,Cost,0.0984564647477628,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,28,Metric,GHG,20.60873550349089,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,28,Metric,Jobs,8.024674551052806e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,28,Output,Hydrogen,1.869234684169473,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,28,Output,Oxygen,14.992950047867534,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,29,Cost,Cost,0.18265541499229587,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,29,Metric,Cost,0.09966753773293328,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,29,Metric,GHG,21.020176278197116,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,29,Metric,Jobs,8.18488226071511e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,29,Output,Hydrogen,1.8326470097188001,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,29,Output,Oxygen,15.09213452718137,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,30,Cost,Cost,0.18242105424961266,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,30,Metric,Cost,0.09576836805429631,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,30,Metric,GHG,20.223778587993355,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,30,Metric,Jobs,7.874779184472862e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,30,Output,Hydrogen,1.9048153159108676,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,30,Output,Oxygen,15.614496311477872,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,31,Cost,Cost,0.18187345570359367,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,31,Metric,Cost,0.09680183989900103,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,31,Metric,GHG,20.503569258962873,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,31,Metric,Jobs,7.983724688507826e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,31,Output,Hydrogen,1.878822302275998,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,31,Output,Oxygen,15.44314795623178,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,32,Cost,Cost,0.18244236594563734,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,32,Metric,Cost,0.09705861321365662,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,32,Metric,GHG,20.493850440097575,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,32,Metric,Jobs,7.979940353539703e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,32,Output,Hydrogen,1.8797132980256388,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,32,Output,Oxygen,15.694625752317046,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,33,Cost,Cost,0.18384672112506872,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,33,Metric,Cost,0.09855593503581694,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,33,Metric,GHG,20.651046768299732,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,33,Metric,Jobs,8.041149803980228e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,33,Output,Hydrogen,1.8654048694100018,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,33,Output,Oxygen,15.170900324446832,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,34,Cost,Cost,0.18258887678061617,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,34,Metric,Cost,0.09742092812090031,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,34,Metric,GHG,20.553847127551045,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,34,Metric,Jobs,8.003301995056904e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,34,Output,Hydrogen,1.8742264142055967,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,34,Output,Oxygen,15.457335505644373,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,35,Cost,Cost,0.1834269559240284,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,35,Metric,Cost,0.09792188978528128,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,35,Metric,GHG,20.565146321674224,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,35,Metric,Jobs,8.007701700003009e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,35,Output,Hydrogen,1.8731966501692194,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,35,Output,Oxygen,14.899868764601015,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,36,Cost,Cost,0.18319206581592976,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,36,Metric,Cost,0.09769718020450453,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,36,Metric,GHG,20.544262013352707,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,36,Metric,Jobs,7.999569722304735e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,36,Output,Hydrogen,1.8751008517591106,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,36,Output,Oxygen,15.431836557376803,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,37,Cost,Cost,0.18425582060642964,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,37,Metric,Cost,0.09849033134033208,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,37,Metric,GHG,20.591479830377132,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,37,Metric,Jobs,8.017955499276251e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,37,Output,Hydrogen,1.8708011040163528,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,37,Output,Oxygen,15.254284019164576,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,38,Cost,Cost,0.18326484458003708,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,38,Metric,Cost,0.09743290654985445,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,38,Metric,GHG,20.480552660972894,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,38,Metric,Jobs,7.974762435190017e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,38,Output,Hydrogen,1.8809337735015035,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,38,Output,Oxygen,15.445923263608682,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,39,Cost,Cost,0.18390962368117145,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,39,Metric,Cost,0.09694499697853733,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,39,Metric,GHG,20.306548935708882,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,39,Metric,Jobs,7.907008483683485e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,39,Output,Hydrogen,1.897051208551662,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,39,Output,Oxygen,15.20159697537603,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,40,Cost,Cost,0.18260482701632808,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,40,Metric,Cost,0.09768583746258125,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,40,Metric,GHG,20.607937418109575,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,40,Metric,Jobs,8.024363790819703e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,40,Output,Hydrogen,1.8693070741833504,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,40,Output,Oxygen,15.206144563582887,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,41,Cost,Cost,0.183809180429125,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,41,Metric,Cost,0.09828366623050686,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,41,Metric,GHG,20.598202630865348,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,41,Metric,Jobs,8.020573238049232e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,41,Output,Hydrogen,1.8701905156654746,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,41,Output,Oxygen,15.286740166876363,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,42,Cost,Cost,0.18365469351582153,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,42,Metric,Cost,0.09637200410320564,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,42,Metric,GHG,20.214548006945293,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,42,Metric,Jobs,7.87118496061496e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,42,Output,Hydrogen,1.9056851128585444,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,42,Output,Oxygen,15.523280700501797,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,43,Cost,Cost,0.18340866119660143,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,43,Metric,Cost,0.0974438886014303,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,43,Metric,GHG,20.466799837105597,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,43,Metric,Jobs,7.96940733052218e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,43,Output,Hydrogen,1.8821976814450458,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,43,Output,Oxygen,15.333721777735239,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,44,Cost,Cost,0.18469165728363748,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,44,Metric,Cost,0.0971936646600971,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,44,Metric,GHG,20.272432142174,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,44,Metric,Jobs,7.893724011921667e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,44,Output,Hydrogen,1.9002437857399024,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,44,Output,Oxygen,14.902185851666848,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,45,Cost,Cost,0.18333360018216605,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,45,Metric,Cost,0.09842384327464018,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,45,Metric,GHG,20.68109020477877,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,45,Metric,Jobs,8.052848183053445e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,45,Output,Hydrogen,1.862694994246416,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,45,Output,Oxygen,15.52633133483459,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,46,Cost,Cost,0.1839300866737253,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,46,Metric,Cost,0.09617243783580937,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,46,Metric,GHG,20.142483927602452,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,46,Metric,Jobs,7.843124491623568e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,46,Output,Hydrogen,1.91250311225073,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,46,Output,Oxygen,15.378640126512245,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,47,Cost,Cost,0.18450247945615889,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,47,Metric,Cost,0.09869612719467562,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,47,Metric,GHG,20.6069198021567,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,47,Metric,Jobs,8.023967549292006e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,47,Output,Hydrogen,1.8693993847624073,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,47,Output,Oxygen,14.981305788855266,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,48,Cost,Cost,0.18169821555039434,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,48,Metric,Cost,0.09645798699818647,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,48,Metric,GHG,20.450442449457245,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,48,Metric,Jobs,7.963038055106849e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,48,Output,Hydrogen,1.8837031665797719,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,48,Output,Oxygen,15.615849424766022,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,49,Cost,Cost,0.1846520742548263,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,49,Metric,Cost,0.0997253715803166,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,49,Metric,GHG,20.804948684435473,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,49,Metric,Jobs,8.101076469037555e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,49,Output,Hydrogen,1.8516057782357986,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,49,Output,Oxygen,15.061946014634257,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,50,Cost,Cost,0.1841279196513006,USD/mole
+Simple electrolysis,Fast Progress on Electrolysis,50,Metric,Cost,0.09844859888265643,USD/gH2
+Simple electrolysis,Fast Progress on Electrolysis,50,Metric,GHG,20.597052199312095,gCO2e/gH2
+Simple electrolysis,Fast Progress on Electrolysis,50,Metric,Jobs,8.020125280492275e-05,job/gH2
+Simple electrolysis,Fast Progress on Electrolysis,50,Output,Hydrogen,1.8702949736315464,g/mole
+Simple electrolysis,Fast Progress on Electrolysis,50,Output,Oxygen,14.99206629516213,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,1,Cost,Cost,0.18419094963228216,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,1,Metric,Cost,0.10013242667987246,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,1,Metric,GHG,20.94216758665701,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,1,Metric,Jobs,8.154507065611229e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,1,Output,Hydrogen,1.8394735425832462,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,1,Output,Oxygen,14.910157732991795,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,2,Cost,Cost,0.1834502113179869,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,2,Metric,Cost,0.09955495425381553,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,2,Metric,GHG,20.905465246197256,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,2,Metric,Jobs,8.140215827927017e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,2,Output,Hydrogen,1.842702984426875,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,2,Output,Oxygen,15.07190746259901,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,3,Cost,Cost,0.1836812352372392,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,3,Metric,Cost,0.09929142169244258,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,3,Metric,GHG,20.823902139076562,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,3,Metric,Jobs,8.108456606702339e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,3,Output,Hydrogen,1.8499204876549755,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,3,Output,Oxygen,14.969630691309028,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,4,Cost,Cost,0.18421627622280137,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,4,Metric,Cost,0.09633744481307477,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,4,Metric,GHG,20.145697125316417,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,4,Metric,Jobs,7.844375653584397e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,4,Output,Hydrogen,1.9121980718944689,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,4,Output,Oxygen,15.275950625495158,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,5,Cost,Cost,0.18397959097377495,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,5,Metric,Cost,0.09842357296830143,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,5,Metric,GHG,20.608417977087797,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,5,Metric,Jobs,8.024550911926778e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,5,Output,Hydrogen,1.869263484602697,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,5,Output,Oxygen,14.838943955542735,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,6,Cost,Cost,0.18271606640366103,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,6,Metric,Cost,0.0986677527019678,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,6,Metric,GHG,20.80241116217116,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,6,Metric,Jobs,8.100088403062635e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,6,Output,Hydrogen,1.8518316410384503,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,6,Output,Oxygen,15.078942148232025,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,7,Cost,Cost,0.18438786060119622,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,7,Metric,Cost,0.09811681763294545,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,7,Metric,GHG,20.49869929573604,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,7,Metric,Jobs,7.981828411564278e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,7,Output,Hydrogen,1.8792686620859467,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,7,Output,Oxygen,15.172566828986033,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,8,Cost,Cost,0.1832907885040506,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,8,Metric,Cost,0.09763481021127336,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,8,Metric,GHG,20.5200882029086,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,8,Metric,Jobs,7.99015687106794e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,8,Output,Hydrogen,1.8773098253320206,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,8,Output,Oxygen,15.24330456770353,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,9,Cost,Cost,0.18341973555297464,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,9,Metric,Cost,0.0975505969296424,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,9,Metric,GHG,20.487975430182278,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,9,Metric,Jobs,7.977652729316157e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,9,Output,Hydrogen,1.8802523134252545,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,9,Output,Oxygen,14.932506896160803,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,10,Cost,Cost,0.18425042361397276,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,10,Metric,Cost,0.09834726502185401,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,10,Metric,GHG,20.562171082380132,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,10,Metric,Jobs,8.006543194812695e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,10,Output,Hydrogen,1.8734676919895026,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,10,Output,Oxygen,15.044496798652006,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,11,Cost,Cost,0.18228070034543226,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,11,Metric,Cost,0.09780315354365876,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,11,Metric,GHG,20.669375070454688,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,11,Metric,Jobs,8.048286518401255e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,11,Output,Hydrogen,1.8637507456655087,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,11,Output,Oxygen,15.535021847428341,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,12,Cost,Cost,0.18324043924883288,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,12,Metric,Cost,0.09984794043243665,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,12,Metric,GHG,20.990992007365403,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,12,Metric,Jobs,8.173518425442703e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,12,Output,Hydrogen,1.835194982041966,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,12,Output,Oxygen,14.974862344539757,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,13,Cost,Cost,0.18225628182628678,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,13,Metric,Cost,0.0970492194237469,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,13,Metric,GHG,20.512789196068976,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,13,Metric,Jobs,7.987314767804302e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,13,Output,Hydrogen,1.877977823093038,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,13,Output,Oxygen,15.688626554315842,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,14,Cost,Cost,0.18337566201050798,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,14,Metric,Cost,0.09729902246755598,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,14,Metric,GHG,20.440050229183967,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,14,Metric,Jobs,7.958991509624143e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,14,Output,Hydrogen,1.8846608872319757,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,14,Output,Oxygen,15.179378802970357,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,15,Cost,Cost,0.18371599408889255,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,15,Metric,Cost,0.09660300002801515,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,15,Metric,GHG,20.256239487173808,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,15,Metric,Jobs,7.887418880465543e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,15,Output,Hydrogen,1.9017628234693993,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,15,Output,Oxygen,15.407159791050342,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,16,Cost,Cost,0.18413946362714007,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,16,Metric,Cost,0.09805195826313362,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,16,Metric,GHG,20.512782456691205,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,16,Metric,Jobs,7.987312143610631e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,16,Output,Hydrogen,1.8779784400937798,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,16,Output,Oxygen,14.761228562318674,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,17,Cost,Cost,0.1841569294771076,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,17,Metric,Cost,0.09809104164834313,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,17,Metric,GHG,20.519012572491114,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,17,Metric,Jobs,7.989738039740998e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,17,Output,Hydrogen,1.8774082360885829,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,17,Output,Oxygen,14.884956286376807,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,18,Cost,Cost,0.1849326562421975,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,18,Metric,Cost,0.09890155431031523,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,18,Metric,GHG,20.6017771761611,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,18,Metric,Jobs,8.02196510232259e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,18,Output,Hydrogen,1.8698660251784274,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,18,Output,Oxygen,14.711038737973913,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,19,Cost,Cost,0.18311112445412184,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,19,Metric,Cost,0.09538506424146832,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,19,Metric,GHG,20.066924806082206,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,19,Metric,Jobs,7.8137031154571e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,19,Output,Hydrogen,1.9197043678722494,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,19,Output,Oxygen,15.661943385290487,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,20,Cost,Cost,0.1834316526586382,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,20,Metric,Cost,0.10022597244088596,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,20,Metric,GHG,21.04850118109464,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,20,Metric,Jobs,8.195911473419805e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,20,Output,Hydrogen,1.8301808223095823,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,20,Output,Oxygen,15.154866021630236,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,21,Cost,Cost,0.18411867161246392,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,21,Metric,Cost,0.09682583161742843,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,21,Metric,GHG,20.258560336161167,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,21,Metric,Jobs,7.8883225777255e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,21,Output,Hydrogen,1.901544954862262,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,21,Output,Oxygen,15.277182158465623,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,22,Cost,Cost,0.18410737652609493,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,22,Metric,Cost,0.10015021548075252,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,22,Metric,GHG,20.955396128867644,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,22,Metric,Jobs,8.159658024339737e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,22,Output,Hydrogen,1.8383123355483724,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,22,Output,Oxygen,14.760149298668495,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,23,Cost,Cost,0.1825142892895758,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,23,Metric,Cost,0.09772880629408696,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,23,Metric,GHG,20.627229416275327,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,23,Metric,Jobs,8.031875751303327e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,23,Output,Hydrogen,1.8675587701373442,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,23,Output,Oxygen,15.447307820976755,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,24,Cost,Cost,0.1829912916046395,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,24,Metric,Cost,0.09857017142134615,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,24,Metric,GHG,20.750581215731298,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,24,Metric,Jobs,8.079906745041552e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,24,Output,Hydrogen,1.8564570697805574,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,24,Output,Oxygen,15.436534911909952,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,25,Cost,Cost,0.1841730896042192,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,25,Metric,Cost,0.09783642247635212,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,25,Metric,GHG,20.463954729794757,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,25,Metric,Jobs,7.968299496408416e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,25,Output,Hydrogen,1.8824593637276072,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,25,Output,Oxygen,15.344186868226375,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,26,Cost,Cost,0.18223764549579582,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,26,Metric,Cost,0.0955385402123144,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,26,Metric,GHG,20.195549845652106,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,26,Metric,Jobs,7.863787414976104e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,26,Output,Hydrogen,1.9074778104292867,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,26,Output,Oxygen,15.640430314465151,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,27,Cost,Cost,0.18329486460791344,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,27,Metric,Cost,0.09758430512639417,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,27,Metric,GHG,20.509017367185457,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,27,Metric,Jobs,7.985846084815607e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,27,Output,Hydrogen,1.8783232034137491,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,27,Output,Oxygen,15.406686574646177,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,28,Cost,Cost,0.18395871753447568,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,28,Metric,Cost,0.09802196378776146,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,28,Metric,GHG,20.52665590199324,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,28,Metric,Jobs,7.992714216116817e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,28,Output,Hydrogen,1.8767091621708956,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,28,Output,Oxygen,15.019965453497257,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,29,Cost,Cost,0.18383919885328492,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,29,Metric,Cost,0.09769994072823705,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,29,Metric,GHG,20.47252253499752,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,29,Metric,Jobs,7.971635647156594e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,29,Output,Hydrogen,1.8816715494705727,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,29,Output,Oxygen,14.910863339865577,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,30,Cost,Cost,0.18390162588598782,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,30,Metric,Cost,0.0992872779212228,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,30,Metric,GHG,20.798078430516455,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,30,Metric,Jobs,8.098401314524854e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,30,Output,Hydrogen,1.8522174213689324,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,30,Output,Oxygen,14.815862404019496,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,31,Cost,Cost,0.1832441796182733,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,31,Metric,Cost,0.10019863560635509,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,31,Metric,GHG,21.064288539698154,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,31,Metric,Jobs,8.202058789677638e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,31,Output,Hydrogen,1.828809130078125,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,31,Output,Oxygen,14.991785919952967,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,32,Cost,Cost,0.18389245354090572,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,32,Metric,Cost,0.0974010423258277,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,32,Metric,GHG,20.403979263390127,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,32,Metric,Jobs,7.944946117989674e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,32,Output,Hydrogen,1.8879926656815993,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,32,Output,Oxygen,15.38355147345481,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,33,Cost,Cost,0.18285818214601895,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,33,Metric,Cost,0.09602726785795213,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,33,Metric,GHG,20.22997522761836,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,33,Metric,Jobs,7.87719204557695e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,33,Output,Hydrogen,1.9042318523162718,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,33,Output,Oxygen,15.887916852908686,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,34,Cost,Cost,0.18211513280139843,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,34,Metric,Cost,0.09719917781608177,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,34,Metric,GHG,20.56040820337197,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,34,Metric,Jobs,8.005856761124854e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,34,Output,Hydrogen,1.873628325807373,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,34,Output,Oxygen,15.419260257836664,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,35,Cost,Cost,0.18266351081000584,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,35,Metric,Cost,0.09867573638465621,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,35,Metric,GHG,20.810080099348642,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,35,Metric,Jobs,8.10307455061115e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,35,Output,Hydrogen,1.8511492034673023,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,35,Output,Oxygen,15.323238543403564,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,36,Cost,Cost,0.18431050841583507,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,36,Metric,Cost,0.10063778697460522,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,36,Metric,GHG,21.03420766596013,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,36,Metric,Jobs,8.19034583320255e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,36,Output,Hydrogen,1.8314244972650648,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,36,Output,Oxygen,14.94828896999382,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,37,Cost,Cost,0.18475921201844825,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,37,Metric,Cost,0.09863036603025063,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,37,Metric,GHG,20.56457411422648,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,37,Metric,Jobs,8.007478892614217e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,37,Output,Hydrogen,1.873248771699593,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,37,Output,Oxygen,15.1284753621801,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,38,Cost,Cost,0.18355632555657841,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,38,Metric,Cost,0.10021108470514657,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,38,Metric,GHG,21.03108041735482,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,38,Metric,Jobs,8.189128138293826e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,38,Output,Hydrogen,1.8316968237262425,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,38,Output,Oxygen,15.132982839109374,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,39,Cost,Cost,0.1819863521784314,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,39,Metric,Cost,0.09697355511279865,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,39,Metric,GHG,20.527198115926694,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,39,Metric,Jobs,7.992925344565349e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,39,Output,Hydrogen,1.8766595899959193,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,39,Output,Oxygen,15.686554644606595,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,40,Cost,Cost,0.18230590556459975,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,40,Metric,Cost,0.09780122300840256,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,40,Metric,GHG,20.666109431345088,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,40,Metric,Jobs,8.047014936694979e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,40,Output,Hydrogen,1.864045253799505,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,40,Output,Oxygen,15.043859401875418,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,41,Cost,Cost,0.18362445376714723,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,41,Metric,Cost,0.0971779725275524,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,41,Metric,GHG,20.386961058507282,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,41,Metric,Jobs,7.938319532112785e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,41,Output,Hydrogen,1.889568685075057,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,41,Output,Oxygen,15.677426895633008,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,42,Cost,Cost,0.18300714084867944,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,42,Metric,Cost,0.09725783603091928,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,42,Metric,GHG,20.472540676946817,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,42,Metric,Jobs,7.97164271130853e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,42,Output,Hydrogen,1.881669882008269,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,42,Output,Oxygen,15.27648188907228,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,43,Cost,Cost,0.18336620424251027,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,43,Metric,Cost,0.09677653586522021,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,43,Metric,GHG,20.33133768867492,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,43,Metric,Jobs,7.916660782585822e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,43,Output,Hydrogen,1.8947382503738581,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,43,Output,Oxygen,15.528583998808301,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,44,Cost,Cost,0.18406810658822972,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,44,Metric,Cost,0.10058942468066404,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,44,Metric,GHG,21.051786435664383,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,44,Metric,Jobs,8.197190693036897e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,44,Output,Hydrogen,1.829895211873227,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,44,Output,Oxygen,14.857310749668388,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,45,Cost,Cost,0.18337025382462466,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,45,Metric,Cost,0.0980652507194727,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,45,Metric,GHG,20.601622890143073,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,45,Metric,Jobs,8.021905026095099e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,45,Output,Hydrogen,1.8698800286472224,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,45,Output,Oxygen,15.464387198015574,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,46,Cost,Cost,0.1834767125083534,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,46,Metric,Cost,0.09851365755372131,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,46,Metric,GHG,20.683816203670023,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,46,Metric,Jobs,8.053909638470016e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,46,Output,Hydrogen,1.8624495025809003,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,46,Output,Oxygen,15.242895397624903,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,47,Cost,Cost,0.18333645971849516,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,47,Metric,Cost,0.10028652436659324,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,47,Metric,GHG,21.07215323647212,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,47,Metric,Jobs,8.205121162526427e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,47,Output,Hydrogen,1.8281265691122799,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,47,Output,Oxygen,15.030340351853864,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,48,Cost,Cost,0.1828194091788114,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,48,Metric,Cost,0.09833635273820884,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,48,Metric,GHG,20.720821603301562,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,48,Metric,Jobs,8.068318881998054e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,48,Output,Hydrogen,1.85912334643439,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,48,Output,Oxygen,15.10018633004735,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,49,Cost,Cost,0.18210823936368964,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,49,Metric,Cost,0.09691031493186968,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,49,Metric,GHG,20.500081406197037,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,49,Metric,Jobs,7.98236658076157e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,49,Output,Hydrogen,1.8791419622536176,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,49,Output,Oxygen,15.537735645206835,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,50,Cost,Cost,0.18235109691790352,USD/mole
+Simple electrolysis,Moderate Progress on Electrolysis,50,Metric,Cost,0.09795814300544431,USD/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,50,Metric,GHG,20.694137949610376,gCO2e/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,50,Metric,Jobs,8.05792874250267e-05,job/gH2
+Simple electrolysis,Moderate Progress on Electrolysis,50,Output,Hydrogen,1.8615205568746727,g/mole
+Simple electrolysis,Moderate Progress on Electrolysis,50,Output,Oxygen,15.465779049655858,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,1,Cost,Cost,0.182811596492823,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,1,Metric,Cost,0.09677475409851917,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,1,Metric,GHG,20.392642766899208,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,1,Metric,Jobs,7.940531888165948e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,1,Output,Hydrogen,1.8890422217628797,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,1,Output,Oxygen,15.260059369802534,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,2,Cost,Cost,0.18330226564297963,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,2,Metric,Cost,0.10088517869523748,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,2,Metric,GHG,21.20189654283973,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,2,Metric,Jobs,8.255640895219452e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,2,Output,Hydrogen,1.8169394951136943,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,2,Output,Oxygen,15.124453906595889,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,3,Cost,Cost,0.18341349726064327,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,3,Metric,Cost,0.10148610314868854,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,3,Metric,GHG,21.31525149924706,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,3,Metric,Jobs,8.29977929632434e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,3,Output,Hydrogen,1.8072769726109386,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,3,Output,Oxygen,14.622957193285494,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,4,Cost,Cost,0.18410001152144118,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,4,Metric,Cost,0.1004975714050369,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,4,Metric,GHG,21.028917998987534,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,4,Metric,Jobs,8.188286131095581e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,4,Output,Hydrogen,1.8318851783936159,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,4,Output,Oxygen,14.709454952545286,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,5,Cost,Cost,0.18391935720784042,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,5,Metric,Cost,0.0989522615172323,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,5,Metric,GHG,20.725902949806578,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,5,Metric,Jobs,8.070297467825262e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,5,Output,Hydrogen,1.8586675472375263,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,5,Output,Oxygen,14.570251738537022,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,6,Cost,Cost,0.18459837057320416,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,6,Metric,Cost,0.0990630714890944,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,6,Metric,GHG,20.67279044974789,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,6,Metric,Jobs,8.049616406268063e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,6,Output,Hydrogen,1.863442832918078,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,6,Output,Oxygen,14.783844243911805,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,7,Cost,Cost,0.18178998484833153,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,7,Metric,Cost,0.09880560539658827,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,7,Metric,GHG,20.937595553351883,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,7,Metric,Jobs,8.152726797272883e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,7,Output,Hydrogen,1.839875218806247,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,7,Output,Oxygen,15.239954280962722,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,8,Cost,Cost,0.18516204290548371,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,8,Metric,Cost,0.09782645376338883,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,8,Metric,GHG,20.352582465595685,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,8,Metric,Jobs,7.92493312033648e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,8,Output,Hydrogen,1.8927604526412865,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,8,Output,Oxygen,15.09769833278715,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,9,Cost,Cost,0.18180667907983858,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,9,Metric,Cost,0.0991421818835777,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,9,Metric,GHG,21.006989329137074,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,9,Metric,Jobs,8.179747497618644e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,9,Output,Hydrogen,1.8337974374351926,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,9,Output,Oxygen,15.483800545214537,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,10,Cost,Cost,0.18316007560535175,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,10,Metric,Cost,0.09985002258763949,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,10,Metric,GHG,21.000639975393085,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,10,Metric,Jobs,8.177275172356555e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,10,Output,Hydrogen,1.8343518695210117,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,10,Output,Oxygen,15.147262317748078,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,11,Cost,Cost,0.18391029946494838,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,11,Metric,Cost,0.10175632103907967,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,11,Metric,GHG,21.314272879940233,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,11,Metric,Jobs,8.29939823939606e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,11,Output,Hydrogen,1.8073599515681917,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,11,Output,Oxygen,14.564119877812713,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,12,Cost,Cost,0.18441318742184634,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,12,Metric,Cost,0.10222941800266155,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,12,Metric,GHG,21.35497613247272,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,12,Metric,Jobs,8.31524736098274e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,12,Output,Hydrogen,1.803915066962869,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,12,Output,Oxygen,14.76504477257226,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,13,Cost,Cost,0.1835496014881319,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,13,Metric,Cost,0.09794868801952104,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,13,Metric,GHG,20.557029238949642,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,13,Metric,Jobs,8.004541052560194e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,13,Output,Hydrogen,1.873936294598971,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,13,Output,Oxygen,14.919154557289069,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,14,Cost,Cost,0.18380085105743688,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,14,Metric,Cost,0.09979059280195368,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,14,Metric,GHG,20.914970718919225,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,14,Metric,Jobs,8.14391708970675e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,14,Output,Hydrogen,1.8418655095296563,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,14,Output,Oxygen,14.522962491321469,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,15,Cost,Cost,0.1836000913373616,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,15,Metric,Cost,0.09822647118809053,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,15,Metric,GHG,20.60965992278995,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,15,Metric,Jobs,8.025034503463396e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,15,Output,Hydrogen,1.8691508420962415,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,15,Output,Oxygen,15.022945115215396,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,16,Cost,Cost,0.18371165937857137,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,16,Metric,Cost,0.09992656369140335,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,16,Metric,GHG,20.953636683605716,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,16,Metric,Jobs,8.158972927691522e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,16,Output,Hydrogen,1.8384666958619336,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,16,Output,Oxygen,14.716956624619755,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,17,Cost,Cost,0.18377631373548162,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,17,Metric,Cost,0.09742021187095835,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,17,Metric,GHG,20.420892075123916,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,17,Metric,Jobs,7.951531665651436e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,17,Output,Hydrogen,1.886429008991579,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,17,Output,Oxygen,14.936403483460714,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,18,Cost,Cost,0.18260430114504067,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,18,Metric,Cost,0.09972430400217372,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,18,Metric,GHG,21.038035683772748,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,18,Metric,Jobs,8.191836395159478e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,18,Output,Hydrogen,1.831091256761846,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,18,Output,Oxygen,14.84368146486653,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,19,Cost,Cost,0.1828263598344921,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,19,Metric,Cost,0.09829537666525337,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,19,Metric,GHG,20.711399949563774,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,19,Metric,Jobs,8.064650257837894e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,19,Output,Hydrogen,1.8599690650467773,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,19,Output,Oxygen,14.961817478690758,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,20,Cost,Cost,0.18358848172738368,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,20,Metric,Cost,0.09998199141679648,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,20,Metric,GHG,20.979325864978318,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,20,Metric,Jobs,8.168975837378202e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,20,Output,Hydrogen,1.8362154936688102,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,20,Output,Oxygen,14.501197030003219,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,21,Cost,Cost,0.18393812162705214,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,21,Metric,Cost,0.09990363148111481,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,21,Metric,GHG,20.923036092778833,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,21,Metric,Jobs,8.14705760263851e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,21,Output,Hydrogen,1.8411555105664275,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,21,Output,Oxygen,14.527358256252045,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,22,Cost,Cost,0.18347636751394758,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,22,Metric,Cost,0.10059269127382359,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,22,Metric,GHG,21.12036748688836,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,22,Metric,Jobs,8.223894932913637e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,22,Output,Hydrogen,1.8239532633092215,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,22,Output,Oxygen,14.954747262207633,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,23,Cost,Cost,0.18333214560779026,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,23,Metric,Cost,0.09865203849881667,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,23,Metric,GHG,20.72920368264109,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,23,Metric,Jobs,8.07158271440298e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,23,Output,Hydrogen,1.8583715896553858,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,23,Output,Oxygen,15.077648562550502,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,24,Cost,Cost,0.1837075690403976,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,24,Metric,Cost,0.09946612052782414,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,24,Metric,GHG,20.85755058600404,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,24,Metric,Jobs,8.12155871263677e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,24,Output,Hydrogen,1.8469361031227531,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,24,Output,Oxygen,14.478196294263045,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,25,Cost,Cost,0.18378380519333504,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,25,Metric,Cost,0.10024334939570409,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,25,Metric,GHG,21.011811995150353,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,25,Metric,Jobs,8.181625357869625e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,25,Output,Hydrogen,1.8333765411993612,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,25,Output,Oxygen,14.702129337165537,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,26,Cost,Cost,0.18431582673362798,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,26,Metric,Cost,0.09931438578397662,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,26,Metric,GHG,20.757005900320795,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,26,Metric,Jobs,8.082408402793194e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,26,Output,Hydrogen,1.8558824613238003,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,26,Output,Oxygen,14.854025990277977,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,27,Cost,Cost,0.18380911726747134,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,27,Metric,Cost,0.10091419954827455,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,27,Metric,GHG,21.149514712150697,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,27,Metric,Jobs,8.235244343301134e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,27,Output,Hydrogen,1.8214395802598837,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,27,Output,Oxygen,14.88122737589181,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,28,Cost,Cost,0.1839199494503276,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,28,Metric,Cost,0.09793709857043273,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,28,Metric,GHG,20.513207406698776,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,28,Metric,Jobs,7.987477611574964e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,28,Output,Hydrogen,1.8779395360386257,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,28,Output,Oxygen,14.724988281234909,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,29,Cost,Cost,0.18421422629402526,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,29,Metric,Cost,0.100215351643786,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,29,Metric,GHG,20.95686253430896,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,29,Metric,Jobs,8.160229016501019e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,29,Output,Hydrogen,1.8381837041176288,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,29,Output,Oxygen,14.629989855753006,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,30,Cost,Cost,0.18295691676517264,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,30,Metric,Cost,0.09817765753133918,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,30,Metric,GHG,20.671834024910257,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,30,Metric,Jobs,8.049243991470792e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,30,Output,Hydrogen,1.8635290489261385,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,30,Output,Oxygen,15.022945027006656,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,31,Cost,Cost,0.18442969909966772,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,31,Metric,Cost,0.09915270490875008,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,31,Metric,GHG,20.710418983192696,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,31,Metric,Jobs,8.064268287004598e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,31,Output,Hydrogen,1.860057164042048,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,31,Output,Oxygen,14.720489541893723,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,32,Cost,Cost,0.18344656787191344,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,32,Metric,Cost,0.10122454751320059,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,32,Metric,GHG,21.256483968080246,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,32,Metric,Jobs,8.276896266373149e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,32,Output,Hydrogen,1.8122735282959932,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,32,Output,Oxygen,14.77344631771991,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,33,Cost,Cost,0.18444165943806418,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,33,Metric,Cost,0.09975604030711793,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,33,Metric,GHG,20.835088878622546,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,33,Metric,Jobs,8.112812523838969e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,33,Output,Hydrogen,1.8489272315764085,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,33,Output,Oxygen,14.802893465146182,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,34,Cost,Cost,0.1831422685747789,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,34,Metric,Cost,0.09947748533385847,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,34,Metric,GHG,20.924321542877134,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,34,Metric,Jobs,8.147558134012147e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,34,Output,Hydrogen,1.8410424023097416,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,34,Output,Oxygen,14.743550306709007,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,35,Cost,Cost,0.1840846803735338,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,35,Metric,Cost,0.09838860216041624,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,35,Metric,GHG,20.589334958202272,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,35,Metric,Jobs,8.017120324252828e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,35,Output,Hydrogen,1.8709959927410662,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,35,Output,Oxygen,14.860620520440483,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,36,Cost,Cost,0.18442270408197442,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,36,Metric,Cost,0.09966960989454654,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,36,Metric,GHG,20.819176605150385,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,36,Metric,Jobs,8.106616567956096e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,36,Output,Hydrogen,1.8503403823602722,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,36,Output,Oxygen,15.073020788111972,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,37,Cost,Cost,0.18327778759295418,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,37,Metric,Cost,0.09693838320116427,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,37,Metric,GHG,20.375164074253746,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,37,Metric,Jobs,7.933725996555862e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,37,Output,Hydrogen,1.89066272348096,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,37,Output,Oxygen,15.107429541942478,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,38,Cost,Cost,0.183163913879687,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,38,Metric,Cost,0.09810478556172851,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,38,Metric,GHG,20.63314613656143,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,38,Metric,Jobs,8.034179616802378e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,38,Output,Hydrogen,1.8670232326682823,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,38,Output,Oxygen,15.06448027418133,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,39,Cost,Cost,0.1834342930107237,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,39,Metric,Cost,0.10074169055177781,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,39,Metric,GHG,21.156502840659286,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,39,Metric,Jobs,8.237965396079595e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,39,Output,Hydrogen,1.8208379470904819,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,39,Output,Oxygen,14.94975283191786,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,40,Cost,Cost,0.18436244247569294,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,40,Metric,Cost,0.100729313704358,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,40,Metric,GHG,21.04740695101367,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,40,Metric,Jobs,8.195485399715173e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,40,Output,Hydrogen,1.8302759712708794,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,40,Output,Oxygen,14.89283378044829,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,41,Cost,Cost,0.1840753648838288,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,41,Metric,Cost,0.10103342644967062,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,41,Metric,GHG,21.143875271828456,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,41,Metric,Jobs,8.233048445681485e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,41,Output,Hydrogen,1.821925389965124,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,41,Output,Oxygen,14.450759244326864,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,42,Cost,Cost,0.18298435140489028,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,42,Metric,Cost,0.09923155687202401,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,42,Metric,GHG,20.89060562659009,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,42,Metric,Jobs,8.134429756710771e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,42,Output,Hydrogen,1.8440137106876169,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,42,Output,Oxygen,15.30199899647565,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,43,Cost,Cost,0.18307646166297328,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,43,Metric,Cost,0.0990565548506645,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,43,Metric,GHG,20.843271494036898,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,43,Metric,Jobs,8.115998688544001e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,43,Output,Hydrogen,1.8482013829269084,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,43,Output,Oxygen,14.97611426840406,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,44,Cost,Cost,0.1830412168544942,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,44,Metric,Cost,0.09883826192025745,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,44,Metric,GHG,20.801343308529177,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,44,Metric,Jobs,8.099672599873562e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,44,Output,Hydrogen,1.8519267063009623,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,44,Output,Oxygen,15.636961077090652,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,45,Cost,Cost,0.1831439016585974,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,45,Metric,Cost,0.09786197279635193,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,45,Metric,GHG,20.58432739383095,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,45,Metric,Jobs,8.015170467874375e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,45,Output,Hydrogen,1.871451151303835,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,45,Output,Oxygen,15.50806606638464,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,46,Cost,Cost,0.18401367294405377,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,46,Metric,Cost,0.1000061829828642,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,46,Metric,GHG,20.93591439544515,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,46,Metric,Jobs,8.152072184326437e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,46,Output,Hydrogen,1.8400229611361532,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,46,Output,Oxygen,14.708561003048006,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,47,Cost,Cost,0.1831926713181194,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,47,Metric,Cost,0.09899534158225053,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,47,Metric,GHG,20.81717721112045,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,47,Metric,Jobs,8.105838039531251e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,47,Output,Hydrogen,1.850518099035128,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,47,Output,Oxygen,14.95905281732389,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,48,Cost,Cost,0.18415632637486767,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,48,Metric,Cost,0.09950621177816583,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,48,Metric,GHG,20.81511076743606,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,48,Metric,Jobs,8.105033403165159e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,48,Output,Hydrogen,1.850701811314218,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,48,Output,Oxygen,14.971940098368565,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,49,Cost,Cost,0.18292472375413338,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,49,Metric,Cost,0.09983101868488546,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,49,Metric,GHG,21.023657424121065,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,49,Metric,Jobs,8.186237756936588e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,49,Output,Hydrogen,1.8323435557793062,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,49,Output,Oxygen,14.878200028226553,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,50,Cost,Cost,0.18512182886690517,USD/mole
+Simple electrolysis,Slow Progress on Electrolysis,50,Metric,Cost,0.10079778866617777,USD/gH2
+Simple electrolysis,Slow Progress on Electrolysis,50,Metric,GHG,20.975317757393068,gCO2e/gH2
+Simple electrolysis,Slow Progress on Electrolysis,50,Metric,Jobs,8.167415151671319e-05,job/gH2
+Simple electrolysis,Slow Progress on Electrolysis,50,Output,Hydrogen,1.836566370319808,g/mole
+Simple electrolysis,Slow Progress on Electrolysis,50,Output,Oxygen,14.731798611140572,g/mole

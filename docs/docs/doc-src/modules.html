@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Python API &#8212; Tyche 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tyche package" href="tyche.html" />
+    <link rel="prev" title="Getting Started" href="getting-started.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h1>
+<p>The module <code class="xref py py-mod docutils literal notranslate"><span class="pre">tyche</span></code> contains defines and solves multi-objective R&amp;D
+optimization problems, which the module <a class="reference internal" href="eutychia.html#module-eutychia" title="eutychia"><code class="xref py py-mod docutils literal notranslate"><span class="pre">eutychia</span></code></a> provides a server
+of a web-based user interface. The module <a class="reference internal" href="technology.html#module-technology" title="technology"><code class="xref py py-mod docutils literal notranslate"><span class="pre">technology</span></code></a> definites
+individual R&amp;D technologies.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tyche.html">tyche package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche.DecisionGUI">tyche.DecisionGUI module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche.Designs">tyche.Designs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche.Distributions">tyche.Distributions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#tyche-epsilonconstraints-module">tyche.EpsilonConstraints module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#tyche-evaluator-module">tyche.Evaluator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche.IO">tyche.IO module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#tyche-investments-module">tyche.Investments module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#module-tyche.Types">tyche.Types module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eutychia.html">eutychia package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#eutychia-example-module">eutychia.example module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#eutychia-main-module">eutychia.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html#module-eutychia">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">technology package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.biorefinery">technology.biorefinery module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.pv_residential_generic">technology.pv_residential_generic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.pv_residential_simple">technology.pv_residential_simple module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.simple_electrolysis">technology.simple_electrolysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology.utility_pv">technology.utility_pv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html#module-technology">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Tyche</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="approach.html">Approach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulation.html">Mathematical Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-electrolysis.html">Electrolysis Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-technology.html">Defining Technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-interface.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mock-foa.html">Mock FOA Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ioc-1.html">Mock FOA Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tyche.html">tyche package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eutychia.html">eutychia package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technology.html">technology package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="getting-started.html" title="previous chapter">Getting Started</a></li>
+      <li>Next: <a href="tyche.html" title="next chapter">tyche package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, National Renewable Energy Laboratory.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/doc-src/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

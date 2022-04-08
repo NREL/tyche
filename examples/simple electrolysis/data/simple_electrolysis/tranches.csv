@@ -1,0 +1,5 @@
+﻿Category,Tranche,Scenario,Amount,Notes
+Electrolysis R&D,No Electrolysis R&D,Base Electrolysis,0,
+Electrolysis R&D,Low Electrolysis R&D,Slow Progress on Electrolysis,1000000,
+Electrolysis R&D,Medium Electrolysis R&D,Moderate Progress on Electrolysis,2500000,
+Electrolysis R&D,High Electrolysis R&D,Fast Progress on Electrolysis,5000000,

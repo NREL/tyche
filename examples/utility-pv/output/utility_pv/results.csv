@@ -1,0 +1,5 @@
+Technology,Scenario,Sample,Variable,Index,Value,Units
+Simple pv,Base PV,1,Cost,Cost,-717.77022048,USD/module
+Simple pv,Base PV,1,Metric,GHG,4508260.416,gCO2e/module
+Simple pv,Base PV,1,Metric,LCOE,-0.06368489432709826,USD/kWh
+Simple pv,Base PV,1,Output,Electricity,11270.65104,kWh/module
