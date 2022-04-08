@@ -1,0 +1,7 @@
+Technology,Variable,Index,Units,Notes
+Biorefinery v1,Cost,Cost,USD/year,
+Biorefinery v1,Output,Biofuel,gal/year,average over expected biorefinery lifetime
+Biorefinery v1,Metric,Jobs,person-hours/gal biofuel,
+Biorefinery v1,Metric,Fossil GHG,kg CO2-eq/gal biofuel,
+Biorefinery v1,Metric,Total GHG,kg CO2-eq/gal biofuel,
+Biorefinery v1,Metric,MFSP,USD/gal biofuel,minimum fuel selling price
