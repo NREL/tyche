@@ -74,4 +74,4 @@ numfig = True
 
 latex_engine = 'xelatex'
 
-master_doc = 'index'
+master_doc = 'main_page'
