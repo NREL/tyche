@@ -2,7 +2,6 @@
 PV Generic,Capital,Module,0,system module,
 PV Generic,Capital,Inverter,1,system inverters,
 PV Generic,Capital,BoS,2,balance of system,
-PV Generic,Fixed,System,0,whole system,
 PV Generic,Input,Strategic,0,strategic materials,
 PV Generic,Output,Electricity,0,electricity generated,
 PV Generic,Output,Hazardous,1,hazardous waste produced,
