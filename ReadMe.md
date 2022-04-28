@@ -3,7 +3,7 @@
 
 *   documentation:
     *   [web](https://tyche.live/)
-    *   [PDF](docs/tyche.pdf)
+    *   [PDF](https://github.com/NREL/tyche-docs/blob/dev/Tyche.pdf)
     *   [Markdown](index.rst)
 *   Conda environments: [conda/](conda/)
 *   Python packages:
