@@ -11,9 +11,9 @@ _templates/
 __pycache__/
 .ipynb_checkpoints/
 
-src/eutychia/assets/
-src/eutychia/env/
-src/eutychia-2101/
+eutychia/assets/
+eutychia/env/
+eutychia-2101/
 *.lp
 .spyproject/
 .DS_Store
