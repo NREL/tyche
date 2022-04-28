@@ -12,4 +12,3 @@ individual R&D technologies.
 
    tyche
    eutychia
-   technology
