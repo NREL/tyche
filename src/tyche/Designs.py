@@ -10,7 +10,7 @@ from .Distributions import parse_distribution
 from .IO            import make_table, read_table
 from .Types         import Functions, Indices, Inputs, Results
 
-import pdb
+
 def sampler(x, sample_count):
   """
   Sample from an array.
