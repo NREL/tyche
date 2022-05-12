@@ -7,7 +7,6 @@ from collections import namedtuple
 
 Indices = namedtuple("Indices", [
   "capital",
-  #"fixed"  ,
   "input"  ,
   "output" ,
   "metric" ,

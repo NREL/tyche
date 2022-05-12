@@ -191,7 +191,6 @@ class Designs:
       )[["Offset"]]
     return Indices(
       capital = extract_indices("Capital"),
-      #fixed   = extract_indices("Fixed"  ),
       input   = extract_indices("Input"  ),
       output  = extract_indices("Output" ),
       metric  = extract_indices("Metric" ),
@@ -205,7 +204,6 @@ class Designs:
     vectors = self._vectorize_indices(technology)
     return Indices(
       capital = vectors.capital.index.values,
-      #fixed   = vectors.fixed.index.values  ,
       input   = vectors.input.index.values  ,
       output  = vectors.output.index.values ,
       metric  = vectors.metric.index.values ,
