@@ -484,7 +484,7 @@ class EpsilonConstraintOptimizer:
           eps_metric       = None        ,
           statistic        = np.mean     ,
           tol              = 0.01        ,
-          maxiter          = 50          ,
+          maxiter          = None        ,
           sampling_method  = 'simplicial',
           verbose          = 0           ,
   ):
@@ -517,7 +517,8 @@ class EpsilonConstraintOptimizer:
     tol : float
       Objective function tolerance in stopping criterion.
     maxiter : int
-      Upper metric_limit on iterations that can be performed
+      Upper metric_limit on iterations that can be performed. Defaults to None.
+      Specifying this parameter can cause shgo to stall out instead of solving.
     sampling_method : str
       Allowable values are 'sobol and 'simplicial'. Simplicial is default, uses
       less memory, and guarantees convergence (theoretically). Sobol is faster,
