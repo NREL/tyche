@@ -1,0 +1,13 @@
+Technology,Type,Index,Offset,Description,Notes
+Biorefinery v1,Capital,Preprocessing,0,process area capital costs,
+Biorefinery v1,Capital,Fermentation,1,process area capital costs,
+Biorefinery v1,Capital,Conversion,2,process area capital costs,
+Biorefinery v1,Capital,Separations,3,process area capital costs,
+Biorefinery v1,Capital,Utilities,4,process area capital costs,
+Biorefinery v1,Input,Feedstock,0,,
+Biorefinery v1,Input,Natural Gas,1,,
+Biorefinery v1,Output,Biofuel,0,,
+Biorefinery v1,Metric,Jobs,0,person-hours/gal biofuel,
+Biorefinery v1,Metric,Fossil GHG,1,kg CO2-eq/gal biofuel,
+Biorefinery v1,Metric,Total GHG,2,kg CO2-eq/gal biofuel,
+Biorefinery v1,Metric,MFSP,3,USD/gal biofuel,minimum fuel selling price

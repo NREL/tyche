@@ -1,0 +1,6 @@
+﻿Technology,Type,Index,Offset,Description,Notes
+Simple pv,Capital,Other Capital Cost,0,Other Capital Cost,Placeholder in case other capital costs are needed in future
+Simple pv,Input,Solar Radiation,0,Solar Radiation,
+Simple pv,Output,Electricity,0,Electricity,
+Simple pv,Metric,LCOE,0,Cost,
+Simple pv,Metric,GHG,1,Greenhouse gas emissions,

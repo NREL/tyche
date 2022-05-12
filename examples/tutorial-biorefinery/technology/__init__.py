@@ -1,3 +1,0 @@
-"""
-Technology definitions for tyche.
-"""
