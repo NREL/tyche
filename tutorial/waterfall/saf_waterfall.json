@@ -1,9 +1,0 @@
-{
-    "data_loc" : ["tutorial","data","saf"]
-  , "technology_model" : "saf_v1"
-  , "sample_count" : 50
-  , "total_amount" : 5E6
-  , "max_amount"   : 2E6
-  , "target_metric" : "Reduction in MJSP"
-  , "technology" : "HEFA Camelina"
-}
