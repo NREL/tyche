@@ -118,6 +118,7 @@ class Designs:
   def __init__(
     self                         ,
     path       = None            ,
+    uncertain  = False           ,
     indices    = "indices.csv"   ,
     functions  = "functions.csv" ,
     designs    = "designs.csv"   ,
@@ -129,6 +130,8 @@ class Designs:
     ----------
     path : str
       Location of the data files.
+    uncertain : Boolean
+      Flag indicating whether probability distributions are present in the *designs* or *parameters* tables.
     indices : str
       Filename for the *indices* table.
     functions : str
@@ -140,7 +143,7 @@ class Designs:
     results : str
       Filename for the *results* table.
     """
-
+    self.uncertain = uncertain
     if path == None:
       self._make()
     else:
