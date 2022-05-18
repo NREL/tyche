@@ -108,7 +108,7 @@ class Investments:
       samples["Amount"] = samples["Samples"]
       samples["Sample"] = pd.Series(
         np.tile(
-          np.arange(sample_count),
+          np.arange(sample_count)+1,
           len(self.compiled_tranches.index)
         ),
         index=samples.index
@@ -124,15 +124,15 @@ class Investments:
         columns=["Samples", "Notes"]
         ).sum(
           level=["Category", "Tranche", "Sample"]
-        )
+      )
       metrics = amounts.drop(
         columns=["Amount"]
       ).join(
-        designs.evaluate_scenarios(1).xs("Metric", level="Variable")
+        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
         ["Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
       )
-    
+
     else:
       amounts = self.compiled_tranches.drop(
         columns=["Notes"]
