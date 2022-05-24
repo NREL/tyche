@@ -24,17 +24,17 @@ class Investments:
   """
   
   _tranches_dtypes = {
-    "Category"   : np.str_   ,
-    "Tranche"    : np.str_   ,
-    "Scenario"   : np.str_   ,
-    "Amount"     : np.str_   ,
-    "Notes"      : np.str_   ,
+    "Category"   : np.str_,
+    "Tranche"    : np.str_,
+    "Scenario"   : np.str_,
+    "Amount"     : np.str_,
+    "Notes"      : np.str_,
   }
   _investments_dtypes = {
-    "Investment" : np.str_   ,
-    "Category"   : np.str_   ,
-    "Tranche"    : np.str_   ,
-    "Notes"      : np.str_   ,
+    "Investment" : np.str_,
+    "Category"   : np.str_,
+    "Tranche"    : np.str_,
+    "Notes"      : np.str_,
   }
   
   _tranches_index    = ["Category"  , "Tranche" , "Scenario" ,        ]
@@ -158,6 +158,7 @@ class Investments:
       ).reset_index(
         "Units"
       )[["Value", "Units"]],
+      uncertain=self.uncertain,
     )
       
   def evaluate_investments(self, designs, sample_count=1):
