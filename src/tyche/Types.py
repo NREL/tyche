@@ -56,6 +56,7 @@ Evaluations = namedtuple("Evaluations", [
   "amounts",
   "metrics",
   "summary",
+  "uncertain",
 ])
 """
 Named tuple type for rows in the *evaluations* table.
