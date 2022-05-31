@@ -69,3 +69,12 @@ FakeDistribution = namedtuple("FakeDistribution", [
 """
 Named tuple type for a fake distribution.
 """
+
+
+Optimum = namedtuple(
+  "Optimum",
+  ["exit_code", "exit_message", "amounts", "metrics", "solve_time", "opt_sense"]
+)
+"""
+Named tuple type for optimization results.
+"""
