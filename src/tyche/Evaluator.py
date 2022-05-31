@@ -9,7 +9,7 @@ from scipy.interpolate import interp1d
 
 from .Types import Evaluations
 
-
+import pdb
 class Evaluator:
   """
   Evalutate technology investments using a response surface.
@@ -109,16 +109,15 @@ class Evaluator:
 
   def make_statistic_evaluator(self, statistic = np.mean):
     """
-    Return a function that valuates a statistic for an investment.
+    Return a function that evaluates a statistic for an investment.
 
     Parameters
     ----------
     statistic : function
       The statistic to evaluate.
     """
-
     interpolators1 = self.raw.groupby(
-      ["Category", "Index", "Amount"]
+      ["Category", "Tranche", "Index"]
     ).aggregate(
       statistic
     ).reset_index(
@@ -136,6 +135,7 @@ class Evaluator:
       "Interpolator"
     )
     def f(amounts):
+      pdb.set_trace()
       return pd.DataFrame(
         amounts
       ).join(
@@ -144,7 +144,7 @@ class Evaluator:
         lambda row: row["Interpolator"](row["Amount"]), axis = 1
       ).groupby(
         "Index"
-      ).sum(
+      ).sum( # @TODO replace with user-defined aggregation method - aggregate across categories
       ).rename(
         "Value"
       )
