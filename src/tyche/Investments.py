@@ -161,7 +161,7 @@ class Investments:
       uncertain=self.uncertain,
     )
       
-  def evaluate_investments(self, designs, sample_count=1):
+  def evaluate_investments(self, designs, tranche_results=None, sample_count=1):
     """
     Evaluate the investments for a design.
 
@@ -169,26 +169,52 @@ class Investments:
     ----------
     designs : tyche.Designs
       The designs.
+    tranche_results : tyche.Evaluations
+      Output of evaluate_tranches method. Necessary only if the investment amounts contain uncertainty.
     sample_count : int
       The number of random samples.
     """
 
-    amounts = self.investments.drop(
-      columns=["Notes"]
-    ).join(
-      self.tranches.drop(columns=["Notes"])
-    ).sum(
-      level=["Investment"]
-    )
-    metrics = self.investments.drop(
-      columns=["Notes"]
-    ).join(
-      self.tranches.drop(columns=["Amount", "Notes"])
-    ).join(
-      designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
-    ).reorder_levels(
-      ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
-    )
+
+    # Check that only one of designs, investments contains uncertainty
+    if self.uncertain + designs.uncertain > 1:
+      print('Too much uncertainty. Remove probability distributions from tranches OR from technology data.')
+    
+    # If the investment amounts (tranches) are uncertain, use the output of evaluate_tranches
+    if self.uncertain:
+      try:
+        amounts = tranche_results.amounts
+      except AttributeError:
+        print('Error: evaluate_investments requires output of evaluate_tranches')
+        raise
+      metrics = self.investments.drop(
+        columns=["Notes"]
+      ).join(
+        amounts.drop(columns=["Amount"])
+      ).join(
+        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+      ).reorder_levels(
+        ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+      )
+    # If the investment amounts (tranches) are fixed, proceed as if the designs are uncertain
+    else:
+      amounts = self.investments.drop(
+        columns=["Notes"]
+      ).join(
+        self.tranches.drop(columns=["Notes"])
+      ).sum(
+        level=["Investment"]
+      )
+      metrics = self.investments.drop(
+        columns=["Notes"]
+      ).join(
+        self.tranches.drop(columns=["Amount", "Notes"])
+      ).join(
+        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+      ).reorder_levels(
+        ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+      )
+
     return Evaluations(
       amounts = amounts,
       metrics = metrics,
@@ -200,4 +226,5 @@ class Investments:
       ).reset_index(
         "Units"
       )[["Value", "Units"]],
+      uncertain=self.uncertain
     )
