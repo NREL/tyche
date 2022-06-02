@@ -9,7 +9,7 @@ from scipy.interpolate import interp1d
 
 from .Types import Evaluations
 
-import pdb
+
 class Evaluator:
   """
   Evalutate technology investments using a response surface.
@@ -135,7 +135,6 @@ class Evaluator:
       "Interpolator"
     )
     def f(amounts):
-      pdb.set_trace()
       return pd.DataFrame(
         amounts
       ).join(
