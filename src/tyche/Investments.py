@@ -2,6 +2,7 @@
 Investments in technologies.
 """
 
+import sys
 import numpy  as np
 import pandas as pd
 
@@ -94,7 +95,8 @@ class Investments:
 
     # Check that only one of designs, investments contains uncertainty
     if self.uncertain + designs.uncertain > 1:
-      print('Too much uncertainty. Remove probability distributions from tranches OR from technology data.')
+      print('Error: Remove probability distributions from tranche data OR from technology data.')
+      sys.exit(1)
 
     if self.uncertain:
       self.compiled_tranches["Samples"] = pd.Series(
@@ -178,7 +180,8 @@ class Investments:
 
     # Check that only one of designs, investments contains uncertainty
     if self.uncertain + designs.uncertain > 1:
-      print('Too much uncertainty. Remove probability distributions from tranches OR from technology data.')
+      print('Error: Remove probability distributions from tranche data OR from technology data.')
+      sys.exit(1)
     
     # If the investment amounts (tranches) are uncertain, use the output of evaluate_tranches
     if self.uncertain:
