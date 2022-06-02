@@ -118,7 +118,7 @@ class Designs:
   def __init__(
     self                         ,
     path       = None            ,
-    uncertain  = False           ,
+    uncertain  = True           ,
     indices    = "indices.csv"   ,
     functions  = "functions.csv" ,
     designs    = "designs.csv"   ,
