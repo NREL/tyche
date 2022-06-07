@@ -136,6 +136,12 @@ class Investments:
       )
 
     else:
+      self.compiled_tranches["Amount"] = pd.Series(
+        [i[0] for i in sampler(
+          self.compiled_tranches.Amount,
+          1).tolist()],
+          index=self.compiled_tranches.index
+      )
       amounts = self.compiled_tranches.drop(
         columns=["Notes"]
       ).sum(
@@ -176,12 +182,13 @@ class Investments:
     sample_count : int
       The number of random samples.
     """
-
-
     # Check that only one of designs, investments contains uncertainty
     if self.uncertain + designs.uncertain > 1:
       print('Error: Remove probability distributions from tranche data OR from technology data.')
       sys.exit(1)
+    
+    if not tranche_results:
+      tranche_results = self.evaluate_tranches(designs, sample_count)
     
     # If the investment amounts (tranches) are uncertain, use the output of evaluate_tranches
     if self.uncertain:
