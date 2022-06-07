@@ -1,5 +1,4 @@
 Category,Tranche,Scenario,Amount,Notes
-Base Case,Business as Usual,Reference,0,base case
 Rotor Investment Only,No Rotor Investment,Reference,0,
 Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,1000000,
 Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,3000000,
