@@ -1,0 +1,13 @@
+Category,Tranche,Scenario,Amount,Notes
+Rotor Investment Only,No Rotor Investment,Reference,0,
+Rotor Investment Only,Small Investment in Rotor R&D,Casual Rotor R&D,1000000,
+Rotor Investment Only,Medium Investment in Rotor R&D,Focused Rotor R&D,3000000,
+Rotor Investment Only,Large Investment in Rotor R&D,Intense Rotor R&D,9000000,
+Drive Investment Only,No Drive Investment,Reference,0,
+Drive Investment Only,Small Investment in Drive R&D,Casual Drive R&D,2000000,
+Drive Investment Only,Medium Investment in Drive R&D,Focused Drive R&D,3000000,
+Drive Investment Only,Large Investment in Drive R&D,Intense Drive R&D,7000000,
+Tower Investment Only,No Tower Investment,Reference,0,
+Tower Investment Only,Small Investment in Tower R&D,Casual Tower R&D,2000000,
+Tower Investment Only,Medium Investment in Tower R&D,Focused Tower R&D,4000000,
+Tower Investment Only,Large Investment in Tower R&D,Intense Tower R&D,6000000,

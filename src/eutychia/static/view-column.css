@@ -1,0 +1,46 @@
+/* Content grid */
+.container { 
+    display: grid; 
+    grid-template-columns:  150px 1fr 1fr 1fr 200px;
+    background-color: beige;   
+}
+.container > div { 
+    background-color: green; 
+    margin: 10px;
+}
+
+/* Categories */
+.flex-wrapper{ 
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+}
+.flex-wrapper > div { 
+    background-color: plum;
+    border-color: palegreen;
+    height: 100px;
+}
+
+
+
+/* .modal_content {
+    background-color: #fefefe
+  ; margin          : 15% auto
+  ; padding         : 20px
+  ; border          : 1px solid #888
+  ; width           : 33%
+  ; border-radius   : 20px
+} */
+
+/* Optimization options */
+#optimizing_status {
+    font-style: italic
+}
+#optimize_button, #optimize_metric {
+    width: 7em
+}
+
+/* Plots */
+.plot {
+    align-items: center
+}

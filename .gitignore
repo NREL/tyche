@@ -10,4 +10,10 @@ _static/
 _templates/
 __pycache__/
 .ipynb_checkpoints/
+
+eutychia/assets/
+eutychia/env/
+eutychia-2101/
 *.lp
+.spyproject/
+.DS_Store

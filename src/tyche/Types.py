@@ -7,7 +7,6 @@ from collections import namedtuple
 
 Indices = namedtuple("Indices", [
   "capital",
-  "fixed"  ,
   "input"  ,
   "output" ,
   "metric" ,
@@ -57,6 +56,7 @@ Evaluations = namedtuple("Evaluations", [
   "amounts",
   "metrics",
   "summary",
+  "uncertain",
 ])
 """
 Named tuple type for rows in the *evaluations* table.
@@ -68,4 +68,13 @@ FakeDistribution = namedtuple("FakeDistribution", [
 ])
 """
 Named tuple type for a fake distribution.
+"""
+
+
+Optimum = namedtuple(
+  "Optimum",
+  ["exit_code", "exit_message", "amounts", "metrics", "solve_time", "opt_sense"]
+)
+"""
+Named tuple type for optimization results.
 """

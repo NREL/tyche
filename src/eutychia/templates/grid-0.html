@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="/view.css" type="text/css" rel="stylesheet">
+    <!-- <script src="/controller.js" type="application/javascript"> </script> -->
+    <!-- <title>R&amp;D Portfolio Evaluation</title> -->
+</head>
+
+<!-- <div class="wrapper-opt">
+    <div id="one">Header 2</div>
+    <div id="two">Nav</div>
+    <div id="three">Content</div>  
+    <div id="four">Footer</div>
+</div> -->
+
+<div class="container">
+    <div id="header">Header
+
+    </div>
+    <!-- OPTIONS -->
+    <div id="options" class="wrapper-opt">
+        <div>
+            <!-- Mode -->
+            <input id="explore_mode" type="checkbox" onclick="updateMode()" checked> </input>
+            <label>explore</label>
+        </div>
+        <div>
+            <!-- Select optimization metric -->
+            Select an optimization metric:
+            <br />
+            <select id="optimize_metric" disabled>
+                {% for metric in metrics.index %}
+                {% set met = loop.index - 1 -%}
+                <option value="{{met}}">{{ metrics.index[met] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <!-- Button: optimize! -->
+            <button id="optimize_button" onclick="optimize()" disabled>optimize</button>
+        </div>
+        <div>
+            <!-- drop-down: select plot type -->
+            <select id="plot_type" onchange="updateAllPlots()">
+                {% for typ in plot_types %}
+                <option value="{{typ}}">{{ typ }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <!-- CONTENT -->
+    <div id="content" class="output">
+        <!-- METRIC HEADERS -->
+        <div></div>
+        {% for metric in metrics.index %}
+        {% set met = loop.index - 1 -%}
+        <div>
+            <span>{{ metrics.index[met] }}</span>
+            <br />
+            <span>[{{ units.values[met] }}]</span>
+            <!-- <br /> -->
+        </div>
+        {% endfor %}
+        <div></div>
+    </div>
+    <!-- INDIVIDUAL PLOTS -->
+    <div id="content" class="output">
+        <!-- METRIC HEADERS -->
+        <div></div>
+        {% for metric in metrics.index %}
+        {% set met = loop.index - 1 -%}
+        <div>
+            <span>{{ metrics.index[met] }}</span>
+            <br />
+            <span>[{{ units.values[met] }}]</span>
+            <!-- <br /> -->
+        </div>
+        {% endfor %}
+        <div></div>
+    </div>
+
+        <!-- <div id="four">Image Four</div>   
+        <div id="five">Image Five</div>  
+        <div id="six">Image Six</div> 
+        <div id="seven">Image Seven 2</div> 
+        <div id="eight">Image Eight</div> 
+        <div id="nine">Image Nine</div>  -->
+</div>

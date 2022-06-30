@@ -114,7 +114,7 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     return np.stack([kwh_per_module])
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
     """
     Metrics function.
 

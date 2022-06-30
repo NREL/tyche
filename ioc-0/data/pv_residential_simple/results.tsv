@@ -1,6 +1,0 @@
-Technology	Variable	Index	Units	Notes
-Residential PV	Cost	Cost	$/system	
-Residential PV	Output	Electricity	kWh	
-Residential PV	Metric	LCOE	Δ$/kWh	
-Residential PV	Metric	Labor	Δ$/system	
-Residential PV	Metric	GHG	ΔgCO2e/system	

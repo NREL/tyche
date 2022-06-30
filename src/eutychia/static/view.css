@@ -1,78 +1,58 @@
+/* Content grid */
+.output--grid { 
+    display: grid; 
+    grid-template-columns:  150px 1fr 200px;
+    background-color: beige;   
+}
+.output--grid > div { 
+    background-color: green;
+    margin: 10px;
+}
+
+/* Metrics */
+.output--visualization { 
+    display: grid; 
+    grid-template-columns:  1fr 1fr 1fr;
+    background-color: beige;   
+}
+.output--visualization > div { 
+    background-color: green;
+    margin: 0px;
+}
+
+/* Categories */
+.output--category{ 
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+}
+.output--category > div { 
+    background-color: plum;
+    border-color: palegreen;
+    height: 100px;
+    margin: 0px;
+}
 
 
-.modal_background {
-    display         : none
-  ; position        : fixed
-  ; z-index         : 1
-  ; left            : 0
-  ; top             : 0
-  ; width           : 100%
-  ; height          : 100%
-  ; overflow        : auto
-  ; background-color: rgba(0,0,0,0.4)
-  ; cursor          : wait
-  }
-  
-  .modal_content {
+
+/* .modal_content {
     background-color: #fefefe
   ; margin          : 15% auto
   ; padding         : 20px
   ; border          : 1px solid #888
   ; width           : 33%
   ; border-radius   : 20px
-  }
-  
-  #optimizing_status {
-    font-style: italic
-  }
-  
-  #optimize_button, #optimize_metric {
-    /* width: 7em */
-  }
-  
-  
-  .plot {
-    align-items: center
-  }
+} */
 
-  
-  .metric {
-    /* width     : 1px */
-  ; text-align: center
-  }
-  
-  .metric meter, .metric input {
-    /* width: 100% */
-  ; transform: rotate(-180deg)
-  }
-  
-  
-  .invest {
+/* Optimization options */
+#optimizing_status {
+    font-style: italic
+}
+#optimize_button, #optimize_metric {
+    width: 7em
+}
+
+/* Plots */
+.plot {
     align-items: center
-  }
-  
-  .invest meter, .invest input {
-    /* width: 90% */
-  }
-  
-  
-  table {
-    width : calc(100% - 16em)
-  ; height: calc(100% - 4em)
-  /* ; align-self: center */
-  }
-  
-  
-  h1 {
-    margin    : 0
-  ; font-size : 2em
-  ; text-align: center
-  }
-  
-  
-  body {
-    height: 100vh
-  /* ; margin: 0em */
-  ; margin-left: 16em
-  }
-  
+}

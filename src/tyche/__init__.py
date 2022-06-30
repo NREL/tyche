@@ -9,3 +9,4 @@ from .Distributions      import constant, mixture
 from .EpsilonConstraints import EpsilonConstraintOptimizer, Optimum
 from .Evaluator          import Evaluator
 from .Investments        import Investments
+from .Waterfall          import Waterfall
