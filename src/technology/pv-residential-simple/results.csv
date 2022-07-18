@@ -1,6 +1,6 @@
 ﻿Technology,Variable,Index,Units,Notes
 Residential PV,Cost,Cost,$/system,
 Residential PV,Output,Electricity,kWh,
-Residential PV,Metric,LCOE,Œî$/kWh,
-Residential PV,Metric,Labor,Œî$/system,
-Residential PV,Metric,GHG,ŒîgCO2e/system,
+Residential PV,Metric,LCOE,$/kWh,
+Residential PV,Metric,Labor,$/system,
+Residential PV,Metric,GHG,gCO2e/system,
