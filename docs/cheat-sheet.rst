@@ -7,7 +7,7 @@ Introduction and Getting Started
 Set up Tyche package
 ~~~~~~~~~~~~~~~~~~~~
 
-There are several platforms for using Tyche.  Listed below is the process of downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche).   A library of simple Tyche models is available at to provide beginning templates for developing more complete models of technologies of interest [here.](https://github.com/NREL/tyche/tree/dev/src/technology)
+There are several platforms for using Tyche.  Listed below is the process of downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available at to provide beginning templates for developing more complete models of technologies of interest [here.](https://github.com/NREL/tyche/tree/dev/src/technology)
 
 - Download and install [Anaconda](https://www.anaconda.com/). No need for installing Anaconda for Linux or Mac systems. 
 - Download Tyche from GitHub
