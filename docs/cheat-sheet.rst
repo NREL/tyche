@@ -9,15 +9,15 @@ Set up Tyche package
 
 There are several platforms for using Tyche.  Listed below is the process of downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche).   A library of simple Tyche models is available at to provide beginning templates for developing more complete models of technologies of interest [here.](https://github.com/NREL/tyche/tree/dev/src/technology)
 
-- Download and install [Anaconda](https://www.anaconda.com/). No need for installing Anaconda for Linux or Mac systems. 
+- Download and install `Anaconda <https://anaconda.org/>`_. No need for installing Anaconda for Linux or Mac systems. 
 - Download Tyche from GitHub
 - Navigate to the downloaded Tyche repository folder. 
 - Create the Tyche environment 
     * Type the following into the Anaconda Shell (under Anaconda in the Windows Start menu). For Mac use system terminal. 
-    * Windows OS:  ```conda env create --file conda\win.yml ``` 
-    * Mac OS:  ```conda env create --file conda\mac.yml ```
-    * ```conda activate tyche```
-    * ```pip install mip```
+    * Windows OS:  ``conda env create --file conda\win.yml`` 
+    * Mac OS:  ``conda env create --file conda\mac.yml``
+    * ``conda activate tyche``
+    * ``pip install mip``
 
 Repository Organization
 ~~~~~~~~~~~~~~~~~~~~~~~
