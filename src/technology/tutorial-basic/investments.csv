@@ -1,2 +1,4 @@
 Investment,Category,Tranche,Notes
-No Investment,Base Case,Business as Usual,
+Base Case,Rotor Investment Only,No Rotor Investment,
+Base Case,Drive Investment Only,No Drive Investment,
+Base Case,Tower Investment Only,No Tower Investment,
