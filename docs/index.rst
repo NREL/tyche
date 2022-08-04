@@ -20,7 +20,6 @@ This documentation summarizes work in progress on R&D Portfolio Analysis and Eva
    user-interface
    tutorial
    mock-foa
-   ioc-1
    deployment
    getting-started
    modules
