@@ -11,17 +11,14 @@ This documentation summarizes work in progress on R&D Portfolio Analysis and Eva
    :caption: Contents:
    
    cheat-sheet
+   example-technology
+   analysis-tutorial
    approach
    formulation
-   example-electrolysis
    database
-   example-technology
    optimizers
    user-interface
-   tutorial
-   mock-foa
    deployment
-   getting-started
    modules
 
 
