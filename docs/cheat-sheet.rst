@@ -1,3 +1,5 @@
+.. _sec-quickstart:
+
 Quick Start Guide
 =================
 
@@ -41,11 +43,14 @@ Note that the conda environment was created with the command:
 Directory Structure
 -------------------
 
-.. image:: images/image1.png
+.. _fig-directorystruct:
+.. figure:: images/image1.png 
 	:width: 400
 	:alt: Tyche repository directory structure.
+	
+	This is a figure caption.
 
-The directory where users should store new technology models (.py files) and the accompanying datasets discussed below is indicated in blue. We recommend that users create sub-directories for each new technology or decision context, to avoid confusing the various input datasets.
+The directory where users should store new technology models (.py files) and the accompanying datasets discussed below is indicated in blue in :numref: `fig-directorystruct`. We recommend that users create sub-directories for each new technology or decision context, to avoid confusing the various input datasets.
 
 Defining Technologies
 ---------------------

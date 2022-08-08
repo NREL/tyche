@@ -1,9 +1,9 @@
-Electrolysis Example
-====================
+.. _sec-techmodelexample:
 
-Here is a very simple model for electrolysis of water. We just have
-water, electricity, a catalyst, and some lab space. We choose the
-fundamental unit of operation to be moles of H\ :sub:`2`:
+Technology Model Example
+========================
+
+Here is a very simple model for electrolysis of water. We just have water, electricity, a catalyst, and some lab space. We choose the fundamental unit of operation to be moles of H\ :sub:`2`:
 
      H\ :sub:`2`\ O → H\ :sub:`2` + ½ O\ :sub:`2`
 
@@ -15,18 +15,18 @@ For this example, we treat the catalyst as the capital that we use to transform 
  ===================== =================== =================== ============= ========== ========= ======================================
  Technology            Scenario            Variable            Index         Value      Units     Notes
  ===================== =================== =================== ============= ========== ========= ======================================
- Simple electrolysis   Base Electrolysis   Input               Water         19.04      g/mole    Note
+ Simple electrolysis   Base Electrolysis   Input               Water         19.04      g/mole    
  Simple electrolysis   Base Electrolysis   Input efficiency    Water         0.95       1         Due to mass transport loss on input.
- Simple electrolysis   Base Electrolysis   Input               Electricity   279        kJ/mole   Note
+ Simple electrolysis   Base Electrolysis   Input               Electricity   279        kJ/mole   
  Simple electrolysis   Base Electrolysis   Input efficiency    Electricity   0.85       l         Due to ohmic losses on input.
  Simple electrolysis   Base Electrolysis   Output efficiency   Oxygen        0.9        1         Due to mass transport loss on output.
  Simple electrolysis   Base Electrolysis   Output efficiency   Hydrogen      0.9        1         Due to mass transport loss on output.
  Simple electrolysis   Base Electrolysis   Lifetime            Catalyst      3          yr        Effective lifetime of Al-Ni catalyst.
  Simple electrolysis   Base Electrolysis   Scale               n/a           6650       mole/yr   Rough estimate for a 50W setup.
- Simple electrolysis   Base Electrolysis   Input price         Water         4.80E-03   USD/mole  Note
- Simple electrolysis   Base Electrolysis   Input price         Electricity   3.33E-05   USD/kJ    Note
- Simple electrolysis   Base Electrolysis   Output price        Oxygen        3.00E-03   USD/g     Note
- Simple electrolysis   Base Electrolysis   Output price        Hydrogen      1.00E-02   USD/g     Note
+ Simple electrolysis   Base Electrolysis   Input price         Water         4.80E-03   USD/mole  
+ Simple electrolysis   Base Electrolysis   Input price         Electricity   3.33E-05   USD/kJ    
+ Simple electrolysis   Base Electrolysis   Output price        Oxygen        3.00E-03   USD/g     
+ Simple electrolysis   Base Electrolysis   Output price        Hydrogen      1.00E-02   USD/g     
  ===================== =================== =================== ============= ========== ========= ======================================
 
 Note that this is not the only way to model the electrolysis technology. We could choose to purchase lab space and equipment instead of renting, in which case we would have more types of capital, each with a particular lifetime. We could treat the oxygen output from our technology as waste instead of a coproduct and remove it from the model entirely. We could operate at a different scale and perhaps change our fixed or capital costs by doing so. Depending on where we operate this technology, our input and output prices will likely change. The Tyche framework offers great flexibility in representing technologies and technology systems; it is unlikely that there will only be a single correct way to model a decision context.
@@ -39,19 +39,41 @@ A key quantity that is not included in the *designs* dataset is our fixed cost, 
  ===================== =================== ===================================== =========== ========== =========== =====================================
  Technology            Scenario            Parameter                             Offset      Value      Units       Notes
  ===================== =================== ===================================== =========== ========== =========== =====================================
- Simple electrolysis   Base Electrolysis   Oxygen production                     0           16         g           Note
- Simple electrolysis   Base Electrolysis   Hydrogen production                   1           2          g           Note
- Simple electrolysis   Base Electrolysis   Water consumption                     2           18.08      g           Note
- Simple electrolysis   Base Electrolysis   Electricity consumption               3           237        kJ          Note
- Simple electrolysis   Base Electrolysis   Jobs                                  4           1.50E-04   job/mole    Note
- Simple electrolysis   Base Electrolysis   Reference scale                       5           6650       mole/yr     Note
- Simple electrolysis   Base Electrolysis   Reference capital cost for catalyst   6           0.63       USD         Note
- Simple electrolysis   Base Electrolysis   Reference fixed cost for rent         7           1000       USD/yr      Note
+ Simple electrolysis   Base Electrolysis   Oxygen production                     0           16         g           
+ Simple electrolysis   Base Electrolysis   Hydrogen production                   1           2          g           
+ Simple electrolysis   Base Electrolysis   Water consumption                     2           18.08      g           
+ Simple electrolysis   Base Electrolysis   Electricity consumption               3           237        kJ          
+ Simple electrolysis   Base Electrolysis   Jobs                                  4           1.50E-04   job/mole    
+ Simple electrolysis   Base Electrolysis   Reference scale                       5           6650       mole/yr     
+ Simple electrolysis   Base Electrolysis   Reference capital cost for catalyst   6           0.63       USD         
+ Simple electrolysis   Base Electrolysis   Reference fixed cost for rent         7           1000       USD/yr      
  Simple electrolysis   Base Electrolysis   GHG factor for water                  8           0.00108    gCO2e/g     based on 244,956 gallons = 1 Mg CO2e
  Simple electrolysis   Base Electrolysis   GHG factor for electricity            9           0.138      gCO2e/kJ    based on 1 kWh = 0.5 kg CO2e
  ===================== =================== ===================================== =========== ========== =========== =====================================
 
 Within our R&D decision context, we're interested in increasing the input and output efficiencies of this process so we can produce hydrogen as cheaply as possible. Experts could assess how much R&D to increase the various efficiencies :math:`\eta` would cost. They could also suggest different catalysts, adding alkali, or replacing the process with PEM.
+
+The ``indices`` table (see :numref:`tbl-indices`) simply describes the various
+indices available for the variables. The ``Offset`` column specifies the
+memory location in the argument for the production and metric functions.
+
+.. _tbl-indices:
+
+.. table:: Example of the ``indices`` table.
+
+   =================== ======== ============ ====== =========== ===== 
+   Technology           Type     Index       Offset Description Notes
+   =================== ======== ============ ====== =========== ===== 
+   Simple electrolysis  Capital  Catalyst     0     Catalyst         
+   Simple electrolysis  Fixed    Rent         0     Rent             
+   Simple electrolysis  Input    Water        0     Water            
+   Simple electrolysis  Input    Electricity  1     Electricity      
+   Simple electrolysis  Output   Oxygen       0     Oxygen           
+   Simple electrolysis  Output   Hydrogen     1     Hydrogen         
+   Simple electrolysis  Metric   Cost         0     Cost             
+   Simple electrolysis  Metric   Jobs         1     Jobs             
+   Simple electrolysis  Metric   GHG          2     GHGs             
+   =================== ======== ============ ====== =========== ===== 
 
 Production function (à la Leontief)
 -----------------------------------

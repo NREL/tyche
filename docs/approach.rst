@@ -1,3 +1,5 @@
+.. _sec-approach:
+
 Approach
 ========
 
@@ -31,16 +33,12 @@ framework’s use: biorefineries, electrolysis, residential photovoltaics
 (PV), and utility-scale PV. A desktop user interface allows exploration
 of the cost-benefit trade-offs in portfolio decision problems.
 
-Below we detail the mathematical formulation and its implementation as a
-Python module with user-specified data tables and technology functions.
-We also provide a sample analysis that exercises the framework’s main
-features.
 
 Mock FOA Definition
-===================
+-------------------
 
 Background
-----------
+^^^^^^^^^^
 
 Understanding the FOA process is essential to designing an effective
 tool to make to make technically and analytically-based decisions. The
@@ -93,7 +91,7 @@ For example, a user who will view the tool output in a presentation will
 need a static representation of the tool output.
 
 Potential topics
-----------------
+^^^^^^^^^^^^^^^^
 
 Prototyping a tool requires content. The team referenced two previous
 FOAs to understand the break-down of topic areas. We then extracted FOA
