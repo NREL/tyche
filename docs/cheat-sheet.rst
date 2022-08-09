@@ -50,7 +50,7 @@ Directory Structure
 	
 	Tyche repository directory structure. Users should not alter this structure. New technology models and data can be saved in sub-directories under the technology folder, indicated in blue.
 
-The directory where users should store new technology models (.py files) and the accompanying datasets discussed below is indicated in blue in :numref: `fig-directorystruct`. We recommend that users create sub-directories for each new technology or decision context, to avoid confusing the various input datasets.
+The directory where users should store new technology models (.py files) and the accompanying datasets discussed below is indicated in blue in :numref:`fig-directorystruct`. We recommend that users create sub-directories for each new technology or decision context, to avoid confusing the various input datasets.
 
 Defining Technologies
 ---------------------

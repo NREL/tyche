@@ -70,7 +70,7 @@ Solve time: 1.5 s
 Differential Evolution
 ----------------------
 
-Differential evolution is one type of evolutionary algorithm that iteratively improves on an initial population, or set of potential solutions. [5] Differential evolution is well-suited to searching large solution spaces with multiple local minima, but does not guarantee convergence to the global minimum. A complete list of parameters and options for the `differential_evolution` algorithm is available in the `scipy.optimize.differential_evolution  <https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.differential_evolution.html>`_ documentation.
+Differential evolution is one type of evolutionary algorithm that iteratively improves on an initial population, or set of potential solutions. [5] Differential evolution is well-suited to searching large solution spaces with multiple local minima, but does not guarantee convergence to the global minimum. Moreover, users may need to adjust the default solving parameters and options in order to obtain a solution and cut down on solve time. A complete list of parameters and options for the `differential_evolution` algorithm is available in the `scipy.optimize.differential_evolution  <https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.differential_evolution.html>`_ documentation.
 
 Constraints for `differential_evolution` are defined by passing the same multi-valued function defined in `opt_slsqp` to the `NonlinearConstraint <https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.NonlinearConstraint.html>`_ method.
 
@@ -136,8 +136,7 @@ Starting with a random seed of 1, the solution time was 589 seconds.
 Simplicial Homology Global Optimization
 ---------------------------------------
 
-The Simplicial Homology Global Optimization (SHGO) algorithm applies simplicial homology to general non-linear, low-dimensional optimization problems. [4] Constraints for `shgo` must be provided as a dictionary or sequence of
-dictionaries with the following format:
+The Simplicial Homology Global Optimization (SHGO) algorithm applies simplicial homology to general non-linear, low-dimensional optimization problems. [4] SHGO provides fast solutions using default parameters and options, but the optimum found may not be as precise as that found by the differential evolution algorithm. Constraints for `shgo` must be provided as a dictionary or sequence of dictionaries with the following format:
 
 ::
 
