@@ -3,6 +3,22 @@ Tyche Quick Start Guide
 
 Introduction and Getting Started
 --------------------------------
+Introduction and Getting Started
+The following materials walk through:
+
+1.	what the Technology Characterization and Evaluation (Tyche ) tool does and why this is of value to the user; 
+2.	setting up the Tyche package for use, including downloading and installing Anaconda (which includes Jupyter for running Tyche and Spyder for creating/editing Python files); 
+3.	modifying an existing model to be used to meet your particular needs; 
+4.	developing data, including conducting expert elicitations to estimate potential impacts of different R&D investments; 
+5.	an overview of the code and data files used; and
+6.	building and running Tyche models of your technologies to evaluate the potential impacts of alternative R&D investment strategies.
+
+The Technology Characterization and Evaluation Tool
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The Tyche methodology begins with: (1) a technoeconomic model of a particular technology; (2) conducts expert elicitation to get quantitative estimates of how much a particular attribute of a component or subsystem within that technology might improve with R&D; (3) represents these estimates as probability distributions—typically triangular distributions—within this model; and then (4) uses multi-objective stochastic optimization to determine the potential overall improvement in the technology, identify the R&D investments that have the greatest potential impact for improving technology attributes such as cost or environmental impact, and enables analysis of R&D options to meet decision-maker goals.
+
+does and why this is of value to the user; <To begin the cheat sheet, it needs to explain what Tyche is, what it does, and why this is of value to the user.>< Expand this to a full explanation>  
+
 
 Set up Tyche package
 ~~~~~~~~~~~~~~~~~~~~
