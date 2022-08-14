@@ -15,9 +15,14 @@ The following materials walk through:
 
 The Technology Characterization and Evaluation Tool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The Tyche methodology begins with: (1) a technoeconomic model of a particular technology; (2) conducts expert elicitation to get quantitative estimates of how much a particular attribute of a component or subsystem within that technology might improve with R&D; (3) represents these estimates as probability distributions—typically triangular distributions—within this model; and then (4) uses multi-objective stochastic optimization to determine the potential overall improvement in the technology, identify the R&D investments that have the greatest potential impact for improving technology attributes such as cost or environmental impact, and enables analysis of R&D options to meet decision-maker goals.
+The Tyche methodology: 
 
-does and why this is of value to the user; <To begin the cheat sheet, it needs to explain what Tyche is, what it does, and why this is of value to the user.>< Expand this to a full explanation>  
+1. begins with a technoeconomic model of a particular technology; 
+2. conducts expert elicitation to get quantitative estimates of how much a particular attribute of a component or subsystem within that technology might improve with R&D; 
+3. represents these estimates as probability distributions—typically triangular distributions—within this model; and then 
+4. uses multi-objective stochastic optimization to determine the potential overall improvement in the technology, identify the R&D investments that have the greatest potential impact for improving technology attributes such as cost or environmental impact, and enables analysis of R&D options to meet decision-maker goals.
+
+<<<<what tyche does and why this is of value to the user; <To begin the cheat sheet, it needs to explain what Tyche is, what it does, and why this is of value to the user.>< Expand this to a full explanation>>>>  
 
 
 Set up Tyche package
