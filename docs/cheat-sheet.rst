@@ -3,7 +3,6 @@ Tyche Quick Start Guide
 
 Introduction and Getting Started
 --------------------------------
-Introduction and Getting Started
 The following materials walk through:
 
 1.	what the Technology Characterization and Evaluation (Tyche ) tool does and why this is of value to the user; 
@@ -28,22 +27,69 @@ The Tyche methodology:
 Set up Tyche package
 ~~~~~~~~~~~~~~~~~~~~
 
-There are several platforms for using Tyche.  Listed below is the process of downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available at to provide beginning templates for developing more complete models of technologies of interest [here.](https://github.com/NREL/tyche/tree/dev/src/technology)
+The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process of downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available at to provide beginning templates for developing more complete models of technologies of interest [here.](https://github.com/NREL/tyche/tree/dev/src/technology)
 
-- Download and install [Anaconda](https://www.anaconda.com/). No need for installing Anaconda for Linux or Mac systems. 
-- Download Tyche from GitHub
+- Download and install [Anaconda](https://www.anaconda.com/). Most users will install the Windows version of Anaconda.  Set up a password to download Anaconda to make re-installing easier if there are problems and to access tutorials and other information on Anaconda.  <<For installing Anaconda for Linux or Mac systems, see below.>> 
+- Download Tyche from GitHub at: https://github.com/NREL/tyche/tree/dev 
+- Paste the downloaded Tyche Zip.files on your desktop and extract the files.  It is easiest to access these files using Anaconda/Jupyter when they are on your desktop.
 - Navigate to the downloaded Tyche repository folder. 
 - Create the Tyche environment 
-    * Type the following into the Anaconda Shell (under Anaconda in the Windows Start menu). For Mac use system terminal. 
+    * Type the following into the Anaconda Shell (under Anaconda in the Windows Start menu). 
+    * For windows machines, do the following:
+    * In the Windows Start menu (left-most windows icon at the bottom of your screen) open the Anaconda folder and click on the Anaconda prompt.  A window will open showing: “(base) C:\users\xxx>”  Type in the following after this prompt “(base) C:\users\xxx>”:  
+conda env create --file conda\win.yml 
+    
+    For Mac use system terminal. 
     * Windows OS:  ```conda env create --file conda\win.yml ``` 
     * Mac OS:  ```conda env create --file conda\mac.yml ```
     * ```conda activate tyche```
     * ```pip install mip```
 
+* These steps create a new environment in Anaconda for running Tyche files.  This can be seen by looking at Anaconda navigator (launch Anaconda navigator by clicking the Windows start button and going to the Anaconda folder and clicking on Anaconda Navigator) under “Environment” on the left-most panel.  It will show two names: “Base (root)” and “Tyche”.  The Tyche work will be done within the Tyche environment; in particular, note that the Windows Start menu showing the Anaconda file now includes a Jupyter Notebook (Tyche) icon to launch Jupyter to run Tyche. 
+* Run a Tyche Model.  To test the Tyche environment, click the Windows Start menu, go to the Anaconda folder, and click on the Jupyter Notebook (Tyche) program.  This will launch Jupyter Notebook (Tyche) in your default web browser.   
+* Build a Tyche Model.  This consists of xxxxx; Examples are provided below.  Models follow a particular format as specified in the Tyche documentation Release 0.xx.  The form of these Tyche models enables consistent approaches to evaluating technologies.
+* Develop Model Data.  Much model data will be well known and should be entered directly into the respective .csv files as described below.  Other model data is developed through expert elicitations.
+* Conduct Expert Elicitations to estimate potential technology cost and performance improvements for selected levels of R&D investment as well as to determine other needed data.
+* Input Expert Elicitation data into the Tyche model.
+* x
+
 Repository Organization
 ~~~~~~~~~~~~~~~~~~~~~~~
  
 The directory where users should store new technology models (.py files) and the accompanying datasets (discussed below) is indicated in blue. We recommend that users create sub-directories under technology for each new technology or decision context, to avoid confusing the various input datasets.
+
+The content of the folders and files follows:
+
+- Conda: This folder has four files: “mac.yml”, “nobuilds.yml”, “tiny.yml”, and “win.yml”.  The win.yml and mac.yml files are used to install Tyche in Windows and Mac machines, respectively, as described below.  The “nobuilds.yml” file is for xxxxx.  The “tiny.yml” file is for xxxx
+- Docs: This folder has a number of RST (reStructured Text markup language) files that describe different aspects of Tyche and its programs.  These are accessed through xxxxx.
+   * SRC: This has three subfolders, as discussed below:
+   * Eutychia: this folder has xxxxxxx
+   * Technology: This folder has a subfolder for each Technology that is modeled in Tyche and also has a corresponding python (.py) file for that technology model directly under SRC.
+Within each Technology folder there is one Jupyter (.ipynb) file that models the technology and seven .csv files to provide data, as follow:
+
+- designs. 
+- functions.
+- indices.
+- investments.
+- parameters.
+- results.
+- tranches.
+- Each of these .csv files is described in detail below.
+
+Tyche: This folder has 10 python files which form the core of the Tyche model and should not be modified.  These do the following:
+
+- __init__: This is the Python initialization function.   The leading and trailing double underscores mean that this is a special method of the Python interpreter.
+-	DecisionGUI:
+-	Designs:
+-	Distributions:
+-	EpsilonConstraints:
+-	Evaluator:
+-	Investments:
+-	IO:
+-	Types:
+-	Waterfall:
+-	Each of these files is described in detail below
+
 
 Defining a Technology Model
 ---------------------------
@@ -61,7 +107,9 @@ Designs Dataset
 
 A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technologies and technology versions that may result from all R&D investment scenarios being considered in a decision context.
 
-The *designs* dataset contains information for one or more technologies being compared within an R&D investment decision context. There will be multiple sets of data for each technology; each set represents the technology data that results from a specific R&D investment scenario. Tables 2 and 3 provide a data dictionary for the *designs* dataset.
+The *designs* dataset contains information for one or more technologies being compared within an R&D investment decision context using Tyche. There will be multiple sets of data for each technology; each set represents the technology data that results from a specific R&D investment scenario.  Multiple R&D investment scenarios are typically used, each generating a different level of technology advance as determined through expert elicitation Tables 2 and 3 provide a data dictionary for the *designs* dataset.
+
+The ”designs.csv” file within the technology folder under SRC describes the technologies that are considered in the Tyche model.  Table 1 describes the elements of the “designs.csv” file.  It points to the data for the technology subsystems and components in the “parameters.csv” file within the technology folder, described below.
 
 **Table 1:**
 
