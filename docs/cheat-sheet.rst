@@ -21,7 +21,7 @@ The Tyche methodology:
 3. represents these estimates as probability distributions—typically triangular distributions—within this model; and then 
 4. uses multi-objective stochastic optimization to determine the potential overall improvement in the technology, identify the R&D investments that have the greatest potential impact for improving technology attributes such as cost or environmental impact, and enables analysis of R&D options to meet decision-maker goals.
 
-<<<<what tyche does and why this is of value to the user; <To begin the cheat sheet, it needs to explain what Tyche is, what it does, and why this is of value to the user.>< Expand this to a full explanation>>>>  
+<<<<To begin the cheat sheet, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation>>>>  
 
 
 Set up Tyche package
