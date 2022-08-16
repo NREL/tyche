@@ -57,6 +57,7 @@ Repository Organization
 ~~~~~~~~~~~~~~~~~~~~~~~
  
 The directory where users should store new technology models (.py files) and the accompanying datasets (discussed below) is indicated in blue. We recommend that users create sub-directories under technology for each new technology or decision context, to avoid confusing the various input datasets.
+<<Add figure>>
 
 The content of the folders and files follows:
 
@@ -98,10 +99,15 @@ What is a “technology”?
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 In the R&D decision contexts represented and analyzed by Tyche, “technology” has a very broad definition. A technology converts input(s) to output(s) using capital with a defined lifetime and incurs fixed and/or variable costs in doing so. A technology may be a manufacturing process, a biorefinery, an agricultural process, a renewable energy technology component such as a silicon wafer, a renewable energy technology unit such as a wind turbine or solar panel, a renewable power plant system such as a concentrated solar power plant, and more. Within the R&D decision context, a technology is also subject to one or more research areas in which R&D investments can be made to change the technology and its economic, environmental, and other metrics of interest. Multiple technologies can be modeled and compared within the same decision context, provided the same metrics are calculable for each technology. Within Tyche, a technology is represented both physically and economically using a classic but simple and generalized techno-economic analysis (TEA). The TEA is based on a user defined technology model and accompanying datasets of technological and investment information.
+New Section
+Describe Jupyter model and what it does
+Describe Python model and what it does, bringing up to here the discussion from below
+Then describe the supporting data sets below
+
 
 Input Datasets
 --------------
-
+The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 Designs Dataset 
 ~~~~~~~~~~~~~~~
 
@@ -139,7 +145,7 @@ The ”designs.csv” file within the technology folder under SRC describes the 
   | Notes        | String                                         | Any                                                                   | Description provided by user. Not used by Tyche.                             |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
 
-If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1. Variables and their component Indexes are defined further in Table 2.
+If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1.<Explain "irrelevant", "0 or 1"> Variables and their component Indexes are defined further in Table 2.
 
 **Table 2:**
 
@@ -158,7 +164,7 @@ If there are no elements within a Variable for the technology under study, the V
 Parameters Dataset
 ~~~~~~~~~~~~~~~~~~
 
-The *parameters* dataset contains any ad hoc data, other than that contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics. If the information in the *designs* dataset completely defines the technology and its metrics of interest, then the *parameters* dataset can be left blank except for the column names. Identically to the *designs* dataset, the *parameters* dataset contains multiple sets of data corresponding to different R&D investment scenarios.
+The *parameters* dataset contains any ad hoc <better word than ad hoc? and what does this mean?> data, other than that <No And Designs does not have any data>   contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics. If the information in the *designs* dataset completely defines the technology and its metrics of interest, then the *parameters* dataset can be left blank except for the column names. Identically to the *designs* dataset, the *parameters* dataset contains multiple sets of data corresponding to different R&D investment scenarios.
 
 **Table 3:**
 
@@ -176,17 +182,17 @@ The *parameters* dataset contains any ad hoc data, other than that contained in 
   
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 
-Technology model Python file
+Technology model Python file <move to top and put below discussion of Jupyter model>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The technology model is a Python file (.py) which is user defined and contains methods for calculating capital cost, fixed cost, production (the actual output amount), and any metrics of interest, using the content of the *designs* and *parameters* datasets. Table 4 describes methods that must be included in the technology model Python file. The names of the methods are user-defined and must match the contents of the *functions* dataset, discussed below. Additional methods can be included in the technology model, if necessary, but the methods in Table 4 are required. All return values for the required methods must be formatted as numpy “stacks” of values; for more information, see the numpy documentation. 
+The technology model is a Python file (.py) which is user defined and contains methods for calculating capital cost, fixed cost, production (the actual output amount), and any metrics of interest, using the content of the *designs* and *parameters* datasets. Table 4 describes methods that must be included in the technology model Python file. The names of the methods are user-defined and must match the contents of the *functions* dataset, discussed below. Additional methods can be included in the technology model, if necessary, but the methods in Table 4 are required. All return values for the required methods must be formatted as numpy “stacks” of values; for more information, see the numpy documentation.<Give that Numpy documentation is quite long (reference is 2000 pages; user manual is 500 pages), this is not very useful.  Need to briefly explain how these stacks are set up, how they are used, and why vectorization is so powerful here.> 
 
 **Table 4:** Methods required within the technology model Python file. Method names are user-defined and should match the contents of the functions dataset. Additional methods can be defined within the technology model as necessary._
 
   ========================== ====================================================================================================== ==========================================================
   Recommended Method Name    Parameters                                                                                             Returns                                                         
   ========================== ====================================================================================================== ==========================================================
-  capital_cost               scale, parameter                                                                                       Capital cost(s) for each type of capital in the technology.     
+  capital_cost <Def also for Discount(rate, time) and npv(rate, time)>               scale, parameter                                                                                       Capital cost(s) for each type of capital in the technology.     
   fixed_cost                 scale, parameter                                                                                       Annual fixed cost(s) of operating the technology.               
   production                 scale, capital, lifetime, fixed, input, parameter                                                      Calculated actual (not ideal) output amount(s).                 
   metrics                    scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter    Calculated technology metric value(s).                          
@@ -298,7 +304,7 @@ The *functions* dataset is used internally by Tyche to locate the technology mod
   ============== ============ ================= ==========================================================================================================
   Technology     String       Any               Name of the technology.                                                                                                                                                                                               
   Style          String       numpy             See below for explanation.                                                                                
-  Module         String       Any               Filename of the technology model Python file, discussed below. Do not include the file extension.         
+  Module         String       Any               Filename of the technology model Python file, discussed below. Do not include the file extension.<This name must be the same as the Python file or the system will not run>         
   Capital        String       Any               Name of the method within the technology model Python file that returns the calculated capital cost.      
   Fixed          String       Any               Name of the method within the technology model Python file that returns the calculated fixed cost.        
   Production     String       Any               Name of the method within the technology model Python file that returns the calculated output amount.     
@@ -334,3 +340,17 @@ The *results* dataset lists the Tyche outcomes that are of interest within a dec
   +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
 
 The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* dataset.
+
+Modeling in Tyche
+~~~~~~~~~~~~~~~~~
+Example case study 1- Consider a PV system. It consists of a set of PV modules that convert sunlight into direct current power, an inverter that transforms the dc of the PV module into ac for the power line, and all the supporting infrastructure and installation costs.  This system We will also use this example to explain this tutorial.  This is a typical example which showcases Tyche usage. 
+
+The technology model describes a process physically and economically (A classic but simple and generalized Techno-economic analysis) 
+
+   * Converts inputs to outputs based on user defined technology model and ad-hoc parameters. 
+   * The user defined model can integrate uncertainty in the input variables and parameters in the form of distribution. (For example, triangular distributions can be put as inputs for parameters or variables to incorporate uncertainty)
+   * Requirement and data location for technology model is explained in Table 1. 
+
+DESCRIBE the PV or other system here in detail and how to modify it to fit the user’s needs.  This should be a large section to include the description of all the steps needed….   
+
+
