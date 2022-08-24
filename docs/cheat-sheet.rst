@@ -21,15 +21,15 @@ The Tyche methodology:
 3. represents these estimates as probability distributions—typically triangular distributions—within this model; and then 
 4. uses multi-objective stochastic optimization to determine the potential overall improvement in the technology, identify the R&D investments that have the greatest potential impact for improving technology attributes such as cost or environmental impact, and enables analysis of R&D options to meet decision-maker goals.
 
-<<<<To begin the cheat sheet, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation>>>>  
+<<<<To begin the quick start guide, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation>>>>  
 
 
 Set up Tyche package
 ~~~~~~~~~~~~~~~~~~~~
 
-The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process of downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available at to provide beginning templates for developing more complete models of technologies of interest [here.](https://github.com/NREL/tyche/tree/dev/src/technology)
+The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process for downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available to provide beginning templates for developing more complete models of technologies of interest at: (https://github.com/NREL/tyche/tree/dev/src/technology)
 
-- Download and install [Anaconda](https://www.anaconda.com/). Most users will install the Windows version of Anaconda.  Set up a password to download Anaconda to make re-installing easier if there are problems and to access tutorials and other information on Anaconda.  <<For installing Anaconda for Linux or Mac systems, see below.>> 
+- Download and install `Anaconda <https://anaconda.org/>`_ . Most users will install the Windows version of Anaconda.  Set up a password to download Anaconda to make re-installing easier if there are problems and to access tutorials and other information on Anaconda.  <<For installing Anaconda for Linux or Mac systems, see below.>> 
 - Download Tyche from GitHub at: https://github.com/NREL/tyche/tree/dev 
 - Paste the downloaded Tyche Zip.files on your desktop and extract the files.  It is easiest to access these files using Anaconda/Jupyter when they are on your desktop.
 - Navigate to the downloaded Tyche repository folder. 
