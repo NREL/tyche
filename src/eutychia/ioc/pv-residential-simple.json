@@ -1,0 +1,5 @@
+{
+  "SECRET_KEY"  : "tyche portfolio"
+, "INVESTMENTS" : "../technology/pv-residential-simple"
+, "DESIGNS"     : "../technology/pv-residential-simple"
+}

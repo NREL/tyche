@@ -1,0 +1,5 @@
+{
+    "SECRET_KEY"  : "tyche portfolio"
+  , "INVESTMENTS" : "../technology/simple-electrolysis"
+  , "DESIGNS"     : "../technology/simple-electrolysis"
+  }
