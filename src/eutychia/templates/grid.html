@@ -65,7 +65,42 @@
             {% endfor %}
         </div>
         <!-- INVESTMENT SLIDERS -->
-        <div></div>
+        <!-- <div class="output--category">
+            {% for category in categories %}
+            {% set cat = loop.index - 1 -%}
+            <div>
+                {{ categories.index[cat] }}
+            </div>
+            {% endfor %}
+        </div> -->
+        <!-- <div></div> -->
+        <div class="output--category">
+            {% for category in categories %}
+            {% set cat = loop.index - 1 -%}
+            <div>
+                <!-- investment value (visual) -->
+                <meter id="invoptwid_{{cat}}" class="invoptwid invpart"
+                min="0"
+                max="{{ categories.values[cat] }}"
+                value="{{ categories.values[cat] / 2 }}"> </meter>
+                <br />
+                <!-- investment value (numeric) -->
+                <label id="invoptlab_{{cat}}" class="invoptlab" for="invoptwid_{{cat}}">
+                Current: $0</label>
+                <br />
+                <!-- investment slider (visual) -->
+                <input id="invlimwid_{{cat}}" class="invlimwid" type="range"
+                    min="0"
+                    max="{{ categories.values[cat] }}"
+                    step="1000"
+                    onchange="updateInvest(event.target)" />
+                <br />
+                    <!-- investment slider (numeric) -->
+                    <label id="invlimlab_{{cat}}" class="invlimlab" for="invlimwid_{{cat}}">
+                      Allowed: $0</label>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
