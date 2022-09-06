@@ -28,10 +28,15 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   import quart as qt
 
 # Create and configure application.
+  technology_model = "pv-residential-simple"
+  technology_path = os.path.join("ioc", technology_model + ".json")
 
   app = qt.Quart(__name__, static_url_path="", static_folder="static",)
 
-  app.config.from_file("ioc-0.json", json.load)
+  app.config.from_file(technology_path, json.load)
+
+  print(technology_path)
+  print(type(app.config))
 
 
 # Compute investments.
@@ -149,7 +154,7 @@ async def plot():
     m = evaluator.metrics[int(form["met"])]    if form["met"].isdigit() else str(form["met"])
     c = evaluator.categories[int(form["cat"])] if form["cat"].isdigit() else str(form["cat"])
     
-    print(form["height"])
+    # print(form["height"])
     # figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100), constrained_layout=True)
     figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
     ax = figure.subplots()
