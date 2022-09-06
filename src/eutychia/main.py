@@ -47,7 +47,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
-  evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
+  evaluator = ty.Evaluator(tranche_results)
 
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
