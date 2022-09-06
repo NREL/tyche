@@ -27,8 +27,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
 
-# Create and configure application.
-  technology_model = "pv-residential-simple"
+  # Create and configure application.
+  technology_model = "simple-electrolysis"
   technology_path = os.path.join("ioc", technology_model + ".json")
 
   app = qt.Quart(__name__, static_url_path="", static_folder="static",)
@@ -38,8 +38,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   print(technology_path)
   print(type(app.config))
 
-
-# Compute investments.
+  # Compute investments.
 
   investments = ty.Investments(app.config["INVESTMENTS"])
 
@@ -82,6 +81,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       session_amounts[ident] = amounts
       session_evaluation[ident] = evaluator.evaluate(amounts)
 
+      technology_models=["pv-residential-simple", "simple-electrolysis"]
+
       plot_layout = "grid.html"
       if plot_layout == "grid.html":
           plot_types = ["box plot", "distribution", "violin"]
@@ -96,11 +97,15 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
+          technology_model=technology_model,
+          technology_models=technology_models,
       )
 
 
 
   def setup_template(plot_layout):
+      technology_models=["pv-residential-simple", "simple-electrolysis"]
+
       if plot_layout == "grid":
           plot_types = ["box plot", "distribution", "violin"]
       elif plot_layout == "column":
@@ -114,12 +119,16 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
+          technology_model=technology_model,
+          technology_models=technology_models,
       )
 
 
   @app.route("/layout/<name>")
   async def layout(name):
       plot_layout = name
+
+      technology_models=["pv-residential-simple", "simple-electrolysis"]
 
       if plot_layout == "grid":
           plot_types = ["box plot", "distribution", "violin"]
@@ -134,6 +143,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
+          technology_model=technology_model,
+          technology_models=technology_models,
       )
 
 
