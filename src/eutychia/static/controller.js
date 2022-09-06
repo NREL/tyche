@@ -43,7 +43,12 @@ function x2y(target, x, y) {
   // Formatting numbers.
   
   function formatDollars(value) {
-    return Number(value).toLocaleString("en-US", {style : "currency", currency: "USD"})
+    return Number(value).toLocaleString("en-US", {
+        style : "currency"
+      , currency: "USD"
+      , minimumFractionDigits: 0
+      , maximumFractionDigits: 0
+    })
   }
   
   function formatMetric(value) {
