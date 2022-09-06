@@ -28,7 +28,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   import quart as qt
 
   # Create and configure application.
-  technology_model = "simple-electrolysis"
+  technology_model = "pv-residential-simple"
   technology_path = os.path.join("ioc", technology_model + ".json")
 
   app = qt.Quart(__name__, static_url_path="", static_folder="static",)
@@ -84,6 +84,10 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       technology_models=["pv-residential-simple", "simple-electrolysis"]
 
       plot_layout = "grid.html"
+
+    #   plot_layout = "model.html"
+    #   plot_types = ["box plot", "distribution", "violin"]
+
       if plot_layout == "grid.html":
           plot_types = ["box plot", "distribution", "violin"]
       elif plot_layout == "column.html":
@@ -91,13 +95,15 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       elif plot_layout == "heatmap.html":
           plot_types = ["heatmap", "annotated"]
 
+      print(evaluator.units["Units"])
+
       return await qt.render_template(
           plot_layout,
           categories=evaluator.max_amount["Amount"],
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
-          technology_model=technology_model,
+          technology_model=technology_model.replace('-',' '),
           technology_models=technology_models,
       )
 
@@ -119,7 +125,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
-          technology_model=technology_model,
+          technology_model=technology_model.replace('-',' '),
           technology_models=technology_models,
       )
 
@@ -143,7 +149,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
-          technology_model=technology_model,
+          technology_model=technology_model.replace('-',' '),
           technology_models=technology_models,
       )
 
