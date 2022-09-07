@@ -23,6 +23,7 @@ from io import BytesIO
 from matplotlib.figure import Figure
 
 
+
 if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
@@ -184,7 +185,7 @@ async def plot():
     
     y0 = min(0, metric_range.loc[m, "Value Min"])
     y1 = max(0, metric_range.loc[m, "Value Max"])
-    dy = (y1 - y0) / 20
+    dy = (y1 - y0) / 10
 
     # ----- GRID ---------------------------------------------------------------------------
     if typ in ["box plot", "distribution", "violin"]:
@@ -198,13 +199,15 @@ async def plot():
             if c == "all":  sb.kdeplot(ax=ax, data=values, x='Value', hue='Category', multiple='stack')
             else:           sb.kdeplot(ax=ax, data=values, x='Value')
 
+        sb.set_style({"xtick.direction": "in","ytick.direction": "in"})
+
         ax.set(
             xlabel="", ylabel="",
             yticks=[],
             yticklabels=[],
             xticks=[],
             xticklabels=[],
-            # xlim=(y0-dy, y1+dy),
+            xlim=(y0-dy, y1+dy),
         )
 
     # ----- HEATMAP ------------------------------------------------------------------------
@@ -231,13 +234,13 @@ async def plot():
                 fmt=".4g",
             )
         
-        ax.set(
-            xlabel="", ylabel="",
-            xticks=[], yticks=[],
-            xticklabels=[], yticklabels=[],
-        )
+        # ax.set(
+        #     xlabel="", ylabel="",
+        #     # xticks=[], yticks=[],
+        #     # xticklabels=[], yticklabels=[],
+        # )
 
-    # figure.set_tight_layout(True)
+    figure.set_tight_layout(True)
 
     # Save locally -- for prototyping.
     #   localpath = os.path.join("assets","plots",localdir,(str(m) + "_" + str(c).split()[0] + ".png").lower())
