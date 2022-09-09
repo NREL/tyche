@@ -49,14 +49,23 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
   evaluator = ty.Evaluator(tranche_results)
-
+  
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+  optimizer.optimum_metrics(
+      verbose = 0,
+      sense = {
+          'GHG': 'min',
+          'LCOE': 'min',
+          'Labor': 'max',
+      }
+  )
 
   metric_range = evaluator.min_metric.join(
       evaluator.max_metric,
       lsuffix=" Min",
       rsuffix=" Max",
   )
+  print("> metric_range:\n", metric_range)
 
 
 # Session-level storage.
@@ -291,6 +300,16 @@ async def optimize():
     form = await qt.request.form
     target_metric = evaluator.metrics[int(form["target"])]
     constraints = json.loads(form["constraints"])
+    print("> constraints\n", constraints)
+
+    eps_metric = {
+        evaluator.metrics[m]: {
+            'limit': constraints["metric"]["metlimwid_" + str(m)],
+            'sense': 'upper',
+        } for m in range(len(evaluator.metrics)) if evaluator.metrics[m]!=target_metric
+    }
+    print("> eps_metric\n", eps_metric)
+
     min_metric = pd.Series(
         [
             constraints["metric"]["metlimwid_" + str(m)]
@@ -298,6 +317,8 @@ async def optimize():
         ],
         index=evaluator.metrics,
     )
+    print("> min_metric\n", min_metric, "\n\n\n")
+
     max_amount = pd.Series(
         [
             constraints["invest"]["invlimwid_" + str(m)]
@@ -305,14 +326,17 @@ async def optimize():
         ],
         index=evaluator.categories,
     )
+
     total_amount = constraints["invest"]["invlimwid_x"]
     print("\nOptimization started.", datetime.now())
     print("> target_metric\n ", target_metric)
-    print("> min_metric\n ", min_metric)
+    print("> eps_metric\n ", eps_metric)
     print("> total_amount\n ", total_amount)
     optimum = optimizer.opt_slsqp(
-        metric=target_metric,
-        min_metric=min_metric,
+        target_metric,
+        sense = 'min',
+        # metric=target_metric,
+        eps_metric=eps_metric,
         max_amount=max_amount,
         total_amount=total_amount
         # , tol          = 1e-4
