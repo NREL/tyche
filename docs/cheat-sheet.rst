@@ -199,7 +199,7 @@ The *indices* dataset contains the numerical indexes (location within a list or 
   |              |            | * Output       |                                                                                          | 
   |              |            | * Metric       |                                                                                          |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
-  | Index        | String     | Any            | Name of the elements within each Type. For instance, names of elements in Input type of Designs dataset|
+  | Index        | String     | Any            | Name of the elements within each Type. For instance, names of elements in Input type     |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
   | Offset       | Integer    | $\geq$ 0       | Numerical location of the Index within each Type.                                        |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
