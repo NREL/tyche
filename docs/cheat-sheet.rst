@@ -30,8 +30,9 @@ The Tyche methodology:
 
 **To begin the quick start guide, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation**
 
+=====================
 Set up Tyche package
-~~~~~~~~~~~~~~~~~~~~
+=====================
 
 The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process for downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available to provide beginning templates for developing more complete models of technologies of interest at: (https://github.com/NREL/tyche/tree/dev/src/technology)
 
@@ -42,23 +43,23 @@ The following installs Anaconda (from which JupyterLab is used to run Tyche mode
 - Create the Tyche environment 
     * Type the following into the Anaconda Shell (under Anaconda in the Windows Start menu). 
     * For windows machines, do the following:
-    * In the Windows Start menu (left-most windows icon at the bottom of your screen) open the Anaconda folder and click on the Anaconda prompt.  A window will open showing: “(base) C:\users\xxx>”   Navigate to where your Tyche folder is, e.g., change directories to the tyche folder:  "(base) cd:\users\PersonName\tyche”, then install the tyche environment with:      
-    * ```conda env create --file conda\win.yml ``` 
-    * ```conda activate tyche```
-    * ```pip install mip```
+    * In the Windows Start menu (left-most windows icon at the bottom of your screen) open the Anaconda folder and click on the Anaconda prompt.  A window will open showing: ```(base) C:\users\xxx>```   Navigate to where your Tyche folder is, e.g., change directories to the tyche folder:  ```(base) cd:\users\PersonName\tyche```, then install the tyche environment with:      
+    * ``conda env create --file conda\win.yml``
+    * ``conda activate tyche``
+    * ``pip install mip``
     
-    For Mac use system terminal. 
-    * Mac OS:  ```conda env create --file conda\mac.yml ```
-    * ```conda activate tyche```
-    * ```pip install mip```
+- For Mac OS use system terminal. 
+
+    * ``conda env create --file conda\mac.yml``
+    * ``conda activate tyche``
+    * ``pip install mip``
 
 * These steps create a new environment in Anaconda for running Tyche files.  This can be seen by looking at Anaconda navigator (launch Anaconda navigator by clicking the Windows start button and going to the Anaconda folder and clicking on Anaconda Navigator) under “Environment” on the left-most panel.  It will show two names: “Base (root)” and “Tyche”.  The Tyche work will be done within the Tyche environment; in particular, note that the Windows Start menu showing the Anaconda file now includes a Jupyter Notebook (Tyche) icon to launch Jupyter to run Tyche. 
 * Run a Tyche Model.  To test the Tyche environment, click the Windows Start menu, go to the Anaconda folder, and click on the Jupyter Notebook (Tyche) program.  This will launch Jupyter Notebook (Tyche) in your default web browser.   
-* Build a Tyche Model.  This consists of xxxxx; Examples are provided below.  Models follow a particular format as specified in the Tyche documentation Release 0.xx.  The form of these Tyche models enables consistent approaches to evaluating technologies.
+* Build a Tyche Model.  This consists of **xxxxx**; Examples are provided below.  Models follow a particular format as specified in the Tyche documentation Release 0.xx.  The form of these Tyche models enables consistent approaches to evaluating technologies.
 * Develop Model Data.  Much model data will be well known and should be entered directly into the respective .csv files as described below.  Other model data is developed through expert elicitations.
 * Conduct Expert Elicitations to estimate potential technology cost and performance improvements for selected levels of R&D investment as well as to determine other needed data.
 * Input Expert Elicitation data into the Tyche model.
-* x
 
 Repository Organization
 ~~~~~~~~~~~~~~~~~~~~~~~
