@@ -116,4 +116,6 @@ In the R&D decision contexts represented and analyzed by Tyche, “technology”
 =======================
 Jupyter Notebook
 =======================
-
+- Describe Jupyter model and what it does
+- Describe Python model and what it does, bringing up to here the discussion from below
+Then describe the supporting data sets below
