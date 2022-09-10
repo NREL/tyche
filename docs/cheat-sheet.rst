@@ -71,7 +71,9 @@ The directory where users should store new technology models (.py files) and the
 The content of the folders and files follows:
 
 - Conda: This folder has four files: “mac.yml”, “nobuilds.yml”, “tiny.yml”, and “win.yml”.  The win.yml and mac.yml files are used to install Tyche in Windows and Mac machines, respectively, as described below.  The “nobuilds.yml” file is for xxxxx.  The “tiny.yml” file is for xxxx
+
 - Docs: This folder has a number of RST (reStructured Text markup language) files that describe different aspects of Tyche and its programs.  These are accessed through xxxxx.
+
    * SRC: This has three subfolders, as discussed below:
    * Eutychia: this folder has **xxxxxxx**
    * Technology: This folder has a subfolder for each Technology that is modeled in Tyche and also has a corresponding python (.py) file for that technology model directly under SRC.
