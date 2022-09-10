@@ -61,18 +61,19 @@ The following installs Anaconda (from which JupyterLab is used to run Tyche mode
 * Conduct Expert Elicitations to estimate potential technology cost and performance improvements for selected levels of R&D investment as well as to determine other needed data.
 * Input Expert Elicitation data into the Tyche model.
 
+=======================
 Repository Organization
-~~~~~~~~~~~~~~~~~~~~~~~
- 
+=======================
+
 The directory where users should store new technology models (.py files) and the accompanying datasets (discussed below) is indicated in blue. We recommend that users create sub-directories under technology for each new technology or decision context, to avoid confusing the various input datasets.
-<<Add figure>>
+**Add figure**
 
 The content of the folders and files follows:
 
 - Conda: This folder has four files: “mac.yml”, “nobuilds.yml”, “tiny.yml”, and “win.yml”.  The win.yml and mac.yml files are used to install Tyche in Windows and Mac machines, respectively, as described below.  The “nobuilds.yml” file is for xxxxx.  The “tiny.yml” file is for xxxx
 - Docs: This folder has a number of RST (reStructured Text markup language) files that describe different aspects of Tyche and its programs.  These are accessed through xxxxx.
    * SRC: This has three subfolders, as discussed below:
-   * Eutychia: this folder has xxxxxxx
+   * Eutychia: this folder has **xxxxxxx**
    * Technology: This folder has a subfolder for each Technology that is modeled in Tyche and also has a corresponding python (.py) file for that technology model directly under SRC.
 Within each Technology folder there is one Jupyter (.ipynb) file that models the technology and seven .csv files to provide data, as follow:
 
@@ -87,7 +88,7 @@ Within each Technology folder there is one Jupyter (.ipynb) file that models the
 
 Tyche: This folder has 10 python files which form the core of the Tyche model and should not be modified.  These do the following:
 
-- __init__: This is the Python initialization function.   The leading and trailing double underscores mean that this is a special method of the Python interpreter.
+- \_\_init\_\_: This is the Python initialization function.   The leading and trailing double underscores mean that this is a special method of the Python interpreter.
 -	DecisionGUI:
 -	Designs:
 -	Distributions:
@@ -98,7 +99,6 @@ Tyche: This folder has 10 python files which form the core of the Tyche model an
 -	Types:
 -	Waterfall:
 -	Each of these files is described in detail below
-
 
 Defining a Technology Model
 ---------------------------
