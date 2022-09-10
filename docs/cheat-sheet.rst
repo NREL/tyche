@@ -72,10 +72,10 @@ The content of the folders and files follows:
 
 - Conda: This folder has four files: “mac.yml”, “nobuilds.yml”, “tiny.yml”, and “win.yml”.  The win.yml and mac.yml files are used to install Tyche in Windows and Mac machines, respectively, as described below.  The “nobuilds.yml” file is for xxxxx.  The “tiny.yml” file is for xxxx
 
-- Docs: This folder has a number of RST (reStructured Text markup language) files that describe different aspects of Tyche and its programs.  These are accessed through xxxxx.
+- Docs: This folder has a number of RST (reStructured Text markup language) files that describe different aspects of Tyche and its programs.  These are accessed through **sphinx**.
 
    * SRC: This has three subfolders, as discussed below:
-   * Eutychia: this folder has **xxxxxxx**
+   * Eutychia: this folder has GUI version of Tyche.
    * Technology: This folder has a subfolder for each Technology that is modeled in Tyche and also has a corresponding python (.py) file for that technology model directly under SRC.
 Within each Technology folder there is one Jupyter (.ipynb) file that models the technology and seven .csv files to provide data, as follow:
 
@@ -102,11 +102,13 @@ Tyche: This folder has 10 python files which form the core of the Tyche model an
 -	Waterfall:
 -	Each of these files is described in detail below
 
+============================
 Defining a Technology Model
----------------------------
+============================
+
 
 What is a “technology”?
-~~~~~~~~~~~~~~~~~~~~~~~
+=======================
 
 In the R&D decision contexts represented and analyzed by Tyche, “technology” has a very broad definition. A technology converts input(s) to output(s) using capital equipment with a defined lifetime and incurs fixed and/or variable costs in doing so. A technology may be a manufacturing process, a biorefinery, an agricultural process, a renewable energy technology component such as a silicon wafer or an inverter, a renewable energy technology unit such as a wind turbine or solar panel, a renewable power plant system such as a concentrated solar power plant, and more. Within the R&D decision context, a technology is also subject to one or more research areas in which R&D investments can be made to change the technology and its economic, environmental, and other metrics of interest. Multiple technologies can be modeled and compared within the same decision context, provided the same metrics are calculable for each technology. Within Tyche, a technology is represented both physically and economically using a classic but simple and generalized techno-economic analysis (TEA). The TEA is based on a user defined technology model and accompanying datasets of technological and investment information.
 New Section
@@ -115,17 +117,22 @@ Describe Python model and what it does, bringing up to here the discussion from 
 Then describe the supporting data sets below
 
 
++++++++++++++++
 Input Datasets
---------------
++++++++++++++++
+
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
+
+===============
 Designs Dataset 
-~~~~~~~~~~~~~~~
+===============
 
 A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technologies and technology versions that may result from all R&D investment scenarios being considered in a decision context.
 
-The *designs* dataset contains information for one or more technologies being compared within an R&D investment decision context using Tyche. There will be multiple sets of data for each technology; each set represents the technology data that results from a specific R&D investment scenario.  Multiple R&D investment scenarios are typically used, each generating a different level of technology advance as determined through expert elicitation Tables 2 and 3 provide a data dictionary for the *designs* dataset.
+The *designs* dataset contains information for one or more technologies being compared within an R&D investment decision context using Tyche. There will be multiple sets of data for each technology; each set represents the technology data that results from a specific R&D investment scenario.  Multiple R&D investment scenarios are typically used, each generating a different level of technology advance as determined through expert elicitation Tables 1 and 2 provide a data dictionary for the *designs* dataset.
 
-The ”designs.csv” file within the technology folder under SRC describes the technologies that are considered in the Tyche model.  Table 1 describes the elements of the “designs.csv” file.  It points to the data for the technology subsystems and components in the “parameters.csv” file within the technology folder, described below.
+The *designs.csv* file within the technology folder under SRC describes the technologies that are considered in the Tyche model.  Table 1 describes the elements/column names of the *designs.csv* file.  It points to the data for the technology subsystems and components in the *parameters.csv* file within the technology folder, described below. Table 2 describes the variables to be included in the *Designs* table. 
+
 
 **Table 1:**
 
@@ -147,7 +154,7 @@ The ”designs.csv” file within the technology folder under SRC describes the 
   | Index        | String                                         | Any                                                                   | Name of the elements within each Variable.                                   |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
   | Value        | * Float                                        | * Set of real numbers                                                 | Value for the R&D investment scenario.                                       |
-  |              | * Distribution                                 | * *scipy.stats* distributions                                         | Example: st.triang(1,loc=5,scale=0.1)                               |
+  |              | * Distribution                                 | * *scipy.stats* distributions                                         | Example: st.triang(1,loc=5,scale=0.1)                                        |
   |              | * Mixture of distributions                     | * Mixture of *scipy.stats* distributions                              |                                                                              |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
   | Units        | String                                         | Any                                                                   | User defined units for Variables. Not used by Tyche.                         |                                                                                                  
@@ -155,7 +162,17 @@ The ”designs.csv” file within the technology folder under SRC describes the 
   | Notes        | String                                         | Any                                                                   | Description provided by user. Not used by Tyche.                             |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
 
-If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1.<Explain "irrelevant", "0 or 1"> Variables and their component Indexes are defined further in Table 2.
+
+If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1.Explain "irrelevant", "0 or 1" Variables and their component Indexes are defined further in Table 2.
+
+==========
+Questions
+==========
+
+**I  am unable to create the designs table. These are the questions that I am faced with when creating the designs table that are not being answered by the Cheat sheet**
+
+-  **I do not have any input output efficiency, lifetime, scale etc. Then should I put it as blank or None** ??
+-  **How to put in irrelevant information or not required information in the different columns**
 
 **Table 2:**
 
