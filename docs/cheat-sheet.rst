@@ -3,8 +3,6 @@ Tyche Quick Start Guide
 
 Introduction and Getting Started
 --------------------------------
-
-
 The following materials walk through:
 
 1.	what the Technology Characterization and Evaluation (Tyche ) tool does and why this is of value to the user; 
@@ -15,10 +13,8 @@ The following materials walk through:
 6.	building and running Tyche models of your technologies to evaluate the potential impacts of alternative R&D investment strategies.
 
 The Technology Characterization and Evaluation Tool
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The **Tyche** tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The Tyche tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
 
 The Tyche methodology: 
 
