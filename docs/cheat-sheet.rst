@@ -1,9 +1,11 @@
-""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""
 Tyche Quick Start Guide
-""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""
 
+++++++++++++++++++++++++++++++++++
 Introduction and Getting Started
---------------------------------
+++++++++++++++++++++++++++++++++++
+
 The following materials walk through:
 
 1.	what the Technology Characterization and Evaluation (Tyche ) tool does and why this is of value to the user; 
@@ -13,9 +15,11 @@ The following materials walk through:
 5.	an overview of the code and data files used; and
 6.	building and running Tyche models of your technologies to evaluate the potential impacts of alternative R&D investment strategies.
 
+++++++++++++++++++++++++++++++++++
 The Technology Characterization and Evaluation Tool
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The Tyche tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
+++++++++++++++++++++++++++++++++++
+
+The **Tyche** tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
 
 The Tyche methodology: 
 
@@ -24,8 +28,7 @@ The Tyche methodology:
 3. represents these estimates as probability distributions—typically triangular distributions as these are straightforward to develop through expert elicitations—within this model; and then 
 4. uses multi-objective stochastic optimization to determine the potential overall improvement in the technology, identify the R&D investments that have the greatest potential impact for improving technology attributes such as cost or environmental impact, and enables analysis of R&D options to meet decision-maker goals.
 
-<<<<To begin the quick start guide, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation>>>>  
-
+**To begin the quick start guide, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation**
 
 Set up Tyche package
 ~~~~~~~~~~~~~~~~~~~~
