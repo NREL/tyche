@@ -222,6 +222,8 @@ Technology model Python file
 
 The technology model is a Python file (.py) which is user defined and contains methods for calculating capital cost, fixed cost, production (the actual output amount), and any metrics of interest, using the content of the *designs* and *parameters* datasets. Table 4 describes methods that must be included in the technology model Python file. The names of the methods are user-defined and must match the contents of the *functions* dataset, discussed below. Additional methods can be included in the technology model, if necessary, but the methods in Table 4 are required. All return values for the required methods must be formatted as numpy “stacks” of values; for more information, see the numpy documentation. The returned value even if a single value needs to be returned as a numpy stack. The parameters for the functions as listed in Table 4 are also fixed and cannot be changed. 
 
+EDITS FROM SAM
+---------------------
 **Give that Numpy documentation is quite long (reference is 2000 pages; user manual is 500 pages), this is not very useful.  Need to briefly explain how these stacks are set up, how they are used, and why vectorization is so powerful here.**
 
 **<Def also for Discount(rate, time) and npv(rate, time)> NOT Required.**
