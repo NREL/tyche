@@ -114,19 +114,19 @@ In the R&D decision contexts represented and analyzed by Tyche, “technology”
 
 
 Jupyter Notebook
-
+========================================
 - Describe Jupyter model and what it does
 - Describe Python model and what it does, bringing up to here the discussion from below
 - Then describe the supporting data sets below
 
 
 Input Datasets
-
+========================================
 
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 
 Designs Dataset 
-
+------------------------
 
 A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technologies and technology versions that may result from all R&D investment scenarios being considered in a decision context.
 
@@ -168,7 +168,7 @@ If there are no elements within a Variable for the technology under study, the V
 
 
 Questions
-
+------------------------
 
 **I  am unable to create the designs table. These are the questions that I am faced with when creating the designs table that are not being answered by the Cheat sheet**
 
@@ -191,7 +191,7 @@ Questions
 
 
 Parameters Dataset
-
+------------------------
 The *parameters* dataset contains supplementary data required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics.
 
 **EDITS FROM SAM**
@@ -216,6 +216,7 @@ If the information in the *designs* dataset completely defines the technology an
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 
 Technology model Python file 
+------------------------------------------------
 **move to top and put below discussion of Jupyter model**
 
 
@@ -239,11 +240,11 @@ The technology model is a Python file (.py) which is user defined and contains m
 The production method can access the actual input amount, which is the ideal or raw input amount value multiplied by the input efficiency value (both defined in the *designs* dataset). In contrast, the metrics method can access both the ideal input amount (*input_raw*) and the actual input amount (*input*).
 
 Defining R&D Investments
-
+------------------------------------------------
 
 
 Tranches Dataset
-
+------------------------
 
 A *tranche* is a discrete unit of R&D investment (dollar amount) in a specific research category. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A *scenario* is a combination of tranches that represents one option for making R&D investments.
 
