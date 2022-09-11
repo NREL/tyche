@@ -191,8 +191,6 @@ Questions
   ==================== ================================================================================================================== ==========================================================================================================================================
 
 
-
-======================
 Parameters Dataset
 ======================
 
@@ -229,3 +227,16 @@ The technology model is a Python file (.py) which is user defined and contains m
 ***Give that Numpy documentation is quite long (reference is 2000 pages; user manual is 500 pages), this is not very useful.  Need to briefly explain how these stacks are set up, how they are used, and why vectorization is so powerful here.***
 
 *<Def also for Discount(rate, time) and npv(rate, time)> NOT Required. *
+
+**Table 4:** Methods required within the technology model Python file. Method names are user-defined and should match the contents of the functions dataset. Additional methods can be defined within the technology model as necessary._
+
+  ========================== ====================================================================================================== ==========================================================
+  Recommended Method Name    Parameters                                                                                             Returns                                                         
+  ========================== ====================================================================================================== ==========================================================
+  capital_cost                scale, parameter                                                                                       Capital cost(s) for each type of capital in the technology.     
+  fixed_cost                 scale, parameter                                                                                       Annual fixed cost(s) of operating the technology.               
+  production                 scale, capital, lifetime, fixed, input, parameter                                                      Calculated actual (not ideal) output amount(s).                 
+  metrics                    scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter    Calculated technology metric value(s).                          
+  ========================== ====================================================================================================== ==========================================================
+
+The production method can access the actual input amount, which is the ideal or raw input amount value multiplied by the input efficiency value (both defined in the *designs* dataset). In contrast, the metrics method can access both the ideal input amount (*input_raw*) and the actual input amount (*input*).
