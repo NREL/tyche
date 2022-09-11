@@ -246,7 +246,7 @@ Defining R&D Investments
 
 
 Tranches Dataset
-~~~~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++++
 
 A *tranche* is a discrete unit of R&D investment (dollar amount) in a specific research category. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A *scenario* is a combination of tranches that represents one option for making R&D investments.
 
