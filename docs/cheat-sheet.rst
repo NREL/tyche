@@ -375,6 +375,8 @@ If only one technology model is used within a decision context, then the *functi
 Results Dataset
 -----------------------
 
+ISSUE WITH MAKING RESULTS
+---------------------------------
 **What is mandatory what is not? I HAVE some ISSUEs while making the Results dataset. 
 Are the cost,outputs, metrics mandatory**
 
