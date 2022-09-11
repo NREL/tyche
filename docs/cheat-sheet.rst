@@ -196,3 +196,9 @@ Questions
 Parameters Dataset
 ======================
 
+The *parameters* dataset contains supplementary data required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics.
+> Input efficiency, Input, output efficiency can be considered data from the Designs file. 
+The *parameters* **dataset contains any ad hoc <better word than ad hoc? and what does this mean?> data, other than that <No And Designs does not have any data>   contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics**. 
+
+If the information in the *designs* dataset completely defines the technology and its metrics of interest, then the *parameters* dataset can be left blank except for the column names. Identically to the *designs* dataset, the *parameters* dataset contains multiple sets of data corresponding to different R&D investment scenarios. Columns for the Parameters.csv file is provided in Table 3. 
+
