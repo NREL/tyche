@@ -126,12 +126,3 @@ Input Datasets
 
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 
-===============
-Designs Dataset 
-===============
-
-A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technologies and technology versions that may result from all R&D investment scenarios being considered in a decision context.
-
-The *designs* dataset contains information for one or more technologies being compared within an R&D investment decision context using Tyche. There will be multiple sets of data for each technology; each set represents the technology data that results from a specific R&D investment scenario.  Multiple R&D investment scenarios are typically used, each generating a different level of technology advance as determined through expert elicitation Tables 1 and 2 provide a data dictionary for the *designs* dataset.
-
-The *designs.csv* file within the technology folder under SRC describes the technologies that are considered in the Tyche model.  Table 1 describes the elements/column names of the *designs.csv* file.  It points to the data for the technology subsystems and components in the *parameters.csv* file within the technology folder, described below. Table 2 describes the variables to be included in the *Designs* table. 
