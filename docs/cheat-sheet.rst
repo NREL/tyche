@@ -126,6 +126,67 @@ Input Datasets
 
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 
-
 Designs Dataset 
-======================
+===================
+
+A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technologies and technology versions that may result from all R&D investment scenarios being considered in a decision context.
+
+The *designs* dataset contains information for one or more technologies being compared within an R&D investment decision context using Tyche. There will be multiple sets of data for each technology; each set represents the technology data that results from a specific R&D investment scenario.  Multiple R&D investment scenarios are typically used, each generating a different level of technology advance as determined through expert elicitation Tables 1 and 2 provide a data dictionary for the *designs* dataset.
+
+The *designs.csv* file within the technology folder under SRC describes the technologies that are considered in the Tyche model.  Table 1 describes the elements/column names of the *designs.csv* file.  It points to the data for the technology subsystems and components in the *parameters.csv* file within the technology folder, described below. Table 2 describes the variables to be included in the *Designs* table. 
+
+
+**Table 1:**
+
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
+  | Column Name  | Data Type                                      | Allowed Values                                                        | Description                                                                  |
+  +==============+================================================+=======================================================================+==============================================================================+
+  | Technology   | String                                         | Any                                                                   | Name of the technology.                                                      |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
+  | Scenario     | String                                         | Any names are allowed. There must be at least two scenarios defined.  | R&D investment scenario that results in this technology design.              |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
+  | Variable     | String                                         | * Input                                                               | Variable types required by technology model and related functions.           |
+  |              |                                                | * Input efficiency                                                    |                                                                              |
+  |              |                                                | * Input price                                                         |                                                                              |
+  |              |                                                | * Output efficiency                                                   |                                                                              |
+  |              |                                                | * Output price                                                        |                                                                              |
+  |              |                                                | * Lifetime                                                            |                                                                              |
+  |              |                                                | * Scale                                                               |                                                                              |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
+  | Index        | String                                         | Any                                                                   | Name of the elements within each Variable.                                   |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
+  | Value        | * Float                                        | * Set of real numbers                                                 | Value for the R&D investment scenario.                                       |
+  |              | * Distribution                                 | * *scipy.stats* distributions                                         | Example: st.triang(1,loc=5,scale=0.1)                                        |
+  |              | * Mixture of distributions                     | * Mixture of *scipy.stats* distributions                              |                                                                              |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
+  | Units        | String                                         | Any                                                                   | User defined units for Variables. Not used by Tyche.                         |                                                                                                  
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
+  | Notes        | String                                         | Any                                                                   | Description provided by user. Not used by Tyche.                             |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
+
+
+If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1.Explain "irrelevant", "0 or 1" Variables and their component Indexes are defined further in Table 2.
+
+==========
+Questions
+==========
+
+**I  am unable to create the designs table. These are the questions that I am faced with when creating the designs table that are not being answered by the Cheat sheet**
+
+-  **I do not have any input output efficiency, lifetime, scale etc. Then should I put it as blank or None** ??
+-  **How to put in irrelevant information or not required information in the different columns**
+
+**Table 2:**
+
+  ==================== ================================================================================================================== ==========================================================================================================================================
+  Variable             Description                                                                                                        Index Description                                                                                                                            
+  ==================== ================================================================================================================== ==========================================================================================================================================
+  Input                Ideal input amounts that do not account for inefficiencies or losses.                                              Names of inputs to the technology.                                                                                                           
+  Input efficiency     Input inefficiencies or losses, expressed as a number between 0 and 1.                                             Names of inputs to the technology: every input with an amount must also have an efficiency value, even if the efficiency is 1.               
+  Input price          Purchase price for the input(s)                                                                                    Names of inputs to the technology.                                                                                                           
+  Output efficiency    Output efficiencies or losses, expressed as a number between 0 and 1.                                              Names of outputs from the technology. Every output must have an efficiency value, even if the efficiency is 1.                               
+  Output price         Sale price for the output(s).                                                                                      Names of outputs from the technology. Every output must have a price, even if the price is irrelevant (in which case, set the price to 0).   
+  Lifetime             Time that a piece of capital spends in use; time it takes for a piece of capital’s value to depreciate to zero.    Names of the capital components of the technology.                                                                                           
+  Scale                Scale at which the technology operates (one value for the technology).                                             No index.                                                                                                                                            
+  ==================== ================================================================================================================== ==========================================================================================================================================
+  
