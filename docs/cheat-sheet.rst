@@ -126,3 +126,7 @@ Input Datasets
 
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 
+
+=================
+Designs Dataset 
+=================
