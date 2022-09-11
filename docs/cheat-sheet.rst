@@ -32,7 +32,7 @@ The Tyche methodology:
 
 
 Set up Tyche package
-
+========================================
 
 The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process for downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available to provide beginning templates for developing more complete models of technologies of interest at: (https://github.com/NREL/tyche/tree/dev/src/technology)
 
@@ -63,7 +63,7 @@ The following installs Anaconda (from which JupyterLab is used to run Tyche mode
 
 
 Repository Organization
-
+========================================
 The directory where users should store new technology models (.py files) and the accompanying datasets (discussed below) is indicated in blue. We recommend that users create sub-directories under technology for each new technology or decision context, to avoid confusing the various input datasets.
 **Add figure**
 
@@ -103,7 +103,7 @@ Tyche: This folder has 10 python files which form the core of the Tyche model an
 
 
 Defining a Technology Model
-
+========================================
 
 
 What is a “technology”?
