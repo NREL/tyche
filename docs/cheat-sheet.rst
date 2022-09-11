@@ -242,7 +242,7 @@ EDITS FROM SAM
 The production method can access the actual input amount, which is the ideal or raw input amount value multiplied by the input efficiency value (both defined in the *designs* dataset). In contrast, the metrics method can access both the ideal input amount (*input_raw*) and the actual input amount (*input*).
 
 Defining R&D Investments
-------------------------------------------------
+=================================
 
 
 Tranches Dataset
@@ -251,3 +251,163 @@ Tranches Dataset
 A *tranche* is a discrete unit of R&D investment (dollar amount) in a specific research category. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A *scenario* is a combination of tranches that represents one option for making R&D investments.
 
 The *tranches* dataset defines the allowed set of R&D investments across the research categories that are relevant to the technology under study. Tranches are combined into investment Scenarios – the same Scenarios found in the *designs* and *parameters* datasets. The impact of each Scenario on the technology is highly uncertain and is quantified using expert elicitation. A data dictionary for the *tranches* dataset is given in Table 5.
+
+**Table 5:**
+
+  ============== ================================================= =============================================================================================================================================================================================
+  Column Name    Data Type                                         Description                                                                                                                                                                                     
+  ============== ================================================= =============================================================================================================================================================================================
+  Category       String                                            Names of the R&D categories in which investment can be made to impact the technology or technologies being studied.                                                                             
+  Tranche        String                                            Names of the tranches.                                                                                                                                                                          
+  Scenario       String                                            Names of the R&D investment scenarios, which combine tranches across R&D categories. The names in this column must correspond to the Scenarios listed in the designs and parameters datasets.  
+  Amount         Float; Distribution; Mixture of distributions     The R&D investment amount of the Tranche. The amount may be defined as a scalar, a probability distribution, or a mix of probability distributions.                                             
+  Notes          String                                            Additional user-defined information. Not used by Tyche.                                                                                                                                         
+  ============== ================================================= =============================================================================================================================================================================================
+
+Investment Dataset
+------------------------
+
+An *investment*, similar to a *scenario*, is a combination of tranches that represents a particular R&D strategy.
+
+The *investments* dataset provides a separate way to look at making R&D investments. Combining individual tranches allows users to explore and optimize R&D investment amounts, but it may be the case that there are specific strategies that users wish to explore, without optimizing. In this case, the *investments* dataset is used to define specific combinations of tranches that are of interest. A data dictionary for the *investments* dataset is given in Table 6.
+
+**Table 6:**
+
+  ============ ========== =====================================================================================================
+  Column Name  Data Type  Description                                                                                            
+  ============ ========== =====================================================================================================
+  Investment   String     Name of the R&D investment. Distinct from the Scenarios.                                               
+  Category     String     Names of the R&D categories being invested in. Within each row, the Category must match the Tranche.   
+  Tranche      String     Names of the tranches within the Investment. Within each row, the Tranche must match the Category
+  Notes        String     Additional user-defined information. Not used by Tyche.                                                
+  ============ ================================================================================================================
+
+Uncertainty in the Input Datasets
+=======================================
+
+Tyche provides two general use cases for exploring the relationship between R&D investments and technological changes, both of which rely on expert elicitation to quantify inherent uncertainty. In the first and likely more common use case, a user knows what the R&D investment options are for a technology or set of technologies and is interested in determining what impact these investment options have on the technology(ies) in order to decide how to allocate an R&D budget. In other words, in this use case the user already knows the contents of the *tranches* and *investments* datasets, which are deterministic (fixed), and uses expert elicitation to fill in key values in the *designs* and *parameters* datasets with probability distributions.
+
+In the second use case, a user knows what technological changes must be achieved with R&D investment and is interested in determining the investment amount that will be required to achieve these changes. In this case the user already knows the contents of the *designs* and *parameters* dataset, which are deterministic, and uses expert elicitation to fill in the investment amounts in the *tranches* dataset.
+
+It is critical to note that these use cases are **mutually exclusive**. Tyche cannot be used to evaluate a scenario in which desired technological changes as well as the investment amounts are both uncertain. What this means for the user is that probability distributions, or mixtures of distributions, can be used to specify values either in the *designs* and *parameters* datasets or in the *tranches* dataset, but not both. If distributions are used in all three datasets, the code will break by design.
+
+Defining values as probability distributions and mixtures
+------------------------------------------------------------------
+
+An uncertain value can be defined within a dataset using any of the built-in distributions of the [scipy.stats](https://docs.scipy.org/doc/scipy/reference/stats.html) package. A list of available distributions is provided at the hyperlink. Uncertain values can also be defined as a weighted average or mixture of probability distributions using the Tyche *mixture* method.
+
+## Additional Input Datasets
+
+
+### Indices Dataset
+
+
+The *indices* dataset contains the numerical indexes (location within a list or array) used to access content in the other datasets. Table 7 describes the columns required for the indices table. Numerical locations for parameters should not be listed in this dataset.
+
+
+
+**Table 7:**
+
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+
+  | Column Name  | Data Type  | Allowed Values | Description                                                                              |
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+
+  | Technology   | String     | Any            | Name of the technology                                                                   |
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
+  | Type         | String     | * Capital      | Names of the Types defined within the designs dataset.                                   |
+  |              |            | * Input        |                                                                                          |
+  |              |            | * Output       |                                                                                          | 
+  |              |            | * Metric       |                                                                                          |
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
+  | Index        | String     | Any            | Name of the elements within each Type. For instance, names of the Input types.           |
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
+  | Offset       | Integer    | $\geq$ 0       | Numerical location of the Index within each Type.                                        |
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
+  | Description  | String     | Any            | Additional user-defined information, such as units. Not used during Tyche calculations.  |
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
+  | Notes        | String     | Any            | Additional user-defined information. Not used during Tyche calculations.                 |
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
+
+All four Types must be listed in the *indices* dataset. If a particular Type is not relevant to the technology under study, it still must be included in this dataset.
+
+### Relationship between *indices* and other datasets
+
+* I  am unable to create the indices table. These are the questions that I am faced with when creating the indices table that are not being answered by the Cheat sheet*
+
+* Questions - *
+- * When I put in a type of capital, whose capital do we put in the index *
+- * I do not have any input or metric. Then should I put it as blank or None *
+- * How to put in irrelevant information or not required information in the different columns *
+- * Elements of Capital have an associated Lifetime. Does this mean that the elements in the Lifetime variable of designs dataset should be put in the indices table*
+- 
+
+A technology in the Tyche context is quantified using five sets of attribute values and one technology-level attribute value. The five sets of attribute values are Capital, Input, Output, Parameter, and Metric, and the technology-level attribute is Scale. Elements within each of the five sets are defined with an Index which simply names the element (for instance, Electricity might be one of the Index values within the Input set). Elements of Capital have an associated Lifetime. Elements of the Input set have an associated ideal amount (also called Input), an Input efficiency value, and an Input price. Elements of the Output set have only an Output efficiency and an Output price; the ideal output amounts are calculated from the technology model. Elements of the Metric set are named with an Index and are likewise calculated from the technology model. Elements of the Parameter set have only a value.
+
+The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set.
+
+### Functions Dataset
+
+The *functions* dataset is used internally by Tyche to locate the technology model file and identify the four required methods listed in Table 4. Table 8 provides a data dictionary for the *functions* dataset. Save as *functions.csv* file. 
+
+**Table 8:**
+
+  ============== ============ ================= ==========================================================================================================
+  Column Name    Data Type    Allowed Values    Description                                                                                                                                                                                                           
+  ============== ============ ================= ==========================================================================================================
+  Technology     String       Any               Name of the technology.                                                                                                                                                                                               
+  Style          String       numpy             See below for explanation.                                                                                
+  Module         String       Any               Filename of the technology model Python file, discussed below. Do not include the file extension.<This name must be the same as the Python file or the system will not run>         
+  Capital        String       Any               Name of the method within the technology model Python file that returns the calculated capital cost.      
+  Fixed          String       Any               Name of the method within the technology model Python file that returns the calculated fixed cost.        
+  Production     String       Any               Name of the method within the technology model Python file that returns the calculated output amount.     
+  Metrics        String       Any               Name of the method within the technology model Python file that returns the calculated technology metrics.
+  Notes          String       Any               Any information that the user needs to record can go here. Not used during Tyche calculations.            
+  ============== ============ ================= ==========================================================================================================
+
+The Style should remain `numpy` in Tyche 1.0. This indicates that inputs and outputs from the methods within the technology model Python file are treated as arrays rather than higher-dimensional (i.e., tensor) structures.  
+
+If only one technology model is used within a decision context, then the *functions* dataset will contain a single row.
+
+### Results Dataset
+
+
+*** What is mandatory what is not? I HAVE some ISSUEs while making the Results dataset. 
+Are the cost,outputs, metrics mandatory ***
+
+The *results* dataset lists the Tyche outcomes that are of interest within a decision context, organized into categories defined by the Variable column. This dataset is used internally by Tyche for organizing and labeling results tables for easier user comprehension. A data dictionary for the *results* dataset is given in Table 9.
+
+**Table 9:**
+
+  +-------------+------------+----------------+----------------------------------------------------------------------------------------+
+  | Column Name | Data Type  | Allowed Values | Description                                                                            |
+  +-------------+------------+----------------+----------------------------------------------------------------------------------------+
+  | Technology  | String     | Any            | Name of the technology.                                                                |
+  +-------------+------------+----------------+----------------------------------------------------------------------------------------+
+  | Variable    | String     | * Cost         | Specific technology outcomes calculated by Tyche.                                      |
+  |             |            | * Output       |                                                                                        |
+  |             |            | * Metric       |                                                                                        |
+  +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
+  | Index       | String     | Any            | Names of the elements within each Variable.                                            |
+  +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
+  | Units       | String     | Any            | User-defined units of the Index values. Not used or checked during Tyche calculations. |
+  +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
+  | Notes       | String     | Any            | Additional information defined by the user. Not used during Tyche calculations.        |
+  +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
+
+The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* dataset.
+** I am unable to understand how to fill up the index column for the different variable types. I have never described an index for cost, nor for output, neither for metric. Although I do know what metrics I defined in my technology model. **
+
+### Modeling in Tyche
+
+Example case study 1- Consider a PV system. It consists of a set of PV modules that convert sunlight into direct current power, an inverter that transforms the dc of the PV module into ac for the power line, and all the supporting infrastructure and installation costs.  This system We will also use this example to explain this tutorial.  This is a typical example which showcases Tyche usage. 
+
+The technology model describes a process physically and economically (A classic but simple and generalized Techno-economic analysis) 
+
+   * Converts inputs to outputs based on user defined technology model and ad-hoc parameters. 
+   * The user defined model can integrate uncertainty in the input variables and parameters in the form of distribution. (For example, triangular distributions can be put as inputs for parameters or variables to incorporate uncertainty)
+   * Requirement and data location for technology model is explained in Table 1. 
+
+DESCRIBE the PV or other system here in detail and how to modify it to fit the user’s needs.  This should be a large section to include the description of all the steps needed….   
+
+
+
+
