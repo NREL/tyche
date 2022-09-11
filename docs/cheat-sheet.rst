@@ -17,7 +17,7 @@ The following materials walk through:
 
 
 The Technology Characterization and Evaluation Tool
-
+============================================================================
 
 The **Tyche** tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
 
