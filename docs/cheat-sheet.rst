@@ -198,8 +198,34 @@ Parameters Dataset
 
 The *parameters* dataset contains supplementary data required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics.
 
-`Input efficiency, Input, output efficiency can be considered data from the Designs file.`
-`The *parameters* **dataset contains any ad hoc <better word than ad hoc? and what does this mean?> data, other than that <No And Designs does not have any data>   contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics**.`
+**EDITS FROM SAM**
+**Input efficiency, Input, output efficiency can be considered data from the Designs file. 
+The *parameters* **dataset contains any ad hoc <better word than ad hoc? and what does this mean?> data, other than that <No And Designs does not have any data>   contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics**. 
 
 If the information in the *designs* dataset completely defines the technology and its metrics of interest, then the *parameters* dataset can be left blank except for the column names. Identically to the *designs* dataset, the *parameters* dataset contains multiple sets of data corresponding to different R&D investment scenarios. Columns for the Parameters.csv file is provided in Table 3. 
 
+
+  ============== ================================================= ==================================================================================================================================================================
+  Column Name    Data type                                         Description                                                                                                                                                          
+  ============== ================================================= ==================================================================================================================================================================
+  Technology     String                                            Name of the technology.                                                                                                                                              
+  Scenario       String                                            Name of the R&D investment scenario that resulted in the corresponding parameter values or distributions.                                                            
+  Parameter      String                                            Name of the parameter.                                                                                                                                               
+  Offset         String                                            Numerical location of the parameter in the parameter vector.                                                                                                                                 
+  Value          Float; Distribution; Mixture of distributions     Parameter value for the R&D investment scenario. Example: st.triang(1,loc=5,scale=0.1)   
+  Units          String                                            Parameter units. User defined; not used or checked during Tyche calculations.                                                                                        
+  Notes          String                                            Any additional information defined by the user. Not used during Tyche calculations.                                                                                  
+  ============== ================================================= ==================================================================================================================================================================
+  
+Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
+
+Technology model Python file 
+=================================
+**move to top and put below discussion of Jupyter model**
+
+
+The technology model is a Python file (.py) which is user defined and contains methods for calculating capital cost, fixed cost, production (the actual output amount), and any metrics of interest, using the content of the *designs* and *parameters* datasets. Table 4 describes methods that must be included in the technology model Python file. The names of the methods are user-defined and must match the contents of the *functions* dataset, discussed below. Additional methods can be included in the technology model, if necessary, but the methods in Table 4 are required. All return values for the required methods must be formatted as numpy “stacks” of values; for more information, see the numpy documentation. The returned value even if a single value needs to be returned as a numpy stack. The parameters for the functions as listed in Table 4 are also fixed and cannot be changed. 
+
+***Give that Numpy documentation is quite long (reference is 2000 pages; user manual is 500 pages), this is not very useful.  Need to briefly explain how these stacks are set up, how they are used, and why vectorization is so powerful here.***
+
+*<Def also for Discount(rate, time) and npv(rate, time)> NOT Required. *
