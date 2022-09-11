@@ -216,6 +216,11 @@ If the information in the *designs* dataset completely defines the technology an
   
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 
+QUestions and issues
+------------------------
+- I do not have any parameters What do I do with parameters file
+- I created an empty file and it failed. 
+
 Technology model Python file 
 ------------------------------------------------
 **move to top and put below discussion of Jupyter model**
