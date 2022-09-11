@@ -194,7 +194,8 @@ Parameters Dataset
 ------------------------
 The *parameters* dataset contains supplementary data required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics.
 
-**EDITS FROM SAM**
+EDITS FROM SAM
+---------------------
 **Input efficiency, Input, output efficiency can be considered data from the Designs file. 
 The *parameters* **dataset contains any ad hoc <better word than ad hoc? and what does this mean?> data, other than that <No And Designs does not have any data>   contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics**. 
 
@@ -347,7 +348,8 @@ A technology in the Tyche context is quantified using five sets of attribute val
 
 The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set.
 
-### Functions Dataset
+Functions Dataset
+-------------------------
 
 The *functions* dataset is used internally by Tyche to locate the technology model file and identify the four required methods listed in Table 4. Table 8 provides a data dictionary for the *functions* dataset. Save as *functions.csv* file. 
 
@@ -370,11 +372,11 @@ The Style should remain `numpy` in Tyche 1.0. This indicates that inputs and out
 
 If only one technology model is used within a decision context, then the *functions* dataset will contain a single row.
 
-### Results Dataset
+Results Dataset
+-----------------------
 
-
-*** What is mandatory what is not? I HAVE some ISSUEs while making the Results dataset. 
-Are the cost,outputs, metrics mandatory ***
+**What is mandatory what is not? I HAVE some ISSUEs while making the Results dataset. 
+Are the cost,outputs, metrics mandatory**
 
 The *results* dataset lists the Tyche outcomes that are of interest within a decision context, organized into categories defined by the Variable column. This dataset is used internally by Tyche for organizing and labeling results tables for easier user comprehension. A data dictionary for the *results* dataset is given in Table 9.
 
@@ -399,7 +401,8 @@ The *results* dataset lists the Tyche outcomes that are of interest within a dec
 The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* dataset.
 ** I am unable to understand how to fill up the index column for the different variable types. I have never described an index for cost, nor for output, neither for metric. Although I do know what metrics I defined in my technology model. **
 
-### Modeling in Tyche
+Modeling in Tyche
+-----------------------
 
 Example case study 1- Consider a PV system. It consists of a set of PV modules that convert sunlight into direct current power, an inverter that transforms the dc of the PV module into ac for the power line, and all the supporting infrastructure and installation costs.  This system We will also use this example to explain this tutorial.  This is a typical example which showcases Tyche usage. 
 
