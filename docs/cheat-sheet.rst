@@ -296,11 +296,11 @@ Defining values as probability distributions and mixtures
 
 An uncertain value can be defined within a dataset using any of the built-in distributions of the [scipy.stats](https://docs.scipy.org/doc/scipy/reference/stats.html) package. A list of available distributions is provided at the hyperlink. Uncertain values can also be defined as a weighted average or mixture of probability distributions using the Tyche *mixture* method.
 
-## Additional Input Datasets
+Additional Input Datasets
+===================================
 
-
-### Indices Dataset
-
+Indices Dataset
+-------------------------
 
 The *indices* dataset contains the numerical indexes (location within a list or array) used to access content in the other datasets. Table 7 describes the columns required for the indices table. Numerical locations for parameters should not be listed in this dataset.
 
@@ -329,15 +329,18 @@ The *indices* dataset contains the numerical indexes (location within a list or 
 
 All four Types must be listed in the *indices* dataset. If a particular Type is not relevant to the technology under study, it still must be included in this dataset.
 
-### Relationship between *indices* and other datasets
+Relationship between *indices* and other datasets
+---------------------------------------------------------------------------
 
-* I  am unable to create the indices table. These are the questions that I am faced with when creating the indices table that are not being answered by the Cheat sheet*
+ISSUE
+-------------------------
+**I  am unable to create the indices table. These are the questions that I am faced with when creating the indices table that are not being answered by the Cheat sheet**
 
-* Questions - *
-- * When I put in a type of capital, whose capital do we put in the index *
-- * I do not have any input or metric. Then should I put it as blank or None *
-- * How to put in irrelevant information or not required information in the different columns *
-- * Elements of Capital have an associated Lifetime. Does this mean that the elements in the Lifetime variable of designs dataset should be put in the indices table*
+**Questions -**
+- **When I put in a type of capital, whose capital do we put in the index**
+- **I do not have any input or metric. Then should I put it as blank or None**
+- **How to put in irrelevant information or not required information in the different columns**
+- **Elements of Capital have an associated Lifetime. Does this mean that the elements in the Lifetime variable of designs dataset should be put in the indices table**
 - 
 
 A technology in the Tyche context is quantified using five sets of attribute values and one technology-level attribute value. The five sets of attribute values are Capital, Input, Output, Parameter, and Metric, and the technology-level attribute is Scale. Elements within each of the five sets are defined with an Index which simply names the element (for instance, Electricity might be one of the Index values within the Input set). Elements of Capital have an associated Lifetime. Elements of the Input set have an associated ideal amount (also called Input), an Input efficiency value, and an Input price. Elements of the Output set have only an Output efficiency and an Output price; the ideal output amounts are calculated from the technology model. Elements of the Metric set are named with an Index and are likewise calculated from the technology model. Elements of the Parameter set have only a value.
