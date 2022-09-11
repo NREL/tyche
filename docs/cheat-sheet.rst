@@ -1,10 +1,10 @@
 
 Tyche Quick Start Guide
-
+++++++++++++++++++++++++++++++
 
 
 Introduction and Getting Started
-
+======================================
 
 The following materials walk through:
 
