@@ -1,10 +1,10 @@
-"""""""""""""""""""""""""""""""
-Tyche Quick Start Guide
-"""""""""""""""""""""""""""""""
 
-++++++++++++++++++++++++++++++++++
+Tyche Quick Start Guide
+
+
+
 Introduction and Getting Started
-++++++++++++++++++++++++++++++++++
+
 
 The following materials walk through:
 
@@ -15,9 +15,9 @@ The following materials walk through:
 5.	an overview of the code and data files used; and
 6.	building and running Tyche models of your technologies to evaluate the potential impacts of alternative R&D investment strategies.
 
-++++++++++++++++++++++++++++++++++
+
 The Technology Characterization and Evaluation Tool
-++++++++++++++++++++++++++++++++++
+
 
 The **Tyche** tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
 
@@ -30,9 +30,9 @@ The Tyche methodology:
 
 **To begin the quick start guide, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation**
 
-++++++++++++++++++++++++++++++
+
 Set up Tyche package
-++++++++++++++++++++++++++++++
+
 
 The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process for downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available to provide beginning templates for developing more complete models of technologies of interest at: (https://github.com/NREL/tyche/tree/dev/src/technology)
 
@@ -61,9 +61,9 @@ The following installs Anaconda (from which JupyterLab is used to run Tyche mode
 * Conduct Expert Elicitations to estimate potential technology cost and performance improvements for selected levels of R&D investment as well as to determine other needed data.
 * Input Expert Elicitation data into the Tyche model.
 
-++++++++++++++++++++++++++++++
+
 Repository Organization
-++++++++++++++++++++++++++++++
+
 The directory where users should store new technology models (.py files) and the accompanying datasets (discussed below) is indicated in blue. We recommend that users create sub-directories under technology for each new technology or decision context, to avoid confusing the various input datasets.
 **Add figure**
 
@@ -101,33 +101,32 @@ Tyche: This folder has 10 python files which form the core of the Tyche model an
 -	Waterfall:
 -	Each of these files is described in detail below
 
-++++++++++++++++++++++++++++++
+
 Defining a Technology Model
-++++++++++++++++++++++++++++++
+
 
 
 What is a “technology”?
-=======================
+
 
 In the R&D decision contexts represented and analyzed by Tyche, “technology” has a very broad definition. A technology converts input(s) to output(s) using capital equipment with a defined lifetime and incurs fixed and/or variable costs in doing so. A technology may be a manufacturing process, a biorefinery, an agricultural process, a renewable energy technology component such as a silicon wafer or an inverter, a renewable energy technology unit such as a wind turbine or solar panel, a renewable power plant system such as a concentrated solar power plant, and more. Within the R&D decision context, a technology is also subject to one or more research areas in which R&D investments can be made to change the technology and its economic, environmental, and other metrics of interest. Multiple technologies can be modeled and compared within the same decision context, provided the same metrics are calculable for each technology. Within Tyche, a technology is represented both physically and economically using a classic but simple and generalized techno-economic analysis (TEA). The TEA is based on a user defined technology model and accompanying datasets of technological and investment information.
 
 
-++++++++++++++++++++++++++++++
+
 Jupyter Notebook
-++++++++++++++++++++++++++++++
+
 - Describe Jupyter model and what it does
 - Describe Python model and what it does, bringing up to here the discussion from below
 - Then describe the supporting data sets below
 
 
-+++++++++++++++
 Input Datasets
-+++++++++++++++
+
 
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 
 Designs Dataset 
-===================
+
 
 A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technologies and technology versions that may result from all R&D investment scenarios being considered in a decision context.
 
@@ -167,9 +166,9 @@ The *designs.csv* file within the technology folder under SRC describes the tech
 
 If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1.Explain "irrelevant", "0 or 1" Variables and their component Indexes are defined further in Table 2.
 
-==========
+
 Questions
-==========
+
 
 **I  am unable to create the designs table. These are the questions that I am faced with when creating the designs table that are not being answered by the Cheat sheet**
 
@@ -192,7 +191,6 @@ Questions
 
 
 Parameters Dataset
-======================
 
 The *parameters* dataset contains supplementary data required to calculate a technology’s capital cost, fixed cost, production (actual output amount(s)), and metrics.
 
@@ -242,11 +240,11 @@ The technology model is a Python file (.py) which is user defined and contains m
 The production method can access the actual input amount, which is the ideal or raw input amount value multiplied by the input efficiency value (both defined in the *designs* dataset). In contrast, the metrics method can access both the ideal input amount (*input_raw*) and the actual input amount (*input*).
 
 Defining R&D Investments
-=============================
+
 
 
 Tranches Dataset
-+++++++++++++++++++++
+
 
 A *tranche* is a discrete unit of R&D investment (dollar amount) in a specific research category. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A *scenario* is a combination of tranches that represents one option for making R&D investments.
 
