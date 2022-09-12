@@ -118,6 +118,7 @@ class Designs:
   def __init__(
     self                         ,
     path       = None            ,
+    uncertain  = True           ,
     indices    = "indices.csv"   ,
     functions  = "functions.csv" ,
     designs    = "designs.csv"   ,
@@ -129,6 +130,8 @@ class Designs:
     ----------
     path : str
       Location of the data files.
+    uncertain : Boolean
+      Flag indicating whether probability distributions are present in the *designs* or *parameters* tables.
     indices : str
       Filename for the *indices* table.
     functions : str
@@ -140,7 +143,7 @@ class Designs:
     results : str
       Filename for the *results* table.
     """
-
+    self.uncertain = uncertain
     if path == None:
       self._make()
     else:
@@ -243,15 +246,30 @@ class Designs:
         (offsets.shape[0], scenario_count)
       )
 
-    return Inputs(
-      scale             = sampler(scales["Distribution"].values                 , sample_count),
-      lifetime          = sampler(join(lifetimes          , all_indices.capital), sample_count),
-      input             = sampler(join(inputs             , all_indices.input  ), sample_count),
-      input_efficiency  = sampler(join(input_efficiencies , all_indices.input  ), sample_count),
-      input_price       = sampler(join(input_prices       , all_indices.input  ), sample_count),
-      output_efficiency = sampler(join(output_efficiencies, all_indices.output ), sample_count),
-      output_price      = sampler(join(output_prices      , all_indices.output ), sample_count),
-    )
+    # If the technology model has probability distributions, sample them
+    if self.uncertain:
+      return Inputs(
+        scale             = sampler(scales["Distribution"].values                 , sample_count),
+        lifetime          = sampler(join(lifetimes          , all_indices.capital), sample_count),
+        input             = sampler(join(inputs             , all_indices.input  ), sample_count),
+        input_efficiency  = sampler(join(input_efficiencies , all_indices.input  ), sample_count),
+        input_price       = sampler(join(input_prices       , all_indices.input  ), sample_count),
+        output_efficiency = sampler(join(output_efficiencies, all_indices.output ), sample_count),
+        output_price      = sampler(join(output_prices      , all_indices.output ), sample_count),
+      )
+    else:
+      # Otherwise, just sample once to get floats and then duplicate the data for later merging
+      # with the tranche samples
+      return Inputs(
+        scale             = np.tile(sampler(scales["Distribution"].values                 , 1), sample_count),
+        lifetime          = np.tile(sampler(join(lifetimes          , all_indices.capital), 1), sample_count),
+        input             = np.tile(sampler(join(inputs             , all_indices.input  ), 1), sample_count),
+        input_efficiency  = np.tile(sampler(join(input_efficiencies , all_indices.input  ), 1), sample_count),
+        input_price       = np.tile(sampler(join(input_prices       , all_indices.input  ), 1), sample_count),
+        output_efficiency = np.tile(sampler(join(output_efficiencies, all_indices.output ), 1), sample_count),
+        output_price      = np.tile(sampler(join(output_prices      , all_indices.output ), 1), sample_count),
+      )
+
   
   def vectorize_parameters(self, technology, scenario_count, sample_count=1):
     """
@@ -315,7 +333,7 @@ class Designs:
     
     design    = self.vectorize_designs(   technology, n, sample_count)
     parameter = self.vectorize_parameters(technology, n, sample_count)
-    
+
     capital_cost = f_capital(design.scale, parameter)
     fixed_cost   = f_fixed  (design.scale, parameter)
 

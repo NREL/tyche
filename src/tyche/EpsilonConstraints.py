@@ -12,14 +12,7 @@ from scipy.optimize import NonlinearConstraint
 
 from mip import Model, MAXIMIZE, MINIMIZE, BINARY, xsum
 
-Optimum = namedtuple(
-  "Optimum",
-  ["exit_code", "exit_message", "amounts", "metrics", "solve_time", "opt_sense"]
-)
-"""
-Named tuple type for optimization results.
-"""
-
+from .Types import Optimum
 
 class EpsilonConstraintOptimizer:
   """

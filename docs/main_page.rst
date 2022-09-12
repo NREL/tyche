@@ -9,7 +9,8 @@ This documentation summarizes work in progress on R&D Portfolio Analysis and Eva
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
-
+   
+   cheat-sheet
    approach
    formulation
    example-electrolysis
@@ -22,7 +23,6 @@ This documentation summarizes work in progress on R&D Portfolio Analysis and Eva
    ioc-1
    deployment
    getting-started
-
    modules
 
 

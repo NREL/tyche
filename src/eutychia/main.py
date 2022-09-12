@@ -23,6 +23,7 @@ from io import BytesIO
 from matplotlib.figure import Figure
 
 
+
 if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
@@ -49,15 +50,24 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
-  evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
-
+  evaluator = ty.Evaluator(tranche_results)
+  
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+  optimizer.optimum_metrics(
+      verbose = 0,
+      sense = {
+          'GHG': 'min',
+          'LCOE': 'min',
+          'Labor': 'max',
+      }
+  )
 
   metric_range = evaluator.min_metric.join(
       evaluator.max_metric,
       lsuffix=" Min",
       rsuffix=" Max",
   )
+  print("> metric_range:\n", metric_range)
 
 
 # Session-level storage.
@@ -186,7 +196,7 @@ async def plot():
     
     y0 = min(0, metric_range.loc[m, "Value Min"])
     y1 = max(0, metric_range.loc[m, "Value Max"])
-    dy = (y1 - y0) / 20
+    dy = (y1 - y0) / 10
 
     # ----- GRID ---------------------------------------------------------------------------
     if typ in ["box plot", "distribution", "violin"]:
@@ -200,13 +210,15 @@ async def plot():
             if c == "all":  sb.kdeplot(ax=ax, data=values, x='Value', hue='Category', multiple='stack')
             else:           sb.kdeplot(ax=ax, data=values, x='Value')
 
+        sb.set_style({"xtick.direction": "in","ytick.direction": "in"})
+
         ax.set(
             xlabel="", ylabel="",
             yticks=[],
             yticklabels=[],
             xticks=[],
             xticklabels=[],
-            # xlim=(y0-dy, y1+dy),
+            xlim=(y0-dy, y1+dy),
         )
 
     # ----- HEATMAP ------------------------------------------------------------------------
@@ -233,13 +245,13 @@ async def plot():
                 fmt=".4g",
             )
         
-        ax.set(
-            xlabel="", ylabel="",
-            xticks=[], yticks=[],
-            xticklabels=[], yticklabels=[],
-        )
+        # ax.set(
+        #     xlabel="", ylabel="",
+        #     # xticks=[], yticks=[],
+        #     # xticklabels=[], yticklabels=[],
+        # )
 
-    # figure.set_tight_layout(True)
+    figure.set_tight_layout(True)
 
     # Save locally -- for prototyping.
     #   localpath = os.path.join("assets","plots",localdir,(str(m) + "_" + str(c).split()[0] + ".png").lower())
@@ -300,15 +312,17 @@ async def optimize():
             'sense': senseToMetric[constraints["sense"]["metsense_" + str(m)]],
         } for m in range(len(evaluator.metrics)) if m!=target_m
     }
-    print("> eps_metric\n", eps_metric)
+    # print("> eps_metric\n", eps_metric)
 
-    min_metric = pd.Series(
-        [
-            constraints["metric"]["metlimwid_" + str(m)]
-            for m in range(len(evaluator.metrics))
-        ],
-        index=evaluator.metrics,
-    )
+    # min_metric = pd.Series(
+    #     [
+    #         constraints["metric"]["metlimwid_" + str(m)]
+    #         for m in range(len(evaluator.metrics))
+    #     ],
+    #     index=evaluator.metrics,
+    # )
+    # print("> min_metric\n", min_metric, "\n\n\n")
+
     max_amount = pd.Series(
         [
             constraints["invest"]["invlimwid_" + str(m)]
@@ -316,15 +330,17 @@ async def optimize():
         ],
         index=evaluator.categories,
     )
+
     total_amount = constraints["invest"]["invlimwid_x"]
     print("\nOptimization started.", datetime.now())
     print("> target_metric\n ", target_metric)
-    print("> eps_metric\n ", min_metric)
+    print("> eps_metric\n ", eps_metric)
     print("> total_amount\n ", total_amount)
     optimum = optimizer.opt_slsqp(
-        metric=target_metric,
+        target_metric,
+        sense = constraints['sense']['metsense_' + str(target_m)],
+        # metric=target_metric,
         eps_metric=eps_metric,
-        # min_metric=min_metric,
         max_amount=max_amount,
         total_amount=total_amount
         # , tol          = 1e-4
