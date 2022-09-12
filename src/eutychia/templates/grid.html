@@ -26,7 +26,7 @@
             </div>
             <div>
                 <h3>Optimize</h3>
-                <span>Select optimization metric</span>
+                <span>Select metric to optimize.</span>
                 <!-- <br /> -->
                 <select id="optimize_metric">
                     {% for metric in metrics.index %}
@@ -66,35 +66,29 @@
                 <br />
                 <span>[{{ units.values[met] }}]</span>
                 <br />
-                <!-- metric sense (visual) -->
-                <label class="container">min
-                    <input id="metsense_{{met}}" class="metsense"
-                        type="checkbox"
-                        checked
-                        disabled
-                    >
-                <!-- </input> -->
-                </label>
-
-                <!-- <label class="container">min
-                    <input type="checkbox" checked>
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container">max
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label> -->
                 <!-- metric slider (visual) -->
                 <input id="metlimwid_{{met}}" class="metlimwid" type="range"
                     min="{{ - metrics.iloc[met]['Value Max'] }}"
                     max="{{ - metrics.iloc[met]['Value Min'] }}"
                     step="{{ (metrics.iloc[met]['Value Max'] - metrics.iloc[met]['Value Min']) / 100 }}"
-                    value="{{ - metrics.iloc[met]['Value Min'] }}"
+                    value="{{ - (metrics.iloc[met]['Value Max'] + metrics.iloc[met]['Value Min']) / 2 }}"
                     onchange="updateMetric(event.target)"
                     disabled />
                 <br />
+                <!-- metric sense (visual) -->
+                <select id="metsense_{{met}}" class="metsense" disabled>
+                    <option value="min">Upper</option>
+                    <option value="max">Lower</option>
+                </select>
+                <!-- <label class="container">min
+                    <input id="metsense_{{met}}" class="metsense"
+                        type="checkbox"
+                        checked
+                        disabled
+                    >
+                </label> -->
                 <!-- metric slider (numeric) -->
-                <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">Required: 0</label>
+                <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">bound: 0</label>
             </div>
             {% endfor %}
         </div>

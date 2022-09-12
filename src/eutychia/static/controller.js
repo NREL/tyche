@@ -198,7 +198,8 @@ function x2y(target, x, y) {
     , invest : {}
     }
     forEachByClassName("invlimwid", target => constraints.invest[target.id] = Number(target.value))
-    forEachByClassName("metsense", target => constraints.sense[target.id] = Boolean(target.checked) ? 'min' : 'max')
+    // forEachByClassName("metsense", target => constraints.sense[target.id] = Boolean(target.checked) ? 'min' : 'max')
+    forEachByClassName("metsense", target => constraints.sense[target.id] = target.value)
     forEachByClassName("metlimwid", target => constraints.metric[target.id] = - Number(target.value))
     postRequest(
       "/optimize"
