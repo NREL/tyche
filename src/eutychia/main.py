@@ -38,6 +38,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   print(technology_path)
   print(type(app.config))
 
+  senseToMetric = {'min':'upper', 'max':'lower'}
+
   # Compute investments.
 
   investments = ty.Investments(app.config["INVESTMENTS"])
@@ -286,8 +288,20 @@ async def optimize():
     ident = qt.session["ID"]
     evaluation = session_evaluation[ident]
     form = await qt.request.form
-    target_metric = evaluator.metrics[int(form["target"])]
+
+    target_m = int(form["target"])
+    target_metric = evaluator.metrics[target_m]
     constraints = json.loads(form["constraints"])
+
+    eps_metric = {
+        evaluator.metrics[m]: {
+            'limit': constraints["metric"]["metlimwid_" + str(m)],
+            # 'sense': 'upper'
+            'sense': senseToMetric[constraints["sense"]["metsense_" + str(m)]],
+        } for m in range(len(evaluator.metrics)) if m!=target_m
+    }
+    print("> eps_metric\n", eps_metric)
+
     min_metric = pd.Series(
         [
             constraints["metric"]["metlimwid_" + str(m)]
@@ -305,11 +319,12 @@ async def optimize():
     total_amount = constraints["invest"]["invlimwid_x"]
     print("\nOptimization started.", datetime.now())
     print("> target_metric\n ", target_metric)
-    print("> min_metric\n ", min_metric)
+    print("> eps_metric\n ", min_metric)
     print("> total_amount\n ", total_amount)
     optimum = optimizer.opt_slsqp(
         metric=target_metric,
-        min_metric=min_metric,
+        eps_metric=eps_metric,
+        # min_metric=min_metric,
         max_amount=max_amount,
         total_amount=total_amount
         # , tol          = 1e-4
