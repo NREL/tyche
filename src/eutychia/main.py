@@ -39,6 +39,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   print(technology_path)
   print(type(app.config))
 
+  senseToMetric = {'min':'upper', 'max':'lower'}
+
   # Compute investments.
 
   investments = ty.Investments(app.config["INVESTMENTS"])
@@ -298,26 +300,31 @@ async def optimize():
     ident = qt.session["ID"]
     evaluation = session_evaluation[ident]
     form = await qt.request.form
-    target_metric = evaluator.metrics[int(form["target"])]
+
+    target_m = int(form["target"])
+    target_metric = evaluator.metrics[target_m]
     constraints = json.loads(form["constraints"])
     print("> constraints\n", constraints)
+    
+    # print("> target\n", form["target"])
 
     eps_metric = {
         evaluator.metrics[m]: {
             'limit': constraints["metric"]["metlimwid_" + str(m)],
-            'sense': 'upper',
-        } for m in range(len(evaluator.metrics)) if evaluator.metrics[m]!=target_metric
+            # 'sense': 'upper'
+            'sense': senseToMetric[constraints["sense"]["metsense_" + str(m)]],
+        } for m in range(len(evaluator.metrics)) if m!=target_m
     }
     print("> eps_metric\n", eps_metric)
 
-    min_metric = pd.Series(
-        [
-            constraints["metric"]["metlimwid_" + str(m)]
-            for m in range(len(evaluator.metrics))
-        ],
-        index=evaluator.metrics,
-    )
-    print("> min_metric\n", min_metric, "\n\n\n")
+    # min_metric = pd.Series(
+    #     [
+    #         constraints["metric"]["metlimwid_" + str(m)]
+    #         for m in range(len(evaluator.metrics))
+    #     ],
+    #     index=evaluator.metrics,
+    # )
+    # print("> min_metric\n", min_metric, "\n\n\n")
 
     max_amount = pd.Series(
         [
@@ -334,7 +341,7 @@ async def optimize():
     print("> total_amount\n ", total_amount)
     optimum = optimizer.opt_slsqp(
         target_metric,
-        sense = 'min',
+        sense = constraints['sense']['metsense_' + str(target_m)],
         # metric=target_metric,
         eps_metric=eps_metric,
         max_amount=max_amount,

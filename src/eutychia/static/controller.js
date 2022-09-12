@@ -190,12 +190,15 @@ function x2y(target, x, y) {
     updateTotal(all)
   }
   
+
   function optimize() {
     const constraints = {
       metric : {}
+    , sense: {}
     , invest : {}
     }
     forEachByClassName("invlimwid", target => constraints.invest[target.id] = Number(target.value))
+    forEachByClassName("metsense", target => constraints.sense[target.id] = Boolean(target.checked) ? 'min' : 'max')
     forEachByClassName("metlimwid", target => constraints.metric[target.id] = - Number(target.value))
     postRequest(
       "/optimize"
@@ -232,7 +235,10 @@ function x2y(target, x, y) {
     optimize_button.disabled = explorable
     optimize_metric.disabled = explorable
     invlimwid_x.disabled = explorable
+
+    forEachByClassName("metsense", target => target.disabled = explorable)
     forEachByClassName("metlimwid", target => target.disabled = explorable)
+
     if (explorable) {
       forEachByClassName("invlimwid", syncInvest)
       updateTotal(true)
