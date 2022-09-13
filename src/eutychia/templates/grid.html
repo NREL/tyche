@@ -13,22 +13,22 @@
 
     <div class="output--grid">
         <div></div>
-        <div></div>
+        <div>
+            <input id="explore_mode"
+                type="checkbox"
+                onclick="updateMode()"
+                checked>
+            </input>
+            <span>Explore Investment Scenario</span>
+            <!-- <label>explore</label> -->
+        </div>
         <div class="output--header">
-            <div>
-                <h3>Explore Investment Scenario</h3>
-                <input id="explore_mode"
-                    type="checkbox"
-                    onclick="updateMode()"
-                    checked>
-                </input>
-                <!-- <label>explore</label> -->
-            </div>
+            <div></div>
             <div>
                 <h3>Optimize</h3>
                 <span>Select metric to optimize.</span>
                 <!-- <br /> -->
-                <select id="optimize_metric">
+                <select id="optimize_metric" onchange="updateTargetMetric(event.target)" disabled>
                     {% for metric in metrics.index %}
                     {% set met = loop.index - 1 -%}
                     <option value="{{met}}">{{ metrics.index[met] }}</option>
@@ -71,15 +71,15 @@
                     min="{{ - metrics.iloc[met]['Value Max'] }}"
                     max="{{ - metrics.iloc[met]['Value Min'] }}"
                     step="{{ (metrics.iloc[met]['Value Max'] - metrics.iloc[met]['Value Min']) / 100 }}"
-                    value="{{ - (metrics.iloc[met]['Value Max'] + metrics.iloc[met]['Value Min']) / 2 }}"
+                    value="{{ - metrics.iloc[met]['Value Min'] }}"
                     onchange="updateMetric(event.target)"
                     disabled />
                 <br />
                 <!-- metric sense (visual) -->
-                <select id="metsense_{{met}}" class="metsense" disabled>
+                <!-- <select id="metsense_{{met}}" class="metsense" disabled>
                     <option value="min">Upper</option>
                     <option value="max">Lower</option>
-                </select>
+                </select> -->
                 <!-- <label class="container">min
                     <input id="metsense_{{met}}" class="metsense"
                         type="checkbox"
@@ -88,7 +88,7 @@
                     >
                 </label> -->
                 <!-- metric slider (numeric) -->
-                <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">bound: 0</label>
+                <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">Required: 0</label>
             </div>
             {% endfor %}
         </div>
@@ -150,15 +150,15 @@
         <div class="metric"><span>Portfolio Totals</span></div>
         <div>
             <!-- total investment value (visual) -->
-            <!-- <meter id="invoptwid_x"
+            <meter id="invoptwid_x"
                 min="0"
                 max="{{ categories.values.sum() }}"
                 value="{{ categories.values.sum() / 2}}">
             </meter>
-            <br /> -->
+            <br />
             <!-- total investment value (numeric) -->
-            <!-- <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
-            <br /> -->
+            <label id="invoptlab_x" class="invoptlab" for="invoptwid_x">Current: $0</label>
+            <br />
             <!-- total investment slider (visual) -->
             <input id="invlimwid_x" class="invlimwid" type="range"
                 min="0"

@@ -148,7 +148,9 @@ function x2y(target, x, y) {
     updateInvestLabel(wid2lab(target1))
   }
   
+
   function updateInvest(target) {
+    // print("updating investment")
     updateInvestLabel(wid2lab(target))
     if (explore_mode.checked) {
       syncInvest(target)
@@ -230,6 +232,9 @@ function x2y(target, x, y) {
   
   
   // Update mode.
+
+  function updateTargetMetric() {
+  }
   
   function updateMode() {
     const explorable = explore_mode.checked
