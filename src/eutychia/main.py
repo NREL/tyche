@@ -26,6 +26,28 @@ from matplotlib.figure import Figure
 
 if 'QUART_APP' in os.environ or __name__ == '__main__':
 
+  userDefinedColors = {
+      'NREL': {
+          'main1':'#8DC63F'  # green
+        , 'main2':'#FFC425'  # yellow
+        , 'accent1':'#0079C1'  # dark blue
+        , 'accent2':'#00A4E4'  # blue
+        , 'accent3':'#F6A01A'  # gold
+        , 'accent4':'#5E9732'  # dark green
+        , 'accent5':'#933C06'  # brown
+      },
+      'EERE': {
+          'accent1':'#6ABC45'  # green
+        , 'accent2':'#FFCB06'  # yellow
+        , 'accent3':'#00A8DF'  # light blue
+        , 'accent4':'#005C82'  # dark blue
+        , 'accent5':'#017A3E'  # dark green
+        , 'accent6':'#E27225'  # orange
+        , 'hyperlink':'#017A3E'  # dark green
+        , 'followed':'#5E6A71'   # grey
+      }
+  }
+
   import quart as qt
 
   # Create and configure application.
@@ -95,17 +117,9 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
       technology_models=["pv-residential-simple", "simple-electrolysis"]
 
-      plot_layout = "grid.html"
-
     #   plot_layout = "model.html"
-    #   plot_types = ["box plot", "distribution", "violin"]
-
-      if plot_layout == "grid.html":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "column.html":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "heatmap.html":
-          plot_types = ["heatmap", "annotated"]
+      plot_layout = "grid.html"
+      plot_types = get_plot_types(plot_layout)
 
       print(evaluator.units["Units"])
 
@@ -123,13 +137,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   def setup_template(plot_layout):
       technology_models=["pv-residential-simple", "simple-electrolysis"]
-
-      if plot_layout == "grid":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "column":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "heatmap":
-          plot_types = ["heatmap", "annotated"]
+      plot_types = get_plot_types(plot_layout)
 
       return qt.render_template(
           plot_layout + ".html",
@@ -147,13 +155,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       plot_layout = name
 
       technology_models=["pv-residential-simple", "simple-electrolysis"]
-
-      if plot_layout == "grid":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "column":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "heatmap":
-          plot_types = ["heatmap", "annotated"]
+      plot_types = get_plot_types(plot_layout)
 
       return await qt.render_template(
           plot_layout + ".html",
@@ -304,6 +306,7 @@ async def optimize():
     target_m = int(form["target"])
     target_metric = evaluator.metrics[target_m]
     constraints = json.loads(form["constraints"])
+    print("> constraints\n", constraints)
 
     eps_metric = {
         evaluator.metrics[m]: {
@@ -312,7 +315,6 @@ async def optimize():
             'sense': senseToMetric[constraints["sense"]["metsense_" + str(m)]],
         } for m in range(len(evaluator.metrics)) if m!=target_m
     }
-    # print("> eps_metric\n", eps_metric)
 
     # min_metric = pd.Series(
     #     [
@@ -372,3 +374,11 @@ def normalize_to_metric(x):
     x_mean = aggregate_over(x, ['Sample'])
     met_diff = (metric_range['Value Max'] - metric_range['Value Min'])
     return x_mean / met_diff
+
+def get_plot_types(plot_layout):
+    if plot_layout == "heatmap":
+        return ["heatmap", "annotated"]
+    elif plot_layout == "heatmap.html":
+        return ["heatmap", "annotated"]
+    else:
+        return ["box plot", "distribution", "violin"]
