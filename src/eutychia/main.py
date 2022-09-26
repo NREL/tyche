@@ -23,7 +23,7 @@ from io import BytesIO
 from matplotlib.figure import Figure
 
 
-
+import pdb
 if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
@@ -53,20 +53,31 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   evaluator = ty.Evaluator(tranche_results)
   
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
-  optimizer.optimum_metrics(
-      verbose = 0,
-      sense = {
-          'GHG': 'min',
-          'LCOE': 'min',
-          'Labor': 'max',
+  min_metric = optimizer.optimum_metrics(
+    verbose = 0,
+    sense = {
+      'GHG': 'min',
+      'LCOE': 'min',
+      'Labor': 'min',
       }
-  )
+    )
 
-  metric_range = evaluator.min_metric.join(
-      evaluator.max_metric,
-      lsuffix=" Min",
-      rsuffix=" Max",
-  )
+  max_metric = optimizer.optimum_metrics(
+    verbose = 0,
+    sense = {
+      'GHG': 'max',
+      'LCOE': 'max',
+      'Labor': 'max',
+      }
+    ) 
+
+  metric_range = pd.concat(
+    [
+      min_metric.rename('Minimum'),
+      max_metric.rename('Maximum')
+    ],
+    axis=1
+    )
   print("> metric_range:\n", metric_range)
 
 
