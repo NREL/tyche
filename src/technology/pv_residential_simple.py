@@ -194,7 +194,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
 
   # Levelized cost of energy.
   return np.stack([
-    0.106125 - cost / output[0]            ,
-    blr - 2000.077451                      ,
-    0.4490564e-3 * output[0] - 82.676202217,
+    0.106125 - cost / output[0]            , # delta LCOE from base
+    blr - 2000.077451                      , # delta labor expenses from base
+    0.4490564e-3 * output[0] - 82.676202217, # delta GHG from base
   ])
