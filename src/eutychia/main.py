@@ -23,7 +23,7 @@ from io import BytesIO
 from matplotlib.figure import Figure
 
 
-import pdb
+
 if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
@@ -73,8 +73,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   metric_range = pd.concat(
     [
-      min_metric.rename('Minimum'),
-      max_metric.rename('Maximum')
+      min_metric.rename('Value Min'),
+      max_metric.rename('Value Max')
     ],
     axis=1
     )
