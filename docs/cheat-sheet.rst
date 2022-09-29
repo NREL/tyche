@@ -148,6 +148,7 @@ Then describe the supporting data sets below
 Input Datasets
 --------------
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
+
 Designs Dataset 
 ~~~~~~~~~~~~~~~
 
@@ -156,6 +157,7 @@ A *design* is one set of technology data that results from a specific R&D invest
 The *designs* dataset contains information for one or more technologies being compared within an R&D investment decision context using Tyche. There will be multiple sets of data for each technology; each set represents the technology data that results from a specific R&D investment scenario.  Multiple R&D investment scenarios are typically used, each generating a different level of technology advance as determined through expert elicitation. :numref:`tbl-designsdict` provides a data dictionary for the *designs* dataset. Additional information on mandatory Variables is provided in :numref:`tbl-designsvars`.
 
 It points to the data for the technology subsystems and components in the *parameters* dataset within the technology folder, described below.  
+
 
 .. _tbl-designsdict:
 .. table:: Data dictionary for the *designs* dataset which defines various technology versions resulting from R&D investments.
@@ -178,7 +180,7 @@ It points to the data for the technology subsystems and components in the *param
   | Index        | String                                         | Any                                                                   | Name of the elements within each Variable.                                   |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
   | Value        | * Float                                        | * Set of real numbers                                                 | Value for the R&D investment scenario.                                       |
-  |              | * Distribution                                 | * *scipy.stats* distributions                                         | Example: st.triang(1,loc=5,scale=0.1)                               |
+  |              | * Distribution                                 | * *scipy.stats* distributions                                         | Example: st.triang(1,loc=5,scale=0.1)                                        |
   |              | * Mixture of distributions                     | * Mixture of *scipy.stats* distributions                              |                                                                              |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
   | Units        | String                                         | Any                                                                   | User defined units for Variables. Not used by Tyche.                         |                                                                                                  
@@ -188,6 +190,7 @@ It points to the data for the technology subsystems and components in the *param
 
 
 If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1. For instance, a technology such as a solar panel could be modeled without any Inputs, if sunlight is not explicitly being modeled. In this case, the single Index defined for the Input Variable could be simply 0, and the technology model .py file defined without using this value. Variables and their component Indexes are defined further in :numref:`tbl-designsvars`.
+
 
 .. _tbl-designsvars:
 .. table:: Mandatory values for Variables in the *designs* dataset.
@@ -203,6 +206,7 @@ If there are no elements within a Variable for the technology under study, the V
   Lifetime             Time that a piece of capital spends in use; time it takes for a piece of capital’s value to depreciate to zero.    Names of the capital components of the technology.                                                                                           
   Scale                Scale at which the technology operates (one value for the technology).                                             No index.                                                                                                                                            
   ==================== ================================================================================================================== ==========================================================================================================================================
+
 
 Parameters Dataset
 ~~~~~~~~~~~~~~~~~~
