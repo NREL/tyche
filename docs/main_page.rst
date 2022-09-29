@@ -19,7 +19,6 @@ Risk and uncertainty are core characteristics of research and development (R&D) 
    optimizers
    user-interface
    tutorial
-   mock-foa <Project R&D Decision Support>
    ioc-1
    deployment
    getting-started
