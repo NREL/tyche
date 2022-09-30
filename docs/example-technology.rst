@@ -1,10 +1,119 @@
-Defining Technologies
-=====================
+.. _sec-techmodelexample:
 
-Each technology design requires a Python module with a capital cost, a
-fixed cost, a production, and a metrics function. :numref:`lst-electrolysis`
-shows these functions for the simple electrolysis example.
+Technology Model Example
+========================
 
+Here is a very simple model for electrolysis of water. We just have water, electricity, a catalyst, and some lab space. We choose the fundamental unit of operation to be moles of H\ :sub:`2`:
+
+     H\ :sub:`2`\ O → H\ :sub:`2` + ½ O\ :sub:`2`
+
+For this example, we treat the catalyst as the capital that we use to transform inputs into outputs. Our inputs are water and electricity, and our outputs are oxygen and hydrogen. Our only fixed cost is the rent on the lab space at $1000/year. Using our past experience with electrolysis technology as well as some historical data, we estimate that we'll be able to produce 6650 mol/year of hydrogen and at this scale, our catalyst has a lifetime of about 3 years. The metrics we'd like to calculate for our electrolysis technology are cost, greenhouse gas (GHG) emissions, and jobs created. Based on this information, the *designs* dataset for the base case electrolysis technology is as shown in :numref:`tbl-electrolysisdesigns`.
+
+.. _tbl-electrolysisdesigns:
+.. table:: *designs* dataset for the base case (without any R&D) of the simple electrolysis example technology.
+
+ ===================== =================== =================== ============= ========== ========= ======================================
+ Technology            Scenario            Variable            Index         Value      Units     Notes
+ ===================== =================== =================== ============= ========== ========= ======================================
+ Simple electrolysis   Base Electrolysis   Input               Water         19.04      g/mole    
+ Simple electrolysis   Base Electrolysis   Input efficiency    Water         0.95       1         Due to mass transport loss on input.
+ Simple electrolysis   Base Electrolysis   Input               Electricity   279        kJ/mole   
+ Simple electrolysis   Base Electrolysis   Input efficiency    Electricity   0.85       l         Due to ohmic losses on input.
+ Simple electrolysis   Base Electrolysis   Output efficiency   Oxygen        0.9        1         Due to mass transport loss on output.
+ Simple electrolysis   Base Electrolysis   Output efficiency   Hydrogen      0.9        1         Due to mass transport loss on output.
+ Simple electrolysis   Base Electrolysis   Lifetime            Catalyst      3          yr        Effective lifetime of Al-Ni catalyst.
+ Simple electrolysis   Base Electrolysis   Scale               n/a           6650       mole/yr   Rough estimate for a 50W setup.
+ Simple electrolysis   Base Electrolysis   Input price         Water         4.80E-03   USD/mole  
+ Simple electrolysis   Base Electrolysis   Input price         Electricity   3.33E-05   USD/kJ    
+ Simple electrolysis   Base Electrolysis   Output price        Oxygen        3.00E-03   USD/g     
+ Simple electrolysis   Base Electrolysis   Output price        Hydrogen      1.00E-02   USD/g     
+ ===================== =================== =================== ============= ========== ========= ======================================
+
+Note that this is not the only way to model the electrolysis technology. We could choose to purchase lab space and equipment instead of renting, in which case we would have more types of capital, each with a particular lifetime. We could treat the oxygen output from our technology as waste instead of a coproduct and remove it from the model entirely. We could operate at a different scale and perhaps change our fixed or capital costs by doing so. Depending on where we operate this technology, our input and output prices will likely change. The Tyche framework offers great flexibility in representing technologies and technology systems; it is unlikely that there will only be a single correct way to model a decision context.
+
+A key quantity that is not included in the *designs* dataset is our fixed cost, rent for the lab space. This quantity is included in the *parameters* dataset in :numref:`tbl-electrolysisparams`, along with the necessary data to calculate our metrics of interest (cost, GHG, jobs).
+
+.. _tbl-electrolysisparams:
+.. table:: *parameters* dataset for the base case (without any R&D) of the simple electrolysis example technology.
+
+ ===================== =================== ===================================== =========== ========== =========== =====================================
+ Technology            Scenario            Parameter                             Offset      Value      Units       Notes
+ ===================== =================== ===================================== =========== ========== =========== =====================================
+ Simple electrolysis   Base Electrolysis   Oxygen production                     0           16         g           
+ Simple electrolysis   Base Electrolysis   Hydrogen production                   1           2          g           
+ Simple electrolysis   Base Electrolysis   Water consumption                     2           18.08      g           
+ Simple electrolysis   Base Electrolysis   Electricity consumption               3           237        kJ          
+ Simple electrolysis   Base Electrolysis   Jobs                                  4           1.50E-04   job/mole    
+ Simple electrolysis   Base Electrolysis   Reference scale                       5           6650       mole/yr     
+ Simple electrolysis   Base Electrolysis   Reference capital cost for catalyst   6           0.63       USD         
+ Simple electrolysis   Base Electrolysis   Reference fixed cost for rent         7           1000       USD/yr      
+ Simple electrolysis   Base Electrolysis   GHG factor for water                  8           0.00108    gCO2e/g     based on 244,956 gallons = 1 Mg CO2e
+ Simple electrolysis   Base Electrolysis   GHG factor for electricity            9           0.138      gCO2e/kJ    based on 1 kWh = 0.5 kg CO2e
+ ===================== =================== ===================================== =========== ========== =========== =====================================
+
+Within our R&D decision context, we're interested in increasing the input and output efficiencies of this process so we can produce hydrogen as cheaply as possible. Experts could assess how much R&D to increase the various efficiencies :math:`\eta` would cost. They could also suggest different catalysts, adding alkali, or replacing the process with PEM.
+
+The ``indices`` table (see :numref:`tbl-indices`) simply describes the various
+indices available for the variables. The ``Offset`` column specifies the
+memory location in the argument for the production and metric functions.
+
+.. _tbl-indices:
+
+.. table:: Example of the ``indices`` table.
+
+   =================== ======== ============ ====== =========== ===== 
+   Technology           Type     Index       Offset Description Notes
+   =================== ======== ============ ====== =========== ===== 
+   Simple electrolysis  Capital  Catalyst     0     Catalyst         
+   Simple electrolysis  Fixed    Rent         0     Rent             
+   Simple electrolysis  Input    Water        0     Water            
+   Simple electrolysis  Input    Electricity  1     Electricity      
+   Simple electrolysis  Output   Oxygen       0     Oxygen           
+   Simple electrolysis  Output   Hydrogen     1     Hydrogen         
+   Simple electrolysis  Metric   Cost         0     Cost             
+   Simple electrolysis  Metric   Jobs         1     Jobs             
+   Simple electrolysis  Metric   GHG          2     GHGs             
+   =================== ======== ============ ====== =========== ===== 
+
+Production function (à la Leontief)
+-----------------------------------
+
+:math:`P_\mathrm{oxygen} = \left( 16.00~\mathrm{g} \right) \cdot \min \left\{ \frac{I^*_\mathrm{water}}{18.08~\mathrm{g}}, \frac{I^*_\mathrm{electricity}}{237~\mathrm{kJ}} \right\}`
+
+:math:`P_\mathrm{hydrogen} = \left( 2.00~\mathrm{g} \right) \cdot \min \left\{ \frac{I^*_\mathrm{water}}{18.08~\mathrm{g}}, \frac{I^*_\mathrm{electricity}}{237~\mathrm{kJ}} \right\}`
+
+
+Metric functions
+----------------
+
+:math:`M_\mathrm{cost} = K / O_\mathrm{hydrogen}`
+
+:math:`M_\mathrm{GHG} = \left( \left( 0.00108~\mathrm{gCO2e/gH20} \right) I_\mathrm{water} + \left( 0.138~\mathrm{gCO2e/kJ} \right) I_\mathrm{electricity} \right) / O_\mathrm{hydrogen}`
+
+:math:`M_\mathrm{jobs} = \left( 0.00015~\mathrm{job/mole} \right) / O_\mathrm{hydrogen}`
+
+
+Performance of current design.
+------------------------------
+
+:math:`K = 0.18~\mathrm{USD/mole}` (i.e., not profitable since it is
+positive)
+
+:math:`O_\mathrm{oxygen} = 14~\mathrm{g/mole}`
+
+:math:`O_\mathrm{hydrogen} = 1.8~\mathrm{g/mole}`
+
+:math:`\mu_\mathrm{cost} = 0.102~\mathrm{USD/gH2}`
+
+:math:`\mu_\mathrm{GHG} = 21.4~\mathrm{gCO2e/gH2}`
+
+:math:`\mu_\mathrm{jobs} = 0.000083~\mathrm{job/gH2}`
+
+
+Technology Model
+----------------
+
+Each technology design requires a Python file with a capital cost, a fixed cost, a production, and a metrics function. :numref:`lst-electrolysis` shows these functions for the simple electrolysis example.
 
 .. code-block:: python
    :name: lst-electrolysis

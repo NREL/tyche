@@ -1,8 +1,10 @@
+.. _sec-technologymodule:
+
 Technology Module
 =================
 
-Technology Case Studies
------------------------
+Pre-Built Technology Models and Datasets
+----------------------------------------
 
 Residential Photovoltaics
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -12,6 +14,8 @@ Residential Photovoltaics
    :undoc-members:
    :show-inheritance:
 
+.. _sec-simplerespv:
+
 Simple Residential Photovoltaics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -20,8 +24,8 @@ Simple Residential Photovoltaics
    :undoc-members:
    :show-inheritance:
 
-Utiliy-Scale Photovoltaics
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Utility-Scale Photovoltaics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: technology.utility_pv
    :members:
@@ -41,18 +45,18 @@ Tutorial Technologies
 
 The technology models in this section are for exploratory and learning purposes only.
 
-Toy Biorefinery
-^^^^^^^^^^^^^^^
-
-.. automodule:: technology.tutorial_biorefinery
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Simple Electrolysis
 ^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: technology.simple_electrolysis
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Toy Biorefinery
+^^^^^^^^^^^^^^^
+
+.. automodule:: technology.tutorial_biorefinery
    :members:
    :undoc-members:
    :show-inheritance:
