@@ -1,5 +1,7 @@
-Tutorial
-========
+.. _sec-analysisexample:
+
+Analysis Example
+================
 
 Multiple Objectives for Residential PV.
 
@@ -27,7 +29,7 @@ Import packages.
 Load data.
 ----------
 
-The data are stored in a set of tab-separated value files in a folder.
+The data should be stored in a set of comma-separated value files in a sub-directory of the technology folder, as shown in :numref:`the directory structure diagram (Fig. %s) <fig-directorystruct>`
 
 
 .. code:: python

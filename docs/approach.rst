@@ -1,3 +1,5 @@
+.. _sec-approach:
+
 Approach
 ========
 
@@ -36,6 +38,3 @@ Python module with user-specified data tables and technology functions.
 
 We also provide a sample analysis that exercises the framework’s main
 features.
-
-
-
