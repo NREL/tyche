@@ -2,7 +2,6 @@
 
 Quick Start Guide
 =================
-**To begin the quick start guide, it needs to explain what Tyche is, what it does, and why this is of value to the user. Expand this to a full explanation**
 
 The purpose of this quick start guide is to allow a new user to set up their first R&D decision context using Tyche, and to provide some examples of using Tyche for decision support analyses. 
 
@@ -10,7 +9,7 @@ An R&D decision context involves one or more technologies that are subject to va
 
 
 Introduction and Getting Started
-======================================
+--------------------------------
 
 The following materials walk through:
 
@@ -23,7 +22,7 @@ The following materials walk through:
 
 
 The Technology Characterization and Evaluation Tool
-===================================================
+---------------------------------------------------
 
 The **Tyche** tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
 
@@ -140,17 +139,17 @@ Defining Technologies
 ---------------------
 
 What is a “technology”?
-------------------------------
+-----------------------
 
 In the R&D decision contexts represented and analyzed by Tyche, “technology” has a very broad definition. A technology converts input(s) to output(s) using capital equipment with a defined lifetime and incurs fixed and/or variable costs in doing so. A technology may be a manufacturing process, a biorefinery, an agricultural process, a renewable energy technology component such as a silicon wafer or an inverter, a renewable energy technology unit such as a wind turbine or solar panel, a renewable power plant system such as a concentrated solar power plant, and more. Within the R&D decision context, a technology is also subject to one or more research areas in which R&D investments can be made to change the technology and its economic, environmental, and other metrics of interest. Multiple technologies can be modeled and compared within the same decision context, provided the same metrics are calculable for each technology. Within Tyche, a technology is represented both physically and economically using a classic but simple and generalized techno-economic analysis (TEA). The TEA is based on a user defined technology model and accompanying datasets of technological and investment information.
 
 Input Datasets
-==============
+--------------
 
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 
 Designs Dataset 
-------------------------
+---------------
 
 A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technology versions that may result from all R&D investment scenarios being considered in a decision context.
 
@@ -233,7 +232,7 @@ Including the Offset value in the *parameters* dataset creates a user reference 
 
 
 Technology model (Python file)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The technology model is a Python file (.py) which is user defined and contains methods for calculating capital cost, fixed cost, production (the actual output amount), and any metrics of interest, using the content of the *designs* and *parameters* datasets. :numref:`tbl-techmethods` describes methods that must be included in the technology model Python file. The names of the methods are user-defined and must match the contents of the *functions* dataset, discussed below. Additional methods can be included in the technology model, if necessary, but the methods in :numref:`tbl-techmethods` are required. All return values for the required methods, even if only a single value is returned, must be formatted as `Numpy stacks <https://numpy.org/doc/stable/reference/generated/numpy.stack.html>`_. The parameters (inputs) for the methods, listed in :numref:`tbl-techmethods`, are also fixed and cannot be changed. In the case that a method does not require all of the mandatory input parameters, they can simply be left out of the method's calculations.
 
@@ -253,7 +252,7 @@ The technology model is a Python file (.py) which is user defined and contains m
 The production method can access the actual input amount, which is the ideal or raw input amount value multiplied by the input efficiency value (both defined in the *designs* dataset). In contrast, the metrics method can access both the ideal input amount (*input_raw*) and the actual input amount (*input*).
 
 Defining R&D Investments
-========================
+------------------------
 
 
 Tranches Dataset
@@ -277,7 +276,7 @@ The *tranches* dataset defines the allowed set of R&D investments across the res
   ============== ================================================= =============================================================================================================================================================================================
 
 Investment Dataset
-------------------------
+------------------
 
 An *investment*, similar to a *scenario*, is a combination of tranches that represents a particular R&D strategy.
 
@@ -296,7 +295,7 @@ The *investments* dataset provides a separate way to look at making R&D investme
   ============ ================================================================================================================
 
 Uncertainty in the Input Datasets
-=======================================
+---------------------------------
 
 Tyche provides two general use cases for exploring the relationship between R&D investments and technological changes, both of which rely on expert elicitation to quantify inherent uncertainty. In the first and likely more common use case, a user knows what the R&D investment options are for a technology or set of technologies and is interested in determining what impact these investment options have on the technology(ies) in order to decide how to allocate an R&D budget. In other words, in this use case the user already knows the contents of the *tranches* and *investments* datasets, which are deterministic (fixed), and uses expert elicitation to fill in key values in the *designs* and *parameters* datasets with probability distributions.
 
@@ -310,7 +309,7 @@ Defining values as probability distributions and mixtures
 An uncertain value can be defined within a dataset using any of the built-in distributions of the `scipy.stats <https://docs.scipy.org/doc/scipy/reference/stats.html>`_ package. A list of available distributions is provided at the hyperlink. Uncertain values can also be defined as a weighted average or mixture of probability distributions using the Tyche *mixture* method.
 
 Additional Input Datasets
-=========================
+-------------------------
 
 Indices Dataset
 ---------------
