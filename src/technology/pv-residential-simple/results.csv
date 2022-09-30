@@ -1,6 +1,6 @@
 ﻿Technology,Variable,Index,Units,Notes
 Residential PV,Cost,Cost,$/system,
 Residential PV,Output,Electricity,kWh,
-Residential PV,Metric,LCOE,Œî$/kWh,
-Residential PV,Metric,Labor,Œî$/system,
-Residential PV,Metric,GHG,ŒîgCO2e/system,
+Residential PV,Metric,LCOE,delta $/kWh,Quantified as a reduction from a base case: maximize this metric.
+Residential PV,Metric,Labor,delta $/system,Quantified as a reduction from a base case: minimize this metric.
+Residential PV,Metric,GHG,delta gCO2e/system,Quantified as a reduction from a base case: maximize this metric.

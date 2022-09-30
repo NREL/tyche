@@ -1,3 +1,5 @@
+.. _sec-modules:
+
 Python API
 ==========
 

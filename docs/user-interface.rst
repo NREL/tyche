@@ -1,3 +1,5 @@
+.. _sec-userinterface:
+
 User Interface
 ==============
 
@@ -98,6 +100,40 @@ of detail include:
 A user can toggle between their visualization options using the links
 (heatmap, column, grid) at the top left-hand corner of the screen. By
 default, Eutychia opens to the grid layout.
+
+Running the Server
+------------------
+
+Visit the folder ``src/eutychia/`` and start the server in debug mode
+
+::
+
+   cd src\eutychia
+   debug.cmd
+
+on Windows, or on Mac
+
+::
+
+   cd src/eutychia
+   ./debug.sh
+
+or in production mode
+
+::
+
+   cd src\eutychia
+   run.cmd
+
+on Windows, or on Mac
+
+::
+
+   cd src/eutychia
+   ./run.sh
+
+and then visit http://127.0.0.1:5000/.
+
 
 
 References

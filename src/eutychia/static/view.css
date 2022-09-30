@@ -5,7 +5,8 @@
     background-color: beige;   
 }
 .output--grid > div { 
-    background-color: green;
+    /* background-color: green; */
+    background-color: white;
     margin: 10px;
 }
 
@@ -16,8 +17,15 @@
     background-color: beige;   
 }
 .output--visualization > div { 
-    background-color: green;
+    /* background-color: green; */
+    /* text-align: center; */
+    background-color: white;
     margin: 0px;
+}
+
+.metric {
+    text-align: center
+  ; font-family: Gill Sans
 }
 
 /* Categories */
@@ -27,8 +35,9 @@
     background-color: beige;
 }
 .output--category > div { 
-    background-color: plum;
-    border-color: palegreen;
+    /* background-color: plum;
+    border-color: palegreen; */
+    font-family: Gill Sans;
     height: 100px;
     margin: 0px;
 }
@@ -55,4 +64,14 @@
 /* Plots */
 .plot {
     align-items: center
+  /* ; font-style: italic */
 }
+
+
+h1 {
+    margin    : 0
+  ; font-size : 2em
+  ; text-align: center
+  ; text-transform: uppercase
+  ; font-family: Gill Sans
+} 

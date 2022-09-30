@@ -1,3 +1,5 @@
+.. _sec-deployment:
+
 Deployment Plan
 ===============
 

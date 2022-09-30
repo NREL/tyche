@@ -27,14 +27,18 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   import quart as qt
 
-# Create and configure application.
+  # Create and configure application.
+  technology_model = "pv-residential-simple"
+  technology_path = os.path.join("ioc", technology_model + ".json")
 
   app = qt.Quart(__name__, static_url_path="", static_folder="static",)
 
-  app.config.from_file("ioc-0.json", json.load)
+  app.config.from_file(technology_path, json.load)
 
+  print(technology_path)
+  print(type(app.config))
 
-# Compute investments.
+  # Compute investments.
 
   investments = ty.Investments(app.config["INVESTMENTS"])
 
@@ -43,7 +47,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
-  evaluator = ty.Evaluator(investments.tranches, tranche_results.summary)
+  evaluator = ty.Evaluator(tranche_results)
 
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
@@ -77,7 +81,13 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       session_amounts[ident] = amounts
       session_evaluation[ident] = evaluator.evaluate(amounts)
 
+      technology_models=["pv-residential-simple", "simple-electrolysis"]
+
       plot_layout = "grid.html"
+
+    #   plot_layout = "model.html"
+    #   plot_types = ["box plot", "distribution", "violin"]
+
       if plot_layout == "grid.html":
           plot_types = ["box plot", "distribution", "violin"]
       elif plot_layout == "column.html":
@@ -85,17 +95,23 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       elif plot_layout == "heatmap.html":
           plot_types = ["heatmap", "annotated"]
 
+      print(evaluator.units["Units"])
+
       return await qt.render_template(
           plot_layout,
           categories=evaluator.max_amount["Amount"],
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
+          technology_model=technology_model.replace('-',' '),
+          technology_models=technology_models,
       )
 
 
 
   def setup_template(plot_layout):
+      technology_models=["pv-residential-simple", "simple-electrolysis"]
+
       if plot_layout == "grid":
           plot_types = ["box plot", "distribution", "violin"]
       elif plot_layout == "column":
@@ -109,12 +125,16 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
+          technology_model=technology_model.replace('-',' '),
+          technology_models=technology_models,
       )
 
 
   @app.route("/layout/<name>")
   async def layout(name):
       plot_layout = name
+
+      technology_models=["pv-residential-simple", "simple-electrolysis"]
 
       if plot_layout == "grid":
           plot_types = ["box plot", "distribution", "violin"]
@@ -129,6 +149,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
           metrics=metric_range,
           units=evaluator.units["Units"],
           plot_types=plot_types,
+          technology_model=technology_model.replace('-',' '),
+          technology_models=technology_models,
       )
 
 
@@ -149,7 +171,7 @@ async def plot():
     m = evaluator.metrics[int(form["met"])]    if form["met"].isdigit() else str(form["met"])
     c = evaluator.categories[int(form["cat"])] if form["cat"].isdigit() else str(form["cat"])
     
-    print(form["height"])
+    # print(form["height"])
     # figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100), constrained_layout=True)
     figure = Figure(figsize=(float(form["width"]) / 100, float(form["height"]) / 100))
     ax = figure.subplots()
