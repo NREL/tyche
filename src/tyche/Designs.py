@@ -76,7 +76,7 @@ class Designs:
   _functions_dtypes = {
     "Technology" : np.str_,
     "Style"      : np.str_,
-    "Module"     : np.str_,
+    "Model"      : np.str_,
     "Capital"    : np.str_,
     "Fixed"      : np.str_,
     "Production" : np.str_,
@@ -294,7 +294,7 @@ class Designs:
 
     self.compiled_functions = {}
     for technology, metadata in self.functions.iterrows():
-      m = il.import_module("." + metadata["Module"], package="technology")
+      m = il.import_module("." + metadata["Model"], package="technology")
       self.compiled_functions[technology] = Functions(
         style      =             metadata["Style"     ] ,
         capital    = eval("m." + metadata["Capital"   ]),
