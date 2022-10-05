@@ -1,15 +1,15 @@
-name: tychetiny
+name: tyche
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python
-  - numpy
-  - scipy
-  - matplotlib
-  - pandas
-  - seaborn
-  - importlib
-  - qt
-  - qtconsole
-  - qtpy
+  - matplotlib=3.5.2
+  - notebook=6.4.12
+  - pip=22.2.2
+  - python=3.10.4
+  - scipy=1.9.1
+  - seaborn=0.11.2
+  - sphinx=5.0.2
+  - tk=8.6.12
+  - pip:
+    - mip==1.14.1
