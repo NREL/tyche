@@ -230,6 +230,9 @@ If the information in the *designs* dataset completely defines the technology an
   
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 
+**Minimum mandatory data**
+If there are no parameters required or present in the model, the parameters.csv file cannot be blank. Atleast one row for each scenario and technology combination is required. If there are no parameters, enter None in parameter and 0 for all other columns. 
+
 
 Technology model (Python file)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
