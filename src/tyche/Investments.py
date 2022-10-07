@@ -232,8 +232,9 @@ class Investments:
       summary = metrics.set_index(
         "Units",
         append=True
-      ).sum(
+      ).groupby(
         level=["Investment", "Technology", "Sample", "Index", "Units"]
+      ).sum(
       ).reset_index(
         "Units"
       )[["Value", "Units"]],
