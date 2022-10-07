@@ -357,6 +357,11 @@ A technology in the Tyche context is quantified using five sets of attribute val
 
 The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set.
 
+Capital ---> Index from *Designs* dataset of the Lifetime variable type. 
+Input ---> Indices from the  *Designs* dataset (different input flows) of the Input variable type. 
+Output ---> Indices from the  *Designs* dataset (different output flows) of the Output variable type. 
+Metric ---> ndices from the  *Results* dataset (different metric indicators) of the metric variable type. 
+
 Functions Dataset
 -------------------------
 
@@ -407,7 +412,7 @@ The *results* dataset lists the Tyche outcomes that are of interest within a dec
   | Notes       | String     | Any            | Additional information defined by the user. Not used during Tyche calculations.        |
   +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
 
-The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* dataset.
+The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. The index value of "Cost" can be kept as "Cost". To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* and the *indices* dataset.
 
 **Minimum mandatory data**
 All the rows of Cost, Output and Metric are mandatory. In the rare case that there is no output or the user is uninterested in the cost, they can be ignored by entering None in the Index. Units for unrequired entries can be put in as 1 or 0. Similarly atleast one metric is required as metrics are mandatory. If no metric is required in the study, it can filled up with None. 
