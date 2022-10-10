@@ -2,14 +2,16 @@
 Investments in technologies.
 """
 
+import os
 import sys
 import numpy  as np
 import pandas as pd
 
 from .Distributions import parse_distribution
-from .IO    import make_table, read_table
-from .Designs import sampler
-from .Types import Evaluations
+from .IO            import check_tables
+from .DataManager   import TranchesDataset, InvestmentsDataset
+from .Designs       import sampler
+from .Types         import Evaluations
 
 
 class Investments:
@@ -23,23 +25,6 @@ class Investments:
   investments: DataFrame
     The *investments* table.
   """
-  
-  _tranches_dtypes = {
-    "Category"   : np.str_,
-    "Tranche"    : np.str_,
-    "Scenario"   : np.str_,
-    "Amount"     : np.str_,
-    "Notes"      : np.str_,
-  }
-  _investments_dtypes = {
-    "Investment" : np.str_,
-    "Category"   : np.str_,
-    "Tranche"    : np.str_,
-    "Notes"      : np.str_,
-  }
-  
-  _tranches_index    = ["Category"  , "Tranche" , "Scenario" ,        ]
-  _investments_index = ["Investment", "Category", "Tranche"  ,        ]
   
   def __init__(
     self                           ,
@@ -64,18 +49,20 @@ class Investments:
       Sheet name for the *investments* table.
     """
     self.uncertain = uncertain
-    if path == None:
-      self._make()
+
+    if not os.path.isfile(os.path.join(path, name)):
+      print(f"Investments: No input data found in {os.path.join(path, name)}")
+      sys.exit(1)
     else:
       self._read(path, name, tranches, investments)
-          
-  def _make(self):
-    self.tranches    = make_table(self._tranches_dtypes   , self._tranches_index   )
-    self.investments = make_table(self._investments_dtypes, self._investments_index)
-      
+  
   def _read(self, path, name, tranches, investments):
-    self.tranches    = read_table(path, name, tranches   , self._tranches_dtypes   , self._tranches_index   )
-    self.investments = read_table(path, name, investments, self._investments_dtypes, self._investments_index)
+    if not check_tables(path, name):
+      print('Investments: Input datasets failed validation.')
+      sys.exit(1)
+    
+    self.tranches    = TranchesDataset(   fpath = os.path.join(path, name)).sort_index()
+    self.investments = InvestmentsDataset(fpath = os.path.join(path, name)).sort_index()
 
   def compile(self):
     """Parse any probability distributions in the tranches."""
