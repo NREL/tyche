@@ -5,47 +5,40 @@ I/O utilities for Tyche.
 import os     as os
 import pandas as pd
 
-
-def make_table(dtypes, index):
-  """
-  Make a data frame from column types and an index.
-
-  Parameters
-  ----------
-  dtypes : array
-    The column types.
-  index : array
-    The index.
-  """
-
-  return pd.DataFrame(
-    {k: [v()] for k, v in dtypes.items()},
-    index=index
-  ).iloc[0:0]
+from .DataManager import DesignsDataset, FunctionsDataset, IndicesDataset, InvestmentsDataset, ParametersDataset, ResultsDataset, TranchesDataset
 
 
-def read_table(path, name, sheet, dtypes, index):
-  """
-  Read a data table from a sheet in an Excel file.
+def check_tables(
+  path,
+  name
+  ):
+    """
+    Perform validity checks on input datasets.
 
-  Parameters
-  ----------
-  path : str
-    The path to the folder.
-  name : str
-    The filename for the datasets.
-  sheet : str
-    The sheet name to read.
-  dtypes : array
-    The column types.
-  index : array
-    The index.
-  """
+    Parameters
+    ----------
+    path
+    name
 
-  return pd.read_excel(
-    os.path.join(path, name),
-    sheet_name=sheet,
-    converters=dtypes
-    ).set_index(
-        keys=index
-    ).sort_index()
+    Returns
+    -------
+    Boolean: True if data is valid, False otherwise
+
+    Raises
+    ------
+    Exceptions TBD when the data fails checks
+    """
+    check_list = []
+
+    # Get the datasets as distinct DataFrames.
+    # The DataManager performs column name checks and enforces data types.
+    indices     = IndicesDataset(    os.path.join(path, name))
+    functions   = FunctionsDataset(  os.path.join(path, name))
+    designs     = DesignsDataset(    os.path.join(path, name))
+    parameters  = ParametersDataset( os.path.join(path, name))
+    results     = ResultsDataset(    os.path.join(path, name))
+    tranches    = TranchesDataset(   os.path.join(path, name))
+    investments = InvestmentsDataset(os.path.join(path, name))
+    # @TODO Update return value once fully implemented
+    return True
+
