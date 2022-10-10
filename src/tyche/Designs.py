@@ -2,12 +2,15 @@
 Designs for technologies.
 """
 
+import os
+import sys
 import importlib as il
 import numpy     as np
 import pandas    as pd
 
+from .DataManager   import DesignsDataset, FunctionsDataset, IndicesDataset, ParametersDataset, ResultsDataset
 from .Distributions import parse_distribution
-from .IO            import make_table, read_table
+from .IO            import check_tables
 from .Types         import Functions, Indices, Inputs, Results
 
 
@@ -64,67 +67,12 @@ class Designs:
   results : DataFrame
     The *results* table.
   """
-  
-  _indices_dtypes = {
-    "Technology"  : np.str_ ,
-    "Type"        : np.str_ ,
-    "Index"       : np.str_ ,
-    "Offset"      : np.int16,
-    "Description" : np.str_ ,
-    "Notes"       : np.str_ ,
-  }
-  _functions_dtypes = {
-    "Technology" : np.str_,
-    "Style"      : np.str_,
-    "Model"      : np.str_,
-    "Capital"    : np.str_,
-    "Fixed"      : np.str_,
-    "Production" : np.str_,
-    "Metrics"    : np.str_,
-    "Notes"      : np.str_,
-  }
-  _designs_dtypes = {
-    "Technology" : np.str_,
-    "Scenario"   : np.str_,
-    "Variable"   : np.str_,
-    "Index"      : np.str_,
-    "Value"      : np.str_,
-    "Units"      : np.str_,
-    "Notes"      : np.str_,
-  }
-  _parameters_dtypes = {
-    "Technology" : np.str_ ,
-    "Scenario"   : np.str_ ,
-    "Parameter"  : np.str_ ,
-    "Offset"     : np.int16,
-    "Value"      : np.str_ ,
-    "Units"      : np.str_ ,
-    "Notes"      : np.str_ ,
-  }
-  _results_dtypes = {
-    "Technology" : np.str_   ,
-    "Variable"   : np.str_   ,
-    "Index"      : np.str_   ,
-    "Units"      : np.str_   ,
-    "Notes"      : np.str_   ,
-  }
-  
-  _indices_index     = ["Technology", "Type"    , "Index"             ]
-  _functions_index   = ["Technology",                                 ]
-  _designs_index     = ["Technology", "Scenario", "Variable" , "Index"]
-  _parameters_index  = ["Technology", "Scenario", "Parameter"         ]
-  _results_index     = ["Technology", "Variable", "Index"             ]
-  
+
   def __init__(
     self                         ,
     path       = None            ,
     name       = 'technology.xlsx',
     uncertain  = True           ,
-    indices    = "indices"   ,
-    functions  = "functions" ,
-    designs    = "designs"   ,
-    parameters = "parameters",
-    results    = "results"   ,
   ):
     """
     Parameters
@@ -147,24 +95,21 @@ class Designs:
       Sheet name for the *results* table.
     """
     self.uncertain = uncertain
-    if path == None:
-      self._make()
-    else:
-      self._read(path, name, indices, functions, designs, parameters, results)
-          
-  def _make(self):
-    self.indices    = make_table(self._indices_dtypes   , self._indices_index   )
-    self.functions  = make_table(self._functions_dtypes , self._functions_index )
-    self.designs    = make_table(self._designs_dtypes   , self._designs_index   )
-    self.parameters = make_table(self._parameters_dtypes, self._parameters_index)
-    self.results    = make_table(self._results_dtypes   , self._results_index   )
-      
-  def _read(self, path, name, indices, functions, designs, parameters, results):
-    self.indices    = read_table(path, name, indices   , self._indices_dtypes   , self._indices_index   )
-    self.functions  = read_table(path, name, functions , self._functions_dtypes , self._functions_index )
-    self.designs    = read_table(path, name, designs   , self._designs_dtypes   , self._designs_index   )
-    self.parameters = read_table(path, name, parameters, self._parameters_dtypes, self._parameters_index)
-    self.results    = read_table(path, name, results   , self._results_dtypes   , self._results_index   )
+
+    if not os.path.isfile(os.path.join(path, name)):
+      print(f"Designs: Input datasets do not exist: {os.path.join(path, name)}")
+      sys.exit(1)
+    
+    if not check_tables(path, name):
+      print('Designs: Input datasets failed validation.')
+      sys.exit(1)    
+
+    self.indices    = IndicesDataset(    os.path.join(path, name)).sort_index()
+    self.functions  = FunctionsDataset(  os.path.join(path, name)).sort_index()
+    self.designs    = DesignsDataset(    os.path.join(path, name)).sort_index()
+    self.parameters = ParametersDataset( os.path.join(path, name)).sort_index()
+    self.results    = ResultsDataset(    os.path.join(path, name)).sort_index()
+
       
   def vectorize_technologies(self):
     """
