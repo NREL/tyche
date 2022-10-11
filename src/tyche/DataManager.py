@@ -116,7 +116,7 @@ class Data(pd.DataFrame):
         header = header,
       )
     except ValueError as _e:
-      print(f"{fpath}, {sheet}")
+      print(f"DataManager: Unexpected column(s) found in {fpath}, {sheet}")
       raise _e
 
     else:
