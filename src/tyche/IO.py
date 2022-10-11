@@ -51,19 +51,33 @@ def check_tables(
         set(results.index.get_level_values('Technology'))
       )
     
-    # If the set of technologies that DOESN'T appear in all four datasets
-    # is not empty, add an error message to the check_list
+    # If there are any technologies that DON'T appear in all four
+    # datasets, add an error message to the check_list.
     if len(_odd_tech_set) != 0:
       check_list.append(        
-        f'Data Checks: Technology names {_odd_tech_set} are inconsistent.'
-        )
+        (f'Data Validation: Technology names {_odd_tech_set} are inconsistent. '
+        'Check in designs, indices, parameters, and results.')
+      )
     
     # Cross-check: Lifetime-Index set in designs dataset must equal the
     # Capital-Index set in indices dataset
+    # The set of levels in the Index index level that have the Variable index level Lifetime
+    _des_idx = designs.index.to_frame()
+    _ind_idx = indices.index.to_frame()
+    _odd_cap_set = set(
+      _des_idx.Index[_des_idx.Variable == 'Lifetime']
+      ).symmetric_difference(
+        set(_ind_idx.Index[_ind_idx.Type == 'Capital'])
+      )
 
+    if len(_odd_cap_set) != 0:
+      check_list.append(
+        f'Data Validation: Capital types {_odd_cap_set} are inconsistent. Check in designs and indices.'
+      )
+    
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
-      for i in check_list: print(i + '\n')
+      for i in check_list: print(i)
       return False
     else:
       return True
