@@ -42,19 +42,28 @@ def check_tables(
 
     # Cross-check: Identical sets of Technology across designs, indices,
     # parameters, and results datasets
-    check_list.append(
-        set(designs.index.get_level_values('Technology')
-        ).symmetric_difference(
-          set(indices.index.get_level_values('Technology'))
-        ).symmetric_difference(
-          set(parameters.index.get_level_values('Technology'))
-        ).symmetric_difference(
-          set(results.index.get_level_values('Technology'))
-        )
-    )
+    _odd_tech_set = set(designs.index.get_level_values('Technology')
+      ).symmetric_difference(
+        set(indices.index.get_level_values('Technology'))
+      ).symmetric_difference(
+        set(parameters.index.get_level_values('Technology'))
+      ).symmetric_difference(
+        set(results.index.get_level_values('Technology'))
+      )
     
+    # If the set of technologies that DOESN'T appear in all four datasets
+    # is not empty, add an error message to the check_list
+    if len(_odd_tech_set) != 0:
+      check_list.append(        
+        f'Data Checks: Technology names {_odd_tech_set} are inconsistent.'
+        )
+    
+    # Cross-check: Lifetime-Index set in designs dataset must equal the
+    # Capital-Index set in indices dataset
+
     # @TODO Update return values once fully implemented
-    if sum([len(i) for i in check_list]) != 0:
+    if len(check_list) != 0:
+      for i in check_list: print(i + '\n')
       return False
     else:
       return True
