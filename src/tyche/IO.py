@@ -91,6 +91,21 @@ def check_tables(
         ' inconsistent. Check in investments and tranches.')
       )
 
+    # Cross-check: Technology-Scenario values in designs must be exactly the
+    # set of Technology-Scenario values in parameters
+    _par_idx = parameters.index.to_frame()
+    _odd_tecsce_set = set(
+      [i + '-' + j for i, j in _des_idx[['Technology','Scenario']].values]
+    ).symmetric_difference(
+      set([i + '-' + j for i, j in _par_idx[['Technology','Scenario']].values])
+    )
+
+    if len(_odd_tecsce_set) != 0:
+      check_list.append(
+        (f'Data Validation: Technology-Scenario combinations {_odd_tecsce_set} are'
+        ' inconsistent. Check in designs and parameters.')
+      )
+
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
       for i in check_list: print(i)
