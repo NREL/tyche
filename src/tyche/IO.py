@@ -75,6 +75,22 @@ def check_tables(
         f'Data Validation: Capital types {_odd_cap_set} are inconsistent. Check in designs and indices.'
       )
     
+    # Cross-check: Category-Tranche combinations in investments must be a subset of
+    # the Category-Tranche combinations in tranches
+    _inv_idx = investments.index.to_frame()
+    _tra_idx = tranches.index.to_frame()
+    _odd_cattra_set = set(
+      [i + '-' + j for i, j in _inv_idx[['Category','Tranche']].values]
+    ).symmetric_difference(
+      set([i + '-' + j for i, j in _tra_idx[['Category','Tranche']].values])
+    )
+
+    if len(_odd_cattra_set) != 0:
+      check_list.append(
+        (f'Data Validation: Category-Tranche combinations {_odd_cattra_set} are'
+        ' inconsistent. Check in investments and tranches.')
+      )
+
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
       for i in check_list: print(i)
