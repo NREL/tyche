@@ -97,12 +97,10 @@ class Designs:
     self.uncertain = uncertain
 
     if not os.path.isfile(os.path.join(path, name)):
-      print(f"Designs: Input datasets do not exist: {os.path.join(path, name)}")
-      sys.exit(1)
+      raise Exception(f"Designs: Input datasets do not exist: {os.path.join(path, name)}")
     
     if not check_tables(path, name):
-      print('Designs: Input datasets failed validation.')
-      sys.exit(1)    
+      raise Exception('Designs: Input datasets failed validation.')
 
     self.indices    = IndicesDataset(    os.path.join(path, name)).sort_index()
     self.functions  = FunctionsDataset(  os.path.join(path, name)).sort_index()
