@@ -7,7 +7,7 @@ import pandas as pd
 
 from .DataManager import DesignsDataset, FunctionsDataset, IndicesDataset, InvestmentsDataset, ParametersDataset, ResultsDataset, TranchesDataset
 
-import pdb
+
 def check_tables(
   path,
   name
