@@ -39,6 +39,23 @@ def check_tables(
     results     = ResultsDataset(    os.path.join(path, name))
     tranches    = TranchesDataset(   os.path.join(path, name))
     investments = InvestmentsDataset(os.path.join(path, name))
-    # @TODO Update return value once fully implemented
-    return True
+
+    # Cross-check: Identical sets of Technology across designs, indices,
+    # parameters, and results datasets
+    check_list.append(
+        set(designs.index.get_level_values('Technology')
+        ).symmetric_difference(
+          set(indices.index.get_level_values('Technology'))
+        ).symmetric_difference(
+          set(parameters.index.get_level_values('Technology'))
+        ).symmetric_difference(
+          set(results.index.get_level_values('Technology'))
+        )
+    )
+    
+    # @TODO Update return values once fully implemented
+    if sum([len(i) for i in check_list]) != 0:
+      return False
+    else:
+      return True
 
