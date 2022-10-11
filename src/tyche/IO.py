@@ -7,7 +7,7 @@ import pandas as pd
 
 from .DataManager import DesignsDataset, FunctionsDataset, IndicesDataset, InvestmentsDataset, ParametersDataset, ResultsDataset, TranchesDataset
 
-
+import pdb
 def check_tables(
   path,
   name
@@ -104,6 +104,22 @@ def check_tables(
       check_list.append(
         (f'Data Validation: Technology-Scenario combinations {_odd_tecsce_set} are'
         ' inconsistent. Check in designs and parameters.')
+      )
+
+    # Designs check: Variable index levels are exactly Input, Input efficiency,
+    # Input price, Lifetime, Output efficiency, Output price, Scale
+    # Check if something's in designs Variable index levels that shouldn't be
+    _des_var_set = set(
+      i for i in designs.index.get_level_values('Variable')
+      ).difference(
+        set(['Input', 'Input efficiency', 'Input price',
+        'Lifetime', 'Output efficiency', 'Output price', 'Scale'])
+      )
+
+    if len(_des_var_set) != 0:
+      check_list.append(
+        (f'Data Validation: Variable column in designs has unexpected '
+        f'value(s) {_des_var_set}')
       )
 
     # @TODO Update return values once fully implemented
