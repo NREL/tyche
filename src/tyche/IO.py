@@ -72,7 +72,8 @@ def check_tables(
 
     if len(_odd_cap_set) != 0:
       check_list.append(
-        f'Data Validation: Capital types {_odd_cap_set} are inconsistent. Check in designs and indices.'
+        (f'Data Validation: Capital types {_odd_cap_set} are inconsistent. '
+        'Check in designs and indices.')
       )
     
     # Cross-check: Category-Tranche combinations in investments must be a subset of
