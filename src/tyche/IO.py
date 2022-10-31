@@ -5,6 +5,8 @@ I/O utilities for Tyche.
 import os     as os
 import pandas as pd
 
+from itertools import groupby
+
 from .DataManager import DesignsDataset, FunctionsDataset, IndicesDataset, InvestmentsDataset, ParametersDataset, ResultsDataset, TranchesDataset
 
 
@@ -121,6 +123,28 @@ def check_tables(
       check_list.append(
         (f'Data Validation: Variable column in designs has unexpected '
         f'value(s) {_des_var_set}')
+      )
+
+    # Designs check: Every Technology-Scenario combination must have
+    # all mandatory Variables
+    _des_tecsce_var = [designs.loc[i[:2],2].index for i in designs.index.values]
+    _des_tecsce_var_eq = [i.to_frame() for i in _des_tecsce_var if not _des_tecsce_var[0].equals(i)]
+
+    if len(_des_tecsce_var_eq) != 0:
+      check_list.append(
+        ('Data Validation: Some Technology-Scenarios have inconsistent '
+        f'Variable values :{_des_tecsce_var_eq}. Check in designs')
+      )
+
+    # Designs check: Every Technology-Scenario combination must have
+    # the same Index levels within each mandatory Variable
+    _des_idx_tecsce_ind = [
+      designs.loc[i[:2],:].index for i in designs.index.values
+    ]
+    if not all([_des_idx_tecsce_ind[0].equals(i) for i in _des_idx_tecsce_ind]):
+      check_list.append(
+        ('Data Validation: Some Technology-Scenarios have unexpected Index '
+        'values. Check in designs.')
       )
 
     # @TODO Update return values once fully implemented
