@@ -1,3 +1,7 @@
+<!-- 2nd floor, pod 3, end of hallway
+st anthony north
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,18 +72,19 @@
                 <br />
                 <!-- metric slider (visual) -->
                 <input id="metlimwid_{{met}}" class="metlimwid" type="range"
-                    min="{{ - metrics.iloc[met]['Value Max'] }}"
-                    max="{{ - metrics.iloc[met]['Value Min'] }}"
+                    min="{{ metrics.iloc[met]['Value Max'] }}"
+                    max="{{ metrics.iloc[met]['Value Min'] }}"
                     step="{{ (metrics.iloc[met]['Value Max'] - metrics.iloc[met]['Value Min']) / 100 }}"
-                    value="{{ - metrics.iloc[met]['Value Min'] }}"
+                    value="{{ metrics.iloc[met]['Value Max'] }}"
                     onchange="updateMetric(event.target)"
                     disabled />
                 <br />
                 <!-- metric sense (visual) -->
-                <!-- <select id="metsense_{{met}}" class="metsense" disabled>
+                <select id="metsense_{{met}}" class="metsense" disabled>
                     <option value="min">Upper</option>
                     <option value="max">Lower</option>
-                </select> -->
+                </select>
+                <!-- <span></span> -->
                 <!-- <label class="container">min
                     <input id="metsense_{{met}}" class="metsense"
                         type="checkbox"
@@ -88,7 +93,7 @@
                     >
                 </label> -->
                 <!-- metric slider (numeric) -->
-                <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">Required: 0</label>
+                <label id="metlimlab_{{met}}" class="metlimlab" for="metlimwid_{{met}}">bound: 0</label>
             </div>
             {% endfor %}
         </div>

@@ -117,7 +117,6 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
       technology_models=["pv-residential-simple", "simple-electrolysis"]
 
-    #   plot_layout = "model.html"
       plot_layout = "grid.html"
       plot_types = get_plot_types(plot_layout)
 
@@ -306,24 +305,14 @@ async def optimize():
     target_m = int(form["target"])
     target_metric = evaluator.metrics[target_m]
     constraints = json.loads(form["constraints"])
-    print("> constraints\n", constraints)
+    print("\n> constraints\n ", constraints)
 
     eps_metric = {
         evaluator.metrics[m]: {
             'limit': constraints["metric"]["metlimwid_" + str(m)],
-            # 'sense': 'upper'
             'sense': senseToMetric[constraints["sense"]["metsense_" + str(m)]],
         } for m in range(len(evaluator.metrics)) if m!=target_m
     }
-
-    # min_metric = pd.Series(
-    #     [
-    #         constraints["metric"]["metlimwid_" + str(m)]
-    #         for m in range(len(evaluator.metrics))
-    #     ],
-    #     index=evaluator.metrics,
-    # )
-    # print("> min_metric\n", min_metric, "\n\n\n")
 
     max_amount = pd.Series(
         [
@@ -334,24 +323,26 @@ async def optimize():
     )
 
     total_amount = constraints["invest"]["invlimwid_x"]
-    print("\nOptimization started.", datetime.now())
-    print("> target_metric\n ", target_metric)
-    print("> eps_metric\n ", eps_metric)
-    print("> total_amount\n ", total_amount)
+
+    print("\n\nOptimization started.", datetime.now())
+    print("> target_metric: ", target_metric)
+    print("> sense:         ", constraints['sense']['metsense_' + str(target_m)])
+    print("> eps_metric\n", eps_metric)
+    print("\n> max_amount\n", max_amount)
+    print("\n> total_amount: ", total_amount)
     optimum = optimizer.opt_slsqp(
         target_metric,
         sense = constraints['sense']['metsense_' + str(target_m)],
-        # metric=target_metric,
         eps_metric=eps_metric,
         max_amount=max_amount,
         total_amount=total_amount
         # , tol          = 1e-4
         # , maxiter      = 10
     )
+    print("\nOptimization finished.", datetime.now())
     print("> exit_message\n ", optimum.exit_message)
-    print("> amounts\n ", optimum.amounts)
-    print("> metrics\n ", optimum.metrics)
-    print("Optimization finished.", datetime.now(), "\n")
+    print("\n> amounts\n", optimum.amounts)
+    print("\n> metrics\n", optimum.metrics)
     amounts = pd.DataFrame(optimum.amounts)
     session_amounts[ident] = amounts
     session_evaluation[ident] = evaluator.evaluate(amounts)

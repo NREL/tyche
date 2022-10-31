@@ -150,7 +150,6 @@ function x2y(target, x, y) {
   
 
   function updateInvest(target) {
-    // print("updating investment")
     updateInvestLabel(wid2lab(target))
     if (explore_mode.checked) {
       syncInvest(target)
