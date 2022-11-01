@@ -1,7 +1,0 @@
-Technology,Variable,Index,Units,Notes
-Wind Turbine,Cost,Cost,$/turbine,
-Wind Turbine,Output,Electricity,kWh/turbine,
-Wind Turbine,Metric,Cost,$/turbine/year,
-Wind Turbine,Metric,AEP,MWh/turbine/year,
-Wind Turbine,Metric,LCOE,$/kWh,
-Wind Turbine,Metric,CF,%/100,
