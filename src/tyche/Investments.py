@@ -44,35 +44,38 @@ class Investments:
   def __init__(
     self                           ,
     path        = None             ,
+    name        = 'technology.xlsx',
     uncertain   = False            ,
-    tranches    = "tranches.csv"   ,
-    investments = "investments.csv",
+    tranches    = "tranches"   ,
+    investments = "investments",
   ):
     """
     Parameters
     ----------
     path : str
       Path to directory where *tranches* and *investments* tables are saved.
+    name : str
+      Filename where decision context datasets are kept in separate sheets.
     uncertain : Boolean
       Flag indicating whether probability distributions are present in the *tranches* table.
     tranches : str
-      Filename for the *tranches* table.
+      Sheet name for the *tranches* table.
     investments: str
-      Filename for the *investments* table.
+      Sheet name for the *investments* table.
     """
     self.uncertain = uncertain
     if path == None:
       self._make()
     else:
-      self._read(path, tranches, investments)
+      self._read(path, name, tranches, investments)
           
   def _make(self):
     self.tranches    = make_table(self._tranches_dtypes   , self._tranches_index   )
     self.investments = make_table(self._investments_dtypes, self._investments_index)
       
-  def _read(self, path, tranches, investments):
-    self.tranches    = read_table(path, tranches   , self._tranches_dtypes   , self._tranches_index   )
-    self.investments = read_table(path, investments, self._investments_dtypes, self._investments_index)
+  def _read(self, path, name, tranches, investments):
+    self.tranches    = read_table(path, name, tranches   , self._tranches_dtypes   , self._tranches_index   )
+    self.investments = read_table(path, name, investments, self._investments_dtypes, self._investments_index)
 
   def compile(self):
     """Parse any probability distributions in the tranches."""
