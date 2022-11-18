@@ -19,9 +19,11 @@ def check_tables(
 
     Parameters
     ----------
-    path
-    name
-
+    path:str
+      Path to directory of datasets
+    name:str
+      Name of datasets file (XLSX)
+    
     Returns
     -------
     Boolean: True if data is valid, False otherwise
@@ -115,8 +117,10 @@ def check_tables(
     _des_var_set = set(
       i for i in designs.index.get_level_values('Variable')
       ).difference(
-        set(['Input', 'Input efficiency', 'Input price',
-        'Lifetime', 'Output efficiency', 'Output price', 'Scale'])
+        set(
+          ['Input', 'Input efficiency', 'Input price',
+          'Lifetime', 'Output efficiency', 'Output price', 'Scale']
+        )
       )
 
     if len(_des_var_set) != 0:
@@ -127,25 +131,25 @@ def check_tables(
 
     # Designs check: Every Technology-Scenario combination must have
     # all mandatory Variables
-    _des_tecsce_var = [designs.loc[i[:2],2].index for i in designs.index.values]
-    _des_tecsce_var_eq = [i.to_frame() for i in _des_tecsce_var if not _des_tecsce_var[0].equals(i)]
+    # Get a list of all Technology-Scenario combinations in Designs
+    _des_tecsce = list(set([i[:2] for i in designs.index.values]))
 
-    if len(_des_tecsce_var_eq) != 0:
-      check_list.append(
-        ('Data Validation: Some Technology-Scenarios have inconsistent '
-        f'Variable values :{_des_tecsce_var_eq}. Check in designs')
-      )
 
     # Designs check: Every Technology-Scenario combination must have
     # the same Index levels within each mandatory Variable
-    _des_idx_tecsce_ind = [
-      designs.loc[i[:2],:].index for i in designs.index.values
-    ]
-    if not all([_des_idx_tecsce_ind[0].equals(i) for i in _des_idx_tecsce_ind]):
-      check_list.append(
-        ('Data Validation: Some Technology-Scenarios have unexpected Index '
-        'values. Check in designs.')
+    # Get the set (no duplicates) of all Variable-Value combinations across all Tech-Sce combinations
+    _var_val_set = set([i[2:] for i in designs.index.values])
+    for _j in _des_tecsce:
+      _des_tecsce_varval_set = set([i[2:] for i in designs.index.values if i[:2] == _j])
+      # Check if the Tech-Scen combo is missing any Variable Values
+      _odd_des_tecsce_varval_set = _var_val_set.difference(
+        _des_tecsce_varval_set
       )
+      if len(_odd_des_tecsce_varval_set) != 0:
+        check_list.append(
+          (f'Data Validation: Technology-Scenario combination {_j} has'
+          f' missing Variable values: {_odd_des_tecsce_varval_set}. Check in designs.')
+        )
 
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
