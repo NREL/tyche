@@ -140,15 +140,28 @@ def check_tables(
     # Get the set (no duplicates) of all Variable-Value combinations across all Tech-Sce combinations
     _var_val_set = set([i[2:] for i in designs.index.values])
     for _j in _des_tecsce:
+      _des_tecsce_var_set = set([i[2] for i in designs.index.values if i[:2] == _j])
       _des_tecsce_varval_set = set([i[2:] for i in designs.index.values if i[:2] == _j])
-      # Check if the Tech-Scen combo is missing any Variable Values
+      # Check if the Tech-Scen combo is missing any mandatory Variables
+      _odd_des_tecsce_var_set = set(
+        ['Input', 'Input efficiency', 'Input price',
+        'Lifetime', 'Output efficiency', 'Output price', 'Scale']
+        ).difference(
+          _des_tecsce_var_set
+        )
+      # Check if the Tech-Scen combo is missing any Variable Indexes
       _odd_des_tecsce_varval_set = _var_val_set.difference(
         _des_tecsce_varval_set
       )
+      if len(_odd_des_tecsce_var_set) != 0:
+        check_list.append(
+          (f'Data Validation: Technology-Scenario combination {_j} has '
+          f'missing mandatory Variables: {_odd_des_tecsce_var_set}. Check in designs')
+        )
       if len(_odd_des_tecsce_varval_set) != 0:
         check_list.append(
           (f'Data Validation: Technology-Scenario combination {_j} has'
-          f' missing Variable values: {_odd_des_tecsce_varval_set}. Check in designs.')
+          f' missing Variable Indexes: {_odd_des_tecsce_varval_set}. Check in designs.')
         )
 
     # @TODO Update return values once fully implemented
