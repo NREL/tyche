@@ -130,13 +130,11 @@ def check_tables(
       )
 
     # Designs check: Every Technology-Scenario combination must have
+    # the same Index levels within each mandatory Variable
+    # Designs check: Every Technology-Scenario combination must have
     # all mandatory Variables
     # Get a list of all Technology-Scenario combinations in Designs
-    _des_tecsce = list(set([i[:2] for i in designs.index.values]))
-
-
-    # Designs check: Every Technology-Scenario combination must have
-    # the same Index levels within each mandatory Variable
+    _des_tecsce = list(set([i[:2] for i in designs.index.values]))    
     # Get the set (no duplicates) of all Variable-Value combinations across all Tech-Sce combinations
     _var_val_set = set([i[2:] for i in designs.index.values])
     for _j in _des_tecsce:
