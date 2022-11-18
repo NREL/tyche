@@ -8,6 +8,7 @@ import importlib as il
 
 from itertools import groupby
 from inspect import getmembers, isfunction
+from numpy import arange
 
 from .DataManager import DesignsDataset, FunctionsDataset, IndicesDataset, InvestmentsDataset, ParametersDataset, ResultsDataset, TranchesDataset
 
@@ -213,6 +214,30 @@ def check_tables(
         (f'Data Validation: Type column in Indices is missing values or '
         f'has unexpected values: {_ind_type_odd}.')
       )
+    
+    # Indices check: Offset values within each Type must be sequential integers
+    # beginning at zero.
+    # Step 1: Check that all Offset values are integers using column dtype
+    if indices.Offset.dtype != 'int':
+      check_list.append(
+        (f'Data validation: Offset values in Indices must be integers.')
+      )
+    else:
+      # Step 2: If all Offsets are integers, check for sequential values
+      _ind_val = indices.Offset.reset_index()
+      _ind_val_odd = [
+        set(
+          arange(len(_ind_val.Index[_ind_val.Type==_t]))
+        ).symmetric_difference(
+          set(_ind_val.Offset[_ind_val.Type==_t])
+        ) for _t in ['Capital', 'Input', 'Output', 'Metric']
+      ]
+
+      if any([len(i) for i in _ind_val_odd]) != 0:
+        check_list.append(
+          (f'Data Validation: Check that Offset values in Indices are '
+          'sequential integers beginning at zero, within each Type.')
+        )
 
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
