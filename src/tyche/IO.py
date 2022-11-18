@@ -199,6 +199,20 @@ def check_tables(
           (f'Data Validation: Technology model {_tech} (.py) does not exist in '
           'the technology directory.')
         )
+    
+    # Indices check: Type column contains exactly Capital, Input, Output, Metric
+    _ind_type_odd = set(
+      [i[1] for i in indices.index.values]
+      ).symmetric_difference(
+        set(
+          ['Capital', 'Input', 'Output', 'Metric']
+        )
+      )
+    if len(_ind_type_odd) != 0:
+      check_list.append(
+        (f'Data Validation: Type column in Indices is missing values or '
+        f'has unexpected values: {_ind_type_odd}.')
+      )
 
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
