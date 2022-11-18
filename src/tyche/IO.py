@@ -4,8 +4,10 @@ I/O utilities for Tyche.
 
 import os     as os
 import pandas as pd
+import importlib as il
 
 from itertools import groupby
+from inspect import getmembers, isfunction
 
 from .DataManager import DesignsDataset, FunctionsDataset, IndicesDataset, InvestmentsDataset, ParametersDataset, ResultsDataset, TranchesDataset
 
@@ -160,6 +162,42 @@ def check_tables(
         check_list.append(
           (f'Data Validation: Technology-Scenario combination {_j} has'
           f' missing Variable Indexes: {_odd_des_tecsce_varval_set}. Check in designs.')
+        )
+
+    # Functions check: All unique entries under Model must be a .py file containing the
+    # methods defined in the Capital, Fixed, Production, and Metrics columns
+    # For every technology model,
+    for _tech, _meta in functions.iterrows():
+      # First check that the model exists as a .py file in the correct location
+      if os.path.exists('../' + _meta['Model'] + '.py'):
+        # If the file does exist, use a try/except structure to attempt import
+        try:
+          _model = il.import_module("." + _meta["Model"], package="technology")
+        except ImportError:
+          check_list.append(
+            (f'Data Validation: Method within technology model {_tech} does '
+            'not exist.')
+          )
+        # If the model imported successfully, compare the set of methods
+        # within the model to the set of methods named in the Functions dataset
+        # The set of methods within the model must contain all elements of the set of methods named in the Functions dataset,
+        # BUT can also contain additional methods
+        _odd_model_funs = set(_meta[2:-1].values).difference(
+          set(
+            [f[0] for f in getmembers(_model, isfunction)]
+          )
+        )
+        # If the two sets of method names don't match, append to check_list
+        if len(_odd_model_funs) != 0:
+          check_list.append(
+            (f'Data Validation: Technology model {_tech} has inconsistent methods: '
+            f'{_odd_model_funs}. Revise the Functions dataset or the {_tech} model (.py).')
+          )
+      # If the file does not exist, add the missing file to check_list and exit the loop
+      else:
+        check_list.append(
+          (f'Data Validation: Technology model {_tech} (.py) does not exist in '
+          'the technology directory.')
         )
 
     # @TODO Update return values once fully implemented
