@@ -238,6 +238,19 @@ def check_tables(
           (f'Data Validation: Check that Offset values in Indices are '
           'sequential integers beginning at zero, within each Type.')
         )
+    
+    # Parameters check: Every Parameter Offset must be the same across 
+    # all Technology-Scenario combinations
+    # Get a list of all Technology-Scenario combinations in Parameters
+    parameters.sort_index(inplace=True)
+    _par_tecsce_paroff = [parameters.loc[i,'Offset'] for i in list(set([j[:2] for j in parameters.index.values]))]
+    for _j in arange(len(_par_tecsce_paroff)):
+      if _j < len(_par_tecsce_paroff)-1:
+        if not _par_tecsce_paroff[_j].equals(_par_tecsce_paroff[_j+1]):
+          check_list.append(
+            (f'Data Validation: Parameter Offsets are inconsistent: {_par_tecsce_paroff[_j]}.'
+            ' Check in Parameters.')
+          )
 
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
