@@ -292,7 +292,18 @@ def check_tables(
           'the Variable and the Index are "Cost".\n')
         )
     
-    # @TODO Update return values once fully implemented
+    # Tranches check: Within every Category, the Amounts for each Tranche must be unique
+    _tra_amt_unique = [
+      tranches.groupby('Category').Amount.count()[i] != tranches.groupby('Category').Amount.nunique()[i] 
+      for i in arange(tranches.index.to_frame().Category.nunique())
+    ]
+    if any(_tra_amt_unique):
+      check_list.append(
+        (f'Data Validation: Category {tranches.index.to_frame().Category.unique()[_tra_amt_unique][0]}'
+        ' in Tranches has duplicate Amounts.\n')
+      )
+
+
     if len(check_list) != 0:
       for i in check_list: print(i)
       return False
