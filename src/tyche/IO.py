@@ -3,10 +3,8 @@ I/O utilities for Tyche.
 """
 
 import os     as os
-import pandas as pd
 import importlib as il
 
-from itertools import groupby
 from inspect import getmembers, isfunction
 from numpy import arange
 
