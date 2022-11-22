@@ -57,18 +57,18 @@ def check_tables(
       ).symmetric_difference(
         set(results.index.get_level_values('Technology'))
       )
-    
     # If there are any technologies that DON'T appear in all four
     # datasets, add an error message to the check_list.
     if len(_odd_tech_set) != 0:
       check_list.append(        
-        (f'Data Validation: Technology names {_odd_tech_set} are inconsistent. '
-        'Check in designs, indices, parameters, and results.')
+        ('Data Validation: Technology names are inconsistent. Check in '
+        f'designs, indices, parameters, and results.\n{_odd_tech_set}\n')
       )
     
     # Cross-check: Lifetime-Index set in designs dataset must equal the
     # Capital-Index set in indices dataset
-    # The set of levels in the Index index level that have the Variable index level Lifetime
+    # The set of levels in the Index index level that have the Variable 
+    # index level Lifetime
     _des_idx = designs.index.to_frame()
     _ind_idx = indices.index.to_frame()
     _odd_cap_set = set(
@@ -76,11 +76,10 @@ def check_tables(
       ).symmetric_difference(
         set(_ind_idx.Index[_ind_idx.Type == 'Capital'])
       )
-
     if len(_odd_cap_set) != 0:
       check_list.append(
-        (f'Data Validation: Capital types {_odd_cap_set} are inconsistent. '
-        'Check in designs and indices.')
+        ('Data Validation: Capital types are inconsistent. Check in designs'
+        f' and indices.\n{_odd_cap_set}\n')
       )
     
     # Cross-check: Category-Tranche combinations in investments must be a subset of
@@ -92,11 +91,10 @@ def check_tables(
     ).symmetric_difference(
       set([i + '-' + j for i, j in _tra_idx[['Category','Tranche']].values])
     )
-
     if len(_odd_cattra_set) != 0:
       check_list.append(
-        (f'Data Validation: Category-Tranche combinations {_odd_cattra_set} are'
-        ' inconsistent. Check in investments and tranches.')
+        ('Data Validation: Category-Tranche combinations are inconsistent. Check '
+        f'in investments and tranches.\n{_odd_cattra_set}\n')
       )
 
     # Cross-check: Technology-Scenario values in designs must be exactly the
@@ -110,8 +108,8 @@ def check_tables(
 
     if len(_odd_tecsce_set) != 0:
       check_list.append(
-        (f'Data Validation: Technology-Scenario combinations {_odd_tecsce_set} are'
-        ' inconsistent. Check in designs and parameters.')
+        ('Data Validation: Technology-Scenario combinations are inconsistent. '
+        f'Check in designs and parameters.\n{_odd_tecsce_set}\n')
       )
 
     # Designs check: Variable index levels are exactly Input, Input efficiency,
@@ -128,8 +126,8 @@ def check_tables(
 
     if len(_des_var_set) != 0:
       check_list.append(
-        (f'Data Validation: Variable column in designs has unexpected '
-        f'value(s) {_des_var_set}')
+        ('Data Validation: Variable column in designs has unexpected '
+        f'value(s).\n{_des_var_set}\n')
       )
 
     # Designs check: Every Technology-Scenario combination must have
@@ -138,7 +136,8 @@ def check_tables(
     # all mandatory Variables
     # Get a list of all Technology-Scenario combinations in Designs
     _des_tecsce = list(set([i[:2] for i in designs.index.values]))    
-    # Get the set (no duplicates) of all Variable-Value combinations across all Tech-Sce combinations
+    # Get the set (no duplicates) of all Variable-Value combinations across 
+    # all Tech-Sce combinations
     _var_val_set = set([i[2:] for i in designs.index.values])
     for _j in _des_tecsce:
       _des_tecsce_var_set = set([i[2] for i in designs.index.values if i[:2] == _j])
@@ -157,12 +156,12 @@ def check_tables(
       if len(_odd_des_tecsce_var_set) != 0:
         check_list.append(
           (f'Data Validation: Technology-Scenario combination {_j} has '
-          f'missing mandatory Variables: {_odd_des_tecsce_var_set}. Check in designs')
+          f'missing mandatory Variables. Check in designs.\n{_odd_des_tecsce_var_set}\n')
         )
       if len(_odd_des_tecsce_varval_set) != 0:
         check_list.append(
           (f'Data Validation: Technology-Scenario combination {_j} has'
-          f' missing Variable Indexes: {_odd_des_tecsce_varval_set}. Check in designs.')
+          f' missing Variable Indexes. Check in designs.\n{_odd_des_tecsce_varval_set}\n')
         )
 
     # Functions check: All unique entries under Model must be a .py file containing the
@@ -176,13 +175,12 @@ def check_tables(
           _model = il.import_module("." + _meta["Model"], package="technology")
         except ImportError:
           check_list.append(
-            (f'Data Validation: Method within technology model {_tech} does '
-            'not exist.')
+            (f'Data Validation: Technology model {_tech} is not importable.\n')
           )
         # If the model imported successfully, compare the set of methods
         # within the model to the set of methods named in the Functions dataset
-        # The set of methods within the model must contain all elements of the set of methods named in the Functions dataset,
-        # BUT can also contain additional methods
+        # The set of methods within the model must contain all elements of the set of
+        # methods named in the Functions dataset, BUT can also contain additional methods
         _odd_model_funs = set(_meta[2:-1].values).difference(
           set(
             [f[0] for f in getmembers(_model, isfunction)]
@@ -191,14 +189,14 @@ def check_tables(
         # If the two sets of method names don't match, append to check_list
         if len(_odd_model_funs) != 0:
           check_list.append(
-            (f'Data Validation: Technology model {_tech} has inconsistent methods: '
-            f'{_odd_model_funs}. Revise the Functions dataset or the {_tech} model (.py).')
+            (f'Data Validation: Technology model {_tech} has inconsistent methods. '
+            f'Revise the Functions dataset or the {_tech} model (.py).\n{_odd_model_funs}\n')
           )
       # If the file does not exist, add the missing file to check_list and exit the loop
       else:
         check_list.append(
           (f'Data Validation: Technology model {_tech} (.py) does not exist in '
-          'the technology directory.')
+          'the technology directory.\n')
         )
     
     # Indices check: Type column contains exactly Capital, Input, Output, Metric
@@ -212,7 +210,7 @@ def check_tables(
     if len(_ind_type_odd) != 0:
       check_list.append(
         (f'Data Validation: Type column in Indices is missing values or '
-        f'has unexpected values: {_ind_type_odd}.')
+        f'has unexpected values.\n{_ind_type_odd}\n')
       )
     
     # Indices check: Offset values within each Type must be sequential integers
@@ -220,7 +218,7 @@ def check_tables(
     # Step 1: Check that all Offset values are integers using column dtype
     if indices.Offset.dtype != 'int':
       check_list.append(
-        (f'Data validation: Offset values in Indices must be integers.')
+        (f'Data validation: Offset values in Indices must be integers.\n')
       )
     else:
       # Step 2: If all Offsets are integers, check for sequential values
@@ -236,22 +234,55 @@ def check_tables(
       if any([len(i) for i in _ind_val_odd]) != 0:
         check_list.append(
           (f'Data Validation: Check that Offset values in Indices are '
-          'sequential integers beginning at zero, within each Type.')
+          'sequential integers beginning at zero, within each Type.\n')
         )
-    
+
+    # Parameters check: Offset values within every Tech-Scen combo must be 
+    # sequential integers beginning at zero
+    # Step 1: Check that all Offset values are integers using column dtype
+    if parameters.Offset.dtype != 'int':
+      check_list.append(
+        (f'Data validation: Offset values in Parameters must be integers.\n')
+      )
+    else:
+      # Step 2: If all Offsets are integers, check for sequential values
+      _par_off_val = parameters.Offset.reset_index()
+      _par_off_val_odd = list()
+      for _t in _par_off_val.Technology.unique().tolist():
+        for _s in _par_off_val.Scenario.unique().tolist():
+          _par_off_val_odd = _par_off_val_odd + \
+            [set(
+              arange(len(_par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Scenario==_s)]))
+              ).symmetric_difference(
+                set(
+                  _par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Scenario==_s)]
+                )
+              )
+            ]
+    if any([len(i) for i in _par_off_val_odd]) != 0:
+      check_list.append(
+        ('Data Validation: Check that Offset values in Parameters are '
+        'sequential integers beginning at zero, within each Technology-Scenario '
+        'combination.\n')
+      )           
+
     # Parameters check: Every Parameter Offset must be the same across 
     # all Technology-Scenario combinations
     # Get a list of all Technology-Scenario combinations in Parameters
     parameters.sort_index(inplace=True)
-    _par_tecsce_paroff = [parameters.loc[i,'Offset'] for i in list(set([j[:2] for j in parameters.index.values]))]
+    _par_tecsce_paroff = [
+      parameters.loc[i,'Offset'] for i in list(
+        set([j[:2] for j in parameters.index.values])
+      )
+    ]
     for _j in arange(len(_par_tecsce_paroff)):
       if _j < len(_par_tecsce_paroff)-1:
         if not _par_tecsce_paroff[_j].equals(_par_tecsce_paroff[_j+1]):
           check_list.append(
-            (f'Data Validation: Parameter Offsets are inconsistent: {_par_tecsce_paroff[_j]}.'
-            ' Check in Parameters.')
+            ('Data Validation: Parameter Offsets are inconsistent. Check '
+            f'in Parameters.\n{_par_tecsce_paroff[_j]}\n')
           )
-
+    
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
       for i in check_list: print(i)
