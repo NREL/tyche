@@ -283,6 +283,15 @@ def check_tables(
             f'in Parameters.\n{_par_tecsce_paroff[_j]}\n')
           )
     
+    # Results check: Every Technology must have a result where both the Variable
+    # and the Index are "Cost".
+    for _i in results.index.to_frame().Technology.unique():
+      if len([j[1:] for j in results.index if (j[1:] == ('Cost','Cost')) & (j[0] == _i)]) != 1:
+        check_list.append(
+          (f'Data Validation: Technology {_i} in Results needs a row where both '
+          'the Variable and the Index are "Cost".\n')
+        )
+    
     # @TODO Update return values once fully implemented
     if len(check_list) != 0:
       for i in check_list: print(i)
