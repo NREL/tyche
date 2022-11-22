@@ -18,6 +18,11 @@ def check_tables(
     """
     Perform validity checks on input datasets.
 
+    All checks are run before this method terminates; that is, data errors are found
+    all at once rather than one at a time from several calls to this method. A list of
+    errors found is printed if any check fails. The errors include a summary of the check
+    and identify the dataset that needs to be changed.
+
     Parameters
     ----------
     path:str
@@ -28,10 +33,6 @@ def check_tables(
     Returns
     -------
     Boolean: True if data is valid, False otherwise
-
-    Raises
-    ------
-    Exceptions TBD when the data fails checks
     """
     check_list = []
 
@@ -300,7 +301,6 @@ def check_tables(
         (f'Data Validation: Category {tranches.index.to_frame().Category.unique()[_tra_amt_unique][0]}'
         ' in Tranches has duplicate Amounts.\n')
       )
-
 
     if len(check_list) != 0:
       for i in check_list: print(i)
