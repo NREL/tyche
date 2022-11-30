@@ -1,3 +1,5 @@
+.. _sec-approach:
+
 Approach
 ========
 
@@ -11,8 +13,8 @@ tables and Python functions. This approach not only minimizes the labor
 needed to add new technologies, but it also enforces uniformity of
 financial, mass-balance, and other assumptions in the analysis.
 
-The framework is scalable, supporting rapid computation on laptops
-computer and large-ensemble studies on high-performance computers (HPC).
+The framework is scalable, supporting rapid computation on laptop
+computers and large-ensemble studies on high-performance computers (HPC).
 The use of vectorized operations for the stochastic calculations and of
 response-surface fits for the portfolio evaluations minimizes the
 computational resources needed for complex multi-objective
@@ -24,14 +26,15 @@ All values in the data tables may be probability distributions,
 specified by Python expressions using a large library of standard
 distributions, or the values may be simple numbers. Expert opinion is
 encoded through these distributions. The opinions may be combined prior
-to simulator or subsequent to it.
+to simulation or subsequent to it.
 
-Four example technologies have been implemented as examples illustrating
+Four example technologies have been implemented as examples illustrating the
 framework’s use: biorefineries, electrolysis, residential photovoltaics
 (PV), and utility-scale PV. A desktop user interface allows exploration
 of the cost-benefit trade-offs in portfolio decision problems.
 
 Below we detail the mathematical formulation and its implementation as a
 Python module with user-specified data tables and technology functions.
+
 We also provide a sample analysis that exercises the framework’s main
 features.
