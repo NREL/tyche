@@ -23,7 +23,30 @@ from io import BytesIO
 from matplotlib.figure import Figure
 
 
+
 if 'QUART_APP' in os.environ or __name__ == '__main__':
+
+  userDefinedColors = {
+      'NREL': {
+          'main1':'#8DC63F'  # green
+        , 'main2':'#FFC425'  # yellow
+        , 'accent1':'#0079C1'  # dark blue
+        , 'accent2':'#00A4E4'  # blue
+        , 'accent3':'#F6A01A'  # gold
+        , 'accent4':'#5E9732'  # dark green
+        , 'accent5':'#933C06'  # brown
+      },
+      'EERE': {
+          'accent1':'#6ABC45'  # green
+        , 'accent2':'#FFCB06'  # yellow
+        , 'accent3':'#00A8DF'  # light blue
+        , 'accent4':'#005C82'  # dark blue
+        , 'accent5':'#017A3E'  # dark green
+        , 'accent6':'#E27225'  # orange
+        , 'hyperlink':'#017A3E'  # dark green
+        , 'followed':'#5E6A71'   # grey
+      }
+  }
 
   import quart as qt
 
@@ -38,6 +61,8 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   print(technology_path)
   print(type(app.config))
 
+  senseToMetric = {'min':'upper', 'max':'lower'}
+
   # Compute investments.
 
   investments = ty.Investments(app.config["INVESTMENTS"])
@@ -48,14 +73,34 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
   tranche_results = investments.evaluate_tranches(designs, sample_count=100)
 
   evaluator = ty.Evaluator(tranche_results)
-
+  
   optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+  min_metric = optimizer.optimum_metrics(
+    verbose = 0,
+    sense = {
+      'GHG': 'min',
+      'LCOE': 'min',
+      'Labor': 'min',
+      }
+    )
 
-  metric_range = evaluator.min_metric.join(
-      evaluator.max_metric,
-      lsuffix=" Min",
-      rsuffix=" Max",
-  )
+  max_metric = optimizer.optimum_metrics(
+    verbose = 0,
+    sense = {
+      'GHG': 'max',
+      'LCOE': 'max',
+      'Labor': 'max',
+      }
+    ) 
+
+  metric_range = pd.concat(
+    [
+      min_metric.rename('Value Min'),
+      max_metric.rename('Value Max')
+    ],
+    axis=1
+    )
+  print("> metric_range:\n", metric_range)
 
 
 # Session-level storage.
@@ -84,16 +129,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       technology_models=["pv-residential-simple", "simple-electrolysis"]
 
       plot_layout = "grid.html"
-
-    #   plot_layout = "model.html"
-    #   plot_types = ["box plot", "distribution", "violin"]
-
-      if plot_layout == "grid.html":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "column.html":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "heatmap.html":
-          plot_types = ["heatmap", "annotated"]
+      plot_types = get_plot_types(plot_layout)
 
       print(evaluator.units["Units"])
 
@@ -111,13 +147,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
 
   def setup_template(plot_layout):
       technology_models=["pv-residential-simple", "simple-electrolysis"]
-
-      if plot_layout == "grid":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "column":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "heatmap":
-          plot_types = ["heatmap", "annotated"]
+      plot_types = get_plot_types(plot_layout)
 
       return qt.render_template(
           plot_layout + ".html",
@@ -135,13 +165,7 @@ if 'QUART_APP' in os.environ or __name__ == '__main__':
       plot_layout = name
 
       technology_models=["pv-residential-simple", "simple-electrolysis"]
-
-      if plot_layout == "grid":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "column":
-          plot_types = ["box plot", "distribution", "violin"]
-      elif plot_layout == "heatmap":
-          plot_types = ["heatmap", "annotated"]
+      plot_types = get_plot_types(plot_layout)
 
       return await qt.render_template(
           plot_layout + ".html",
@@ -184,7 +208,7 @@ async def plot():
     
     y0 = min(0, metric_range.loc[m, "Value Min"])
     y1 = max(0, metric_range.loc[m, "Value Max"])
-    dy = (y1 - y0) / 20
+    dy = (y1 - y0) / 10
 
     # ----- GRID ---------------------------------------------------------------------------
     if typ in ["box plot", "distribution", "violin"]:
@@ -198,13 +222,15 @@ async def plot():
             if c == "all":  sb.kdeplot(ax=ax, data=values, x='Value', hue='Category', multiple='stack')
             else:           sb.kdeplot(ax=ax, data=values, x='Value')
 
+        sb.set_style({"xtick.direction": "in","ytick.direction": "in"})
+
         ax.set(
             xlabel="", ylabel="",
             yticks=[],
             yticklabels=[],
             xticks=[],
             xticklabels=[],
-            # xlim=(y0-dy, y1+dy),
+            xlim=(y0-dy, y1+dy),
         )
 
     # ----- HEATMAP ------------------------------------------------------------------------
@@ -231,13 +257,13 @@ async def plot():
                 fmt=".4g",
             )
         
-        ax.set(
-            xlabel="", ylabel="",
-            xticks=[], yticks=[],
-            xticklabels=[], yticklabels=[],
-        )
+        # ax.set(
+        #     xlabel="", ylabel="",
+        #     # xticks=[], yticks=[],
+        #     # xticklabels=[], yticklabels=[],
+        # )
 
-    # figure.set_tight_layout(True)
+    figure.set_tight_layout(True)
 
     # Save locally -- for prototyping.
     #   localpath = os.path.join("assets","plots",localdir,(str(m) + "_" + str(c).split()[0] + ".png").lower())
@@ -286,15 +312,19 @@ async def optimize():
     ident = qt.session["ID"]
     evaluation = session_evaluation[ident]
     form = await qt.request.form
-    target_metric = evaluator.metrics[int(form["target"])]
+
+    target_m = int(form["target"])
+    target_metric = evaluator.metrics[target_m]
     constraints = json.loads(form["constraints"])
-    min_metric = pd.Series(
-        [
-            constraints["metric"]["metlimwid_" + str(m)]
-            for m in range(len(evaluator.metrics))
-        ],
-        index=evaluator.metrics,
-    )
+    print("\n> constraints\n ", constraints)
+
+    eps_metric = {
+        evaluator.metrics[m]: {
+            'limit': constraints["metric"]["metlimwid_" + str(m)],
+            'sense': senseToMetric[constraints["sense"]["metsense_" + str(m)]],
+        } for m in range(len(evaluator.metrics)) if m!=target_m
+    }
+
     max_amount = pd.Series(
         [
             constraints["invest"]["invlimwid_" + str(m)]
@@ -302,23 +332,28 @@ async def optimize():
         ],
         index=evaluator.categories,
     )
+
     total_amount = constraints["invest"]["invlimwid_x"]
-    print("\nOptimization started.", datetime.now())
-    print("> target_metric\n ", target_metric)
-    print("> min_metric\n ", min_metric)
-    print("> total_amount\n ", total_amount)
+
+    print("\n\nOptimization started.", datetime.now())
+    print("> target_metric: ", target_metric)
+    print("> sense:         ", constraints['sense']['metsense_' + str(target_m)])
+    print("> eps_metric\n", eps_metric)
+    print("\n> max_amount\n", max_amount)
+    print("\n> total_amount: ", total_amount)
     optimum = optimizer.opt_slsqp(
-        metric=target_metric,
-        min_metric=min_metric,
+        target_metric,
+        sense = constraints['sense']['metsense_' + str(target_m)],
+        eps_metric=eps_metric,
         max_amount=max_amount,
         total_amount=total_amount
         # , tol          = 1e-4
         # , maxiter      = 10
     )
+    print("\nOptimization finished.", datetime.now())
     print("> exit_message\n ", optimum.exit_message)
-    print("> amounts\n ", optimum.amounts)
-    print("> metrics\n ", optimum.metrics)
-    print("Optimization finished.", datetime.now(), "\n")
+    print("\n> amounts\n", optimum.amounts)
+    print("\n> metrics\n", optimum.metrics)
     amounts = pd.DataFrame(optimum.amounts)
     session_amounts[ident] = amounts
     session_evaluation[ident] = evaluator.evaluate(amounts)
@@ -341,3 +376,11 @@ def normalize_to_metric(x):
     x_mean = aggregate_over(x, ['Sample'])
     met_diff = (metric_range['Value Max'] - metric_range['Value Min'])
     return x_mean / met_diff
+
+def get_plot_types(plot_layout):
+    if plot_layout == "heatmap":
+        return ["heatmap", "annotated"]
+    elif plot_layout == "heatmap.html":
+        return ["heatmap", "annotated"]
+    else:
+        return ["box plot", "distribution", "violin"]
