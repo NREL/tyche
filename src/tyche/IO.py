@@ -246,17 +246,36 @@ def check_tables(
         set(
           [j[2] for j in results.index.values if j[1] == 'Output']
         )
-      ).symmetric_difference(
+      ),
         set(
-        [k[3] for k in designs.index.values if k[2] in {'Output price','Output efficiency'}]
+          [j[2] for j in results.index.values if j[1] == 'Output']
+        ).symmetric_difference(
+          set(
+            [k[3] for k in designs.index.values if k[2] in {'Output price','Output efficiency'}]
+          )
         )
-      )
     ]
 
-    if len(_out_val_odd) != 0:
+    if any([len(i) for i in _out_val_odd]) != 0:
       check_list.append(
         (f'Data Validation: Output Index values {_out_val_odd} are inconsistent in one of '
         f'indices, results, and designs.')
+      )
+
+    # Cross-check: The index values for Input Type in the indices dataset must match 
+    # the Index values for Input, Input price, and Input efficiency Variable in designs.
+    _inp_val_odd = set(
+        [i[2] for i in indices.index.values if i[1] == 'Input']
+      ).symmetric_difference(
+        set(
+          [j[3] for j in designs.index.values if j[2] in {'Input', 'Input price', 'Input efficiency'}]
+        )
+      )
+    
+    if len(_inp_val_odd) != 0:
+      check_list.append(
+        (f'Data Validation: Input Index values {_inp_val_odd} are inconsistent in either '
+        'indices or in designs.')
       )
 
     # Parameters check: Offset values within every Tech-Scen combo must be 
