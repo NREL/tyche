@@ -236,6 +236,29 @@ def check_tables(
           'sequential integers beginning at zero, within each Type.\n')
         )
 
+    # Cross-check: The Index values for Output Type in the indices dataset, 
+    # the Index values for Output Variable in results, and the Output 
+    # efficiency (and Output price) Variable values in designs must be identical.
+    _out_val_odd = [
+      set(
+        [i[2] for i in indices.index.values if i[1] == 'Output']
+      ).symmetric_difference(
+        set(
+          [j[2] for j in results.index.values if j[1] == 'Output']
+        )
+      ).symmetric_difference(
+        set(
+        [k[3] for k in designs.index.values if k[2] in {'Output price','Output efficiency'}]
+        )
+      )
+    ]
+
+    if len(_out_val_odd) != 0:
+      check_list.append(
+        (f'Data Validation: Output Index values {_out_val_odd} are inconsistent in one of '
+        f'indices, results, and designs.')
+      )
+
     # Parameters check: Offset values within every Tech-Scen combo must be 
     # sequential integers beginning at zero
     # Step 1: Check that all Offset values are integers using column dtype
