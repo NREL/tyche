@@ -259,7 +259,7 @@ def check_tables(
     if any([len(i) for i in _out_val_odd]) != 0:
       check_list.append(
         (f'Data Validation: Output Index values {_out_val_odd} are inconsistent in one of '
-        f'indices, results, and designs.')
+        f'indices, results, and designs.\n')
       )
 
     # Cross-check: The index values for Input Type in the indices dataset must match 
@@ -275,7 +275,7 @@ def check_tables(
     if len(_inp_val_odd) != 0:
       check_list.append(
         (f'Data Validation: Input Index values {_inp_val_odd} are inconsistent in either '
-        'indices or in designs.')
+        'indices or in designs.\n')
       )
 
     # Parameters check: Offset values within every Tech-Scen combo must be 
@@ -342,6 +342,21 @@ def check_tables(
       check_list.append(
         (f'Data Validation: Category {tranches.index.to_frame().Category.unique()[_tra_amt_unique][0]}'
         ' in Tranches has duplicate Amounts.\n')
+      )
+
+    # Cross-check: Metric Index values are identical in results and in indices
+    _met_odd_val = set(
+      [i[2] for i in indices.index.values if i[1] == 'Metric']
+      ).symmetric_difference(
+        set(
+          [j[2] for j in results.index.values if j[1] == 'Metric']
+        )
+      )
+    
+    if len(_met_odd_val) != 0:
+      check_list.append(
+        (f'Data Validation: Metric Index values {_met_odd_val} are inconsistent either '
+        'in results or in indices.\n')
       )
 
     if len(check_list) != 0:
