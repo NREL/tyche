@@ -368,7 +368,7 @@ The *indices* dataset lists the elements of the Capital, Input, Output, and Metr
 Capital ---> Index from *Designs* dataset of the Lifetime variable type. 
 Input ---> Indices from the  *Designs* dataset (different input flows) of the Input variable type. 
 Output ---> Indices from the  *Designs* dataset (different output flows) of the Output variable type. 
-Metric ---> ndices from the  *Results* dataset (different metric indicators) of the metric variable type. 
+Metric ---> Indices from the  *Results* dataset (different metric indicators) of the metric variable type. 
 
 **Minimum mandatory data**
 The four types of indices described here are mandatory. So for the case where there are no input flows, the "Input" type entry is still required. Fill up all other string columns with *None* and numerical columns with 0. 
