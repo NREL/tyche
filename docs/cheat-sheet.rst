@@ -351,7 +351,7 @@ A technology in the Tyche context is quantified using five sets of attribute val
 
 The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set. 
 
-**Mandatory data.** The four types of indices described here are mandatory. So for the case where there are no input flows, the "Input" type entry is still required. Fill up all other string columns with *None* and numerical columns with 0. 
+**Mandatory data.** All four Types must be listed in the *indices* dataset. If a particular Type is not relevant to the technology under study, it still must be included in this dataset.
 
 Functions Dataset
 -------------------------
