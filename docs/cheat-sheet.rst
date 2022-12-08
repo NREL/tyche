@@ -229,8 +229,7 @@ If the information in the *designs* dataset completely defines the technology an
   
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 
-**Minimum mandatory data**
-If there are no parameters required or present in the model, the parameters.csv file cannot be blank. Atleast one row for each scenario and technology combination is required. If there are no parameters, enter None in parameter and 0 for all other columns. 
+**Mandatory data.** If there are no parameters required or present in the model, the parameters.csv file cannot be blank. Atleast one row for each scenario and technology combination is required. If there are no parameters, enter None in parameter and 0 for all other columns. 
 
 
 Technology model (Python file)
@@ -364,8 +363,7 @@ Input ---> Indices from the  *Designs* dataset (different input flows) of the In
 Output ---> Indices from the  *Designs* dataset (different output flows) of the Output variable type. 
 Metric ---> Indices from the  *Results* dataset (different metric indicators) of the metric variable type. 
 
-**Minimum mandatory data**
-The four types of indices described here are mandatory. So for the case where there are no input flows, the "Input" type entry is still required. Fill up all other string columns with *None* and numerical columns with 0. 
+**Mandatory data.** The four types of indices described here are mandatory. So for the case where there are no input flows, the "Input" type entry is still required. Fill up all other string columns with *None* and numerical columns with 0. 
 
 Functions Dataset
 -------------------------
@@ -419,5 +417,4 @@ The *results* dataset lists the Tyche outcomes that are of interest within a dec
 
 The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. The index value of "Cost" can be kept as "Cost". To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* and the *indices* dataset.
 
-**Minimum mandatory data**
-All the rows of Cost, Output and Metric are mandatory. In the rare case that there is no output or the user is uninterested in the cost, they can be ignored by entering None in the Index. Similarly atleast one metric is required as metrics are mandatory. If no metric is required in the study, it can filled up with None. 
+**Mandatory data.** All the rows of Cost, Output and Metric are mandatory. In the rare case that there is no output or the user is uninterested in the cost, they can be ignored by entering None in the Index. Similarly atleast one metric is required as metrics are mandatory. If no metric is required in the study, it can filled up with None. 
