@@ -349,12 +349,7 @@ Relationship between *indices* and other datasets
 
 A technology in the Tyche context is quantified using five sets of attribute values and one technology-level attribute value. The five sets of attribute values are Capital, Input, Output, Parameter, and Metric, and the technology-level attribute is Scale. Elements within each of the five sets are defined with an Index which simply names the element (for instance, Electricity might be one of the Index values within the Input set). Elements of Capital have an associated Lifetime. Elements of the Input set have an associated ideal amount (also called Input), an Input efficiency value, and an Input price. Elements of the Output set have only an Output efficiency and an Output price; the ideal output amounts are calculated from the technology model. Elements of the Metric set are named with an Index and are likewise calculated from the technology model. Elements of the Parameter set have only a value.
 
-The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set.
-
-Capital ---> Index from *Designs* dataset of the Lifetime variable type. 
-Input ---> Indices from the  *Designs* dataset (different input flows) of the Input variable type. 
-Output ---> Indices from the  *Designs* dataset (different output flows) of the Output variable type. 
-Metric ---> Indices from the  *Results* dataset (different metric indicators) of the metric variable type. 
+The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set. 
 
 **Mandatory data.** The four types of indices described here are mandatory. So for the case where there are no input flows, the "Input" type entry is still required. Fill up all other string columns with *None* and numerical columns with 0. 
 
