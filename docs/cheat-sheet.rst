@@ -342,12 +342,8 @@ The *indices* dataset contains the numerical indexes (location within a list or 
   |              |            | * Input        |                                                                                          |
   |              |            | * Output       |                                                                                          | 
   |              |            | * Metric       |                                                                                          |
-  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
-<<<<<<< HEAD
-  | Index        | String     | Any            | Name of the elements within each Type. For instance, names of elements in Input type     |
-=======
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+
   | Index        | String     | Any            | Name of the elements within each Type. For instance, names of the Input types.           |
->>>>>>> parent of 414367a (Update cheat-sheet.rst)
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
   | Offset       | Integer    | $\geq$ 0       | Numerical location of the Index within each Type.                                        |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
