@@ -187,9 +187,7 @@ The *designs.csv* file within the technology folder under SRC contains the *desi
   | Notes        | String                                         | Any                                                                   | Description provided by user. Not used by Tyche.                             |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
 
-**Minimum mandatory data**
-If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1. The index should be kept as *None*. If a certain entry does not have an unit or unitless, the entry for the units column should be entered as 1. For instance, a technology such as a solar panel could be modeled without any Inputs, if sunlight is not explicitly being modeled. In this case, the single Index defined for the Input Variable could be simply 0, and the calculations within the technology model .py file can be defined without using this value. Variables and their component Indexes are defined further in :numref:`tbl-designsvars`.
-
+**Mandatory data.** If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1. The index should be kept as *None*. For instance, a technology such as a solar panel could be modeled without any Inputs, if sunlight is not explicitly being modeled. In this case, the single Index defined for the Input Variable could be simply 0, and the calculations within the technology model .py file can be defined without using this value. Variables and their component Indexes are defined further in :numref:`tbl-designsvars`.
 
 .. _tbl-designsvars:
 .. table:: Mandatory values for Variables in the *designs* dataset.
@@ -422,4 +420,4 @@ The *results* dataset lists the Tyche outcomes that are of interest within a dec
 The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. The index value of "Cost" can be kept as "Cost". To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* and the *indices* dataset.
 
 **Minimum mandatory data**
-All the rows of Cost, Output and Metric are mandatory. In the rare case that there is no output or the user is uninterested in the cost, they can be ignored by entering None in the Index. Units for unrequired entries can be put in as 1 or 0. Similarly atleast one metric is required as metrics are mandatory. If no metric is required in the study, it can filled up with None. 
+All the rows of Cost, Output and Metric are mandatory. In the rare case that there is no output or the user is uninterested in the cost, they can be ignored by entering None in the Index. Similarly atleast one metric is required as metrics are mandatory. If no metric is required in the study, it can filled up with None. 
