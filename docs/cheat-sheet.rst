@@ -294,13 +294,7 @@ The *investments* dataset provides a separate way to look at making R&D investme
   Notes        String     Additional user-defined information. Not used by Tyche.                                                
   ============ ================================================================================================================
 
-***Relationship between Designs, Parameters, Tranches and Investments***
-The *Designs* dataset listed scenarios for which different input variable values were provided. Similar parameter values were provided for different scenario types in the *Parameters* dataset. The same scenarios are listed in the scenario column in the Tranches dataset. A tranche has one-to-one relationship with a scenario. 
-For the Investment dataset, the tranches and category columns come directly from the Tranches dataset. 
-
-
-
-
+**Relationship between Categories, Tranches, Scenarios, and Investments.** Both the *designs* and *parameters* dataset contain technology data under multiple Scenarios. Each Scenario represents the technological outcomes from one or more Tranches, and each Tranche represents a unit of R&D investment in a single Category (or research area). Scenarios and their component Tranches are defined in the *tranches* dataset. Tranches can also be combined to form Investments, as defined in the *investments* dataset.
 
 Uncertainty in the Input Datasets
 ---------------------------------
