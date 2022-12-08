@@ -403,6 +403,6 @@ The *results* dataset lists the Tyche outcomes that are of interest within a dec
   | Notes       | String     | Any            | Additional information defined by the user. Not used during Tyche calculations.        |
   +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
 
-The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. The index value of "Cost" can be kept as "Cost". To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* and the *indices* dataset.
+The Variable Cost is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. The Index of Cost can be simply Cost. The sets of Index values for the Output and Metric Variables should match the Output and Metric sets in both the *designs* and the *indices* datasets.
 
-**Mandatory data.** All the rows of Cost, Output and Metric are mandatory. In the rare case that there is no output or the user is uninterested in the cost, they can be ignored by entering None in the Index. Similarly atleast one metric is required as metrics are mandatory. If no metric is required in the study, it can filled up with None. 
+**Mandatory data.** Every Index within the Cost, Output and Metric sets defined elsewhere in the input datasets should be included in the *results* dataset.
