@@ -289,8 +289,8 @@ The *investments* dataset provides a separate way to look at making R&D investme
   Column Name  Data Type  Description                                                                                            
   ============ ========== =====================================================================================================
   Investment   String     Name of the R&D investment. Distinct from the Scenarios.                                               
-  Category     String     Names of the R&D categories being invested in. Within each row, the Category must match the Tranche. Same as the *Tranches* dataset. 
-  Tranche      String     Names of the tranches within the Investment. Within each row, the Tranche must match the Category. Comes from the *Tranches* dataset.
+  Category     String     Names of the R&D categories being invested in. Within each row, the Category must match the Tranche. The set of Categories in the *investments* dataset must match the set of Categories in the *tranches* dataset.
+  Tranche      String     Names of the tranches within the Investment. Within each row, the Tranche must match the Category. The set of Tranches in the *investments* dataset must match the set of Tranches in the *tranches* dataset.
   Notes        String     Additional user-defined information. Not used by Tyche.                                                
   ============ ================================================================================================================
 
