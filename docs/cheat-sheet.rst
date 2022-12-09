@@ -187,8 +187,7 @@ The *designs.csv* file within the technology folder under SRC contains the *desi
   | Notes        | String                                         | Any                                                                   | Description provided by user. Not used by Tyche.                             |
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
 
-If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will break the code. The Value for irrelevant Variables may be set to 0 or 1. For instance, a technology such as a solar panel could be modeled without any Inputs, if sunlight is not explicitly being modeled. In this case, the single Index defined for the Input Variable could be simply 0, and the calculations within the technology model .py file can be defined without using this value. Variables and their component Indexes are defined further in :numref:`tbl-designsvars`.
-
+**Mandatory data.** If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will result in an error when the datasets are initially read in and processed. The Value for unneeded Variables may be set to 0 or 1, and the Index for unneeded Variables set to None. This may be necessary for technologies without any inputs: for instance, a solar panel could be modeled without any Inputs, if sunlight is not explicitly being modeled. In this case, the single Index defined for the Input Variable can be None, and the calculations within the technology model .py file can be defined without using this value. Variables and their component Indexes are defined further in :numref:`tbl-designsvars`.
 
 .. _tbl-designsvars:
 .. table:: Mandatory values for Variables in the *designs* dataset.
@@ -230,6 +229,7 @@ If the information in the *designs* dataset completely defines the technology an
   
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 
+**Mandatory data.** The *parameters* dataset is required to exist and to include at least one Parameter for every Technology-Scenario combination. If there are no Parameters present in the technology model, then the Parameter may be None and 0 may be entered under both the Offset and Value columns.
 
 Technology model (Python file)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -289,10 +289,12 @@ The *investments* dataset provides a separate way to look at making R&D investme
   Column Name  Data Type  Description                                                                                            
   ============ ========== =====================================================================================================
   Investment   String     Name of the R&D investment. Distinct from the Scenarios.                                               
-  Category     String     Names of the R&D categories being invested in. Within each row, the Category must match the Tranche.   
-  Tranche      String     Names of the tranches within the Investment. Within each row, the Tranche must match the Category
+  Category     String     Names of the R&D categories being invested in. Within each row, the Category must match the Tranche. The set of Categories in the *investments* dataset must match the set of Categories in the *tranches* dataset.
+  Tranche      String     Names of the tranches within the Investment. Within each row, the Tranche must match the Category. The set of Tranches in the *investments* dataset must match the set of Tranches in the *tranches* dataset.
   Notes        String     Additional user-defined information. Not used by Tyche.                                                
   ============ ================================================================================================================
+
+**Relationship between Categories, Tranches, Scenarios, and Investments.** Both the *designs* and *parameters* dataset contain technology data under multiple Scenarios. Each Scenario represents the technological outcomes from one or more Tranches, and each Tranche represents a unit of R&D investment in a single Category (or research area). Scenarios and their component Tranches are defined in the *tranches* dataset. Tranches can also be combined to form Investments, as defined in the *investments* dataset.
 
 Uncertainty in the Input Datasets
 ---------------------------------
@@ -330,12 +332,8 @@ The *indices* dataset contains the numerical indexes (location within a list or 
   |              |            | * Input        |                                                                                          |
   |              |            | * Output       |                                                                                          | 
   |              |            | * Metric       |                                                                                          |
-  +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
-<<<<<<< HEAD
-  | Index        | String     | Any            | Name of the elements within each Type. For instance, names of elements in Input type     |
-=======
+  +--------------+------------+----------------+------------------------------------------------------------------------------------------+
   | Index        | String     | Any            | Name of the elements within each Type. For instance, names of the Input types.           |
->>>>>>> parent of 414367a (Update cheat-sheet.rst)
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
   | Offset       | Integer    | $\geq$ 0       | Numerical location of the Index within each Type.                                        |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
@@ -351,7 +349,9 @@ Relationship between *indices* and other datasets
 
 A technology in the Tyche context is quantified using five sets of attribute values and one technology-level attribute value. The five sets of attribute values are Capital, Input, Output, Parameter, and Metric, and the technology-level attribute is Scale. Elements within each of the five sets are defined with an Index which simply names the element (for instance, Electricity might be one of the Index values within the Input set). Elements of Capital have an associated Lifetime. Elements of the Input set have an associated ideal amount (also called Input), an Input efficiency value, and an Input price. Elements of the Output set have only an Output efficiency and an Output price; the ideal output amounts are calculated from the technology model. Elements of the Metric set are named with an Index and are likewise calculated from the technology model. Elements of the Parameter set have only a value.
 
-The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set.
+The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set. 
+
+**Mandatory data.** All four Types must be listed in the *indices* dataset. If a particular Type is not relevant to the technology under study, it still must be included in this dataset.
 
 Functions Dataset
 -------------------------
@@ -403,4 +403,6 @@ The *results* dataset lists the Tyche outcomes that are of interest within a dec
   | Notes       | String     | Any            | Additional information defined by the user. Not used during Tyche calculations.        |
   +-------------+------------+----------------+----------------------------------------------------------------------------------------+  
 
-The Variable “Cost” is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. To fill in the Index values for the “Output” and “Metric” Variables, see the *designs* dataset.
+The Variable Cost is a technology-wide lifetime cost, and as such may not be relevant within all decision contexts. The Index of Cost can be simply Cost. The sets of Index values for the Output and Metric Variables should match the Output and Metric sets in both the *designs* and the *indices* datasets.
+
+**Mandatory data.** Every Index within the Cost, Output and Metric sets defined elsewhere in the input datasets should be included in the *results* dataset.
