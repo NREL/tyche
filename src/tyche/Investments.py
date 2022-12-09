@@ -134,9 +134,9 @@ class Investments:
       )
       amounts = self.compiled_tranches.drop(
         columns=["Notes"]
-      ).sum(
+      ).groupby(
         level=["Category", "Tranche"]
-      )
+      ).sum()
       metrics = self.compiled_tranches.drop(
         columns=["Amount", "Notes"]
       ).join(
@@ -151,8 +151,9 @@ class Investments:
       summary = metrics.set_index(
         "Units",
         append=True
-      ).sum(
+      ).groupby(
         level=["Category","Technology", "Tranche", "Sample", "Index", "Units"]
+      ).sum(
       ).reset_index(
         "Units"
       )[["Value", "Units"]],
@@ -201,15 +202,10 @@ class Investments:
       amounts = self.investments.drop(
         columns=["Notes"]
       ).join(
-        self.tranches.astype(
-          {'Amount': float,
-           'Notes': object}
-        ).drop(
-            columns=["Notes"]
-            )
-        ).sum(
-            level=["Investment"]
-        )
+        self.tranches.drop(columns=["Notes"])
+      ).groupby(
+        level=["Investment"]
+      ).sum()
       metrics = self.investments.drop(
         columns=["Notes"]
       ).join(
@@ -226,8 +222,9 @@ class Investments:
       summary = metrics.set_index(
         "Units",
         append=True
-      ).sum(
+      ).groupby(
         level=["Investment", "Technology", "Sample", "Index", "Units"]
+      ).sum(
       ).reset_index(
         "Units"
       )[["Value", "Units"]],

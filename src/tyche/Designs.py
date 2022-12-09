@@ -332,9 +332,9 @@ class Designs:
     metrics = pd.DataFrame()
     for technology in self.vectorize_technologies():
       result = self.evaluate(technology, sample_count)
-      costs   = costs.append(  result.cost  )
-      outputs = outputs.append(result.output)
-      metrics = metrics.append(result.metric)
+      costs   = pd.concat([costs, result.cost])
+      outputs = pd.concat([outputs, result.output])
+      metrics = pd.concat([metrics, result.metric])
 
     def organize(variable, values):
       return self.results.xs(
@@ -347,8 +347,8 @@ class Designs:
         ["Technology", "Scenario", "Sample", "Variable", "Index"]
       )[["Value", "Units"]]
 
-    return organize("Cost", costs).append(
-      organize("Output", outputs)
-    ).append(
+    return pd.concat([
+      organize("Cost", costs),
+      organize("Output", outputs),
       organize("Metric", metrics)
-    ).sort_index()
+      ]).sort_index()
