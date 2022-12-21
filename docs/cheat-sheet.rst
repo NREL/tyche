@@ -3,148 +3,125 @@
 Quick Start Guide
 =================
 
-The purpose of this quick start guide is to allow a new user to set up their first R&D decision context using Tyche, and to provide some examples of using Tyche for decision support analyses. 
-
-An R&D decision context involves one or more technologies that are subject to various R&D investments with the goal of changing the technology metrics and outcomes.
+The purpose of this guide is to allow a new user to set up their first R&D decision context using Tyche. An R&D decision context involves one or more technologies that are subject to various R&D investments with the goal of changing the technology metrics and outcomes.
 
 
-Introduction and Getting Started
---------------------------------
+Introduction
+------------
 
 The following materials walk through:
 
-1.	what the Technology Characterization and Evaluation (Tyche ) tool does and why this is of value to the user; 
-2.	setting up the Tyche package for use, including downloading and installing Anaconda (which includes Jupyter for running Tyche and Spyder for creating/editing Python files); 
-3.	modifying an existing model to be used to meet your particular needs; 
-4.	developing data, including conducting expert elicitations to estimate potential impacts of different R&D investments; 
-5.	an overview of the code and data files used; and
-6.	building and running Tyche models of your technologies to evaluate the potential impacts of alternative R&D investment strategies.
+1.	What the Technology Characterization and Evaluation (Tyche) tool does and why this is of value to the user;
+2.	How to set up the Tyche software for local use, including downloading and installing Anaconda;
+3.	How to develop input datasets for a decision context;
+4.	How to develop technology models for a decision context.
 
+An example technology model is developed in the :ref:`sec-techmodelexample` section, and an example of using Tyche for decision support analysis is provided in the :ref:`sec-analysisexample` section. For additional details on the mathematical approach behind Tyche, see the :ref:`sec-approach` section.
 
-The Technology Characterization and Evaluation Tool
----------------------------------------------------
+What does Tyche do?
+^^^^^^^^^^^^^^^^^^^
 
-The **Tyche** tool provides a consistent and systematic methodology to evaluate alternative R&D investments in a technology system and determine.  This can help support decision-makers as they consider alternative R&D investment strategies to meet their overall goals.
+The Tyche tool provides a consistent and systematic methodology for evaluating alternative R&D investments in a technology or technology system and for comparing the impacts of these investments on metrics and outcomes of interest. Tyche is intended to provide analytical support for funding decision-makers as they consider how to meet their overall goals with various R&D investment strategies.
 
-The Tyche methodology: 
+Tyche's methodology for evaluating and comparing R&D investments:
 
-1. begins with a technoeconomic model of a particular technology; 
-2. conducts expert elicitation to get quantitative estimates of how much a particular attribute of a component or subsystem within that technology might improve with R&D; 
-3. represents these estimates as probability distributions—typically triangular distributions as these are straightforward to develop through expert elicitations—within this model; and then 
-4. uses multi-objective stochastic optimization to determine the potential overall improvement in the technology, identify the R&D investments that have the greatest potential impact for improving technology attributes such as cost or environmental impact, and enables analysis of R&D options to meet decision-maker goals.
+1. Uses techno-economic models of the technology(ies) of interest;
+2. Incorporates expert elicitation to get quantitative, probabilistic estimates of how the technology(ies) of interest might change with R&D;
+3. Provides both ensemble simulation and multi-objective stochastic optimization capabilities that enable users to identify R&D investments with the greatest potential for accomplishing decision-maker goals, determine the potential overall improvement in the technology, determine the most promising avenue of R&D for a technology, and more.
 
-Set up Tyche package
---------------------
+What is a "technology"?
+^^^^^^^^^^^^^^^^^^^^^^^
 
-The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process for downloading the Tyche framework to your personal computer. The Tyche repository is available on github at this [link](https://github.com/NREL/tyche)...   A library of simple Tyche models is available to provide beginning templates for developing more complete models of technologies of interest at: (https://github.com/NREL/tyche/tree/dev/src/technology)
+In the R&D decision contexts represented and analyzed by Tyche, "technology" has a very broad definition. A technology converts input(s) to output(s) using capital equipment with a defined lifetime, and incurs fixed and/or variable costs in doing so. A technology may be a manufacturing process, a biorefinery, an agricultural process, a renewable energy technology component such as a silicon wafer or an inverter, a renewable energy technology unit such as a wind turbine or solar panel, a renewable power plant system such as a concentrated solar power plant, and more. Within the R&D decision context, a technology is also subject to one or more research areas in which R&D investments can be made to change the technology and its economic, environmental, and other metrics of interest. Multiple technologies can be modeled and compared within the same decision context, provided the same metrics are calculable for each technology. Within Tyche, a technology is represented both physically and economically using a simple but generalized techno-economic analysis (TEA) model. The TEA is based on a user defined technology model and accompanying datasets of technological and investment information.
 
-- Download and install `Anaconda <https://anaconda.org/>`_ . Most users will install the Windows version of Anaconda.  Set up an account with a password to download Anaconda to make re-installing easier if there are problems and to access tutorials and other information on Anaconda.  This can also be useful if your Jupyter link breaks.  <<For installing Anaconda for Linux or Mac systems, see below.>> 
-- Download Tyche from GitHub at: https://github.com/NREL/tyche/tree/dev 
-- Paste the downloaded Tyche Zip.files on your desktop and extract the files.  It is easiest to access these files using Anaconda/Jupyter when they are on your desktop.
-- Navigate to the downloaded Tyche repository folder. 
-- Create the Tyche environment 
-    * Type the following into the Anaconda Shell (under Anaconda in the Windows Start menu). 
-    * For windows machines, do the following:
-    * In the Windows Start menu (left-most windows icon at the bottom of your screen) open the Anaconda folder and click on the Anaconda prompt.  A window will open showing: ```(base) C:\users\xxx>```   Navigate to where your Tyche folder is, e.g., change directories to the tyche folder:  ```(base) cd:\users\PersonName\tyche```, then install the tyche environment with:      
-    * ``conda env create --file conda\win.yml``
-    * ``conda activate tyche``
-    * ``pip install mip``
-    
-- For Mac OS use system terminal. 
+Getting Started
+---------------
 
-    * ``conda env create --file conda\mac.yml``
-    * ``conda activate tyche``
-    * ``pip install mip``
+This section provides guidance on setting up Tyche for use on your local machine.
 
-* These steps create a new environment in Anaconda for running Tyche files.  This can be seen by looking at Anaconda navigator (launch Anaconda navigator by clicking the Windows start button and going to the Anaconda folder and clicking on Anaconda Navigator) under “Environment” on the left-most panel.  It will show two names: “Base (root)” and “Tyche”.  The Tyche work will be done within the Tyche environment; in particular, note that the Windows Start menu showing the Anaconda file now includes a Jupyter Notebook (Tyche) icon to launch Jupyter to run Tyche. 
-* Run a Tyche Model.  To test the Tyche environment, click the Windows Start menu, go to the Anaconda folder, and click on the Jupyter Notebook (Tyche) program.  This will launch Jupyter Notebook (Tyche) in your default web browser.   
-* Build a Tyche Model.  This consists of **xxxxx**; Examples are provided below.  Models follow a particular format as specified in the Tyche documentation Release 0.xx.  The form of these Tyche models enables consistent approaches to evaluating technologies.
-* Develop Model Data.  Much model data will be well known and should be entered directly into the respective .csv files as described below.  Other model data is developed through expert elicitations.
-* Conduct Expert Elicitations to estimate potential technology cost and performance improvements for selected levels of R&D investment as well as to determine other needed data.
-* Input Expert Elicitation data into the Tyche model.
+The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process for downloading the Tyche framework to your personal computer. 
 
-To download and use the Tyche package on a personal computer:
+Install Anaconda
+^^^^^^^^^^^^^^^^
 
-- On Windows only, for users without a Python distribution: First download and install `Anaconda <https://anaconda.org/>`_.
-- Download the `source code <https://github.com/NREL/tyche/releases/>`_.
-- Navigate to the Tyche repository folder. 
-- Create the Tyche environment
+- Download the Anaconda distribution for your system (Windows or MacOS) from the Anaconda Distributions webpage <https://www.anaconda.com/products/distribution>`_.
+- Once downloaded, follow the instructions provided with the installer.
 
-On Windows:
+Download the Tyche software
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- The latest stable release of the Tyche software can be downloaded as a .zip file from the `GitHub repository <https://github.com/NREL/tyche/releases>`_.
+- Extract the files to a location convenient to you. It may be easiest to access these files if they are located on your desktop, but this is not a requirement.
+
+Navigate the Tyche directory structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once downloaded and extracted, the Tyche files will have the directory structure shown in :numref:`fig-directorystruct`.
+
+.. _fig-directorystruct:
+.. figure:: images/image1.png 
+	:width: 400
+	:alt: Tyche code base directory structure.
+	
+	Tyche repository directory structure. New technology models and data should be saved in sub-directories under the technology directory, indicated in blue.
+
+- *conda* contains the environment specification file used to create the Tyche environment.
+- *docs* contains reStructured Text (.rst) files used to generate the Tyche documentation. These files are for internal use only and should not be modified.
+- *src* and its subdirectories contain the Tyche analysis codebase.
+   - *technology* contains a subdirectory containing the input datasets (.xlsx) and analysis Jupyter notebooks (.ipynb) for each decision context, as well as the technology model files (.py) for each decision context.
+   - *tyche* contains the Python files which provide all of Tyche's functionalities. These files are for internal use only and should not be modified.
+
+Users creating decision contexts should store the new input datasets, analysis Jupyter notebooks, and technology model files in the technology directory, which is indicated in blue in :numref:`fig-directorystruct`. It is strongly recommended that users create sub-directories for each new decision context, to avoid confusing input datasets and models between contexts.
+
+Set up the Tyche environment using conda
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Tyche's codebase comes with an environment specification file that is used with Conda to automatically install all of Tyche's required Python packages. It is strongly recommended that users create and use the Tyche environment, to avoid any package conflicts or compatibility issues. It is also recommended that you turn off any VPN you commonly use before following the steps in this section.
+
+On Windows, open an Anaconda Prompt (recommended) or Command Prompt window; on Mac, open a System Terminal window. Then enter the following commands, pressing Enter after each line:
+
 ::
 
    conda env create --file conda\win.yml
    conda activate tyche
 
-On Mac:
+Note that the first command may take up to 10 minutes to execute. If the environment creation was successful, you should see a message similar to the following:
+
 ::
 
-   conda env create --file conda/mac.yml
-   conda activate tyche
+	done
+	#
+	# To activate this environment, use
+	#
+	#     $ conda activate tyche
+	#
+	# To deactivate an active environment, use
+	#
+	#     $ conda deactivate
+	Retrieving notices: ...working... done
 
-Note that the conda environment was created with the command:
-::
-
-   conda create -n tyche -c conda-forge python=3.7 numpy scipy scikit-learn seaborn=0.10 matplotlib=3.3 quart hypercorn jupyter
-
-- If you receive an HTTPS error, consider retrying the command with the `--insecure` flag added.
+- If you receive an HTTPS error during environment creation, consider retrying the command with the `--insecure` flag added.
 - See the `conda documentation <https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file>`_ for additional information on installing and troubleshooting environments.
 
-Directory Structure
--------------------
+Using Tyche analysis functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _fig-directorystruct:
-.. figure:: images/image1.png 
-	:width: 400
-	:alt: Tyche repository directory structure.
-	
-	Tyche repository directory structure. Users should not alter this structure. New technology models and data can be saved in sub-directories under the technology folder, indicated in blue.
+As discussed below in more detail, using Tyche locally is generally done via `Jupyter Notebook <https://jupyter.org/>`_, several examples of which are packaged with the Tyche codebase. To open one of these provided notebooks or to create your own:
 
-The directory where users should store new technology models (.py files) and the accompanying datasets discussed below is indicated in blue in :numref:`fig-directorystruct`. We recommend that users create sub-directories for each new technology or decision context, to avoid confusing the various input datasets.
+- Open an Anaconda Prompt window.
+- Activate the Tyche environment with `conda activate tyche`.
+- Change the current working directory to the location of the extracted Tyche files using `cd path/to/Tyche/files`.
+- Open the Jupyter Notebook browser interface with `jupyter notebook`.
 
-The content of the folders and files follows:
+A browser window or new tab (if a window was already open) will then open and show the files within the Tyche directory, from which existing notebooks can be open and run or new notebooks created.
 
-- Conda: This folder has four files: “mac.yml”, “nobuilds.yml”, “tiny.yml”, and “win.yml”.  The win.yml and mac.yml files are used to install the Tyche environment and dependencies in Windows and Mac machines, respectively, as described above.  The “nobuilds.yml” and “tiny.yml” files are for use instead of "mac.yml" and "win.yml" in case the more detailed environment specifications cause problems during installation.
-- Docs: This folder has a number of RST (reStructured Text markup language) files that describe different aspects of Tyche and its programs.  These files are for internal Tyche developer use only and should not be modified by users outside the development team.
-   * src: The Tyche analysis codebase is stored in this directory
-   * eutychia: Code for the browser-based graphical user interface (GUI) is stored in this directory
-   * technology: This folder has a subfolder for each decision context (set of technologies, plus investment scenarios) that is modeled in Tyche. Also in this directory are the technology model files (.py).
+Defining a Decision Context
+---------------------------
 
-Within each Technology folder there is one Jupyter (.ipynb) analysis notebook file that models the technology and seven input datasets in .csv format, as follow:
-
-- designs. 
-- functions.
-- indices.
-- investments.
-- parameters.
-- results.
-- tranches.
-- Each of these .csv files is described in detail below.
-
-Tyche: This folder has 10 python files which form the core of the Tyche model and should not be modified.  These do the following:
-
-- \_\_init\_\_: This is the Python initialization function.   The leading and trailing double underscores mean that this is a special method of the Python interpreter.
--	DecisionGUI:
--	Designs:
--	Distributions:
--	EpsilonConstraints:
--	Evaluator:
--	Investments:
--	IO:
--	Types:
--	Waterfall:
-
-
-Defining Technologies
----------------------
-
-What is a “technology”?
------------------------
-
-In the R&D decision contexts represented and analyzed by Tyche, “technology” has a very broad definition. A technology converts input(s) to output(s) using capital equipment with a defined lifetime and incurs fixed and/or variable costs in doing so. A technology may be a manufacturing process, a biorefinery, an agricultural process, a renewable energy technology component such as a silicon wafer or an inverter, a renewable energy technology unit such as a wind turbine or solar panel, a renewable power plant system such as a concentrated solar power plant, and more. Within the R&D decision context, a technology is also subject to one or more research areas in which R&D investments can be made to change the technology and its economic, environmental, and other metrics of interest. Multiple technologies can be modeled and compared within the same decision context, provided the same metrics are calculable for each technology. Within Tyche, a technology is represented both physically and economically using a classic but simple and generalized techno-economic analysis (TEA). The TEA is based on a user defined technology model and accompanying datasets of technological and investment information.
+After Tyche and its prerequisites are installed, the user can begin assembling the input datasets and technology models necessary for running their own decision context analyses.
 
 Input Datasets
---------------
+^^^^^^^^^^^^^^
 
 The following first walks through the various .csv files that support the Tyche model within the folder for each technology, then these are put to use in the last section below to build and run a Tyche model of your technology to evaluate the potential impacts of alternative R&D investment strategies.
 
