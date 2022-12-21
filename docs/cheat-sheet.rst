@@ -44,7 +44,7 @@ The following installs Anaconda (from which JupyterLab is used to run Tyche mode
 Install Anaconda
 ~~~~~~~~~~~~~~~~
 
-- Download the Anaconda distribution for your system (Windows or MacOS) from the Anaconda Distributions webpage <https://www.anaconda.com/products/distribution>`_.
+- Download the Anaconda distribution for your system (Windows or MacOS) from the `Anaconda Distributions <https://www.anaconda.com/products/distribution>`_ website.
 - Once downloaded, follow the instructions provided with the installer.
 
 Download the Tyche software
@@ -109,9 +109,9 @@ Access Tyche analysis functions
 As discussed below in more detail, using Tyche locally is generally done via `Jupyter Notebook <https://jupyter.org/>`_, several examples of which are packaged with the Tyche codebase. To open one of these provided notebooks or to create your own:
 
 - Open an Anaconda Prompt window.
-- Activate the Tyche environment with `conda activate tyche`.
-- Change the current working directory to the location of the extracted Tyche files using `cd path/to/Tyche/files`.
-- Open the Jupyter Notebook browser interface with `jupyter notebook`.
+- Activate the Tyche environment with ``conda activate tyche``.
+- Change the current working directory to the location of the extracted Tyche files using ``cd path/to/Tyche/files``.
+- Open the Jupyter Notebook browser interface with ``jupyter notebook``.
 
 A browser window or new tab (if a window was already open) will then open and show the files within the Tyche directory, from which existing notebooks can be open and run or new notebooks created.
 
@@ -120,14 +120,15 @@ Defining a Decision Context
 
 After Tyche and its prerequisites are installed, the user can begin assembling the input datasets and technology models necessary for running their own decision context analyses. This section provides details on the contents of each input dataset required by Tyche and on the structure and function of the technology model (.py) file.
 
-Tyche does contain built-in data validation checks that, once run, will provide a list of any data inconsistencies or apparent errors as well as the names of the datasets in which the inconsistencies were found. Users are encouraged to review the information here to create a first draft of their input datasets, and then rely on the validation checks for additional error checking.
+Tyche does contain built-in data validation checks that, once run, will provide a list of any data inconsistencies or apparent errors as well as the names of the datasets in which the inconsistencies were found. Users are encouraged to review the information here to create a first draft of their input datasets, and then rely on the validation checks for additional troubleshooting.
+
+Technology Data and Model
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Designs Dataset 
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
-A *design* is one set of technology data that results from a specific R&D investment scenario. The *designs* dataset collects the technology versions that may result from all R&D investment scenarios being considered in a decision context.
-
-The *designs* dataset contains information for one or more technologies being compared within a decision context. There will be multiple sets of data for each technology: each set represents the data that results from a single R&D investment scenario.  Multiple R&D investment scenarios are typically used, each corresponding to a different level of technology advancement, which is quantified probabilistically through expert elicitation. :numref:`tbl-designsdict` provides a data dictionary for the *designs* dataset.
+A "design" is one set of data representing the state of a technology that results from a specific R&D investment scenario. The *designs* dataset contains information for all of the technologies being evaluated within a decision context. *designs* contains multiple sets of data for each technology: each set represents the technology state that results from a single R&D investment scenario.  Multiple R&D investment scenarios are typically used, each corresponding to a different level of technology advancement, which is quantified probabilistically through expert elicitation. :numref:`tbl-designsdict` provides a data dictionary for the *designs* dataset.
 
 
 .. _tbl-designsdict:
@@ -176,9 +177,8 @@ The *designs* dataset contains information for one or more technologies being co
   Scale                Scale at which the technology operates (one value for the technology).                                             No index.                                                                                                                                            
   ==================== ================================================================================================================== ==========================================================================================================================================
 
-
 Parameters Dataset
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 The *parameters* dataset contains any additional technology-related data, other than that contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amounts), and metrics. (These calculations are implemented within the technology model .py file, discussed in the next section.) Identically to the *designs* dataset, the *parameters* dataset contains multiple sets of data corresponding to different R&D investment scenarios. A data dictionary for the *parameters* dataset is given in :numref:`tbl-paramsdict`.
 
@@ -203,7 +203,7 @@ Including the Offset value in the *parameters* dataset creates a user reference 
 **Mandatory data.** The *parameters* dataset is required to exist and to include at least one Parameter for every Technology-Scenario combination. If there are no Parameters present in the technology model, then the Parameter may be None and 0 may be entered under both the Offset and Value columns.
 
 Technology model (.py file)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The technology model is a Python file (.py) which is user defined and contains methods for calculating capital cost, fixed cost, production (the actual output amount), and any metrics of interest, using the content of the *designs* and *parameters* datasets. :numref:`tbl-techmethods` describes methods that must be included in the technology model. Additional methods can be included in the technology model, if necessary. The names of the mandatory methods in :numref:`tbl-techmethods` are user-defined and must match the contents of the *functions* dataset, discussed below. The method parameters listed in :numref:`tbl-techmethods` are also fixed and cannot be changed. In the case that a method does not require all of the mandatory input parameters, they can simply be left out of the method's calculations.
 
@@ -224,10 +224,13 @@ The production method can access the actual input amount, which is the ideal or 
 
 All return values for the required methods, even if only a single value is returned, must be formatted as `Numpy stacks <https://numpy.org/doc/stable/reference/generated/numpy.stack.html>`_.
 
-Tranches Dataset
-~~~~~~~~~~~~~~~~
+Investment Datasets
+~~~~~~~~~~~~~~~~~~~
 
-The previous sections provided information on the input datasets required to define the technology(ies) of interest within a decision context, and on the content and structure of the technology model itself. This section and the following sections provide information on the input datasets that define R&D investment options and the research areas in which investments can be made.
+The previous sections provided information on the input datasets required to define the technology(ies) of interest within a decision context, and on the content and structure of the technology model itself. This section provides information on the input datasets that define R&D investment options and the research areas in which investments can be made.
+
+Tranches Dataset
+^^^^^^^^^^^^^^^^
 
 A *tranche* is a discrete unit of R&D investment (dollar amount) in a specific research category. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A *scenario* is a combination of tranches that represents one option for making R&D investments.
 
@@ -247,7 +250,7 @@ The *tranches* dataset defines the allowed set of R&D investments across the res
   ============== ================================================= =============================================================================================================================================================================================
 
 Investment Dataset
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 An *investment*, similar to a *scenario*, is a combination of tranches that represents a particular R&D strategy.
 
@@ -267,8 +270,11 @@ The *investments* dataset provides a separate way to look at making R&D investme
 
 **Relationship between Categories, Tranches, Scenarios, and Investments.** Both the *designs* and *parameters* dataset contain technology data under multiple Scenarios. Each Scenario represents the technological outcomes from one or more Tranches, and each Tranche represents a unit of R&D investment in a single Category (or research area). Scenarios and their component Tranches are defined in the *tranches* dataset. Tranches can also be combined to form Investments, as defined in the *investments* dataset.
 
+Additional Datasets
+~~~~~~~~~~~~~~~~~~~
+
 Indices Dataset
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 The *indices* dataset contains the numerical indexes (location within a list or array) used to access content in the other datasets. :numref:`tbl-indicesdict` describes the columns required for the indices table. Numerical locations for parameters should not be listed in this dataset.
 
@@ -289,23 +295,19 @@ The *indices* dataset contains the numerical indexes (location within a list or 
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+
   | Index        | String     | Any            | Name of the elements within each Type. For instance, names of the Input types.           |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
-  | Offset       | Integer    | $\geq$ 0       | Numerical location of the Index within each Type.                                        |
+  | Offset       | Integer    | >= 0           | Numerical location of the Index within each Type.                                        |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
   | Description  | String     | Any            | Additional user-defined information, such as units. Not used during Tyche calculations.  |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
   | Notes        | String     | Any            | Additional user-defined information. Not used during Tyche calculations.                 |
   +--------------+------------+----------------+------------------------------------------------------------------------------------------+  
 
-All four Types must be listed in the *indices* dataset. If a particular Type is not relevant to the technology under study, it still must be included in this dataset.
-
-*Relationship between *indices* and other datasets*. A technology in the Tyche context is quantified using five sets of attribute values and one technology-level attribute value. The five sets of attribute values are Capital, Input, Output, Parameter, and Metric, and the technology-level attribute is Scale. Elements within each of the five sets are defined with an Index which simply names the element (for instance, Electricity might be one of the Index values within the Input set). Elements of Capital have an associated Lifetime. Elements of the Input set have an associated ideal amount (also called Input), an Input efficiency value, and an Input price. Elements of the Output set have only an Output efficiency and an Output price; the ideal output amounts are calculated from the technology model. Elements of the Metric set are named with an Index and are likewise calculated from the technology model. Elements of the Parameter set have only a value.
-
-The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set. 
+**Relationship between *indices* and other datasets**. A technology in the Tyche context is quantified using five sets of attribute values and one technology-level attribute value. The five sets of attribute values are Capital, Input, Output, Parameter, and Metric, and the technology-level attribute is Scale. Elements within each of the five sets are defined with an Index which simply names the element (for instance, Electricity might be one of the Index values within the Input set). Elements of Capital have an associated Lifetime. Elements of the Input set have an associated ideal amount (also called Input), an Input efficiency value, and an Input price. Elements of the Output set have only an Output efficiency and an Output price; the ideal output amounts are calculated from the technology model. Elements of the Metric set are named with an Index and are likewise calculated from the technology model. Elements of the Parameter set have only a value. The *indices* dataset lists the elements of the Capital, Input, Output, and Metric sets, and contains an Offset column giving the numerical location of each element within its set. The *designs* dataset contains values for each element of the Capital, Input, Output, and Metric sets as well as the technology-level Scale value. The *parameters* dataset names and gives values for each element of the Parameter set. 
 
 **Mandatory data.** All four Types must be listed in the *indices* dataset. If a particular Type is not relevant to the technology under study, it still must be included in this dataset.
 
 Functions Dataset
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 The *functions* dataset is used internally by Tyche to locate the technology model file and identify the four required methods listed in :numref:`tbl-techmethods`. :numref:`tbl-functionsdict` provides a data dictionary for the *functions* dataset.
 
@@ -318,7 +320,7 @@ The *functions* dataset is used internally by Tyche to locate the technology mod
   ============== ============ ================= ==========================================================================================================
   Technology     String       Any               Name of the technology.                                                                                                                                                                                               
   Style          String       numpy             See below for explanation.                                                                                
-  Module         String       Any               Filename of the technology model Python file, discussed below. Do not include the file extension.<This name must be the same as the Python file or the system will not run>         
+  Module         String       Any               Filename of the technology model Python file. Do not include the file extension.
   Capital        String       Any               Name of the method within the technology model Python file that returns the calculated capital cost.      
   Fixed          String       Any               Name of the method within the technology model Python file that returns the calculated fixed cost.        
   Production     String       Any               Name of the method within the technology model Python file that returns the calculated output amount.     
@@ -326,12 +328,12 @@ The *functions* dataset is used internally by Tyche to locate the technology mod
   Notes          String       Any               Any information that the user needs to record can go here. Not used during Tyche calculations.            
   ============== ============ ================= ==========================================================================================================
 
-The Style should remain `numpy` in Tyche 1.0. This indicates that inputs and outputs from the methods within the technology model Python file are treated as arrays rather than higher-dimensional (i.e., tensor) structures.  
+The Style should remain `numpy` for all Tyche versions 1.x. This indicates that inputs and outputs from the methods within the technology model Python file are treated as arrays rather than higher-dimensional (i.e., tensor) structures.
 
 If only one technology model is used within a decision context, then the *functions* dataset will contain a single row.
 
 Results Dataset
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 The *results* dataset lists the Tyche outcomes that are of interest within a decision context, organized into categories defined by the Variable column. This dataset is used internally by Tyche for organizing and labeling results tables for easier user comprehension. A data dictionary for the *results* dataset is given in :numref:`tbl-resultsdict`.
 
@@ -368,6 +370,6 @@ In the second use case, a user knows what technological changes must be achieved
 It is critical to note that these use cases are **mutually exclusive**. Tyche cannot be used to evaluate a scenario in which desired technological changes as well as the investment amounts are both uncertain. What this means for the user is that probability distributions, or mixtures of distributions, can be used to specify values either in the *designs* and *parameters* datasets or in the *tranches* dataset, but not both. If distributions are used in all three datasets, the code will break by design.
 
 Defining values as probability distributions and mixtures
----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An uncertain value can be defined within a dataset using any of the built-in distributions of the `scipy.stats <https://docs.scipy.org/doc/scipy/reference/stats.html>`_ package. A list of available distributions is provided at the hyperlink. Uncertain values can also be defined as a weighted average or mixture of probability distributions using the Tyche *mixture* method.
