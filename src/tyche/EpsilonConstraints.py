@@ -90,9 +90,9 @@ class EpsilonConstraintOptimizer:
       Optimization sense ('min' or 'max'). If no value is provided to
       this method, the sense value used to create the
       EpsilonConstraintOptimizer object is used instead.
-    max_amount : DataFrame
-      Maximum investment amounts by R&D category (defined in investments data)
-      and maximum metric values
+    max_amount : Series
+      Maximum investment amounts by R&D category. The index (research area)
+      order must follow that of self.evaluator.max_amount.index
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
     eps_metric : Dict
@@ -288,9 +288,9 @@ class EpsilonConstraintOptimizer:
       Optimization sense ('min' or 'max'). If no value is provided to
        this method, the sense value used to create the
        EpsilonConstraintOptimizer object is used instead.
-    max_amount : DataFrame
-      Maximum investment amounts by R&D category (defined in investments data)
-      and maximum metric values
+    max_amount : Series
+      Maximum investment amounts by R&D category. The index (research area)
+      order must follow that of self.evaluator.max_amount.index
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
     eps_metric : Dict
@@ -493,9 +493,9 @@ class EpsilonConstraintOptimizer:
       Optimization sense ('min' or 'max'). If no value is provided to
       this method, the sense value used to create the
       EpsilonConstraintOptimizer object is used instead.
-    max_amount : DataFrame
-      Maximum investment amounts by R&D category (defined in investments data)
-      and maximum metric values
+    max_amount : Series
+      Maximum investment amounts by R&D category. The index (research area)
+      order must follow that of self.evaluator.max_amount.index
     total_amount : float
       Upper metric_limit on total investments summed across all R&D categories.
     eps_metric : Dict
@@ -804,9 +804,9 @@ class EpsilonConstraintOptimizer:
       Optimization sense ('min' or 'max'). If no value is provided to this
       method, the sense value used to create the EpsilonConstraintOptimizer
       object is used instead.
-    max_amount : DataFrame
-      Maximum investment amounts by R&D category (defined in investments data)
-      and maximum metric values
+    max_amount : Series
+      Maximum investment amounts by R&D category. The index (research area)
+      order must follow that of self.evaluator.max_amount.index
     total_amount : float
       Upper limit on total investments summed across all R&D categories.
     eps_metric : Dict
@@ -1041,8 +1041,10 @@ class EpsilonConstraintOptimizer:
       x = pd.Series(inv_levels_opt, name="Amount",
                     index=self.evaluator.max_amount.index)
 
-      y = pd.Series(None, name="Value",
-                    index=_all_metrics)
+      y = pd.Series(None,
+                    name="Value",
+                    index=_all_metrics,
+                    dtype=float)
 
       if verbose > 1: print('Calculating optimal metric values at %s s' %
                             str(round(time.time() - _start, 1)))

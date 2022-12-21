@@ -98,14 +98,14 @@ class Evaluator:
 
     return self.evaluate(
       pd.DataFrame(amounts)
-    ).groupby(
-      ["Index", "Sample"]
-    ).sum(
-    ).groupby(
-      "Index"
-    ).aggregate(
-      statistic
-    )
+      ).groupby(
+          ['Index','Sample']
+      ).sum(
+      ).groupby(
+        ['Index']
+      ).agg(
+        Value = statistic
+      )
 
   def make_statistic_evaluator(self, statistic = np.mean):
     """
@@ -117,9 +117,9 @@ class Evaluator:
       The statistic to evaluate.
     """
     interpolators1 = self.raw.groupby(
-      ["Category", "Tranche", "Index"]
-    ).aggregate(
-      statistic
+      ['Category','Tranche','Index','Amount']
+    ).agg(
+      Value=('Value',statistic)
     ).reset_index(
     ).groupby(
       ["Category", "Index"]

@@ -43,7 +43,12 @@ function x2y(target, x, y) {
   // Formatting numbers.
   
   function formatDollars(value) {
-    return Number(value).toLocaleString("en-US", {style : "currency", currency: "USD"})
+    return Number(value).toLocaleString("en-US", {
+        style : "currency"
+      , currency: "USD"
+      , minimumFractionDigits: 0
+      , maximumFractionDigits: 0
+    })
   }
   
   function formatMetric(value) {
@@ -143,6 +148,7 @@ function x2y(target, x, y) {
     updateInvestLabel(wid2lab(target1))
   }
   
+
   function updateInvest(target) {
     updateInvestLabel(wid2lab(target))
     if (explore_mode.checked) {
@@ -185,12 +191,16 @@ function x2y(target, x, y) {
     updateTotal(all)
   }
   
+
   function optimize() {
     const constraints = {
       metric : {}
+    , sense: {}
     , invest : {}
     }
     forEachByClassName("invlimwid", target => constraints.invest[target.id] = Number(target.value))
+    // forEachByClassName("metsense", target => constraints.sense[target.id] = Boolean(target.checked) ? 'min' : 'max')
+    forEachByClassName("metsense", target => constraints.sense[target.id] = target.value)
     forEachByClassName("metlimwid", target => constraints.metric[target.id] = - Number(target.value))
     postRequest(
       "/optimize"
@@ -221,13 +231,19 @@ function x2y(target, x, y) {
   
   
   // Update mode.
+
+  function updateTargetMetric() {
+  }
   
   function updateMode() {
     const explorable = explore_mode.checked
     optimize_button.disabled = explorable
     optimize_metric.disabled = explorable
     invlimwid_x.disabled = explorable
+
+    forEachByClassName("metsense", target => target.disabled = explorable)
     forEachByClassName("metlimwid", target => target.disabled = explorable)
+
     if (explorable) {
       forEachByClassName("invlimwid", syncInvest)
       updateTotal(true)

@@ -2,12 +2,15 @@
 Designs for technologies.
 """
 
+import os
+import sys
 import importlib as il
 import numpy     as np
 import pandas    as pd
 
+from .DataManager   import DesignsDataset, FunctionsDataset, IndicesDataset, ParametersDataset, ResultsDataset
 from .Distributions import parse_distribution
-from .IO            import make_table, read_table
+from .IO            import check_tables
 from .Types         import Functions, Indices, Inputs, Results
 
 
@@ -64,104 +67,47 @@ class Designs:
   results : DataFrame
     The *results* table.
   """
-  
-  _indices_dtypes = {
-    "Technology"  : np.str_ ,
-    "Type"        : np.str_ ,
-    "Index"       : np.str_ ,
-    "Offset"      : np.int16,
-    "Description" : np.str_ ,
-    "Notes"       : np.str_ ,
-  }
-  _functions_dtypes = {
-    "Technology" : np.str_,
-    "Style"      : np.str_,
-    "Module"     : np.str_,
-    "Capital"    : np.str_,
-    "Fixed"      : np.str_,
-    "Production" : np.str_,
-    "Metrics"    : np.str_,
-    "Notes"      : np.str_,
-  }
-  _designs_dtypes = {
-    "Technology" : np.str_,
-    "Scenario"   : np.str_,
-    "Variable"   : np.str_,
-    "Index"      : np.str_,
-    "Value"      : np.str_,
-    "Units"      : np.str_,
-    "Notes"      : np.str_,
-  }
-  _parameters_dtypes = {
-    "Technology" : np.str_ ,
-    "Scenario"   : np.str_ ,
-    "Parameter"  : np.str_ ,
-    "Offset"     : np.int16,
-    "Value"      : np.str_ ,
-    "Units"      : np.str_ ,
-    "Notes"      : np.str_ ,
-  }
-  _results_dtypes = {
-    "Technology" : np.str_   ,
-    "Variable"   : np.str_   ,
-    "Index"      : np.str_   ,
-    "Units"      : np.str_   ,
-    "Notes"      : np.str_   ,
-  }
-  
-  _indices_index     = ["Technology", "Type"    , "Index"             ]
-  _functions_index   = ["Technology",                                 ]
-  _designs_index     = ["Technology", "Scenario", "Variable" , "Index"]
-  _parameters_index  = ["Technology", "Scenario", "Parameter"         ]
-  _results_index     = ["Technology", "Variable", "Index"             ]
-  
+
   def __init__(
     self                         ,
     path       = None            ,
+    name       = 'technology.xlsx',
     uncertain  = True           ,
-    indices    = "indices.csv"   ,
-    functions  = "functions.csv" ,
-    designs    = "designs.csv"   ,
-    parameters = "parameters.csv",
-    results    = "results.csv"   ,
   ):
     """
     Parameters
     ----------
     path : str
       Location of the data files.
+    name : str
+        Filename where decision context datasets are kept in separate sheets.
     uncertain : Boolean
       Flag indicating whether probability distributions are present in the *designs* or *parameters* tables.
     indices : str
-      Filename for the *indices* table.
+      Sheet name for the *indices* table.
     functions : str
-      Filename for the *functions* table.
+      Sheet name for the *functions* table.
     designs : str
-      Filename for the *designs* table.
+      Sheet name for the *designs* table.
     parameters : str
-      Filename for the *parameters* table.
+      Sheet name for the *parameters* table.
     results : str
-      Filename for the *results* table.
+      Sheet name for the *results* table.
     """
     self.uncertain = uncertain
-    if path == None:
-      self._make()
-    else:
-      self._read(path, indices, functions, designs, parameters, results)
-          
-  def _make(self):
-    self.indices    = make_table(self._indices_dtypes   , self._indices_index   )
-    self.functions  = make_table(self._functions_dtypes , self._functions_index )
-    self.designs    = make_table(self._designs_dtypes   , self._designs_index   )
-    self.parameters = make_table(self._parameters_dtypes, self._parameters_index)
-    self.results    = make_table(self._results_dtypes   , self._results_index   )
-      
-  def _read(self, path, indices, functions, designs, parameters, results):
-    self.indices    = read_table(path, indices   , self._indices_dtypes   , self._indices_index   )
-    self.functions  = read_table(path, functions , self._functions_dtypes , self._functions_index )
-    self.designs    = read_table(path, designs   , self._designs_dtypes   , self._designs_index   )
-    self.parameters = read_table(path, parameters, self._parameters_dtypes, self._parameters_index)
-    self.results    = read_table(path, results   , self._results_dtypes   , self._results_index   )
+
+    if not os.path.isfile(os.path.join(path, name)):
+      raise Exception(f"Designs: {os.path.join(path, name)} does not exist.")
+    
+    if not check_tables(path, name):
+      raise Exception(f'Designs: {name} failed validation.')
+
+    self.indices    = IndicesDataset(    os.path.join(path, name)).sort_index()
+    self.functions  = FunctionsDataset(  os.path.join(path, name)).sort_index()
+    self.designs    = DesignsDataset(    os.path.join(path, name)).sort_index()
+    self.parameters = ParametersDataset( os.path.join(path, name)).sort_index()
+    self.results    = ResultsDataset(    os.path.join(path, name)).sort_index()
+
       
   def vectorize_technologies(self):
     """
@@ -294,7 +240,7 @@ class Designs:
 
     self.compiled_functions = {}
     for technology, metadata in self.functions.iterrows():
-      m = il.import_module("." + metadata["Module"], package="technology")
+      m = il.import_module("." + metadata["Model"], package="technology")
       self.compiled_functions[technology] = Functions(
         style      =             metadata["Style"     ] ,
         capital    = eval("m." + metadata["Capital"   ]),
@@ -386,9 +332,9 @@ class Designs:
     metrics = pd.DataFrame()
     for technology in self.vectorize_technologies():
       result = self.evaluate(technology, sample_count)
-      costs   = costs.append(  result.cost  )
-      outputs = outputs.append(result.output)
-      metrics = metrics.append(result.metric)
+      costs   = pd.concat([costs, result.cost])
+      outputs = pd.concat([outputs, result.output])
+      metrics = pd.concat([metrics, result.metric])
 
     def organize(variable, values):
       return self.results.xs(
@@ -401,8 +347,8 @@ class Designs:
         ["Technology", "Scenario", "Sample", "Variable", "Index"]
       )[["Value", "Units"]]
 
-    return organize("Cost", costs).append(
-      organize("Output", outputs)
-    ).append(
+    return pd.concat([
+      organize("Cost", costs),
+      organize("Output", outputs),
       organize("Metric", metrics)
-    ).sort_index()
+      ]).sort_index()
