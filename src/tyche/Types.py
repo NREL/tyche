@@ -63,11 +63,11 @@ Named tuple type for rows in the *evaluations* table.
 """
 
 
-FakeDistribution = namedtuple("FakeDistribution", [
+SynthesizedDistribution = namedtuple("SynthesizedDistribution", [
   "rvs",
 ])
 """
-Named tuple type for a fake distribution.
+Named tuple type for a synthesized distribution.
 """
 
 

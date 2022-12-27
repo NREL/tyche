@@ -24,35 +24,22 @@ def capital_cost(scale, parameter):
     kg_to_g = 1000
 
     # Si materials cost.
-    si_costs = np.divide(np.prod(
-                            [
-                                parameter[0],
-                                parameter[1],
-                                parameter[2],
-                                parameter[3],
-                                parameter[4]
-                            ]
-                        ),
+    si_costs = np.divide(parameter[0]*parameter[1]*parameter[2]*parameter[3]*parameter[4],
                         parameter[5]
                     )
     si_costs = np.divide(np.multiply(um_to_cm, si_costs), kg_to_g)
 
     # Non-Si materials cost.
-    non_si_costs = np.prod([parameter[0], parameter[1], parameter[6]])
+    non_si_costs = parameter[0]*parameter[1]*parameter[6]
 
     # Plant-size dependent costs (non-materials cost).
     plant_scale = np.divide(parameter[8], parameter[9])
-    plant_costs = np.prod(
-                        [
-                            parameter[0],
-                            parameter[7],
-                            np.power(plant_scale, parameter[10])
-                        ]
-                    )
+    plant_costs = parameter[0]*parameter[7]*np.power(plant_scale, parameter[10])
+                        
+                    
 
     # Sum component costs.
     out = np.sum([si_costs, non_si_costs, plant_costs])
-
     # Package results.
     return np.stack([out])
 
@@ -108,6 +95,9 @@ def production(scale, capital, lifetime, fixed, input, parameter):
                         np.prod([parameter[12], cm2_per_m2])
                     )
 
+    num = np.multiply(input[0],np.multiply(np.multiply(parameter[0],parameter[1]),parameter[11]))
+    dem = np.multiply(parameter[12], cm2_per_m2)
+    kWh_per_day = num/dem
     kwh_per_module = np.prod([kWh_per_day, 365, lifetime])
 
     # Package results.
