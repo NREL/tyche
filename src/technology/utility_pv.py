@@ -83,22 +83,10 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     # Module electricity (kWh) production.
     cm2_per_m2 = 10000
 
-    kWh_per_day = np.divide(
-                        np.prod(
-                            [
-                                input[0],
-                                parameter[0],
-                                parameter[1],
-                                parameter[11]
-                            ]
-                        ),
-                        np.prod([parameter[12], cm2_per_m2])
-                    )
-
     num = np.multiply(input[0],np.multiply(np.multiply(parameter[0],parameter[1]),parameter[11]))
     dem = np.multiply(parameter[12], cm2_per_m2)
     kWh_per_day = num/dem
-    kwh_per_module = np.prod([kWh_per_day, 365, lifetime])
+    kwh_per_module = kWh_per_day*365*lifetime
 
     # Package results.
     return np.stack([kwh_per_module])
