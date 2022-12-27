@@ -16,8 +16,6 @@ The following materials walk through:
 3.	How to develop input datasets for a decision context;
 4.	How to develop technology models for a decision context.
 
-An example technology model is developed in the :ref:`sec-techmodelexample` section, and an example of using Tyche for decision support analysis is provided in the :ref:`sec-analysisexample` section. For additional details on the mathematical approach behind Tyche, see the :ref:`sec-approach` section.
-
 What does Tyche do?
 ~~~~~~~~~~~~~~~~~~~
 
@@ -29,6 +27,8 @@ Tyche's methodology for evaluating and comparing R&D investments:
 2. Incorporates expert elicitation to get quantitative, probabilistic estimates of how the technology(ies) of interest might change with R&D;
 3. Provides both ensemble simulation and multi-objective stochastic optimization capabilities that enable users to identify R&D investments with the greatest potential for accomplishing decision-maker goals, determine the potential overall improvement in the technology, determine the most promising avenue of R&D for a technology, and more.
 
+For additional details on the mathematics and approach behind Tyche, see the :ref:`sec-formulation` and :ref:`sec-approach` sections.
+
 What is a "technology"?
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -37,9 +37,7 @@ In the R&D decision contexts represented and analyzed by Tyche, "technology" has
 Getting Started
 ---------------
 
-This section provides guidance on setting up Tyche for use on your local machine.
-
-The following installs Anaconda (from which JupyterLab is used to run Tyche models), downloads Tyche and sets up the Tyche environment within Anaconda to run Tyche models.  There are several platforms for using Tyche.  Listed below is the process for downloading the Tyche framework to your personal computer. 
+This section provides guidance on setting up Tyche for use on your local machine. Tyche is written in Python and requires a local Python installation to run. It is recommended to use Anaconda and conda for installing Python and managing Tyche's prerequisite packages. 
 
 Install Anaconda
 ~~~~~~~~~~~~~~~~
@@ -65,7 +63,7 @@ Once downloaded and extracted, the Tyche files will have the directory structure
 	
 	Tyche repository directory structure. New technology models and data should be saved in sub-directories under the technology directory, indicated in blue.
 
-- *conda* contains the environment specification file used to create the Tyche environment.
+- *conda* contains the environment specification file used to set up the Tyche environment.
 - *docs* contains reStructured Text (.rst) files used to generate the Tyche documentation. These files are for internal use only and should not be modified.
 - *src* and its subdirectories contain the Tyche analysis codebase.
    - *technology* contains a subdirectory containing the input datasets (.xlsx) and analysis Jupyter notebooks (.ipynb) for each decision context, as well as the technology model files (.py) for each decision context.
@@ -76,9 +74,11 @@ Users creating decision contexts should store the new input datasets, analysis J
 Set up the Tyche environment using conda
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tyche's codebase comes with an environment specification file that is used with Conda to automatically install all of Tyche's required Python packages. It is strongly recommended that users create and use the Tyche environment, to avoid any package conflicts or compatibility issues. It is also recommended that you turn off any VPN you commonly use before following the steps in this section.
+Tyche's codebase comes with an environment specification file that is used with Conda to automatically install all of Tyche's required Python packages. It is strongly recommended that users create and use the Tyche environment, to avoid any package conflicts or compatibility issues. It is also recommended that users turn off any VPN before following the steps in this section.
 
-On Windows, open an Anaconda Prompt (recommended) or Command Prompt window; on Mac, open a System Terminal window. Then enter the following commands, pressing Enter after each line:
+- On Windows, open an Anaconda Prompt (recommended) or Command Prompt window; on Mac, open a System Terminal window.
+- Change the current working directory to the location of the extracted Tyche files using ``cd path/to/tyche/directory``.
+- Then enter the following commands, pressing Enter after each line:
 
 ::
 
@@ -106,21 +106,23 @@ Note that the first command may take up to 10 minutes to execute. If the environ
 Access Tyche analysis functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As discussed below in more detail, using Tyche locally is generally done via `Jupyter Notebook <https://jupyter.org/>`_, several examples of which are packaged with the Tyche codebase. To open one of these provided notebooks or to create your own:
+Using Tyche locally is generally done via `Jupyter Notebook <https://jupyter.org/>`_, several examples of which are packaged with the Tyche codebase. To open one of these provided notebooks or to create your own:
 
 - Open an Anaconda Prompt window.
 - Activate the Tyche environment with ``conda activate tyche``.
-- Change the current working directory to the location of the extracted Tyche files using ``cd path/to/Tyche/files``.
+- Change the current working directory to the location of the extracted Tyche files using ``cd path/to/tyche/directory``.
 - Open the Jupyter Notebook browser interface with ``jupyter notebook``.
 
-A browser window or new tab (if a window was already open) will then open and show the files within the Tyche directory, from which existing notebooks can be open and run or new notebooks created.
+A browser window or new tab (if a window was already open) will then open and show the files within the Tyche directory, from which existing notebooks can be opened and run or new notebooks created.
 
 Defining a Decision Context
 ---------------------------
 
 After Tyche and its prerequisites are installed, the user can begin assembling the input datasets and technology models necessary for running their own decision context analyses. This section provides details on the contents of each input dataset required by Tyche and on the structure and function of the technology model (.py) file.
 
-Tyche does contain built-in data validation checks that, once run, will provide a list of any data inconsistencies or apparent errors as well as the names of the datasets in which the inconsistencies were found. Users are encouraged to review the information here to create a first draft of their input datasets, and then rely on the validation checks for additional troubleshooting.
+Tyche contains built-in data validation checks that, once run, will provide a list of any data inconsistencies or apparent errors as well as the names of the datasets in which the inconsistencies were found. Users are encouraged to review the information here to create a first draft of their input datasets, and then rely on the validation checks for additional troubleshooting. Users may also find it helpful to begin developing their input datasets by altering and adding to one of the decision context datasets packaged with Tyche, rather than starting from scratch.
+
+An example technology model is developed in the :ref:`sec-techmodelexample` section, and an example of using Tyche for decision support analysis is provided in the :ref:`sec-analysisexample` section. 
 
 Technology Data and Model
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,11 +130,11 @@ Technology Data and Model
 Designs Dataset 
 ^^^^^^^^^^^^^^^
 
-A "design" is one set of data representing the state of a technology that results from a specific R&D investment scenario. The *designs* dataset contains information for all of the technologies being evaluated within a decision context. *designs* contains multiple sets of data for each technology: each set represents the technology state that results from a single R&D investment scenario.  Multiple R&D investment scenarios are typically used, each corresponding to a different level of technology advancement, which is quantified probabilistically through expert elicitation. :numref:`tbl-designsdict` provides a data dictionary for the *designs* dataset.
+A "design" is a set of data representing the state of a technology that results from a specific R&D investment scenario. The *designs* dataset contains information for all of the technologies being evaluated within a decision context. *designs* contains multiple sets of data for each technology: each set represents the technology state that results from a single R&D investment scenario.  Multiple R&D investment scenarios are typically represented, each corresponding to a different level of technology advancement, which is quantified probabilistically through expert elicitation. :numref:`tbl-designsdict` provides a data dictionary for the *designs* dataset.
 
 
 .. _tbl-designsdict:
-.. table:: Data dictionary for the *designs* dataset which defines various technology versions resulting from R&D investments.
+.. table:: Data dictionary for the *designs* dataset which defines various technology states resulting from R&D investments.
 
   +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
   | Column Name  | Data Type                                      | Allowed Values                                                        | Description                                                                  |
@@ -224,17 +226,19 @@ The production method can access the actual input amount, which is the ideal or 
 
 All return values for the required methods, even if only a single value is returned, must be formatted as `Numpy stacks <https://numpy.org/doc/stable/reference/generated/numpy.stack.html>`_.
 
+Part of Tyche's analysis capabilities rely on the ability to evaluate the impact of multiple R&D investments across research areas. In order for the R&D investment impacts to be combined, it is recommended that the return values for the ``metrics`` method be represented as changes from a baseline value that represents the current state of technology. These changes can then be summed across R&D investments to see the overall impact.
+
 Investment Datasets
 ~~~~~~~~~~~~~~~~~~~
 
-The previous sections provided information on the input datasets required to define the technology(ies) of interest within a decision context, and on the content and structure of the technology model itself. This section provides information on the input datasets that define R&D investment options and the research areas in which investments can be made.
+The previous sections provided information on the input datasets required to define the technology(ies) of interest within a decision context, and on the content and structure of the technology model itself. This section provides information on the input datasets that define R&D investment options and the research categories in which investments can be made.
 
 Tranches Dataset
 ^^^^^^^^^^^^^^^^
 
-A *tranche* is a discrete unit of R&D investment (dollar amount) in a specific research category. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A *scenario* is a combination of tranches that represents one option for making R&D investments.
+A Tranche is a discrete unit of R&D investment (dollar amount) in a specific research category. Research categories are defined for each technology within a decision context and represent narrow topic areas in which R&D investments are expected to result in technological improvements. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A Scenario is a combination of Tranches that represents one option for making R&D investments.
 
-The *tranches* dataset defines the allowed set of R&D investments across the research categories that are relevant to the technology under study. Tranches are combined into investment Scenarios – the same Scenarios found in the *designs* and *parameters* datasets. The impact of each Scenario on the technology is highly uncertain and is quantified using expert elicitation. A data dictionary for the *tranches* dataset is given in :numref:`tbl-tranchesdict`.
+The *tranches* dataset defines a set of R&D investments across the research categories that are relevant to the technology under study. Tranches are combined into investment Scenarios – the same Scenarios found in the *designs* and *parameters* datasets. The impact of each Scenario on the technology is highly uncertain and is quantified probabilistically using expert elicitation. A data dictionary for the *tranches* dataset is given in :numref:`tbl-tranchesdict`.
 
 .. _tbl-tranchesdict:
 .. table:: Data dictionary for the *tranches* dataset.
@@ -252,7 +256,7 @@ The *tranches* dataset defines the allowed set of R&D investments across the res
 Investment Dataset
 ^^^^^^^^^^^^^^^^^^
 
-An *investment*, similar to a *scenario*, is a combination of tranches that represents a particular R&D strategy.
+An Investment, similar to a Scenario, is a combination of Tranches that represents a particular R&D strategy.
 
 The *investments* dataset provides a separate way to look at making R&D investments. Combining individual tranches allows users to explore and optimize R&D investment amounts, but it may be the case that there are specific strategies that users wish to explore, without optimizing. In this case, the *investments* dataset is used to define specific combinations of tranches that are of interest. A data dictionary for the *investments* dataset is given in :numref:`tbl-investmentsdict`.
 
