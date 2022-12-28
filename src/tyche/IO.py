@@ -87,7 +87,7 @@ def check_tables(
     _tra_idx = tranches.index.to_frame()
     _odd_cattra_set = set(
       [i + '-' + j for i, j in _inv_idx[['Category','Tranche']].values]
-    ).symmetric_difference(
+    ).difference(
       set([i + '-' + j for i, j in _tra_idx[['Category','Tranche']].values])
     )
     if len(_odd_cattra_set) != 0:

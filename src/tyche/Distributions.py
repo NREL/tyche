@@ -43,7 +43,7 @@ def mixture(weights, distributions):
         lambda i: distributions[i].rvs(),
         np.random.choice(ks, n, p=ps)
       ),
-      dtype=np.float
+      dtype=float
     )
   )
 
