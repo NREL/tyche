@@ -13,5 +13,4 @@ individual R&D technologies.
    :maxdepth: 4
 
    tyche
-   eutychia
    technology

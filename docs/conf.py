@@ -23,7 +23,7 @@ copyright = '2021, National Renewable Energy Laboratory'
 author = 'National Renewable Energy Laboratory'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = '1.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,7 +35,7 @@ extensions = [
     'sphinx.ext.autodoc' ,
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'recommonmark'       ,
+    'myst_parser'       ,
 ]
 
 # Add any paths that contain templates here, relative to this directory.

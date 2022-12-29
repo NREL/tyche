@@ -7,7 +7,7 @@ import scipy.stats as st
 
 from numpy.linalg import norm
 from numpy.random import choice
-from .Types       import FakeDistribution
+from .Types       import SynthesizedDistribution
 
 
 def constant(value):
@@ -37,13 +37,13 @@ def mixture(weights, distributions):
 
   ks = np.arange(0, len(weights))
   ps = weights / np.linalg.norm(weights, ord=1)
-  return FakeDistribution(
+  return SynthesizedDistribution(
     rvs = lambda n: np.fromiter(
       map(
         lambda i: distributions[i].rvs(),
         np.random.choice(ks, n, p=ps)
       ),
-      dtype=np.float
+      dtype=float
     )
   )
 

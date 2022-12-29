@@ -1,0 +1,19 @@
+name: tyche
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - hypercorn=0.14.3
+  - matplotlib=3.6.2
+  - myst-parser=0.18.1
+  - notebook=6.4.12
+  - openpyxl=3.0.10
+  - pip=22.2.2
+  - python=3.10.4
+  - quart=0.18.1
+  - scipy=1.9.1
+  - seaborn=0.12.1
+  - sphinx=5.0.2
+  - tk=8.6.12
+  - pip:
+    - mip==1.14.1
