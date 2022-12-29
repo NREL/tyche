@@ -82,7 +82,7 @@ Tyche's codebase comes with an environment specification file that is used with 
 
 ::
 
-   conda env create --file conda\win.yml
+   conda env create --file conda\tyche.yml
    conda activate tyche
 
 Note that the first command may take up to 10 minutes to execute. If the environment creation was successful, you should see a message similar to the following:
@@ -194,7 +194,7 @@ The *parameters* dataset contains any additional technology-related data, other 
   Technology     String                                            Name of the technology.                                                                                                                                              
   Scenario       String                                            Name of the R&D investment scenario that resulted in the corresponding parameter values or distributions.                                                            
   Parameter      String                                            Name of the parameter.                                                                                                                                               
-  Offset         String                                            Numerical location of the parameter in the parameter vector.                                                                                                                                 
+  Offset         Integer                                           Numerical location of the parameter in the parameter vector; begins at zero.                                                                                                                                 
   Value          Float; Distribution; Mixture of distributions     Parameter value for the R&D investment scenario. Example: st.triang(1,loc=5,scale=0.1)   
   Units          String                                            Parameter units. User defined; not used or checked during Tyche calculations.                                                                                        
   Notes          String                                            Any additional information defined by the user. Not used during Tyche calculations.                                                                                  
