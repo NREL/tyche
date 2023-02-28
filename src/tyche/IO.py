@@ -222,15 +222,18 @@ def check_tables(
     else:
       # Step 2: If all Offsets are integers, check for sequential values
       _ind_val = indices.Offset.reset_index()
-      _ind_val_odd = [
-        set(
-          arange(len(_ind_val.Index[_ind_val.Type==_t]))
-        ).symmetric_difference(
-          set(_ind_val.Offset[_ind_val.Type==_t])
-        ) for _t in ['Capital', 'Input', 'Output', 'Metric']
-      ]
+      _ind_val_odd = []
+      for _y in _ind_val.Technology.unique():
+        _ind_val_odd.append([
+          set(
+            arange(len(_ind_val.Index[(_ind_val.Technology==_y) & (_ind_val.Type==_t)]))
+          ).symmetric_difference(
+            set(_ind_val.Offset[(_ind_val.Technology==_y) & (_ind_val.Type==_t)])
+          ) for _t in ['Capital', 'Input', 'Output', 'Metric']
+        ])
+      _ind_val_odd_flat = [item for sublist in _ind_val_odd for item in sublist]
 
-      if any([len(i) for i in _ind_val_odd]) != 0:
+      if any([len(i) for i in _ind_val_odd_flat]) != 0:
         check_list.append(
           (f'Data Validation: Check that Offset values in Indices are '
           'sequential integers beginning at zero, within each Type.\n')
