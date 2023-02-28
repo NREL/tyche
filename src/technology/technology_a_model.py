@@ -97,7 +97,9 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   _annualized_cost_per_unit_F = (capital[0] + capital[1] + capital[2] + capital[3] + capital[4] + fixed*lifetime + input_price[0] * input_raw[0] + input_price[1] * input_raw[1] + input_price[2] * input_raw[2])/output[0]
   _labor_per_unit_F = (parameter[8] * output_raw[0] + parameter[9] * (output_raw[1] + output_raw[2]))/output[0]
   _impact_per_unit_F = (parameter[5] * input_raw[0] + parameter[6] * input_raw[1] + parameter[7] + input_raw[2]) / output[0]
+  _overall_efficiency = np.mean([input_raw[0] / input[0], input_raw[1] / input[1], input_raw[2] / input[2], output_raw[0] / output[0], output_raw[1] / output[1], output_raw[2] / output[2]])
   # Stack the metric values into a single array to return.
   return np.stack([_annualized_cost_per_unit_F,
                    _labor_per_unit_F,
-                   _impact_per_unit_F])
+                   _impact_per_unit_F,
+                   _overall_efficiency])
