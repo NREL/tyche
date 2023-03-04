@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - hypercorn=0.14.3
   - matplotlib=3.6.2
   - myst-parser=0.18.1
   - notebook=6.4.12
