@@ -202,7 +202,7 @@ class Investments:
       amounts = self.investments.drop(
         columns=["Notes"]
       ).join(
-        self.tranches.drop(columns=["Notes"])
+        tranche_results.amounts
       ).groupby(
         level=["Investment"]
       ).sum()
