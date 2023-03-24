@@ -191,14 +191,17 @@ class EpsilonConstraintOptimizer:
 
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
+          value = self._f(evaluate=evaluate,
+                          sense='min',
+                          verbose=verbose)(x)[j]
+          # append the existing constraints container with the LHS value of the
+          # current metric constraint formulated as >= 0
+          # as the loop executes, one constraint per metric will be added to
+          # the container
           if info['sense'] == 'lower':
-            value = self._f(evaluate=evaluate,
-                            sense='min',
-                            verbose=verbose)(x)[j]
+            constraints += [value - info['limit']]
           elif info['sense'] == 'upper':
-            value = self._f(evaluate=evaluate,
-                            sense='max',
-                            verbose=verbose)(x)[j]
+            constraints += [info['limit'] - value]
           else:
             raise ValueError('opt_slsqp: Epsilon constraint must be upper or lower')
 
@@ -211,13 +214,7 @@ class EpsilonConstraintOptimizer:
                   ' Metric limit:     ', np.round(info['limit'], 3),
                   '  Metric value:      ', np.round(value, 3),
                   ' Constraint met: ', value >= info['limit'])
-
-          # append the existing constraints container with the LHS value of the
-          # current metric constraint formulated as >= 0
-          # as the loop executes, one constraint per metric will be added to
-          # the container
-          constraints += [value - info['limit']]
-
+      
       return constraints
 
     # if no initial decision variable values have been defined,
