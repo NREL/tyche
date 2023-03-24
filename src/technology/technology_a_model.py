@@ -94,7 +94,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   parameter : array
     The technological parameterization.
   """
-  _annualized_cost_per_unit_F = (capital[0] + capital[1] + capital[2] + capital[3] + capital[4] + fixed*lifetime[0] + input_price[0] * input_raw[0] + input_price[1] * input_raw[1] + input_price[2] * input_raw[2])/output[0] - parameter[15]
+  _annualized_cost_per_unit_F = (capital[0] + capital[1] + capital[2] + capital[3] + capital[4] + fixed*lifetime[0] + input_price[0] * input_raw[0] + input_price[1] * input_raw[1] + input_price[2] * input_raw[2] - 12.0 * output[1] - 9.0 * output[2])/output[0] - parameter[15]
   _labor_per_unit_F = (parameter[8] * output_raw[0] + parameter[9] * (output_raw[1] + output_raw[2]))/output[0] - parameter[16]
   _impact_per_unit_F = (parameter[5] * input_raw[0] + parameter[6] * input_raw[1] + parameter[7] * input_raw[2]) / output[0] - parameter[17]
   _overall_efficiency = output[0] / (input_raw[0] + input_raw[1] + input_raw[2]) - parameter[18]
