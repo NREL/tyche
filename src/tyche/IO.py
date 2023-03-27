@@ -96,19 +96,19 @@ def check_tables(
         f'in investments and tranches.\n{_odd_cattra_set}\n')
       )
 
-    # Cross-check: Technology-Scenario values in designs must be exactly the
-    # set of Technology-Scenario values in parameters
+    # Cross-check: Technology-Tranche values in designs must be exactly the
+    # set of Technology-Tranche values in parameters
     _par_idx = parameters.index.to_frame()
-    _odd_tecsce_set = set(
-      [i + '-' + j for i, j in _des_idx[['Technology','Scenario']].values]
+    _odd_tectra_set = set(
+      [i + '-' + j for i, j in _des_idx[['Technology','Tranche']].values]
     ).symmetric_difference(
-      set([i + '-' + j for i, j in _par_idx[['Technology','Scenario']].values])
+      set([i + '-' + j for i, j in _par_idx[['Technology','Tranche']].values])
     )
 
-    if len(_odd_tecsce_set) != 0:
+    if len(_odd_tectra_set) != 0:
       check_list.append(
-        ('Data Validation: Technology-Scenario combinations are inconsistent. '
-        f'Check in designs and parameters.\n{_odd_tecsce_set}\n')
+        ('Data Validation: Technology-Tranche combinations are inconsistent. '
+        f'Check in designs and parameters.\n{_odd_tectra_set}\n')
       )
 
     # Designs check: Variable index levels are exactly Input, Input efficiency,
