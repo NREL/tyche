@@ -13,7 +13,7 @@ from .DataManager   import TranchesDataset, InvestmentsDataset
 from .Designs       import sampler
 from .Types         import Evaluations
 
-
+import pdb
 class Investments:
   """
   Investments in a technology.
@@ -67,6 +67,7 @@ class Investments:
   def compile(self):
     """Parse any probability distributions in the tranches."""
     self.compiled_tranches = self.tranches.copy()
+    pdb.set_trace()
     self.compiled_tranches["Amount"] = self.compiled_tranches["Amount"].apply(parse_distribution)
   
   def evaluate_tranches(self, designs, sample_count=1):
@@ -120,9 +121,9 @@ class Investments:
       metrics = amounts.drop(
         columns=["Amount"]
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Category", "Tranche", "Sample", "Technology", "Index"]
       )
 
     else:
@@ -140,9 +141,9 @@ class Investments:
       metrics = self.compiled_tranches.drop(
         columns=["Amount", "Notes"]
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Category", "Tranche", "Sample", "Technology", "Index"]
       )
 
     return Evaluations(
@@ -193,9 +194,9 @@ class Investments:
       ).join(
         amounts.drop(columns=["Amount"])
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Investment", "Category", "Tranche", "Sample", "Technology", "Index"]
       )
     # If the investment amounts (tranches) are fixed, proceed as if the designs are uncertain
     else:
@@ -211,9 +212,9 @@ class Investments:
       ).join(
         self.tranches.drop(columns=["Amount", "Notes"])
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Investment", "Category", "Tranche", "Sample", "Technology", "Index"]
       )
 
     return Evaluations(
