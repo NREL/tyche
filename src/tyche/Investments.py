@@ -13,7 +13,7 @@ from .DataManager   import TranchesDataset, InvestmentsDataset
 from .Designs       import sampler
 from .Types         import Evaluations
 
-import pdb
+
 class Investments:
   """
   Investments in a technology.
@@ -67,7 +67,6 @@ class Investments:
   def compile(self):
     """Parse any probability distributions in the tranches."""
     self.compiled_tranches = self.tranches.copy()
-    pdb.set_trace()
     self.compiled_tranches["Amount"] = self.compiled_tranches["Amount"].apply(parse_distribution)
   
   def evaluate_tranches(self, designs, sample_count=1):
