@@ -311,20 +311,20 @@ def check_tables(
       )           
 
     # Parameters check: Every Parameter Offset must be the same across 
-    # all Technology-Scenario combinations
-    # Get a list of all Technology-Scenario combinations in Parameters
+    # all Technology-Tranche combinations
+    # Get a list of all Technology-Tranche combinations in Parameters
     parameters.sort_index(inplace=True)
-    _par_tecsce_paroff = [
+    _par_tectra_paroff = [
       parameters.loc[i,'Offset'] for i in list(
         set([j[:2] for j in parameters.index.values])
       )
     ]
-    for _j in arange(len(_par_tecsce_paroff)):
-      if _j < len(_par_tecsce_paroff)-1:
-        if not _par_tecsce_paroff[_j].equals(_par_tecsce_paroff[_j+1]):
+    for _j in arange(len(_par_tectra_paroff)):
+      if _j < len(_par_tectra_paroff)-1:
+        if not _par_tectra_paroff[_j].equals(_par_tectra_paroff[_j+1]):
           check_list.append(
             ('Data Validation: Parameter Offsets are inconsistent. Check '
-            f'in Parameters.\n{_par_tecsce_paroff[_j]}\n')
+            f'in Parameters.\n{_par_tectra_paroff[_j]}\n')
           )
     
     # Results check: Every Technology must have a result where both the Variable
@@ -335,10 +335,10 @@ def check_tables(
           (f'Data Validation: Technology {_i} in Results needs a row where both '
           'the Variable and the Index are "Cost".\n')
         )
-    
+
     # Tranches check: Within every Category, the Amounts for each Tranche must be unique
     _tra_amt_unique = [
-      tranches.groupby('Category').Amount.count()[i] != tranches.groupby('Category').Amount.nunique()[i] 
+      tranches.reset_index().groupby('Category').Amount.count()[i] != tranches.reset_index().groupby('Category').Amount.nunique()[i] 
       for i in arange(tranches.index.to_frame().Category.nunique())
     ]
     if any(_tra_amt_unique):
