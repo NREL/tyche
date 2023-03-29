@@ -338,7 +338,7 @@ def check_tables(
 
     # Tranches check: Within every Category, the Amounts for each Tranche must be unique
     _tra_amt_unique = [
-      tranches.reset_index().groupby('Category').Amount.count()[i] != tranches.reset_index().groupby('Category').Amount.nunique()[i] 
+      tranches.groupby('Category').Amount.count()[i] != tranches.groupby('Category').Amount.nunique()[i] 
       for i in arange(tranches.index.to_frame().Category.nunique())
     ]
     if any(_tra_amt_unique):
