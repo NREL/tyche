@@ -129,38 +129,38 @@ def check_tables(
         f'value(s).\n{_des_var_set}\n')
       )
 
-    # Designs check: Every Technology-Scenario combination must have
+    # Designs check: Every Technology-Tranche combination must have
     # the same Index levels within each mandatory Variable
-    # Designs check: Every Technology-Scenario combination must have
+    # Designs check: Every Technology-Tranche combination must have
     # all mandatory Variables
-    # Get a list of all Technology-Scenario combinations in Designs
-    _des_tecsce = list(set([i[:2] for i in designs.index.values]))    
+    # Get a list of all Technology-Tranche combinations in Designs
+    _des_tectra = list(set([i[:2] for i in designs.index.values]))    
     # Get the set (no duplicates) of all Variable-Value combinations across 
-    # all Tech-Sce combinations
+    # all Tech-Tra combinations
     _var_val_set = set([i[2:] for i in designs.index.values])
-    for _j in _des_tecsce:
-      _des_tecsce_var_set = set([i[2] for i in designs.index.values if i[:2] == _j])
-      _des_tecsce_varval_set = set([i[2:] for i in designs.index.values if i[:2] == _j])
-      # Check if the Tech-Scen combo is missing any mandatory Variables
-      _odd_des_tecsce_var_set = set(
+    for _j in _des_tectra:
+      _des_tectra_var_set = set([i[2] for i in designs.index.values if i[:2] == _j])
+      _des_tectra_varval_set = set([i[2:] for i in designs.index.values if i[:2] == _j])
+      # Check if the Tech-Tranche combo is missing any mandatory Variables
+      _odd_des_tectra_var_set = set(
         ['Input', 'Input efficiency', 'Input price',
         'Lifetime', 'Output efficiency', 'Output price', 'Scale']
         ).difference(
-          _des_tecsce_var_set
+          _des_tectra_var_set
         )
-      # Check if the Tech-Scen combo is missing any Variable Indexes
-      _odd_des_tecsce_varval_set = _var_val_set.difference(
-        _des_tecsce_varval_set
+      # Check if the Tech-Tranche combo is missing any Variable Indexes
+      _odd_des_tectra_varval_set = _var_val_set.difference(
+        _des_tectra_varval_set
       )
-      if len(_odd_des_tecsce_var_set) != 0:
+      if len(_odd_des_tectra_var_set) != 0:
         check_list.append(
-          (f'Data Validation: Technology-Scenario combination {_j} has '
-          f'missing mandatory Variables. Check in designs.\n{_odd_des_tecsce_var_set}\n')
+          (f'Data Validation: Technology-Tranche combination {_j} has '
+          f'missing mandatory Variables. Check in designs.\n{_odd_des_tectra_var_set}\n')
         )
-      if len(_odd_des_tecsce_varval_set) != 0:
+      if len(_odd_des_tectra_varval_set) != 0:
         check_list.append(
-          (f'Data Validation: Technology-Scenario combination {_j} has'
-          f' missing Variable Indexes. Check in designs.\n{_odd_des_tecsce_varval_set}\n')
+          (f'Data Validation: Technology-Tranche combination {_j} has'
+          f' missing Variable Indexes. Check in designs.\n{_odd_des_tectra_varval_set}\n')
         )
 
     # Functions check: All unique entries under Model must be a .py file containing the
