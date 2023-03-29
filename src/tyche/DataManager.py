@@ -432,7 +432,7 @@ class TranchesDataset(Data):
     {"name": "Notes"   , "type": str, "index": False, "backfill": None}
   )
 
-  INDEX_COLUMNS = [0, 1, 2]
+  INDEX_COLUMNS = [0, 1]
 
   def __init__(
     self,
