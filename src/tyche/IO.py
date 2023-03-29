@@ -281,7 +281,7 @@ def check_tables(
         'indices or in designs.\n')
       )
 
-    # Parameters check: Offset values within every Tech-Scen combo must be 
+    # Parameters check: Offset values within every Tech-Tranche combo must be 
     # sequential integers beginning at zero
     # Step 1: Check that all Offset values are integers using column dtype
     if parameters.Offset.dtype != 'int':
@@ -293,20 +293,20 @@ def check_tables(
       _par_off_val = parameters.Offset.reset_index()
       _par_off_val_odd = list()
       for _t in _par_off_val.Technology.unique().tolist():
-        for _s in _par_off_val.Scenario.unique().tolist():
+        for _r in _par_off_val.Tranche.unique().tolist():
           _par_off_val_odd = _par_off_val_odd + \
             [set(
-              arange(len(_par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Scenario==_s)]))
+              arange(len(_par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Tranche==_r)]))
               ).symmetric_difference(
                 set(
-                  _par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Scenario==_s)]
+                  _par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Tranche ==_r)]
                 )
               )
             ]
     if any([len(i) for i in _par_off_val_odd]) != 0:
       check_list.append(
         ('Data Validation: Check that Offset values in Parameters are '
-        'sequential integers beginning at zero, within each Technology-Scenario '
+        'sequential integers beginning at zero, within each Technology-Tranche '
         'combination.\n')
       )           
 
