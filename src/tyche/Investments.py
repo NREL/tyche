@@ -120,9 +120,9 @@ class Investments:
       metrics = amounts.drop(
         columns=["Amount"]
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Category", "Tranche", "Sample", "Technology", "Index"]
       )
 
     else:
@@ -140,9 +140,9 @@ class Investments:
       metrics = self.compiled_tranches.drop(
         columns=["Amount", "Notes"]
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Category", "Tranche", "Sample", "Technology", "Index"]
       )
 
     return Evaluations(
@@ -193,9 +193,9 @@ class Investments:
       ).join(
         amounts.drop(columns=["Amount"])
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Investment", "Category", "Tranche", "Sample", "Technology", "Index"]
       )
     # If the investment amounts (tranches) are fixed, proceed as if the designs are uncertain
     else:
@@ -211,9 +211,9 @@ class Investments:
       ).join(
         self.tranches.drop(columns=["Amount", "Notes"])
       ).join(
-        designs.evaluate_scenarios(sample_count).xs("Metric", level="Variable")
+        designs.evaluate_tranche_impacts(sample_count).xs("Metric", level="Variable")
       ).reorder_levels(
-        ["Investment", "Category", "Tranche", "Scenario", "Sample", "Technology", "Index"]
+        ["Investment", "Category", "Tranche", "Sample", "Technology", "Index"]
       )
 
     return Evaluations(

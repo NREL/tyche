@@ -115,14 +115,14 @@ class Designs:
     """
 
     return self.designs.reset_index(
-      ["Scenario", "Variable", "Index"]
+      ["Tranche", "Variable", "Index"]
     ).sort_index(
     ).index.drop_duplicates(
     ).values
   
-  def vectorize_scenarios(self, technology):
+  def vectorize_tranches(self, technology):
     """
-    Make an array of scenarios.
+    Make an array of tranches.
     """
     return self.designs.xs(technology
     ).reset_index(
@@ -158,7 +158,7 @@ class Designs:
       metric  = vectors.metric.index.values ,
     )
   
-  def vectorize_designs(self, technology, scenario_count, sample_count=1):
+  def vectorize_designs(self, technology, tranche_count, sample_count=1):
     """
     Make an array of designs.
     """
@@ -185,11 +185,11 @@ class Designs:
         [1, 0]
       ).reset_index(
       ).sort_values(
-        by=["Offset", "Scenario"]
+        by=["Offset", "Tranche"]
       )[
         "Distribution"
       ].values.reshape(
-        (offsets.shape[0], scenario_count)
+        (offsets.shape[0], tranche_count)
       )
 
     # If the technology model has probability distributions, sample them
@@ -217,7 +217,7 @@ class Designs:
       )
 
   
-  def vectorize_parameters(self, technology, scenario_count, sample_count=1):
+  def vectorize_parameters(self, technology, tranche_count, sample_count=1):
     """
     Make an array of parameters.
     """
@@ -226,10 +226,10 @@ class Designs:
       technology
     ).reset_index(
     ).sort_values(
-      by=["Offset", "Scenario"]
+      by=["Offset", "Tranche"]
     )["Distribution"].values
     return sampler(
-      x.reshape((-1, scenario_count)),
+      x.reshape((-1, tranche_count)),
       sample_count
     )
   
@@ -274,8 +274,8 @@ class Designs:
     
     indices = self.vectorize_indices(technology)
     
-    scenarios = self.vectorize_scenarios(technology)
-    n = scenarios.shape[0]
+    tranches = self.vectorize_tranches(technology)
+    n = tranches.shape[0]
     
     design    = self.vectorize_designs(   technology, n, sample_count)
     parameter = self.vectorize_parameters(technology, n, sample_count)
@@ -298,8 +298,8 @@ class Designs:
     
     def organize(df, ix):
       ix1 = pd.MultiIndex.from_product(
-        [ix, scenarios, range(1, sample_count + 1)],
-        names=["Index", "Scenario", "Sample"]
+        [ix, tranches, range(1, sample_count + 1)],
+        names=["Index", "Tranche", "Sample"]
       )
       df1 = pd.DataFrame({"Value" : df.flatten()}, index=ix1)
       df1["Technology"] = technology
@@ -307,7 +307,7 @@ class Designs:
         ["Technology"],
         append=True
       ).reorder_levels(
-        ["Technology", "Scenario", "Sample", "Index"]
+        ["Technology", "Tranche", "Sample", "Index"]
       ).sort_index()
 
     return Results(
@@ -317,9 +317,9 @@ class Designs:
     )
 
       
-  def evaluate_scenarios(self, sample_count=1):
+  def evaluate_tranche_impacts(self, sample_count=1):
     """
-    Evaluate scenarios.
+    Evaluate tranchess.
 
     Parameters
     ----------
@@ -344,7 +344,7 @@ class Designs:
       ).join(
         values
       ).reorder_levels(
-        ["Technology", "Scenario", "Sample", "Variable", "Index"]
+        ["Technology", "Tranche", "Sample", "Variable", "Index"]
       )[["Value", "Units"]]
 
     return pd.concat([
