@@ -46,15 +46,15 @@ def fixed_cost(scale, parameter):
   parameter : array
     The technological parameterization.
   """
-  _fixed_rectifier = parameter[9]
-  _fixed_electrolysis = parameter[10]
-  _fixed_bos1 = parameter[11]
-  _fixed_compressor = parameter[12]
-  _fixed_cavern = parameter[13]
-  _fixed_bos2 = parameter[14]
-  _fixed_fuel_cell = parameter[15]
-  _fixed_inverter = parameter[16]
-  _fixed_bos3 = parameter[17]
+  _fixed_rectifier = parameter[18]
+  _fixed_electrolysis = parameter[19]
+  _fixed_bos1 = parameter[20]
+  _fixed_compressor = parameter[21]
+  _fixed_cavern = parameter[22]
+  _fixed_bos2 = parameter[23]
+  _fixed_fuel_cell = parameter[24]
+  _fixed_inverter = parameter[25]
+  _fixed_bos3 = parameter[26]
 
   fixed_cost = _fixed_rectifier + _fixed_electrolysis + _fixed_bos1 + _fixed_compressor + _fixed_cavern + _fixed_bos2 + _fixed_fuel_cell + _fixed_inverter + _fixed_bos3
 
@@ -84,9 +84,9 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     The technological parameterization.
   """
 
-  conversion_factor_rectifier = parameter[0]
+  effiency_rectifier = parameter[0]
   conversion_factor_electrolysis = parameter[1]
-  conversion_factor_bos1 = parameter[2]
+
   conversion_factor_compress = parameter[3]
   conversion_factor_cavern = parameter[4]
   conversion_factor_bos2 = parameter[5]
@@ -96,11 +96,15 @@ def production(scale, capital, lifetime, fixed, input, parameter):
 
   ac_electricity_in = input[0]
 
-  dc_electricity1 = conversion_factor_rectifier*ac_electricity_in
-  hydrogen1 = dc_electricity1 * conversion_factor_electrolysis
-  
+  dc_electricity1 = efficiency_rectifier*ac_electricity_in
+  hydrogen1 = dc_electricity1 * conversion_factor_electrolysis * efficiency_electrolysis
+  hyrogen_compressed = 
+
+
+
+
   # Stack the output for each category into a single array that we return.
-  return np.stack([_jet
+  return np.stack([ac_electricity_out
   ])
 
 def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
@@ -137,7 +141,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   total_ghg = ghg_foss_ef * energy_produced
   jobs = parameter[5]
   #Total cost per year
-  total_cost = capital[0]/lifetime[0] + fixed[0] + input[0]*input_price[0] + input[1]*input_price[1]
+  total_cost = capital[0]/lifetime[0] + fixed[0] + input[0]*input_price[0] - output[0]*output_price[0]
 
   # Package results.
   return np.stack([total_cost,
