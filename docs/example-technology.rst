@@ -5,7 +5,7 @@ Technology Model Example
 
 Here is a very simple model for electrolysis of water. We just have water, electricity, a catalyst, and some lab space. We choose the fundamental unit of operation to be moles of H\ :sub:`2`:
 
-     H\ :sub:`2`\ O → H\ :sub:`2` + ½ O\ :sub:`2`
+H\ :sub:`2`\ O → H\ :sub:`2` + ½ O\ :sub:`2`
 
 For this example, we treat the catalyst as the capital that we use to transform inputs into outputs. Our inputs are water and electricity, and our outputs are oxygen and hydrogen. Our only fixed cost is the rent on the lab space at $1000/year. Using our past experience with electrolysis technology as well as some historical data, we estimate that we'll be able to produce 6650 mol/year of hydrogen and at this scale, our catalyst has a lifetime of about 3 years. The metrics we'd like to calculate for our electrolysis technology are cost, greenhouse gas (GHG) emissions, and jobs created. Based on this information, the *designs* dataset for the base case electrolysis technology is as shown in :numref:`tbl-electrolysisdesigns`.
 
@@ -13,7 +13,7 @@ For this example, we treat the catalyst as the capital that we use to transform 
 .. table:: *designs* dataset for the base case (without any R&D) of the simple electrolysis example technology.
 
  ===================== =================== =================== ============= ========== ========= ======================================
- Technology            Scenario            Variable            Index         Value      Units     Notes
+ Technology            Tranche             Variable            Index         Value      Units     Notes
  ===================== =================== =================== ============= ========== ========= ======================================
  Simple electrolysis   Base Electrolysis   Input               Water         19.04      g/mole    
  Simple electrolysis   Base Electrolysis   Input efficiency    Water         0.95       1         Due to mass transport loss on input.
@@ -37,7 +37,7 @@ A key quantity that is not included in the *designs* dataset is our fixed cost, 
 .. table:: *parameters* dataset for the base case (without any R&D) of the simple electrolysis example technology.
 
  ===================== =================== ===================================== =========== ========== =========== =====================================
- Technology            Scenario            Parameter                             Offset      Value      Units       Notes
+ Technology            Tranche             Parameter                             Offset      Value      Units       Notes
  ===================== =================== ===================================== =========== ========== =========== =====================================
  Simple electrolysis   Base Electrolysis   Oxygen production                     0           16         g           
  Simple electrolysis   Base Electrolysis   Hydrogen production                   1           2          g           
