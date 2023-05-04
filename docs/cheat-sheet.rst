@@ -130,37 +130,37 @@ Technology Data and Model
 Designs Dataset 
 ^^^^^^^^^^^^^^^
 
-A "design" is a set of data representing the state of a technology that results from a specific R&D investment scenario. The *designs* dataset contains information for all of the technologies being evaluated within a decision context. *designs* contains multiple sets of data for each technology: each set represents the technology state that results from a single R&D investment scenario.  Multiple R&D investment scenarios are typically represented, each corresponding to a different level of technology advancement, which is quantified probabilistically through expert elicitation. :numref:`tbl-designsdict` provides a data dictionary for the *designs* dataset.
+A "design" is a set of data representing the state of a technology that results from a specific R&D investment. The *designs* dataset contains one or more designs for each of the technologies being evaluated within a decision context, with each design corresponding to a separate R&D investment corresponding to a different level of technology advancement. Some or all of the data in the *designs* dataset may be quantified probabilistically through expert elicitation. :numref:`tbl-designsdict` provides a data dictionary for the *designs* dataset.
 
 
 .. _tbl-designsdict:
 .. table:: Data dictionary for the *designs* dataset which defines various technology states resulting from R&D investments.
 
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
-  | Column Name  | Data Type                                      | Allowed Values                                                        | Description                                                                  |
-  +==============+================================================+=======================================================================+==============================================================================+
-  | Technology   | String                                         | Any                                                                   | Name of the technology.                                                      |
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
-  | Scenario     | String                                         | Any names are allowed. There must be at least two scenarios defined.  | R&D investment scenario that results in this technology design.              |
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
-  | Variable     | String                                         | * Input                                                               | Variable types required by technology model and related functions.           |
-  |              |                                                | * Input efficiency                                                    |                                                                              |
-  |              |                                                | * Input price                                                         |                                                                              |
-  |              |                                                | * Output efficiency                                                   |                                                                              |
-  |              |                                                | * Output price                                                        |                                                                              |
-  |              |                                                | * Lifetime                                                            |                                                                              |
-  |              |                                                | * Scale                                                               |                                                                              |
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
-  | Index        | String                                         | Any                                                                   | Name of the elements within each Variable.                                   |
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
-  | Value        | * Float                                        | * Set of real numbers                                                 | Value for the R&D investment scenario.                                       |
-  |              | * Distribution                                 | * *scipy.stats* distributions                                         | Example: st.triang(1,loc=5,scale=0.1)                                        |
-  |              | * Mixture of distributions                     | * Mixture of *scipy.stats* distributions                              |                                                                              |
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+  
-  | Units        | String                                         | Any                                                                   | User defined units for Variables. Not used by Tyche.                         |                                                                                                  
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
-  | Notes        | String                                         | Any                                                                   | Description provided by user. Not used by Tyche.                             |
-  +--------------+------------------------------------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------+
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+  | Column Name  | Data Type                                      | Allowed Values                                                        | Description                                                                             |
+  +==============+================================================+=======================================================================+=========================================================================================+
+  | Technology   | String                                         | Any                                                                   | Name of the technology.                                                                 |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+  | Tranche      | String                                         | Any names are allowed. There must be at least two Tranches defined.   | A dollar amount invested in a research category that results in this technology design. |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+  | Variable     | String                                         | * Input                                                               | Variable types required by technology model and related functions.                      |
+  |              |                                                | * Input efficiency                                                    |                                                                                         |
+  |              |                                                | * Input price                                                         |                                                                                         |
+  |              |                                                | * Output efficiency                                                   |                                                                                         |
+  |              |                                                | * Output price                                                        |                                                                                         |
+  |              |                                                | * Lifetime                                                            |                                                                                         |
+  |              |                                                | * Scale                                                               |                                                                                         |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+  | Index        | String                                         | Any                                                                   | Name of the elements within each Variable.                                              |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+  
+  | Value        | * Float                                        | * Set of real numbers                                                 | Value resulting from the Tranche.                                                       |
+  |              | * Distribution                                 | * *scipy.stats* distributions                                         | Example: st.triang(1,loc=5,scale=0.1)                                                   |
+  |              | * Mixture of distributions                     | * Mixture of *scipy.stats* distributions                              |                                                                                         |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+  
+  | Units        | String                                         | Any                                                                   | User defined units for Variables. Not used by Tyche.                                    |                                                                                                  
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+  | Notes        | String                                         | Any                                                                   | Description provided by user. Not used by Tyche.                                        |
+  +--------------+------------------------------------------------+-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
 
 **Mandatory data.** The Variable column within the *designs* dataset must contain all seven values defined in :numref:`tbl-designsdict`. If there are no elements within a Variable for the technology under study, the Variable must still be included in the *designs* dataset: leaving out any of the Variables in this dataset will result in the *designs* dataset failing the data validation checks. The Value for unneeded Variables may be set to 0 or 1, and the Index for unneeded Variables set to None. This may be necessary for technologies without any inputs: for instance, a solar panel could be modeled without any Inputs, if sunlight is not explicitly being modeled. In this case, the single Index defined for the Input Variable can be None, and the calculations within the technology model .py file can be defined without using this value. The mandatory Variables and their component Indexes are defined further in :numref:`tbl-designsvars`.
 
@@ -182,7 +182,7 @@ A "design" is a set of data representing the state of a technology that results 
 Parameters Dataset
 ^^^^^^^^^^^^^^^^^^
 
-The *parameters* dataset contains any additional technology-related data, other than that contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amounts), and metrics. (These calculations are implemented within the technology model .py file, discussed in the next section.) Identically to the *designs* dataset, the *parameters* dataset contains multiple sets of data corresponding to different R&D investment scenarios. A data dictionary for the *parameters* dataset is given in :numref:`tbl-paramsdict`.
+The *parameters* dataset contains any additional technology-related data, other than that contained in the *designs* dataset, that is required to calculate a technology’s capital cost, fixed cost, production (actual output amounts), and metrics. (These calculations are implemented within the technology model .py file, discussed in the next section.) Identically to the *designs* dataset, the *parameters* dataset contains multiple sets of data corresponding to different R&D investments (Tranches). A data dictionary for the *parameters* dataset is given in :numref:`tbl-paramsdict`.
 
 
 .. _tbl-paramsdict:
@@ -192,17 +192,17 @@ The *parameters* dataset contains any additional technology-related data, other 
   Column Name    Data type                                         Description                                                                                                                                                          
   ============== ================================================= ==================================================================================================================================================================
   Technology     String                                            Name of the technology.                                                                                                                                              
-  Scenario       String                                            Name of the R&D investment scenario that resulted in the corresponding parameter values or distributions.                                                            
+  Tranche       String                                             Name of the Tranche that resulted in the corresponding parameter values or distributions.                                                            
   Parameter      String                                            Name of the parameter.                                                                                                                                               
   Offset         Integer                                           Numerical location of the parameter in the parameter vector; begins at zero.                                                                                                                                 
-  Value          Float; Distribution; Mixture of distributions     Parameter value for the R&D investment scenario. Example: st.triang(1,loc=5,scale=0.1)   
+  Value          Float; Distribution; Mixture of distributions     Parameter value resulting from the Tranche. Example: st.triang(1,loc=5,scale=0.1)   
   Units          String                                            Parameter units. User defined; not used or checked during Tyche calculations.                                                                                        
   Notes          String                                            Any additional information defined by the user. Not used during Tyche calculations.                                                                                  
   ============== ================================================= ==================================================================================================================================================================
   
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 
-**Mandatory data.** The *parameters* dataset is required to exist and to include at least one Parameter for every Technology-Scenario combination. If there are no Parameters present in the technology model, then the Parameter may be None and 0 may be entered under both the Offset and Value columns.
+**Mandatory data.** The *parameters* dataset is required to exist and to include at least one Parameter for every Technology-Tranche combination. If there are no Parameters present in the technology model, then the Parameter may be None and 0 may be entered under both the Offset and Value columns.
 
 Technology model (.py file)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -236,9 +236,9 @@ The previous sections provided information on the input datasets required to def
 Tranches Dataset
 ^^^^^^^^^^^^^^^^
 
-A Tranche is a discrete unit of R&D investment (dollar amount) in a specific research category. Research categories are defined for each technology within a decision context and represent narrow topic areas in which R&D investments are expected to result in technological improvements. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category. A Scenario is a combination of Tranches that represents one option for making R&D investments.
+A Tranche is a discrete unit of R&D investment (dollar amount) in a specific research category. Research categories are defined for each technology within a decision context and represent narrow topic areas in which R&D investments are expected to result in technological improvements. Tranches within the same research category are mutually exclusive: one cannot simultaneously invest $1M and $5M in a research category.
 
-The *tranches* dataset defines a set of R&D investments across the research categories that are relevant to the technology under study. Tranches are combined into investment Scenarios – the same Scenarios found in the *designs* and *parameters* datasets. The impact of each Scenario on the technology is highly uncertain and is quantified probabilistically using expert elicitation. A data dictionary for the *tranches* dataset is given in :numref:`tbl-tranchesdict`.
+The *tranches* dataset defines all of the Tranches that are relevant to the technology under study. Tranches are combined into Investments, discussed in the next section, and are also used to distinguish sets of technology data in the *designs* and *parameters* datasets. The impact of each Tranche on the technology is highly uncertain and is quantified probabilistically using expert elicitation. A data dictionary for the *tranches* dataset is given in :numref:`tbl-tranchesdict`.
 
 .. _tbl-tranchesdict:
 .. table:: Data dictionary for the *tranches* dataset.
@@ -248,7 +248,6 @@ The *tranches* dataset defines a set of R&D investments across the research cate
   ============== ================================================= =============================================================================================================================================================================================
   Category       String                                            Names of the R&D categories in which investment can be made to impact the technology or technologies being studied.                                                                             
   Tranche        String                                            Names of the tranches.                                                                                                                                                                          
-  Scenario       String                                            Names of the R&D investment scenarios, which combine tranches across R&D categories. The names in this column must correspond to the Scenarios listed in the designs and parameters datasets.  
   Amount         Float; Distribution; Mixture of distributions     The R&D investment amount of the Tranche. The amount may be defined as a scalar, a probability distribution, or a mix of probability distributions.                                             
   Notes          String                                            Additional user-defined information. Not used by Tyche.                                                                                                                                         
   ============== ================================================= =============================================================================================================================================================================================
@@ -256,9 +255,9 @@ The *tranches* dataset defines a set of R&D investments across the research cate
 Investment Dataset
 ^^^^^^^^^^^^^^^^^^
 
-An Investment, similar to a Scenario, is a combination of Tranches that represents a particular R&D strategy.
+An Investment is a combination of Tranches that represents a particular R&D strategy.
 
-The *investments* dataset provides a separate way to look at making R&D investments. Combining individual tranches allows users to explore and optimize R&D investment amounts, but it may be the case that there are specific strategies that users wish to explore, without optimizing. In this case, the *investments* dataset is used to define specific combinations of tranches that are of interest. A data dictionary for the *investments* dataset is given in :numref:`tbl-investmentsdict`.
+The *investments* dataset specifies a set of options for making R&D investments within the decision context. Combining individual Tranches into an Investment allows users to evaluate and compare the impacts of different investment strategies without performing optimization. A data dictionary for the *investments* dataset is given in :numref:`tbl-investmentsdict`.
 
 .. _tbl-investmentsdict:
 .. table:: Data dictionary for the *investments* dataset.
@@ -266,13 +265,13 @@ The *investments* dataset provides a separate way to look at making R&D investme
   ============ ========== =====================================================================================================
   Column Name  Data Type  Description                                                                                            
   ============ ========== =====================================================================================================
-  Investment   String     Name of the R&D investment. Distinct from the Scenarios.                                               
+  Investment   String     Name of the R&D investment.
   Category     String     Names of the R&D categories being invested in. Within each row, the Category must match the Tranche. The set of Categories in the *investments* dataset must match the set of Categories in the *tranches* dataset.
   Tranche      String     Names of the tranches within the Investment. Within each row, the Tranche must match the Category. The set of Tranches in the *investments* dataset must match the set of Tranches in the *tranches* dataset.
   Notes        String     Additional user-defined information. Not used by Tyche.                                                
-  ============ ================================================================================================================
+  ============ ========== =====================================================================================================
 
-**Relationship between Categories, Tranches, Scenarios, and Investments.** Both the *designs* and *parameters* dataset contain technology data under multiple Scenarios. Each Scenario represents the technological outcomes from one or more Tranches, and each Tranche represents a unit of R&D investment in a single Category (or research area). Scenarios and their component Tranches are defined in the *tranches* dataset. Tranches can also be combined to form Investments, as defined in the *investments* dataset.
+**Relationship between Categories, Tranches, and Investments.** Both the *designs* and *parameters* dataset contain technology data under multiple Tranches. Each Tranche represents the technological outcome from one  unit of investment in a single Category (or research area). Tranches are combined to form Investments, as defined in the *investments* dataset.
 
 Additional Datasets
 ~~~~~~~~~~~~~~~~~~~
@@ -371,7 +370,7 @@ Tyche provides two general use cases for exploring the relationship between R&D 
 
 In the second use case, a user knows what technological changes must be achieved with R&D investment and is interested in determining the investment amount that will be required to achieve these changes. In this case the user already knows the contents of the *designs* and *parameters* dataset, which are deterministic, and uses expert elicitation to fill in the investment amounts in the *tranches* dataset.
 
-It is critical to note that these use cases are **mutually exclusive**. Tyche cannot be used to evaluate a scenario in which desired technological changes as well as the investment amounts are both uncertain. What this means for the user is that probability distributions, or mixtures of distributions, can be used to specify values either in the *designs* and *parameters* datasets or in the *tranches* dataset, but not both. If distributions are used in all three datasets, the code will break by design.
+It is critical to note that these use cases are **mutually exclusive**. Tyche cannot be used to evaluate a decision context in which the desired technological changes and the investment amounts are both uncertain. What this means for the user is that probability distributions, or mixtures of distributions, can be used to specify values either in the *designs* and *parameters* datasets or in the *tranches* dataset, but not both. If distributions are used in all three datasets, the code will break by design.
 
 Defining values as probability distributions and mixtures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
