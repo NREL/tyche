@@ -188,17 +188,17 @@ The *parameters* dataset contains any additional technology-related data, other 
 .. _tbl-paramsdict:
 .. table::  Data dictionary for the *parameters* dataset, which, if necessary, provides additional technology-related data other than that in the *designs* dataset.
 
-  ============== ================================================= ==================================================================================================================================================================
+  ============== ================================================= =========================================================================================
   Column Name    Data type                                         Description                                                                                                                                                          
-  ============== ================================================= ==================================================================================================================================================================
+  ============== ================================================= =========================================================================================
   Technology     String                                            Name of the technology.                                                                                                                                              
-  Tranche       String                                             Name of the Tranche that resulted in the corresponding parameter values or distributions.                                                            
+  Tranche        String                                            Name of the Tranche that resulted in the corresponding parameter values or distributions.                                                            
   Parameter      String                                            Name of the parameter.                                                                                                                                               
   Offset         Integer                                           Numerical location of the parameter in the parameter vector; begins at zero.                                                                                                                                 
   Value          Float; Distribution; Mixture of distributions     Parameter value resulting from the Tranche. Example: st.triang(1,loc=5,scale=0.1)   
   Units          String                                            Parameter units. User defined; not used or checked during Tyche calculations.                                                                                        
   Notes          String                                            Any additional information defined by the user. Not used during Tyche calculations.                                                                                  
-  ============== ================================================= ==================================================================================================================================================================
+  ============== ================================================= =========================================================================================
   
 Including the Offset value in the *parameters* dataset creates a user reference that makes it easier to access parameter values when defining the technology model.
 

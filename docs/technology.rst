@@ -53,7 +53,7 @@ Template for Developing New Models and Datasets
 	:undoc-members:
 	:show-inheritance:
 	
-.. automodule:: technology.technology_b_model
+.. automodule:: technology.technology_m_model
 	:members:
 	:undoc-members:
 	:show-inheritance:
