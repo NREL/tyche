@@ -5,12 +5,13 @@ from run_tyche import *
 
 import os
 import pandas as pd
+import sys
 # Call by client
 from jsonrpclib import Server
 
 conn = Server('http://localhost:1080')
-path="../../tyche/src/technology/"
-    
+path="../technology/"
+
 
 def get_categories(technology_name):
     datafile=pd.read_excel(path+technology_name+"/"+technology_name+".xlsx",sheet_name = "tranches")
@@ -127,4 +128,4 @@ evaluate_df['investment'] = inv_list
 #Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
 #category names in one column the investments in another
 
-#run_tyche(data_to_tyche,path)
+run_tyche(data_to_tyche,path)
