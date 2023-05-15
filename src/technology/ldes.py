@@ -18,15 +18,15 @@ def capital_cost(scale, parameter):
     parameter : array
       The technological parameterization.
     """
-    _cap_rectifier = parameter[9]
-    _cap_electrolysis = parameter[10]
-    _cap_bos1 = parameter[11]
-    _cap_compressor = parameter[12]
-    _cap_cavern = parameter[13]
-    _cap_bos2 = parameter[14]
-    _cap_fuel_cell = parameter[15]
-    _cap_inverter = parameter[16]
-    _cap_bos3 = parameter[17]
+    _cap_rectifier = parameter[10]
+    _cap_electrolysis = parameter[11]
+    _cap_bos1 = parameter[12]
+    _cap_compressor = parameter[13]
+    _cap_cavern = parameter[14]
+    _cap_bos2 = parameter[15]
+    _cap_fuel_cell = parameter[16]
+    _cap_inverter = parameter[17]
+    _cap_bos3 = parameter[18]
 
     capital_cost = _cap_rectifier + _cap_electrolysis + _cap_bos1 + _cap_compressor + _cap_cavern + _cap_bos2 + _cap_fuel_cell + _cap_inverter + _cap_bos3
 
@@ -46,15 +46,15 @@ def fixed_cost(scale, parameter):
   parameter : array
     The technological parameterization.
   """
-  _fixed_rectifier = parameter[18]
-  _fixed_electrolysis = parameter[19]
-  _fixed_bos1 = parameter[20]
-  _fixed_compressor = parameter[21]
-  _fixed_cavern = parameter[22]
-  _fixed_bos2 = parameter[23]
-  _fixed_fuel_cell = parameter[24]
-  _fixed_inverter = parameter[25]
-  _fixed_bos3 = parameter[26]
+  _fixed_rectifier = parameter[19]
+  _fixed_electrolysis = parameter[20]
+  _fixed_bos1 = parameter[21]
+  _fixed_compressor = parameter[22]
+  _fixed_cavern = parameter[23]
+  _fixed_bos2 = parameter[24]
+  _fixed_fuel_cell = parameter[25]
+  _fixed_inverter = parameter[26]
+  _fixed_bos3 = parameter[27]
 
   fixed_cost = _fixed_rectifier + _fixed_electrolysis + _fixed_bos1 + _fixed_compressor + _fixed_cavern + _fixed_bos2 + _fixed_fuel_cell + _fixed_inverter + _fixed_bos3
 
@@ -84,21 +84,23 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     The technological parameterization.
   """
 
-  effiency_rectifier = parameter[0]
+  efficiency_rectifier = parameter[0]
   conversion_factor_electrolysis = parameter[1]
-
-  conversion_factor_compress = parameter[3]
-  conversion_factor_cavern = parameter[4]
-  conversion_factor_bos2 = parameter[5]
-  conversion_factor_fuel_cell = parameter[6]
-  conversion_factor_inverter = parameter[7]
-  conversion_factor_bos3 = parameter[8]
+  efficiency_electrolysis = parameter[2]
+  efficiency_compress = parameter[3]
+  efficiency_cavern = parameter[4]
+  conversion_factor_fuel_cell = parameter[5]
+  efficiency_factor_fuel_cell = parameter[6]
+  efficiency_inverter = parameter[7]
 
   ac_electricity_in = input[0]
 
   dc_electricity1 = efficiency_rectifier*ac_electricity_in
-  hydrogen1 = dc_electricity1 * conversion_factor_electrolysis * efficiency_electrolysis
-  hyrogen_compressed = 
+  hydrogen1 = dc_electricity1*conversion_factor_electrolysis*efficiency_electrolysis
+  hyrogen_compressed = hydrogen1*efficiency_compress
+  hyrogen_released = hyrogen_compressed*efficiency_cavern
+  dc_electricity2 = hyrogen_released*conversion_factor_fuel_cell*efficiency_factor_fuel_cell
+  ac_electricity_out = dc_electricity2*efficiency_inverter
 
 
 
@@ -136,15 +138,13 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   """
 
   # annual fossil GHG emissions, Units: kg CO2-eq/year
-  ghg_foss_ef = parameter[4]
-  energy_produced = parameter[3]*output[0]
-  total_ghg = ghg_foss_ef * energy_produced
-  jobs = parameter[5]
-  #Total cost per year
-  total_cost = capital[0]/lifetime[0] + fixed[0] + input[0]*input_price[0] - output[0]*output_price[0]
+  total_ghg = parameter[8]*output[0]
+  jobs = parameter[9]
+  #LCOS cost per year $/kwh
+  LCOS = cost/output[0]
 
   # Package results.
-  return np.stack([total_cost,
+  return np.stack([LCOS,
     jobs,
     total_ghg
   ])
