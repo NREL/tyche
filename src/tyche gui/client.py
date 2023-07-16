@@ -9,14 +9,28 @@ import pandas as pd
 from jsonrpclib import Server
 
 conn = Server('http://localhost:1080')
-path="/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/technology/"
+path="../technology/"
 
-
-os.chdir(path)
-os.popen('find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf')   
 os.chdir('./') 
 
+
+
+
 def get_categories(technology_name):
+    """
+    Obtains the categories within a technology
+
+    Parameters
+    ----------
+    technology name : str
+        Name of the technology
+        
+    Returns
+    -------
+    category_list: list
+        list of categories within a technology
+    """
+    
     datafile=pd.read_excel(path+technology_name+"/"+technology_name+".xlsx",sheet_name = "tranches")
     categories = list(pd.unique(datafile['Category']))
     category_list = []
@@ -34,6 +48,20 @@ def get_categories(technology_name):
 
 
 def get_metrics(technology_name):
+    """
+    Obtains the metrics within a technology case study
+
+    Parameters
+    ----------
+    technology name : str
+        Name of the technology
+        
+    Returns
+    -------
+    metric_list: list
+        list of metrics within a technology
+    """
+    
     
     datafile=pd.read_excel(path+technology_name+"/"+technology_name+".xlsx",sheet_name = "results")
     d_metrics = datafile[datafile['Variable'] == 'Metric']
@@ -53,6 +81,19 @@ def get_metrics(technology_name):
     
 
 def create_technology(technology_name):
+    """
+    Creates a dictionary for the technologies
+
+    Parameters
+    ----------
+    technology name : str
+        Name of the technology
+        
+    Returns
+    -------
+    technology: dict
+        dictionary with relevant information
+    """
 
      
     technology={
@@ -67,6 +108,17 @@ def create_technology(technology_name):
     return technology
 
 def get_technology():
+    """
+    Obtains the list of technology case studyes present within the tyche technology directory
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    technology_list: list
+        list of technologies within tyche
+    """
     #Returns the technology list
     directories=[d for d in os.listdir(path) if os.path.isdir(path+d)]
 
@@ -91,20 +143,20 @@ data_to_gui = get_technology()
 #Information from the GUI ---->
 category_list=[]
 category_list.append({
-                 'name':'Rotor Investment Only',
+                 'name':'Module R&D',
                   'investment':50
                  })
 
 category_list.append({
-                 'name':'Drive Investment Only',
+                 'name':'Inverter R&D',
                   'investment':50
                  })
 category_list.append({
-                 'name':'Tower Investment Only',
+                 'name':'BoS R&D',
                   'investment':50
                  })
 technology_state={
-                'id':data_to_gui[0]['id'],
+                'id':data_to_gui[5]['id'],
                 'category_states':category_list
                 }
 #using the technology id we make sure to call the proper technology 
@@ -126,12 +178,15 @@ for d in data_to_tyche['states']['category_states']:
             
 evaluate_df = pd.DataFrame()
 evaluate_df['category'] = cat_list   
-evaluate_df['investment'] = inv_list         
+evaluate_df['investment'] = inv_list   
+      
 #Creating Dataframe        
 #Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
 #category names in one column the investments in another
 
-res_to_gui = run_tyche(data_to_tyche,path)
 
+path_change(data_to_tyche,path)
+res_to_gui1 = evaluate_with_slider_input(data_to_tyche,path,100)
+res_to_gui2 = evaluate_without_slider_input(data_to_tyche,path,100)
 
-print(res_to_gui.xs(("Wind Turbine", "Metric", "LCOE"),level = ("Technology", "Variable", "Index")).reset_index())
+#print(res_to_gui.xs(("Wind Turbine", "Metric", "LCOE"),level = ("Technology", "Variable", "Index")).reset_index())
