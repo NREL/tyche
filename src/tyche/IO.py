@@ -96,19 +96,19 @@ def check_tables(
         f'in investments and tranches.\n{_odd_cattra_set}\n')
       )
 
-    # Cross-check: Technology-Scenario values in designs must be exactly the
-    # set of Technology-Scenario values in parameters
+    # Cross-check: Technology-Tranche values in designs must be exactly the
+    # set of Technology-Tranche values in parameters
     _par_idx = parameters.index.to_frame()
-    _odd_tecsce_set = set(
-      [i + '-' + j for i, j in _des_idx[['Technology','Scenario']].values]
+    _odd_tectra_set = set(
+      [i + '-' + j for i, j in _des_idx[['Technology','Tranche']].values]
     ).symmetric_difference(
-      set([i + '-' + j for i, j in _par_idx[['Technology','Scenario']].values])
+      set([i + '-' + j for i, j in _par_idx[['Technology','Tranche']].values])
     )
 
-    if len(_odd_tecsce_set) != 0:
+    if len(_odd_tectra_set) != 0:
       check_list.append(
-        ('Data Validation: Technology-Scenario combinations are inconsistent. '
-        f'Check in designs and parameters.\n{_odd_tecsce_set}\n')
+        ('Data Validation: Technology-Tranche combinations are inconsistent. '
+        f'Check in designs and parameters.\n{_odd_tectra_set}\n')
       )
 
     # Designs check: Variable index levels are exactly Input, Input efficiency,
@@ -129,38 +129,38 @@ def check_tables(
         f'value(s).\n{_des_var_set}\n')
       )
 
-    # Designs check: Every Technology-Scenario combination must have
+    # Designs check: Every Technology-Tranche combination must have
     # the same Index levels within each mandatory Variable
-    # Designs check: Every Technology-Scenario combination must have
+    # Designs check: Every Technology-Tranche combination must have
     # all mandatory Variables
-    # Get a list of all Technology-Scenario combinations in Designs
-    _des_tecsce = list(set([i[:2] for i in designs.index.values]))    
+    # Get a list of all Technology-Tranche combinations in Designs
+    _des_tectra = list(set([i[:2] for i in designs.index.values]))    
     # Get the set (no duplicates) of all Variable-Value combinations across 
-    # all Tech-Sce combinations
+    # all Tech-Tra combinations
     _var_val_set = set([i[2:] for i in designs.index.values])
-    for _j in _des_tecsce:
-      _des_tecsce_var_set = set([i[2] for i in designs.index.values if i[:2] == _j])
-      _des_tecsce_varval_set = set([i[2:] for i in designs.index.values if i[:2] == _j])
-      # Check if the Tech-Scen combo is missing any mandatory Variables
-      _odd_des_tecsce_var_set = set(
+    for _j in _des_tectra:
+      _des_tectra_var_set = set([i[2] for i in designs.index.values if i[:2] == _j])
+      _des_tectra_varval_set = set([i[2:] for i in designs.index.values if i[:2] == _j])
+      # Check if the Tech-Tranche combo is missing any mandatory Variables
+      _odd_des_tectra_var_set = set(
         ['Input', 'Input efficiency', 'Input price',
         'Lifetime', 'Output efficiency', 'Output price', 'Scale']
         ).difference(
-          _des_tecsce_var_set
+          _des_tectra_var_set
         )
-      # Check if the Tech-Scen combo is missing any Variable Indexes
-      _odd_des_tecsce_varval_set = _var_val_set.difference(
-        _des_tecsce_varval_set
+      # Check if the Tech-Tranche combo is missing any Variable Indexes
+      _odd_des_tectra_varval_set = _var_val_set.difference(
+        _des_tectra_varval_set
       )
-      if len(_odd_des_tecsce_var_set) != 0:
+      if len(_odd_des_tectra_var_set) != 0:
         check_list.append(
-          (f'Data Validation: Technology-Scenario combination {_j} has '
-          f'missing mandatory Variables. Check in designs.\n{_odd_des_tecsce_var_set}\n')
+          (f'Data Validation: Technology-Tranche combination {_j} has '
+          f'missing mandatory Variables. Check in designs.\n{_odd_des_tectra_var_set}\n')
         )
-      if len(_odd_des_tecsce_varval_set) != 0:
+      if len(_odd_des_tectra_varval_set) != 0:
         check_list.append(
-          (f'Data Validation: Technology-Scenario combination {_j} has'
-          f' missing Variable Indexes. Check in designs.\n{_odd_des_tecsce_varval_set}\n')
+          (f'Data Validation: Technology-Tranche combination {_j} has'
+          f' missing Variable Indexes. Check in designs.\n{_odd_des_tectra_varval_set}\n')
         )
 
     # Functions check: All unique entries under Model must be a .py file containing the
@@ -281,7 +281,7 @@ def check_tables(
         'indices or in designs.\n')
       )
 
-    # Parameters check: Offset values within every Tech-Scen combo must be 
+    # Parameters check: Offset values within every Tech-Tranche combo must be 
     # sequential integers beginning at zero
     # Step 1: Check that all Offset values are integers using column dtype
     if parameters.Offset.dtype != 'int':
@@ -293,38 +293,38 @@ def check_tables(
       _par_off_val = parameters.Offset.reset_index()
       _par_off_val_odd = list()
       for _t in _par_off_val.Technology.unique().tolist():
-        for _s in _par_off_val.Scenario.unique().tolist():
+        for _r in _par_off_val.Tranche.unique().tolist():
           _par_off_val_odd = _par_off_val_odd + \
             [set(
-              arange(len(_par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Scenario==_s)]))
+              arange(len(_par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Tranche==_r)]))
               ).symmetric_difference(
                 set(
-                  _par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Scenario==_s)]
+                  _par_off_val.Offset[(_par_off_val.Technology==_t) & (_par_off_val.Tranche ==_r)]
                 )
               )
             ]
     if any([len(i) for i in _par_off_val_odd]) != 0:
       check_list.append(
         ('Data Validation: Check that Offset values in Parameters are '
-        'sequential integers beginning at zero, within each Technology-Scenario '
+        'sequential integers beginning at zero, within each Technology-Tranche '
         'combination.\n')
       )           
 
     # Parameters check: Every Parameter Offset must be the same across 
-    # all Technology-Scenario combinations
-    # Get a list of all Technology-Scenario combinations in Parameters
+    # all Technology-Tranche combinations
+    # Get a list of all Technology-Tranche combinations in Parameters
     parameters.sort_index(inplace=True)
-    _par_tecsce_paroff = [
+    _par_tectra_paroff = [
       parameters.loc[i,'Offset'] for i in list(
         set([j[:2] for j in parameters.index.values])
       )
     ]
-    for _j in arange(len(_par_tecsce_paroff)):
-      if _j < len(_par_tecsce_paroff)-1:
-        if not _par_tecsce_paroff[_j].equals(_par_tecsce_paroff[_j+1]):
+    for _j in arange(len(_par_tectra_paroff)):
+      if _j < len(_par_tectra_paroff)-1:
+        if not _par_tectra_paroff[_j].equals(_par_tectra_paroff[_j+1]):
           check_list.append(
             ('Data Validation: Parameter Offsets are inconsistent. Check '
-            f'in Parameters.\n{_par_tecsce_paroff[_j]}\n')
+            f'in Parameters.\n{_par_tectra_paroff[_j]}\n')
           )
     
     # Results check: Every Technology must have a result where both the Variable
@@ -335,7 +335,7 @@ def check_tables(
           (f'Data Validation: Technology {_i} in Results needs a row where both '
           'the Variable and the Index are "Cost".\n')
         )
-    
+
     # Tranches check: Within every Category, the Amounts for each Tranche must be unique
     _tra_amt_unique = [
       tranches.groupby('Category').Amount.count()[i] != tranches.groupby('Category').Amount.nunique()[i] 

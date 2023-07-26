@@ -169,13 +169,11 @@ class EpsilonConstraintOptimizer:
 
         if verbose == 3:
           print('Investment limit: ', np.round(limit, 3),
-                ' Investment value: ', np.round(value, 3),
-                ' Constraint met: ', value <= limit)
+                ' Investment value: ', np.round(value, 3))
         elif verbose > 3:
           print('Decision variable values: ', np.round(x, 3),
                 ' Investment limit: ', np.round(limit, 3),
-                ' Investment value:  ', np.round(value, 3),
-                '  Constraint met: ', value <= limit)
+                ' Investment value:  ', np.round(value, 3))
 
         # update the constraint container with the LHS value of the
         # investment constraint as a >= 0 inequality constraint
@@ -191,33 +189,28 @@ class EpsilonConstraintOptimizer:
 
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
+          value = self._f(evaluate=evaluate,
+                          sense='min',
+                          verbose=verbose)(x)[j]
+          # append the existing constraints container with the LHS value of the
+          # current metric constraint formulated as >= 0
+          # as the loop executes, one constraint per metric will be added to
+          # the container
           if info['sense'] == 'lower':
-            value = self._f(evaluate=evaluate,
-                            sense='min',
-                            verbose=verbose)(x)[j]
+            constraints += [value - info['limit']]
           elif info['sense'] == 'upper':
-            value = self._f(evaluate=evaluate,
-                            sense='max',
-                            verbose=verbose)(x)[j]
+            constraints += [info['limit'] - value]
           else:
             raise ValueError('opt_slsqp: Epsilon constraint must be upper or lower')
 
           if verbose == 3:
             print('Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value >= info['limit'])
+                  '  Metric value:     ', np.round(value, 3))
           elif verbose > 3:
             print('Decision variable values: ', np.round(x, 3),
                   ' Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value >= info['limit'])
-
-          # append the existing constraints container with the LHS value of the
-          # current metric constraint formulated as >= 0
-          # as the loop executes, one constraint per metric will be added to
-          # the container
-          constraints += [value - info['limit']]
-
+                  '  Metric value:      ', np.round(value, 3))
+      
       return constraints
 
     # if no initial decision variable values have been defined,
@@ -376,13 +369,11 @@ class EpsilonConstraintOptimizer:
 
         if verbose == 2:
           print('Investment limit: ', np.round(limit, 3),
-                ' Investment value: ', np.round(value, 3),
-                ' Constraint met: ', value <= limit)
+                ' Investment value: ', np.round(value, 3))
         elif verbose > 2:
           print('Decision variable values: ', np.round(x, 3),
                 ' Investment limit: ', np.round(limit, 3),
-                ' Investment value: ', np.round(value, 3),
-                ' Constraint met: ', value <= limit)
+                ' Investment value: ', np.round(value, 3))
 
         # update the constraint container with the LHS value of the
         # investment constraint as a >= 0 inequality constraint
@@ -413,13 +404,11 @@ class EpsilonConstraintOptimizer:
 
           if verbose == 3:
             print('Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value <= info['limit'])
+                  '  Metric value:     ', np.round(value, 3))
           elif verbose > 3:
             print('Decision variable values: ', np.round(x, 3),
                   ' Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value <= info['limit'])
+                  '  Metric value:      ', np.round(value, 3))
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
@@ -579,15 +568,13 @@ class EpsilonConstraintOptimizer:
           # amount (LHS of constraint), and a Boolean indicating whether the
           # investment constraint is met
           print('Investment limit: ', np.round(inv_limit, 3),
-                ' Investment value: ', np.round(inv_value, 3),
-                ' Constraint met: ', inv_value <= inv_limit)
+                ' Investment value: ', np.round(inv_value, 3))
         # if verbose is greater than or equal to three
         elif verbose > 2:
           # also print the decision variable values
           print('Decision variable values: ', np.round(x, 3),
                 ' Investment limit: ', np.round(inv_limit, 3),
-                ' Investment value:  ', np.round(inv_value, 3),
-                '  Constraint met: ', inv_value <= inv_limit)
+                ' Investment value:  ', np.round(inv_value, 3))
 
         return inv_limit - inv_value
 
@@ -615,13 +602,11 @@ class EpsilonConstraintOptimizer:
 
         if verbose == 2:
           print('Metric limit:     ', np.round(metric_limit, 3),
-                '  Metric value:     ', np.round(met_value, 3),
-                ' Constraint met: ', met_value >= metric_limit)
+                '  Metric value:     ', np.round(met_value, 3))
         elif verbose > 2:
           print('Decision variable values: ', np.round(x, 3),
                 ' Metric limit:     ', np.round(metric_limit, 3),
-                '  Metric value:      ', np.round(met_value, 3),
-                ' Constraint met: ', met_value >= metric_limit)
+                '  Metric value:      ', np.round(met_value, 3))
 
         return met_value - metric_limit
 

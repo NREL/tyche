@@ -230,7 +230,7 @@ The ``indices`` table defines the subscripts for variables.
 
 
 
-The ``designs`` table contains the cost, input, efficiency, and price data for a scenario.
+The ``designs`` table contains the cost, input, efficiency, and price data resulting from a Tranche.
 
 
 .. code:: python
@@ -269,7 +269,7 @@ The ``designs`` table contains the cost, input, efficiency, and price data for a
         </tr>
         <tr>
           <th>Technology</th>
-          <th>Scenario</th>
+          <th>Tranche</th>
           <th>Variable</th>
           <th>Index</th>
           <th></th>
@@ -403,7 +403,7 @@ The ``parameters`` table contains additional techno-economic parameters for each
         </tr>
         <tr>
           <th>Technology</th>
-          <th>Scenario</th>
+          <th>Tranche</th>
           <th>Parameter</th>
           <th></th>
           <th></th>
@@ -617,7 +617,6 @@ The ``tranches`` table specifies multually exclusive possibilities for investmen
         <tr>
           <th>Category</th>
           <th>Tranche</th>
-          <th>Scenario</th>
           <th></th>
           <th></th>
         </tr>
@@ -782,16 +781,16 @@ The ``investments`` table bundles a consistent set of tranches (one per category
 
 
 
-Evaluate the scenarios in the dataset.
+Evaluate the Tranches in the dataset.
 --------------------------------------
 
 .. code:: python
 
-    scenario_results = designs.evaluate_scenarios(sample_count=50)
+    tranche_results = designs.evaluate_tranches(sample_count=50)
 
 .. code:: python
 
-    scenario_results.xs(1, level="Sample", drop_level=False)
+    tranche_results.xs(1, level="Sample", drop_level=False)
 
 
 
@@ -825,7 +824,7 @@ Evaluate the scenarios in the dataset.
         </tr>
         <tr>
           <th>Technology</th>
-          <th>Scenario</th>
+          <th>Tranche</th>
           <th>Sample</th>
           <th>Variable</th>
           <th>Index</th>
@@ -1146,7 +1145,7 @@ Save results.
 
 .. code:: python
 
-    scenario_results.to_csv("output/pv_residential_simple/example-scenario.csv")
+    tranche_results.to_csv("output/pv_residential_simple/example-analysis.csv")
 
 Plot GHG metric.
 ~~~~~~~~~~~~~~~~
@@ -1154,12 +1153,12 @@ Plot GHG metric.
 .. code:: python
 
     g = sb.boxplot(
-        x="Scenario",
+        x="Tranche",
         y="Value",
-        data=scenario_results.xs(
+        data=tranche_results.xs(
             ["Metric", "GHG"],
             level=["Variable", "Index"]
-        ).reset_index()[["Scenario", "Value"]],
+        ).reset_index()[["Tranche", "Value"]],
         order=[
             "2015 Actual"              ,
             "Module Slow Progress"      ,
@@ -1187,12 +1186,12 @@ Plot LCOE metric.
 .. code:: python
 
     g = sb.boxplot(
-        x="Scenario",
+        x="Tranche",
         y="Value",
-        data=scenario_results.xs(
+        data=tranche_results.xs(
             ["Metric", "LCOE"],
             level=["Variable", "Index"]
-        ).reset_index()[["Scenario", "Value"]],
+        ).reset_index()[["Tranche", "Value"]],
         order=[
             "2015 Actual"              ,
             "Module Slow Progress"      ,
@@ -1220,12 +1219,12 @@ Plot labor metric.
 .. code:: python
 
     g = sb.boxplot(
-        x="Scenario",
+        x="Tranche",
         y="Value",
-        data=scenario_results.xs(
+        data=tranche_results.xs(
             ["Metric", "Labor"],
             level=["Variable", "Index"]
-        ).reset_index()[["Scenario", "Value"]],
+        ).reset_index()[["Tranche", "Value"]],
         order=[
             "2015 Actual"              ,
             "Module Slow Progress"      ,
@@ -1353,7 +1352,6 @@ Benefits of investments.
           <th>Investment</th>
           <th>Category</th>
           <th>Tranche</th>
-          <th>Scenario</th>
           <th>Sample</th>
           <th>Technology</th>
           <th>Index</th>
@@ -1972,7 +1970,7 @@ Fit a response surface to the results.
 
 The response surface interpolates between the discrete set of cases
 provided in the expert elicitation. This allows us to study funding
-levels intermediate between those scenarios.
+levels intermediate between the pre-defined Tranches.
 
 .. code:: python
 
