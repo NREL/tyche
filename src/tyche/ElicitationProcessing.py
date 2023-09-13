@@ -96,6 +96,7 @@ def visualize_responses(
     response_df,
     expert_column = 'expert_id',
     response_columns = {'param': ['param_min','param_mode','param_max']},
+    plot_type = 'point',
     x_axis_label = 'question',
     y_axis_label = 'response',
     save = False
@@ -125,6 +126,9 @@ def visualize_responses(
         Each column in the list must correspond to the measures listed in 
         the measures parameter.
     
+    plot_type: str ('point' or 'box')
+        Create a point plot or a box-and-whisker plot
+    
     x_axis_label: str
         Label for the x axis of the response plot
     
@@ -143,20 +147,32 @@ def visualize_responses(
 
     fig, ax = plt.subplots(figsize=(6,4))
     
-    responses = sb.pointplot(
-        data = pd.melt(response_df,
-                       id_vars = expert_column,
-                       value_vars = list(response_columns.values())[0],
-                       var_name = 'question',
-                       value_name = 'response',
-                      ),
-        x = 'question',
-        y = 'response',
-        hue = expert_column,
-        join = False,
-        dodge = True
+    _df = pd.melt(
+        response_df,
+        id_vars = expert_column,
+        value_vars = list(response_columns.values())[0],
+        var_name = 'question',
+        value_name = 'response',
     )
     
+    if plot_type == 'point':
+        responses = sb.pointplot(
+            data = _df,
+            x = 'question',
+            y = 'response',
+            hue = expert_column,
+            join = False,
+            dodge = True
+        )
+    elif plot_type == 'box':
+        responses = sb.boxplot(
+            data = _df,
+            x = 'question',
+            y = 'response',
+        )
+    else:
+        sys.exit('plot type must be point or box')
+        
     plt.xlabel(x_axis_label)
     plt.ylabel(y_axis_label)
     
