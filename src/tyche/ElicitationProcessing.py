@@ -1,6 +1,9 @@
 import sys
 
+import pandas as pd
 import numpy as np
+import seaborn as sb
+import matplotlib.pyplot as plt
 
 def generate_distn(
     response_df,
@@ -56,7 +59,9 @@ def generate_distn(
     
     Returns
     -------
-        string defining triangular distribution(s) for elicited parameters
+    Dict
+        keys are elicited parameter names from the response_columns input
+        Value is a string defining a triangular distribution for each parameter
     """
     # If the measures can't be used as min, mode, and max, throw an error
     if not all(_m in measures for _m in ['min', 'mode', 'max']):
@@ -80,7 +85,80 @@ def generate_distn(
     # Apply normalized weights to the responses, store in separate variable
     parameters_agg = {}
     for _p in response_columns.keys():
-        _r = [np.average(response_df[f'{_c}'], weights=response_df['weights']) for _c in [colname for value in response_columns.values() for colname in value]]
+        _r = [np.average(response_df[f'{_c}'],
+                         weights=response_df['weights']) for _c in [colname for value in response_columns.values() for colname in value]]
         parameters_agg[f'{_p}_dist'] = f'st.triang(c={np.round(_r[1], decimals=2)}, loc={np.round(_r[2]-_r[0], decimals=2)}, scale={np.round(_r[0], decimals=2)})'
         
     return parameters_agg
+
+
+def visualize_responses(
+    response_df,
+    expert_column = 'expert_id',
+    response_columns = {'param': ['param_min','param_mode','param_max']},
+    x_axis_label = 'question',
+    y_axis_label = 'response',
+    save = False
+):
+    """
+    Generate point plots of expert responses for visual outlier identification.
+    
+    This function will visualize one parameter at a time. Multiple measures for
+    the same parameter can be visualized simultaneously.
+    
+    Parameters
+    ----------
+    response_df: DataFrame
+        DataFrame containing elicited responses. No default value.
+        Column names listed in response_columns must appear in this DataFrame.
+        Otherwise the method will break.
+
+    expert_column: str
+        Name of the column with expert ID information.
+        Values in this column must match up with the ID information provided in 
+        the expert_weights dictionary.
+    
+    response_columns: Dict
+        Dictionary listing column names with elicited responses, by parameter.
+        Keys are parameter names.
+        values are lists of columns with responses for that parameter.
+        Each column in the list must correspond to the measures listed in 
+        the measures parameter.
+    
+    x_axis_label: str
+        Label for the x axis of the response plot
+    
+    y_axis_label: str
+        Label for the y axis of the response plot
+    
+    save: Bool
+        If True, the response plot is saved as an SVG.
+    
+    Returns
+    -------
+    None
+        Plot is displayed and/or saved    
+    """
+    sb.set(style='whitegrid')
+
+    fig, ax = plt.subplots(figsize=(6,4))
+    
+    responses = sb.pointplot(
+        data = pd.melt(response_df,
+                       id_vars = expert_column,
+                       value_vars = list(response_columns.values())[0],
+                       var_name = 'question',
+                       value_name = 'response',
+                      ),
+        x = 'question',
+        y = 'response',
+        hue = expert_column,
+        join = False,
+        dodge = True
+    )
+    
+    plt.xlabel(x_axis_label)
+    plt.ylabel(y_axis_label)
+    
+    if save:
+        plt.savefig(f'{list(response_columns.keys())[0]}_responses.svg')
