@@ -1,20 +1,14 @@
 # server program
 from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
+import os
 import uuid
+import pandas as pd
+from jsonrpclib import Server
 from run_tyche import *
 
-import os
-import pandas as pd
-# Call by client
-from jsonrpclib import Server
-
-conn = Server('http://localhost:1080')
 path="../technology/"
 
 os.chdir('./') 
-
-
-
 
 def get_categories(technology_name):
     """
@@ -23,8 +17,7 @@ def get_categories(technology_name):
     Parameters
     ----------
     technology name : str
-        Name of the technology
-        
+        Name of the technology        
     Returns
     -------
     category_list: list
@@ -100,7 +93,7 @@ def create_technology(technology_name):
             "name" : technology_name,
             "description" : 'from file containing technology information',
             "image" : path+'image.png',
-            "id" : uuid.uuid4(),
+            "id" : str(uuid.uuid4()),
             "category_defs" : get_categories(technology_name),
             "metric_defs" : get_metrics(technology_name)
             } 
@@ -109,7 +102,7 @@ def create_technology(technology_name):
 
 def get_technology():
     """
-    Obtains the list of technology case studyes present within the tyche technology directory
+    Obtains the list of technology case study present within the tyche technology directory
 
     Parameters
     ----------
@@ -129,11 +122,7 @@ def get_technology():
         
     return technology_list
 
-
-#Get technology list
-data_to_gui = get_technology()
-    
-    
+'''
 #User chooses a technology   
 #normal mode appears
 #User changes sliders which brings in results
@@ -188,5 +177,19 @@ evaluate_df['investment'] = inv_list
 path_change(data_to_tyche,path)
 res_to_gui1 = evaluate_with_slider_input(data_to_tyche,path,100)
 res_to_gui2 = evaluate_without_slider_input(data_to_tyche,path,100)
+'''
 
-#print(res_to_gui.xs(("Wind Turbine", "Metric", "LCOE"),level = ("Technology", "Variable", "Index")).reset_index())
+def main():
+    server = SimpleJSONRPCServer(('localhost', 1080))
+    server.register_function(get_technology)
+    server.register_function(evaluate_with_slider_input)
+    server.register_function(evaluate_without_slider_input)
+    print("Start server")
+    server.serve_forever()
+    server.shutdown()
+
+
+if __name__ == '__main__':  
+    main()
+
+

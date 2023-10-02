@@ -1,12 +1,6 @@
-
-
 import os
 import sys
-
-
 sys.path.insert(0, os.path.abspath("../"))
-
-
 import numpy             as np
 import matplotlib.pyplot as pl
 import pandas            as pd
@@ -59,7 +53,7 @@ def evaluate_without_slider_input(data_to_tyche,path,sample_count=100):
 
     """
 
-
+    path_change(data_to_tyche,path)
     my_designs = ty.Designs(path = ".",
                         name = 'pv-residential-simple.xlsx')
     
@@ -68,9 +62,11 @@ def evaluate_without_slider_input(data_to_tyche,path,sample_count=100):
     investments = ty.Investments(path = '.',name = 'pv-residential-simple.xlsx')
     
     tranche_results = investments.evaluate_tranches(my_designs, sample_count=sample_count)
-
+    amounts = pd.DataFrame(tranche_results.amounts)
+    amounts.to_csv('chk11.csv')
+    
   
-    return tranche_results
+    return amounts
 
 
 def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
@@ -95,8 +91,7 @@ def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
         Evaluator object can be extracted to get investment results data
 
     """
-
-    
+    path_change(data_to_tyche,path)
 
     my_designs = ty.Designs(path = ".",
                         name = 'pv-residential-simple.xlsx')
@@ -124,8 +119,7 @@ def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
     investment_df['Amount'] = investment
     investment_df['Category'] = name
     investment_df = investment_df.set_index('Category')
-
     investment_impact = evaluator.evaluate(investment_df)
-
-  
+    
+    
     return investment_impact
