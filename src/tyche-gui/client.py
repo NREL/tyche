@@ -7,7 +7,11 @@ import os
 import pandas as pd
 # Call by client
 from jsonrpclib import Server
-from run_tyche import *
+from functions import *
+
+
+
+
 
 conn = Server('http://localhost:1080')
 
@@ -30,16 +34,19 @@ data_to_gui = dic
 category_list=[]
 category_list.append({
                  'name':'Module R&D',
-                  'investment':50
+                  'investment':50,
+                  'id':data_to_gui[5]['category_defs'][0]['id']
                  })
 
 category_list.append({
                  'name':'Inverter R&D',
-                  'investment':50
+                  'investment':50,
+                  'id':data_to_gui[5]['category_defs'][1]['id']
                  })
 category_list.append({
                  'name':'BoS R&D',
-                  'investment':50
+                  'investment':50,
+                  'id':data_to_gui[5]['category_defs'][2]['id']
                  })
 technology_state={
                 'id':data_to_gui[5]['id'],
@@ -63,25 +70,10 @@ for d in data_to_tyche['states']['category_states']:
             inv_list.append(d['investment'])
             pass
             
-evaluate_df = pd.DataFrame()
-evaluate_df['category'] = cat_list   
-evaluate_df['investment'] = inv_list   
-
 '''
 This will probably be information from the GUI and be used for the calculation directly. 
 Please do not include this in the code
 '''
 
-#Creating Dataframe        
-#Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
-#category names in one column the investments in another
-
-
-
-res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,path,10)
 res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,path,10)
-
-'''
-
-print(res_to_gui.xs(("Wind Turbine", "Metric", "LCOE"),level = ("Technology", "Variable", "Index")).reset_index())
-'''
+res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,path,10)

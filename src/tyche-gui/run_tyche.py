@@ -62,11 +62,32 @@ def evaluate_without_slider_input(data_to_tyche,path,sample_count=100):
     investments = ty.Investments(path = '.',name = 'pv-residential-simple.xlsx')
     
     tranche_results = investments.evaluate_tranches(my_designs, sample_count=sample_count)
-    amounts = pd.DataFrame(tranche_results.amounts)
-    amounts.to_csv('chk11.csv')
     
-  
-    return amounts
+    results_to_gui = {}
+    results_to_gui['id'] = data_to_tyche['id']
+    results_to_gui['results'] = {}
+
+    res = tranche_results.metrics.reset_index()
+    metrics_list = list(pd.unique(res['Index']))
+    categories_list = list(pd.unique(res['Category']))
+ 
+    for c in categories_list:
+        df_c = res[res['Category'] == c]
+        try:
+            results_to_gui['results'][c]
+        except:
+            results_to_gui['results'][c] = {}
+    
+        for m in metrics_list:
+            df_m = df_c[df_c['Index'] == m]
+            try:
+                results_to_gui['results'][c][m]
+            except:
+                results_to_gui['results'][c][m] = {}
+            results_to_gui['results'][c][m]=list(df_m['Value'])
+    
+    return results_to_gui
+
 
 
 def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
@@ -121,5 +142,32 @@ def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
     investment_df = investment_df.set_index('Category')
     investment_impact = evaluator.evaluate(investment_df)
     
+
+    results_to_gui = {}
+    results_to_gui['id'] = data_to_tyche['id']
+    results_to_gui['results'] = {}
+    res = investment_impact.reset_index()
+    metrics_list = list(pd.unique(res['Index']))
+    categories_list = list(pd.unique(res['Category']))
     
-    return investment_impact
+    
+    for c in categories_list:
+        df_c = res[res['Category'] == c]
+        try:
+            results_to_gui['results'][c]
+        except:
+            results_to_gui['results'][c] = {}
+        for m in metrics_list:
+            df_m = df_c[df_c['Index'] == m]
+            try:
+                results_to_gui['results'][c][m]
+            except:
+                results_to_gui['results'][c][m] = {}
+            a = []
+            for n in  list(df_m['Value']):
+                a.append(float(n))
+            results_to_gui['results'][c][m]=a
+            
+            
+    return results_to_gui
+    

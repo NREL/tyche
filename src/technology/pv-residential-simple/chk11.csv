@@ -1,0 +1,13 @@
+Category,Tranche,Amount
+BoS R&D,BoS High R&D,900000.0
+BoS R&D,BoS Low R&D,300000.0
+BoS R&D,BoS Medium R&D,600000.0
+BoS R&D,BoS No R&D,0.0
+Inverter R&D,Inverter High R&D,3000000.0
+Inverter R&D,Inverter Low R&D,1000000.0
+Inverter R&D,Inverter Medium R&D,2000000.0
+Inverter R&D,Inverter No R&D,0.0
+Module R&D,Module High R&D,4500000.0
+Module R&D,Module Low R&D,1500000.0
+Module R&D,Module Medium R&D,3000000.0
+Module R&D,Module No R&D,0.0
