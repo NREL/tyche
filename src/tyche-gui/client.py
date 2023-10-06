@@ -15,7 +15,7 @@ from functions import *
 
 conn = Server('http://localhost:1080')
 
-path="/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/technology/"
+technology_path="/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/technology/"
 os.chdir("/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/tyche-gui/")
 
 
@@ -75,5 +75,5 @@ This will probably be information from the GUI and be used for the calculation d
 Please do not include this in the code
 '''
 
-res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,path,10)
-res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,path,10)
+res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,technology_path,10)
+res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,technology_path,10)

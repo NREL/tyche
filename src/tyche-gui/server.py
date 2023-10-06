@@ -1,18 +1,42 @@
-# server program
-from jsonrpclib.SimpleJSONRPCServer import SimpleJSONRPCServer
-from jsonrpclib import Server
-from functions import *
+#!/usr/bin/env python3
 
+# server program
+
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from jsonrpcserver import dispatch
+from functions import *
+import logging
+
+class JSONRPCHTTPServer(BaseHTTPRequestHandler):
+    def do_POST(self):
+        request = self.rfile.read(int(self.headers["Content-Length"])).decode()
+        response = dispatch(request)
+
+        self.send_response(200)
+
+        # Override CORS
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "*")
+        self.send_header("Access-Control-Allow-Headers", "*")
+        self.send_header("Content-type", "application/json")
+        self.end_headers()
+        self.wfile.write(response.encode())
+
+    def do_OPTIONS(self):
+        # Preflight probe response
+
+        self.send_response(204)
+
+        # Override CORS
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "*")
+        self.send_header("Access-Control-Allow-Headers", "*")
+        self.send_header("Access-Control-Max-Age", "86400")
+        self.end_headers()
 
 def main():
-    server = SimpleJSONRPCServer(('localhost', 1080))
-    server.register_function(get_technology)
-    server.register_function(evaluate_with_slider_input)
-    server.register_function(evaluate_without_slider_input)
-    print("Start server")
-    server.serve_forever()
-    server.shutdown()
-
+    logging.basicConfig(level=logging.DEBUG)
+    HTTPServer(('localhost', 8080), JSONRPCHTTPServer).serve_forever()
 
 if __name__ == '__main__':  
     main()
