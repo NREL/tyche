@@ -1,0 +1,455 @@
+{
+    "technology_list": [
+        {
+            "name": "tutorial-basic",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "83fa8765-e6b2-4519-af28-9cafa91cf24a",
+            "category_defs": [
+                {
+                    "name": "Rotor Investment Only",
+                    "description": "nan",
+                    "starting_investment": 1830061,
+                    "max_investment": 9000000,
+                    "id": "2d83b315-a91e-43ce-a83c-dde0e46c841d"
+                },
+                {
+                    "name": "Drive Investment Only",
+                    "description": "nan",
+                    "starting_investment": 957587,
+                    "max_investment": 7000000,
+                    "id": "8ad0b4ad-e13f-4dd9-a44d-d945ff9bb46e"
+                },
+                {
+                    "name": "Tower Investment Only",
+                    "description": "nan",
+                    "starting_investment": 1337189,
+                    "max_investment": 6000000,
+                    "id": "e12d06f9-f64a-4d19-b497-c496e8ba1620"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "Cost",
+                    "description": "nan",
+                    "id": "06367092-a782-4abc-ac86-7f9ba45926a1"
+                },
+                {
+                    "name": "AEP",
+                    "description": "nan",
+                    "id": "ed0f8d99-46f3-469b-b9fa-2a6d7c40a404"
+                },
+                {
+                    "name": "LCOE",
+                    "description": "nan",
+                    "id": "44b25d81-699f-4d4a-937e-b420a94c84a6"
+                },
+                {
+                    "name": "CF",
+                    "description": "nan",
+                    "id": "44e4e604-0a6a-4a57-9a97-25658d95b3e1"
+                }
+            ]
+        },
+        {
+            "name": "utility-pv",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "54582940-37be-4261-a3a1-e4d282fc1c1b",
+            "category_defs": [
+                {
+                    "name": "PV R&D",
+                    "description": "nan",
+                    "starting_investment": 1000000,
+                    "max_investment": 4500000,
+                    "id": "8429a92a-2af1-4b61-8716-9d0dff8ce0db"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "LCOE",
+                    "description": "nan",
+                    "id": "eb7ce46e-78db-45ff-b45e-b6a21885b60d"
+                },
+                {
+                    "name": "GHG",
+                    "description": "nan",
+                    "id": "5ae75306-eafb-4e89-85c7-ad8846772a40"
+                }
+            ]
+        },
+        {
+            "name": "tutorial-biorefinery",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "493664a1-713d-40b8-aa64-f9239df47994",
+            "category_defs": [
+                {
+                    "name": "Conversion",
+                    "description": "nan",
+                    "starting_investment": 307918,
+                    "max_investment": 2250000,
+                    "id": "80301526-b2d2-4af4-bbf5-20f3faaa9e9e"
+                },
+                {
+                    "name": "Fermentation",
+                    "description": "nan",
+                    "starting_investment": 69441,
+                    "max_investment": 500000,
+                    "id": "d55d6124-57e4-4da1-ad45-606d187eb887"
+                },
+                {
+                    "name": "Preprocessing",
+                    "description": "nan",
+                    "starting_investment": 421855,
+                    "max_investment": 1750000,
+                    "id": "7fb123a9-729f-4e45-a799-707614e6cf49"
+                },
+                {
+                    "name": "Separations",
+                    "description": "nan",
+                    "starting_investment": 1115418,
+                    "max_investment": 4000000,
+                    "id": "53381ef1-552a-4c1a-9dd3-db313510f880"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "Jobs",
+                    "description": "nan",
+                    "id": "0e85993e-009f-4df5-8cdd-777a5f74e818"
+                },
+                {
+                    "name": "Fossil GHG",
+                    "description": "nan",
+                    "id": "e4961aa9-ede6-4341-8fc4-e1df1926f2ec"
+                },
+                {
+                    "name": "Total GHG",
+                    "description": "nan",
+                    "id": "71518484-b7b4-441a-9af0-cf7ab4fbead4"
+                },
+                {
+                    "name": "MFSP",
+                    "description": "minimum fuel selling price",
+                    "id": "610ebee4-7ed6-423b-9a8c-236f81f2fcd3"
+                }
+            ]
+        },
+        {
+            "name": "template",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "a614379e-f3dc-4084-acf9-8d8c046d0156",
+            "category_defs": [
+                {
+                    "name": "Research on Component B0",
+                    "description": "The Current State Scenario is used to evaluate the technology designs as they exist right now, before any additional R&D funding.",
+                    "starting_investment": 818121,
+                    "max_investment": 3500000,
+                    "id": "fc9b63d2-7b50-4e48-acbb-1f96390af542"
+                },
+                {
+                    "name": "Research on Component B1",
+                    "description": "nan",
+                    "starting_investment": 598952,
+                    "max_investment": 3000000,
+                    "id": "a03032c7-6f73-4807-8881-752860b45f07"
+                },
+                {
+                    "name": "Research on Component B2",
+                    "description": "nan",
+                    "starting_investment": 464454,
+                    "max_investment": 2500000,
+                    "id": "b2bd7ef4-c2fa-476b-838f-658ee763d084"
+                },
+                {
+                    "name": "Research on Component C",
+                    "description": "nan",
+                    "starting_investment": 594510,
+                    "max_investment": 3000000,
+                    "id": "70a168fb-d447-4d92-b768-1ed81b88fa68"
+                },
+                {
+                    "name": "Research on Component N",
+                    "description": "nan",
+                    "starting_investment": 987898,
+                    "max_investment": 3500000,
+                    "id": "2920fe80-07d6-49b0-a393-673e9e126681"
+                },
+                {
+                    "name": "Research on Efficiency",
+                    "description": "nan",
+                    "starting_investment": 605970,
+                    "max_investment": 2500000,
+                    "id": "104147d6-3e18-46f1-a139-9c4ebf0f0c7f"
+                },
+                {
+                    "name": "Research on Peripherals",
+                    "description": "nan",
+                    "starting_investment": 502328,
+                    "max_investment": 2250000,
+                    "id": "2b359af8-7343-4af4-8812-e8f272c8449b"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "Delta System Cost",
+                    "description": "All Metrics should be listed here, quantified as a reduction from a base case: maximize this metric.",
+                    "id": "7ffde31d-886c-405b-ae2b-a2f3f6320401"
+                },
+                {
+                    "name": "Delta Labor",
+                    "description": "All Metrics should be listed here, quantified as a reduction from a base case: maximize this metric.",
+                    "id": "001a7ce5-98a3-4354-addf-e262242f5451"
+                },
+                {
+                    "name": "Delta Environment",
+                    "description": "All Metrics should be listed here, quantified as a reduction from a base case: maximize this metric.",
+                    "id": "30d275d7-2231-4908-a9fe-6003908aec06"
+                },
+                {
+                    "name": "Delta Overall Efficiency",
+                    "description": "nan",
+                    "id": "5310c9cf-7268-4f1f-be4f-85a716d2c834"
+                }
+            ]
+        },
+        {
+            "name": "simple-electrolysis",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "8e6217c1-c76b-45d4-87eb-9a2a4c632d8e",
+            "category_defs": [
+                {
+                    "name": "Electrolysis R&D",
+                    "description": "nan",
+                    "starting_investment": 1139284,
+                    "max_investment": 5000000,
+                    "id": "fcb72987-446f-453a-aed4-11ffa0b05535"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "Cost",
+                    "description": "nan",
+                    "id": "77a666c4-f2bd-48bf-a634-5d8a6e7b057e"
+                },
+                {
+                    "name": "Jobs",
+                    "description": "nan",
+                    "id": "530e141f-5da8-45e3-bbe5-e31ae971d48b"
+                },
+                {
+                    "name": "GHG",
+                    "description": "nan",
+                    "id": "f5738d7d-c9e1-49b1-8fa8-e2820e1f85bb"
+                }
+            ]
+        },
+        {
+            "name": "pv-residential-simple",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "eb360bb1-8476-4e96-8121-cc532a3f1225",
+            "category_defs": [
+                {
+                    "name": "Module R&D",
+                    "description": "nan",
+                    "starting_investment": 1013684,
+                    "max_investment": 4500000,
+                    "id": "b568cb75-9c1a-4011-8351-2ba481f55476"
+                },
+                {
+                    "name": "Inverter R&D",
+                    "description": "nan",
+                    "starting_investment": 767357,
+                    "max_investment": 3000000,
+                    "id": "c2aa26f4-37fe-4104-a60d-b905bfe8a76a"
+                },
+                {
+                    "name": "BoS R&D",
+                    "description": "nan",
+                    "starting_investment": 164930,
+                    "max_investment": 900000,
+                    "id": "a23ac943-1854-40ad-830b-dd4e0a1fe667"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "LCOE",
+                    "description": "Quantified as a reduction from a base case: maximize this metric.",
+                    "id": "8c3e596a-eae0-4f0f-826e-67524d128c1a"
+                },
+                {
+                    "name": "Labor",
+                    "description": "Quantified as a reduction from a base case: minimize this metric.",
+                    "id": "4607d32a-1814-4bf4-9d2d-4c20699a7138"
+                },
+                {
+                    "name": "GHG",
+                    "description": "Quantified as a reduction from a base case: maximize this metric.",
+                    "id": "16e3bcf1-55cf-44b2-b2e8-6c489553f132"
+                }
+            ]
+        },
+        {
+            "name": "pv-residential-large",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "6f474752-4185-4366-a137-236980578724",
+            "category_defs": [
+                {
+                    "name": "Power Electronics",
+                    "description": "nan",
+                    "starting_investment": 1317793,
+                    "max_investment": 5000000,
+                    "id": "8f5dee97-96b9-4cb7-a93a-4ef5ae98b4f5"
+                },
+                {
+                    "name": "Soft Costs",
+                    "description": "nan",
+                    "starting_investment": 1159473,
+                    "max_investment": 5000000,
+                    "id": "f828b6e9-0558-48b4-b800-c36f6e106f02"
+                },
+                {
+                    "name": "Polysilicon",
+                    "description": "nan",
+                    "starting_investment": 1168895,
+                    "max_investment": 4500000,
+                    "id": "2694b40c-f8a2-4c8c-b710-c6f6ef200c5e"
+                },
+                {
+                    "name": "CIGS",
+                    "description": "nan",
+                    "starting_investment": 564375,
+                    "max_investment": 3000000,
+                    "id": "3a1a86a8-7d2a-4065-948b-c0a0f7cffa94"
+                },
+                {
+                    "name": "CdTe",
+                    "description": "nan",
+                    "starting_investment": 1789410,
+                    "max_investment": 6000000,
+                    "id": "eb3e2da7-ae23-4512-bc3d-c23b737b97b0"
+                },
+                {
+                    "name": "GaAs",
+                    "description": "nan",
+                    "starting_investment": 1930049,
+                    "max_investment": 7500000,
+                    "id": "587b9fdd-0fe3-4981-8574-3ae5fa618b74"
+                },
+                {
+                    "name": "Perovskite",
+                    "description": "nan",
+                    "starting_investment": 2789808,
+                    "max_investment": 9500000,
+                    "id": "6a1231d4-52b5-4e97-aab9-369620119678"
+                },
+                {
+                    "name": "InGaP",
+                    "description": "nan",
+                    "starting_investment": 1139497,
+                    "max_investment": 9500000,
+                    "id": "d73832fd-b068-4b60-b149-a7ee7cab1898"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "Capital",
+                    "description": "nan",
+                    "id": "ef327c11-187b-4867-a343-5c5dddf9d5f4"
+                },
+                {
+                    "name": "LCOE",
+                    "description": "nan",
+                    "id": "9f332902-77a5-484e-8532-5c68bd9f5ca8"
+                },
+                {
+                    "name": "GHG",
+                    "description": "nan",
+                    "id": "159fe324-2a79-460b-9909-d2e37a757e5c"
+                },
+                {
+                    "name": "Strategic",
+                    "description": "nan",
+                    "id": "aab2e3df-329f-4a95-a161-c56501e7ae7d"
+                },
+                {
+                    "name": "Hazardous",
+                    "description": "nan",
+                    "id": "01a45f91-107a-4b2c-ba6e-44b0cd5d7a21"
+                },
+                {
+                    "name": "Yield",
+                    "description": "nan",
+                    "id": "6bcaefc2-6457-40dc-9cb8-6e19a38538a1"
+                },
+                {
+                    "name": "Efficiency",
+                    "description": "nan",
+                    "id": "d527b84f-e58c-4335-9fc1-f1f79f8629f1"
+                },
+                {
+                    "name": "Lifetime",
+                    "description": "nan",
+                    "id": "0f9dff60-b03c-429b-9425-46b59ce5a5d8"
+                }
+            ]
+        },
+        {
+            "name": "transport-model",
+            "description": "from file containing technology information",
+            "image": "/Users/lordzippy/Development/tyche_gui/src/technology/image.png",
+            "id": "c99a82b3-be78-42ae-a397-c3a466d88f22",
+            "category_defs": [
+                {
+                    "name": "No Category",
+                    "description": "Baseline scenario",
+                    "starting_investment": 0,
+                    "max_investment": 0,
+                    "id": "ff8ef97a-4da2-4fb2-b36b-71ac3c3ba2c9"
+                }
+            ],
+            "metric_defs": [
+                {
+                    "name": "MSRP",
+                    "description": "MSRP = Minimimum suggested retail price",
+                    "id": "a2503e8e-a385-40a4-8b07-5d883be72a97"
+                },
+                {
+                    "name": "Lifetime cost",
+                    "description": "nan",
+                    "id": "862ed14e-6fc9-477d-aab1-59b6d581b198"
+                },
+                {
+                    "name": "Vehicle weight",
+                    "description": "nan",
+                    "id": "08a5b21e-f393-4d60-a691-c3773a301f55"
+                },
+                {
+                    "name": "Energy consumption",
+                    "description": "nan",
+                    "id": "6cb801b3-1670-46ba-8b11-2163a69ee473"
+                },
+                {
+                    "name": "GHG emissions",
+                    "description": "nan",
+                    "id": "f5ae76e3-92b2-41eb-9ec5-43b517cd8c54"
+                }
+            ]
+        }
+    ],
+    "tech_uuid_to_dir": {
+        "83fa8765-e6b2-4519-af28-9cafa91cf24a": "tutorial-basic",
+        "54582940-37be-4261-a3a1-e4d282fc1c1b": "utility-pv",
+        "493664a1-713d-40b8-aa64-f9239df47994": "tutorial-biorefinery",
+        "a614379e-f3dc-4084-acf9-8d8c046d0156": "template",
+        "8e6217c1-c76b-45d4-87eb-9a2a4c632d8e": "simple-electrolysis",
+        "eb360bb1-8476-4e96-8121-cc532a3f1225": "pv-residential-simple",
+        "6f474752-4185-4366-a137-236980578724": "pv-residential-large",
+        "c99a82b3-be78-42ae-a397-c3a466d88f22": "transport-model"
+    }
+}

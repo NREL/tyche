@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-# server program
+"""
+Serve the JSON RPC endpoint for the Tyche solver
+"""
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from jsonrpcserver import dispatch
