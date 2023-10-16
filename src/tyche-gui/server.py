@@ -9,6 +9,7 @@ def main():
     server.register_function(get_technology)
     server.register_function(evaluate_with_slider_input)
     server.register_function(evaluate_without_slider_input)
+    server.register_function(evaluate_opt)
     print("Start server")
     server.serve_forever()
     server.shutdown()
