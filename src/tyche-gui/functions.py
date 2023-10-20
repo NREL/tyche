@@ -8,6 +8,7 @@ import logging
 import functools
 from jsonrpcserver import method, Success
 import pandas as pd
+import numpy as np
 
 this_script_path = os.path.realpath(__file__)
 this_script_dir  = os.path.dirname(this_script_path)
