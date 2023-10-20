@@ -10,6 +10,8 @@ from numpy import arange
 
 from .DataManager import DesignsDataset, FunctionsDataset, IndicesDataset, InvestmentsDataset, ParametersDataset, ResultsDataset, TranchesDataset
 
+this_script_path   = os.path.realpath(__file__)
+this_script_dir    = os.path.abspath(os.path.dirname(this_script_path))
 
 def check_tables(
   path,
@@ -168,7 +170,14 @@ def check_tables(
     # For every technology model,
     for _tech, _meta in functions.iterrows():
       # First check that the model exists as a .py file in the correct location
-      if os.path.exists('../' + _meta['Model'] + '.py'):
+      _model_py_path = os.path.join(this_script_dir, 
+                                    os.pardir, 
+                                    "technology", 
+                                    _meta['Model'] + '.py')
+
+      print(_model_py_path)
+
+      if os.path.exists(_model_py_path):
         # If the file does exist, use a try/except structure to attempt import
         try:
           _model = il.import_module("." + _meta["Model"], package="technology")
