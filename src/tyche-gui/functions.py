@@ -303,3 +303,133 @@ def get_scenarios():
         list of technologies within tyche
     """
     return Success(fetch_technologies())
+
+@method
+def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=100):
+    
+    """
+    Evaluates investment impcats
+
+    Parameters
+    ----------
+    data_to_tyche: dictionary
+        information obtained from the GUI
+        
+    path: str
+        path to the technology case under study
+        
+    sample_count: int
+         number of samples for calculation
+
+    Returns
+    -------
+    evaluator: Evaluator object from Tyche
+        Evaluator object can be extracted to get investment results data
+
+    """
+    chosen_tech_name = selected_tech['name']
+
+    xls_file = (server_common.technology_path / path)
+
+    my_designs = ty.Designs(path=str(xls_file),
+                            name=chosen_tech_name + ".xlsx")
+
+    my_designs.compile()
+
+    investments = ty.Investments(path=str(xls_file), 
+                                 name=chosen_tech_name + ".xlsx")
+
+    tranche_results = investments.evaluate_tranches(
+        my_designs, sample_count=sample_count)
+
+    evaluator = ty.Evaluator(tranche_results)
+    
+
+    optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+
+        # Creating Dataframe
+    # Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
+    # category names in one column the investments in another
+
+    (name, investment) = extract_category_investment(selected_tech, data_to_tyche)
+
+    logging.debug("Category investment: %s", str(list(zip(name, investment))))
+    
+
+    if opt_parameters['statistic'] == "np.mean":
+            opt_parameters['statistic'] = np.mean
+
+    optimum = optimizer.opt_slsqp(
+        metric = opt_parameters['optimized_metric'],                      
+        sense = opt_parameters['optimization_sense'],
+        max_amount = opt_parameters['max_amount'],
+        total_amount = opt_parameters['investment_max'],
+        eps_metric = opt_parameters['metric_df'],
+        statistic    = opt_parameters['statistic'],
+        initial =  opt_parameters['initial'] ,
+        tol = opt_parameters['tol'],
+        maxiter = opt_parameters['maxiter'],
+        verbose = opt_parameters['verbose']
+        )
+
+
+
+    sim_results = {}
+
+    cat_df_name = []
+    cat_id = []
+    cat_id_df = pd.DataFrame()
+    for d in data_to_tyche['category_defs']:
+        cat_df_name.append(d['name'])
+        cat_id.append(d['id'])
+
+    cat_id_df['Category'] = cat_df_name
+    cat_id_df['category_id'] = cat_id
+
+    met_df_name = []
+    met_id = []
+    met_id_df = pd.DataFrame()
+    for d in data_to_tyche['metric_defs']:
+        met_df_name.append(d['name'])
+        met_id.append(d['id'])
+
+    met_id_df['Index'] = met_df_name
+    met_id_df['metric_id'] = met_id
+
+    res_inv_df=optimum.amounts.to_frame()
+    res_metric_df=optimum.metrics.to_frame()
+    
+    
+    res_inv_df = res_inv_df.merge(cat_id_df,on='Category')
+    res_metric_df = res_metric_df.merge(met_id_df,on='Index')
+    
+ 
+    metrics_list = list(pd.unique(res_metric_df['metric_id']))
+    categories_list = list(pd.unique(res_inv_df['category_id']))
+    
+    sim_results['investments'] = {}
+    sim_results['metrics'] = {}
+    
+    
+    for c in categories_list:
+        df_c = res_inv_df[res_inv_df['category_id'] == c].reset_index()
+        if len(df_c) == 1:
+            sim_results['investments'][c]=df_c['Amount'][0]
+        else:
+            print('Warning::Issue with results compilation. recheck')
+
+            
+            
+    for m in metrics_list:
+        df_m = res_metric_df[res_metric_df['metric_id'] == m].reset_index()
+        if len(df_m) == 1:
+            sim_results['metrics'][m]=df_m['Value'][0]
+        else:
+            print('Warning::Issue with results compilation. recheck')
+    
+    results_to_gui = {}
+    results_to_gui['scenario_id'] = data_to_tyche.scenario_id
+    results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
+    results_to_gui['cells'] = sim_results      
+            
+    return results_to_gui
