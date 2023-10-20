@@ -18,6 +18,7 @@ conn = Server('http://localhost:1080')
 technology_path="/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/technology/"
 os.chdir("/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/tyche-gui/")
 
+
 dic = conn.get_technology()
 data_to_gui = dic
 
@@ -68,50 +69,11 @@ for d in data_to_tyche['states']['category_states']:
             cat_list.append(d['name'])
             inv_list.append(d['investment'])
             pass
-
-
-
-res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,technology_path,10)
-res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,technology_path,10)
-
-'''
-This information is for running optimization. Optimization needs to several inputs from user.
-
-Please check issue on Github
-The following directory opt_parameters is an user input from the user GUI
-'''
-opt_parameters = {}
-opt_parameters['optimized_metric']= "LCOE"                  
-opt_parameters['optimization_sense']=    None  
-opt_parameters['max_amount']=  None  
-opt_parameters['investment_max']=   None   
-opt_parameters['metric_df']=  None    
-opt_parameters['statistic']=  'np.mean'  
-opt_parameters['initial'] =  None    
-opt_parameters['tol']=      1e-8
-opt_parameters['maxiter']=    50  
-opt_parameters['verbose']=  0     
-
-#Run optimization
-res_to_gui3 = conn.evaluate_opt(data_to_tyche,path,opt_parameters,10)
-
-#We can add all these parameters from the user if data is provided. An example of constraint created on metric values is provided
-metric_df = {}
-metric_df['GHG'] = {}
-metric_df['Labor'] = {}
-metric_df['GHG']['limit'] = 30
-metric_df['GHG']['sense'] = 'upper'
-metric_df['Labor']['limit'] = 0
-metric_df['Labor']['sense'] = 'lower' 
-
-   
-#If user puts in metric contraints, the opt_parameters should be updated 
-opt_parameters['metric_df']=  metric_df
-#Run optimization again
-res_to_gui3 = conn.evaluate_opt(data_to_tyche,technology_path,opt_parameters,10)
-         
+            
 '''
 This will probably be information from the GUI and be used for the calculation directly. 
 Please do not include this in the code
 '''
 
+res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,technology_path,10)
+res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,technology_path,10)
