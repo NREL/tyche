@@ -71,8 +71,8 @@ This will probably be information from the GUI and be used for the calculation d
 Please do not include this in the code
 '''
 
-res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,technology_path,10)
-res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,technology_path,10)
+res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche, path, selected_tech, 10)
+res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche, path, selected_tech, 10)
 
 
 '''
@@ -94,7 +94,7 @@ opt_parameters['maxiter']=    50
 opt_parameters['verbose']=  0     
 
 #Run optimization
-res_to_gui3 = conn.evaluate_opt(data_to_tyche,path,opt_parameters,10)
+res_to_gui3 = conn.evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,10)
 
 #We can add all these parameters from the user if data is provided. An example of constraint created on metric values is provided
 metric_df = {}
@@ -109,7 +109,7 @@ metric_df['Labor']['sense'] = 'lower'
 #If user puts in metric contraints, the opt_parameters should be updated 
 opt_parameters['metric_df']=  metric_df
 #Run optimization again
-res_to_gui3 = conn.evaluate_opt(data_to_tyche,path,opt_parameters,10)
+res_to_gui3 = conn.evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,10)
          
 '''
 This will probably be information from the GUI and be used for the calculation directly. 
