@@ -81,9 +81,9 @@ def path_change(data_to_tyche, path):
     os.chdir(path2)
 '''
 
-def evaluate_without_slider_input(data_to_tyche, path, sample_count=100):
+def evaluate_without_slider_input(data_to_tyche,path,selected_tech,sample_count=100):
     """
-    Evaluates Tranche impcats
+    Evaluates Tranche impacts
 
     Parameters
     ----------
@@ -103,12 +103,17 @@ def evaluate_without_slider_input(data_to_tyche, path, sample_count=100):
 
     """
 
-    my_designs = ty.Designs(path=".",
-                            name='pv-residential-simple.xlsx')
+    chosen_tech_name = selected_tech['name']
+
+    xls_file = (server_common.technology_path / path)
+
+    my_designs = ty.Designs(path=str(xls_file),
+                            name=chosen_tech_name + ".xlsx")
 
     my_designs.compile()
 
-    investments = ty.Investments(path='.', name='pv-residential-simple.xlsx')
+    investments = ty.Investments(path=str(xls_file), 
+                                 name=chosen_tech_name + ".xlsx")
 
     tranche_results = investments.evaluate_tranches(
         my_designs, sample_count=sample_count)

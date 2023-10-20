@@ -15,7 +15,7 @@ from functions import *
 
 conn = Server('http://localhost:8080')
 
-dic = conn.build_all_techs()
+dic = conn.get_scenarios()
 data_to_gui = dic
 
 
