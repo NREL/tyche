@@ -4,16 +4,15 @@ from jsonrpclib import Server
 from functions import *
 
 
-def main():
-    server = SimpleJSONRPCServer(('localhost', 1080))
-    server.register_function(get_technology)
-    server.register_function(evaluate_with_slider_input)
-    server.register_function(evaluate_without_slider_input)
-    server.register_function(evaluate_opt)
-    print("Start server")
-    server.serve_forever()
-    server.shutdown()
+        self.send_response(200)
 
+        # Override CORS
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "*")
+        self.send_header("Access-Control-Allow-Headers", "*")
+        self.send_header("Content-type", "application/json")
+        self.end_headers()
+        self.wfile.write(response.encode())
 
 if __name__ == '__main__':  
     main()

@@ -1,16 +1,64 @@
-import os
-import sys
-sys.path.insert(0, os.path.abspath("../"))
-import numpy             as np
-import matplotlib.pyplot as pl
-import pandas            as pd
-import seaborn           as sb
-import tyche             as ty
-import uuid
+import server_common
 
-os.chdir('./') 
-def path_change(data_to_tyche,path):
+import sys
+import os
+import json
+from pathlib import Path
+import logging
+import functools
+from jsonrpcserver import method, Success
+import pandas as pd
+
+this_script_path = os.path.realpath(__file__)
+this_script_dir  = os.path.dirname(this_script_path)
+parent_dir       = os.path.abspath(os.path.join(this_script_dir, os.pardir))
+
+sys.path.append(parent_dir)
+
+import tyche as ty
+
+technology_path = Path(os.path.abspath(os.path.join(parent_dir, "technology")))
+
+
+@functools.lru_cache(maxsize=2)
+def fetch_technologies():
+    with open(server_common.tech_database_path) as db_file:
+        db = json.load(db_file)
+        return db["technology_list"]
     
+@functools.lru_cache(maxsize=2)
+def fetch_tech_uuid_map():
+    with open(server_common.tech_database_path) as db_file:
+        db = json.load(db_file)
+        return db["tech_uuid_to_dir"]
+
+
+def resolve_categories(selected_tech, category_id_list):
+    cid_list = { i["id"]: i for i in selected_tech["category_defs"] }
+
+    return [ cid_list[to_resolve_cid] for to_resolve_cid in category_id_list ]
+
+def resolve_categories_name(selected_tech, category_id_list):
+    clist = resolve_categories(selected_tech, category_id_list)
+    return [i["name"] for i in clist]
+
+def extract_category_investment(selected_tech, scenario_request):
+    rq_list = list(server_common.to_dict(scenario_request.category_states).items())
+    names = resolve_categories_name(selected_tech, [ i[0] for i in rq_list ])
+    return (names, [i[1] for i in rq_list])
+
+
+def resolve_metrics(selected_tech, metric_id_list):
+    mid_list = { i["id"]: i for i in selected_tech["metric_defs"] }
+
+    return [ mid_list[to_resolve_mid] for to_resolve_mid in metric_id_list ]
+
+def resolve_metrics_name(selected_tech, metric_id_list):
+    clist = resolve_metrics(selected_tech, metric_id_list)
+    return [i["name"] for i in clist]
+
+'''
+def path_change(data_to_tyche, path):
     """
     Changes the working directory to the technology case study under study.
     not doing this results in issues while running Tyche and can be resolved later. 
@@ -19,7 +67,7 @@ def path_change(data_to_tyche,path):
     ----------
     data_to_tyche: dictionary
         information obtained from the GUI
-        
+
     path: str
         path to the technology case under study
 
@@ -30,9 +78,9 @@ def path_change(data_to_tyche,path):
 
     path2 = path + data_to_tyche['name']+"/"
     os.chdir(path2)
+'''
 
-def evaluate_without_slider_input(data_to_tyche,path,sample_count=100):
-    
+def evaluate_without_slider_input(data_to_tyche, path, sample_count=100):
     """
     Evaluates Tranche impcats
 
@@ -40,10 +88,10 @@ def evaluate_without_slider_input(data_to_tyche,path,sample_count=100):
     ----------
     data_to_tyche: dictionary
         information obtained from the GUI
-        
+
     path: str
         path to the technology case under study
-        
+
     sample_count: int
          number of samples for calculation
 
@@ -54,22 +102,22 @@ def evaluate_without_slider_input(data_to_tyche,path,sample_count=100):
 
     """
 
-    path_change(data_to_tyche,path)
-    my_designs = ty.Designs(path = ".",
-                        name = 'pv-residential-simple.xlsx')
-    
+    my_designs = ty.Designs(path=".",
+                            name='pv-residential-simple.xlsx')
+
     my_designs.compile()
 
-    investments = ty.Investments(path = '.',name = 'pv-residential-simple.xlsx')
-    
-    tranche_results = investments.evaluate_tranches(my_designs, sample_count=sample_count)
-    
+    investments = ty.Investments(path='.', name='pv-residential-simple.xlsx')
+
+    tranche_results = investments.evaluate_tranches(
+        my_designs, sample_count=sample_count)
+
     results_to_gui = {}
     results_to_gui['id'] = data_to_tyche['id']
     results_to_gui['results'] = {}
 
     res = tranche_results.metrics.reset_index()
-    
+
     cat_df_name = []
     cat_id = []
     cat_id_df = pd.DataFrame()
@@ -90,37 +138,30 @@ def evaluate_without_slider_input(data_to_tyche,path,sample_count=100):
     met_id_df['Index'] = met_df_name
     met_id_df['metric_id'] = met_id
 
+    res = res.merge(cat_id_df, on='Category')
+    res = res.merge(met_id_df, on='Index')
 
-    res = res.merge(cat_id_df,on='Category')
-    res = res.merge(met_id_df,on='Index')
-    
- 
     metrics_list = list(pd.unique(res['metric_id']))
     categories_list = list(pd.unique(res['category_id']))
 
-
-    
     for c in categories_list:
         df_c = res[res['category_id'] == c]
         try:
             results_to_gui['results'][c]
         except:
             results_to_gui['results'][c] = {}
-    
+
         for m in metrics_list:
             df_m = df_c[df_c['metric_id'] == m]
             try:
                 results_to_gui['results'][c][m]
             except:
                 results_to_gui['results'][c][m] = {}
-            results_to_gui['results'][c][m]=list(df_m['Value'])
-    
+            results_to_gui['results'][c][m] = list(df_m['Value'])
+
     return results_to_gui
 
-
-
-def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
-    
+def evaluate_with_slider_input(data_to_tyche, path, selected_tech, sample_count=100):
     """
     Evaluates investment impcats
 
@@ -128,10 +169,10 @@ def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
     ----------
     data_to_tyche: dictionary
         information obtained from the GUI
-        
+
     path: str
         path to the technology case under study
-        
+
     sample_count: int
          number of samples for calculation
 
@@ -141,48 +182,46 @@ def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
         Evaluator object can be extracted to get investment results data
 
     """
-    path_change(data_to_tyche,path)
+    #path_change(data_to_tyche, path)
 
-    my_designs = ty.Designs(path = ".",
-                        name = 'pv-residential-simple.xlsx')
-    
+    chosen_tech_name = selected_tech['name']
+
+    xls_file = (server_common.technology_path / path)
+
+    my_designs = ty.Designs(path=str(xls_file),
+                            name=chosen_tech_name + ".xlsx")
+
     my_designs.compile()
 
-    investments = ty.Investments(path = '.',name = 'pv-residential-simple.xlsx')
-    
-    tranche_results = investments.evaluate_tranches(my_designs, sample_count=sample_count)
-    
+    investments = ty.Investments(path=str(xls_file), 
+                                 name=chosen_tech_name + ".xlsx")
+
+    tranche_results = investments.evaluate_tranches(
+        my_designs, sample_count=sample_count)
+
     evaluator = ty.Evaluator(tranche_results)
-    
-    #Creating Dataframe        
-    #Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
-    #category names in one column the investments in another
 
-    investment = []
-    name = []
-    for st in data_to_tyche['states']['category_states']:
-        name.append(st['name'])
-        investment.append(st['investment'])
+    # Creating Dataframe
+    # Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
+    # category names in one column the investments in another
 
-    
+    (name, investment) = extract_category_investment(selected_tech, data_to_tyche)
+
+    logging.debug("Category investment: %s", str(list(zip(name, investment))))
+
     investment_df = pd.DataFrame()
     investment_df['Amount'] = investment
     investment_df['Category'] = name
     investment_df = investment_df.set_index('Category')
     investment_impact = evaluator.evaluate(investment_df)
-    
 
-    results_to_gui = {}
-    results_to_gui['id'] = data_to_tyche['id']
-    results_to_gui['results'] = {}
+    
     res = investment_impact.reset_index()
-    
-    
-    
+
     cat_df_name = []
     cat_id = []
     cat_id_df = pd.DataFrame()
-    for d in data_to_tyche['category_defs']:
+    for d in selected_tech['category_defs']:
         cat_df_name.append(d['name'])
         cat_id.append(d['id'])
 
@@ -192,45 +231,81 @@ def evaluate_with_slider_input(data_to_tyche,path,sample_count=100):
     met_df_name = []
     met_id = []
     met_id_df = pd.DataFrame()
-    for d in data_to_tyche['metric_defs']:
+    for d in selected_tech['metric_defs']:
         met_df_name.append(d['name'])
         met_id.append(d['id'])
 
     met_id_df['Index'] = met_df_name
     met_id_df['metric_id'] = met_id
 
+    res = res.merge(cat_id_df, on='Category')
+    res = res.merge(met_id_df, on='Index')
 
-    res = res.merge(cat_id_df,on='Category')
-    res = res.merge(met_id_df,on='Index')
-    
- 
     metrics_list = list(pd.unique(res['metric_id']))
     categories_list = list(pd.unique(res['category_id']))
-    
-    
+
+    sim_results = {}
+
     for c in categories_list:
         df_c = res[res['category_id'] == c]
         try:
-            results_to_gui['results'][c]
+            sim_results[c]
         except:
-            results_to_gui['results'][c] = {}
+            sim_results[c] = {}
         for m in metrics_list:
             df_m = df_c[df_c['metric_id'] == m]
             try:
-                results_to_gui['results'][c][m]
+                sim_results[c][m]
             except:
-                results_to_gui['results'][c][m] = {}
+                sim_results[c][m] = {}
             a = []
-            for n in  list(df_m['Value']):
+            for n in list(df_m['Value']):
                 a.append(float(n))
-            results_to_gui['results'][c][m]=a
-            
-            
+            sim_results[c][m] = a
+
+    results_to_gui = {}
+    results_to_gui['scenario_id'] = data_to_tyche.scenario_id
+    results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
+    results_to_gui['cells'] = sim_results
+
     return results_to_gui
 
+@method
+def run_scenario(request_definition):
+    request_definition = server_common.to_object(request_definition)
+
+    chosen_tech = request_definition.scenario_id
+
+    techs = fetch_technologies()
+    tech_id_map = fetch_tech_uuid_map()
+
+    chosen_tech = next(x for x in techs if chosen_tech == x["id"])
+    chosen_tech_path = tech_id_map[chosen_tech["id"]]
+
+    logging.debug("Request selected %s", repr(chosen_tech))
+
+    results = evaluate_with_slider_input(request_definition, chosen_tech_path, chosen_tech)
+
+    return Success(results)
 
 
-def evaluate_opt(data_to_tyche,path,opt_parameters,sample_count=100):
+@method
+def get_scenarios():
+    """
+    Obtains the list of technology case study present within the tyche technology directory
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    technology_list: list
+        list of technologies within tyche
+    """
+    return Success(fetch_technologies())
+
+@method
+def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=100):
     
     """
     Evaluates investment impcats
@@ -252,21 +327,33 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,sample_count=100):
         Evaluator object can be extracted to get investment results data
 
     """
-    path_change(data_to_tyche,path)
+    chosen_tech_name = selected_tech['name']
 
-    my_designs = ty.Designs(path = ".",
-                        name = 'pv-residential-simple.xlsx')
-    
+    xls_file = (server_common.technology_path / path)
+
+    my_designs = ty.Designs(path=str(xls_file),
+                            name=chosen_tech_name + ".xlsx")
+
     my_designs.compile()
 
-    investments = ty.Investments(path = '.',name = 'pv-residential-simple.xlsx')
-    
-    tranche_results = investments.evaluate_tranches(my_designs, sample_count=sample_count)
-    
+    investments = ty.Investments(path=str(xls_file), 
+                                 name=chosen_tech_name + ".xlsx")
+
+    tranche_results = investments.evaluate_tranches(
+        my_designs, sample_count=sample_count)
+
     evaluator = ty.Evaluator(tranche_results)
     
 
     optimizer = ty.EpsilonConstraintOptimizer(evaluator)
+
+        # Creating Dataframe
+    # Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
+    # category names in one column the investments in another
+
+    (name, investment) = extract_category_investment(selected_tech, data_to_tyche)
+
+    logging.debug("Category investment: %s", str(list(zip(name, investment))))
     
 
     if opt_parameters['statistic'] == "np.mean":
@@ -285,14 +372,9 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,sample_count=100):
         verbose = opt_parameters['verbose']
         )
 
-    
-    optimum = optimizer.opt_slsqp(
-        "LCOE"                          
-    )
-    
-    results_to_gui = {}
-    results_to_gui['id'] = data_to_tyche['id']
 
+
+    sim_results = {}
 
     cat_df_name = []
     cat_id = []
@@ -325,14 +407,14 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,sample_count=100):
     metrics_list = list(pd.unique(res_metric_df['metric_id']))
     categories_list = list(pd.unique(res_inv_df['category_id']))
     
-    results_to_gui['investments'] = {}
-    results_to_gui['metrics'] = {}
+    sim_results['investments'] = {}
+    sim_results['metrics'] = {}
     
     
     for c in categories_list:
         df_c = res_inv_df[res_inv_df['category_id'] == c].reset_index()
         if len(df_c) == 1:
-            results_to_gui['investments'][c]=df_c['Amount'][0]
+            sim_results['investments'][c]=df_c['Amount'][0]
         else:
             print('Warning::Issue with results compilation. recheck')
 
@@ -341,128 +423,15 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,sample_count=100):
     for m in metrics_list:
         df_m = res_metric_df[res_metric_df['metric_id'] == m].reset_index()
         if len(df_m) == 1:
-            results_to_gui['metrics'][m]=df_m['Value'][0]
+            sim_results['metrics'][m]=df_m['Value'][0]
         else:
             print('Warning::Issue with results compilation. recheck')
-            
+    
+    results_to_gui = {}
+    results_to_gui['scenario_id'] = data_to_tyche.scenario_id
+    results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
+    results_to_gui['cells'] = sim_results      
             
     return results_to_gui
-
-
-
-    
-def get_categories(technology_name):
-    """
-    Obtains the categories within a technology
-
-    Parameters
-    ----------
-    technology name : str
-        Name of the technology        
-    Returns
-    -------
-    category_list: list
-        list of categories within a technology
-    """
-    
-    datafile=pd.read_excel(path+technology_name+"/"+technology_name+".xlsx",sheet_name = "tranches")
-    categories = list(pd.unique(datafile['Category']))
-    category_list = []
-    for c in categories:
-        d = datafile[datafile['Category'] == c]
-        category={
-                  'name':c,
-                  'description':list(pd.unique(d['Notes'])),
-                  'starting_investment': min(d['Amount']),
-                  'max_investment': max(d['Amount']),
-                  'id': str(uuid.uuid4())
-                 }
-        category_list.append(category)
-    return category_list
-
-
-
-def get_metrics(technology_name):
-    """
-    Obtains the metrics within a technology case study
-
-    Parameters
-    ----------
-    technology name : str
-        Name of the technology
-        
-    Returns
-    -------
-    metric_list: list
-        list of metrics within a technology
-    """
-    
-    
-    datafile=pd.read_excel(path+technology_name+"/"+technology_name+".xlsx",sheet_name = "results")
-    d_metrics = datafile[datafile['Variable'] == 'Metric']
-    
-    metrics = list(pd.unique(d_metrics['Index']))
-    metric_list = []
-    for m in metrics:
-        d = d_metrics[d_metrics['Index'] == m]
-        metric={
-                  'name':m,
-                  'description':list(pd.unique(d['Notes'])),
-                  'id': str(uuid.uuid4())
-                 }
-        metric_list.append(metric)
-    return metric_list    
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-path="../technology/"
-def create_technology(technology_name):
-    """
-    Creates a dictionary for the technologies
-
-    Parameters
-    ----------
-    technology name : str
-        Name of the technology
-        
-    Returns
-    -------
-    technology: dict
-        dictionary with relevant information
-    """
-
-     
-    technology={
-            "name" : technology_name,
-            "description" : 'from file containing technology information',
-            "image" : path+'image.png',
-            "id" : str(uuid.uuid4()),
-            "category_defs" : get_categories(technology_name),
-            "metric_defs" : get_metrics(technology_name)
-            } 
-    
-    return technology
-
-def get_technology():
-    """
-    Obtains the list of technology case study present within the tyche technology directory
-
-    Parameters
-    ----------
-
-    Returns
-    -------
-    technology_list: list
-        list of technologies within tyche
-    """
-    #Returns the technology list
-    directories=[d for d in os.listdir(path) if os.path.isdir(path+d)]
-
-    technology_list= []
-    for d in directories:
-        print(d)
-        technology_list.append(create_technology(d))
-        
-    return technology_list
 
 

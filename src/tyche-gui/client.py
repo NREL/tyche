@@ -15,9 +15,8 @@ from functions import *
 
 conn = Server('http://localhost:1080')
 
-path="/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/tyche/src/technology/"
-os.chdir("/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/tyche/src/tyche-gui/")
-
+technology_path="/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/technology/"
+os.chdir("/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/src/tyche-gui/")
 
 dic = conn.get_technology()
 data_to_gui = dic
@@ -72,9 +71,8 @@ for d in data_to_tyche['states']['category_states']:
 
 
 
-res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,path,10)
-res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,path,10)
-
+res_to_gui2 = conn.evaluate_without_slider_input(data_to_tyche,technology_path,10)
+res_to_gui1 = conn.evaluate_with_slider_input(data_to_tyche,technology_path,10)
 
 '''
 This information is for running optimization. Optimization needs to several inputs from user.
@@ -110,7 +108,7 @@ metric_df['Labor']['sense'] = 'lower'
 #If user puts in metric contraints, the opt_parameters should be updated 
 opt_parameters['metric_df']=  metric_df
 #Run optimization again
-res_to_gui3 = conn.evaluate_opt(data_to_tyche,path,opt_parameters,10)
+res_to_gui3 = conn.evaluate_opt(data_to_tyche,technology_path,opt_parameters,10)
          
 '''
 This will probably be information from the GUI and be used for the calculation directly. 
