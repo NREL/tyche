@@ -17,8 +17,9 @@ conn = Server('http://localhost:8080')
 
 dic = conn.get_scenarios()
 data_to_gui = dic
+selected_tech = 'pv-residential-simple'
 
-
+path = "/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/tyche/src/technology/pv-residential-simple"
 #User chooses a technology   
 #normal mode appears
 #User changes sliders which brings in results
@@ -31,28 +32,28 @@ category_list=[]
 category_list.append({
                  'name':'Module R&D',
                   'investment':50,
-                  'id':data_to_gui[5]['category_defs'][0]['id']
+                  'scenario_id':data_to_gui[5]['category_defs'][0]['id']
                  })
 
 category_list.append({
                  'name':'Inverter R&D',
                   'investment':50,
-                  'id':data_to_gui[5]['category_defs'][1]['id']
+                  'scenario_id':data_to_gui[5]['category_defs'][1]['id']
                  })
 category_list.append({
                  'name':'BoS R&D',
                   'investment':50,
-                  'id':data_to_gui[5]['category_defs'][2]['id']
+                  'scenario_id':data_to_gui[5]['category_defs'][2]['id']
                  })
 technology_state={
-                'id':data_to_gui[5]['id'],
+                'scenario_id':data_to_gui[5]['id'],
                 'category_states':category_list
                 }
 
 
 #using the technology id we make sure to call the proper technology 
 for d in data_to_gui:
-    if d['id'] == technology_state['id']:
+    if d['id'] == technology_state['scenario_id']:
         data_to_tyche = d
         data_to_tyche['states'] = technology_state
 
@@ -65,7 +66,14 @@ for d in data_to_tyche['states']['category_states']:
             cat_list.append(d['name'])
             inv_list.append(d['investment'])
             pass
-            
+   
+
+
+data_to_tyche['scenario_id'] = data_to_tyche['id']
+data_to_tyche['category_states'] = data_to_tyche['category_defs']
+run_scenario(data_to_tyche)
+
+         
 '''
 This will probably be information from the GUI and be used for the calculation directly. 
 Please do not include this in the code
