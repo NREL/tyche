@@ -36,7 +36,6 @@ def fetch_tech_uuid_map():
 
 def resolve_categories(selected_tech, category_id_list):
     cid_list = { i["id"]: i for i in selected_tech["category_defs"] }
-
     return [ cid_list[to_resolve_cid] for to_resolve_cid in category_id_list ]
 
 def resolve_categories_name(selected_tech, category_id_list):
@@ -45,7 +44,7 @@ def resolve_categories_name(selected_tech, category_id_list):
 
 def extract_category_investment(selected_tech, scenario_request):
     rq_list = list(server_common.to_dict(scenario_request.category_states).items())
-    names = resolve_categories_name(selected_tech, [ i[0] for i in rq_list ])
+    names = resolve_categories_name(selected_tech, [i[0] for i in rq_list])
     return (names, [i[1] for i in rq_list])
 
 
@@ -385,7 +384,7 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=10
     cat_df_name = []
     cat_id = []
     cat_id_df = pd.DataFrame()
-    for d in data_to_tyche['category_defs']:
+    for d in selected_tech['category_defs']:
         cat_df_name.append(d['name'])
         cat_id.append(d['id'])
 
@@ -395,7 +394,7 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=10
     met_df_name = []
     met_id = []
     met_id_df = pd.DataFrame()
-    for d in data_to_tyche['metric_defs']:
+    for d in selected_tech['metric_defs']:
         met_df_name.append(d['name'])
         met_id.append(d['id'])
 
@@ -439,3 +438,22 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=10
     results_to_gui['cells'] = sim_results      
             
     return results_to_gui
+
+
+@method
+def run_optimization(request_definition,opt_parameters):
+    request_definition = server_common.to_object(request_definition)
+
+    chosen_tech = request_definition.scenario_id
+
+    techs = fetch_technologies()
+    tech_id_map = fetch_tech_uuid_map()
+
+    chosen_tech = next(x for x in techs if chosen_tech == x["id"])
+    chosen_tech_path = tech_id_map[chosen_tech["id"]]
+
+    logging.debug("Request selected %s", repr(chosen_tech))
+
+    results = evaluate_opt(request_definition,chosen_tech_path,opt_parameters,chosen_tech,sample_count=100)
+
+    return Success(results)
