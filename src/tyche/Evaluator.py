@@ -234,14 +234,7 @@ class Evaluator:
       percentile, and standard deviation. If another name is
       entered, an error is thrown and the mean is used instead.
     """
-    # if the string is not found in the dict, use mean
-    try:
-      _stat_fcn = self.statistic_lookup[statistic]
-    except KeyError as e:
-      _stat_fcn = np.mean
-      print(f'{e} not found in statistic function lookup; using mean')
-
-    semilong = self.evaluate_corners_semilong(_stat_fcn)
+    semilong = self.evaluate_corners_semilong(statistic)
     joiner = pd.DataFrame(index = semilong.index)
     joiner["KEY"] = 1
     joiner.set_index("KEY", append = True, inplace = True)
