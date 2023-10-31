@@ -10,7 +10,7 @@ def generate_distn(
     expert_weights = None,
     expert_column = 'expert_id',
     response_columns = {'param': ['param_min','param_mode','param_max']},
-    measures = ['min', 'mode', 'max'],
+    measures = ['min', 'mode', 'max']
 ):
     """
     Convert raw elicitation responses into triangular distribution parameters.
@@ -85,10 +85,13 @@ def generate_distn(
     # Apply normalized weights to the responses, store in separate variable
     parameters_agg = {}
     for _p in response_columns.keys():
-        _r = [np.average(response_df.loc[np.where(~np.isnan(response_df[f'{_c}']))[0].tolist(), f'{_c}'].unstack(),
-                         weights=response_df.loc[np.where(~np.isnan(response_df[f'{_c}']))[0].tolist(), 'weights']) for _c in [colname for value in response_columns.values() for colname in value]]
-        parameters_agg[f'{_p}_dist'] = f'st.triang(c={np.round(_r[1], decimals=2)}, loc={np.round(_r[2]-_r[0], decimals=2)}, scale={np.round(_r[0], decimals=2)})'
-        
+        # Use all information to derive distributions, even from incomplete responses
+        _r = [np.average(response_df.loc[np.where(~np.isnan(response_df[f'{_c}']))[0].tolist(), f'{_c}'],
+                         weights=response_df.loc[np.where(~np.isnan(response_df[f'{_c}']))[0].tolist(), 'weights']) for _c in response_columns[_p]]
+        _c = (_r[1] - _r[0])/(_r[2] - _r[0])
+        _loc = _r[0]
+        _scale = _r[2] - _r[0]
+        parameters_agg[f'{_p}_dist'] = f'st.triang(c={np.round(_c, decimals=2)}, loc={np.round(_loc, decimals=2)}, scale={np.round(_scale, decimals=2)})'
     return parameters_agg
 
 
