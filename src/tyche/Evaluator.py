@@ -40,6 +40,18 @@ class Evaluator:
         summary   : Data Frame
         uncertain : Boolean
     """
+    # dictionary of statistical function options 
+    # for use in the various evaluator methods
+    # add entries to this dict to expand the options
+    self.statistic_lookup = {
+      'mean': np.mean,
+      'median': np.median,
+      'standard deviation': np.std,
+      '10th percentile': lambda x: np.percentile(x, 0.1),
+      '25th percentile': lambda x: np.percentile(x, 0.25),
+      '75th percentile': lambda x: np.percentile(x, 0.75),
+      '90th percentile': lambda x: np.percentile(x, 0.9)
+    }  
 
     if tranches.uncertain:
       self.amounts    = tranches.amounts.groupby(["Category", "Tranche", "Sample"]).sum()
@@ -84,7 +96,7 @@ class Evaluator:
       "Value"
     )
 
-  def evaluate_statistic(self, amounts, statistic = np.mean):
+  def evaluate_statistic(self, amounts, statistic = 'mean'):
     """
     Evaluate a statistic for an investment.
 
@@ -92,10 +104,20 @@ class Evaluator:
     ----------
     amounts : DataFrame
       The investment levels.
-    statistic : function
-      The statistic to evaluate.
+    statistic : string
+      Name of the statistic to evaluate. Options are mean, median,
+      10th percentile, 25th percentile, 75th percentile, 90th
+      percentile, and standard deviation. If another name is
+      entered, an error is thrown and the mean is used instead.
     """
-
+    # look up the callable based on the statistic parameter
+    # if the string is not found in the dict, use mean
+    try:
+      _stat_fcn = self.statistic_lookup[statistic]
+    except KeyError as e:
+      _stat_fcn = np.mean
+      print(f'{e} not found in statistic function lookup; using mean')
+    
     return self.evaluate(
       pd.DataFrame(amounts)
       ).groupby(
@@ -104,22 +126,32 @@ class Evaluator:
       ).groupby(
         ['Index']
       ).agg(
-        Value = statistic
+        Value = _stat_fcn
       )
 
-  def make_statistic_evaluator(self, statistic = np.mean):
+  def make_statistic_evaluator(self, statistic = 'mean'):
     """
     Return a function that evaluates a statistic for an investment.
 
     Parameters
     ----------
-    statistic : function
-      The statistic to evaluate.
+    statistic : string
+      Name of the statistic to evaluate. Options are mean, median,
+      10th percentile, 25th percentile, 75th percentile, 90th
+      percentile, and standard deviation. If another name is
+      entered, an error is thrown and the mean is used instead.
     """
+    # if the string is not found in the dict, use mean
+    try:
+      _stat_fcn = self.statistic_lookup[statistic]
+    except KeyError as e:
+      _stat_fcn = np.mean
+      print(f'{e} not found in statistic function lookup; using mean')
+    
     interpolators1 = self.raw.groupby(
       ['Category','Tranche','Index','Amount']
     ).agg(
-      Value=('Value',statistic)
+      Value=('Value',_stat_fcn)
     ).reset_index(
     ).groupby(
       ["Category", "Index"]
@@ -149,17 +181,26 @@ class Evaluator:
       )
     return f
 
-  def evaluate_corners_semilong(self, statistic = np.mean):
+  def evaluate_corners_semilong(self, statistic = 'mean'):
     """
     Return a dataframe indexed my investment amounts in each category,
     with columns for each metric.
 
     Parameters
     ----------
-    statistic : function
-      The statistic to evaluate.
+    statistic : string
+      Name of the statistic to evaluate. Options are mean, median,
+      10th percentile, 25th percentile, 75th percentile, 90th
+      percentile, and standard deviation. If another name is
+      entered, an error is thrown and the mean is used instead.
     """
-
+    # if the string is not found in the dict, use mean
+    try:
+      _stat_fcn = self.statistic_lookup[statistic]
+    except KeyError as e:
+      _stat_fcn = np.mean
+      print(f'{e} not found in statistic function lookup; using mean')
+    
     return pd.DataFrame(
       self.raw.reset_index(
       ).set_index(
@@ -167,7 +208,7 @@ class Evaluator:
       ).drop(
           columns = ["Tranche","Technology","Sample", "Units"]
       ).apply(
-          statistic, axis=1
+          _stat_fcn, axis=1
       ).rename(
           "Value"
       )
@@ -180,17 +221,19 @@ class Evaluator:
       values = "Value"
     )
 
-  def evaluate_corners_wide(self, statistic = np.mean):
+  def evaluate_corners_wide(self, statistic = 'mean'):
     """
     Return a dataframe indexed my investment amounts in each category,
     with columns for each metric.
 
     Parameters
     ----------
-    statistic : function
-      The statistic to evaluate.
+    statistic : string
+      Name of the statistic to evaluate. Options are mean, median,
+      10th percentile, 25th percentile, 75th percentile, 90th
+      percentile, and standard deviation. If another name is
+      entered, an error is thrown and the mean is used instead.
     """
-
     semilong = self.evaluate_corners_semilong(statistic)
     joiner = pd.DataFrame(index = semilong.index)
     joiner["KEY"] = 1
