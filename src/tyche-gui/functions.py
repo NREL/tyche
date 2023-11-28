@@ -36,7 +36,6 @@ def fetch_tech_uuid_map():
 
 def resolve_categories(selected_tech, category_id_list):
     cid_list = { i["id"]: i for i in selected_tech["category_defs"] }
-
     return [ cid_list[to_resolve_cid] for to_resolve_cid in category_id_list ]
 
 def resolve_categories_name(selected_tech, category_id_list):
@@ -45,7 +44,7 @@ def resolve_categories_name(selected_tech, category_id_list):
 
 def extract_category_investment(selected_tech, scenario_request):
     rq_list = list(server_common.to_dict(scenario_request.category_states).items())
-    names = resolve_categories_name(selected_tech, [ i[0] for i in rq_list ])
+    names = resolve_categories_name(selected_tech, [i[0] for i in rq_list])
     return (names, [i[1] for i in rq_list])
 
 
