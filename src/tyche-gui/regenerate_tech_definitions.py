@@ -15,9 +15,10 @@ import json
 import random
 import server_common
 import pandas as pd
-from pathlib import Path
 import uuid
 
+def gen_random_image(seed):
+    return f"https://picsum.photos/seed/{seed}/128/128"
 
 def get_categories(tech_source):
     """
@@ -44,14 +45,16 @@ def get_categories(tech_source):
 
         if starting_investment == 0:
             starting_investment = int((random.random()*.2 + .1) * max_investment)
-            
+
+        cat_id = str(uuid.uuid4())
 
         category = {
             'name': c,
             'description': str(pd.unique(d['Notes'])[0]),
             'starting_investment': starting_investment,
             'max_investment': max_investment,
-            'id': str(uuid.uuid4())
+            'image' : gen_random_image(cat_id),
+            'id': cat_id
         }
         category_list.append(category)
     return category_list
@@ -79,10 +82,14 @@ def get_metrics(tech_source):
     metric_list = []
     for m in metrics:
         d = d_metrics[d_metrics['Index'] == m]
+
+        metric_id = str(uuid.uuid4())
+
         metric = {
             'name': m,
             'description': str(pd.unique(d['Notes'])[0]),
-            'id': str(uuid.uuid4())
+            'image' : gen_random_image(metric_id),
+            'id': metric_id
         }
         metric_list.append(metric)
     return metric_list
@@ -107,11 +114,13 @@ def create_technology(technology_name):
 
     logging.debug("Building technology %s", technology_name)
 
+    tech_id = uuid.uuid4()
+
     technology = {
         "name": technology_name,
         "description": 'from file containing technology information',
-        "image": str(server_common.technology_path / 'image.png'),
-        "id": str(uuid.uuid4()),
+        "image": gen_random_image(str(tech_id)),
+        "id": str(tech_id),
         "category_defs": get_categories(this_tech_path),
         "metric_defs": get_metrics(this_tech_path)
     }
