@@ -277,6 +277,7 @@ def evaluate_with_slider_input(data_to_tyche, path, selected_tech, sample_count=
 
 @method
 def run_scenario(request_definition):
+    print("SIM", request_definition)
     request_definition = server_common.to_object(request_definition)
 
     chosen_tech = request_definition.scenario_id
@@ -309,8 +310,7 @@ def get_scenarios():
     """
     return Success(fetch_technologies())
 
-@method
-def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=100):
+def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_count=100):
     
     """
     Evaluates investment impcats
@@ -356,30 +356,11 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=10
     # Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
     # category names in one column the investments in another
 
-    (name, investment) = extract_category_investment(selected_tech, data_to_tyche)
+    #(name, investment) = extract_category_investment(selected_tech, data_to_tyche)
 
-    logging.debug("Category investment: %s", str(list(zip(name, investment))))
-    
+    #logging.debug("Category investment: %s", str(list(zip(name, investment))))
 
-    if opt_parameters['statistic'] == "np.mean":
-            opt_parameters['statistic'] = np.mean
-
-    optimum = optimizer.opt_slsqp(
-        metric = opt_parameters['optimized_metric'],                      
-        sense = opt_parameters['optimization_sense'],
-        max_amount = opt_parameters['max_amount'],
-        total_amount = opt_parameters['investment_max'],
-        eps_metric = opt_parameters['metric_df'],
-        statistic    = opt_parameters['statistic'],
-        initial =  opt_parameters['initial'] ,
-        tol = opt_parameters['tol'],
-        maxiter = opt_parameters['maxiter'],
-        verbose = opt_parameters['verbose']
-        )
-
-
-
-    sim_results = {}
+    optimum = optimizer.opt_slsqp(**opt_parameters)
 
     cat_df_name = []
     cat_id = []
@@ -412,14 +393,14 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=10
     metrics_list = list(pd.unique(res_metric_df['metric_id']))
     categories_list = list(pd.unique(res_inv_df['category_id']))
     
-    sim_results['investments'] = {}
-    sim_results['metrics'] = {}
+    category_state = {}
+    metric_state = {}
     
     
     for c in categories_list:
         df_c = res_inv_df[res_inv_df['category_id'] == c].reset_index()
         if len(df_c) == 1:
-            sim_results['investments'][c]=df_c['Amount'][0]
+            category_state[c]=df_c['Amount'][0]
         else:
             print('Warning::Issue with results compilation. recheck')
 
@@ -428,20 +409,33 @@ def evaluate_opt(data_to_tyche,path,opt_parameters,selected_tech,sample_count=10
     for m in metrics_list:
         df_m = res_metric_df[res_metric_df['metric_id'] == m].reset_index()
         if len(df_m) == 1:
-            sim_results['metrics'][m]=df_m['Value'][0]
+            metric_state[m]=df_m['Value'][0]
         else:
             print('Warning::Issue with results compilation. recheck')
+
+    #print("DFM", df_m)
+    #print("DFC", df_c)
+    #print(sim_results)
     
     results_to_gui = {}
-    results_to_gui['scenario_id'] = data_to_tyche.scenario_id
-    results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
-    results_to_gui['cells'] = sim_results      
+    results_to_gui['scenario_id'] = selected_tech["id"]
+    results_to_gui['category_state'] = category_state
+    results_to_gui['metric_state'] = metric_state
+    #results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
+    #results_to_gui['cells'] = sim_results
+    results_to_gui["opt_metric_id"] = request_definition.metric_target
             
     return results_to_gui
 
+def metric_to_name(chosen_tech, metric_id):
+    for mt in chosen_tech["metric_defs"]:
+        if mt["id"] == metric_id:
+            return mt["name"]
+    raise Exception("Unknown metric")
 
 @method
-def run_optimization(request_definition,opt_parameters):
+def optimize_scenario(request_definition):
+    logging.debug("optimization request: %s", repr(request_definition))
     request_definition = server_common.to_object(request_definition)
 
     chosen_tech = request_definition.scenario_id
@@ -454,6 +448,40 @@ def run_optimization(request_definition,opt_parameters):
 
     logging.debug("Request selected %s", repr(chosen_tech))
 
-    results = evaluate_opt(request_definition,chosen_tech_path,opt_parameters,chosen_tech,sample_count=100)
+    metric_target = metric_to_name(chosen_tech, request_definition.metric_target)
 
-    return Success(results)
+    metric_df = {}
+
+    for mt in request_definition.metric_states:
+        metric_df[metric_to_name(chosen_tech, mt.metric_id)] = {
+            "limit" : mt.value,
+            "sense" : mt.bound_type
+        }
+
+    param = {
+        'metric' : metric_target,
+        'sense' : None,
+        'max_amount' : None,
+        'total_amount' : request_definition.portfolio,
+        'eps_metric' : metric_df,
+        'statistic' : np.mean,
+        'initial' : None,
+        'maxiter' : 50
+    }
+
+    opt_results = evaluate_opt(chosen_tech_path, request_definition, param, chosen_tech)
+
+    #exec sim
+
+    sim_results = run_scenario({
+        'scenario_id' : request_definition.scenario_id,
+        'category_states' : opt_results['category_state'],
+    })._value.result
+
+    print(sim_results)
+
+    # merge results
+    opt_results["cells"] = sim_results["cells"]
+
+    return Success(opt_results)
+
