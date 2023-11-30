@@ -1,0 +1,217 @@
+
+# Tutorial for using Tyche GUI
+
+## Requirements
+
+ - tyche-gui environment with all tyche modules.
+ - The environment file is provided. These modules required. 
+
+**Modules**
+
+    - alabaster=0.7.12
+    - applaunchservices=0.3.0
+    - appnope=0.1.2
+    - arrow=1.2.3
+    - astroid=2.14.2
+    - asttokens=2.0.5
+    - atomicwrites=1.4.0
+    - attrs=22.1.0
+    - autopep8=1.6.0
+    - babel=2.11.0
+    - backcall=0.2.0
+    - beautifulsoup4=4.12.2
+    - binaryornot=0.4.4
+    - black=23.3.0
+    - bleach=4.1.0
+    - brotlipy=0.7.0
+    - ca-certificates=2023.01.10
+    - certifi=2022.12.7
+    - cffi=1.15.1
+    - chardet=4.0.0
+    - charset-normalizer=2.0.4
+    - click=8.0.4
+    - cloudpickle=2.0.0
+    - colorama=0.4.6
+    - comm=0.1.2
+    - cookiecutter=1.7.3
+    - cryptography=39.0.1
+    - debugpy=1.5.1
+    - decorator=5.1.1
+    - defusedxml=0.7.1
+    - diff-match-patch=20200713
+    - dill=0.3.6
+    - docstring-to-markdown=0.11
+    - docutils=0.18.1
+    - entrypoints=0.4
+    - executing=0.8.3
+    - flake8=6.0.0
+    - flit-core=3.8.0
+    - gettext=0.21.0
+    - giflib=5.2.1
+    - glib=2.69.1
+    - gst-plugins-base=1.14.1
+    - gstreamer=1.14.1
+    - icu=68.1
+    - idna=3.4
+    - imagesize=1.4.1
+    - importlib-metadata=6.0.0
+    - importlib_metadata=6.0.0
+    - inflection=0.5.1
+    - intervaltree=3.1.0
+    - ipykernel=6.19.2
+    - ipython=8.12.0
+    - ipython_genutils=0.2.0
+    - isort=5.9.3
+    - jaraco.classes=3.2.1
+    - jedi=0.18.1
+    - jellyfish=0.9.0
+    - jinja2=3.1.2
+    - jinja2-time=0.2.0
+    - jpeg=9e
+    - jsonschema=4.17.3
+    - jupyter_client=8.1.0
+    - jupyter_core=5.3.0
+    - jupyterlab_pygments=0.1.2
+    - keyring=23.13.1
+    - krb5=1.19.4
+    - lazy-object-proxy=1.6.0
+    - lerc=3.0
+    - libclang=14.0.6
+    - libclang13=14.0.6
+    - libcxx=14.0.6
+    - libdeflate=1.17
+    - libedit=3.1.20221030
+    - libffi=3.4.2
+    - libiconv=1.16
+    - libllvm14=14.0.6
+    - libpng=1.6.39
+    - libpq=12.9
+    - libsodium=1.0.18
+    - libspatialindex=1.9.3
+    - libtiff=4.5.0
+    - libwebp=1.2.4
+    - libwebp-base=1.2.4
+    - libxml2=2.10.3
+    - libxslt=1.1.37
+    - llvm-openmp=14.0.6
+    - lxml=4.9.2
+    - lz4-c=1.9.4
+    - markupsafe=2.1.1
+    - matplotlib-inline=0.1.6
+    - mccabe=0.7.0
+    - mistune=0.8.4
+    - more-itertools=8.12.0
+    - mypy_extensions=0.4.3
+    - nbclient=0.5.13
+    - nbconvert=6.5.4
+    - nbformat=5.7.0
+    - ncurses=6.4
+    - nest-asyncio=1.5.6
+    - nspr=4.33
+    - nss=3.74
+    - numpydoc=1.5.0
+    - openssl=1.1.1t
+    - packaging=23.0
+    - pandocfilters=1.5.0
+    - parso=0.8.3
+    - pathspec=0.10.3
+    - pcre=8.45
+    - pexpect=4.8.0
+    - pickleshare=0.7.5
+    - pip=23.0.1
+    - platformdirs=2.5.2
+    - pluggy=1.0.0
+    - ply=3.11
+    - poyo=0.5.0
+    - prompt-toolkit=3.0.36
+    - psutil=5.9.0
+    - ptyprocess=0.7.0
+    - pure_eval=0.2.2
+    - pycodestyle=2.10.0
+    - pycparser=2.21
+    - pydocstyle=6.3.0
+    - pyflakes=3.0.1
+    - pygments=2.11.2
+    - pylint=2.16.2
+    - pylint-venv=2.3.0
+    - pyls-spyder=0.4.0
+    - pyobjc-core=9.0
+    - pyobjc-framework-cocoa=9.0
+    - pyobjc-framework-coreservices=9.0
+    - pyobjc-framework-fsevents=9.0
+    - pyopenssl=23.0.0
+    - pyqt=5.15.7
+    - pyqt5-sip=12.11.0
+    - pyqtwebengine=5.15.7
+    - pyrsistent=0.18.0
+    - pysocks=1.7.1
+    - python=3.9.16
+    - python-dateutil=2.8.2
+    - python-fastjsonschema=2.16.2
+    - python-lsp-black=1.2.1
+    - python-lsp-jsonrpc=1.0.0
+    - python-lsp-server=1.7.1
+    - python-slugify=5.0.2
+    - python.app=3
+    - pytoolconfig=1.2.5
+    - pyyaml=6.0
+    - contourpy==1.0.7
+    - cycler==0.11.0
+    - et-xmlfile==1.1.0
+    - fonttools==4.39.3
+    - importlib-resources==5.12.0
+    - jsonrpclib==0.2.1
+    - jsonrpcserver==5.0.9
+    - kiwisolver==1.4.4
+    - matplotlib==3.7.1
+    - mip==1.15.0
+    - numpy==1.24.2
+    - openpyxl==3.1.2
+    - oslash==0.6.3
+    - pandas==2.0.0
+    - pgeocode==0.4.1
+    - pillow==9.5.0
+    - pyaml==23.9.6
+    - pyparsing==3.0.9
+    - pytz==2023.3
+    - scipy==1.10.1
+    - seaborn==0.12.2
+    - tzdata==2023.3
+
+   
+## Folders
+
+- tychegui
+- tychefront
+
+## Steps for starting the GUI
+
+ - Activate Tyche environment through conda in the terminal
+ - Navigate to `~/tyche/src/tyche-gui`
+ - Run `./server.py`
+ - Navigate to `~tyche/src/TycheFront_dist`
+- Run `python serve_wasm.py`
+- There should be message - `serving at port 8000`
+- Open a browser and navigate to `http://localhost:8000/`
+- Click `TycheFront.html`
+- Click `Begin`
+
+## Steps to explore Technology case studies
+
+- Choose the case study
+- Choose the metrics and scenarios/technologies you want to include in your study.
+- Clicking `continue` without selecting anything chooses all by default. 
+- Adjust the investments on different categories to choose amounts
+- Click `simulate` to determine metrics on the column names for combinations of investments. 
+- For optimization chose the relevant mode. 
+- Optimization mode requires several user inputs 
+	- Metric to be optimized
+	- Sense of the optimization
+	- Bounds on non optimized metrics (or optimized metrics)
+	- Bounds on investment categories
+	- Total investment bounds. 
+- Click `optimize`
+- Runs are saved with all parameters and historical runs can be accessed through the top right window - `history panel`
+
+
+> Written with [StackEdit](https://stackedit.io/).
