@@ -311,27 +311,7 @@ def get_scenarios():
     return Success(fetch_technologies())
 
 def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_count=100):
-    
-    """
-    Evaluates investment impcats
 
-    Parameters
-    ----------
-    data_to_tyche: dictionary
-        information obtained from the GUI
-        
-    path: str
-        path to the technology case under study
-        
-    sample_count: int
-         number of samples for calculation
-
-    Returns
-    -------
-    evaluator: Evaluator object from Tyche
-        Evaluator object can be extracted to get investment results data
-
-    """
     chosen_tech_name = selected_tech['name']
 
     xls_file = (server_common.technology_path / path)
@@ -349,16 +329,9 @@ def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_co
 
     evaluator = ty.Evaluator(tranche_results)
     
-
     optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
-        # Creating Dataframe
-    # Here all we need to do is point to the correct Tyche technology, create the evaluator and run the evaluator with the dataframe with
-    # category names in one column the investments in another
-
-    #(name, investment) = extract_category_investment(selected_tech, data_to_tyche)
-
-    #logging.debug("Category investment: %s", str(list(zip(name, investment))))
+    print("Optimization params:", opt_parameters)
 
     optimum = optimizer.opt_slsqp(**opt_parameters)
 
@@ -420,7 +393,10 @@ def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_co
     results_to_gui = {}
     results_to_gui['scenario_id'] = selected_tech["id"]
     results_to_gui['category_state'] = category_state
-    results_to_gui['metric_state'] = metric_state
+    results_to_gui['metric_state'] = {
+        opt_met.metric_id : { 'limit' : opt_met.value, 'sense' : opt_met.bound_type }
+        for opt_met in request_definition.metric_states
+    }
     #results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
     #results_to_gui['cells'] = sim_results
     results_to_gui["opt_metric_id"] = request_definition.metric_target
@@ -448,7 +424,10 @@ def optimize_scenario(request_definition):
 
     logging.debug("Request selected %s", repr(chosen_tech))
 
-    metric_target = metric_to_name(chosen_tech, request_definition.metric_target)
+    try:
+        metric_target = metric_to_name(chosen_tech, request_definition.metric_target)
+    except:
+        metric_target = chosen_tech['metric_defs'][0]['name']
 
     metric_df = {}
 
@@ -458,9 +437,19 @@ def optimize_scenario(request_definition):
             "sense" : mt.bound_type
         }
 
+    sense = None
+
+    try:
+        #sanitize
+        if request_definition.optimize_sense in ["min", "max"]:
+            sense = request_definition.optimize_sense
+    except:
+        pass
+
+
     param = {
         'metric' : metric_target,
-        'sense' : None,
+        'sense' : sense,
         'max_amount' : None,
         'total_amount' : request_definition.portfolio,
         'eps_metric' : metric_df,
@@ -471,6 +460,8 @@ def optimize_scenario(request_definition):
 
     opt_results = evaluate_opt(chosen_tech_path, request_definition, param, chosen_tech)
 
+    print("OPT_RESULTS", opt_results)
+
     #exec sim
 
     sim_results = run_scenario({
@@ -478,10 +469,11 @@ def optimize_scenario(request_definition):
         'category_states' : opt_results['category_state'],
     })._value.result
 
-    print(sim_results)
+    print("SIM RESULTS", sim_results)
 
     # merge results
     opt_results["cells"] = sim_results["cells"]
+    opt_results["category_state"] = sim_results["category_state"]
 
     return Success(opt_results)
 
