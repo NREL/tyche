@@ -288,7 +288,7 @@
             "category_defs": [
                 {
                     "name": "Module R&D",
-                    "description": "nan",
+                    "description": "Research and development for solar cell modules",
                     "starting_investment": 849926,
                     "max_investment": 4500000,
                     "image": "https://picsum.photos/seed/d2f7697f-455e-471c-9483-450d7dd9efba/128/128",
@@ -296,7 +296,7 @@
                 },
                 {
                     "name": "Inverter R&D",
-                    "description": "nan",
+                    "description": "Research and development for inverter components",
                     "starting_investment": 800647,
                     "max_investment": 3000000,
                     "image": "https://picsum.photos/seed/98c47e99-09c7-4bea-8174-04a4103547ff/128/128",
@@ -314,7 +314,7 @@
             "metric_defs": [
                 {
                     "name": "LCOE",
-                    "description": "Quantified as a reduction from a base case: maximize this metric.",
+                    "description": "Levelized cost of investment",
                     "image": "https://picsum.photos/seed/8d6860c4-7f08-47b7-9d27-c463753e4af8/128/128",
                     "id": "8d6860c4-7f08-47b7-9d27-c463753e4af8"
                 },
