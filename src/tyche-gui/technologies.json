@@ -2,515 +2,515 @@
     "technology_list": [
         {
             "name": "tutorial-basic",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/14b51de4-1bba-45b6-ac9a-d07dc02e7745/128/128",
-            "id": "14b51de4-1bba-45b6-ac9a-d07dc02e7745",
+            "description": "Wind Turbine",
+            "image": "/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/tyche/src/technology/tutorial-basic/tutorial-basic.jpg",
+            "id": "9775cf3f-e9bb-4cdf-8add-db02c8f223a8",
             "category_defs": [
                 {
                     "name": "Rotor Investment Only",
-                    "description": "nan",
-                    "starting_investment": 2548085,
+                    "description": "Rotor Investment Only",
+                    "starting_investment": 1100462,
                     "max_investment": 9000000,
-                    "image": "https://picsum.photos/seed/af807796-e6cf-461e-9d1b-4496a16747f4/128/128",
-                    "id": "af807796-e6cf-461e-9d1b-4496a16747f4"
+                    "image": "https://picsum.photos/seed/8127fa9a-ff2f-45fc-8068-813d635add2d/128/128",
+                    "id": "8127fa9a-ff2f-45fc-8068-813d635add2d"
                 },
                 {
                     "name": "Drive Investment Only",
-                    "description": "nan",
-                    "starting_investment": 1860130,
+                    "description": "Drive Investment Only",
+                    "starting_investment": 1920545,
                     "max_investment": 7000000,
-                    "image": "https://picsum.photos/seed/4a765838-3ba7-4173-84e3-87b607ee8e8f/128/128",
-                    "id": "4a765838-3ba7-4173-84e3-87b607ee8e8f"
+                    "image": "https://picsum.photos/seed/840af431-bf73-4aee-a8a4-bfd84b8bb39a/128/128",
+                    "id": "840af431-bf73-4aee-a8a4-bfd84b8bb39a"
                 },
                 {
                     "name": "Tower Investment Only",
-                    "description": "nan",
-                    "starting_investment": 1367023,
+                    "description": "Tower Investment Only",
+                    "starting_investment": 1690783,
                     "max_investment": 6000000,
-                    "image": "https://picsum.photos/seed/c5b4adb1-80fc-4ec7-9339-c9984e02c139/128/128",
-                    "id": "c5b4adb1-80fc-4ec7-9339-c9984e02c139"
+                    "image": "https://picsum.photos/seed/3e5ad723-61b7-4651-8739-d695d672c5a7/128/128",
+                    "id": "3e5ad723-61b7-4651-8739-d695d672c5a7"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "Cost",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/cea9ae6a-1e02-41b4-9911-8cd40a7434e7/128/128",
-                    "id": "cea9ae6a-1e02-41b4-9911-8cd40a7434e7"
-                },
-                {
-                    "name": "AEP",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/de8dea86-86ba-4cbe-8420-74f62e9b7578/128/128",
-                    "id": "de8dea86-86ba-4cbe-8420-74f62e9b7578"
+                    "description": "Cost of the wind turbine.",
+                    "image": "https://picsum.photos/seed/7694462b-a2ff-4e99-b363-fffe865251ed/128/128",
+                    "id": "7694462b-a2ff-4e99-b363-fffe865251ed"
                 },
                 {
                     "name": "LCOE",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/044285a0-d104-48fa-9d0e-e6fe137b51ed/128/128",
-                    "id": "044285a0-d104-48fa-9d0e-e6fe137b51ed"
+                    "description": "Levelized cost of energy.",
+                    "image": "https://picsum.photos/seed/8a8e8fc3-d427-4ff6-9cd5-fefc77b19ed5/128/128",
+                    "id": "8a8e8fc3-d427-4ff6-9cd5-fefc77b19ed5"
                 },
                 {
                     "name": "CF",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/844e90f8-a3f6-42ed-86c2-4df6c8c7b397/128/128",
-                    "id": "844e90f8-a3f6-42ed-86c2-4df6c8c7b397"
+                    "description": "Capacity factor.",
+                    "image": "https://picsum.photos/seed/e3fd3828-8258-4bd8-aa44-2e95363883e3/128/128",
+                    "id": "e3fd3828-8258-4bd8-aa44-2e95363883e3"
+                },
+                {
+                    "name": "AEP",
+                    "description": "Annual energy production.",
+                    "image": "https://picsum.photos/seed/8c81753e-d8e9-4b92-b04d-953510d5432f/128/128",
+                    "id": "8c81753e-d8e9-4b92-b04d-953510d5432f"
                 }
             ]
         },
         {
             "name": "utility-pv",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/608c208b-b12b-4145-b04b-bbc96912c3a1/128/128",
-            "id": "608c208b-b12b-4145-b04b-bbc96912c3a1",
+            "description": "Simple pv",
+            "image": "https://picsum.photos/seed/e9c1db02-ff99-4f09-9514-0b2383412c5b/128/128",
+            "id": "e9c1db02-ff99-4f09-9514-0b2383412c5b",
             "category_defs": [
                 {
                     "name": "PV R&D",
-                    "description": "nan",
+                    "description": "PV R&D",
                     "starting_investment": 1000000,
                     "max_investment": 4500000,
-                    "image": "https://picsum.photos/seed/7136ef36-2607-4aa9-bf40-24f381e5108e/128/128",
-                    "id": "7136ef36-2607-4aa9-bf40-24f381e5108e"
+                    "image": "https://picsum.photos/seed/c0b32623-c5d0-452c-af8a-556f40ea9cb0/128/128",
+                    "id": "c0b32623-c5d0-452c-af8a-556f40ea9cb0"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "LCOE",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/59d588b3-5750-40bf-9bea-19ccb273afab/128/128",
-                    "id": "59d588b3-5750-40bf-9bea-19ccb273afab"
+                    "description": "Cost",
+                    "image": "https://picsum.photos/seed/ed6e0edb-0060-4d1b-a2c8-926f36fc2bd0/128/128",
+                    "id": "ed6e0edb-0060-4d1b-a2c8-926f36fc2bd0"
                 },
                 {
                     "name": "GHG",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/07d33516-5379-4659-aae5-cb6b86423492/128/128",
-                    "id": "07d33516-5379-4659-aae5-cb6b86423492"
+                    "description": "Greenhouse gas emissions",
+                    "image": "https://picsum.photos/seed/faed8457-2ab1-42a9-9d1b-57793e331d98/128/128",
+                    "id": "faed8457-2ab1-42a9-9d1b-57793e331d98"
                 }
             ]
         },
         {
             "name": "tutorial-biorefinery",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/79a293be-a5f9-44c3-b185-e0125b6f79f4/128/128",
-            "id": "79a293be-a5f9-44c3-b185-e0125b6f79f4",
+            "description": "Biorefinery v1",
+            "image": "https://picsum.photos/seed/73615535-4e40-4265-a351-b36c2c51ca4d/128/128",
+            "id": "73615535-4e40-4265-a351-b36c2c51ca4d",
             "category_defs": [
                 {
                     "name": "Conversion",
-                    "description": "nan",
-                    "starting_investment": 594291,
+                    "description": "Conversion",
+                    "starting_investment": 463192,
                     "max_investment": 2250000,
-                    "image": "https://picsum.photos/seed/a2c1501a-8d73-419c-885e-5dbcc4c372e3/128/128",
-                    "id": "a2c1501a-8d73-419c-885e-5dbcc4c372e3"
+                    "image": "https://picsum.photos/seed/36d9d144-b11e-44f2-b357-139337ad055a/128/128",
+                    "id": "36d9d144-b11e-44f2-b357-139337ad055a"
                 },
                 {
                     "name": "Fermentation",
-                    "description": "nan",
-                    "starting_investment": 124349,
+                    "description": "Fermentation",
+                    "starting_investment": 120208,
                     "max_investment": 500000,
-                    "image": "https://picsum.photos/seed/fc6744bc-619d-4f8f-aeae-7b049d9be6be/128/128",
-                    "id": "fc6744bc-619d-4f8f-aeae-7b049d9be6be"
+                    "image": "https://picsum.photos/seed/8d9d939b-bc6c-43fd-be29-76a6420d449e/128/128",
+                    "id": "8d9d939b-bc6c-43fd-be29-76a6420d449e"
                 },
                 {
                     "name": "Preprocessing",
-                    "description": "nan",
-                    "starting_investment": 523886,
+                    "description": "Preprocessing",
+                    "starting_investment": 357377,
                     "max_investment": 1750000,
-                    "image": "https://picsum.photos/seed/f20eb047-2b3a-4544-9797-e27d4340259c/128/128",
-                    "id": "f20eb047-2b3a-4544-9797-e27d4340259c"
+                    "image": "https://picsum.photos/seed/30eb2c61-7b7e-44e1-b84f-b93c0520dd1d/128/128",
+                    "id": "30eb2c61-7b7e-44e1-b84f-b93c0520dd1d"
                 },
                 {
                     "name": "Separations",
-                    "description": "nan",
-                    "starting_investment": 616223,
+                    "description": "Separations",
+                    "starting_investment": 1150420,
                     "max_investment": 4000000,
-                    "image": "https://picsum.photos/seed/f194a212-02c9-45ae-a04b-eb7e34c384c4/128/128",
-                    "id": "f194a212-02c9-45ae-a04b-eb7e34c384c4"
+                    "image": "https://picsum.photos/seed/bb517ab8-f21c-4966-b7d3-c7d0006b7ec7/128/128",
+                    "id": "bb517ab8-f21c-4966-b7d3-c7d0006b7ec7"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "Jobs",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/f84820d5-439a-412a-bca5-56267a88290c/128/128",
-                    "id": "f84820d5-439a-412a-bca5-56267a88290c"
+                    "description": "person-hours/gal biofuel",
+                    "image": "https://picsum.photos/seed/adf4d183-cb88-4559-a211-6cfd874fa20c/128/128",
+                    "id": "adf4d183-cb88-4559-a211-6cfd874fa20c"
                 },
                 {
                     "name": "Fossil GHG",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/a3a1972a-a66b-4513-9583-47cd38bd1c5e/128/128",
-                    "id": "a3a1972a-a66b-4513-9583-47cd38bd1c5e"
+                    "description": "kg CO2-eq/gal biofuel",
+                    "image": "https://picsum.photos/seed/d81d612b-4645-450f-a38e-2852cf4f963d/128/128",
+                    "id": "d81d612b-4645-450f-a38e-2852cf4f963d"
                 },
                 {
                     "name": "Total GHG",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/296644d2-c32d-4df6-ba7a-5494fff76bb3/128/128",
-                    "id": "296644d2-c32d-4df6-ba7a-5494fff76bb3"
+                    "description": "kg CO2-eq/gal biofuel",
+                    "image": "https://picsum.photos/seed/2cc40221-143a-4aae-9239-73a471ae34cf/128/128",
+                    "id": "2cc40221-143a-4aae-9239-73a471ae34cf"
                 },
                 {
                     "name": "MFSP",
-                    "description": "minimum fuel selling price",
-                    "image": "https://picsum.photos/seed/83dcdb12-bb9b-444a-967e-4768424273d5/128/128",
-                    "id": "83dcdb12-bb9b-444a-967e-4768424273d5"
+                    "description": "USD/gal biofuel",
+                    "image": "https://picsum.photos/seed/83812ac4-385f-43b8-9d2a-b791d7f7698d/128/128",
+                    "id": "83812ac4-385f-43b8-9d2a-b791d7f7698d"
                 }
             ]
         },
         {
             "name": "template",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/30c12f85-3b30-4c39-8a1d-a24d1d955607/128/128",
-            "id": "30c12f85-3b30-4c39-8a1d-a24d1d955607",
+            "description": "Technology A",
+            "image": "https://picsum.photos/seed/0523237e-1b85-4022-8cf2-868647ab93b4/128/128",
+            "id": "0523237e-1b85-4022-8cf2-868647ab93b4",
             "category_defs": [
                 {
                     "name": "Research on Component B0",
-                    "description": "The Current State Scenario is used to evaluate the technology designs as they exist right now, before any additional R&D funding.",
-                    "starting_investment": 770108,
+                    "description": "Research on Component B0",
+                    "starting_investment": 1029103,
                     "max_investment": 3500000,
-                    "image": "https://picsum.photos/seed/9d4e7274-0a0e-475d-bd4d-072d08d2d29d/128/128",
-                    "id": "9d4e7274-0a0e-475d-bd4d-072d08d2d29d"
+                    "image": "https://picsum.photos/seed/fd2e8ac1-fb34-4e9d-b131-910256cd13b9/128/128",
+                    "id": "fd2e8ac1-fb34-4e9d-b131-910256cd13b9"
                 },
                 {
                     "name": "Research on Component B1",
-                    "description": "nan",
-                    "starting_investment": 884426,
+                    "description": "Research on Component B1",
+                    "starting_investment": 709045,
                     "max_investment": 3000000,
-                    "image": "https://picsum.photos/seed/52d3e0c0-bfba-4795-a7b6-61970cc7eb64/128/128",
-                    "id": "52d3e0c0-bfba-4795-a7b6-61970cc7eb64"
+                    "image": "https://picsum.photos/seed/6e49adf3-e161-44b1-ab2d-29b0e9122c5b/128/128",
+                    "id": "6e49adf3-e161-44b1-ab2d-29b0e9122c5b"
                 },
                 {
                     "name": "Research on Component B2",
-                    "description": "nan",
-                    "starting_investment": 603809,
+                    "description": "Research on Component B2",
+                    "starting_investment": 283968,
                     "max_investment": 2500000,
-                    "image": "https://picsum.photos/seed/fc254e3f-2ac6-431e-bdb4-1267b22687f6/128/128",
-                    "id": "fc254e3f-2ac6-431e-bdb4-1267b22687f6"
+                    "image": "https://picsum.photos/seed/ab6174ca-a412-4aa4-af68-2c254a7b09f4/128/128",
+                    "id": "ab6174ca-a412-4aa4-af68-2c254a7b09f4"
                 },
                 {
                     "name": "Research on Component C",
-                    "description": "nan",
-                    "starting_investment": 350065,
+                    "description": "Research on Component C",
+                    "starting_investment": 415465,
                     "max_investment": 3000000,
-                    "image": "https://picsum.photos/seed/fb07a32d-882c-4115-b9a8-0d4746986a98/128/128",
-                    "id": "fb07a32d-882c-4115-b9a8-0d4746986a98"
+                    "image": "https://picsum.photos/seed/5a5b974a-340b-4e4e-a3ae-f56866466ac2/128/128",
+                    "id": "5a5b974a-340b-4e4e-a3ae-f56866466ac2"
                 },
                 {
                     "name": "Research on Component N",
-                    "description": "nan",
-                    "starting_investment": 763822,
+                    "description": "Research on Component N",
+                    "starting_investment": 897784,
                     "max_investment": 3500000,
-                    "image": "https://picsum.photos/seed/d22d152f-8ed3-49b3-bbf2-16d1e69846f9/128/128",
-                    "id": "d22d152f-8ed3-49b3-bbf2-16d1e69846f9"
+                    "image": "https://picsum.photos/seed/ef683a64-4c4e-447b-8844-98132b36bdd8/128/128",
+                    "id": "ef683a64-4c4e-447b-8844-98132b36bdd8"
                 },
                 {
                     "name": "Research on Efficiency",
-                    "description": "nan",
-                    "starting_investment": 705664,
+                    "description": "Research on Efficiency",
+                    "starting_investment": 484809,
                     "max_investment": 2500000,
-                    "image": "https://picsum.photos/seed/23231a22-4ae3-43c7-b7b9-5d01a33317ca/128/128",
-                    "id": "23231a22-4ae3-43c7-b7b9-5d01a33317ca"
+                    "image": "https://picsum.photos/seed/2fe13efa-dad8-4fb9-a4fb-e0894cd3778c/128/128",
+                    "id": "2fe13efa-dad8-4fb9-a4fb-e0894cd3778c"
                 },
                 {
                     "name": "Research on Peripherals",
-                    "description": "nan",
-                    "starting_investment": 432080,
+                    "description": "Research on Peripherals",
+                    "starting_investment": 303414,
                     "max_investment": 2250000,
-                    "image": "https://picsum.photos/seed/1536de3f-10b9-4703-9c95-63ca1e8a03b6/128/128",
-                    "id": "1536de3f-10b9-4703-9c95-63ca1e8a03b6"
+                    "image": "https://picsum.photos/seed/77526f8b-26c7-4637-9e9d-ad74d39c8ccc/128/128",
+                    "id": "77526f8b-26c7-4637-9e9d-ad74d39c8ccc"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "Delta System Cost",
-                    "description": "All Metrics should be listed here, quantified as a reduction from a base case: maximize this metric.",
-                    "image": "https://picsum.photos/seed/c2f7c0ee-6f88-4c67-a7e2-b67a78c2eaa6/128/128",
-                    "id": "c2f7c0ee-6f88-4c67-a7e2-b67a78c2eaa6"
+                    "description": "nan",
+                    "image": "https://picsum.photos/seed/ef3965a7-682b-427f-ac22-c4121be70990/128/128",
+                    "id": "ef3965a7-682b-427f-ac22-c4121be70990"
                 },
                 {
                     "name": "Delta Labor",
-                    "description": "All Metrics should be listed here, quantified as a reduction from a base case: maximize this metric.",
-                    "image": "https://picsum.photos/seed/a8bf23d9-5193-4730-9c01-288180504627/128/128",
-                    "id": "a8bf23d9-5193-4730-9c01-288180504627"
+                    "description": "nan",
+                    "image": "https://picsum.photos/seed/1b27018d-b9e8-488a-abeb-95e384ebe560/128/128",
+                    "id": "1b27018d-b9e8-488a-abeb-95e384ebe560"
                 },
                 {
                     "name": "Delta Environment",
-                    "description": "All Metrics should be listed here, quantified as a reduction from a base case: maximize this metric.",
-                    "image": "https://picsum.photos/seed/37b88675-104e-4464-8f98-8d437356a21a/128/128",
-                    "id": "37b88675-104e-4464-8f98-8d437356a21a"
+                    "description": "nan",
+                    "image": "https://picsum.photos/seed/c1d9aece-f090-4553-8a49-d0a6c7484ec3/128/128",
+                    "id": "c1d9aece-f090-4553-8a49-d0a6c7484ec3"
                 },
                 {
                     "name": "Delta Overall Efficiency",
                     "description": "nan",
-                    "image": "https://picsum.photos/seed/713798e3-4cf9-4438-aa99-9bcabd1cff46/128/128",
-                    "id": "713798e3-4cf9-4438-aa99-9bcabd1cff46"
+                    "image": "https://picsum.photos/seed/88e991a1-6ace-43e2-8265-5200e6f06fba/128/128",
+                    "id": "88e991a1-6ace-43e2-8265-5200e6f06fba"
                 }
             ]
         },
         {
             "name": "simple-electrolysis",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/c61f3d9e-6a67-4815-a2f9-649539659b77/128/128",
-            "id": "c61f3d9e-6a67-4815-a2f9-649539659b77",
+            "description": "Simple electrolysis",
+            "image": "https://picsum.photos/seed/a53b30c3-e74d-454f-b6ea-e71692109861/128/128",
+            "id": "a53b30c3-e74d-454f-b6ea-e71692109861",
             "category_defs": [
                 {
                     "name": "Electrolysis R&D",
-                    "description": "nan",
-                    "starting_investment": 594814,
+                    "description": "Electrolysis R&D",
+                    "starting_investment": 677346,
                     "max_investment": 5000000,
-                    "image": "https://picsum.photos/seed/3ab5dce5-a34a-4f0d-8902-1ac27214d3ea/128/128",
-                    "id": "3ab5dce5-a34a-4f0d-8902-1ac27214d3ea"
+                    "image": "https://picsum.photos/seed/ff50e63f-0224-4a31-ae66-fb82e356239f/128/128",
+                    "id": "ff50e63f-0224-4a31-ae66-fb82e356239f"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "Cost",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/3194fceb-928e-450b-bd17-17e8d1a33551/128/128",
-                    "id": "3194fceb-928e-450b-bd17-17e8d1a33551"
+                    "description": "Cost",
+                    "image": "https://picsum.photos/seed/36f5c664-27fb-43c8-b26c-663e19a352ee/128/128",
+                    "id": "36f5c664-27fb-43c8-b26c-663e19a352ee"
                 },
                 {
                     "name": "Jobs",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/7bcc641d-67f6-4a38-8f25-f644a5cb46fa/128/128",
-                    "id": "7bcc641d-67f6-4a38-8f25-f644a5cb46fa"
+                    "description": "Jobs",
+                    "image": "https://picsum.photos/seed/85fa5c57-7b59-4b57-93d3-75faf5d01db1/128/128",
+                    "id": "85fa5c57-7b59-4b57-93d3-75faf5d01db1"
                 },
                 {
                     "name": "GHG",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/2aad760b-5834-4c63-b44f-82a3afe36d7a/128/128",
-                    "id": "2aad760b-5834-4c63-b44f-82a3afe36d7a"
+                    "description": "Greenhouse gas emissions",
+                    "image": "https://picsum.photos/seed/0c5f06b0-0ed2-4aa6-b958-9d27b1fe095e/128/128",
+                    "id": "0c5f06b0-0ed2-4aa6-b958-9d27b1fe095e"
                 }
             ]
         },
         {
             "name": "pv-residential-simple",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/62b8ce08-0547-41b9-989f-a209d7f7de54/128/128",
-            "id": "62b8ce08-0547-41b9-989f-a209d7f7de54",
+            "description": "Residential PV",
+            "image": "https://picsum.photos/seed/5301272e-913f-4a43-a979-b185559e0e9b/128/128",
+            "id": "5301272e-913f-4a43-a979-b185559e0e9b",
             "category_defs": [
                 {
                     "name": "Module R&D",
-                    "description": "Research and development for solar cell modules",
-                    "starting_investment": 849926,
+                    "description": "Module R&D",
+                    "starting_investment": 1311295,
                     "max_investment": 4500000,
-                    "image": "https://picsum.photos/seed/d2f7697f-455e-471c-9483-450d7dd9efba/128/128",
-                    "id": "d2f7697f-455e-471c-9483-450d7dd9efba"
+                    "image": "https://picsum.photos/seed/ad2dc52c-65ec-41ba-8f6e-a3016b3e07fe/128/128",
+                    "id": "ad2dc52c-65ec-41ba-8f6e-a3016b3e07fe"
                 },
                 {
                     "name": "Inverter R&D",
-                    "description": "Research and development for inverter components",
-                    "starting_investment": 800647,
+                    "description": "Inverter R&D",
+                    "starting_investment": 720203,
                     "max_investment": 3000000,
-                    "image": "https://picsum.photos/seed/98c47e99-09c7-4bea-8174-04a4103547ff/128/128",
-                    "id": "98c47e99-09c7-4bea-8174-04a4103547ff"
+                    "image": "https://picsum.photos/seed/f5bd3ba3-9b4d-4101-987e-d2343e1ad8cb/128/128",
+                    "id": "f5bd3ba3-9b4d-4101-987e-d2343e1ad8cb"
                 },
                 {
                     "name": "BoS R&D",
-                    "description": "nan",
-                    "starting_investment": 256935,
+                    "description": "BoS R&D",
+                    "starting_investment": 229246,
                     "max_investment": 900000,
-                    "image": "https://picsum.photos/seed/4ec242f6-9385-4947-ae46-e0f6dc10ccc6/128/128",
-                    "id": "4ec242f6-9385-4947-ae46-e0f6dc10ccc6"
+                    "image": "https://picsum.photos/seed/31fd8940-9b0f-48e6-9b8e-a60a9a7d8408/128/128",
+                    "id": "31fd8940-9b0f-48e6-9b8e-a60a9a7d8408"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "LCOE",
-                    "description": "Levelized cost of investment",
-                    "image": "https://picsum.photos/seed/8d6860c4-7f08-47b7-9d27-c463753e4af8/128/128",
-                    "id": "8d6860c4-7f08-47b7-9d27-c463753e4af8"
+                    "description": "reduction in levelized cost of energy",
+                    "image": "https://picsum.photos/seed/22776e35-15cd-4a56-807c-ee825e7f7b8b/128/128",
+                    "id": "22776e35-15cd-4a56-807c-ee825e7f7b8b"
                 },
                 {
                     "name": "Labor",
-                    "description": "Quantified as a reduction from a base case: minimize this metric.",
-                    "image": "https://picsum.photos/seed/aa7408a2-2dd5-4333-817d-6134f0b27178/128/128",
-                    "id": "aa7408a2-2dd5-4333-817d-6134f0b27178"
+                    "description": "increase in spending on wages",
+                    "image": "https://picsum.photos/seed/ec2eee70-ade0-4483-b07b-dfe0ffbb864c/128/128",
+                    "id": "ec2eee70-ade0-4483-b07b-dfe0ffbb864c"
                 },
                 {
                     "name": "GHG",
-                    "description": "Quantified as a reduction from a base case: maximize this metric.",
-                    "image": "https://picsum.photos/seed/7b7e2243-2332-44b5-9b5c-f95dcc8ad5fe/128/128",
-                    "id": "7b7e2243-2332-44b5-9b5c-f95dcc8ad5fe"
+                    "description": "reduction in GHGs",
+                    "image": "https://picsum.photos/seed/50cc6d0d-41c0-47b6-aa74-b725d9142114/128/128",
+                    "id": "50cc6d0d-41c0-47b6-aa74-b725d9142114"
                 }
             ]
         },
         {
             "name": "pv-residential-large",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/b4222e4b-d17f-46eb-9de3-504d40149122/128/128",
-            "id": "b4222e4b-d17f-46eb-9de3-504d40149122",
+            "description": "PV Generic",
+            "image": "https://picsum.photos/seed/0fc8a24b-ad7f-43f4-ac97-20bdf1469e36/128/128",
+            "id": "0fc8a24b-ad7f-43f4-ac97-20bdf1469e36",
             "category_defs": [
                 {
                     "name": "Power Electronics",
-                    "description": "nan",
-                    "starting_investment": 943285,
+                    "description": "Power Electronics",
+                    "starting_investment": 896242,
                     "max_investment": 5000000,
-                    "image": "https://picsum.photos/seed/c3b0c105-5840-4b99-a428-09773b93363d/128/128",
-                    "id": "c3b0c105-5840-4b99-a428-09773b93363d"
+                    "image": "https://picsum.photos/seed/8b7cdf7a-934e-4e3e-b4c3-d60e350b638a/128/128",
+                    "id": "8b7cdf7a-934e-4e3e-b4c3-d60e350b638a"
                 },
                 {
                     "name": "Soft Costs",
-                    "description": "nan",
-                    "starting_investment": 517530,
+                    "description": "Soft Costs",
+                    "starting_investment": 886840,
                     "max_investment": 5000000,
-                    "image": "https://picsum.photos/seed/24d19818-e117-46e1-89b1-770af0dd2716/128/128",
-                    "id": "24d19818-e117-46e1-89b1-770af0dd2716"
+                    "image": "https://picsum.photos/seed/f6632bbf-d52a-4b21-9176-0b96554cdca6/128/128",
+                    "id": "f6632bbf-d52a-4b21-9176-0b96554cdca6"
                 },
                 {
                     "name": "Polysilicon",
-                    "description": "nan",
-                    "starting_investment": 853385,
+                    "description": "Polysilicon",
+                    "starting_investment": 541606,
                     "max_investment": 4500000,
-                    "image": "https://picsum.photos/seed/29d6ecaf-510c-489e-a86b-caca4b4d0877/128/128",
-                    "id": "29d6ecaf-510c-489e-a86b-caca4b4d0877"
+                    "image": "https://picsum.photos/seed/8511341f-5187-4327-9693-7b4503b6c7bc/128/128",
+                    "id": "8511341f-5187-4327-9693-7b4503b6c7bc"
                 },
                 {
                     "name": "CIGS",
-                    "description": "nan",
-                    "starting_investment": 716400,
+                    "description": "CIGS",
+                    "starting_investment": 345886,
                     "max_investment": 3000000,
-                    "image": "https://picsum.photos/seed/4ce84050-fa40-4033-ba5e-2720ebb2b254/128/128",
-                    "id": "4ce84050-fa40-4033-ba5e-2720ebb2b254"
+                    "image": "https://picsum.photos/seed/af4a2a53-c78e-4969-81dd-bf3eb53541c3/128/128",
+                    "id": "af4a2a53-c78e-4969-81dd-bf3eb53541c3"
                 },
                 {
                     "name": "CdTe",
-                    "description": "nan",
-                    "starting_investment": 1598424,
+                    "description": "CdTe",
+                    "starting_investment": 1511802,
                     "max_investment": 6000000,
-                    "image": "https://picsum.photos/seed/d07d0878-66de-4cfd-917f-861c02c4259e/128/128",
-                    "id": "d07d0878-66de-4cfd-917f-861c02c4259e"
+                    "image": "https://picsum.photos/seed/5e4e5630-b413-44c5-aeb0-009594ede69a/128/128",
+                    "id": "5e4e5630-b413-44c5-aeb0-009594ede69a"
                 },
                 {
                     "name": "GaAs",
-                    "description": "nan",
-                    "starting_investment": 1327428,
+                    "description": "GaAs",
+                    "starting_investment": 1753520,
                     "max_investment": 7500000,
-                    "image": "https://picsum.photos/seed/8d1a454a-69f0-4d18-afac-65dc7e2228f9/128/128",
-                    "id": "8d1a454a-69f0-4d18-afac-65dc7e2228f9"
+                    "image": "https://picsum.photos/seed/cabfc1d5-925d-49d6-9f1e-85f995d7a1f8/128/128",
+                    "id": "cabfc1d5-925d-49d6-9f1e-85f995d7a1f8"
                 },
                 {
                     "name": "Perovskite",
-                    "description": "nan",
-                    "starting_investment": 2778367,
+                    "description": "Perovskite",
+                    "starting_investment": 1397315,
                     "max_investment": 9500000,
-                    "image": "https://picsum.photos/seed/9158c718-9b02-4343-8b04-29c8d0ce8f1f/128/128",
-                    "id": "9158c718-9b02-4343-8b04-29c8d0ce8f1f"
+                    "image": "https://picsum.photos/seed/84ad2576-14ca-4eff-ae61-612afabb1b0d/128/128",
+                    "id": "84ad2576-14ca-4eff-ae61-612afabb1b0d"
                 },
                 {
                     "name": "InGaP",
-                    "description": "nan",
-                    "starting_investment": 1062540,
+                    "description": "InGaP",
+                    "starting_investment": 2048967,
                     "max_investment": 9500000,
-                    "image": "https://picsum.photos/seed/ec9055a6-c6dd-4219-9afb-62fafe475eff/128/128",
-                    "id": "ec9055a6-c6dd-4219-9afb-62fafe475eff"
+                    "image": "https://picsum.photos/seed/a9400034-10ff-4616-8aa6-a7be5742e607/128/128",
+                    "id": "a9400034-10ff-4616-8aa6-a7be5742e607"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "Capital",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/5c7fb9d1-f1b8-41c2-8147-3221f7b04fbc/128/128",
-                    "id": "5c7fb9d1-f1b8-41c2-8147-3221f7b04fbc"
+                    "description": "capital cost",
+                    "image": "https://picsum.photos/seed/b5ac6e98-020f-42fb-a6d8-a0032675de40/128/128",
+                    "id": "b5ac6e98-020f-42fb-a6d8-a0032675de40"
                 },
                 {
                     "name": "LCOE",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/7b8f4312-c69f-45cc-a91f-b677c5a790b0/128/128",
-                    "id": "7b8f4312-c69f-45cc-a91f-b677c5a790b0"
+                    "description": "levelized cost of energy",
+                    "image": "https://picsum.photos/seed/bf1641ec-8864-404e-8ed7-6431181722b8/128/128",
+                    "id": "bf1641ec-8864-404e-8ed7-6431181722b8"
                 },
                 {
                     "name": "GHG",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/91983845-1741-496f-8bed-99fcf334d67f/128/128",
-                    "id": "91983845-1741-496f-8bed-99fcf334d67f"
+                    "description": "greenouse gas offset",
+                    "image": "https://picsum.photos/seed/96764d3d-0e20-420e-80d6-c996c5f335eb/128/128",
+                    "id": "96764d3d-0e20-420e-80d6-c996c5f335eb"
                 },
                 {
                     "name": "Strategic",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/f7390ff9-469e-427c-864f-d7a21463b0d7/128/128",
-                    "id": "f7390ff9-469e-427c-864f-d7a21463b0d7"
+                    "description": "strategic metal used",
+                    "image": "https://picsum.photos/seed/153074f8-c981-42da-9de9-1d57c67d8638/128/128",
+                    "id": "153074f8-c981-42da-9de9-1d57c67d8638"
                 },
                 {
                     "name": "Hazardous",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/f8152859-bbde-417e-b953-dc26418fd35e/128/128",
-                    "id": "f8152859-bbde-417e-b953-dc26418fd35e"
+                    "description": "hazardous waste produced",
+                    "image": "https://picsum.photos/seed/906e216a-44f8-42d7-88fd-bc00bb038573/128/128",
+                    "id": "906e216a-44f8-42d7-88fd-bc00bb038573"
                 },
                 {
                     "name": "Yield",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/dece4884-73b0-4194-b61d-36ada339dcd9/128/128",
-                    "id": "dece4884-73b0-4194-b61d-36ada339dcd9"
+                    "description": "specific yield",
+                    "image": "https://picsum.photos/seed/a560a92b-aad2-49c5-852a-ab45eeae47b6/128/128",
+                    "id": "a560a92b-aad2-49c5-852a-ab45eeae47b6"
                 },
                 {
                     "name": "Efficiency",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/e70caac5-f5b1-4e6d-9986-7cf0ded3484e/128/128",
-                    "id": "e70caac5-f5b1-4e6d-9986-7cf0ded3484e"
+                    "description": "module efficiency",
+                    "image": "https://picsum.photos/seed/41b1ffd6-e254-4b01-ac6b-f90a84ee6a43/128/128",
+                    "id": "41b1ffd6-e254-4b01-ac6b-f90a84ee6a43"
                 },
                 {
                     "name": "Lifetime",
-                    "description": "nan",
-                    "image": "https://picsum.photos/seed/65ae6bef-0519-4a5f-8166-f82742098b0a/128/128",
-                    "id": "65ae6bef-0519-4a5f-8166-f82742098b0a"
+                    "description": "module lifetime",
+                    "image": "https://picsum.photos/seed/4e96d71f-b34c-455f-a4f9-dd1d1c421ad4/128/128",
+                    "id": "4e96d71f-b34c-455f-a4f9-dd1d1c421ad4"
                 }
             ]
         },
         {
             "name": "transport-model",
-            "description": "from file containing technology information",
-            "image": "https://picsum.photos/seed/55f7594c-1e0a-40ee-92e0-11c6865f20f2/128/128",
-            "id": "55f7594c-1e0a-40ee-92e0-11c6865f20f2",
+            "description": "Class 8 Diesel Tractor",
+            "image": "https://picsum.photos/seed/b7d871ea-9ba8-4f9a-9bc8-16eb1f531fbf/128/128",
+            "id": "b7d871ea-9ba8-4f9a-9bc8-16eb1f531fbf",
             "category_defs": [
                 {
                     "name": "No Category",
-                    "description": "Baseline scenario",
+                    "description": "No Category",
                     "starting_investment": 0,
                     "max_investment": 0,
-                    "image": "https://picsum.photos/seed/07189d9e-d48f-4bf5-a062-b22aebf015e3/128/128",
-                    "id": "07189d9e-d48f-4bf5-a062-b22aebf015e3"
+                    "image": "https://picsum.photos/seed/69e3a9e3-46cc-4b95-a331-f1e73447ae07/128/128",
+                    "id": "69e3a9e3-46cc-4b95-a331-f1e73447ae07"
                 }
             ],
             "metric_defs": [
                 {
                     "name": "MSRP",
                     "description": "MSRP = Minimimum suggested retail price",
-                    "image": "https://picsum.photos/seed/ce219c31-7e5a-4dbc-af9d-b98312d5e85f/128/128",
-                    "id": "ce219c31-7e5a-4dbc-af9d-b98312d5e85f"
+                    "image": "https://picsum.photos/seed/5b3324b7-9951-435a-aa4b-9c45b940a52f/128/128",
+                    "id": "5b3324b7-9951-435a-aa4b-9c45b940a52f"
                 },
                 {
                     "name": "Lifetime cost",
                     "description": "nan",
-                    "image": "https://picsum.photos/seed/5f66bf9e-849c-42be-83d5-fd455d35d6b1/128/128",
-                    "id": "5f66bf9e-849c-42be-83d5-fd455d35d6b1"
+                    "image": "https://picsum.photos/seed/3be14280-8e56-44f7-8edb-69fb76e200c5/128/128",
+                    "id": "3be14280-8e56-44f7-8edb-69fb76e200c5"
                 },
                 {
                     "name": "Vehicle weight",
                     "description": "nan",
-                    "image": "https://picsum.photos/seed/bcae5874-ea9b-4e30-ba78-eca2b2be0460/128/128",
-                    "id": "bcae5874-ea9b-4e30-ba78-eca2b2be0460"
+                    "image": "https://picsum.photos/seed/1e70a712-49a1-4c54-be83-10c20fbebe4b/128/128",
+                    "id": "1e70a712-49a1-4c54-be83-10c20fbebe4b"
                 },
                 {
                     "name": "Energy consumption",
                     "description": "nan",
-                    "image": "https://picsum.photos/seed/1721bec5-d1f7-446f-abe8-579771de8f3a/128/128",
-                    "id": "1721bec5-d1f7-446f-abe8-579771de8f3a"
+                    "image": "https://picsum.photos/seed/0d744cc2-182c-47fb-b71e-a3dc98d9156d/128/128",
+                    "id": "0d744cc2-182c-47fb-b71e-a3dc98d9156d"
                 },
                 {
                     "name": "GHG emissions",
                     "description": "nan",
-                    "image": "https://picsum.photos/seed/117801f7-6988-499c-87df-6fd6682cc4ff/128/128",
-                    "id": "117801f7-6988-499c-87df-6fd6682cc4ff"
+                    "image": "https://picsum.photos/seed/de803502-5966-4c1b-8a92-ac671f50fbf1/128/128",
+                    "id": "de803502-5966-4c1b-8a92-ac671f50fbf1"
                 }
             ]
         }
     ],
     "tech_uuid_to_dir": {
-        "14b51de4-1bba-45b6-ac9a-d07dc02e7745": "tutorial-basic",
-        "608c208b-b12b-4145-b04b-bbc96912c3a1": "utility-pv",
-        "79a293be-a5f9-44c3-b185-e0125b6f79f4": "tutorial-biorefinery",
-        "30c12f85-3b30-4c39-8a1d-a24d1d955607": "template",
-        "c61f3d9e-6a67-4815-a2f9-649539659b77": "simple-electrolysis",
-        "62b8ce08-0547-41b9-989f-a209d7f7de54": "pv-residential-simple",
-        "b4222e4b-d17f-46eb-9de3-504d40149122": "pv-residential-large",
-        "55f7594c-1e0a-40ee-92e0-11c6865f20f2": "transport-model"
+        "9775cf3f-e9bb-4cdf-8add-db02c8f223a8": "tutorial-basic",
+        "e9c1db02-ff99-4f09-9514-0b2383412c5b": "utility-pv",
+        "73615535-4e40-4265-a351-b36c2c51ca4d": "tutorial-biorefinery",
+        "0523237e-1b85-4022-8cf2-868647ab93b4": "template",
+        "a53b30c3-e74d-454f-b6ea-e71692109861": "simple-electrolysis",
+        "5301272e-913f-4a43-a979-b185559e0e9b": "pv-residential-simple",
+        "0fc8a24b-ad7f-43f4-ac97-20bdf1469e36": "pv-residential-large",
+        "b7d871ea-9ba8-4f9a-9bc8-16eb1f531fbf": "transport-model"
     }
 }

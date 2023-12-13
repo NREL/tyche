@@ -17,8 +17,16 @@ import server_common
 import pandas as pd
 import uuid
 
-def gen_random_image(seed):
-    return f"https://picsum.photos/seed/{seed}/128/128"
+def get_image(this_tech_image,seed):
+
+    if this_tech_image != None:
+        isExisting = os.path.exists(this_tech_image)
+    else:
+        isExisting = False
+    if isExisting == True:
+         return str(this_tech_image)
+    else:
+        return f"https://picsum.photos/seed/{seed}/128/128"
 
 def get_categories(tech_source):
     """
@@ -50,10 +58,10 @@ def get_categories(tech_source):
 
         category = {
             'name': c,
-            'description': str(pd.unique(d['Notes'])[0]),
+            'description': str(pd.unique(d['Category'])[0]),
             'starting_investment': starting_investment,
             'max_investment': max_investment,
-            'image' : gen_random_image(cat_id),
+            'image' : get_image(None,cat_id),
             'id': cat_id
         }
         category_list.append(category)
@@ -75,8 +83,8 @@ def get_metrics(tech_source):
         list of metrics within a technology
     """
 
-    datafile = pd.read_excel(tech_source, sheet_name="results")
-    d_metrics = datafile[datafile['Variable'] == 'Metric']
+    datafile = pd.read_excel(tech_source, sheet_name="indices")
+    d_metrics = datafile[datafile['Type'] == 'Metric']
 
     metrics = list(pd.unique(d_metrics['Index']))
     metric_list = []
@@ -87,8 +95,8 @@ def get_metrics(tech_source):
 
         metric = {
             'name': m,
-            'description': str(pd.unique(d['Notes'])[0]),
-            'image' : gen_random_image(metric_id),
+            'description': str(pd.unique(d['Description'])[0]),
+            'image' : get_image(None,metric_id),
             'id': metric_id
         }
         metric_list.append(metric)
@@ -111,15 +119,17 @@ def create_technology(technology_name):
     """
 
     this_tech_path = (server_common.technology_path / technology_name / technology_name).with_suffix(".xlsx")
-
+    this_tech_image = (server_common.technology_path / technology_name / technology_name).with_suffix(".jpg")
+    
     logging.debug("Building technology %s", technology_name)
 
     tech_id = uuid.uuid4()
+    datafile = pd.read_excel(this_tech_path, sheet_name="designs")
 
     technology = {
         "name": technology_name,
-        "description": 'from file containing technology information',
-        "image": gen_random_image(str(tech_id)),
+        "description": str(pd.unique(datafile['Technology'])[0]),
+        "image": get_image(this_tech_image,str(tech_id)),
         "id": str(tech_id),
         "category_defs": get_categories(this_tech_path),
         "metric_defs": get_metrics(this_tech_path)
