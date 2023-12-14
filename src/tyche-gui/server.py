@@ -3,8 +3,9 @@
 """
 Serve the JSON RPC endpoint for the Tyche solver
 """
-
-from http.server import BaseHTTPRequestHandler, HTTPServer
+import os
+import multiprocessing
+from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, HTTPServer
 from jsonrpcserver import dispatch
 from functions import *
 import logging
@@ -36,8 +37,15 @@ class JSONRPCHTTPServer(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Max-Age", "86400")
         self.end_headers()
 
+def http_server():
+    content_dir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+    HTTPServer(('localhost', 8081), lambda *_ : SimpleHTTPRequestHandler(*_, directory = content_dir)).serve_forever()
+
 def main():
     logging.basicConfig(level=logging.DEBUG)
+    #start local image server
+    http_process = multiprocessing.Process(target=http_server)
+    http_process.start()
     HTTPServer(('localhost', 8080), JSONRPCHTTPServer).serve_forever()
 
 if __name__ == '__main__':  

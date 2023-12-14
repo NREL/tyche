@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import logging
 import functools
-from jsonrpcserver import method, Success
+from jsonrpcserver import method, Success, Error
 import pandas as pd
 import numpy as np
 
@@ -335,6 +335,11 @@ def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_co
 
     optimum = optimizer.opt_slsqp(**opt_parameters)
 
+    print(optimum)
+
+    if optimum.exit_code != 0:
+        raise Exception(optimum.exit_message)
+
     cat_df_name = []
     cat_id = []
     cat_id_df = pd.DataFrame()
@@ -458,7 +463,13 @@ def optimize_scenario(request_definition):
         'maxiter' : 50
     }
 
-    opt_results = evaluate_opt(chosen_tech_path, request_definition, param, chosen_tech)
+    try:
+        opt_results = evaluate_opt(chosen_tech_path, request_definition, param, chosen_tech)
+    except Exception as e:
+        if hasattr(e, "message"):
+            return Error(1, e.message)
+        else:
+            return Error(1, repr(e))
 
     print("OPT_RESULTS", opt_results)
 
