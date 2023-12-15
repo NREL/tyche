@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import logging
 import functools
-from jsonrpcserver import method, Success
+from jsonrpcserver import method, Success, Error
 import pandas as pd
 import numpy as np
 
@@ -56,6 +56,13 @@ def resolve_metrics(selected_tech, metric_id_list):
 def resolve_metrics_name(selected_tech, metric_id_list):
     clist = resolve_metrics(selected_tech, metric_id_list)
     return [i["name"] for i in clist]
+
+def category_name_to_id(selected_tech, name):
+    for cat in selected_tech['category_defs']:
+        if cat["name"] == name:
+            return cat["id"]
+
+    raise Exception("Unknown category for this tech")
 
 '''
 def path_change(data_to_tyche, path):
@@ -270,7 +277,13 @@ def evaluate_with_slider_input(data_to_tyche, path, selected_tech, sample_count=
 
     results_to_gui = {}
     results_to_gui['scenario_id'] = data_to_tyche.scenario_id
-    results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
+    results_to_gui['category_limits'] = {
+        cat_id : {
+            "value" : cat_val
+        }
+        for cat_id, cat_val in server_common.to_dict(data_to_tyche.category_states).items()
+    }
+
     results_to_gui['cells'] = sim_results
 
     return results_to_gui
@@ -310,10 +323,8 @@ def get_scenarios():
     """
     return Success(fetch_technologies())
 
-def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_count=100):
 
-    chosen_tech_name = selected_tech['name']
-
+def build_evaluator(path, chosen_tech_name, sample_count):
     xls_file = (server_common.technology_path / path)
 
     my_designs = ty.Designs(path=str(xls_file),
@@ -321,19 +332,38 @@ def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_co
 
     my_designs.compile()
 
-    investments = ty.Investments(path=str(xls_file), 
+    investments = ty.Investments(path=str(xls_file),
                                  name=chosen_tech_name + ".xlsx")
 
     tranche_results = investments.evaluate_tranches(
         my_designs, sample_count=sample_count)
 
-    evaluator = ty.Evaluator(tranche_results)
+    return ty.Evaluator(tranche_results)
+
+def evaluate_opt(path,request_definition, opt_parameters, selected_tech,sample_count=100):
+
+    category_optimization_limits = {}
+
+    if hasattr(request_definition, "category_states"):
+        category_optimization_limits = {
+            cat['category_id'] : cat['value']
+            for cat in server_common.to_dict(request_definition.category_states)
+        }
+
+    chosen_tech_name = selected_tech['name']
+
+    evaluator = build_evaluator(path, chosen_tech_name, sample_count)
     
     optimizer = ty.EpsilonConstraintOptimizer(evaluator)
 
     print("Optimization params:", opt_parameters)
 
     optimum = optimizer.opt_slsqp(**opt_parameters)
+
+    print(optimum)
+
+    if optimum.exit_code != 0:
+        raise Exception(optimum.exit_message)
 
     cat_df_name = []
     cat_id = []
@@ -373,7 +403,14 @@ def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_co
     for c in categories_list:
         df_c = res_inv_df[res_inv_df['category_id'] == c].reset_index()
         if len(df_c) == 1:
-            category_state[c]=df_c['Amount'][0]
+            category_state[c]= {
+                "value" : df_c['Amount'][0]
+            }
+
+            print("CHECK", c, category_optimization_limits)
+
+            if c in category_optimization_limits:
+                category_state[c]["limit"] = category_optimization_limits[c]
         else:
             print('Warning::Issue with results compilation. recheck')
 
@@ -392,8 +429,8 @@ def evaluate_opt(path,request_definition, opt_parameters,selected_tech,sample_co
     
     results_to_gui = {}
     results_to_gui['scenario_id'] = selected_tech["id"]
-    results_to_gui['category_state'] = category_state
-    results_to_gui['metric_state'] = {
+    results_to_gui['category_limits'] = category_state
+    results_to_gui['metric_limits'] = {
         opt_met.metric_id : { 'limit' : opt_met.value, 'sense' : opt_met.bound_type }
         for opt_met in request_definition.metric_states
     }
@@ -429,6 +466,8 @@ def optimize_scenario(request_definition):
     except:
         metric_target = chosen_tech['metric_defs'][0]['name']
 
+    # set up metric limits
+
     metric_df = {}
 
     for mt in request_definition.metric_states:
@@ -437,6 +476,10 @@ def optimize_scenario(request_definition):
             "sense" : mt.bound_type
         }
 
+    if len(metric_df) == 0:
+        metric_df = None
+
+    # set up sim sense
     sense = None
 
     try:
@@ -446,11 +489,56 @@ def optimize_scenario(request_definition):
     except:
         pass
 
+    # set up total amount
+    total_amount = request_definition.portfolio
 
+    if total_amount <= 0.0:
+        total_amount = None
+
+    # set up category limits
+
+    max_amounts = []
+
+    # this is a bit ugly, as we need an evaluator to get category orders
+    evaluator = build_evaluator(chosen_tech_path, chosen_tech["name"], 100)
+    cat_order = evaluator.max_amount.index.tolist()
+
+    for cat in cat_order:
+        # we have a name, turn it into an id
+        cat = category_name_to_id(chosen_tech, cat)
+        print("Linked", cat)
+
+        found = False
+
+        # get the id from the request
+        for req_cat in server_common.to_dict(request_definition.category_states):
+            if req_cat["category_id"] == cat:
+                max_amounts.append(max(req_cat["value"], 0.0000001))
+                print(f"setting max for {cat} to {max_amounts[-1]}")
+                found = True
+                break
+
+        if not found:
+            # set an approx bound
+            if total_amount is not None:
+                max_amounts.append(total_amount)
+            else:
+                #unknown bound, just make it sky high
+                max_amounts.append(100E6)
+
+    if len(max_amounts) == 0:
+        max_amounts = None
+    else:
+       max_amounts = pd.Series(max_amounts,
+            index = evaluator.max_amount.index.tolist()
+            )
+
+
+    # wrap it all up
     param = {
         'metric' : metric_target,
         'sense' : sense,
-        'max_amount' : None,
+        'max_amount' : max_amounts,
         'total_amount' : request_definition.portfolio,
         'eps_metric' : metric_df,
         'statistic' : np.mean,
@@ -458,7 +546,13 @@ def optimize_scenario(request_definition):
         'maxiter' : 50
     }
 
-    opt_results = evaluate_opt(chosen_tech_path, request_definition, param, chosen_tech)
+    try:
+        opt_results = evaluate_opt(chosen_tech_path, request_definition, param, chosen_tech)
+    except Exception as e:
+        if hasattr(e, "message"):
+            return Error(1, e.message)
+        else:
+            raise
 
     print("OPT_RESULTS", opt_results)
 
@@ -466,14 +560,25 @@ def optimize_scenario(request_definition):
 
     sim_results = run_scenario({
         'scenario_id' : request_definition.scenario_id,
-        'category_states' : opt_results['category_state'],
+        'category_states' : {
+            id : cat["value"]
+            for id, cat in opt_results['category_limits'].items()
+        },
     })._value.result
 
     print("SIM RESULTS", sim_results)
 
     # merge results
     opt_results["cells"] = sim_results["cells"]
-    opt_results["category_state"] = sim_results["category_state"]
+
+    # keep category limits
+    for cat_key, cat_state in sim_results["category_limits"].items():
+        opt_results["category_limits"][cat_key] = {**opt_results["category_limits"][cat_key], **cat_state}
+
+    #opt_results["category_state"] = sim_results["category_state"]
+
+    print("RESULTS to GUI")
+    print(opt_results["category_limits"])
 
     return Success(opt_results)
 

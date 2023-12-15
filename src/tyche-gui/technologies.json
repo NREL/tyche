@@ -3,7 +3,8 @@
         {
             "name": "tutorial-basic",
             "description": "Wind Turbine",
-            "image": "/Users/tghosh/Library/CloudStorage/OneDrive-NREL/work_NREL/tyche/tyche/src/technology/tutorial-basic/tutorial-basic.jpg",
+            "image": "http://127.0.0.1:8081/images/tutorial-basic.jpg",
+            "comment": "THIS IMAGE NEEDS TO BE RESEATED FOR DEPLOYMENT",
             "id": "9775cf3f-e9bb-4cdf-8add-db02c8f223a8",
             "category_defs": [
                 {
@@ -61,7 +62,7 @@
         {
             "name": "utility-pv",
             "description": "Simple pv",
-            "image": "https://picsum.photos/seed/e9c1db02-ff99-4f09-9514-0b2383412c5b/128/128",
+            "image": "http://127.0.0.1:8081/images/78445.jpg",
             "id": "e9c1db02-ff99-4f09-9514-0b2383412c5b",
             "category_defs": [
                 {
@@ -457,7 +458,7 @@
         {
             "name": "transport-model",
             "description": "Class 8 Diesel Tractor",
-            "image": "https://picsum.photos/seed/b7d871ea-9ba8-4f9a-9bc8-16eb1f531fbf/128/128",
+            "image": "http://127.0.0.1:8081/images/81254.jpg",
             "id": "b7d871ea-9ba8-4f9a-9bc8-16eb1f531fbf",
             "category_defs": [
                 {
