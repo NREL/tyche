@@ -277,10 +277,8 @@ def evaluate_with_slider_input(data_to_tyche, path, selected_tech, sample_count=
 
     results_to_gui = {}
     results_to_gui['scenario_id'] = data_to_tyche.scenario_id
-    results_to_gui['category_limits'] = {
-        cat_id : {
-            "value" : cat_val
-        }
+    results_to_gui['category_states'] = {
+        cat_id : cat_val
         for cat_id, cat_val in server_common.to_dict(data_to_tyche.category_states).items()
     }
 
@@ -304,6 +302,8 @@ def run_scenario(request_definition):
     logging.debug("Request selected %s", repr(chosen_tech))
 
     results = evaluate_with_slider_input(request_definition, chosen_tech_path, chosen_tech)
+
+    print("SIM RESULT", results)
 
     return Success(results)
 
@@ -361,6 +361,7 @@ def evaluate_opt(path,request_definition, opt_parameters, selected_tech,sample_c
     optimum = optimizer.opt_slsqp(**opt_parameters)
 
     print(optimum)
+    print(optimum.metrics)
 
     if optimum.exit_code != 0:
         raise Exception(optimum.exit_message)
@@ -426,13 +427,19 @@ def evaluate_opt(path,request_definition, opt_parameters, selected_tech,sample_c
     #print("DFM", df_m)
     #print("DFC", df_c)
     #print(sim_results)
+
+    print(metric_state, request_definition.metric_states)
     
     results_to_gui = {}
     results_to_gui['scenario_id'] = selected_tech["id"]
     results_to_gui['category_limits'] = category_state
     results_to_gui['metric_limits'] = {
-        opt_met.metric_id : { 'limit' : opt_met.value, 'sense' : opt_met.bound_type }
-        for opt_met in request_definition.metric_states
+        opt_id : {
+            'limit' : 0,
+            'sense' : "min",
+            'value' : opt_val,
+        }
+        for opt_id, opt_val in metric_state.items()
     }
     #results_to_gui['category_state'] = server_common.to_dict(data_to_tyche.category_states)
     #results_to_gui['cells'] = sim_results
@@ -556,29 +563,6 @@ def optimize_scenario(request_definition):
 
     print("OPT_RESULTS", opt_results)
 
-    #exec sim
-
-    sim_results = run_scenario({
-        'scenario_id' : request_definition.scenario_id,
-        'category_states' : {
-            id : cat["value"]
-            for id, cat in opt_results['category_limits'].items()
-        },
-    })._value.result
-
-    print("SIM RESULTS", sim_results)
-
-    # merge results
-    opt_results["cells"] = sim_results["cells"]
-
-    # keep category limits
-    for cat_key, cat_state in sim_results["category_limits"].items():
-        opt_results["category_limits"][cat_key] = {**opt_results["category_limits"][cat_key], **cat_state}
-
-    #opt_results["category_state"] = sim_results["category_state"]
-
-    print("RESULTS to GUI")
-    print(opt_results["category_limits"])
 
     return Success(opt_results)
 
