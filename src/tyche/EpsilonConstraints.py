@@ -148,7 +148,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    bounds = [(0, x) for x in max_amount / self.scale]
+    bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a function that will construct the investment constraint for the
     # optimizer, in the correct format
@@ -348,7 +348,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    var_bounds = [(0, x) for x in max_amount / self.scale]
+    var_bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a function that will construct the investment constraint for the
     # optimizer, in the correct format
@@ -543,7 +543,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    bounds = [(0, x) for x in max_amount / self.scale]
+    bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a dictionary of functions that define individual constraints and
     # their types (all inequalities)
