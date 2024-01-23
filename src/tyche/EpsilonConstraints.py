@@ -73,7 +73,7 @@ class EpsilonConstraintOptimizer:
     max_amount   = None   ,
     total_amount = None   ,
     eps_metric   = None   ,
-    statistic    = np.mean,
+    statistic    = 'mean',
     initial      = None   ,
     tol          = 1e-8   ,
     maxiter      = 50     ,
@@ -101,9 +101,9 @@ class EpsilonConstraintOptimizer:
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
       constraint is a lower or an upper bound, and the value must be either
       'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary statistic used on the sample evaluations; the metric measure that
-      is fed to the optimizer.
+      is fed to the optimizer. See Evaluator for options.
     initial : array of float
       Initial value of decision variable(s) fed to the optimizer.
     tol : float
@@ -148,7 +148,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    bounds = [(0, x) for x in max_amount / self.scale]
+    bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a function that will construct the investment constraint for the
     # optimizer, in the correct format
@@ -262,7 +262,7 @@ class EpsilonConstraintOptimizer:
           max_amount    = None            ,
           total_amount  = None            ,
           eps_metric    = None            ,
-          statistic     = np.mean         ,
+          statistic     = 'mean'         ,
           strategy      = 'best1bin'      ,
           seed          = 2               ,
           tol           = 0.01            ,
@@ -291,9 +291,9 @@ class EpsilonConstraintOptimizer:
       names, and the values are dictionaries of the form {'limit': float, 'sense': str}.
       The sense defines whether the epsilon constraint is a lower or an upper bound,
       and the value must be either 'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary statistic used on the sample evaluations; the metric measure that
-      is fed to the optimizer.
+      is fed to the optimizer. See Evaluator for options.
     strategy : str
       Which differential evolution strategy to use. 'best1bin' is the default.
       See algorithm docs for full list.
@@ -348,7 +348,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    var_bounds = [(0, x) for x in max_amount / self.scale]
+    var_bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a function that will construct the investment constraint for the
     # optimizer, in the correct format
@@ -464,7 +464,7 @@ class EpsilonConstraintOptimizer:
           max_amount       = None        ,
           total_amount     = None        ,
           eps_metric       = None        ,
-          statistic        = np.mean     ,
+          statistic        = 'mean'     ,
           tol              = 0.01        ,
           maxiter          = None        ,
           sampling_method  = 'simplicial',
@@ -493,9 +493,9 @@ class EpsilonConstraintOptimizer:
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
       constraint is a lower or an upper bound, and the value must be either
       'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary metric_statistic used on the sample evaluations; the metric
-      measure that is fed to the optimizer.
+      measure that is fed to the optimizer. See Evaluator for options.
     tol : float
       Objective function tolerance in stopping criterion.
     maxiter : int
@@ -543,7 +543,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    bounds = [(0, x) for x in max_amount / self.scale]
+    bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a dictionary of functions that define individual constraints and
     # their types (all inequalities)
@@ -672,7 +672,7 @@ class EpsilonConstraintOptimizer:
     max_amount   = None   ,
     total_amount = None   ,
     sense        = None   ,
-    statistic    = np.mean,
+    statistic    = 'mean',
     tol          = 1e-8   ,
     maxiter      = 50     ,
     verbose      = 0      ,
@@ -690,8 +690,8 @@ class EpsilonConstraintOptimizer:
       Optimization sense for each metric. Must be 'min' or 'max'. If None, then
       the sense provided to the EpsilonConstraintOptimizer class is used for
       all metrics. If string, the sense is used for all metrics.
-    statistic : function
-      The statistic used on the sample evaluations.
+    statistic : string
+      The statistic used on the sample evaluations. See Evaluator for options.
     tol : float
       The search tolerance.
     maxiter : int
@@ -773,7 +773,7 @@ class EpsilonConstraintOptimizer:
           max_amount   = None   ,
           total_amount = None   ,
           eps_metric   = None   ,
-          statistic    = np.mean,
+          statistic    = 'mean',
           sizelimit    = 1e6    ,
           verbose      = 0      ,
   ):
@@ -800,9 +800,9 @@ class EpsilonConstraintOptimizer:
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
       constraint is a lower or an upper bound, and the value must be either
       'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary statistic (metric measure) fed to evaluator_corners_wide method
-      in Evaluator
+      in Evaluator. See Evaluator for options.
     total_amount : float
       Upper limit on total investments summed across all R&D categories
     sizelimit : int

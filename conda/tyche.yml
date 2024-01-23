@@ -1,4 +1,4 @@
-name: tyche
+name: tyche2
 channels:
   - conda-forge
   - defaults
@@ -11,7 +11,7 @@ dependencies:
   - python=3.10.4
   - quart=0.18.1
   - scipy=1.9.1
-  - seaborn=0.12.1
+  - seaborn=0.13
   - sphinx=5.0.2
   - tk=8.6.12
   - pip:
