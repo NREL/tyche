@@ -9,6 +9,7 @@ from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, HTTPSe
 from jsonrpcserver import dispatch
 from functions import *
 import logging
+import argparse
 
 class JSONRPCHTTPServer(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -37,18 +38,32 @@ class JSONRPCHTTPServer(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Max-Age", "86400")
         self.end_headers()
 
+class ContentHTTPServer(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        SimpleHTTPRequestHandler.end_headers(self)
+
 def http_server():
     content_dir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-    HTTPServer(('localhost', 8081), lambda *_ : SimpleHTTPRequestHandler(*_, directory = content_dir)).serve_forever()
+    HTTPServer(('localhost', 8081), lambda *_ : ContentHTTPServer(*_, directory = content_dir)).serve_forever()
 
-def main():
+def main(no_content):
     logging.basicConfig(level=logging.DEBUG)
-    #start local image server
-    http_process = multiprocessing.Process(target=http_server)
-    http_process.start()
+    if not no_content:
+        #start local image server
+        http_process = multiprocessing.Process(target=http_server)
+        http_process.start()
     HTTPServer(('localhost', 8080), JSONRPCHTTPServer).serve_forever()
 
 if __name__ == '__main__':  
-    main()
+    parser = argparse.ArgumentParser(
+        prog="Tyche API Server",
+        description="Server for Tyche simulation and optimization requests")
+
+    parser.add_argument("--no_content", action='store_true', help= "Disable image content hosting")
+
+    args = parser.parse_args()
+
+    main(args.no_content)
 
 
