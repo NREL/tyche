@@ -45,7 +45,7 @@ class ContentHTTPServer(SimpleHTTPRequestHandler):
 
 def http_server():
     content_dir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-    HTTPServer(('localhost', 8081), lambda *_ : ContentHTTPServer(*_, directory = content_dir)).serve_forever()
+    HTTPServer(('0.0.0.0', 8081), lambda *_ : ContentHTTPServer(*_, directory = content_dir)).serve_forever()
 
 def main(no_content):
     logging.basicConfig(level=logging.DEBUG)
@@ -53,7 +53,7 @@ def main(no_content):
         #start local image server
         http_process = multiprocessing.Process(target=http_server)
         http_process.start()
-    HTTPServer(('localhost', 8080), JSONRPCHTTPServer).serve_forever()
+    HTTPServer(('0.0.0.0', 8080), JSONRPCHTTPServer).serve_forever()
 
 if __name__ == '__main__':  
     parser = argparse.ArgumentParser(
