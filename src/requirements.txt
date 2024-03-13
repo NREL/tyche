@@ -1,0 +1,10 @@
+jsonrpclib==0.2.1
+jsonrpcserver==5.0.9
+matplotlib==3.7.1
+mip==1.15.0
+numpy==1.24.3
+pandas==2.2.0
+quart==0.19.4
+scipy==1.12.0
+seaborn==0.13.2
+openpyxl

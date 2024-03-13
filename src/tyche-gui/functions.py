@@ -64,115 +64,6 @@ def category_name_to_id(selected_tech, name):
 
     raise Exception("Unknown category for this tech")
 
-'''
-def path_change(data_to_tyche, path):
-    """
-    Changes the working directory to the technology case study under study.
-    not doing this results in issues while running Tyche and can be resolved later. 
-
-    Parameters
-    ----------
-    data_to_tyche: dictionary
-        information obtained from the GUI
-
-    path: str
-        path to the technology case under study
-
-    Returns
-    -------
-
-    """
-
-    path2 = path + data_to_tyche['name']+"/"
-    os.chdir(path2)
-'''
-
-def evaluate_without_slider_input(data_to_tyche,path,selected_tech,sample_count=100):
-    """
-    Evaluates Tranche impacts
-
-    Parameters
-    ----------
-    data_to_tyche: dictionary
-        information obtained from the GUI
-
-    path: str
-        path to the technology case under study
-
-    sample_count: int
-         number of samples for calculation
-
-    Returns
-    -------
-    tranche_results: DataFrame
-        tranche evaluation results for plotting
-
-    """
-
-    chosen_tech_name = selected_tech['name']
-
-    xls_file = (server_common.technology_path / path)
-
-    my_designs = ty.Designs(path=str(xls_file),
-                            name=chosen_tech_name + ".xlsx")
-
-    my_designs.compile()
-
-    investments = ty.Investments(path=str(xls_file), 
-                                 name=chosen_tech_name + ".xlsx")
-
-    tranche_results = investments.evaluate_tranches(
-        my_designs, sample_count=sample_count)
-
-    results_to_gui = {}
-    results_to_gui['id'] = data_to_tyche['id']
-    results_to_gui['results'] = {}
-
-    res = tranche_results.metrics.reset_index()
-
-    cat_df_name = []
-    cat_id = []
-    cat_id_df = pd.DataFrame()
-    for d in data_to_tyche['category_defs']:
-        cat_df_name.append(d['name'])
-        cat_id.append(d['id'])
-
-    cat_id_df['Category'] = cat_df_name
-    cat_id_df['category_id'] = cat_id
-
-    met_df_name = []
-    met_id = []
-    met_id_df = pd.DataFrame()
-    for d in data_to_tyche['metric_defs']:
-        met_df_name.append(d['name'])
-        met_id.append(d['id'])
-
-    met_id_df['Index'] = met_df_name
-    met_id_df['metric_id'] = met_id
-
-    res = res.merge(cat_id_df, on='Category')
-    res = res.merge(met_id_df, on='Index')
-
-    metrics_list = list(pd.unique(res['metric_id']))
-    categories_list = list(pd.unique(res['category_id']))
-
-    for c in categories_list:
-        df_c = res[res['category_id'] == c]
-        try:
-            results_to_gui['results'][c]
-        except:
-            results_to_gui['results'][c] = {}
-
-        for m in metrics_list:
-            df_m = df_c[df_c['metric_id'] == m]
-            try:
-                results_to_gui['results'][c][m]
-            except:
-                results_to_gui['results'][c][m] = {}
-            results_to_gui['results'][c][m] = list(df_m['Value'])
-
-    return results_to_gui
-
 def evaluate_with_slider_input(data_to_tyche, path, selected_tech, sample_count=100):
     """
     Evaluates investment impcats
@@ -520,6 +411,8 @@ def optimize_scenario(request_definition):
         # get the id from the request
         for req_cat in server_common.to_dict(request_definition.category_states):
             if req_cat["category_id"] == cat:
+                # zero is a valid input here. BUT zero will crash the optimizer
+                # anything above zero will be ok.
                 max_amounts.append(max(req_cat["value"], 0.0000001))
                 print(f"setting max for {cat} to {max_amounts[-1]}")
                 found = True
@@ -536,7 +429,7 @@ def optimize_scenario(request_definition):
     if len(max_amounts) == 0:
         max_amounts = None
     else:
-       max_amounts = pd.Series(max_amounts,
+        max_amounts = pd.Series(max_amounts,
             index = evaluator.max_amount.index.tolist()
             )
 
