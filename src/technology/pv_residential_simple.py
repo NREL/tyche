@@ -154,7 +154,8 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   mcf = parameter[ 9]
   msl = parameter[10]
   ief = parameter[14]
-
+  print(ins / 1000 * 24 * 365 * ssz * map * mcf * mef * ief * (1 - msl) * npv(mdr / (1 - mdr), mlt))
+  print('output')
   # System lifetime energy conversion.
   return np.stack([
     ins / 1000 * 24 * 365 * ssz * map * mcf * mef * ief * (1 - msl) * npv(mdr / (1 - mdr), mlt)
@@ -192,6 +193,8 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   # For readability, copy the parameter vectors to named variables.
   blr = parameter[17]
 
+  print(0.106125 - cost / output[0],0.4490564e-3 * output[0] - 82.676202217)
+  print('metric')
   # Levelized cost of energy.
   return np.stack([
     0.106125 - cost / output[0]            , # delta LCOE from base

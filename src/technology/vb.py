@@ -64,7 +64,8 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   conversion_factor = parameter[2]
   stover_flow = input[0]
   _jet = conversion_factor*stover_flow
-
+  print(_jet)
+  print('jet flow')
   # Stack the output for each category into a single array that we return.
   return np.stack([_jet
   ])
@@ -104,7 +105,8 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   jobs = parameter[5]
   #Total cost per year
   total_cost = capital[0]/lifetime[0] + fixed[0] + input[0]*input_price[0] + input[1]*input_price[1]
-
+  print('metrics')
+  print(total_cost,jobs,total_ghg)
   # Package results.
   return np.stack([total_cost,
     jobs,

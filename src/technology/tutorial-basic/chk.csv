@@ -1,0 +1,145 @@
+Technology,Tranche,Sample,Variable,Index,Value,Units
+Wind Turbine,Casual Drive R&D,1,Cost,Cost,206972.97283271444,$/turbine
+Wind Turbine,Casual Drive R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Casual Drive R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Casual Drive R&D,1,Metric,Cost,206972.97283271444,$/turbine/year
+Wind Turbine,Casual Drive R&D,1,Metric,LCOE,0.047999297966770514,$/kWh
+Wind Turbine,Casual Drive R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Casual Drive R&D,2,Cost,Cost,201650.8634085258,$/turbine
+Wind Turbine,Casual Drive R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Casual Drive R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Casual Drive R&D,2,Metric,Cost,201650.8634085258,$/turbine/year
+Wind Turbine,Casual Drive R&D,2,Metric,LCOE,0.04676504253444476,$/kWh
+Wind Turbine,Casual Drive R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Casual Rotor R&D,1,Cost,Cost,206172.7362991857,$/turbine
+Wind Turbine,Casual Rotor R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Casual Rotor R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Casual Rotor R&D,1,Metric,Cost,206172.7362991857,$/turbine/year
+Wind Turbine,Casual Rotor R&D,1,Metric,LCOE,0.04781371435509872,$/kWh
+Wind Turbine,Casual Rotor R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Casual Rotor R&D,2,Cost,Cost,213140.17356495897,$/turbine
+Wind Turbine,Casual Rotor R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Casual Rotor R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Casual Rotor R&D,2,Metric,Cost,213140.17356495897,$/turbine/year
+Wind Turbine,Casual Rotor R&D,2,Metric,LCOE,0.049429539323970074,$/kWh
+Wind Turbine,Casual Rotor R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Casual Tower R&D,1,Cost,Cost,212613.38157428527,$/turbine
+Wind Turbine,Casual Tower R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Casual Tower R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Casual Tower R&D,1,Metric,Cost,212613.38157428527,$/turbine/year
+Wind Turbine,Casual Tower R&D,1,Metric,LCOE,0.04930737049496412,$/kWh
+Wind Turbine,Casual Tower R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Casual Tower R&D,2,Cost,Cost,202307.91817751422,$/turbine
+Wind Turbine,Casual Tower R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Casual Tower R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Casual Tower R&D,2,Metric,Cost,202307.91817751422,$/turbine/year
+Wind Turbine,Casual Tower R&D,2,Metric,LCOE,0.04691742072762389,$/kWh
+Wind Turbine,Casual Tower R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Drive Reference,1,Cost,Cost,209941.48597793767,$/turbine
+Wind Turbine,Drive Reference,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Drive Reference,1,Metric,CF,0.3282,%/100
+Wind Turbine,Drive Reference,1,Metric,Cost,209941.48597793767,$/turbine/year
+Wind Turbine,Drive Reference,1,Metric,LCOE,0.04868772865907645,$/kWh
+Wind Turbine,Drive Reference,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Drive Reference,2,Cost,Cost,202164.97859472115,$/turbine
+Wind Turbine,Drive Reference,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Drive Reference,2,Metric,CF,0.3282,%/100
+Wind Turbine,Drive Reference,2,Metric,Cost,202164.97859472115,$/turbine/year
+Wind Turbine,Drive Reference,2,Metric,LCOE,0.046884271473729394,$/kWh
+Wind Turbine,Drive Reference,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Focused Drive R&D,1,Cost,Cost,186046.79566100563,$/turbine
+Wind Turbine,Focused Drive R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Focused Drive R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Focused Drive R&D,1,Metric,Cost,186046.79566100563,$/turbine/year
+Wind Turbine,Focused Drive R&D,1,Metric,LCOE,0.04314628841860056,$/kWh
+Wind Turbine,Focused Drive R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Focused Drive R&D,2,Cost,Cost,191760.74090455423,$/turbine
+Wind Turbine,Focused Drive R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Focused Drive R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Focused Drive R&D,2,Metric,Cost,191760.74090455423,$/turbine/year
+Wind Turbine,Focused Drive R&D,2,Metric,LCOE,0.04447141486654783,$/kWh
+Wind Turbine,Focused Drive R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Focused Rotor R&D,1,Cost,Cost,208123.20590647502,$/turbine
+Wind Turbine,Focused Rotor R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Focused Rotor R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Focused Rotor R&D,1,Metric,Cost,208123.20590647502,$/turbine/year
+Wind Turbine,Focused Rotor R&D,1,Metric,LCOE,0.04826604960725302,$/kWh
+Wind Turbine,Focused Rotor R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Focused Rotor R&D,2,Cost,Cost,207298.7077274913,$/turbine
+Wind Turbine,Focused Rotor R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Focused Rotor R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Focused Rotor R&D,2,Metric,Cost,207298.7077274913,$/turbine/year
+Wind Turbine,Focused Rotor R&D,2,Metric,LCOE,0.04807483945442748,$/kWh
+Wind Turbine,Focused Rotor R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Focused Tower R&D,1,Cost,Cost,202547.96176346706,$/turbine
+Wind Turbine,Focused Tower R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Focused Tower R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Focused Tower R&D,1,Metric,Cost,202547.96176346706,$/turbine/year
+Wind Turbine,Focused Tower R&D,1,Metric,LCOE,0.04697308946277065,$/kWh
+Wind Turbine,Focused Tower R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Focused Tower R&D,2,Cost,Cost,208327.84460239921,$/turbine
+Wind Turbine,Focused Tower R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Focused Tower R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Focused Tower R&D,2,Metric,Cost,208327.84460239921,$/turbine/year
+Wind Turbine,Focused Tower R&D,2,Metric,LCOE,0.04831350756085325,$/kWh
+Wind Turbine,Focused Tower R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Intense Drive R&D,1,Cost,Cost,175749.94337384024,$/turbine
+Wind Turbine,Intense Drive R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Intense Drive R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Intense Drive R&D,1,Metric,Cost,175749.94337384024,$/turbine/year
+Wind Turbine,Intense Drive R&D,1,Metric,LCOE,0.040758335661836786,$/kWh
+Wind Turbine,Intense Drive R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Intense Drive R&D,2,Cost,Cost,208242.10548739455,$/turbine
+Wind Turbine,Intense Drive R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Intense Drive R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Intense Drive R&D,2,Metric,Cost,208242.10548739455,$/turbine/year
+Wind Turbine,Intense Drive R&D,2,Metric,LCOE,0.04829362372156645,$/kWh
+Wind Turbine,Intense Drive R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Intense Rotor R&D,1,Cost,Cost,209081.00341919385,$/turbine
+Wind Turbine,Intense Rotor R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Intense Rotor R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Intense Rotor R&D,1,Metric,Cost,209081.00341919385,$/turbine/year
+Wind Turbine,Intense Rotor R&D,1,Metric,LCOE,0.04848817333469245,$/kWh
+Wind Turbine,Intense Rotor R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Intense Rotor R&D,2,Cost,Cost,199917.44322833483,$/turbine
+Wind Turbine,Intense Rotor R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Intense Rotor R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Intense Rotor R&D,2,Metric,Cost,199917.44322833483,$/turbine/year
+Wind Turbine,Intense Rotor R&D,2,Metric,LCOE,0.04636304342030029,$/kWh
+Wind Turbine,Intense Rotor R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Intense Tower R&D,1,Cost,Cost,188795.5005324092,$/turbine
+Wind Turbine,Intense Tower R&D,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Intense Tower R&D,1,Metric,CF,0.3282,%/100
+Wind Turbine,Intense Tower R&D,1,Metric,Cost,188795.5005324092,$/turbine/year
+Wind Turbine,Intense Tower R&D,1,Metric,LCOE,0.04378374316614314,$/kWh
+Wind Turbine,Intense Tower R&D,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Intense Tower R&D,2,Cost,Cost,190805.9426913567,$/turbine
+Wind Turbine,Intense Tower R&D,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Intense Tower R&D,2,Metric,CF,0.3282,%/100
+Wind Turbine,Intense Tower R&D,2,Metric,Cost,190805.9426913567,$/turbine/year
+Wind Turbine,Intense Tower R&D,2,Metric,LCOE,0.044249986709498305,$/kWh
+Wind Turbine,Intense Tower R&D,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Rotor Reference,1,Cost,Cost,211792.48640960344,$/turbine
+Wind Turbine,Rotor Reference,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Rotor Reference,1,Metric,CF,0.3282,%/100
+Wind Turbine,Rotor Reference,1,Metric,Cost,211792.48640960344,$/turbine/year
+Wind Turbine,Rotor Reference,1,Metric,LCOE,0.04911699592059449,$/kWh
+Wind Turbine,Rotor Reference,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Rotor Reference,2,Cost,Cost,214757.69802986804,$/turbine
+Wind Turbine,Rotor Reference,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Rotor Reference,2,Metric,CF,0.3282,%/100
+Wind Turbine,Rotor Reference,2,Metric,Cost,214757.69802986804,$/turbine/year
+Wind Turbine,Rotor Reference,2,Metric,LCOE,0.049804660953123386,$/kWh
+Wind Turbine,Rotor Reference,2,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Tower Reference,1,Cost,Cost,207987.31519770628,$/turbine
+Wind Turbine,Tower Reference,1,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Tower Reference,1,Metric,CF,0.3282,%/100
+Wind Turbine,Tower Reference,1,Metric,Cost,207987.31519770628,$/turbine/year
+Wind Turbine,Tower Reference,1,Metric,LCOE,0.048234535064403124,$/kWh
+Wind Turbine,Tower Reference,1,Output,Electricity,4312.0,kWh/turbine
+Wind Turbine,Tower Reference,2,Cost,Cost,208579.66695351468,$/turbine
+Wind Turbine,Tower Reference,2,Metric,AEP,4312.0,MWh/turbine/year
+Wind Turbine,Tower Reference,2,Metric,CF,0.3282,%/100
+Wind Turbine,Tower Reference,2,Metric,Cost,208579.66695351468,$/turbine/year
+Wind Turbine,Tower Reference,2,Metric,LCOE,0.0483719079205739,$/kWh
+Wind Turbine,Tower Reference,2,Output,Electricity,4312.0,kWh/turbine
