@@ -64,6 +64,22 @@ def check_tables(
         f'designs, indices, parameters, and results.\n{_odd_tech_set}\n')
       )
     
+    # Cross-check: Identical sets of Tranche across investments, tranches,
+    # designs, and parameters
+    _odd_tra_set = set(investments.index.get_level_values('Tranche')
+    ).symmetric_difference(
+        set(tranches.index.get_level_values('Tranche'))
+      ).symmetric_difference(
+        set(parameters.index.get_level_values('Tranche'))
+      ).symmetric_difference(
+        set(designs.index.get_level_values('Tranche'))
+      )
+    if len(_odd_tra_set) != 0:
+      check_list.append(
+        ('Data Validation: Tranche names are inconsistent. Check in'
+        f'investments, tranches, designs, and parameters.\n{_odd_tra_set}\n')
+      )
+    
     # Cross-check: Lifetime-Index set in designs dataset must equal the
     # Capital-Index set in indices dataset
     # The set of levels in the Index index level that have the Variable 
