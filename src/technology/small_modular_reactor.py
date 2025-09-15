@@ -6,6 +6,8 @@ This file acts as a bridge to the ACCERT model, included in this repo as a marim
 
 import numpy as np
 
+from nuclear_stride import calculate_final_result
+
 def capital_cost(scale, parameter):
   """
   Capital cost function.
