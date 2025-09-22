@@ -11,4 +11,4 @@ BOP grade ,nuclear,nuclear or non-nuclear,non_nuclear
 Reactor Building grade,nuclear,nuclear or non-nuclear,nuclear
 modulariziation,modularized,stick_built or modularized,modularized
 standardization,0.7,0.7 : 1,0.8
-Startup duration (months),16,3 : 24,16
+Startup duration (months),16,3:24,16
