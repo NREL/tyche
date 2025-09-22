@@ -17,7 +17,8 @@ src_dir = technology_dir.parent
 
 atb_dir = os.path.join(src_dir, 'atb')
 
-geo_parameters = {'Case': 'Market',
+geo_parameters = {
+              'Case': 'Market',
               'TaxCreditCase': 'ITC',
               'CRPYears': 20,
               'Technology': 'Geothermal',
