@@ -244,15 +244,15 @@ def _():
     N_AE  = 4
     N_cons =5
 
-    # modularity : "stick_built"  or "modularized"
-    mod_0 = "modularized" 
+    # modularity : 0 = "stick_built"  or 1 = "modularized"
+    mod_0 = 1 
 
     # cross_site_standardization :
     standardization_0 = 0.8 # 0.7 corresponds to 70% standardization for PWRs
 
     # # Determining if the BOP and reactor building (containtment) are non-nuclear or nuclear grade equipment (safety related)
-    BOP_grade_0 = "non_nuclear"
-    RB_grade_0 = "nuclear"
+    BOP_grade_0 = 0 # 0 = non-nuclear; 1 = nuclear
+    RB_grade_0 = 1 # 0 = non-nuclear; 1 = nuclear
 
     # #investment tax credits subsidies
     ITC_0 = 0 
@@ -458,7 +458,7 @@ def add_BOP_RP_grades(rdata,
     db.loc[db.Account == 232.1, 'Site Labor Cost'] = None
     db.loc[db.Account == 232.1, 'Site Labor Hours'] = None
 
-    if RB_grade == 'non_nuclear':
+    if RB_grade == 0:
         db.loc[db.Account == 212, 'Site Material Cost'] = 0.6 *\
             rdata.loc[rdata.Account == 212, 'Site Material Cost'].values[0]
         db.loc[db.Account == 212, 'Site Labor Cost'] = 0.6 *\
@@ -477,7 +477,7 @@ def add_BOP_RP_grades(rdata,
         db.loc[db.Account == 212, 'Factory Equipment Cost'] = \
             rdata.loc[rdata.Account == 212, 'Factory Equipment Cost'].values[0]
 
-    if BOP_grade == 'non_nuclear':
+    if BOP_grade == 0:
         db.loc[db.Account == 213, 'Site Material Cost'] = 0.6 * rdata.loc[rdata.Account == 213, 'Site Material Cost'].values[0]
         db.loc[db.Account == 213, 'Site Labor Cost'] = 0.6 *\
             rdata.loc[rdata.Account == 213, 'Site Labor Cost'].values[0]
@@ -803,9 +803,9 @@ def _(reactor_type):
 
         labor_hour_ratio = sum_new_lab_hrs / sum_old_lab_hrs
 
-        if mod_0 == 'stick_built':
+        if mod_0 == 0: # stick built
             mod_factor = 0.8
-        elif mod_0 == 'modularized':
+        elif mod_0 == 1: # modularized
             mod_factor = 1
 
         baseline_construction_duration = 64 / mod_factor
