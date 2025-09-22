@@ -21,6 +21,8 @@ def _():
     import pandas as pd
     import numpy as np
 
+    from pathlib import Path
+
     import warnings
 
     pd.set_option('display.max_rows', None)
@@ -36,26 +38,26 @@ def update_high_level_costs(db, reactor_power):
     # update account 21 : material, labor, factory
     db.loc[db.Account == 21, 'Factory Equipment Cost'] = (db.loc[db.Account == 212, 'Factory Equipment Cost']).values+\
     (db.loc[db.Account == 213, 'Factory Equipment Cost']).values +(db.loc[db.Account == '211 plus 214 to 219', 'Factory Equipment Cost']).values
-   
+
     db.loc[db.Account == 21, 'Site Material Cost'] = (db.loc[db.Account == 212, 'Site Material Cost'].values)+\
     (db.loc[db.Account == 213, 'Site Material Cost']).values+(db.loc[db.Account == '211 plus 214 to 219', 'Site Material Cost']).values
-    
+
     db.loc[db.Account == 21, 'Site Labor Cost'] = (db.loc[db.Account == 212, 'Site Labor Cost']).values+\
     (db.loc[db.Account == 213, 'Site Labor Cost']).values+(db.loc[db.Account == '211 plus 214 to 219', 'Site Labor Cost']).values
-    
+
     db.loc[db.Account == 21, 'Site Labor Hours'] = (db.loc[db.Account == 212, 'Site Labor Hours']).values+\
     (db.loc[db.Account == 213, 'Site Labor Hours']).values+(db.loc[db.Account =='211 plus 214 to 219', 'Site Labor Hours']).values
 
     # update account 23 : material, labor, factory
     db.loc[db.Account == 23, 'Factory Equipment Cost'] = (db.loc[db.Account == 232.1, 'Factory Equipment Cost']).values+\
     (db.loc[db.Account == 233, 'Factory Equipment Cost']).values
-    
+
     (db.loc[db['Account'] == 23, 'Site Material Cost']) = (db.loc[db['Account'] == 232.1, 'Site Material Cost']).values+\
     (db.loc[db['Account'] == 233, 'Site Material Cost']).values
-    
+
     (db.loc[db['Account'] == 23, 'Site Labor Cost']) = (db.loc[db['Account'] == 232.1, 'Site Labor Cost']).values+\
     (db.loc[db['Account'] == 233, 'Site Labor Cost']).values
-    
+
     (db.loc[db['Account'] == 23, 'Site Labor Hours']) = (db.loc[db['Account'] == 232.1, 'Site Labor Hours']).values+\
     (db.loc[db['Account'] == 233, 'Site Labor Hours']).values
 
@@ -68,7 +70,7 @@ def update_high_level_costs(db, reactor_power):
     #update total costs for accounts 10
     (db.loc[db['Title'] == '10s - Subtotal', 'Total Cost (USD)']) =\
         db.loc[db['Account'].isin([11, 12, 13, 14, 15, 16, 18]), 'Total Cost (USD)'].sum()
-     
+
     # update total costs for accounts 20
     (db.loc[db['Title'] == '20s - Subtotal', 'Total Cost (USD)']) =\
         db.loc[db['Account'].isin([21, 22, 23, 24, 25, 26, 28]), 'Total Cost (USD)'].sum()
@@ -85,7 +87,7 @@ def update_high_level_costs(db, reactor_power):
     # update total costs for accounts 60
     (db.loc[db['Title'] == '60s - Subtotal', 'Total Cost (USD)']) =\
         db.loc[db['Account'].isin([ 62]), 'Total Cost (USD)'].sum()
-    
+
     # update costs per kw
     (db.loc[db['Title'] == '10s - $/kWe', 'Total Cost (USD)']) = (db.loc[db['Title'] == '10s - Subtotal', 'Total Cost (USD)']).values/reactor_power 
     (db.loc[db['Title'] == '20s - $/kWe', 'Total Cost (USD)']) = (db.loc[db['Title'] == '20s - Subtotal', 'Total Cost (USD)']).values/reactor_power 
@@ -93,13 +95,13 @@ def update_high_level_costs(db, reactor_power):
     (db.loc[db['Title'] == '40s - $/kWe', 'Total Cost (USD)']) = (db.loc[db['Title'] == '40s - Subtotal', 'Total Cost (USD)']).values/reactor_power 
     (db.loc[db['Title'] == '50s - $/kWe', 'Total Cost (USD)']) = (db.loc[db['Title'] == '50s - Subtotal', 'Total Cost (USD)']).values/reactor_power 
     (db.loc[db['Title'] == '60s - $/kWe', 'Total Cost (USD)']) = (db.loc[db['Title'] == '60s - Subtotal', 'Total Cost (USD)']).values/reactor_power 
-    
-    
-    
+
+
+
     # update final results
     (db.loc[db['Title'] == 'Total Direct Capital Cost (Accounts 10 to 20)', 'Total Cost (USD)']) =\
         (db.loc[db['Title'] == '10s - Subtotal', 'Total Cost (USD)']).values + (db.loc[db['Title'] == '20s - Subtotal', 'Total Cost (USD)']).values
-    
+
     (db.loc[db['Title'] == 'Base Construction Cost (Accounts 10 to 30)', 'Total Cost (USD)']) =\
        (db.loc[db['Title'] == 'Total Direct Capital Cost (Accounts 10 to 20)', 'Total Cost (USD)']).values +\
         (db.loc[db['Title'] == '30s - Subtotal', 'Total Cost (USD)']).values
@@ -112,20 +114,20 @@ def update_high_level_costs(db, reactor_power):
        (db.loc[db['Title'] == 'Total Overnight Cost (Accounts 10 to 50)', 'Total Cost (USD)']).values +\
         (db.loc[db['Title'] == '60s - Subtotal', 'Total Cost (USD)']).values
 
-   
+
     # update final results per kw
     (db.loc[db['Title'] == '(Accounts 10 to 20) US$/kWe', 'Total Cost (USD)']) =\
         (db.loc[db['Title'] == 'Total Direct Capital Cost (Accounts 10 to 20)', 'Total Cost (USD)']).values/reactor_power 
 
     (db.loc[db['Title'] == '(Accounts 10 to 30) US$/kWe', 'Total Cost (USD)']) =\
         (db.loc[db['Title'] == 'Base Construction Cost (Accounts 10 to 30)', 'Total Cost (USD)']).values/reactor_power 
-   
+
     (db.loc[db['Title'] == '(Accounts 10 to 50) US$/kWe', 'Total Cost (USD)']) =\
         (db.loc[db['Title'] == 'Total Overnight Cost (Accounts 10 to 50)', 'Total Cost (USD)']).values/reactor_power 
-    
+
     (db.loc[db['Title'] == '(Accounts 10 to 60) US$/kWe', 'Total Cost (USD)']) =\
         (db.loc[db['Title'] == 'Total Capital Investment Cost (All Accounts)', 'Total Cost (USD)']).values/reactor_power
-    	
+
     return db
 
 
@@ -155,7 +157,7 @@ def _(mo):
 @app.cell
 def _(pd):
     def reactor_data_read(rtype = 'Concept B',
-                          datafilepath = 'small-modular-reactor/conceptb-inputs.xlsx'):
+                          datafilepath = 'src/technology/small-modular-reactor/conceptb-inputs.xlsx'):
         """
         Read in baseline cost data for a 300 MWe small modular reactor using
         sodium fast reactor technology.
@@ -178,6 +180,7 @@ def _(pd):
 
         rdata = pd.read_excel(datafilepath,
                               sheet_name = 'Costs')
+        # kWe
         rpower = 310.8 * 1000
         sp = pd.read_excel(datafilepath,
                            sheet_name='Ref Spending Curve',
@@ -226,12 +229,12 @@ def _():
     # Design maturity
     Design_Maturity_0 = 1
 
-    # #procurement service experience (supply chain experience)
+    # #procurement service experience (supply chaFin experience)
     proc_exp_0= 0.5 # 2 means procurement experts. This is ideal. 
-   
+
     # #  architecture and engineeringexperience
     ae_exp_0 = 0.5
-    
+
     # #  Construction service experience
     ce_exp_0 = 1
 
@@ -284,23 +287,6 @@ def _():
         standardization_0,
         startup_0,
     )
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(
-        r"""
-    ### The Cost reduction framework: levers and variables impact the costs as shown in the figure (below)
-
-    <center><table>
-        <tr>
-            <th><img src="./framework_diagram.png",align="middle",height="10000"/></th>
-        </tr>
-    </table>
-    </center>
-    """
-    )
-    return
 
 
 @app.cell(hide_code=True)
@@ -1465,7 +1451,11 @@ def _(
                                N_proc,
                                standardization_0,
                                interest_rate_0,
-                               startup_0):
+                               startup_0,
+                               om_variable,
+                               om_fixed,
+                               spent_fuel_cost,
+                               capacity_factor = 0.95):
         """
 
         Parameters
@@ -1490,6 +1480,9 @@ def _(
         standardization_0,
         interest_rate_0,
         startup_0
+        om_variable
+        om_fixed
+        capacity_factor
 
         Returns
         -------
@@ -1547,7 +1540,35 @@ def _(
         levelized_net_OCC = Final_Result[1]
         levelized_NCI = Final_Result[2]
 
-        return (Final_Result_COA, levelized_net_OCC, levelized_NCI, final_construction_duration)
+        # Annual fixed operating and maintenance costs, including spent fuel cost
+        # om_fixed is USD/kWe-year and spent_fuel_cost is in USD/MWh
+        # To scale the spent fuel cost, reactor_power is converted to MWh using
+        # hours/year and capacity factor, then dividing by 1000
+        fixed_costs = om_fixed * reactor_power + spent_fuel_cost * (reactor_power*8760*capacity_factor/1000)
+
+        # Annual variable operating and maintenance costs
+        variable_costs = om_variable * (reactor_power*8760*capacity_factor/1000)
+
+        # For use with Tyche, sum the fixed and variable costs together
+        om_costs = fixed_costs + variable_costs
+
+        # MWh of electricity produced in a year - for production function
+        elec_out = reactor_power * capacity_factor * 8760.0 / 1000.0
+
+        # total overnight cost - ITC reduced - USD/kWe
+        occ_kwe = Final_Result_COA.iloc[-4]['Total Cost (USD)']
+
+        # total capital investment cost - ITC reduced - USD/kWe
+        tci_kwe = Final_Result_COA.iloc[-1]['Total Cost (USD)']
+
+        return (Final_Result_COA,
+                levelized_net_OCC,
+                levelized_NCI,
+                final_construction_duration,
+                om_costs,
+                elec_out,
+                occ_kwe,
+                tci_kwe)
     return (calculate_final_result,)
 
 
@@ -1576,25 +1597,28 @@ def _(
     startup_0,
 ):
     final_result_all = calculate_final_result(reactor_type,
-                               n_th,
-                               f_22,
-                               f_2321,
-                               land_cost_per_acre_0,
-                               RB_grade_0,
-                               BOP_grade_0,
-                               num_orders,
-                               design_completion_0,
-                               ae_exp_0,
-                               N_AE,
-                               ce_exp_0,
-                               N_cons,
-                               mod_0,
-                               Design_Maturity_0,
-                               proc_exp_0,
-                               N_proc,
-                               standardization_0,
-                               interest_rate_0,
-                               startup_0)
+                                              n_th,
+                                              f_22,
+                                              f_2321,
+                                              land_cost_per_acre_0,
+                                              RB_grade_0,
+                                              BOP_grade_0,
+                                              num_orders,
+                                              design_completion_0,
+                                              ae_exp_0,
+                                              N_AE,
+                                              ce_exp_0,
+                                              N_cons,
+                                              mod_0,
+                                              Design_Maturity_0,
+                                              proc_exp_0,
+                                              N_proc,
+                                              standardization_0,
+                                              interest_rate_0,
+                                              startup_0,
+                                              om_variable = 13.0,
+                                              om_fixed = 179.0,
+                                              spent_fuel_cost = 1)
 
     final_coa = final_result_all[0]
 
@@ -1603,12 +1627,14 @@ def _(
     levelized_nci = final_result_all[2]
 
     construction_duration = final_result_all[3]
-    return
 
+    om_costs = final_result_all[4]
 
-@app.cell
-def _():
-    #final_coa.to_csv('small-modular-reactor/final_coa.csv', index=False)
+    electricity_produced = final_result_all[5]
+
+    occ_per_kWe = final_result_all[6]
+
+    tci_per_kWe = final_result_all[7]
     return
 
 
