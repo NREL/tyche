@@ -18,6 +18,7 @@ src_dir = technology_dir.parent
 atb_dir = os.path.join(src_dir, 'atb')
 
 geo_parameters = {
+               'ATB-calc_dir': '/Users/aayad/Work/repos/ATB-calc',
               'Case': 'Market',
               'TaxCreditCase': 'ITC',
               'CRPYears': 20,
@@ -27,10 +28,11 @@ geo_parameters = {
               'variable': 2022
               }
 
-designs = ty.Designs(path = ".",
-                    name = 'geothermal.xlsx')
-
 atb_geo = ty.ATB(path = atb_dir,
              atb_tech = 'geothermal',
              tech_filename = 'geothermal_atb.csv',
              parameters = geo_parameters)
+
+
+# designs = ty.Designs(path = ".",
+#                     name = 'geothermal.xlsx')
