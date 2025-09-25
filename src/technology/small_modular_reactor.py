@@ -193,10 +193,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
     spent_fuel_cost = parameter[23],
   )
   # Metrics: construction duration (months), levelized net overnight capital cost,
-  # levelized net capital investment, total overnight cost per kWe, total capital
-  # investment cost per kWh
+  # levelized net capital investment
   return np.stack([all_results[3],
                    all_results[1],
-                   all_results[2],
-                   all_results[6],
-                   all_results[7]])
+                   all_results[2]])
