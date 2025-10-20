@@ -1,7 +1,7 @@
 """
 I/O utilities for Tyche.
 """
-import pdb
+
 import os     as os
 import importlib as il
 
@@ -184,11 +184,10 @@ def check_tables(
     # For every technology model,
     for _tech, _meta in functions.iterrows():
       # First check that the model exists as a .py file in the correct location
-      pdb.set_trace()
-      if os.path.exists('./src/technology/' + _meta['Model'] + '.py'):
+      if os.path.exists('tyche/src/technology/' + _meta['Model'] + '.py'):
         # If the file does exist, use a try/except structure to attempt import
         try:
-          _model = il.import_module("." + _meta["Model"], package="technology")
+          _model = il.import_module(_meta["Model"], package="technology")
         except ImportError:
           check_list.append(
             (f'Data Validation: Technology model {_tech} is not importable.\n')
