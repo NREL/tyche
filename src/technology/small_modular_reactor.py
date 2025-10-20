@@ -11,7 +11,6 @@ This file acts as a bridge to the ACCERT model, included in this file as additio
 """
 
 import numpy as np
-import marimo as mo
 
 import pandas as pd
 
@@ -127,7 +126,7 @@ def ITC_reduction_factor(itc_level):
 
 
 def reactor_data_read(rtype = 'Concept B',
-                      datafilepath = 'src/technology/small-modular-reactor/conceptb-inputs.xlsx'):
+                      datafilepath = 'tyche/src/technology/small-modular-reactor/conceptb-inputs.xlsx'):
     """
     Read in baseline cost data for a 300 MWe small modular reactor using
     sodium fast reactor technology.
