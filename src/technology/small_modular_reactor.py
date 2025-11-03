@@ -1359,8 +1359,7 @@ def calculate_final_result(reactor_type,
             final_construction_duration,
             om_costs,
             elec_out,
-            occ_kwe,
-            tci_kwe)
+            Final_Result_COA['total_cost']['Total Overnight Cost - ITC reduced (USD)'])
 
 
 
@@ -1563,4 +1562,5 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   # levelized net capital investment
   return np.stack([all_results[3],
                    all_results[1] * scale**0.6,
-                   all_results[2]])
+                   all_results[2],
+                   all_results[6] * scale**0.6])
