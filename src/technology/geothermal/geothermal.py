@@ -1,14 +1,10 @@
-import os
-import sys
-
+import os, sys
 import numpy             as np
 import matplotlib.pyplot as pl
 import pandas            as pd
 import seaborn           as sb
 from pathlib import Path
-
 sys.path.insert(0, os.path.abspath("../../../src"))
-
 import tyche             as ty
 
 cur_dir =  Path(__file__).parent.absolute()
@@ -36,3 +32,4 @@ atb_geo = ty.ATB(path = atb_dir,
 
 # designs = ty.Designs(path = ".",
 #                     name = 'geothermal.xlsx')
+
