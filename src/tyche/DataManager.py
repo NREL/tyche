@@ -222,7 +222,7 @@ class DesignsDataset(Data):
 
   COLUMNS = (
     {"name": "Technology", "type": str, "index": True,  "backfill": None},
-    {"name": "Scenario"  , "type": str, "index": True,  "backfill": None},
+    {"name": "Tranche"  , "type": str, "index": True,  "backfill": None},
     {"name": "Variable"  , "type": str, "index": True,  "backfill": None},
     {"name": "Index"     , "type": str, "index": True,  "backfill": None},
     {"name": "Value"     , "type": str, "index": False, "backfill": None},
@@ -359,7 +359,7 @@ class ParametersDataset(Data):
 
   COLUMNS = (
     {"name": "Technology", "type": str, "index": True,  "backfill": None},
-    {"name": "Scenario"  , "type": str, "index": True,  "backfill": None},
+    {"name": "Tranche"  , "type": str, "index": True,  "backfill": None},
     {"name": "Parameter" , "type": str, "index": True,  "backfill": None},
     {"name": "Offset"    , "type": int, "index": False, "backfill": None},
     {"name": "Value"     , "type": str, "index": False, "backfill": None},
@@ -428,12 +428,11 @@ class TranchesDataset(Data):
   COLUMNS = (
     {"name": "Category", "type": str, "index": True,  "backfill": None},
     {"name": "Tranche" , "type": str, "index": True,  "backfill": None},
-    {"name": "Scenario", "type": str, "index": True,  "backfill": None},
     {"name": "Amount"  , "type": str, "index": False, "backfill": None},
     {"name": "Notes"   , "type": str, "index": False, "backfill": None}
   )
 
-  INDEX_COLUMNS = [0, 1, 2]
+  INDEX_COLUMNS = [0, 1]
 
   def __init__(
     self,

@@ -1,0 +1,14 @@
+Lever,Lever baseline value (for a hopothetical well-executed project),Range,User-Input Value
+Design Maturity,2,0 - 2,1
+Design Completion,1,0 - 1,0.8
+Procurement (supply chain) experience ,2,0 - 2,0.5
+Architecture & Engineering Experience,2,0 - 2,0.5
+Construction service experience,2,0 - 2,1
+ Land Cost Per Acre (2023 USD),22000,1000 - 100000,22000
+ITC ,0,0 - 0.4,0
+ Interest Rate,0.06,0 - 0.15,0.06
+BOP grade ,nuclear,nuclear or non-nuclear,non_nuclear
+Reactor Building grade,nuclear,nuclear or non-nuclear,nuclear
+modulariziation,modularized,stick_built or modularized,modularized
+standardization,0.7,0.7 : 1,0.8
+Startup duration (months),16,3:24,16

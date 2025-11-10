@@ -27,7 +27,7 @@ for the variables that are defined in :numref:`tbl-variables`.
    :math:`m \in \mathcal{M}`  metric              cost, jobs, carbon footprint, efficiency, lifetime  
    :math:`p \in \mathcal{P}`  technical parameter temperature, pressure                               
    :math:`\nu \in N`          technology type     electrolysis, PV cell                               
-   :math:`\theta \in \Theta`  scenario            the result of a particular investment               
+   :math:`\theta \in \Theta`  design              the result of a particular investment               
    :math:`\chi \in X`         investment category investment alternatives                             
    :math:`\phi \in \Phi_\chi` investment          a particular investment                             
    :math:`\omega \in \Omega`  portfolio           a basket of investments                             
@@ -58,10 +58,10 @@ for the variables that are defined in :numref:`tbl-variables`.
    :math:`P_o`                            function        production function    output/unit
    :math:`M_m`                            function        metric function        metric/unit
    :math:`\alpha_p`                       parameter       technical parameter    (mixed)
-   :math:`\xi_\theta`                     variable        scenario inputs        (mixed)
-   :math:`\zeta_\theta`                   variable        scenario outputs       (mixed)
-   :math:`\psi`                           function        scenario evaluation    (mixed)
-   :math:`\sigma_\phi`                    function        scenario probability   1
+   :math:`\xi_\theta`                     variable        design inputs          (mixed)
+   :math:`\zeta_\theta`                   variable        design outputs         (mixed)
+   :math:`\psi`                           function        design evaluation      (mixed)
+   :math:`\sigma_\phi`                    function        design probability     1
    :math:`q_\phi`                         variable        investment cost        USD
    :math:`\mathbf{\zeta}_\phi`            random variable investment outcome     (mixed)
    :math:`\mathbf{Z}(\omega)`             random variable portfolio outcome      (mixed)
@@ -125,11 +125,11 @@ are worse and lower values are better.
 :math:`\mu_m = M_m(S, C_c, \tau_c, F_f, I_i, I^*_i, O^*_o, O_o, K, \alpha_p)`
 
 
-Scenarios
+Designs
 ---------
 
-A *scenario* represents a state of affairs for a technology :math:`\nu`.
-If we denote the scenario as :math:`\theta`, we have the tuple of input
+A *design* represents a state of affairs for a technology :math:`\nu`.
+If we denote the design as :math:`\theta`, we have the tuple of input
 variables
 
 :math:`\xi_\theta = \left(S, C_c, \tau_c, F_f, I_i, \eta_i, \eta^\prime_o, \alpha_p, p_i, p^\prime_o\middle) \right|_\theta`
@@ -146,14 +146,14 @@ given the tuple of functions
 
 :math:`\psi_\nu = \left(P_o, M_m\middle) \right|_\nu`
 
-for the technology of the scenario.
+for the technology.
 
 
 Investments
 -----------
 
 An *investment* :math:`\phi` assigns a probability distribution to
-scenarios:
+designs:
 
 :math:`\sigma_\phi(\theta) = P\left(\theta \middle| \phi\right)`.
 
@@ -215,7 +215,7 @@ components for cost :math:`K` and each metric :math:`\mu_m`, so this is
 a multi-objective problem.
 
 The two-stage decision problem is a special case of the general problem
-outlined here: Each scenario :math:`\theta` can be considers as a
+outlined here: Each design :math:`\theta` can be considers as a
 composite of one or more stages.
 
 
@@ -226,4 +226,4 @@ Each expert elicitation takes the form of an assessment of the
 probability and range (e.g., 10th to 90th percentile) of change in the
 cost or waste parameters or the production or metric functions. In
 essence, the expert elicitation defines :math:`\sigma_\phi(\theta)` for
-each potential scenario :math:`\theta` of each investment :math:`\phi`.
+each potential design :math:`\theta` resulting from each investment :math:`\phi`.

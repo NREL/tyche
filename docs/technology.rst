@@ -45,6 +45,19 @@ Tutorial Technologies
 
 The technology models in this section are for exploratory and learning purposes only.
 
+Template for Developing New Models and Datasets
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: technology.technology_a_model
+	:members:
+	:undoc-members:
+	:show-inheritance:
+	
+.. automodule:: technology.technology_m_model
+	:members:
+	:undoc-members:
+	:show-inheritance:
+
 Simple Electrolysis
 ^^^^^^^^^^^^^^^^^^^
 

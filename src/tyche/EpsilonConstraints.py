@@ -73,7 +73,7 @@ class EpsilonConstraintOptimizer:
     max_amount   = None   ,
     total_amount = None   ,
     eps_metric   = None   ,
-    statistic    = np.mean,
+    statistic    = 'mean',
     initial      = None   ,
     tol          = 1e-8   ,
     maxiter      = 50     ,
@@ -101,9 +101,9 @@ class EpsilonConstraintOptimizer:
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
       constraint is a lower or an upper bound, and the value must be either
       'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary statistic used on the sample evaluations; the metric measure that
-      is fed to the optimizer.
+      is fed to the optimizer. See Evaluator for options.
     initial : array of float
       Initial value of decision variable(s) fed to the optimizer.
     tol : float
@@ -148,7 +148,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    bounds = [(0, x) for x in max_amount / self.scale]
+    bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a function that will construct the investment constraint for the
     # optimizer, in the correct format
@@ -169,13 +169,11 @@ class EpsilonConstraintOptimizer:
 
         if verbose == 3:
           print('Investment limit: ', np.round(limit, 3),
-                ' Investment value: ', np.round(value, 3),
-                ' Constraint met: ', value <= limit)
+                ' Investment value: ', np.round(value, 3))
         elif verbose > 3:
           print('Decision variable values: ', np.round(x, 3),
                 ' Investment limit: ', np.round(limit, 3),
-                ' Investment value:  ', np.round(value, 3),
-                '  Constraint met: ', value <= limit)
+                ' Investment value:  ', np.round(value, 3))
 
         # update the constraint container with the LHS value of the
         # investment constraint as a >= 0 inequality constraint
@@ -191,33 +189,28 @@ class EpsilonConstraintOptimizer:
 
           # get location index of the current metric
           j = np.where(self.evaluator.metrics == index)[0][0]
+          value = self._f(evaluate=evaluate,
+                          sense='min',
+                          verbose=verbose)(x)[j]
+          # append the existing constraints container with the LHS value of the
+          # current metric constraint formulated as >= 0
+          # as the loop executes, one constraint per metric will be added to
+          # the container
           if info['sense'] == 'lower':
-            value = self._f(evaluate=evaluate,
-                            sense='min',
-                            verbose=verbose)(x)[j]
+            constraints += [value - info['limit']]
           elif info['sense'] == 'upper':
-            value = self._f(evaluate=evaluate,
-                            sense='max',
-                            verbose=verbose)(x)[j]
+            constraints += [info['limit'] - value]
           else:
             raise ValueError('opt_slsqp: Epsilon constraint must be upper or lower')
 
           if verbose == 3:
             print('Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value >= info['limit'])
+                  '  Metric value:     ', np.round(value, 3))
           elif verbose > 3:
             print('Decision variable values: ', np.round(x, 3),
                   ' Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value >= info['limit'])
-
-          # append the existing constraints container with the LHS value of the
-          # current metric constraint formulated as >= 0
-          # as the loop executes, one constraint per metric will be added to
-          # the container
-          constraints += [value - info['limit']]
-
+                  '  Metric value:      ', np.round(value, 3))
+      
       return constraints
 
     # if no initial decision variable values have been defined,
@@ -269,7 +262,7 @@ class EpsilonConstraintOptimizer:
           max_amount    = None            ,
           total_amount  = None            ,
           eps_metric    = None            ,
-          statistic     = np.mean         ,
+          statistic     = 'mean'         ,
           strategy      = 'best1bin'      ,
           seed          = 2               ,
           tol           = 0.01            ,
@@ -298,9 +291,9 @@ class EpsilonConstraintOptimizer:
       names, and the values are dictionaries of the form {'limit': float, 'sense': str}.
       The sense defines whether the epsilon constraint is a lower or an upper bound,
       and the value must be either 'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary statistic used on the sample evaluations; the metric measure that
-      is fed to the optimizer.
+      is fed to the optimizer. See Evaluator for options.
     strategy : str
       Which differential evolution strategy to use. 'best1bin' is the default.
       See algorithm docs for full list.
@@ -355,7 +348,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    var_bounds = [(0, x) for x in max_amount / self.scale]
+    var_bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a function that will construct the investment constraint for the
     # optimizer, in the correct format
@@ -376,13 +369,11 @@ class EpsilonConstraintOptimizer:
 
         if verbose == 2:
           print('Investment limit: ', np.round(limit, 3),
-                ' Investment value: ', np.round(value, 3),
-                ' Constraint met: ', value <= limit)
+                ' Investment value: ', np.round(value, 3))
         elif verbose > 2:
           print('Decision variable values: ', np.round(x, 3),
                 ' Investment limit: ', np.round(limit, 3),
-                ' Investment value: ', np.round(value, 3),
-                ' Constraint met: ', value <= limit)
+                ' Investment value: ', np.round(value, 3))
 
         # update the constraint container with the LHS value of the
         # investment constraint as a >= 0 inequality constraint
@@ -413,13 +404,11 @@ class EpsilonConstraintOptimizer:
 
           if verbose == 3:
             print('Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:     ', np.round(value, 3),
-                  ' Constraint met: ', value <= info['limit'])
+                  '  Metric value:     ', np.round(value, 3))
           elif verbose > 3:
             print('Decision variable values: ', np.round(x, 3),
                   ' Metric limit:     ', np.round(info['limit'], 3),
-                  '  Metric value:      ', np.round(value, 3),
-                  ' Constraint met: ', value <= info['limit'])
+                  '  Metric value:      ', np.round(value, 3))
 
           # append the existing constraints container with the LHS value of the
           # current metric constraint formulated as >= 0
@@ -475,7 +464,7 @@ class EpsilonConstraintOptimizer:
           max_amount       = None        ,
           total_amount     = None        ,
           eps_metric       = None        ,
-          statistic        = np.mean     ,
+          statistic        = 'mean'     ,
           tol              = 0.01        ,
           maxiter          = None        ,
           sampling_method  = 'simplicial',
@@ -504,9 +493,9 @@ class EpsilonConstraintOptimizer:
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
       constraint is a lower or an upper bound, and the value must be either
       'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary metric_statistic used on the sample evaluations; the metric
-      measure that is fed to the optimizer.
+      measure that is fed to the optimizer. See Evaluator for options.
     tol : float
       Objective function tolerance in stopping criterion.
     maxiter : int
@@ -554,7 +543,7 @@ class EpsilonConstraintOptimizer:
 
     # scale the upper limits on investment amounts by category down such that
     # variables and constraints remain on approximately the same range
-    bounds = [(0, x) for x in max_amount / self.scale]
+    bounds = [(0, max(x, 0.1/self.scale)) for x in max_amount / self.scale]
 
     # define a dictionary of functions that define individual constraints and
     # their types (all inequalities)
@@ -579,15 +568,13 @@ class EpsilonConstraintOptimizer:
           # amount (LHS of constraint), and a Boolean indicating whether the
           # investment constraint is met
           print('Investment limit: ', np.round(inv_limit, 3),
-                ' Investment value: ', np.round(inv_value, 3),
-                ' Constraint met: ', inv_value <= inv_limit)
+                ' Investment value: ', np.round(inv_value, 3))
         # if verbose is greater than or equal to three
         elif verbose > 2:
           # also print the decision variable values
           print('Decision variable values: ', np.round(x, 3),
                 ' Investment limit: ', np.round(inv_limit, 3),
-                ' Investment value:  ', np.round(inv_value, 3),
-                '  Constraint met: ', inv_value <= inv_limit)
+                ' Investment value:  ', np.round(inv_value, 3))
 
         return inv_limit - inv_value
 
@@ -615,13 +602,11 @@ class EpsilonConstraintOptimizer:
 
         if verbose == 2:
           print('Metric limit:     ', np.round(metric_limit, 3),
-                '  Metric value:     ', np.round(met_value, 3),
-                ' Constraint met: ', met_value >= metric_limit)
+                '  Metric value:     ', np.round(met_value, 3))
         elif verbose > 2:
           print('Decision variable values: ', np.round(x, 3),
                 ' Metric limit:     ', np.round(metric_limit, 3),
-                '  Metric value:      ', np.round(met_value, 3),
-                ' Constraint met: ', met_value >= metric_limit)
+                '  Metric value:      ', np.round(met_value, 3))
 
         return met_value - metric_limit
 
@@ -687,7 +672,7 @@ class EpsilonConstraintOptimizer:
     max_amount   = None   ,
     total_amount = None   ,
     sense        = None   ,
-    statistic    = np.mean,
+    statistic    = 'mean',
     tol          = 1e-8   ,
     maxiter      = 50     ,
     verbose      = 0      ,
@@ -705,8 +690,8 @@ class EpsilonConstraintOptimizer:
       Optimization sense for each metric. Must be 'min' or 'max'. If None, then
       the sense provided to the EpsilonConstraintOptimizer class is used for
       all metrics. If string, the sense is used for all metrics.
-    statistic : function
-      The statistic used on the sample evaluations.
+    statistic : string
+      The statistic used on the sample evaluations. See Evaluator for options.
     tol : float
       The search tolerance.
     maxiter : int
@@ -788,7 +773,7 @@ class EpsilonConstraintOptimizer:
           max_amount   = None   ,
           total_amount = None   ,
           eps_metric   = None   ,
-          statistic    = np.mean,
+          statistic    = 'mean',
           sizelimit    = 1e6    ,
           verbose      = 0      ,
   ):
@@ -815,9 +800,9 @@ class EpsilonConstraintOptimizer:
       {'limit': float, 'sense': str}. The sense defines whether the epsilon
       constraint is a lower or an upper bound, and the value must be either
       'upper' or 'lower'.
-    statistic : function
+    statistic : string
       Summary statistic (metric measure) fed to evaluator_corners_wide method
-      in Evaluator
+      in Evaluator. See Evaluator for options.
     total_amount : float
       Upper limit on total investments summed across all R&D categories
     sizelimit : int
