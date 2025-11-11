@@ -24,11 +24,14 @@ geo_parameters = {
               'variable': 2022
               }
 
-atb_geo = ty.ATB(path = atb_dir,
-             atb_tech = 'geothermal',
+geo_atb = ty.ATB(path = atb_dir,
+             tech_name = 'geothermal',
              tech_filename = 'geothermal_atb.csv',
+             output_path = cur_dir,
              parameters = geo_parameters)
 
+
+geo_atb.export_data()
 
 # designs = ty.Designs(path = ".",
 #                     name = 'geothermal.xlsx')

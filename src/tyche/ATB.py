@@ -46,7 +46,8 @@ class ATB:
     def __init__(
             self,
             path, 
-            atb_tech, 
+            tech_name,
+            output_path = None, 
             tech_filename = None,
             parameters = {}
     ):
@@ -55,7 +56,7 @@ class ATB:
         ----------
         path : str
           Path to directory where ATB technology files are stored
-        atb_tech : str
+        tech_name : str
           Name of ATB technology to process
         tech_filename : str
           CSV Filename where technology data is stored
@@ -63,38 +64,43 @@ class ATB:
                 Dictionnary of technology parameters
         """
         self.path = path
-        self.atb_tech = atb_tech
+        self.tech_name = tech_name
         self.parameters = parameters
-        
-        if tech_filename is not None:
-            self.read_atb_data(path, tech_filename)            
+        if output_path is not None:
+            self.output_path = output_path
+        else:
+            self.output_path = path
+
+        if tech_filename is not None:    
+            self.read_data(tech_filename)            
         else:
             self.call_ATB_calc()
-
         
-    def read_atb_data(self, tech_filename):
+        
+    def read_data(self, tech_filename):
         """
         Read ATB data from CSV file
         """
-        if not os.path.isfile(os.path.join(self.path, self.tech_filename)):
-          print(f"Investments: No input data found in {os.path.join(self.path, self.atb_tech)}")
+        if not os.path.isfile(os.path.join(self.path, tech_filename)):
+          print(f"Investments: No input data found in {os.path.join(self.path, self.tech_name)}")
           sys.exit(1)
-        else:
-            self.atb_data = pd.read_csv(os.path.join(self.path, self.tech_filename))
-            self.tech_filename = tech_filename
+        
+        self.tech_filename = tech_filename
+        self.data = pd.read_csv(os.path.join(self.path, self.tech_filename))
+        self.data.drop(columns = ["Unnamed: 0"], inplace = True)
 
     def extract_values(self, parameter):
         """
         Extract values from ATB data
         """       
-        return self.atb_data.loc[(self.atb_data["Parameter"] == parameter) & 
-                    (self.atb_data["Case"] == self.parameters["Case"]) & 
-                    (self.atb_data["TaxCreditCase"] == self.parameters["TaxCreditCase"]) & 
-                    (self.atb_data["CRPYears"] == self.parameters["CRPYears"]) & 
-                    (self.atb_data["Technology"] == self.parameters["Technology"]) & 
-                    (self.atb_data["DisplayName"] == self.parameters["DisplayName"]) & 
-                    (self.atb_data["Scenario"] == self.parameters["Scenario"]) & 
-                    (self.atb_data["variable"] == self.parameters["variable"]),
+        return self.data.loc[(self.data["Parameter"] == parameter) & 
+                    (self.data["Case"] == self.parameters["Case"]) & 
+                    (self.data["TaxCreditCase"] == self.parameters["TaxCreditCase"]) & 
+                    (self.data["CRPYears"] == self.parameters["CRPYears"]) & 
+                    (self.data["Technology"] == self.parameters["Technology"]) & 
+                    (self.data["DisplayName"] == self.parameters["DisplayName"]) & 
+                    (self.data["Scenario"] == self.parameters["Scenario"]) & 
+                    (self.data["variable"] == self.parameters["variable"]),
                     'value'
                     ].iloc[0]
     
@@ -104,20 +110,27 @@ class ATB:
         """
         ##TODO: implement ATB-calc call
         
-        print(f"No filename was provided for {self.atb_tech}, calling ATB-calc to get ATB parameters")
+        print(f"No filename was provided for {self.tech_name}, calling ATB-calc to get ATB parameters")
         
-        tech_name = ATB_TECHNOLOGIES.get(self.atb_tech.title(), None)
+        tech_name = ATB_TECHNOLOGIES.get(self.tech_name.title(), None)
         if tech_name is None:
-            print(f"Technology {self.atb_tech.title()} is not found")
+            print(f"Technology {self.tech_name.title()} is not found")
             sys.exit(1)
         
         import_atb(self.parameters["ATB-calc_dir"])
     
-        
-            
         print(tech_name)
-        # self.tech_filename = f"{self.atb_tech}_atb.csv"
-        # self.atb_data = call to atb-calc to process the technology
+        # self.tech_filename = f"{self.tech_name}_atb.csv"
+        # self.data = call to atb-calc to process the technology
+    
+
+    def export_data(self):
+        """
+        export technology data to match ReEDS format
+        """
+        
+        self.data.to_csv(os.path.join(self.output_path, f"{self.tech_name}_atb_calc.csv"), index=False)
+        
 
 
 
