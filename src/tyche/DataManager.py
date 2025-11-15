@@ -386,6 +386,40 @@ class ParametersDataset(Data):
       backfill = backfill,
     )
 
+class ATBParametersDataset(Data):
+  """
+  Read in and process the parameters dataset.
+  """
+
+  COLUMNS = (
+    {"name": "Technology", "type": str, "index": True,  "backfill": None},
+    {"name": "Tranche"  , "type": str, "index": True,  "backfill": None},
+    {"name": "Parameter" , "type": str, "index": True,  "backfill": None},
+    {"name": "Offset"    , "type": int, "index": False, "backfill": None},
+    {"name": "Value"     , "type": str, "index": False, "backfill": None},
+    {"name": "Units"     , "type": str, "index": False, "backfill": None},
+    {"name": "Notes"     , "type": str, "index": False, "backfill": None}
+  )
+
+  INDEX_COLUMNS = [0, 1, 2]
+
+  def __init__(
+    self,
+    fpath = None,
+    columns = {d["name"]: d["type"] for d in COLUMNS},
+    index_columns = INDEX_COLUMNS,
+    sheet = "ATB_parameters",
+    backfill = False,
+  ):
+    """Initialize parameters data frame."""
+    super().__init__(
+      fpath = fpath,
+      columns = columns,
+      index_columns = index_columns,
+      sheet = sheet,
+      backfill = backfill,
+    )
+
 
 class ResultsDataset(Data):
   """

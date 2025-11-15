@@ -7,7 +7,7 @@ from matplotlib import scale
 import numpy as np
 
 
-def capital_cost(scale, atb):
+def capital_cost(scale, parameter, atb):
     """
     Capital cost function.
 
@@ -39,7 +39,7 @@ def capital_cost(scale, atb):
 
     return np.stack([occ, gcc, capex])
 
-def fixed_cost(scale, atb):
+def fixed_cost(scale, parameter, atb):
   """
   Fixed cost function.
 
@@ -62,7 +62,7 @@ def fixed_cost(scale, atb):
   return np.stack([fom])
 
 
-def production(scale, capital, lifetime, fixed, input, parameter):
+def production(scale, capital, lifetime, fixed, input, parameter, atb):
   """
   Production function.
 
@@ -70,74 +70,42 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   ----------
   scale : float
     The scale of operation.
-  capital : array
-    Capital costs.
-  lifetime : float
-    Technology lifetime.
-  fixed : array
-    Fixed costs.
-  input : array
-    Input quantities. 
-  parameter : array
-    The technological parameterization.
   """
+  # MWh of electricity (per year)
+  plant_capacity = input[0]  # in MW 
+  net_capacity_factor = atb.extract_values(parameter = 'CF')
 
-  # Moles of input.
-  water       = np.divide(input[0], parameter[2])
-  electricity = np.divide(input[1], parameter[3])
-
-  # Moles of output.
-  output = np.minimum(water, electricity)
-
-  # Grams of output.
-  oxygen   = np.multiply(output, parameter[0])
-  hydrogen = np.multiply(output, parameter[1])
-
-  # Package results.
-  return np.stack([oxygen, hydrogen])
+  electricity_output = scale * plant_capacity * net_capacity_factor * 8760
+  return np.stack([electricity_output])
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter, atb):
   """
   Metrics function.
 
   Parameters
   ----------
   scale : float
-    The scale of operation.
-  capital : array
-    Capital costs.
-  lifetime : float
-    Technology lifetime.
-  fixed : array
-    Fixed costs.
-  input_raw : array
-    Raw input quantities (before losses).
-  input : array
-    Input quantities. 
-  output_raw : array
-    Raw output quantities (before losses).
-  output : array
-    Output quantities. 
-  cost : array
-    Costs.
-  parameter : array
-    The technological parameterization.
+  The scale of operation.
+  lcoe : float
+    levelized cost of electricity
   """
 
-  # Hydrogen output.
-  hydrogen = output[1]
+  # read tyche parameters
+  ptc = parameter[0] # Premium Tax Credit
+  pff = parameter[1] # PFF Tax credits
+  cff = parameter[2] # Construction Finance Factor
+  crp = parameter[3] # Capital Recovery Period
+  net_capacity_factor = parameter[4] # capacity factor
 
-  # Cost of hydrogen.
-  cost1 = np.divide(cost, hydrogen)
+  # read atb parameters
+  capital_recovery_factor = atb.extract_values(parameter = 'CRF')
+  overnight_capital_cost = atb.extract_values(parameter = 'OCC')
+  grid_connection_cost = atb.extract_values(parameter = 'GCC')
+  fixed_om = atb.extract_values(parameter = 'Fixed O&M')
+  variable_om = atb.extract_values(parameter = 'Variable O&M')
+  # net_capacity_factor = atb.extract_values(parameter = 'CF')
 
-  # Jobs normalized to hydrogen.
-  jobs = np.divide(parameter[4], hydrogen)
+  lcoe = scale * (((capital_recovery_factor * pff * cff * (overnight_capital_cost * 1 + grid_connection_cost) + fixed_om) * 1000 / (net_capacity_factor * 8760)) + variable_om + 0 - ptc)
 
-  # GHGs associated with water and electricity.
-  water       = np.multiply(input_raw[0], parameter[8])
-  electricity = np.multiply(input_raw[1], parameter[9])
-  co2e = np.divide(np.add(water, electricity), hydrogen)
-
-  # Package results.
-  return np.stack([cost1, jobs, co2e])
+  return np.stack([lcoe])

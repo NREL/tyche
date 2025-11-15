@@ -35,6 +35,8 @@ ATB_TECHNOLOGIES = {
     "Nuclear": "NuclearProc",
 }
 
+FINANCIAL_PARAMETERS = ['CRF']
+
 #TODO: add ATB-calc
 class ATB:
     """
@@ -82,27 +84,40 @@ class ATB:
         Read ATB data from CSV file
         """
         if not os.path.isfile(os.path.join(self.path, tech_filename)):
-          print(f"Investments: No input data found in {os.path.join(self.path, self.tech_name)}")
+          print(f"No ATB data found in {os.path.join(self.path, self.tech_name)}")
           sys.exit(1)
         
         self.tech_filename = tech_filename
-        self.data = pd.read_csv(os.path.join(self.path, self.tech_filename))
-        self.data.drop(columns = ["Unnamed: 0"], inplace = True)
+        self.data = pd.read_csv(os.path.join(self.path, self.tech_filename),
+                                 keep_default_na=False)
+        self.data.drop(columns = ["Unnamed: 0", "Reference", 
+                                  "Type of Evidence", "Escalation Index", "Zotero_Key", 
+                                  "Summary", "Bib_HTML"], inplace = True)
 
     def extract_values(self, parameter):
         """
         Extract values from ATB data
-        """       
-        return self.data.loc[(self.data["Parameter"] == parameter) & 
+        """ 
+        if parameter in FINANCIAL_PARAMETERS:
+            display_name = "*"
+        else:
+            display_name = self.parameters["DisplayName"]        
+        try:
+            atb_val = self.data.loc[(self.data["Parameter"] == parameter) & 
                     (self.data["Case"] == self.parameters["Case"]) & 
                     (self.data["TaxCreditCase"] == self.parameters["TaxCreditCase"]) & 
                     (self.data["CRPYears"] == self.parameters["CRPYears"]) & 
                     (self.data["Technology"] == self.parameters["Technology"]) & 
-                    (self.data["DisplayName"] == self.parameters["DisplayName"]) & 
+                    (self.data["DisplayName"] == display_name) & 
                     (self.data["Scenario"] == self.parameters["Scenario"]) & 
                     (self.data["variable"] == self.parameters["variable"]),
                     'value'
                     ].iloc[0]
+            print(f"ATB: extracted {parameter} = {round(atb_val, 2)}")
+            return atb_val
+        except ValueError:
+            raise Exception(f"ATB: {parameter} was not found with combinations of passed ATB parameters.")
+    
     
     def call_ATB_calc(self):
         """
@@ -119,7 +134,6 @@ class ATB:
         
         import_atb(self.parameters["ATB-calc_dir"])
     
-        print(tech_name)
         # self.tech_filename = f"{self.tech_name}_atb.csv"
         # self.data = call to atb-calc to process the technology
     

@@ -8,7 +8,7 @@ import importlib as il
 import numpy     as np
 import pandas    as pd
 
-from .DataManager   import DesignsDataset, FunctionsDataset, IndicesDataset, ParametersDataset, ResultsDataset
+from .DataManager   import DesignsDataset, FunctionsDataset, IndicesDataset, ParametersDataset, ATBParametersDataset, ResultsDataset
 from .Distributions import parse_distribution
 from .IO            import check_tables
 from .Types         import Functions, Indices, Inputs, Results
@@ -73,6 +73,7 @@ class Designs:
     path       = None            ,
     name       = 'technology.xlsx',
     uncertain  = True           ,
+    atb_data   = None          ,
   ):
     """
     Parameters
@@ -83,6 +84,8 @@ class Designs:
         Filename where decision context datasets are kept in separate sheets.
     uncertain : Boolean
       Flag indicating whether probability distributions are present in the *designs* or *parameters* tables.
+    atb_data : ATB object
+      object containing ATB data
     indices : str
       Sheet name for the *indices* table.
     functions : str
@@ -95,6 +98,7 @@ class Designs:
       Sheet name for the *results* table.
     """
     self.uncertain = uncertain
+    self.atb_data = atb_data
 
     if not os.path.isfile(os.path.join(path, name)):
       raise Exception(f"Designs: {os.path.join(path, name)} does not exist.")
@@ -102,12 +106,13 @@ class Designs:
     if not check_tables(path, name):
       raise Exception(f'Designs: {name} failed validation.')
 
-    self.indices    = IndicesDataset(    os.path.join(path, name)).sort_index()
-    self.functions  = FunctionsDataset(  os.path.join(path, name)).sort_index()
-    self.designs    = DesignsDataset(    os.path.join(path, name)).sort_index()
-    self.parameters = ParametersDataset( os.path.join(path, name)).sort_index()
-    self.results    = ResultsDataset(    os.path.join(path, name)).sort_index()
-
+    self.indices        = IndicesDataset(    os.path.join(path, name)).sort_index()
+    self.functions      = FunctionsDataset(  os.path.join(path, name)).sort_index()
+    self.designs        = DesignsDataset(    os.path.join(path, name)).sort_index()
+    self.parameters     = ParametersDataset( os.path.join(path, name)).sort_index()
+    self.atb_parameters = ATBParametersDataset( os.path.join(path, name)).sort_index()
+    self.parameters     = pd.concat([self.parameters, self.atb_parameters], axis = 0)
+    self.results        = ResultsDataset(    os.path.join(path, name)).sort_index()
       
   def vectorize_technologies(self):
     """
@@ -265,6 +270,7 @@ class Designs:
       The name of the technology.
     sample_count : int
       The number of random samples.
+
     """
     print(f"Evaluating {technology}")
     f_capital    = self.compiled_functions[technology].capital
@@ -280,13 +286,15 @@ class Designs:
     design    = self.vectorize_designs(   technology, n, sample_count)
     parameter = self.vectorize_parameters(technology, n, sample_count)
 
-    capital_cost = f_capital(design.scale, parameter)
-    fixed_cost   = f_fixed  (design.scale, parameter)
+    capital_cost = f_capital(design.scale, parameter, self.atb_data)
+    fixed_cost   = f_fixed  (design.scale, parameter, self.atb_data)
 
     input_raw = design.input
     input = design.input_efficiency * input_raw
     
-    output_raw = f_production(design.scale, capital_cost, design.lifetime, fixed_cost, input, parameter)
+    output_raw = f_production(design.scale, capital_cost,
+                              design.lifetime, fixed_cost,
+                              input, parameter, self.atb_data)
     output = design.output_efficiency * output_raw
 
     cost = np.sum(capital_cost / design.lifetime, axis=0) / design.scale + \
@@ -294,7 +302,9 @@ class Designs:
            np.sum(design.input_price  * input , axis=0) -                  \
            np.sum(design.output_price * output, axis=0)
 
-    metric = f_metrics(design.scale, capital_cost, design.lifetime, fixed_cost, input_raw, input, design.input_price, output_raw, output, cost, parameter)
+    metric = f_metrics(design.scale, capital_cost, design.lifetime,
+                       fixed_cost, input_raw, input, design.input_price,
+                       output_raw, output, cost, parameter, self.atb_data)
     
     def organize(df, ix):
       ix1 = pd.MultiIndex.from_product(
