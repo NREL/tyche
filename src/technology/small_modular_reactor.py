@@ -1094,8 +1094,8 @@ def update_interest_cost(rdata,
                 startup = startup_0[i,j]
             elif n_th[i,j] > 1:
                 startup = max(7, startup_0[i,j] * (1 - 0.3) ** np.log2(n_th[i,j]))
-            
-            _annual_periods = np.linspace(12, 12 * int(final_construction_duration[i,j] / 12), int(final_construction_duration[i,j] / 12))
+
+            _annual_periods = np.linspace(12, 12 * np.max([1, int(final_construction_duration[i,j] / 12)]), np.max([1, int(final_construction_duration[i,j] / 12)]))
 
             if max(_annual_periods) < int(final_construction_duration[i,j]) - 1:
                 annual_periods_1 = np.append(_annual_periods, final_construction_duration[i,j] - 1)
