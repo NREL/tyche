@@ -117,6 +117,7 @@ class Designs:
     if atb_input is not None:
       self.ATB = ATB(path = path, parameters = atb_input)
       self.add_atb_parameters(path, name)
+      self.parameters = pd.concat([self.parameters, self.atb_parameters], axis = 0)
 
 
   def add_atb_parameters(self, path, name):
@@ -142,8 +143,7 @@ class Designs:
             
             # atb_df = pd.read_csv(os.path.join(path, atb_input_filename))
             self.atb_parameters = ATBParametersDataset(os.path.join(path, atb_input_filename)).sort_index()
-            self.parameters = pd.concat([self.parameters, self.atb_parameters], axis = 0)
-
+            
         except ImportError:
             print(f"{atb_input_filename} not found in {path}")
             sys.exit(1)
