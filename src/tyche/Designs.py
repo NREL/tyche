@@ -319,15 +319,15 @@ class Designs:
     design    = self.vectorize_designs(   technology, n, sample_count)
     parameter = self.vectorize_parameters(technology, n, sample_count)
 
-    capital_cost = f_capital(design.scale, parameter)
-    fixed_cost   = f_fixed  (design.scale, parameter)
+    capital_cost = f_capital(design.scale, parameter, self.ATB)
+    fixed_cost   = f_fixed  (design.scale, parameter, self.ATB)
 
     input_raw = design.input
     input = design.input_efficiency * input_raw
     
     output_raw = f_production(design.scale, capital_cost,
                               design.lifetime, fixed_cost,
-                              input, parameter)
+                              input, parameter, self.ATB)
     output = design.output_efficiency * output_raw
 
     cost = np.sum(capital_cost / design.lifetime, axis=0) / design.scale + \
@@ -337,7 +337,7 @@ class Designs:
 
     metric = f_metrics(design.scale, capital_cost, design.lifetime,
                        fixed_cost, input_raw, input, design.input_price,
-                       output_raw, output, cost, parameter)
+                       output_raw, output, cost, parameter, self.ATB)
     
     def organize(df, ix):
       ix1 = pd.MultiIndex.from_product(

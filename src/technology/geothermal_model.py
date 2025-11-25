@@ -97,7 +97,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   pff = parameter[1] # PFF Tax credits
   cff = parameter[2] # Construction Finance Factor
   crp = parameter[3] # Capital Recovery Period
-  net_capacity_factor = parameter[4] # capacity factor
+  
 
   # read atb parameters
   capital_recovery_factor = atb_data.extract_values(parameter = 'CRF')
@@ -106,7 +106,8 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   fixed_om = atb_data.extract_values(parameter = 'Fixed O&M')
   variable_om = atb_data.extract_values(parameter = 'Variable O&M')
   # net_capacity_factor = atb_data.extract_values(parameter = 'CF')
-
+  net_capacity_factor = parameter[4] # capacity factor
+  
   occ = scale * parameter[5]
   lcoe = scale * (((capital_recovery_factor * pff * cff * (overnight_capital_cost * 1 + grid_connection_cost) + fixed_om) * 1000 / (net_capacity_factor * 8760)) + variable_om + 0 - ptc)
 
