@@ -73,7 +73,7 @@ class Designs:
     path       = None            ,
     name       = 'technology.xlsx',
     uncertain  = True           ,
-    atb_input   = None          ,
+    atb_input  = None          ,
   ):
     """
     Parameters
@@ -111,15 +111,15 @@ class Designs:
     self.parameters     = ParametersDataset( os.path.join(path, name)).sort_index()
     self.results        = ResultsDataset(    os.path.join(path, name)).sort_index()
 
+    # add ATB parameters
     self.atb_parameters = None
     self.ATB = None
     if atb_input is not None:
-      # create ATB object
       self.ATB = ATB(path = path, parameters = atb_input)
-      self.create_atb(path, name)
-      self.parameters = pd.concat([self.parameters, self.atb_parameters], axis = 0)
+      self.add_atb_parameters(path, name)
 
-  def create_atb(self, path, name):
+
+  def add_atb_parameters(self, path, name):
     """
     Create ATB object and add it to the workbook.
     """
@@ -142,6 +142,7 @@ class Designs:
             
             # atb_df = pd.read_csv(os.path.join(path, atb_input_filename))
             self.atb_parameters = ATBParametersDataset(os.path.join(path, atb_input_filename)).sort_index()
+            self.parameters = pd.concat([self.parameters, self.atb_parameters], axis = 0)
 
         except ImportError:
             print(f"{atb_input_filename} not found in {path}")
@@ -305,7 +306,6 @@ class Designs:
       The number of random samples.
 
     """
-    print(f"Evaluating {technology}")
     f_capital    = self.compiled_functions[technology].capital
     f_fixed      = self.compiled_functions[technology].fixed        
     f_production = self.compiled_functions[technology].production
@@ -317,18 +317,17 @@ class Designs:
     n = tranches.shape[0]
         
     design    = self.vectorize_designs(   technology, n, sample_count)
-    print(technology)
     parameter = self.vectorize_parameters(technology, n, sample_count)
 
-    capital_cost = f_capital(design.scale, parameter, self.ATB)
-    fixed_cost   = f_fixed  (design.scale, parameter, self.ATB)
+    capital_cost = f_capital(design.scale, parameter)
+    fixed_cost   = f_fixed  (design.scale, parameter)
 
     input_raw = design.input
     input = design.input_efficiency * input_raw
     
     output_raw = f_production(design.scale, capital_cost,
                               design.lifetime, fixed_cost,
-                              input, parameter, self.ATB)
+                              input, parameter)
     output = design.output_efficiency * output_raw
 
     cost = np.sum(capital_cost / design.lifetime, axis=0) / design.scale + \
@@ -338,7 +337,7 @@ class Designs:
 
     metric = f_metrics(design.scale, capital_cost, design.lifetime,
                        fixed_cost, input_raw, input, design.input_price,
-                       output_raw, output, cost, parameter, self.ATB)
+                       output_raw, output, cost, parameter)
     
     def organize(df, ix):
       ix1 = pd.MultiIndex.from_product(
