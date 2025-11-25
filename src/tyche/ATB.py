@@ -12,7 +12,7 @@ import pandas as pd
 from .Distributions import parse_distribution
 from .IO            import check_tables
 from .DataManager   import TranchesDataset, InvestmentsDataset
-from .Designs       import sampler
+# from .Designs       import sampler
 from .Types         import Evaluations
 
 
@@ -29,13 +29,22 @@ def import_atb(atb_calc_path):
         UtilityBatteryProc, CommBatteryProc, ResBatteryProc,
         CoalRetrofitProc, NaturalGasRetrofitProc, NaturalGasFuelCellProc)
 
-
 ATB_TECHNOLOGIES = {
     "Geothermal": "GeothermalProc",
     "Nuclear": "NuclearProc",
 }
 
 FINANCIAL_PARAMETERS = ['CRF']
+
+ATB_COLUMNS = (
+    {"name": "Technology", "type": str, "index": True,  "backfill": None},
+    {"name": "Tranche"  , "type": str, "index": True,  "backfill": None},
+    {"name": "Variable"  , "type": str, "index": True,  "backfill": None},
+    {"name": "Index"     , "type": str, "index": True,  "backfill": None},
+    {"name": "Value"     , "type": str, "index": False, "backfill": None},
+    {"name": "Units"     , "type": str, "index": False, "backfill": None},
+    {"name": "Notes"     , "type": str, "index": False, "backfill": None}
+  )
 
 #TODO: add ATB-calc
 class ATB:
@@ -48,9 +57,9 @@ class ATB:
     def __init__(
             self,
             path, 
-            tech_name,
-            output_path = None, 
-            tech_filename = None,
+            # tech_name,
+            # output_path = None, 
+            # tech_filename = None,
             parameters = {}
     ):
         """
@@ -66,15 +75,17 @@ class ATB:
                 Dictionnary of technology parameters
         """
         self.path = path
-        self.tech_name = tech_name
         self.parameters = parameters
-        if output_path is not None:
-            self.output_path = output_path
+        
+        self.tech_name = self.parameters["tech_name"]
+        
+        if self.parameters["output_path"] is not None:
+            self.output_path = self.parameters["output_path"]
         else:
             self.output_path = path
 
-        if tech_filename is not None:    
-            self.read_data(tech_filename)            
+        if self.parameters["tech_filename"] is not None:    
+            self.read_data(self.parameters["tech_filename"])            
         else:
             self.call_ATB_calc()
         
@@ -94,6 +105,14 @@ class ATB:
                                   "Type of Evidence", "Escalation Index", "Zotero_Key", 
                                   "Summary", "Bib_HTML"], inplace = True)
 
+    def create_tyche_data(self, designs):
+        """
+        Create an ATB data and copy it to the tyche workbook
+        This method should be called after checking if ATB data is NOT already stored in the workbook
+        """
+        # Check if tyche workbook has already an ATB
+        # If there's data, clear the workbook. 
+        
     def extract_values(self, parameter):
         """
         Extract values from ATB data

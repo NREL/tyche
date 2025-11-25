@@ -12,7 +12,7 @@ from .DataManager   import DesignsDataset, FunctionsDataset, IndicesDataset, Par
 from .Distributions import parse_distribution
 from .IO            import check_tables
 from .Types         import Functions, Indices, Inputs, Results
-
+from .ATB           import ATB
 
 def sampler(x, sample_count):
   """
@@ -73,7 +73,7 @@ class Designs:
     path       = None            ,
     name       = 'technology.xlsx',
     uncertain  = True           ,
-    atb_data   = None          ,
+    atb_input   = None          ,
   ):
     """
     Parameters
@@ -84,8 +84,8 @@ class Designs:
         Filename where decision context datasets are kept in separate sheets.
     uncertain : Boolean
       Flag indicating whether probability distributions are present in the *designs* or *parameters* tables.
-    atb_data : ATB object
-      object containing ATB data
+    atb_input : ATB parameters
+      parameters and values to pull from ATB
     indices : str
       Sheet name for the *indices* table.
     functions : str
@@ -98,8 +98,7 @@ class Designs:
       Sheet name for the *results* table.
     """
     self.uncertain = uncertain
-    self.atb_data = atb_data
-
+    
     if not os.path.isfile(os.path.join(path, name)):
       raise Exception(f"Designs: {os.path.join(path, name)} does not exist.")
     
@@ -110,10 +109,44 @@ class Designs:
     self.functions      = FunctionsDataset(  os.path.join(path, name)).sort_index()
     self.designs        = DesignsDataset(    os.path.join(path, name)).sort_index()
     self.parameters     = ParametersDataset( os.path.join(path, name)).sort_index()
-    self.atb_parameters = ATBParametersDataset( os.path.join(path, name)).sort_index()
-    self.parameters     = pd.concat([self.parameters, self.atb_parameters], axis = 0)
     self.results        = ResultsDataset(    os.path.join(path, name)).sort_index()
-      
+
+    self.atb_parameters = None
+    self.ATB = None
+    if atb_input is not None:
+      # create ATB object
+      self.ATB = ATB(path = path, parameters = atb_input)
+      self.create_atb(path, name)
+      self.parameters = pd.concat([self.parameters, self.atb_parameters], axis = 0)
+
+  def create_atb(self, path, name):
+    """
+    Create ATB object and add it to the workbook.
+    """
+    try: 
+        self.atb_parameters = ATBParametersDataset(os.path.join(path, name)).sort_index()
+        print("ATB_parameters sheet found")
+    except ValueError:
+        try:
+            print(f"Did not find ATB_parameters sheet in {name}")
+            atb_input_filename = self.ATB.tech_filename.split('.')[0] + '_tyche_format.xlsx'          
+            print(f"Reading ATB data from {atb_input_filename}")
+
+            ##TODO: fix writing ATB_parmaeters to existing excel file
+            # writer = pd.ExcelWriter(os.path.join(path, name), engine = 'openpyxl')
+            # existing_book = load_workbook(os.path.join(path, name))
+            # writer.book = existing_book
+            # atb_df.to_excel(writer, sheet_name="ATB_parameters_from_csv", index=False)
+            # writer.close()
+            # self.atb_parameters = ATBParametersDataset(os.path.join(path, name)).sort_index()
+            
+            # atb_df = pd.read_csv(os.path.join(path, atb_input_filename))
+            self.atb_parameters = ATBParametersDataset(os.path.join(path, atb_input_filename)).sort_index()
+
+        except ImportError:
+            print(f"{atb_input_filename} not found in {path}")
+            sys.exit(1)
+            
   def vectorize_technologies(self):
     """
     Make an array of technologies.
@@ -282,19 +315,20 @@ class Designs:
     
     tranches = self.vectorize_tranches(technology)
     n = tranches.shape[0]
-    
+        
     design    = self.vectorize_designs(   technology, n, sample_count)
+    print(technology)
     parameter = self.vectorize_parameters(technology, n, sample_count)
 
-    capital_cost = f_capital(design.scale, parameter, self.atb_data)
-    fixed_cost   = f_fixed  (design.scale, parameter, self.atb_data)
+    capital_cost = f_capital(design.scale, parameter, self.ATB)
+    fixed_cost   = f_fixed  (design.scale, parameter, self.ATB)
 
     input_raw = design.input
     input = design.input_efficiency * input_raw
     
     output_raw = f_production(design.scale, capital_cost,
                               design.lifetime, fixed_cost,
-                              input, parameter, self.atb_data)
+                              input, parameter, self.ATB)
     output = design.output_efficiency * output_raw
 
     cost = np.sum(capital_cost / design.lifetime, axis=0) / design.scale + \
@@ -304,7 +338,7 @@ class Designs:
 
     metric = f_metrics(design.scale, capital_cost, design.lifetime,
                        fixed_cost, input_raw, input, design.input_price,
-                       output_raw, output, cost, parameter, self.atb_data)
+                       output_raw, output, cost, parameter, self.ATB)
     
     def organize(df, ix):
       ix1 = pd.MultiIndex.from_product(
