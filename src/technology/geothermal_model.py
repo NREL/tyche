@@ -7,7 +7,7 @@ from matplotlib import scale
 import numpy as np
 
 
-def capital_cost(scale, parameter, atb):
+def capital_cost(scale, parameter, atb_data = None):
     """
     Capital cost function.
 
@@ -30,17 +30,17 @@ def capital_cost(scale, parameter, atb):
     # CAPEX = CFF * (OCC + GCC)
     # CAPEX, OCC, and GCC are reported in the extracted ATB data
 
-    # occ = scale * atb.extract_values(parameter = 'OCC') 
+    # occ = scale * atb_data.extract_values(parameter = 'OCC') 
     occ = scale * parameter[5]
-    gcc = scale * atb.extract_values(parameter = 'GCC') 
-    capex = scale * atb.extract_values(parameter = 'CAPEX') 
+    gcc = scale * atb_data.extract_values(parameter = 'GCC') 
+    capex = scale * atb_data.extract_values(parameter = 'CAPEX') 
 
     # TODO: check if we need this value
     # cff = capex / (occ + gcc)
 
     return np.stack([occ, gcc, capex])
 
-def fixed_cost(scale, parameter, atb):
+def fixed_cost(scale, parameter, atb_data = None):
   """
   Fixed cost function.
 
@@ -58,12 +58,12 @@ def fixed_cost(scale, parameter, atb):
   """
   # From ATB fixed O&M equation
   # FOM: Fixed O&M ($/ kW-yr)
-  fom = scale * atb.extract_values(parameter = 'Fixed O&M') 
+  fom = scale * atb_data.extract_values(parameter = 'Fixed O&M') 
 
   return np.stack([fom])
 
 
-def production(scale, capital, lifetime, fixed, input, parameter, atb):
+def production(scale, capital, lifetime, fixed, input, parameter, atb_data = None):
   """
   Production function.
 
@@ -74,13 +74,13 @@ def production(scale, capital, lifetime, fixed, input, parameter, atb):
   """
   # MWh of electricity (per year)
   plant_capacity = input[0]  # in MW 
-  net_capacity_factor = atb.extract_values(parameter = 'CF')
+  net_capacity_factor = atb_data.extract_values(parameter = 'CF')
 
   electricity_output = scale * plant_capacity * net_capacity_factor * 8760
   return np.stack([electricity_output])
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter, atb):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter, atb_data = None):
   """
   Metrics function.
 
@@ -100,12 +100,12 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   net_capacity_factor = parameter[4] # capacity factor
 
   # read atb parameters
-  capital_recovery_factor = atb.extract_values(parameter = 'CRF')
-  overnight_capital_cost = atb.extract_values(parameter = 'OCC')
-  grid_connection_cost = atb.extract_values(parameter = 'GCC')
-  fixed_om = atb.extract_values(parameter = 'Fixed O&M')
-  variable_om = atb.extract_values(parameter = 'Variable O&M')
-  # net_capacity_factor = atb.extract_values(parameter = 'CF')
+  capital_recovery_factor = atb_data.extract_values(parameter = 'CRF')
+  overnight_capital_cost = atb_data.extract_values(parameter = 'OCC')
+  grid_connection_cost = atb_data.extract_values(parameter = 'GCC')
+  fixed_om = atb_data.extract_values(parameter = 'Fixed O&M')
+  variable_om = atb_data.extract_values(parameter = 'Variable O&M')
+  # net_capacity_factor = atb_data.extract_values(parameter = 'CF')
 
   occ = scale * parameter[5]
   lcoe = scale * (((capital_recovery_factor * pff * cff * (overnight_capital_cost * 1 + grid_connection_cost) + fixed_om) * 1000 / (net_capacity_factor * 8760)) + variable_om + 0 - ptc)
