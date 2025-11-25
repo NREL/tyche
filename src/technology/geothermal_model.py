@@ -30,7 +30,8 @@ def capital_cost(scale, parameter, atb):
     # CAPEX = CFF * (OCC + GCC)
     # CAPEX, OCC, and GCC are reported in the extracted ATB data
 
-    occ = scale * atb.extract_values(parameter = 'OCC') 
+    # occ = scale * atb.extract_values(parameter = 'OCC') 
+    occ = scale * parameter[5]
     gcc = scale * atb.extract_values(parameter = 'GCC') 
     capex = scale * atb.extract_values(parameter = 'CAPEX') 
 
@@ -106,6 +107,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   variable_om = atb.extract_values(parameter = 'Variable O&M')
   # net_capacity_factor = atb.extract_values(parameter = 'CF')
 
+  occ = scale * parameter[5]
   lcoe = scale * (((capital_recovery_factor * pff * cff * (overnight_capital_cost * 1 + grid_connection_cost) + fixed_om) * 1000 / (net_capacity_factor * 8760)) + variable_om + 0 - ptc)
 
-  return np.stack([lcoe])
+  return np.stack([lcoe, occ])
