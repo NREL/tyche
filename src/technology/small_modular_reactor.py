@@ -1563,4 +1563,6 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
   return np.stack([all_results[3],
                    all_results[1] * scale**0.6,
                    all_results[2],
-                   all_results[6] * scale**0.6])
+                   all_results[6] * scale**0.6,
+                   parameter[21], # Variable op and maint
+                   parameter[22]]) # Fixed op and maint
