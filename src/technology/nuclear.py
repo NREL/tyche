@@ -13,7 +13,7 @@ import copy
 import numpy as np
 
 import pandas as pd
-import pdb
+
 # Original ACCERT location: Cost_Reduction/src.py
 # A function to update the high level costs in the database when changing the low level costs
 def update_high_level_costs(db, reactor_power):
@@ -147,7 +147,7 @@ def reactor_data_read(rtype,
     Options: 'Concept A', 'Concept B'
     Reactor type. Also used as sheet name to extract data from inputs.xlsx
 
-    datafilepath : string, Default = 'small-modular-reactor/inputs.xlsx'
+    datafilepath : string, Default = 'nuclear/inputs.xlsx'
     Relative location of inputs for Concept B reactor type.
 
     Returns
