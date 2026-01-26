@@ -13,7 +13,7 @@ import copy
 import numpy as np
 
 import pandas as pd
-
+import pdb
 # Original ACCERT location: Cost_Reduction/src.py
 # A function to update the high level costs in the database when changing the low level costs
 def update_high_level_costs(db, reactor_power):
@@ -135,18 +135,19 @@ def ITC_reduction_factor(itc_level):
     return np.interp(itc_level, itc_values, ITC_reduction_factor)
 
 
-def reactor_data_read(rtype = 'Concept B',
-                      datafilepath = 'conceptb-inputs.xlsx'):
+def reactor_data_read(rtype,
+                      datafilepath = 'inputs.xlsx'):
     """
     Read in baseline cost data for a 300 MWe small modular reactor using
     sodium fast reactor technology.
 
     Parameters
     ----------
-    rtype : string, Default = 'Concept B'
-    Reactor type. Calculations are only implemented for Concept B types.
+    rtype : string
+    Options: 'Concept A', 'Concept B'
+    Reactor type. Also used as sheet name to extract data from inputs.xlsx
 
-    datafilepath : string, Default = 'small-modular-reactor/conceptb-inputs.xlsx'
+    datafilepath : string, Default = 'small-modular-reactor/inputs.xlsx'
     Relative location of inputs for Concept B reactor type.
 
     Returns
@@ -154,11 +155,16 @@ def reactor_data_read(rtype = 'Concept B',
     tuple(pd.DataFrame, float, pd.DataFrame)
     Tuple of read-in reactor data, the hard coded reactor power, and the spending curve data.
     """
-    if rtype != 'Concept B':
+    # Set reactor power in kWe
+    if rtype == 'Concept B':
+        rpower = 310.8 * 1000
+    elif rtype == 'Concept A':
+        rpower = 1056 * 1000
+    else:
         raise NotImplementedError
 
     rdata = pd.read_excel(datafilepath,
-                          sheet_name = 'Costs')
+                          sheet_name = rtype)
     
     total_cost = {}
     for (acct, tot_cost) in zip(rdata['Account'], rdata['Total Cost (USD)']):
@@ -193,7 +199,6 @@ def reactor_data_read(rtype = 'Concept B',
                    'site_matrl_cost' : site_matrl_cost}
 
     # kWe
-    rpower = 310.8 * 1000
     sp = pd.read_excel(datafilepath,
                         sheet_name='Ref Spending Curve',
                         usecols='A : D')
@@ -429,8 +434,6 @@ def add_reworking_productivity(rdata,
     pd.DataFrame
     Structure identical to rdata with updated values
     """
-    if reactor_type != 'Concept B':
-        raise NotImplementedError
     """""
     if n_th == 1:
         ae_exp = ae_exp_0
@@ -529,8 +532,6 @@ def update_direct_cost(reactor_type,
     pd.DataFrame
     Structure identical to rdata with updated values
     """
-    if reactor_type != 'Concept B':
-        raise NotImplementedError
 
     rdata = reactor_data_read(reactor_type)[0]
     rpower = reactor_data_read(reactor_type)[1]
@@ -576,8 +577,7 @@ def update_direct_cost(reactor_type,
 
 def update_cons_dur(rdata,
                     rdata_updated,
-                    mod_0,
-                    reactor_type = 'Concept B'):
+                    mod_0):
     """
     Update construction duration from labor hours
 
@@ -593,8 +593,6 @@ def update_cons_dur(rdata,
     -------
     float: Construction duration
     """
-    if reactor_type != 'Concept B':
-        raise NotImplementedError
     
     sum_old_lab_hrs = rdata['site_labor_hrs'][21] + rdata['site_labor_hrs'][22] + rdata['site_labor_hrs'][23] + rdata['site_labor_hrs'][24] + rdata['site_labor_hrs'][26]
     #rdata.loc[rdata.Account == 21, 'Site Labor Hours'].values +\
@@ -627,7 +625,6 @@ def update_cons_dur(rdata,
 
 
 def learning_effect(rdata,
-                    rpower,
                     n_th,
                     standardization_0):
     """
@@ -700,8 +697,7 @@ def learning_effect(rdata,
     return rdata_updated
 
 
-def act_cons_duration_plus_delay(reactor_type,
-                                 n_th,
+def act_cons_duration_plus_delay(n_th,
                                  Design_Maturity_0,
                                  proc_exp_0,
                                  N_proc,
@@ -727,8 +723,6 @@ def act_cons_duration_plus_delay(reactor_type,
     -------
     float: Construction duration
     """
-    if reactor_type != 'Concept B':
-        raise NotImplementedError
 
     task_length_multiplier = 1
     ref_construction_duration = 64
@@ -823,7 +817,6 @@ def duration_learning_effect(n_th,
 
 
 def update_indirect_cost(n_th,
-                         rpower,
                          standardization_0,
                          rdata,
                          final_construction_duration):
@@ -955,8 +948,6 @@ def calculate_base_cost(reactor_type,
     tuple(pd.DataFrame, float)
     DataFrame of updated costs, final construction duration
     """
-    if reactor_type != 'Concept B':
-        raise NotImplementedError
 
     reactor_data = reactor_data_read(reactor_type)[0]
     reactor_power = reactor_data_read(reactor_type)[1]
@@ -974,11 +965,10 @@ def calculate_base_cost(reactor_type,
                                               N_AE,
                                               ce_exp_0,
                                               N_cons)
-    
+
     act_con_duration = update_cons_dur(reactor_data, direct_cost_updated, mod_0)
     
-    cons_duration_plus_delay = act_cons_duration_plus_delay(reactor_type,
-                                                            n_th,
+    cons_duration_plus_delay = act_cons_duration_plus_delay(n_th,
                                                             Design_Maturity_0,
                                                             proc_exp_0,
                                                             N_proc,
@@ -989,12 +979,10 @@ def calculate_base_cost(reactor_type,
                                                   cons_duration_plus_delay)
 
     direct_cost_updated_plus_learning = learning_effect(direct_cost_updated,
-                                                        reactor_power,
                                                         n_th,
                                                         standardization_0)
     
     direct_cost_updated_plus_learning_with_indirect_cost = update_indirect_cost(n_th,
-                                                                                reactor_power,
                                                                                 standardization_0,
                                                                                 direct_cost_updated_plus_learning,
                                                                                 final_con_duration)
@@ -1048,7 +1036,8 @@ def insurance_cost_update(rdata,
 
 
 
-def update_interest_cost(rdata,
+def update_interest_cost(rtype,
+                         rdata,
                           rpower,
                           final_construction_duration,
                           interest_rate,
@@ -1079,7 +1068,7 @@ def update_interest_cost(rdata,
     db = copy.deepcopy(rdata)
     db['total_cost'].update({62: np.zeros(final_construction_duration.shape)})
 
-    sp = reactor_data_read()[2]
+    sp = reactor_data_read(rtype)[2]
 
     Months = sp['Month'].tolist()
     CDFs = sp['CDF'].tolist()
@@ -1277,9 +1266,6 @@ def calculate_final_result(reactor_type,
     -------
     tuple    
     """
-    if reactor_type == 'Concept A':
-        raise NotImplementedError
-
     reactor_data = reactor_data_read(reactor_type)[0]
     reactor_power = reactor_data_read(reactor_type)[1]
 
@@ -1307,7 +1293,8 @@ def calculate_final_result(reactor_type,
 
     tot_base_cost_wz_insurance = insurance_cost_update(reactor_data, reactor_power, tot_base_cost)
     
-    tot_base_cost_wz_insurance_interest_results = update_interest_cost(tot_base_cost_wz_insurance,
+    tot_base_cost_wz_insurance_interest_results = update_interest_cost(reactor_type,
+                                                                       tot_base_cost_wz_insurance,
                                                                         reactor_power, 
                                                                         final_construction_duration,
                                                                         interest_rate_0,
@@ -1376,7 +1363,7 @@ def capital_cost(scale, parameter):
   """
   # See the input dataset for parameter definitions, units, and ranges
   all_results = calculate_final_result(
-    reactor_type = 'Concept B',
+    reactor_type = 'Concept B' if np.unique(parameter[24]) == 0 else 'Concept A',
     n_th = parameter[15],
     f_22 = parameter[19],
     f_2321 = parameter[20],
@@ -1421,7 +1408,7 @@ def fixed_cost(scale, parameter):
     The technological parameterization.
   """
   all_results = calculate_final_result(
-    reactor_type = 'Concept B',
+    reactor_type = 'Concept B' if np.unique(parameter[24]) == 0 else 'Concept A',
     n_th = parameter[15],
     f_22 = parameter[19],
     f_2321 = parameter[20],
@@ -1471,7 +1458,7 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     The technological parameterization.
   """
   all_results = calculate_final_result(
-    reactor_type = 'Concept B',
+    reactor_type = 'Concept B' if np.unique(parameter[24]) == 0 else 'Concept A',
     n_th = parameter[15],
     f_22 = parameter[19],
     f_2321 = parameter[20],
@@ -1532,7 +1519,7 @@ def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, outp
     The technological parameterization.
   """
   all_results = calculate_final_result(
-    reactor_type = 'Concept B',
+    reactor_type = 'Concept B' if np.unique(parameter[24]) == 0 else 'Concept A',
     n_th = parameter[15],
     f_22 = parameter[19],
     f_2321 = parameter[20],
