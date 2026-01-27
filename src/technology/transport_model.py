@@ -8,7 +8,7 @@ particular vehicle/transport technology.
 import numpy as np
 
 
-def capital_cost(scale, parameter):
+def capital_cost(scale, parameter, *args):
   """
   Capital cost function.
 
@@ -59,7 +59,7 @@ def capital_cost(scale, parameter):
   ])
 
 
-def fixed_cost(scale, parameter):
+def fixed_cost(scale, parameter, *args):
   """
   Capital cost function.
 
@@ -116,7 +116,7 @@ def fixed_cost(scale, parameter):
   ])
 
 
-def production(scale, capital, lifetime, fixed, input, parameter):
+def production(scale, capital, lifetime, fixed, input, parameter, *args):
   """
   Production function.
 
@@ -142,7 +142,7 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   ])
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter, *args):
   """
   Metrics function.
 
