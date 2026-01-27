@@ -1350,7 +1350,7 @@ def calculate_final_result(reactor_type,
 
 
 
-def capital_cost(scale, parameter):
+def capital_cost(scale, parameter, *args):
   """
   Capital cost function.
 
@@ -1396,7 +1396,7 @@ def capital_cost(scale, parameter):
   return np.stack(all_results[0]['total_cost']['Total Capital Investment Cost - ITC reduced (USD)'] * scale**0.6)
 
 
-def fixed_cost(scale, parameter):
+def fixed_cost(scale, parameter, *args):
   """
   Fixed O&M cost function.
 
@@ -1438,7 +1438,7 @@ def fixed_cost(scale, parameter):
   return np.stack(all_results[4] * scale)
 
 
-def production(scale, capital, lifetime, fixed, input, parameter):
+def production(scale, capital, lifetime, fixed, input, parameter, *args):
   """
   Production function.
 
@@ -1491,7 +1491,7 @@ def production(scale, capital, lifetime, fixed, input, parameter):
   return np.stack(_elec_out)
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter, *args):
   """
   Metrics function.
 
