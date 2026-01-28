@@ -6,7 +6,7 @@ Corresponds to Technology B in the template decision context.
 
 import numpy as np
 
-def capital_cost(scale, parameter):
+def capital_cost(scale, parameter, *args):
   """
   Capital cost function.
 
@@ -25,7 +25,7 @@ def capital_cost(scale, parameter):
                    parameter[4] * scale**0.6))
 
 
-def fixed_cost(scale, parameter):
+def fixed_cost(scale, parameter, *args):
   """
   Capital cost function.
 
@@ -42,7 +42,7 @@ def fixed_cost(scale, parameter):
   return np.stack(0.1 * (parameter[0] + parameter[1] + parameter[2] + parameter[3] + parameter[4]) * scale)
 
 
-def production(scale, capital, lifetime, fixed, input, parameter):
+def production(scale, capital, lifetime, fixed, input, parameter, *args):
   """
   Production function.
 
@@ -67,7 +67,7 @@ def production(scale, capital, lifetime, fixed, input, parameter):
                    parameter[14] * input[2]))
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter, *args):
   """
   Metrics function.
 

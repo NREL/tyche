@@ -7,7 +7,7 @@ Simple pv utility-scale module example.  Inspired by Kavlak et al. Energy Policy
 import numpy as np
 
 
-def capital_cost(scale, parameter):
+def capital_cost(scale, parameter, *args):
     """
     Capital cost function.
 
@@ -44,7 +44,7 @@ def capital_cost(scale, parameter):
     return np.stack([out])
 
 
-def fixed_cost(scale, parameter):
+def fixed_cost(scale, parameter, *args):
     """
     Fixed cost function.
 
@@ -60,7 +60,7 @@ def fixed_cost(scale, parameter):
     return np.stack([0])
 
 
-def production(scale, capital, lifetime, fixed, input, parameter):
+def production(scale, capital, lifetime, fixed, input, parameter, *args):
     """
     Production function.
 
@@ -92,7 +92,7 @@ def production(scale, capital, lifetime, fixed, input, parameter):
     return np.stack([kwh_per_module])
 
 
-def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter):
+def metrics(scale, capital, lifetime, fixed, input_raw, input, input_price, output_raw, output, cost, parameter, *args):
     """
     Metrics function.
 

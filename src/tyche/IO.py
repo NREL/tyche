@@ -179,7 +179,7 @@ def check_tables(
           f' missing Variable Indexes. Check in designs.\n{_odd_des_tectra_varval_set}\n')
         )
 
-    # Functions check: All unique entries under Model must be a .py file containing the
+   # Functions check: All unique entries under Model must be a .py file containing the
     # methods defined in the Capital, Fixed, Production, and Metrics columns
     # For every technology model,
     for _tech, _meta in functions.iterrows():
@@ -187,7 +187,7 @@ def check_tables(
       if os.path.exists('../' + _meta['Model'] + '.py'):
         # If the file does exist, use a try/except structure to attempt import
         try:
-          _model = il.import_module("." + _meta["Model"], package="technology")
+          _model = il.import_module('.' + _meta["Model"], package="technology")
         except ImportError:
           check_list.append(
             (f'Data Validation: Technology model {_tech} is not importable.\n')

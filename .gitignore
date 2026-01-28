@@ -17,3 +17,4 @@ eutychia-2101/
 *.lp
 .spyproject/
 .DS_Store
+.vscode/
