@@ -398,8 +398,6 @@ def add_bulk_ordering(rdata,
 
 
 def add_reworking_productivity(rdata,
-                               rpower,
-                               reactor_type,
                                n_th,
                                design_completion_0,
                                ae_exp_0,
@@ -412,10 +410,6 @@ def add_reworking_productivity(rdata,
     Parameters
     ----------
     rdata
-
-    rpower
-
-    reactor_type
 
     n_th
 
@@ -560,8 +554,6 @@ def update_direct_cost(reactor_type,
     
     rdata_factory_land_taxes_BOP_RP_grades_bulkOrder_rework_productivity = \
         add_reworking_productivity(rdata_factory_land_taxes_BOP_RP_grades_bulkOrder,
-                                    rpower,
-                                    reactor_type,
                                     n_th,
                                     design_completion_0,
                                     ae_exp_0,
@@ -575,7 +567,8 @@ def update_direct_cost(reactor_type,
 
 
 
-def update_cons_dur(rdata,
+def update_cons_dur(reactor_type,
+                    rdata,
                     rdata_updated,
                     mod_0):
     """
@@ -583,6 +576,8 @@ def update_cons_dur(rdata,
 
     Parameters
     ----------
+    reactor_type
+
     rdata
 
     rdata_updated
@@ -618,7 +613,7 @@ def update_cons_dur(rdata,
     mod_factor = mod_0
     mod_factor[mod_0 == 0] = 0.8
 
-    baseline_construction_duration = 64 / mod_factor
+    baseline_construction_duration = 64 / mod_factor if reactor_type == 'Concept B' else 125 / mod_factor
 
     return baseline_construction_duration * (0.3 * labor_hour_ratio + 0.7)
 
@@ -707,8 +702,6 @@ def act_cons_duration_plus_delay(n_th,
 
     Parameters
     ----------
-    reactor_type
-
     n_th
 
     Design_Maturity_0
@@ -966,7 +959,7 @@ def calculate_base_cost(reactor_type,
                                               ce_exp_0,
                                               N_cons)
 
-    act_con_duration = update_cons_dur(reactor_data, direct_cost_updated, mod_0)
+    act_con_duration = update_cons_dur(reactor_type, reactor_data, direct_cost_updated, mod_0)
     
     cons_duration_plus_delay = act_cons_duration_plus_delay(n_th,
                                                             Design_Maturity_0,
